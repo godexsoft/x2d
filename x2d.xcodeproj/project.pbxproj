@@ -7,41 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2415838314CDD9DA0014F37B /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415838114CDD9DA0014F37B /* math_util.cpp */; };
-		2415838A14CE09460014F37B /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415838914CE09460014F37B /* texture.cpp */; };
-		24BDCC2214CC6300006F36A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
-		24BDCC2414CC6300006F36A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
-		24BDCC2614CC6300006F36A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		24BDCC2C14CC6300006F36A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24BDCC2A14CC6300006F36A1 /* InfoPlist.strings */; };
-		24BDCC2E14CC6300006F36A1 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC2D14CC6300006F36A1 /* main.mm */; };
-		24BDCC3214CC6300006F36A1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC3114CC6300006F36A1 /* AppDelegate.mm */; };
-		24BDCC4214CC6320006F36A1 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
-		24BDCC4614CC63FD006F36A1 /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC4514CC63FD006F36A1 /* kernel.cpp */; };
-		24BDCC4F14CC6DF3006F36A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
-		24BDCC5814CC7A5E006F36A1 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5614CC7A5E006F36A1 /* log.cpp */; };
-		24BDCC5C14CC7C92006F36A1 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5A14CC7C92006F36A1 /* timer.cpp */; };
-		24BDCC6014CC8624006F36A1 /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5F14CC8623006F36A1 /* clock.cpp */; };
-		24BDCC6214CC86BE006F36A1 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform.cpp */; };
-		24BDCC6814CCC006006F36A1 /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
-		24BDCC6A14CCC123006F36A1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
-		24BDCC7314CCC87E006F36A1 /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
+		241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		241583C814D0B2DA0014F37B /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
+		241583C914D0B2DA0014F37B /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
+		241583CA14D0B2DA0014F37B /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415838914CE09460014F37B /* texture.cpp */; };
+		241583CB14D0B2DA0014F37B /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5614CC7A5E006F36A1 /* log.cpp */; };
+		241583CC14D0B2DA0014F37B /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415838114CDD9DA0014F37B /* math_util.cpp */; };
+		241583CD14D0B2DA0014F37B /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5F14CC8623006F36A1 /* clock.cpp */; };
+		241583CE14D0B2DA0014F37B /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5A14CC7C92006F36A1 /* timer.cpp */; };
+		241583CF14D0B2DA0014F37B /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC4514CC63FD006F36A1 /* kernel.cpp */; };
+		241583D014D0B2DA0014F37B /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform.cpp */; };
+		241583DB14D0B3940014F37B /* liblibx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* liblibx2d.a */; };
+		241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		241583DF14D0B3940014F37B /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		241583E014D0B3940014F37B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		241583E114D0B3940014F37B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		241583F614D0B5620014F37B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241583EB14D0B4D30014F37B /* AppDelegate.mm */; };
+		241583F714D0B5620014F37B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241583F014D0B4E20014F37B /* main.mm */; };
+		241583F814D0B5770014F37B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 241583EE14D0B4E20014F37B /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		241583D614D0B3940014F37B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2415837F14CDD9380014F37B /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = src/base/camera.h; sourceTree = "<group>"; };
 		2415838114CDD9DA0014F37B /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math_util.cpp; path = src/util/math_util.cpp; sourceTree = "<group>"; };
 		2415838814CE04990014F37B /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = src/base/texture.h; sourceTree = "<group>"; };
 		2415838914CE09460014F37B /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture.cpp; path = src/base/texture.cpp; sourceTree = "<group>"; };
-		24BDCC1D14CC6300006F36A1 /* x2d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		241583BD14D0B27E0014F37B /* liblibx2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibx2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		241583E714D0B3940014F37B /* x2d_object.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_object.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		241583EA14D0B4D30014F37B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 01_object/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		241583EB14D0B4D30014F37B /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 01_object/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
+		241583EF14D0B4E20014F37B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		241583F014D0B4E20014F37B /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 01_object/main.mm; sourceTree = SOURCE_ROOT; };
+		241583F114D0B4E20014F37B /* object-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "object-Prefix.pch"; path = "01_object/object-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		241583F214D0B4E20014F37B /* object.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = object.plist; path = 01_object/object.plist; sourceTree = SOURCE_ROOT; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		24BDCC2914CC6300006F36A1 /* x2d-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "x2d-Info.plist"; sourceTree = "<group>"; };
-		24BDCC2B14CC6300006F36A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		24BDCC2D14CC6300006F36A1 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		24BDCC2F14CC6300006F36A1 /* x2d-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "x2d-Prefix.pch"; sourceTree = "<group>"; };
-		24BDCC3014CC6300006F36A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		24BDCC3114CC6300006F36A1 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		24BDCC4114CC6320006F36A1 /* boost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = boost.framework; path = System/Library/Frameworks/boost.framework; sourceTree = SDKROOT; };
 		24BDCC4514CC63FD006F36A1 /* kernel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel.cpp; path = src/kernel/kernel.cpp; sourceTree = "<group>"; };
 		24BDCC4714CC648D006F36A1 /* kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel.h; path = src/kernel/kernel.h; sourceTree = "<group>"; };
@@ -62,10 +75,6 @@
 		24BDCC6B14CCC797006F36A1 /* graphics_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphics_engine.h; path = src/gl/graphics_engine.h; sourceTree = "<group>"; };
 		24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphics_engine.cpp; path = src/gl/graphics_engine.cpp; sourceTree = "<group>"; };
 		24BDCC7414CCCE0A006F36A1 /* objc_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = objc_callback.h; path = src/util/objc_callback.h; sourceTree = "<group>"; };
-		24BDCC7B14CCF8B7006F36A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		24BDCC7E14CCF8B8006F36A1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		24BDCC7F14CCF8B8006F36A1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		24BDCC8014CCF8B8006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC9D14CCF90C006F36A1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		24BDCC9F14CCF918006F36A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		24BDCCA214CD0011006F36A1 /* libboost_signals.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_signals.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/libboost_signals.dylib; sourceTree = DEVELOPER_DIR; };
@@ -74,16 +83,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		24BDCC1A14CC6300006F36A1 /* Frameworks */ = {
+		241583BA14D0B27E0014F37B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BDCC6A14CCC123006F36A1 /* OpenGLES.framework in Frameworks */,
-				24BDCC4F14CC6DF3006F36A1 /* QuartzCore.framework in Frameworks */,
-				24BDCC2614CC6300006F36A1 /* CoreGraphics.framework in Frameworks */,
-				24BDCC4214CC6320006F36A1 /* boost.framework in Frameworks */,
-				24BDCC2214CC6300006F36A1 /* UIKit.framework in Frameworks */,
-				24BDCC2414CC6300006F36A1 /* Foundation.framework in Frameworks */,
+				241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		241583DA14D0B3940014F37B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				241583DB14D0B3940014F37B /* liblibx2d.a in Frameworks */,
+				241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */,
+				241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */,
+				241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */,
+				241583DF14D0B3940014F37B /* boost.framework in Frameworks */,
+				241583E014D0B3940014F37B /* UIKit.framework in Frameworks */,
+				241583E114D0B3940014F37B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +111,7 @@
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
+				24BDCCA114CCF942006F36A1 /* 01_object */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
@@ -102,7 +121,8 @@
 		24BDCC1E14CC6300006F36A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24BDCC1D14CC6300006F36A1 /* x2d.app */,
+				241583BD14D0B27E0014F37B /* liblibx2d.a */,
+				241583E714D0B3940014F37B /* x2d_object.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,8 +139,6 @@
 				24BDCC2114CC6300006F36A1 /* UIKit.framework */,
 				24BDCC2314CC6300006F36A1 /* Foundation.framework */,
 				24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */,
-				24BDCC7B14CCF8B7006F36A1 /* Cocoa.framework */,
-				24BDCC7D14CCF8B7006F36A1 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,11 +146,9 @@
 		24BDCC2714CC6300006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
-				24BDCCA114CCF942006F36A1 /* iPhone_test */,
 				24BDCC4314CC63B5006F36A1 /* x2d */,
 				24BDCC6114CC86BD006F36A1 /* platform.cpp */,
 				24BDCC6314CC8737006F36A1 /* platform.h */,
-				24BDCC2814CC6300006F36A1 /* Supporting Files */,
 			);
 			path = x2d;
 			sourceTree = "<group>";
@@ -140,10 +156,10 @@
 		24BDCC2814CC6300006F36A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				24BDCC2914CC6300006F36A1 /* x2d-Info.plist */,
-				24BDCC2A14CC6300006F36A1 /* InfoPlist.strings */,
-				24BDCC2D14CC6300006F36A1 /* main.mm */,
-				24BDCC2F14CC6300006F36A1 /* x2d-Prefix.pch */,
+				241583EE14D0B4E20014F37B /* InfoPlist.strings */,
+				241583F014D0B4E20014F37B /* main.mm */,
+				241583F114D0B4E20014F37B /* object-Prefix.pch */,
+				241583F214D0B4E20014F37B /* object.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -208,43 +224,63 @@
 			name = gl;
 			sourceTree = "<group>";
 		};
-		24BDCC7D14CCF8B7006F36A1 /* Other Frameworks */ = {
+		24BDCCA114CCF942006F36A1 /* 01_object */ = {
 			isa = PBXGroup;
 			children = (
-				24BDCC7E14CCF8B8006F36A1 /* AppKit.framework */,
-				24BDCC7F14CCF8B8006F36A1 /* CoreData.framework */,
-				24BDCC8014CCF8B8006F36A1 /* Foundation.framework */,
+				241583EA14D0B4D30014F37B /* AppDelegate.h */,
+				241583EB14D0B4D30014F37B /* AppDelegate.mm */,
+				24BDCC2814CC6300006F36A1 /* Supporting Files */,
 			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		24BDCCA114CCF942006F36A1 /* iPhone_test */ = {
-			isa = PBXGroup;
-			children = (
-				24BDCC3014CC6300006F36A1 /* AppDelegate.h */,
-				24BDCC3114CC6300006F36A1 /* AppDelegate.mm */,
-			);
-			name = iPhone_test;
+			name = 01_object;
+			path = x2d;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		241583BB14D0B27E0014F37B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		24BDCC1C14CC6300006F36A1 /* x2d */ = {
+		241583BC14D0B27E0014F37B /* libx2d */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 24BDCC3E14CC6300006F36A1 /* Build configuration list for PBXNativeTarget "x2d" */;
+			buildConfigurationList = 241583C514D0B27E0014F37B /* Build configuration list for PBXNativeTarget "libx2d" */;
 			buildPhases = (
-				24BDCC1914CC6300006F36A1 /* Sources */,
-				24BDCC1A14CC6300006F36A1 /* Frameworks */,
-				24BDCC1B14CC6300006F36A1 /* Resources */,
+				241583B914D0B27E0014F37B /* Sources */,
+				241583BA14D0B27E0014F37B /* Frameworks */,
+				241583BB14D0B27E0014F37B /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = x2d;
+			name = libx2d;
+			productName = libx2d;
+			productReference = 241583BD14D0B27E0014F37B /* liblibx2d.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		241583D414D0B3940014F37B /* 01_object */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 241583E414D0B3940014F37B /* Build configuration list for PBXNativeTarget "01_object" */;
+			buildPhases = (
+				241583D714D0B3940014F37B /* Sources */,
+				241583DA14D0B3940014F37B /* Frameworks */,
+				241583E214D0B3940014F37B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				241583D514D0B3940014F37B /* PBXTargetDependency */,
+			);
+			name = 01_object;
 			productName = x2d;
-			productReference = 24BDCC1D14CC6300006F36A1 /* x2d.app */;
+			productReference = 241583E714D0B3940014F37B /* x2d_object.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,55 +303,114 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				24BDCC1C14CC6300006F36A1 /* x2d */,
+				241583BC14D0B27E0014F37B /* libx2d */,
+				241583D414D0B3940014F37B /* 01_object */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		24BDCC1B14CC6300006F36A1 /* Resources */ = {
+		241583E214D0B3940014F37B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BDCC2C14CC6300006F36A1 /* InfoPlist.strings in Resources */,
+				241583F814D0B5770014F37B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		24BDCC1914CC6300006F36A1 /* Sources */ = {
+		241583B914D0B27E0014F37B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BDCC2E14CC6300006F36A1 /* main.mm in Sources */,
-				24BDCC3214CC6300006F36A1 /* AppDelegate.mm in Sources */,
-				24BDCC4614CC63FD006F36A1 /* kernel.cpp in Sources */,
-				24BDCC5814CC7A5E006F36A1 /* log.cpp in Sources */,
-				24BDCC5C14CC7C92006F36A1 /* timer.cpp in Sources */,
-				24BDCC6014CC8624006F36A1 /* clock.cpp in Sources */,
-				24BDCC6214CC86BE006F36A1 /* platform.cpp in Sources */,
-				24BDCC6814CCC006006F36A1 /* EAGLView.mm in Sources */,
-				24BDCC7314CCC87E006F36A1 /* graphics_engine.cpp in Sources */,
-				2415838314CDD9DA0014F37B /* math_util.cpp in Sources */,
-				2415838A14CE09460014F37B /* texture.cpp in Sources */,
+				241583C814D0B2DA0014F37B /* EAGLView.mm in Sources */,
+				241583C914D0B2DA0014F37B /* graphics_engine.cpp in Sources */,
+				241583CA14D0B2DA0014F37B /* texture.cpp in Sources */,
+				241583CB14D0B2DA0014F37B /* log.cpp in Sources */,
+				241583CC14D0B2DA0014F37B /* math_util.cpp in Sources */,
+				241583CD14D0B2DA0014F37B /* clock.cpp in Sources */,
+				241583CE14D0B2DA0014F37B /* timer.cpp in Sources */,
+				241583CF14D0B2DA0014F37B /* kernel.cpp in Sources */,
+				241583D014D0B2DA0014F37B /* platform.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		241583D714D0B3940014F37B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				241583F614D0B5620014F37B /* AppDelegate.mm in Sources */,
+				241583F714D0B5620014F37B /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		241583D514D0B3940014F37B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 241583D614D0B3940014F37B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		24BDCC2A14CC6300006F36A1 /* InfoPlist.strings */ = {
+		241583EE14D0B4E20014F37B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				24BDCC2B14CC6300006F36A1 /* en */,
+				241583EF14D0B4E20014F37B /* en */,
 			);
 			name = InfoPlist.strings;
+			path = ../01_object/en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		241583C614D0B27E0014F37B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libx2d.dst;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		241583C714D0B27E0014F37B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libx2d.dst;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		241583E514D0B3940014F37B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
+				INFOPLIST_FILE = 01_object/object.plist;
+				PRODUCT_NAME = x2d_object;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		241583E614D0B3940014F37B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
+				INFOPLIST_FILE = 01_object/object.plist;
+				PRODUCT_NAME = x2d_object;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		24BDCC3C14CC6300006F36A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,45 +460,31 @@
 			};
 			name = Release;
 		};
-		24BDCC3F14CC6300006F36A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "x2d/x2d-Prefix.pch";
-				INFOPLIST_FILE = "x2d/x2d-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		24BDCC4014CC6300006F36A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "x2d/x2d-Prefix.pch";
-				INFOPLIST_FILE = "x2d/x2d-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		241583C514D0B27E0014F37B /* Build configuration list for PBXNativeTarget "libx2d" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				241583C614D0B27E0014F37B /* Debug */,
+				241583C714D0B27E0014F37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		241583E414D0B3940014F37B /* Build configuration list for PBXNativeTarget "01_object" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				241583E514D0B3940014F37B /* Debug */,
+				241583E614D0B3940014F37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		24BDCC1714CC6300006F36A1 /* Build configuration list for PBXProject "x2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				24BDCC3C14CC6300006F36A1 /* Debug */,
 				24BDCC3D14CC6300006F36A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		24BDCC3E14CC6300006F36A1 /* Build configuration list for PBXNativeTarget "x2d" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24BDCC3F14CC6300006F36A1 /* Debug */,
-				24BDCC4014CC6300006F36A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
