@@ -27,6 +27,7 @@
 		241583F614D0B5620014F37B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241583EB14D0B4D30014F37B /* AppDelegate.mm */; };
 		241583F714D0B5620014F37B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241583F014D0B4E20014F37B /* main.mm */; };
 		241583F814D0B5770014F37B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 241583EE14D0B4E20014F37B /* InfoPlist.strings */; };
+		241583FB14D0B6C10014F37B /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 241583FA14D0B6C10014F37B /* custom_obj.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		241583F014D0B4E20014F37B /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 01_object/main.mm; sourceTree = SOURCE_ROOT; };
 		241583F114D0B4E20014F37B /* object-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "object-Prefix.pch"; path = "01_object/object-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		241583F214D0B4E20014F37B /* object.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = object.plist; path = 01_object/object.plist; sourceTree = SOURCE_ROOT; };
+		241583FA14D0B6C10014F37B /* custom_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = custom_obj.cpp; path = 01_object/custom_obj.cpp; sourceTree = SOURCE_ROOT; };
+		241583FC14D0B6E50014F37B /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 01_object/custom_obj.h; sourceTree = SOURCE_ROOT; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241583F914D0B67C0014F37B /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				241583FA14D0B6C10014F37B /* custom_obj.cpp */,
+				241583FC14D0B6E50014F37B /* custom_obj.h */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +239,7 @@
 		24BDCCA114CCF942006F36A1 /* 01_object */ = {
 			isa = PBXGroup;
 			children = (
+				241583F914D0B67C0014F37B /* objects */,
 				241583EA14D0B4D30014F37B /* AppDelegate.h */,
 				241583EB14D0B4D30014F37B /* AppDelegate.mm */,
 				24BDCC2814CC6300006F36A1 /* Supporting Files */,
@@ -343,6 +356,7 @@
 			files = (
 				241583F614D0B5620014F37B /* AppDelegate.mm in Sources */,
 				241583F714D0B5620014F37B /* main.mm in Sources */,
+				241583FB14D0B6C10014F37B /* custom_obj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

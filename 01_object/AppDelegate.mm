@@ -3,13 +3,13 @@
 //  x2d
 //
 //  Created by Alex Kremer on 1/22/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "EAGLView.h"
 #import "kernel.h"
-#import "base_object.h"
+#import "custom_obj.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -32,7 +32,7 @@
     NSLog(@"Starting.");
         
     // register some object with our kernel
-    obj = boost::shared_ptr<base_object>( new base_object(_k) );
+    obj = boost::shared_ptr<base_object>( new custom_obj(_k) );
     
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
