@@ -25,21 +25,6 @@
 		24BDCC6814CCC006006F36A1 /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
 		24BDCC6A14CCC123006F36A1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		24BDCC7314CCC87E006F36A1 /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
-		24BDCC7C14CCF8B7006F36A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC7B14CCF8B7006F36A1 /* Cocoa.framework */; };
-		24BDCC8614CCF8B8006F36A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24BDCC8414CCF8B8006F36A1 /* InfoPlist.strings */; };
-		24BDCC8814CCF8B8006F36A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC8714CCF8B8006F36A1 /* main.m */; };
-		24BDCC8C14CCF8B8006F36A1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 24BDCC8A14CCF8B8006F36A1 /* Credits.rtf */; };
-		24BDCC8F14CCF8B8006F36A1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC8E14CCF8B8006F36A1 /* AppDelegate.mm */; };
-		24BDCC9214CCF8B8006F36A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BDCC9014CCF8B8006F36A1 /* MainMenu.xib */; };
-		24BDCC9714CCF8FF006F36A1 /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
-		24BDCC9814CCF8FF006F36A1 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5614CC7A5E006F36A1 /* log.cpp */; };
-		24BDCC9914CCF8FF006F36A1 /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5F14CC8623006F36A1 /* clock.cpp */; };
-		24BDCC9A14CCF8FF006F36A1 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5A14CC7C92006F36A1 /* timer.cpp */; };
-		24BDCC9B14CCF8FF006F36A1 /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC4514CC63FD006F36A1 /* kernel.cpp */; };
-		24BDCC9C14CCF8FF006F36A1 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform.cpp */; };
-		24BDCC9E14CCF90C006F36A1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC9D14CCF90C006F36A1 /* OpenGL.framework */; };
-		24BDCCA014CCF919006F36A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC9F14CCF918006F36A1 /* QuartzCore.framework */; };
-		24BDCCA314CD0012006F36A1 /* libboost_signals.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCCA214CD0011006F36A1 /* libboost_signals.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,19 +62,10 @@
 		24BDCC6B14CCC797006F36A1 /* graphics_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphics_engine.h; path = src/gl/graphics_engine.h; sourceTree = "<group>"; };
 		24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphics_engine.cpp; path = src/gl/graphics_engine.cpp; sourceTree = "<group>"; };
 		24BDCC7414CCCE0A006F36A1 /* objc_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = objc_callback.h; path = src/util/objc_callback.h; sourceTree = "<group>"; };
-		24BDCC7914CCF8B7006F36A1 /* mac_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mac_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BDCC7B14CCF8B7006F36A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		24BDCC7E14CCF8B8006F36A1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		24BDCC7F14CCF8B8006F36A1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		24BDCC8014CCF8B8006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		24BDCC8314CCF8B8006F36A1 /* mac_test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mac_test-Info.plist"; sourceTree = "<group>"; };
-		24BDCC8514CCF8B8006F36A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		24BDCC8714CCF8B8006F36A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		24BDCC8914CCF8B8006F36A1 /* mac_test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mac_test-Prefix.pch"; sourceTree = "<group>"; };
-		24BDCC8B14CCF8B8006F36A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		24BDCC8D14CCF8B8006F36A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		24BDCC8E14CCF8B8006F36A1 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		24BDCC9114CCF8B8006F36A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		24BDCC9D14CCF90C006F36A1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		24BDCC9F14CCF918006F36A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		24BDCCA214CD0011006F36A1 /* libboost_signals.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_signals.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/libboost_signals.dylib; sourceTree = DEVELOPER_DIR; };
@@ -111,17 +87,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24BDCC7614CCF8B7006F36A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24BDCCA314CD0012006F36A1 /* libboost_signals.dylib in Frameworks */,
-				24BDCCA014CCF919006F36A1 /* QuartzCore.framework in Frameworks */,
-				24BDCC9E14CCF90C006F36A1 /* OpenGL.framework in Frameworks */,
-				24BDCC7C14CCF8B7006F36A1 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				24BDCC2714CC6300006F36A1 /* x2d */,
-				24BDCC8114CCF8B8006F36A1 /* mac_test */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
 			);
@@ -139,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				24BDCC1D14CC6300006F36A1 /* x2d.app */,
-				24BDCC7914CCF8B7006F36A1 /* mac_test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,29 +218,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		24BDCC8114CCF8B8006F36A1 /* mac_test */ = {
-			isa = PBXGroup;
-			children = (
-				24BDCC8D14CCF8B8006F36A1 /* AppDelegate.h */,
-				24BDCC8E14CCF8B8006F36A1 /* AppDelegate.mm */,
-				24BDCC9014CCF8B8006F36A1 /* MainMenu.xib */,
-				24BDCC8214CCF8B8006F36A1 /* Supporting Files */,
-			);
-			path = mac_test;
-			sourceTree = "<group>";
-		};
-		24BDCC8214CCF8B8006F36A1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				24BDCC8314CCF8B8006F36A1 /* mac_test-Info.plist */,
-				24BDCC8414CCF8B8006F36A1 /* InfoPlist.strings */,
-				24BDCC8714CCF8B8006F36A1 /* main.m */,
-				24BDCC8914CCF8B8006F36A1 /* mac_test-Prefix.pch */,
-				24BDCC8A14CCF8B8006F36A1 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		24BDCCA114CCF942006F36A1 /* iPhone_test */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,23 +247,6 @@
 			productReference = 24BDCC1D14CC6300006F36A1 /* x2d.app */;
 			productType = "com.apple.product-type.application";
 		};
-		24BDCC7814CCF8B7006F36A1 /* mac_test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 24BDCC9314CCF8B8006F36A1 /* Build configuration list for PBXNativeTarget "mac_test" */;
-			buildPhases = (
-				24BDCC7514CCF8B7006F36A1 /* Sources */,
-				24BDCC7614CCF8B7006F36A1 /* Frameworks */,
-				24BDCC7714CCF8B7006F36A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = mac_test;
-			productName = mac_test;
-			productReference = 24BDCC7914CCF8B7006F36A1 /* mac_test.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -345,7 +268,6 @@
 			projectRoot = "";
 			targets = (
 				24BDCC1C14CC6300006F36A1 /* x2d */,
-				24BDCC7814CCF8B7006F36A1 /* mac_test */,
 			);
 		};
 /* End PBXProject section */
@@ -356,16 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BDCC2C14CC6300006F36A1 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		24BDCC7714CCF8B7006F36A1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24BDCC8614CCF8B8006F36A1 /* InfoPlist.strings in Resources */,
-				24BDCC8C14CCF8B8006F36A1 /* Credits.rtf in Resources */,
-				24BDCC9214CCF8B8006F36A1 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,21 +302,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24BDCC7514CCF8B7006F36A1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24BDCC9714CCF8FF006F36A1 /* graphics_engine.cpp in Sources */,
-				24BDCC9814CCF8FF006F36A1 /* log.cpp in Sources */,
-				24BDCC9914CCF8FF006F36A1 /* clock.cpp in Sources */,
-				24BDCC9A14CCF8FF006F36A1 /* timer.cpp in Sources */,
-				24BDCC9B14CCF8FF006F36A1 /* kernel.cpp in Sources */,
-				24BDCC9C14CCF8FF006F36A1 /* platform.cpp in Sources */,
-				24BDCC8814CCF8B8006F36A1 /* main.m in Sources */,
-				24BDCC8F14CCF8B8006F36A1 /* AppDelegate.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -414,30 +311,6 @@
 				24BDCC2B14CC6300006F36A1 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		24BDCC8414CCF8B8006F36A1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24BDCC8514CCF8B8006F36A1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		24BDCC8A14CCF8B8006F36A1 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24BDCC8B14CCF8B8006F36A1 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		24BDCC9014CCF8B8006F36A1 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24BDCC9114CCF8B8006F36A1 /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -514,48 +387,6 @@
 			};
 			name = Release;
 		};
-		24BDCC9414CCF8B8006F36A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "mac_test/mac_test-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "mac_test/mac_test-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		24BDCC9514CCF8B8006F36A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "mac_test/mac_test-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "mac_test/mac_test-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -573,15 +404,6 @@
 			buildConfigurations = (
 				24BDCC3F14CC6300006F36A1 /* Debug */,
 				24BDCC4014CC6300006F36A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		24BDCC9314CCF8B8006F36A1 /* Build configuration list for PBXNativeTarget "mac_test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24BDCC9414CCF8B8006F36A1 /* Debug */,
-				24BDCC9514CCF8B8006F36A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
