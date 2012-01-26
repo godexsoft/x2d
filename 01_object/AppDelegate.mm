@@ -10,8 +10,46 @@
 #import "EAGLView.h"
 #import "kernel.h"
 #import "custom_obj.h"
+#import "liverpool.h"
+#import "platform.h"
 
 #import <QuartzCore/QuartzCore.h>
+#include <iostream>
+
+namespace lp = x2d::liverpool;
+namespace fs = x2d::filesystem;
+
+class Lister : public std::unary_function<lp::entry, void> {
+private:
+    lp::liverpool& fs;
+	
+public:
+	Lister(lp::liverpool& l) : fs(l) {};
+	
+    void list(fs::path pth)
+    {
+        for(lp::liverpool::diterator it = fs.dir_begin(pth.string()); it != fs.dir_end(); ++it) {
+            
+            fs::path p(it->path());
+            std::string lpc = p.last_path_component();
+            
+            if ( it->is_dir() ) {
+                
+                LOG("[DIR] '%s'", lpc.c_str());
+                
+                // Skip hidden files and current/prev directory
+                if(lpc.substr(0,1) != ".") 
+                {                    
+                    this->list( pth / lpc );
+                }
+            } else {
+                
+                // This is a file. Check it against all our supported types.
+                LOG("----- '%s'", lpc.c_str());
+            }
+        }
+    }
+};
 
 @implementation AppDelegate
 
@@ -31,6 +69,22 @@
 {
     NSLog(@"Starting.");
         
+    // first read the resources zip
+    FILE* fp = fopen( path_for_resource("resources.zip").c_str(), "rb" );
+    assert(fp != NULL);
+    
+    LOG("file opened");
+    
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    
+    LOG("size = %d", size);
+    
+    lp::liverpool l( ifdstream(fp, 0, size) );
+    Lister lister(l);
+    lister.list("/");
+    
     // register some object with our kernel
     obj = boost::shared_ptr<base_object>( new custom_obj(_k) );
     
