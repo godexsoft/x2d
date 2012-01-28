@@ -74,9 +74,12 @@ namespace liverpool {
 	private:
 		typedef	std::vector<entry>	entry_vec;
 		
-		entry_vec     entries_;				
-        ifdstream     fs_stream_;
+		entry_vec       entries_;				
+        ifdstream       fs_stream_;
 		
+        void init();
+        inline const ifdstream open_fs(const path& p);
+        
         /**
          * Read bytes from the stream and return them as integer
          */
@@ -91,6 +94,11 @@ namespace liverpool {
          * Open zip using file descriptor stream
          */
 		liverpool(const ifdstream& fds);
+        
+        /**
+         * Open zip using a path
+         */
+        liverpool(const path& p);
 		
 		~liverpool() 
         {
@@ -240,6 +248,8 @@ namespace liverpool {
 		}		
 	};
 	
+    typedef boost::shared_ptr<x2d::liverpool::liverpool> liverpool_ptr;
+    
 } // namespace liverpool
 } // namespace x2d
 using namespace x2d::liverpool;

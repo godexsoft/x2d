@@ -23,6 +23,15 @@ namespace filesystem {
     const std::string path_for_document(const std::string& name);
     
 } // namespace filesystem
+    
+namespace thread {
+    
+    typedef unsigned            counter;
+    
+    counter interlocked_increment(counter* c);
+    counter interlocked_decrement(counter* c);
+        
+} // namespace thread
 } // namespace platform
 
 using namespace platform::time;

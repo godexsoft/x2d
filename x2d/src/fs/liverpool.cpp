@@ -10,16 +10,16 @@
 
 #include <string>
 #include <exception>
+#include "platform.h"
 
 using namespace std;
 
 namespace x2d {
 namespace liverpool {
 	
-	liverpool::liverpool(const ifdstream& fds) 
-	: fs_stream_(fds)
-	{
-		if( !fs_stream_.good() ) 
+    void liverpool::init()
+    {
+        if( !fs_stream_.good() ) 
         {
 			throw exception();
 		}
@@ -50,7 +50,7 @@ namespace liverpool {
 					break;
 				}
 			}
-
+            
 			fs_stream_.seekg(-1);
 			--i;
 		}
@@ -97,9 +97,47 @@ namespace liverpool {
 			// Get the directory record
 			entry e = read_central_dir_record();
 			entries_.push_back( e );
-		}		
+		}	
+    }
+    
+	liverpool::liverpool(const ifdstream& fds) 
+	: fs_stream_(fds)
+	{
+        init();
 	}
+    
+    liverpool::liverpool(const path& p)
+    : fs_stream_(open_fs(p))
+    {
+        init();
+    }
 	
+    // FIXME: not cross-platform. POSIX only. Move code to platform or FS?
+    const ifdstream liverpool::open_fs(const path& p)
+    {   
+// TODO: make ifdstream a friend of the file class. implement a generic file wrapper
+// the wrapper will share a pointer to FILE* (friend) with ifdstream.
+// the FILE* is managed by the file class and therefore it closes the file handle in the destructor.
+// so to use an ifdstream you either have to keep a copy of the file object or manage fp yourself
+//      file f( path_for_resource( p.string() ) );
+//      return f.ifd_stream();
+        
+        // first read the resources zip
+        std::string pth = path_for_resource( p.string() );
+        FILE* fp = fopen( pth.c_str(), "rb" );
+        if(!fp)
+        {
+            LOG("Could not open a file at '%s'", pth.c_str());
+            throw std::exception();
+        }
+        
+        fseek(fp, 0, SEEK_END);
+        long size = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+        
+        return ifdstream(fp, 0, size);
+    }
+    
 	//	 0	4	Central directory file header signature = 0x02014b50
 	//	 4	2	Version made by
 	//	 6	2	Version needed to extract (minimum)

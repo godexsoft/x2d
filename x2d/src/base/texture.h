@@ -19,6 +19,8 @@
 #include <OpenGL/gl.h>
 #endif
 
+#include "filesystem.h"
+
 namespace x2d {
 namespace base {
 
@@ -33,7 +35,7 @@ namespace base {
             A8,
         } pixel_format;
         
-        void init_texture(const void* data, pixel_format pf, unsigned int width, unsigned int height, const struct size& content_size);
+        void init_texture(const void* data);
         
     private:
         GLuint              name_;
@@ -53,6 +55,8 @@ namespace base {
         , max_t_(0)
         {
         }
+        
+        texture(ifdstream stream);
         
         ~texture();
         

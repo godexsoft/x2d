@@ -47,5 +47,19 @@ namespace filesystem {
     }
 
 } // namespace filesystem    
+    
+namespace thread {
+
+    counter interlocked_increment(counter* c) 
+    {
+        return __sync_add_and_fetch(c, 1);
+    }
+    
+    counter interlocked_decrement(counter* c) 
+    {
+        return __sync_sub_and_fetch(c, 1);
+    }
+    
+} // namespace thread
 } // namespace platform
 

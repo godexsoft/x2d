@@ -9,9 +9,33 @@
 #include "texture.h"
 #include "log.h"
 
+#include <vector>
+
 namespace x2d {
 namespace base {
           
+    texture::texture(ifdstream stream)
+    : name_(0)
+    , size_(0,0)
+    , width_(0)
+    , height_(0)
+    , format_(AUTO)
+    , max_s_(0)
+    , max_t_(0)
+    {
+        LOG("Create a texture");
+        
+        // FIXME: dirty?
+        // get the data
+        std::vector<char> dat;
+        dat.resize(stream.size());
+        
+        stream.read(&dat.at(0), stream.size());
+        init_texture( (void*)(&dat.at(0)) );
+        
+        LOG("Texture out of %d bytes.", dat.size());
+    }
+    
     texture::~texture()
     {
         if(name_) 
@@ -20,7 +44,7 @@ namespace base {
         }
     }
     
-    void texture::init_texture(const void* data, pixel_format pf, unsigned int width, unsigned int height, const struct size& content_size)
+    void texture::init_texture(const void* data)
     {
         LOG("Texture initialization.. TODO");        
     }
