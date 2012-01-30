@@ -38,6 +38,9 @@
 		2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415841C14D2DBC20014F37B /* liverpool_manager.cpp */; };
 		2415842014D2E4860014F37B /* resource_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415841F14D2E4860014F37B /* resource_manager.h */; };
 		2415842214D2E9A70014F37B /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842114D2E9A70014F37B /* resource.h */; };
+		2415842814D6079A0014F37B /* picopng.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842714D6079A0014F37B /* picopng.h */; };
+		2415842A14D611170014F37B /* sprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842914D611170014F37B /* sprite.h */; };
+		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		2415841C14D2DBC20014F37B /* liverpool_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = liverpool_manager.cpp; path = src/fs/liverpool_manager.cpp; sourceTree = "<group>"; };
 		2415841F14D2E4860014F37B /* resource_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_manager.h; path = src/resource/resource_manager.h; sourceTree = "<group>"; };
 		2415842114D2E9A70014F37B /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = src/resource/resource.h; sourceTree = "<group>"; };
+		2415842714D6079A0014F37B /* picopng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picopng.h; path = src/util/picopng.h; sourceTree = "<group>"; };
+		2415842914D611170014F37B /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = src/base/sprite.h; sourceTree = "<group>"; };
+		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -256,6 +262,7 @@
 		24BDCC5514CC7A23006F36A1 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				2415842714D6079A0014F37B /* picopng.h */,
 				24BDCC7414CCCE0A006F36A1 /* objc_callback.h */,
 				24BDCC6414CC966A006F36A1 /* compare.h */,
 				24BDCC5614CC7A5E006F36A1 /* log.cpp */,
@@ -274,6 +281,8 @@
 				2415837F14CDD9380014F37B /* camera.h */,
 				2415838914CE09460014F37B /* texture.cpp */,
 				2415838814CE04990014F37B /* texture.h */,
+				2415842914D611170014F37B /* sprite.h */,
+				2415842B14D613900014F37B /* sprite.cpp */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -315,6 +324,8 @@
 				2415841B14D2DA900014F37B /* liverpool_manager.h in Headers */,
 				2415842014D2E4860014F37B /* resource_manager.h in Headers */,
 				2415842214D2E9A70014F37B /* resource.h in Headers */,
+				2415842814D6079A0014F37B /* picopng.h in Headers */,
+				2415842A14D611170014F37B /* sprite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +422,7 @@
 				2415840914D0CD8A0014F37B /* liverpool.cpp in Sources */,
 				2415841214D0D5480014F37B /* posix_fs.cpp in Sources */,
 				2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */,
+				2415842C14D613900014F37B /* sprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

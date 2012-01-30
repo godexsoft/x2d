@@ -17,31 +17,33 @@
 #include "interpolator.h"
 #include "graphics_engine.h"
 #include "texture.h"
+#include "liverpool_manager.h"
+#include "resource_manager.h"
+#include "sprite.h"
 
 class custom_obj 
 : public base_object
 {
 public:
-    custom_obj(kernel& k)
+    custom_obj(kernel& k, liverpool_manager lvp_man)
     : base_object(k)
+    , res_man_(lvp_man)
+    , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
+    , spr_(texture_, point(38, 5), size(30, 33)) // only head of the chupakabra :-)
     , alpha_(0.0f)
-    , li_(alpha_, 0.0f, 0.1f, 2.0f, 0.0f, 1.0f)
-    , height_(1.0f)
-    , qi_(height_, 1.0f, 3.0f, 1.0f, 1.0f)
-    , texture_()
+    , li_(alpha_, 0.0f, 1.0f, 1.0f)
     {        
         connect_update();
-        connect_render();
+        connect_render();        
     }
     
 private:
-    float               alpha_;
-    cubic_interpolator  li_;
+    resource_manager        res_man_;
+    resource_ptr<texture>   texture_;
+    sprite                  spr_;
     
-    float                  height_;
-    quadratic_interpolator qi_;
-    
-    texture     texture_;
+    float                   alpha_;
+    linear_interpolator     li_;
     
 protected:
     
@@ -61,21 +63,13 @@ protected:
             ++fps;
         }
         
-        li_.update(clock.delta_time);            
-        qi_.update(clock.delta_time);
+        li_.update(clock.delta_time);
+        spr_.alpha(alpha_);
     }
     
     virtual void render(const clock_info& clock) 
     {            
-        glLoadIdentity();        
-        
-        glEnable(GL_BLEND);
-        glColor4f(0.5, 0.4, 0.6, alpha_);
-        
-        glScalef(alpha_+1.0f, height_, 1.0f);
-        texture_.draw_at_point(point(160, 240));
-        
-        glDisable(GL_BLEND);
+        spr_.draw_at_point(point(160, 240));
     }
 };
 

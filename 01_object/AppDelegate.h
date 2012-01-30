@@ -10,11 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EAGLView.h"
 #import "kernel.h"
+#import "liverpool_manager.h"
 #import "base_object.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     x2d::kernel _k;
+    x2d::liverpool::liverpool_manager _lvp_man;
     boost::shared_ptr<base_object> obj;
 }
 

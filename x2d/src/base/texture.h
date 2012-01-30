@@ -14,34 +14,31 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
 #include <OpenGLES/ES1/glext.h>
+#define MAX_TEXTURE_SIZE 1024
 #elif defined(__APPLE__)
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/gl.h>
+#define MAX_TEXTURE_SIZE 2048
 #endif
 
 #include "filesystem.h"
 
 namespace x2d {
 namespace base {
+    
+    class sprite; // see sprite.h
 
     class texture
     {
-    protected:
-        typedef enum 
-        {
-            AUTO = 0,
-            RGBA8888,
-            RGB565,
-            A8,
-        } pixel_format;
+        friend class sprite;
         
-        void init_texture(const void* data);
+    protected:
+        void init_texture(const unsigned char* data, int sz);
         
     private:
         GLuint              name_;
         size                size_;
-        unsigned int        width_, height_;
-        pixel_format        format_;
+        unsigned long       width_, height_;
         GLfloat             max_s_, max_t_;
         
     public:
@@ -50,7 +47,6 @@ namespace base {
         , size_(0,0)
         , width_(0)
         , height_(0)
-        , format_(AUTO)
         , max_s_(0)
         , max_t_(0)
         {
