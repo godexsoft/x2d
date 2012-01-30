@@ -46,14 +46,6 @@ namespace base {
 
         glEnable(GL_BLEND);
         
-        if( 0 )
-            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        else {
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
-        
-        glColor4f(1.0, 1.0, 1.5, alpha_);
-        
         glBindTexture(GL_TEXTURE_2D, t_->name_);
         glVertexPointer(3, GL_FLOAT, 0, vertices);
         glTexCoordPointer(2, GL_FLOAT, 0, coordinates);

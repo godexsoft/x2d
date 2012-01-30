@@ -29,9 +29,12 @@ public:
     : base_object(k)
     , res_man_(lvp_man)
     , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
-    , spr_(texture_, point(38, 5), size(30, 33)) // only head of the chupakabra :-)
+    // , spr_(texture_, point(38, 5), size(30, 33)) // only head of the chupakabra :-)
+    , spr_(texture_, point(0, 0), size(120, 120))
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
+    , pos_(160.0f, 240.0f)
+    , velocity_(100.0f, 200.0f)
     {        
         connect_update();
         connect_render();        
@@ -44,6 +47,9 @@ private:
     
     float                   alpha_;
     linear_interpolator     li_;
+    
+    vector_2d               pos_;
+    vector_2d               velocity_;
     
 protected:
     
@@ -64,12 +70,36 @@ protected:
         }
         
         li_.update(clock.delta_time);
-        spr_.alpha(alpha_);
+        
+        pos_ += velocity_ * clock.delta_time;
+        
+        if(pos_.X() >= 320.0f || pos_.X() <= 0.0f)
+            velocity_.X(-velocity_.X());
+        
+        if(pos_.Y() >= 480.0f || pos_.Y() <= 0.0f)
+            velocity_.Y(-velocity_.Y());
     }
     
     virtual void render(const clock_info& clock) 
-    {            
-        spr_.draw_at_point(point(160, 240));
+    {  
+        glEnable(GL_BLEND);
+        if( 0 )
+            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        else {
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        }
+        
+        glColor4f(1.0, 1.0, 1.5, alpha_);
+        
+        glPushMatrix();
+        glTranslatef(pos_.X(), pos_.Y(), 0);
+        glRotatef(alpha_*360.0f, 0, 0, 1);    
+        glScalef(alpha_, alpha_, 1.0f);
+            
+        spr_.draw_at_point(point(0, 0));
+
+        glPopMatrix();        
+        glDisable(GL_BLEND);
     }
 };
 

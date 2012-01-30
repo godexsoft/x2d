@@ -25,23 +25,15 @@ namespace base {
         : t_(t)
         , origin_(origin)
         , size_(sz)
-        , alpha_(1.0f)
         {            
         }
         
         void draw_at_point(point pos) const;
         
-        void alpha(float a)
-        {
-            alpha_ = clamp(a, 0.0f, 1.0f);
-        }
-        
     private:
         resource_ptr<texture>   t_;
         point                   origin_;
         size                    size_;
-        
-        float alpha_;
     };
     
 } // namespace base

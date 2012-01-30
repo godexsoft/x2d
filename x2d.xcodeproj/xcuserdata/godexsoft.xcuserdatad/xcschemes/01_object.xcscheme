@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "241583D414D0B3940014F37B"
-               BuildableName = "x2d copy.app"
+               BuildableName = "x2d_object.app"
                BlueprintName = "01_object"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "241583D414D0B3940014F37B"
-            BuildableName = "x2d copy.app"
+            BuildableName = "x2d_object.app"
             BlueprintName = "01_object"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -50,7 +50,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "241583D414D0B3940014F37B"
-            BuildableName = "x2d copy.app"
+            BuildableName = "x2d_object.app"
             BlueprintName = "01_object"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "241583D414D0B3940014F37B"
-            BuildableName = "x2d copy.app"
+            BuildableName = "x2d_object.app"
             BlueprintName = "01_object"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
