@@ -1,0 +1,46 @@
+<x2d version="1.0">
+    
+    <!--
+        set main clock's frequency and time stretching
+        defaults to 60 and 1.0
+     -->
+    <clock frequency="60" stretch="1.0" />
+
+    <!--
+        create a custom clock with 2x time stretching
+
+    <clock n="clock1" stretch="2.0" />
+    -->
+    
+    <!-- 
+        configure the display 
+     -->
+    <display size="320 480" />
+    
+    <!-- 
+        configure main camera
+        will be landscape
+     -->
+    <camera rotation="90" frustum="0 0 480 320" />
+    
+    <!-- 
+        configure default viewport.
+        match landscape screen size
+     -->
+    <viewport value="0 0 480 320" />
+    
+    
+    <!-- 
+        create a top level element named "txtr" 
+        this creates a resource_ptr<texture>.
+     -->
+	<texture n="txtr" path="graphics/scenary.png" w="512" h="512">
+
+        <!-- 
+            create a second level element "txtr.cafe" 
+            this element uses the parent texture object.
+            this creates a resource_ptr<sprite>.
+         -->
+        <sprite n="cafe" x="0" y="0" w="158" h="140" />
+	</texture> 
+</x2d>

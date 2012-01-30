@@ -21,7 +21,7 @@ namespace base {
     class sprite
     {
     public:
-        sprite(resource_ptr<texture>& t, const point& origin, const size& sz)
+        sprite(const resource_ptr<texture>& t, const point& origin, const size& sz)
         : t_(t)
         , origin_(origin)
         , size_(sz)

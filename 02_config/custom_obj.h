@@ -20,6 +20,7 @@
 #include "liverpool_manager.h"
 #include "resource_manager.h"
 #include "sprite.h"
+#include "configuration.h"
 
 class custom_obj 
 : public base_object
@@ -28,9 +29,8 @@ public:
     custom_obj(kernel& k, liverpool_manager lvp_man)
     : base_object(k)
     , res_man_(lvp_man)
-    , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
-    // , spr_(texture_, point(38, 5), size(30, 33)) // only head of the chupakabra :-)
-    , spr_(texture_, point(0, 0), size(120, 120))
+    , config_(res_man_, "res/main.xml")
+    , spr_( config_.get<sprite>("txtr.cafe") )
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
     , pos_(160.0f, 240.0f)
@@ -42,8 +42,8 @@ public:
     
 private:
     resource_manager        res_man_;
-    resource_ptr<texture>   texture_;
-    sprite                  spr_;
+    configuration           config_;
+    resource_ptr<sprite>    spr_;
     
     float                   alpha_;
     linear_interpolator     li_;
@@ -71,13 +71,14 @@ protected:
         
         li_.update(clock.delta_time);
         
-        pos_ += velocity_ * clock.delta_time;
+/*        pos_ += velocity_ * clock.delta_time;
         
         if(pos_.X() >= 320.0f || pos_.X() <= 0.0f)
             velocity_.X(-velocity_.X());
         
         if(pos_.Y() >= 480.0f || pos_.Y() <= 0.0f)
             velocity_.Y(-velocity_.Y());
+ */
     }
     
     virtual void render(const clock_info& clock) 
@@ -89,14 +90,14 @@ protected:
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         }
         
-        glColor4f(1.0, 1.0, 1.5, alpha_);
+        //glColor4f(1.0, 1.0, 1.0, alpha_);
         
         glPushMatrix();
         glTranslatef(pos_.X(), pos_.Y(), 0);
-        glRotatef(alpha_*360.0f, 0, 0, 1);    
-        glScalef(alpha_, alpha_, 1.0f);
+//        glRotatef(alpha_*360.0f, 0, 0, 1);    
+//        glScalef(alpha_, alpha_, 1.0f);
             
-        spr_.draw_at_point(point(0, 0));
+        spr_->draw_at_point(point(0, 0));
 
         glPopMatrix();        
         glDisable(GL_BLEND);

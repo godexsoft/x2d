@@ -123,6 +123,8 @@
 		2467289814D6E617003AAA04 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 02_config/custom_obj.h; sourceTree = "<group>"; };
 		2467289A14D6E6CD003AAA04 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 02_config/AppDelegate.h; sourceTree = "<group>"; };
 		2467289B14D6E6CD003AAA04 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 02_config/AppDelegate.mm; sourceTree = "<group>"; };
+		246728A214D6FA55003AAA04 /* scenary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scenary.png; sourceTree = "<group>"; };
+		246728A314D6FA55003AAA04 /* main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = main.xml; path = 02_config/res/main.xml; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -261,6 +263,7 @@
 				2467288A14D6E587003AAA04 /* resources */,
 				2467288B14D6E596003AAA04 /* objects */,
 				2467288C14D6E5AC003AAA04 /* Supporting Files */,
+				246728A714D6FBB9003AAA04 /* generated */,
 			);
 			name = 02_config;
 			sourceTree = "<group>";
@@ -268,7 +271,8 @@
 		2467288A14D6E587003AAA04 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				2467289514D6E60D003AAA04 /* resources.zip */,
+				246728A114D6FA55003AAA04 /* graphics */,
+				246728A314D6FA55003AAA04 /* main.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -291,6 +295,23 @@
 				2467289114D6E5CF003AAA04 /* main.mm */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		246728A114D6FA55003AAA04 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				246728A214D6FA55003AAA04 /* scenary.png */,
+			);
+			name = graphics;
+			path = 02_config/res/graphics;
+			sourceTree = "<group>";
+		};
+		246728A714D6FBB9003AAA04 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				2467289514D6E60D003AAA04 /* resources.zip */,
+			);
+			name = generated;
 			sourceTree = "<group>";
 		};
 		24BDCC1214CC6300006F36A1 = {
@@ -498,6 +519,7 @@
 			buildPhases = (
 				2467287414D6E4D7003AAA04 /* Sources */,
 				2467287814D6E4D7003AAA04 /* Frameworks */,
+				246728A614D6FA6F003AAA04 /* ShellScript */,
 				2467288014D6E4D7003AAA04 /* Resources */,
 			);
 			buildRules = (
@@ -558,6 +580,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		246728A614D6FA6F003AAA04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd 02_config/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		241583B914D0B27E0014F37B /* Sources */ = {
