@@ -41,10 +41,36 @@
 		2415842814D6079A0014F37B /* picopng.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842714D6079A0014F37B /* picopng.h */; };
 		2415842A14D611170014F37B /* sprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842914D611170014F37B /* sprite.h */; };
 		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
+		2467286914D6E34C003AAA04 /* rapidxml_iterators.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */; };
+		2467286A14D6E34C003AAA04 /* rapidxml_print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286614D6E34C003AAA04 /* rapidxml_print.hpp */; };
+		2467286B14D6E34C003AAA04 /* rapidxml_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */; };
+		2467286C14D6E34C003AAA04 /* rapidxml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286814D6E34C003AAA04 /* rapidxml.hpp */; };
+		2467286E14D6E3A1003AAA04 /* configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467286D14D6E3A1003AAA04 /* configuration.h */; };
+		2467287014D6E444003AAA04 /* configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467286F14D6E444003AAA04 /* configuration.cpp */; };
+		2467287914D6E4D7003AAA04 /* liblibx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* liblibx2d.a */; };
+		2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		2467287D14D6E4D7003AAA04 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		2467287E14D6E4D7003AAA04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		2467287F14D6E4D7003AAA04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		2467289214D6E5CF003AAA04 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2467288E14D6E5CF003AAA04 /* config.plist */; };
+		2467289314D6E5CF003AAA04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2467288F14D6E5CF003AAA04 /* InfoPlist.strings */; };
+		2467289414D6E5CF003AAA04 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467289114D6E5CF003AAA04 /* main.mm */; };
+		2467289614D6E60D003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467289514D6E60D003AAA04 /* resources.zip */; };
+		2467289914D6E617003AAA04 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467289714D6E617003AAA04 /* custom_obj.cpp */; };
+		2467289C14D6E6CD003AAA04 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467289B14D6E6CD003AAA04 /* AppDelegate.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		241583D614D0B3940014F37B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
+		2467287314D6E4D7003AAA04 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
 			proxyType = 1;
@@ -81,6 +107,22 @@
 		2415842714D6079A0014F37B /* picopng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picopng.h; path = src/util/picopng.h; sourceTree = "<group>"; };
 		2415842914D611170014F37B /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = src/base/sprite.h; sourceTree = "<group>"; };
 		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
+		2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_iterators.hpp; path = libs/rapidxml/rapidxml_iterators.hpp; sourceTree = SOURCE_ROOT; };
+		2467286614D6E34C003AAA04 /* rapidxml_print.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_print.hpp; path = libs/rapidxml/rapidxml_print.hpp; sourceTree = SOURCE_ROOT; };
+		2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_utils.hpp; path = libs/rapidxml/rapidxml_utils.hpp; sourceTree = SOURCE_ROOT; };
+		2467286814D6E34C003AAA04 /* rapidxml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml.hpp; path = libs/rapidxml/rapidxml.hpp; sourceTree = SOURCE_ROOT; };
+		2467286D14D6E3A1003AAA04 /* configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = configuration.h; path = src/config/configuration.h; sourceTree = "<group>"; };
+		2467286F14D6E444003AAA04 /* configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = configuration.cpp; path = src/config/configuration.cpp; sourceTree = "<group>"; };
+		2467288614D6E4D7003AAA04 /* x2d_config.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_config.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2467288D14D6E5CF003AAA04 /* config-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "config-Prefix.pch"; path = "02_config/config-Prefix.pch"; sourceTree = "<group>"; };
+		2467288E14D6E5CF003AAA04 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = 02_config/config.plist; sourceTree = "<group>"; };
+		2467289014D6E5CF003AAA04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = 02_config/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2467289114D6E5CF003AAA04 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 02_config/main.mm; sourceTree = "<group>"; };
+		2467289514D6E60D003AAA04 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 02_config/resources.zip; sourceTree = "<group>"; };
+		2467289714D6E617003AAA04 /* custom_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = custom_obj.cpp; path = 02_config/custom_obj.cpp; sourceTree = "<group>"; };
+		2467289814D6E617003AAA04 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 02_config/custom_obj.h; sourceTree = "<group>"; };
+		2467289A14D6E6CD003AAA04 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 02_config/AppDelegate.h; sourceTree = "<group>"; };
+		2467289B14D6E6CD003AAA04 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 02_config/AppDelegate.mm; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +176,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2467287814D6E4D7003AAA04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467287914D6E4D7003AAA04 /* liblibx2d.a in Frameworks */,
+				2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */,
+				2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */,
+				2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */,
+				2467287D14D6E4D7003AAA04 /* boost.framework in Frameworks */,
+				2467287E14D6E4D7003AAA04 /* UIKit.framework in Frameworks */,
+				2467287F14D6E4D7003AAA04 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -177,10 +233,71 @@
 			name = resource;
 			sourceTree = "<group>";
 		};
+		2467285314D6E232003AAA04 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				2467286D14D6E3A1003AAA04 /* configuration.h */,
+				2467286F14D6E444003AAA04 /* configuration.cpp */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		2467286414D6E30D003AAA04 /* rapidxml */ = {
+			isa = PBXGroup;
+			children = (
+				2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */,
+				2467286614D6E34C003AAA04 /* rapidxml_print.hpp */,
+				2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */,
+				2467286814D6E34C003AAA04 /* rapidxml.hpp */,
+			);
+			name = rapidxml;
+			sourceTree = "<group>";
+		};
+		2467288914D6E574003AAA04 /* 02_config */ = {
+			isa = PBXGroup;
+			children = (
+				2467289A14D6E6CD003AAA04 /* AppDelegate.h */,
+				2467289B14D6E6CD003AAA04 /* AppDelegate.mm */,
+				2467288A14D6E587003AAA04 /* resources */,
+				2467288B14D6E596003AAA04 /* objects */,
+				2467288C14D6E5AC003AAA04 /* Supporting Files */,
+			);
+			name = 02_config;
+			sourceTree = "<group>";
+		};
+		2467288A14D6E587003AAA04 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				2467289514D6E60D003AAA04 /* resources.zip */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		2467288B14D6E596003AAA04 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				2467289714D6E617003AAA04 /* custom_obj.cpp */,
+				2467289814D6E617003AAA04 /* custom_obj.h */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
+		2467288C14D6E5AC003AAA04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2467288D14D6E5CF003AAA04 /* config-Prefix.pch */,
+				2467288E14D6E5CF003AAA04 /* config.plist */,
+				2467288F14D6E5CF003AAA04 /* InfoPlist.strings */,
+				2467289114D6E5CF003AAA04 /* main.mm */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
 				24BDCCA114CCF942006F36A1 /* 01_object */,
+				2467288914D6E574003AAA04 /* 02_config */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
@@ -192,6 +309,7 @@
 			children = (
 				241583BD14D0B27E0014F37B /* liblibx2d.a */,
 				241583E714D0B3940014F37B /* x2d_object.app */,
+				2467288614D6E4D7003AAA04 /* x2d_config.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +333,7 @@
 		24BDCC2714CC6300006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
+				2467286414D6E30D003AAA04 /* rapidxml */,
 				24BDCC4314CC63B5006F36A1 /* x2d */,
 				24BDCC6114CC86BD006F36A1 /* platform.mm */,
 				24BDCC6314CC8737006F36A1 /* platform.h */,
@@ -236,6 +355,7 @@
 		24BDCC4314CC63B5006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
+				2467285314D6E232003AAA04 /* config */,
 				2415841E14D2E4510014F37B /* resource */,
 				2415840314D0C63C0014F37B /* fs */,
 				24BDCC6514CCBFEF006F36A1 /* gl */,
@@ -301,10 +421,10 @@
 		24BDCCA114CCF942006F36A1 /* 01_object */ = {
 			isa = PBXGroup;
 			children = (
-				2415841314D0D8B50014F37B /* resources */,
-				241583F914D0B67C0014F37B /* objects */,
 				241583EA14D0B4D30014F37B /* AppDelegate.h */,
 				241583EB14D0B4D30014F37B /* AppDelegate.mm */,
+				2415841314D0D8B50014F37B /* resources */,
+				241583F914D0B67C0014F37B /* objects */,
 				24BDCC2814CC6300006F36A1 /* Supporting Files */,
 			);
 			name = 01_object;
@@ -326,6 +446,11 @@
 				2415842214D2E9A70014F37B /* resource.h in Headers */,
 				2415842814D6079A0014F37B /* picopng.h in Headers */,
 				2415842A14D611170014F37B /* sprite.h in Headers */,
+				2467286914D6E34C003AAA04 /* rapidxml_iterators.hpp in Headers */,
+				2467286A14D6E34C003AAA04 /* rapidxml_print.hpp in Headers */,
+				2467286B14D6E34C003AAA04 /* rapidxml_utils.hpp in Headers */,
+				2467286C14D6E34C003AAA04 /* rapidxml.hpp in Headers */,
+				2467286E14D6E3A1003AAA04 /* configuration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +492,24 @@
 			productReference = 241583E714D0B3940014F37B /* x2d_object.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2467287114D6E4D7003AAA04 /* 02_config */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2467288314D6E4D7003AAA04 /* Build configuration list for PBXNativeTarget "02_config" */;
+			buildPhases = (
+				2467287414D6E4D7003AAA04 /* Sources */,
+				2467287814D6E4D7003AAA04 /* Frameworks */,
+				2467288014D6E4D7003AAA04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2467287214D6E4D7003AAA04 /* PBXTargetDependency */,
+			);
+			name = 02_config;
+			productName = x2d;
+			productReference = 2467288614D6E4D7003AAA04 /* x2d_config.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -389,6 +532,7 @@
 			targets = (
 				241583BC14D0B27E0014F37B /* libx2d */,
 				241583D414D0B3940014F37B /* 01_object */,
+				2467287114D6E4D7003AAA04 /* 02_config */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +544,16 @@
 			files = (
 				241583F814D0B5770014F37B /* InfoPlist.strings in Resources */,
 				2415841914D0E57F0014F37B /* resources.zip in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2467288014D6E4D7003AAA04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467289214D6E5CF003AAA04 /* config.plist in Resources */,
+				2467289314D6E5CF003AAA04 /* InfoPlist.strings in Resources */,
+				2467289614D6E60D003AAA04 /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +577,7 @@
 				2415841214D0D5480014F37B /* posix_fs.cpp in Sources */,
 				2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */,
 				2415842C14D613900014F37B /* sprite.cpp in Sources */,
+				2467287014D6E444003AAA04 /* configuration.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +591,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2467287414D6E4D7003AAA04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467289414D6E5CF003AAA04 /* main.mm in Sources */,
+				2467289914D6E617003AAA04 /* custom_obj.cpp in Sources */,
+				2467289C14D6E6CD003AAA04 /* AppDelegate.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -443,6 +608,11 @@
 			isa = PBXTargetDependency;
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
 			targetProxy = 241583D614D0B3940014F37B /* PBXContainerItemProxy */;
+		};
+		2467287214D6E4D7003AAA04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 2467287314D6E4D7003AAA04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -454,6 +624,14 @@
 			);
 			name = InfoPlist.strings;
 			path = ../01_object/en.lproj;
+			sourceTree = "<group>";
+		};
+		2467288F14D6E5CF003AAA04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2467289014D6E5CF003AAA04 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -497,6 +675,28 @@
 				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
 				INFOPLIST_FILE = 01_object/object.plist;
 				PRODUCT_NAME = x2d_object;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2467288414D6E4D7003AAA04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "02_config/config-Prefix.pch";
+				INFOPLIST_FILE = 02_config/config.plist;
+				PRODUCT_NAME = x2d_config;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2467288514D6E4D7003AAA04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "02_config/config-Prefix.pch";
+				INFOPLIST_FILE = 02_config/config.plist;
+				PRODUCT_NAME = x2d_config;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -560,12 +760,22 @@
 				241583C714D0B27E0014F37B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		241583E414D0B3940014F37B /* Build configuration list for PBXNativeTarget "01_object" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				241583E514D0B3940014F37B /* Debug */,
 				241583E614D0B3940014F37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2467288314D6E4D7003AAA04 /* Build configuration list for PBXNativeTarget "02_config" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2467288414D6E4D7003AAA04 /* Debug */,
+				2467288514D6E4D7003AAA04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

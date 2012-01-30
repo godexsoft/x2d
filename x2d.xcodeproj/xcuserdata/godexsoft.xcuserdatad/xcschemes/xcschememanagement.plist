@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>02_config.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>241583D414D0B3940014F37B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2467285814D6E2E2003AAA04</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2467287114D6E4D7003AAA04</key>
 		<dict>
 			<key>primary</key>
 			<true/>

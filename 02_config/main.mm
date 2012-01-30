@@ -1,8 +1,8 @@
 //
 //  main.m
-//  x2d - 01_object
+//  x2d - 02_config
 //
-//  Created by Alex Kremer on 1/22/12.
+//  Created by Alex Kremer on 1/30/12.
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
