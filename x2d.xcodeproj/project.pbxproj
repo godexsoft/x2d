@@ -59,6 +59,8 @@
 		2467289614D6E60D003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467289514D6E60D003AAA04 /* resources.zip */; };
 		2467289914D6E617003AAA04 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467289714D6E617003AAA04 /* custom_obj.cpp */; };
 		2467289C14D6E6CD003AAA04 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467289B14D6E6CD003AAA04 /* AppDelegate.mm */; };
+		246728AB14D83E86003AAA04 /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 246728AA14D83E86003AAA04 /* scene.h */; };
+		246728AD14D84071003AAA04 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246728AC14D84071003AAA04 /* scene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,9 @@
 		2467289B14D6E6CD003AAA04 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 02_config/AppDelegate.mm; sourceTree = "<group>"; };
 		246728A214D6FA55003AAA04 /* scenary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scenary.png; sourceTree = "<group>"; };
 		246728A314D6FA55003AAA04 /* main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = main.xml; path = 02_config/res/main.xml; sourceTree = "<group>"; };
+		246728AA14D83E86003AAA04 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 02_config/scene.h; sourceTree = "<group>"; };
+		246728AC14D84071003AAA04 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 02_config/scene.cpp; sourceTree = "<group>"; };
+		246728AE14D841EB003AAA04 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 02_config/fps_counter.h; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -279,6 +284,9 @@
 			children = (
 				2467289714D6E617003AAA04 /* custom_obj.cpp */,
 				2467289814D6E617003AAA04 /* custom_obj.h */,
+				246728AA14D83E86003AAA04 /* scene.h */,
+				246728AC14D84071003AAA04 /* scene.cpp */,
+				246728AE14D841EB003AAA04 /* fps_counter.h */,
 			);
 			name = objects;
 			sourceTree = "<group>";
@@ -468,6 +476,7 @@
 				2467286B14D6E34C003AAA04 /* rapidxml_utils.hpp in Headers */,
 				2467286C14D6E34C003AAA04 /* rapidxml.hpp in Headers */,
 				2467286E14D6E3A1003AAA04 /* configuration.h in Headers */,
+				246728AB14D83E86003AAA04 /* scene.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +641,7 @@
 				2467289414D6E5CF003AAA04 /* main.mm in Sources */,
 				2467289914D6E617003AAA04 /* custom_obj.cpp in Sources */,
 				2467289C14D6E6CD003AAA04 /* AppDelegate.mm in Sources */,
+				246728AD14D84071003AAA04 /* scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

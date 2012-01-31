@@ -47,6 +47,12 @@
          -->
         <sprite n="cafe" x="0" y="0" w="158" h="140" />
         <sprite n="house" x="0" y="139" w="158" h="216" />
+        <sprite n="tree" x="157" y="0" w="53" h="95" />
+        <sprite n="lantern" x="157" y="184" w="42" h="172" />
+        <sprite n="fence" x="303" y="0" w="60" h="49" />
+        <sprite n="cloud1" x="209" y="0" w="93" h="48" />
+        <sprite n="cloud2" x="209" y="48" w="93" h="48" />
+        <sprite n="cloud3" x="209" y="95" w="93" h="40" />
 	</texture> 
     
 </x2d>

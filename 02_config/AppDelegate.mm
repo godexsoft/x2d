@@ -22,43 +22,6 @@
 namespace lp = x2d::liverpool;
 namespace fs = x2d::filesystem;
 
-class Lister : public std::unary_function<lp::entry, void> 
-{
-private:
-    lp::liverpool_ptr fs;
-	
-public:
-	Lister(const lp::liverpool_ptr& l) : fs(l) 
-    {
-    }
-	
-    void list(fs::path pth)
-    {
-        for(lp::liverpool::diterator it = fs->dir_begin(pth.string()); 
-            it != fs->dir_end(); ++it) 
-        {
-            
-            fs::path p(it->path());
-            std::string lpc = p.last_path_component();
-            
-            if ( it->is_dir() ) 
-            {                
-                LOG("[DIR] '%s'", lpc.c_str());
-                
-                // Skip hidden files and current/prev directory
-                if(lpc.substr(0,1) != ".") 
-                {                    
-                    this->list( pth / lpc );
-                }
-            } else {
-                
-                // This is a file. Check it against all our supported types.
-                LOG("----- '%s'", lpc.c_str());
-            }
-        }
-    }
-};
-
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -81,7 +44,7 @@ public:
     _lvp_man.mount("resources.zip", "res");
     
     // register some object with our kernel
-    obj = boost::shared_ptr<base_object>( new custom_obj(_k, _lvp_man) );
+    obj = boost::shared_ptr<scene>( new scene(_k, _lvp_man) );
     
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
