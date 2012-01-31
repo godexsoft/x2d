@@ -51,9 +51,7 @@ namespace base {
         glTexCoordPointer(2, GL_FLOAT, 0, coordinates);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         
-        glDisable(GL_BLEND);
-        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        
+        glDisable(GL_BLEND);        
         glPopMatrix();
     }
 

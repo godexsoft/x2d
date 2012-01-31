@@ -29,18 +29,24 @@
      -->
     <viewport value="0 0 480 320" />
     
+    <!--
+        include a second config
+    <include path="res/other.xml" />
+     -->
     
     <!-- 
         create a top level element named "txtr" 
         this creates a resource_ptr<texture>.
      -->
-	<texture n="txtr" path="graphics/scenary.png" w="512" h="512">
-
+	<texture n="txtr" path="res/graphics/scenary.png" w="512" h="512">
+        
         <!-- 
-            create a second level element "txtr.cafe" 
-            this element uses the parent texture object.
-            this creates a resource_ptr<sprite>.
+         create a second level element "txtr.cafe" 
+         this element uses the parent texture object.
+         this creates a resource_ptr<sprite>.
          -->
         <sprite n="cafe" x="0" y="0" w="158" h="140" />
+        <sprite n="house" x="0" y="139" w="158" h="216" />
 	</texture> 
+    
 </x2d>

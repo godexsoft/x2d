@@ -12,40 +12,114 @@
 
 #include "resource_manager.h"
 #include "math_util.h"
+#include "filesystem.h"
+#include "sprite.h"
+
+#include "rapidxml.hpp"
+#include <boost/function.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 namespace x2d {
 namespace config {
     
-    struct cfg_base
+    namespace rx = rapidxml;
+    
+    typedef rx::xml_attribute<char> xml_attr;
+    typedef rx::xml_node<char>      xml_node;
+    typedef rx::xml_document<char>  xml_doc;	
+    
+    typedef basic_path<char, '.'>   config_key;
+    
+    class cfg_base
     {        
+    public:
+        cfg_base(resource_manager& res_man)
+        : res_man_(res_man)
+        {            
+        }
+        
+    protected:
+        resource_manager& res_man_;
     };
 
     typedef boost::shared_ptr<cfg_base> cfg_base_ptr;
     
-    struct texture_cfg
+    class texture_cfg
     : public cfg_base
     { 
-        texture_cfg(const std::string& p)
-        : path_(p)
+    public:
+        texture_cfg(resource_manager& res_man, const std::string& p)
+        : cfg_base(res_man)
+        , path_(p)
         {
         }
         
-        std::string path_;
+        boost::shared_ptr<texture> get()
+        {    
+            if( boost::shared_ptr<texture> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<texture> r = boost::shared_ptr<texture>( res_man_.get<texture>(path_) );
+                inst_ = r;
+                return r;
+            }
+        }
+        
+    private:        
+        std::string               path_;
+        boost::weak_ptr<texture>  inst_;
     };
     
-    struct sprite_cfg
+    class sprite_cfg
     : public cfg_base
     {
-        sprite_cfg(const std::string& t, const point& p, const size& s)
-        : texture_(t)
+    public:        
+        sprite_cfg(resource_manager& res_man, 
+                   texture_cfg& t, 
+                   const point& p, const size& s)
+        : cfg_base(res_man)
+        , texture_(t)
         , origin_(p)
         , size_(s)
         {            
         }
+                
+        boost::shared_ptr<sprite> get()
+        {
+            if( boost::shared_ptr<sprite> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>( new sprite(texture_.get(), origin_, size_) );
+                inst_ = r;
+                return r;
+            }
+        }
+
+    private:
+        texture_cfg&             texture_;
+        point                    origin_;
+        size                     size_;        
+        boost::weak_ptr<sprite>  inst_;
+    };
+    
+    struct conf 
+    {
+        conf(ifdstream stream)
+        {            
+            data.resize(stream.size());
+            stream.read(&data.at(0), stream.size());
+        }
         
-        std::string texture_;
-        point       origin_;
-        size        size_;        
+        std::string data;
     };
     
     class configuration
@@ -54,11 +128,20 @@ namespace config {
         configuration(resource_manager& res_man, const std::string& cfg_path);
         
         template <typename T>
-        resource_ptr<T> get(const std::string& key);
+        boost::shared_ptr<T> get(const config_key& key);
         
     private:
+        void parse(xml_node* root, const config_key& key=config_key(""));
+        
+        // various parsers for each supported element type
+        cfg_base_ptr parse_texture(xml_node* node, const config_key& key);
+        cfg_base_ptr parse_sprite(xml_node* node, const config_key& key);
+        
+        typedef boost::function<cfg_base_ptr(xml_node*,const config_key&)> parser_type;
+        
         resource_manager&                       res_man_;
-        std::map<std::string, cfg_base_ptr>     config_;
+        std::map<config_key, cfg_base_ptr>      config_;
+        std::map<std::string, parser_type>      parsers_;
     };
     
 } // namespace config

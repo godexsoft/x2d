@@ -48,6 +48,16 @@ namespace filesystem {
         // Concatination
         friend const path_type operator /(const path_type& p, const path_type& pp) 
         { 
+            if(p.path_.empty())
+            {
+                return pp;
+            }
+
+            if(pp.path_.empty())
+            {
+                return p;
+            }
+            
             if(*p.path_.rbegin() == _SEP && *pp.path_.begin() == _SEP)
             {
                 return path_type(p.path_.substr(0, p.path_.size()-1) + pp.path_);
@@ -61,15 +71,27 @@ namespace filesystem {
             return path_type(p.path_ + _SEP + pp.path_);				
         }
         
+        const bool operator <(const path_type& p) const
+        {
+            return string() < p.string();
+        }
+        
         // Return last path component
         const _StringType last_path_component() const 
         {
             size_t p = path_.rfind(_SEP);
             return path_.substr(p?p+1:p);
         }
+
+        // Return path without last path component
+        const path_type remove_last_path_component() const 
+        {
+            size_t p = path_.rfind(_SEP);
+            return path_type( path_.substr(0,p) );
+        }
         
         // Convert back to string
-        const _StringType string() const 
+        inline const _StringType string() const 
         { 
             return path_; 
         }

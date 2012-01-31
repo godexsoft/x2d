@@ -11,11 +11,10 @@
 #define __X2D_RESOURCE_MANAGER_H__
 
 #include "liverpool_manager.h"
-#include "resource.h"
 
 namespace x2d {
 namespace resource {
-
+    
     class resource_manager
     {
     public:
@@ -25,7 +24,7 @@ namespace resource {
         }
         
         template<typename T>
-        resource_ptr<T> get(const std::string& key)
+        boost::shared_ptr<T> get(const std::string& key)
         {
             // get first path component. That is the name of the virtual disk
             size_t pos = key.find('/');
@@ -38,13 +37,12 @@ namespace resource {
             std::string disk = key.substr(0, pos);
             liverpool_ptr l = lvp_man_.get(disk);
             
-            return resource_ptr<T>( 
+            return boost::shared_ptr<T>( 
                 new T( l->open_stream(key.substr(pos)) ) );
         }
         
     private:
         liverpool_manager&   lvp_man_;
-//        std::map<std::string, base_resource_ptr>
     };
     
 } // namespace resource    

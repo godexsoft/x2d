@@ -29,7 +29,6 @@ public:
     : base_object(k)
     , res_man_(lvp_man)
     , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
-    // , spr_(texture_, point(38, 5), size(30, 33)) // only head of the chupakabra :-)
     , spr_(texture_, point(0, 0), size(120, 120))
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
@@ -42,7 +41,7 @@ public:
     
 private:
     resource_manager        res_man_;
-    resource_ptr<texture>   texture_;
+    boost::shared_ptr<texture>   texture_;
     sprite                  spr_;
     
     float                   alpha_;

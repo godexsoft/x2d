@@ -37,7 +37,6 @@
 		2415841B14D2DA900014F37B /* liverpool_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415841A14D2DA900014F37B /* liverpool_manager.h */; };
 		2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415841C14D2DBC20014F37B /* liverpool_manager.cpp */; };
 		2415842014D2E4860014F37B /* resource_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415841F14D2E4860014F37B /* resource_manager.h */; };
-		2415842214D2E9A70014F37B /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842114D2E9A70014F37B /* resource.h */; };
 		2415842814D6079A0014F37B /* picopng.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842714D6079A0014F37B /* picopng.h */; };
 		2415842A14D611170014F37B /* sprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2415842914D611170014F37B /* sprite.h */; };
 		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
@@ -103,7 +102,6 @@
 		2415841A14D2DA900014F37B /* liverpool_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = liverpool_manager.h; path = src/fs/liverpool_manager.h; sourceTree = "<group>"; };
 		2415841C14D2DBC20014F37B /* liverpool_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = liverpool_manager.cpp; path = src/fs/liverpool_manager.cpp; sourceTree = "<group>"; };
 		2415841F14D2E4860014F37B /* resource_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_manager.h; path = src/resource/resource_manager.h; sourceTree = "<group>"; };
-		2415842114D2E9A70014F37B /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = src/resource/resource.h; sourceTree = "<group>"; };
 		2415842714D6079A0014F37B /* picopng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picopng.h; path = src/util/picopng.h; sourceTree = "<group>"; };
 		2415842914D611170014F37B /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = src/base/sprite.h; sourceTree = "<group>"; };
 		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				2415841F14D2E4860014F37B /* resource_manager.h */,
-				2415842114D2E9A70014F37B /* resource.h */,
 			);
 			name = resource;
 			sourceTree = "<group>";
@@ -464,7 +461,6 @@
 				2415841014D0D1B70014F37B /* posix_fs.h in Headers */,
 				2415841B14D2DA900014F37B /* liverpool_manager.h in Headers */,
 				2415842014D2E4860014F37B /* resource_manager.h in Headers */,
-				2415842214D2E9A70014F37B /* resource.h in Headers */,
 				2415842814D6079A0014F37B /* picopng.h in Headers */,
 				2415842A14D611170014F37B /* sprite.h in Headers */,
 				2467286914D6E34C003AAA04 /* rapidxml_iterators.hpp in Headers */,

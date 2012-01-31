@@ -31,6 +31,7 @@ public:
     , res_man_(lvp_man)
     , config_(res_man_, "res/main.xml")
     , spr_( config_.get<sprite>("txtr.cafe") )
+    , spr2_( config_.get<sprite>("txtr.house") )
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
     , pos_(160.0f, 240.0f)
@@ -41,15 +42,15 @@ public:
     }
     
 private:
-    resource_manager        res_man_;
-    configuration           config_;
-    resource_ptr<sprite>    spr_;
+    resource_manager          res_man_;
+    configuration             config_;
+    boost::shared_ptr<sprite> spr_, spr2_;
     
-    float                   alpha_;
-    linear_interpolator     li_;
+    float                     alpha_;
+    linear_interpolator       li_;
     
-    vector_2d               pos_;
-    vector_2d               velocity_;
+    vector_2d                 pos_;
+    vector_2d                 velocity_;
     
 protected:
     
@@ -71,36 +72,48 @@ protected:
         
         li_.update(clock.delta_time);
         
-/*        pos_ += velocity_ * clock.delta_time;
+        /*
+        pos_ += velocity_ * clock.delta_time;
         
         if(pos_.X() >= 320.0f || pos_.X() <= 0.0f)
             velocity_.X(-velocity_.X());
         
         if(pos_.Y() >= 480.0f || pos_.Y() <= 0.0f)
             velocity_.Y(-velocity_.Y());
- */
+*/
     }
     
     virtual void render(const clock_info& clock) 
     {  
         glEnable(GL_BLEND);
-        if( 0 )
-            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        else {
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
-        //glColor4f(1.0, 1.0, 1.0, alpha_);
+        glColor4f(1.0, 1.0, 1.0, alpha_);
         
         glPushMatrix();
         glTranslatef(pos_.X(), pos_.Y(), 0);
-//        glRotatef(alpha_*360.0f, 0, 0, 1);    
-//        glScalef(alpha_, alpha_, 1.0f);
-            
-        spr_->draw_at_point(point(0, 0));
-
+        glScalef(1.0f-alpha_, alpha_, 1.0f);
+        
+        glTranslatef(100, 100, 0);
+        
+        spr2_->draw_at_point(point(0, 0));
+        
         glPopMatrix();        
+
+        glColor4f(1, 1, 1, 1);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);   
         glDisable(GL_BLEND);
+        
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glColor4f(1.0, 1.0, 1.0, 1.0f-alpha_);
+        spr_->draw_at_point(point(210, 170));
+        
+        glColor4f(1, 1, 1, 1);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);   
+        glDisable(GL_BLEND);
+
     }
 };
 
