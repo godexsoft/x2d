@@ -14,11 +14,13 @@
 #include "math_util.h"
 #include "filesystem.h"
 #include "sprite.h"
+#include "platform.h"
 
 #include "rapidxml.hpp"
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
+#include <boost/random.hpp>
 
 namespace x2d {
 namespace config {
@@ -44,6 +46,63 @@ namespace config {
     };
 
     typedef boost::shared_ptr<cfg_base> cfg_base_ptr;
+    
+    template<typename T>
+    class random_cfg
+    : public cfg_base
+    { 
+    public:
+        random_cfg(resource_manager& res_man, const T& min, const T& max)
+        : cfg_base(res_man)
+        , gen_(platform::time::current_time())
+        , dist_(min, max)
+        {
+        }
+        
+        T get()
+        {    
+            return dist_(gen_);
+        }
+        
+    private:        
+        boost::random::mt19937 gen_;
+        boost::random::uniform_real_distribution<> dist_;
+    };
+    
+    template<typename T>
+    class value_cfg
+    : public cfg_base
+    { 
+    public:
+        value_cfg(resource_manager& res_man, const T& v)
+        : cfg_base(res_man)
+        , val_(v)
+        {
+        }
+
+        value_cfg(resource_manager& res_man, const boost::shared_ptr<random_cfg<T> >& rnd)
+        : cfg_base(res_man)
+        , val_(0.0f)
+        , random_(rnd)
+        {
+        }
+        
+        T get()
+        {    
+            if(!random_)
+            {
+                return val_;
+            }
+            else                
+            {
+                return random_->get();
+            }
+        }
+        
+    private:        
+        T val_;
+        boost::shared_ptr< random_cfg<T> > random_;
+    };
     
     class texture_cfg
     : public cfg_base
@@ -128,11 +187,21 @@ namespace config {
         configuration(resource_manager& res_man, const std::string& cfg_path);
         
         template <typename T>
-        boost::shared_ptr<T> get(const config_key& key);
+        boost::shared_ptr<T> get_object(const config_key& key);
+
+        template <typename T>
+        T get_value(const config_key& key);
         
     private:
         void parse_file(const std::string& cfg_path);
         void parse(xml_node* root, const config_key& key=config_key(""));
+        
+        // parsers for primitive value types
+        void parse_float(xml_node* node, const config_key& key);
+        void parse_int(xml_node* node, const config_key& key);
+        
+        template<typename T>
+        void parse_random(xml_node* node, const config_key& key);
         
         // various parsers for each supported element type
         void parse_namespace(xml_node* node, const config_key& key);

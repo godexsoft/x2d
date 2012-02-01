@@ -21,7 +21,17 @@
         <sprite n="cloud2" x="209" y="48" w="93" h="48" />
         <sprite n="cloud3" x="209" y="95" w="93" h="40" />
 	</texture> 
-
+    
+    <!--
+     animation support:
+     
+    <animation n="anim" duration="0.1">
+        <frame n="frame1" duration="0.2" sprite="cloud1" />
+        <frame n="frame2" sprite="cloud2" />
+        <frame n="frame3" sprite="cloud3" />
+    </animation>
+     -->
+    
     <!-- 
         stand alone sprite with reference to texture object
     <sprite n="test" texture="txtr" x="0" y="0" w="158" h="140" />
@@ -34,10 +44,26 @@
     <namespace n="values">
         <!--
          bare values (used as metrics)
-         returns bare reference? type: float&, int&, string& etc.
+         returns bare type: float, int, string etc.
          -->
-        <float n="flt">0.01</float>
-        <int n="int">123</int>
-        <string n="str">hello world!</float>        
+        <int n="num_sets">
+            <random from="1" to="5" />
+        </int>
+
+        <!--
+         use random generator.
+         will return random float in given range every time when read.
+         -->
+        <float n="x">
+            <random from="0.0" to="320.0" />
+        </float>
+       
+        <float n="y">
+            <random from="0.0" to="480.0" />
+        </float>
+        
+        <float n="vel">
+            <random from="10.0" to="250.0" />
+        </float>
     </namespace>
 </x2d>

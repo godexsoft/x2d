@@ -15,6 +15,195 @@
 namespace x2d {
 namespace config {
 
+    template<>
+    void configuration::parse_random<float>(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // from: minimal value to generate
+        // to:   maximum value to generate
+        
+        xml_attr* from = node->first_attribute("from");
+        if(!from) 
+        {
+            LOG("Parsing exception: Random must have 'from' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* to = node->first_attribute("to");
+        if(!to) 
+        {
+            LOG("Parsing exception: Random must have 'to' defined.");
+            throw std::exception();
+        }
+        
+        std::stringstream ss;
+        float min, max;
+        
+        ss << from->value() << " " << to->value();
+        ss >> min >> max;
+        
+        config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, 
+            boost::shared_ptr< random_cfg<float> >( new random_cfg<float>(res_man_, min, max) ) ) );
+    }
+    
+    
+    template<>
+    void configuration::parse_random<int>(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // from: minimal value to generate
+        // to:   maximum value to generate
+        
+        xml_attr* from = node->first_attribute("from");
+        if(!from) 
+        {
+            LOG("Parsing exception: Random must have 'from' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* to = node->first_attribute("to");
+        if(!to) 
+        {
+            LOG("Parsing exception: Random must have 'to' defined.");
+            throw std::exception();
+        }
+        
+        std::stringstream ss;
+        int min, max;
+        
+        ss << from->value() << " " << to->value();
+        ss >> min >> max;
+        
+        config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, 
+            boost::shared_ptr< random_cfg<int> >( new random_cfg<int>(res_man_, min, max) ) ) );
+    }
+
+    void configuration::parse_float(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:      name
+        // can have:
+        // value:  the value
+        // or value can be provided as child
+        
+        xml_attr* path = node->first_attribute("n");
+        if(!path) 
+        {
+            LOG("Parsing exception: Float must have 'n' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node()) 
+        {
+            LOG("Parsing exception: Float must have either 'value' or inner data defined.");
+            throw std::exception();
+        }
+        
+        if(!value)
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data )
+            {
+                std::stringstream ss;
+                float out;
+                
+                ss << data->value();
+                ss >> out;
+
+                config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, out) );
+            }
+            else
+            {
+                // check if it's random
+                if( std::string("random") == data->name() )
+                {
+                    LOG("Random detected.");
+                    parse_random<float>(data, key);
+                }
+                else
+                {
+                    LOG("Parsing exception: Data element can be either <random> or plain value.");
+                    throw std::exception();
+                }
+            }
+        }
+        else
+        {        
+            std::stringstream ss;
+            float out;
+            
+            ss << value->value();
+            ss >> out;
+            
+            config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, out) );
+        }
+    }
+    
+    void configuration::parse_int(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:      name
+        // can have:
+        // value:  the value
+        // or value can be provided as child
+        
+        xml_attr* path = node->first_attribute("n");
+        if(!path) 
+        {
+            LOG("Parsing exception: Int must have 'n' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node()) 
+        {
+            LOG("Parsing exception: Int must have either 'value' or inner data defined.");
+            throw std::exception();
+        }
+        
+        if(!value)
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data )
+            {
+                std::stringstream ss;
+                float out;
+                
+                ss << data->value();
+                ss >> out;
+                
+                config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, out) );
+            }
+            else
+            {
+                // check if it's random
+                if( std::string("random") == data->name() )
+                {
+                    LOG("Random detected.");
+                    parse_random<int>(data, key);
+                }
+                else
+                {
+                    LOG("Parsing exception: Data element can be either <random> or plain value.");
+                    throw std::exception();
+                }
+            }
+        }
+        else
+        {        
+            std::stringstream ss;
+            float out;
+            
+            ss << value->value();
+            ss >> out;
+            
+            config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, out) );
+        }
+    }
+    
     void configuration::parse_namespace(xml_node* node, const config_key& key)
     {
         // must have:

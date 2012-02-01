@@ -30,16 +30,17 @@ public:
     : res_man_(lvp_man)
     , config_(res_man_, "res/main.xml")
     {        
-        for(int i=0; i<10; ++i)
+        int num_sets = config_.get_value<int>("values.num_sets");        
+        for(int i=0; i<num_sets; ++i)
         {
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.house", vector_2d(100+i, 100+i), vector_2d(100, 200)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cafe", vector_2d(10+i, 10+i), vector_2d(200, 140)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.tree", vector_2d(40+i, 60+i), vector_2d(30, 40)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.lantern", vector_2d(20+i, 80+i), vector_2d(120, 150)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.fence", vector_2d(10+i, 110+i), vector_2d(310, 310)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud1", vector_2d(120+i, 130+i), vector_2d(300, 240)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud2", vector_2d(100+i, 110+i), vector_2d(10, 40)) ) );
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud3", vector_2d(200+i, 300+i), vector_2d(210, 40)) ) );        
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.house") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cafe") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.tree") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.lantern") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.fence") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud1") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud2") ) );
+            objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "txtr.cloud3") ) );        
         }
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }

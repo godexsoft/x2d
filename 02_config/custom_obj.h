@@ -20,16 +20,16 @@ class custom_obj
 : public base_object
 {
 public:
-    custom_obj(kernel& k, configuration& conf, const std::string& key, vector_2d pos, vector_2d vel)
+    custom_obj(kernel& k, configuration& conf, const std::string& key)
     : base_object(k)
-    , spr_( conf.get<sprite>(key) )
+    , spr_( conf.get_object<sprite>(key) )
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
-    , pos_(pos)
-    , velocity_(vel)
+    , pos_( conf.get_value<float>("values.x"), conf.get_value<float>("values.y") ) // use random
+    , velocity_( conf.get_value<float>("values.vel"), conf.get_value<float>("values.vel") ) // use random
     {        
         connect_update();
-        connect_render();        
+        connect_render();     
     }
     
 private:
@@ -65,7 +65,7 @@ protected:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
-        glColor4f(1.0, 1.0, 1.0, 1.0);
+        glColor4f(1.0, 1.0, 1.0, alpha_);
         
         glPushMatrix();
         glTranslatef(pos_.X(), pos_.Y(), 0);

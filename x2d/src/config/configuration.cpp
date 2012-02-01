@@ -18,6 +18,9 @@ namespace config {
     : res_man_(res_man)
     {
         // add supported parsers
+        parsers_["float"] = boost::bind(&configuration::parse_float, this, _1, _2);
+        parsers_["int"] = boost::bind(&configuration::parse_int, this, _1, _2);
+        
         parsers_["namespace"] = boost::bind(&configuration::parse_namespace, this, _1, _2);
         parsers_["include"] = boost::bind(&configuration::parse_include, this, _1, _2);
         parsers_["texture"] = boost::bind(&configuration::parse_texture, this, _1, _2);
@@ -71,7 +74,6 @@ namespace config {
             if( parsers_.find( root->name() ) != parsers_.end() )
             {            
                 parsers_[root->name()](root, key);
-                LOG("Saved under key '%s'", key.string().c_str());
             }
             else
             {
@@ -103,11 +105,26 @@ namespace config {
     }
     
     template <>
-    boost::shared_ptr<sprite> configuration::get<sprite>(const config_key& key)
+    boost::shared_ptr<sprite> configuration::get_object<sprite>(const config_key& key)
     {
-        sprite_cfg cfg = *static_cast<sprite_cfg*>(&(*config_[key]));
-        return cfg.get();
+        return (*static_cast<sprite_cfg*>( &(*config_[key]) )).get();
     }
+    
+    // getters for primitive metrics
+    template <>
+    float configuration::get_value<float>(const config_key& key)
+    {
+        typedef value_cfg<float> cfg_type;
+        return (*static_cast<cfg_type*>( &(*config_[key]) )).get();
+    }
+
+    template <>
+    int configuration::get_value<int>(const config_key& key)
+    {
+        typedef value_cfg<int> cfg_type;
+        return (*static_cast<cfg_type*>( &(*config_[key]) )).get();
+    }
+
     
 } // namespace config    
 } // namespace x2d
