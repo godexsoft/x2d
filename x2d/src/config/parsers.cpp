@@ -14,7 +14,22 @@
 
 namespace x2d {
 namespace config {
- 
+
+    void configuration::parse_namespace(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n: name of the namespace
+        
+        xml_attr* path = node->first_attribute("n");
+        if(!path) 
+        {
+            LOG("Parsing exception: Namespace must have 'n' defined.");
+            throw std::exception();
+        }
+        
+        // No need to do anything :)
+    }
+    
     void configuration::parse_include(xml_node* node, const config_key& key)
     {
         // must have:

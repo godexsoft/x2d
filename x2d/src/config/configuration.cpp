@@ -18,6 +18,7 @@ namespace config {
     : res_man_(res_man)
     {
         // add supported parsers
+        parsers_["namespace"] = boost::bind(&configuration::parse_namespace, this, _1, _2);
         parsers_["include"] = boost::bind(&configuration::parse_include, this, _1, _2);
         parsers_["texture"] = boost::bind(&configuration::parse_texture, this, _1, _2);
         parsers_["sprite"] = boost::bind(&configuration::parse_sprite, this, _1, _2);

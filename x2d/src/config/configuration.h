@@ -135,6 +135,7 @@ namespace config {
         void parse(xml_node* root, const config_key& key=config_key(""));
         
         // various parsers for each supported element type
+        void parse_namespace(xml_node* node, const config_key& key);
         void parse_include(xml_node* node, const config_key& key);
         void parse_texture(xml_node* node, const config_key& key);
         void parse_sprite(xml_node* node, const config_key& key);
