@@ -61,6 +61,7 @@
 		2467289C14D6E6CD003AAA04 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467289B14D6E6CD003AAA04 /* AppDelegate.mm */; };
 		246728AB14D83E86003AAA04 /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 246728AA14D83E86003AAA04 /* scene.h */; };
 		246728AD14D84071003AAA04 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246728AC14D84071003AAA04 /* scene.cpp */; };
+		246728B214D881CD003AAA04 /* parsers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246728B114D881CD003AAA04 /* parsers.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,8 @@
 		246728AA14D83E86003AAA04 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 02_config/scene.h; sourceTree = "<group>"; };
 		246728AC14D84071003AAA04 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 02_config/scene.cpp; sourceTree = "<group>"; };
 		246728AE14D841EB003AAA04 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 02_config/fps_counter.h; sourceTree = "<group>"; };
+		246728AF14D87CD0003AAA04 /* other.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = other.xml; path = 02_config/res/other.xml; sourceTree = "<group>"; };
+		246728B114D881CD003AAA04 /* parsers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = parsers.cpp; path = src/config/parsers.cpp; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -242,6 +245,7 @@
 			children = (
 				2467286D14D6E3A1003AAA04 /* configuration.h */,
 				2467286F14D6E444003AAA04 /* configuration.cpp */,
+				246728B114D881CD003AAA04 /* parsers.cpp */,
 			);
 			name = config;
 			sourceTree = "<group>";
@@ -275,6 +279,7 @@
 			children = (
 				246728A114D6FA55003AAA04 /* graphics */,
 				246728A314D6FA55003AAA04 /* main.xml */,
+				246728AF14D87CD0003AAA04 /* other.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */,
 				2415842C14D613900014F37B /* sprite.cpp in Sources */,
 				2467287014D6E444003AAA04 /* configuration.cpp in Sources */,
+				246728B214D881CD003AAA04 /* parsers.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

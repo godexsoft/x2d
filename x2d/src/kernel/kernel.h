@@ -16,6 +16,7 @@
 #include "compare.h"
 #include "clock.h"
 #include "timer.h"
+#include "log.h"
 
 namespace x2d 
 {
@@ -34,11 +35,22 @@ namespace x2d
         void pause()
         {
             is_paused_ = true;
+            pause_time_ = sys_clock_.current_time();
         }
         
         void resume()
         {
             is_paused_ = false;
+            clock_info resume_time = sys_clock_.current_time();
+            
+            double compensation = resume_time.time - pause_time_.time;
+
+            // compensate all active timers
+            for( timer_container::iterator it = timers_.begin(); it != timers_.end(); ++it)
+            {
+                LOG("Compensating timer by %f", compensation / sys_clock_.stretch_);
+                (*it)->compensate(compensation / sys_clock_.stretch_);
+            }
         }
         
         int step();
@@ -70,14 +82,15 @@ namespace x2d
                                 t ), timers_.end());  
         }
         
-    private:        
+    private:                
         /**
          * System clock. Runs without time stretching
          */
-        bool            is_paused_;
-        
         time::clock     sys_clock_;
         timer           sys_timer_;
+        
+        clock_info      pause_time_;
+        bool            is_paused_;
         
         timer_container timers_;
         

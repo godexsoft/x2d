@@ -48,7 +48,13 @@ namespace time {
         fire_ = start_clock_info_.time + frequency_;
         kernel_.enqueue( this );
     }
-    
+
+    void timer::compensate(double delta)
+    {
+        fire_ += delta/clock_.stretch_;
+        start_clock_info_.time += delta/clock_.stretch_;
+    }
+
     void timer::handler(const handler_type& h)
     {
         handler_ = h;

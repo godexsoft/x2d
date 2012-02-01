@@ -13,6 +13,10 @@
 #include <boost/noncopyable.hpp>
 
 namespace x2d {
+
+    // forward declaration of kernel
+    class kernel; 
+    
 namespace time {
 
     struct clock_info
@@ -41,6 +45,7 @@ namespace time {
     : public boost::noncopyable
     {
         friend class timer;
+        friend class kernel;
         
     public:        
         clock(double stretch = 1.0);        

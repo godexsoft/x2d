@@ -65,12 +65,12 @@ protected:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
-        glColor4f(1.0, 1.0, 1.0, alpha_);
+        glColor4f(1.0, 1.0, 1.0, 1.0);
         
         glPushMatrix();
         glTranslatef(pos_.X(), pos_.Y(), 0);
         glRotatef(alpha_*360.0f, 0, 0, 1);
-        glScalef(1.0f-alpha_, alpha_, 1.0f);
+//        glScalef(1.0f-alpha_, alpha_, 1.0f);
         
         spr_->draw_at_point(point(0, 0));
         

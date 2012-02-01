@@ -131,13 +131,15 @@ namespace config {
         boost::shared_ptr<T> get(const config_key& key);
         
     private:
+        void parse_file(const std::string& cfg_path);
         void parse(xml_node* root, const config_key& key=config_key(""));
         
         // various parsers for each supported element type
-        cfg_base_ptr parse_texture(xml_node* node, const config_key& key);
-        cfg_base_ptr parse_sprite(xml_node* node, const config_key& key);
+        void parse_include(xml_node* node, const config_key& key);
+        void parse_texture(xml_node* node, const config_key& key);
+        void parse_sprite(xml_node* node, const config_key& key);
         
-        typedef boost::function<cfg_base_ptr(xml_node*,const config_key&)> parser_type;
+        typedef boost::function<void(xml_node*,const config_key&)> parser_type;
         
         resource_manager&                       res_man_;
         std::map<config_key, cfg_base_ptr>      config_;

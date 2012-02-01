@@ -15,9 +15,10 @@
 namespace x2d 
 {
 
-    kernel::kernel()
-    : is_paused_(false)
-    , sys_clock_()
+    kernel::kernel()    
+    : sys_clock_()
+    , pause_time_(sys_clock_.current_time())
+    , is_paused_(false)
     , sys_timer_(*this, sys_clock_)
     {
         sys_timer_.handler( boost::bind(&kernel::sys_timer_handler, this, _1) );
@@ -63,7 +64,6 @@ namespace x2d
         for( timer_container::iterator it = timers_.begin(); it != timers_.end(); )
         {
             const clock_info ci = (*it)->clock_.current_time();
-
             double ct = ci.time;
             double ft = (*it)->firetime();
             

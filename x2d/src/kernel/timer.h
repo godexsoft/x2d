@@ -32,6 +32,7 @@ namespace time {
         
         void handler(const handler_type& h);
         void set(double freq);
+        void compensate(double delta);
         void cancel();
         
         bool operator < ( const timer& other ) const
