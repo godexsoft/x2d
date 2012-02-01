@@ -15,69 +15,6 @@
 namespace x2d {
 namespace config {
 
-    template<>
-    void configuration::parse_random<float>(xml_node* node, const config_key& key)
-    {
-        // must have:
-        // from: minimal value to generate
-        // to:   maximum value to generate
-        
-        xml_attr* from = node->first_attribute("from");
-        if(!from) 
-        {
-            LOG("Parsing exception: Random must have 'from' defined.");
-            throw std::exception();
-        }
-        
-        xml_attr* to = node->first_attribute("to");
-        if(!to) 
-        {
-            LOG("Parsing exception: Random must have 'to' defined.");
-            throw std::exception();
-        }
-        
-        std::stringstream ss;
-        float min, max;
-        
-        ss << from->value() << " " << to->value();
-        ss >> min >> max;
-        
-        config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, 
-            boost::shared_ptr< random_cfg<float> >( new random_cfg<float>(res_man_, min, max) ) ) );
-    }
-    
-    
-    template<>
-    void configuration::parse_random<int>(xml_node* node, const config_key& key)
-    {
-        // must have:
-        // from: minimal value to generate
-        // to:   maximum value to generate
-        
-        xml_attr* from = node->first_attribute("from");
-        if(!from) 
-        {
-            LOG("Parsing exception: Random must have 'from' defined.");
-            throw std::exception();
-        }
-        
-        xml_attr* to = node->first_attribute("to");
-        if(!to) 
-        {
-            LOG("Parsing exception: Random must have 'to' defined.");
-            throw std::exception();
-        }
-        
-        std::stringstream ss;
-        int min, max;
-        
-        ss << from->value() << " " << to->value();
-        ss >> min >> max;
-        
-        config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, 
-            boost::shared_ptr< random_cfg<int> >( new random_cfg<int>(res_man_, min, max) ) ) );
-    }
-
     void configuration::parse_float(xml_node* node, const config_key& key)
     {
         // must have:
@@ -332,5 +269,98 @@ namespace config {
                 point(xval, yval), size(wval, hval)) );
     }
 
+    void configuration::parse_animation(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        // duration: default duration for every frame
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            LOG("Parsing exception: Animation type must have 'n' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* dur = node->first_attribute("duration");
+        if(!dur) 
+        {
+            LOG("Parsing exception: Animation type must have 'duration' defined.");
+            throw std::exception();
+        }
+        
+        float duration;
+        std::stringstream ss;
+        ss << dur->value();
+        ss >> duration;
+        
+        config_[key] =  boost::shared_ptr<animation_cfg>( new animation_cfg(res_man_, *this, duration) );
+    }
+    
+    // TODO: move out of here!
+    boost::shared_ptr<animation> animation_cfg::get()
+    {
+        if( boost::shared_ptr<animation> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
+            
+            // add all frames
+            for(int i=0; i<frames_.size(); ++i)
+            {
+                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_) ) );
+            }
+            
+            inst_ = r;
+            return r;
+        }
+    }
+
+    
+    void configuration::parse_frame(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        // sprite:   key for the sprite item to use
+        // can have:
+        // duration: duration for this frame
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            LOG("Parsing exception: Frame type must have 'n' defined.");
+            throw std::exception();
+        }
+        
+        xml_attr* spr = node->first_attribute("sprite");
+        if(!spr) 
+        {
+            LOG("Parsing exception: Frame type must have 'sprite' defined.");
+            throw std::exception();
+        }
+        
+        // parent must be an animation
+        xml_node* parent = node->parent();
+        if(! parent || std::string("animation") != parent->name())
+        {
+            LOG("Structure exception: Frame must be a child element of an Animation object.");
+            throw std::exception();
+        }
+        
+        config_key parent_key = key.remove_last_path_component();        
+        if( config_.find(parent_key) == config_.end() )
+        {
+            LOG("Structure exception: Frame's animation object is not found: '%s'", parent_key.string().c_str());
+            throw std::exception();        
+        }
+
+        // add this frame
+        static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value()) );
+    }
+    
 } // namespace config
 } // namespace x2d

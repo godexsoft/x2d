@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2467287114D6E4D7003AAA04"
+               BlueprintIdentifier = "2467294914D9EA5B003AAA04"
                BuildableName = "x2d_config.app"
-               BlueprintName = "02_config"
+               BlueprintName = "03_animation"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,9 +31,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2467287114D6E4D7003AAA04"
+            BlueprintIdentifier = "2467294914D9EA5B003AAA04"
             BuildableName = "x2d_config.app"
-            BlueprintName = "02_config"
+            BlueprintName = "03_animation"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -49,9 +49,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2467287114D6E4D7003AAA04"
+            BlueprintIdentifier = "2467294914D9EA5B003AAA04"
             BuildableName = "x2d_config.app"
-            BlueprintName = "02_config"
+            BlueprintName = "03_animation"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -67,9 +67,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2467287114D6E4D7003AAA04"
+            BlueprintIdentifier = "2467294914D9EA5B003AAA04"
             BuildableName = "x2d_config.app"
-            BlueprintName = "02_config"
+            BlueprintName = "03_animation"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

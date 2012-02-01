@@ -1,0 +1,46 @@
+<x2d version="1.0">
+    
+    <!-- engine setup -->
+    <clock frequency="60" stretch="1.0" />
+    <display size="320 480" />
+    <camera rotation="90" frustum="0 0 480 320" />
+    <viewport value="0 0 480 320" />
+    
+    <!-- namespace for all textures and sprites -->
+    <namespace n="graphics">
+    
+        <!-- define our texture and sprites -->
+        <texture n="player" path="res/graphics/anim.png">
+            <sprite n="anim_1"   x="0"   y="0"   w="128" h="128" />
+            <sprite n="anim_2"   x="128" y="0"   w="128" h="128" />
+            <sprite n="anim_3"   x="256" y="0"   w="128" h="128" />
+            <sprite n="anim_4"   x="384" y="0"   w="128" h="128" />
+            <sprite n="anim_5"   x="0"   y="128" w="128" h="128" />
+            <sprite n="anim_6"   x="128" y="128" w="128" h="128" />
+            <sprite n="anim_7"   x="256" y="128" w="128" h="128" />
+            <sprite n="anim_8"   x="384" y="128" w="128" h="128" />
+            <sprite n="standing" x="384" y="256" w="128" h="128" />
+        </texture> 
+
+    </namespace> 
+    <!-- end: graphics -->
+    
+    <!-- namespace for all animations -->
+    <namespace n="animations">
+    
+        <!-- define the animation -->
+        <animation n="player" duration="0.3">
+            <frame n="frame_1" sprite="graphics.player.anim_1" />
+            <frame n="frame_2" sprite="graphics.player.anim_2" />
+            <frame n="frame_3" sprite="graphics.player.anim_3" />
+            <frame n="frame_4" sprite="graphics.player.anim_4" />
+            <frame n="frame_5" sprite="graphics.player.anim_5" />
+            <frame n="frame_6" sprite="graphics.player.anim_6" />
+            <frame n="frame_7" sprite="graphics.player.anim_7" />
+            <frame n="frame_8" sprite="graphics.player.anim_8" />
+        </animation>
+            
+    </namespace> 
+    <!-- end: animations -->
+    
+</x2d>

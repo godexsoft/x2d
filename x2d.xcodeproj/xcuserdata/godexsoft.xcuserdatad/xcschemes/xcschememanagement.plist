@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>03_animation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>2467287114D6E4D7003AAA04</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2467294914D9EA5B003AAA04</key>
 		<dict>
 			<key>primary</key>
 			<true/>

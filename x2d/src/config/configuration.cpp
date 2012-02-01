@@ -18,13 +18,15 @@ namespace config {
     : res_man_(res_man)
     {
         // add supported parsers
-        parsers_["float"] = boost::bind(&configuration::parse_float, this, _1, _2);
-        parsers_["int"] = boost::bind(&configuration::parse_int, this, _1, _2);
+        parsers_["float"]       = boost::bind(&configuration::parse_float, this, _1, _2);
+        parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
         
-        parsers_["namespace"] = boost::bind(&configuration::parse_namespace, this, _1, _2);
-        parsers_["include"] = boost::bind(&configuration::parse_include, this, _1, _2);
-        parsers_["texture"] = boost::bind(&configuration::parse_texture, this, _1, _2);
-        parsers_["sprite"] = boost::bind(&configuration::parse_sprite, this, _1, _2);
+        parsers_["namespace"]   = boost::bind(&configuration::parse_namespace, this, _1, _2);
+        parsers_["include"]     = boost::bind(&configuration::parse_include, this, _1, _2);
+        parsers_["texture"]     = boost::bind(&configuration::parse_texture, this, _1, _2);
+        parsers_["sprite"]      = boost::bind(&configuration::parse_sprite, this, _1, _2);
+        parsers_["animation"]   = boost::bind(&configuration::parse_animation, this, _1, _2);
+        parsers_["frame"]       = boost::bind(&configuration::parse_frame, this, _1, _2);
         
         // finally parse the config
         parse_file(cfg_path);
@@ -108,6 +110,12 @@ namespace config {
     boost::shared_ptr<sprite> configuration::get_object<sprite>(const config_key& key)
     {
         return (*static_cast<sprite_cfg*>( &(*config_[key]) )).get();
+    }
+
+    template <>
+    boost::shared_ptr<animation> configuration::get_object<animation>(const config_key& key)
+    {
+        return (*static_cast<animation_cfg*>( &(*config_[key]) )).get();
     }
     
     // getters for primitive metrics

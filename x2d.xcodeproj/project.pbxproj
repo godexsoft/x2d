@@ -17,7 +17,7 @@
 		241583CE14D0B2DA0014F37B /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5A14CC7C92006F36A1 /* timer.cpp */; };
 		241583CF14D0B2DA0014F37B /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC4514CC63FD006F36A1 /* kernel.cpp */; };
 		241583D014D0B2DA0014F37B /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform.mm */; };
-		241583DB14D0B3940014F37B /* liblibx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* liblibx2d.a */; };
+		241583DB14D0B3940014F37B /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
@@ -46,7 +46,7 @@
 		2467286C14D6E34C003AAA04 /* rapidxml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286814D6E34C003AAA04 /* rapidxml.hpp */; };
 		2467286E14D6E3A1003AAA04 /* configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467286D14D6E3A1003AAA04 /* configuration.h */; };
 		2467287014D6E444003AAA04 /* configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467286F14D6E444003AAA04 /* configuration.cpp */; };
-		2467287914D6E4D7003AAA04 /* liblibx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* liblibx2d.a */; };
+		2467287914D6E4D7003AAA04 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
@@ -62,6 +62,25 @@
 		246728AB14D83E86003AAA04 /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 246728AA14D83E86003AAA04 /* scene.h */; };
 		246728AD14D84071003AAA04 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246728AC14D84071003AAA04 /* scene.cpp */; };
 		246728B214D881CD003AAA04 /* parsers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246728B114D881CD003AAA04 /* parsers.cpp */; };
+		2467295214D9EA5B003AAA04 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
+		2467295314D9EA5B003AAA04 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		2467295414D9EA5B003AAA04 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		2467295514D9EA5B003AAA04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		2467295614D9EA5B003AAA04 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		2467295714D9EA5B003AAA04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		2467295814D9EA5B003AAA04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		2467296C14D9EC23003AAA04 /* animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2467296A14D9EC23003AAA04 /* animation.plist */; };
+		2467296D14D9EC23003AAA04 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467296B14D9EC23003AAA04 /* main.mm */; };
+		2467297014D9EC50003AAA04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2467296E14D9EC50003AAA04 /* InfoPlist.strings */; };
+		2467297814D9EC62003AAA04 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467297214D9EC62003AAA04 /* AppDelegate.mm */; };
+		2467297914D9EC62003AAA04 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467297314D9EC62003AAA04 /* custom_obj.cpp */; };
+		2467297A14D9EC62003AAA04 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467297614D9EC62003AAA04 /* scene.cpp */; };
+		2467297F14D9F106003AAA04 /* value_support.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467297E14D9F105003AAA04 /* value_support.h */; };
+		2467298114D9F215003AAA04 /* object_support.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467298014D9F215003AAA04 /* object_support.h */; };
+		2467298314D9F320003AAA04 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298214D9F320003AAA04 /* random.cpp */; };
+		2467298614D9F5C7003AAA04 /* animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467298514D9F5C7003AAA04 /* animation.h */; };
+		2467298814D9F8BE003AAA04 /* animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298714D9F8BE003AAA04 /* animation.cpp */; };
+		2467298B14D9FCC7003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467297D14D9EF97003AAA04 /* resources.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +98,13 @@
 			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
 			remoteInfo = libx2d;
 		};
+		2467294B14D9EA5B003AAA04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -86,7 +112,7 @@
 		2415838114CDD9DA0014F37B /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math_util.cpp; path = src/util/math_util.cpp; sourceTree = "<group>"; };
 		2415838814CE04990014F37B /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = src/base/texture.h; sourceTree = "<group>"; };
 		2415838914CE09460014F37B /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture.cpp; path = src/base/texture.cpp; sourceTree = "<group>"; };
-		241583BD14D0B27E0014F37B /* liblibx2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibx2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		241583BD14D0B27E0014F37B /* libx2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libx2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		241583E714D0B3940014F37B /* x2d_object.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_object.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		241583EA14D0B4D30014F37B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 01_object/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		241583EB14D0B4D30014F37B /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 01_object/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
@@ -131,6 +157,26 @@
 		246728AE14D841EB003AAA04 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 02_config/fps_counter.h; sourceTree = "<group>"; };
 		246728AF14D87CD0003AAA04 /* other.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = other.xml; path = 02_config/res/other.xml; sourceTree = "<group>"; };
 		246728B114D881CD003AAA04 /* parsers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = parsers.cpp; path = src/config/parsers.cpp; sourceTree = "<group>"; };
+		2467296114D9EA5B003AAA04 /* x2d_animation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_animation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2467296914D9EC23003AAA04 /* animation-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "animation-Prefix.pch"; path = "03_animation/animation-Prefix.pch"; sourceTree = "<group>"; };
+		2467296A14D9EC23003AAA04 /* animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = animation.plist; path = 03_animation/animation.plist; sourceTree = "<group>"; };
+		2467296B14D9EC23003AAA04 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 03_animation/main.mm; sourceTree = "<group>"; };
+		2467296F14D9EC50003AAA04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = 03_animation/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2467297114D9EC62003AAA04 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 03_animation/AppDelegate.h; sourceTree = "<group>"; };
+		2467297214D9EC62003AAA04 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 03_animation/AppDelegate.mm; sourceTree = "<group>"; };
+		2467297314D9EC62003AAA04 /* custom_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = custom_obj.cpp; path = 03_animation/custom_obj.cpp; sourceTree = "<group>"; };
+		2467297414D9EC62003AAA04 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 03_animation/custom_obj.h; sourceTree = "<group>"; };
+		2467297514D9EC62003AAA04 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 03_animation/fps_counter.h; sourceTree = "<group>"; };
+		2467297614D9EC62003AAA04 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 03_animation/scene.cpp; sourceTree = "<group>"; };
+		2467297714D9EC62003AAA04 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 03_animation/scene.h; sourceTree = "<group>"; };
+		2467297B14D9ED19003AAA04 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 03_animation/res/main.xml; sourceTree = "<group>"; };
+		2467297D14D9EF97003AAA04 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 03_animation/resources.zip; sourceTree = "<group>"; };
+		2467297E14D9F105003AAA04 /* value_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value_support.h; path = src/config/value_support.h; sourceTree = "<group>"; };
+		2467298014D9F215003AAA04 /* object_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object_support.h; path = src/config/object_support.h; sourceTree = "<group>"; };
+		2467298214D9F320003AAA04 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = random.cpp; path = src/config/random.cpp; sourceTree = "<group>"; };
+		2467298514D9F5C7003AAA04 /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = animation.h; path = src/anim/animation.h; sourceTree = "<group>"; };
+		2467298714D9F8BE003AAA04 /* animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = animation.cpp; path = src/anim/animation.cpp; sourceTree = "<group>"; };
+		2467298A14D9FC87003AAA04 /* anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim.png; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,7 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241583DB14D0B3940014F37B /* liblibx2d.a in Frameworks */,
+				241583DB14D0B3940014F37B /* libx2d.a in Frameworks */,
 				241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */,
 				241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */,
 				241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */,
@@ -188,13 +234,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2467287914D6E4D7003AAA04 /* liblibx2d.a in Frameworks */,
+				2467287914D6E4D7003AAA04 /* libx2d.a in Frameworks */,
 				2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */,
 				2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */,
 				2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */,
 				2467287D14D6E4D7003AAA04 /* boost.framework in Frameworks */,
 				2467287E14D6E4D7003AAA04 /* UIKit.framework in Frameworks */,
 				2467287F14D6E4D7003AAA04 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2467295114D9EA5B003AAA04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467295214D9EA5B003AAA04 /* libx2d.a in Frameworks */,
+				2467295314D9EA5B003AAA04 /* OpenGLES.framework in Frameworks */,
+				2467295414D9EA5B003AAA04 /* QuartzCore.framework in Frameworks */,
+				2467295514D9EA5B003AAA04 /* CoreGraphics.framework in Frameworks */,
+				2467295614D9EA5B003AAA04 /* boost.framework in Frameworks */,
+				2467295714D9EA5B003AAA04 /* UIKit.framework in Frameworks */,
+				2467295814D9EA5B003AAA04 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +305,10 @@
 			children = (
 				2467286D14D6E3A1003AAA04 /* configuration.h */,
 				2467286F14D6E444003AAA04 /* configuration.cpp */,
+				2467297E14D9F105003AAA04 /* value_support.h */,
+				2467298014D9F215003AAA04 /* object_support.h */,
 				246728B114D881CD003AAA04 /* parsers.cpp */,
+				2467298214D9F320003AAA04 /* random.cpp */,
 			);
 			name = config;
 			sourceTree = "<group>";
@@ -324,11 +387,83 @@
 			name = generated;
 			sourceTree = "<group>";
 		};
+		2467296414D9EB95003AAA04 /* 03_animation */ = {
+			isa = PBXGroup;
+			children = (
+				2467297114D9EC62003AAA04 /* AppDelegate.h */,
+				2467297214D9EC62003AAA04 /* AppDelegate.mm */,
+				2467296514D9EBB0003AAA04 /* resources */,
+				2467296614D9EBBF003AAA04 /* objects */,
+				2467296814D9EBD6003AAA04 /* Supporting Files */,
+				2467296714D9EBCC003AAA04 /* generated */,
+			);
+			name = 03_animation;
+			sourceTree = "<group>";
+		};
+		2467296514D9EBB0003AAA04 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				2467298914D9FC87003AAA04 /* graphics */,
+				2467297B14D9ED19003AAA04 /* main.xml */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		2467296614D9EBBF003AAA04 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				2467297314D9EC62003AAA04 /* custom_obj.cpp */,
+				2467297414D9EC62003AAA04 /* custom_obj.h */,
+				2467297514D9EC62003AAA04 /* fps_counter.h */,
+				2467297614D9EC62003AAA04 /* scene.cpp */,
+				2467297714D9EC62003AAA04 /* scene.h */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
+		2467296714D9EBCC003AAA04 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				2467297D14D9EF97003AAA04 /* resources.zip */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
+		2467296814D9EBD6003AAA04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2467296E14D9EC50003AAA04 /* InfoPlist.strings */,
+				2467296914D9EC23003AAA04 /* animation-Prefix.pch */,
+				2467296A14D9EC23003AAA04 /* animation.plist */,
+				2467296B14D9EC23003AAA04 /* main.mm */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2467298414D9F5B0003AAA04 /* anim */ = {
+			isa = PBXGroup;
+			children = (
+				2467298514D9F5C7003AAA04 /* animation.h */,
+				2467298714D9F8BE003AAA04 /* animation.cpp */,
+			);
+			name = anim;
+			sourceTree = "<group>";
+		};
+		2467298914D9FC87003AAA04 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				2467298A14D9FC87003AAA04 /* anim.png */,
+			);
+			name = graphics;
+			path = 03_animation/res/graphics;
+			sourceTree = "<group>";
+		};
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
 				24BDCCA114CCF942006F36A1 /* 01_object */,
 				2467288914D6E574003AAA04 /* 02_config */,
+				2467296414D9EB95003AAA04 /* 03_animation */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
@@ -338,9 +473,10 @@
 		24BDCC1E14CC6300006F36A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				241583BD14D0B27E0014F37B /* liblibx2d.a */,
+				241583BD14D0B27E0014F37B /* libx2d.a */,
 				241583E714D0B3940014F37B /* x2d_object.app */,
 				2467288614D6E4D7003AAA04 /* x2d_config.app */,
+				2467296114D9EA5B003AAA04 /* x2d_animation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -386,6 +522,7 @@
 		24BDCC4314CC63B5006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
+				2467298414D9F5B0003AAA04 /* anim */,
 				2467285314D6E232003AAA04 /* config */,
 				2415841E14D2E4510014F37B /* resource */,
 				2415840314D0C63C0014F37B /* fs */,
@@ -482,6 +619,9 @@
 				2467286C14D6E34C003AAA04 /* rapidxml.hpp in Headers */,
 				2467286E14D6E3A1003AAA04 /* configuration.h in Headers */,
 				246728AB14D83E86003AAA04 /* scene.h in Headers */,
+				2467297F14D9F106003AAA04 /* value_support.h in Headers */,
+				2467298114D9F215003AAA04 /* object_support.h in Headers */,
+				2467298614D9F5C7003AAA04 /* animation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +642,7 @@
 			);
 			name = libx2d;
 			productName = libx2d;
-			productReference = 241583BD14D0B27E0014F37B /* liblibx2d.a */;
+			productReference = 241583BD14D0B27E0014F37B /* libx2d.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		241583D414D0B3940014F37B /* 01_object */ = {
@@ -542,6 +682,25 @@
 			productReference = 2467288614D6E4D7003AAA04 /* x2d_config.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2467294914D9EA5B003AAA04 /* 03_animation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2467295E14D9EA5B003AAA04 /* Build configuration list for PBXNativeTarget "03_animation" */;
+			buildPhases = (
+				2467294C14D9EA5B003AAA04 /* Sources */,
+				2467295114D9EA5B003AAA04 /* Frameworks */,
+				2467295914D9EA5B003AAA04 /* ShellScript */,
+				2467295A14D9EA5B003AAA04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2467294A14D9EA5B003AAA04 /* PBXTargetDependency */,
+			);
+			name = 03_animation;
+			productName = x2d;
+			productReference = 2467296114D9EA5B003AAA04 /* x2d_animation.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -565,6 +724,7 @@
 				241583BC14D0B27E0014F37B /* libx2d */,
 				241583D414D0B3940014F37B /* 01_object */,
 				2467287114D6E4D7003AAA04 /* 02_config */,
+				2467294914D9EA5B003AAA04 /* 03_animation */,
 			);
 		};
 /* End PBXProject section */
@@ -589,6 +749,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2467295A14D9EA5B003AAA04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467298B14D9FCC7003AAA04 /* resources.zip in Resources */,
+				2467296C14D9EC23003AAA04 /* animation.plist in Resources */,
+				2467297014D9EC50003AAA04 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -604,6 +774,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd 02_config/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+		};
+		2467295914D9EA5B003AAA04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd 03_animation/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -627,6 +810,8 @@
 				2415842C14D613900014F37B /* sprite.cpp in Sources */,
 				2467287014D6E444003AAA04 /* configuration.cpp in Sources */,
 				246728B214D881CD003AAA04 /* parsers.cpp in Sources */,
+				2467298314D9F320003AAA04 /* random.cpp in Sources */,
+				2467298814D9F8BE003AAA04 /* animation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +836,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2467294C14D9EA5B003AAA04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2467296D14D9EC23003AAA04 /* main.mm in Sources */,
+				2467297814D9EC62003AAA04 /* AppDelegate.mm in Sources */,
+				2467297914D9EC62003AAA04 /* custom_obj.cpp in Sources */,
+				2467297A14D9EC62003AAA04 /* scene.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -663,6 +859,11 @@
 			isa = PBXTargetDependency;
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
 			targetProxy = 2467287314D6E4D7003AAA04 /* PBXContainerItemProxy */;
+		};
+		2467294A14D9EA5B003AAA04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 2467294B14D9EA5B003AAA04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -684,6 +885,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		2467296E14D9EC50003AAA04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2467296F14D9EC50003AAA04 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -692,7 +901,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/libx2d.dst;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = x2d;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -702,7 +911,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/libx2d.dst;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = x2d;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -747,6 +956,28 @@
 				GCC_PREFIX_HEADER = "02_config/config-Prefix.pch";
 				INFOPLIST_FILE = 02_config/config.plist;
 				PRODUCT_NAME = x2d_config;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2467295F14D9EA5B003AAA04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "03_animation/animation-Prefix.pch";
+				INFOPLIST_FILE = 03_animation/animation.plist;
+				PRODUCT_NAME = x2d_animation;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2467296014D9EA5B003AAA04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "03_animation/animation-Prefix.pch";
+				INFOPLIST_FILE = 03_animation/animation.plist;
+				PRODUCT_NAME = x2d_animation;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -826,6 +1057,15 @@
 			buildConfigurations = (
 				2467288414D6E4D7003AAA04 /* Debug */,
 				2467288514D6E4D7003AAA04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2467295E14D9EA5B003AAA04 /* Build configuration list for PBXNativeTarget "03_animation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2467295F14D9EA5B003AAA04 /* Debug */,
+				2467296014D9EA5B003AAA04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
