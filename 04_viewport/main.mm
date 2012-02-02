@@ -1,6 +1,6 @@
 //
 //  main.m
-//  x2d - 03_animation
+//  x2d - 04_viewport
 //
 //  Created by Alex Kremer on 1/30/12.
 //  Copyright (c) 2012 godexsoft. All rights reserved.

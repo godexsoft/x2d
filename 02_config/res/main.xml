@@ -13,15 +13,10 @@
     -->
     
     <!-- 
-        configure the display 
-     -->
-    <display size="320 480" />
-    
-    <!-- 
         configure main camera
         will be landscape
      -->
-    <camera rotation="90" frustum="0 0 480 320" />
+    <camera rotation="-90" frustum="320 480" />
     
     <!-- 
         configure default viewport.

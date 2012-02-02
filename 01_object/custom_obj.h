@@ -21,6 +21,8 @@
 #include "resource_manager.h"
 #include "sprite.h"
 
+#include "camera.h"
+
 class custom_obj 
 : public base_object
 {
@@ -30,26 +32,35 @@ public:
     , res_man_(lvp_man)
     , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
     , spr_(texture_, point(0, 0), size(120, 120))
-    , alpha_(0.0f)
-    , li_(alpha_, 0.0f, 1.0f, 1.0f)
-    , pos_(160.0f, 240.0f)
-    , velocity_(100.0f, 200.0f)
+    , cam_(size(320, 480))
+    , y_(0.0f)
+    , liy_(y_, 0.0f, 320.0f, 3.0f)
+    , x_(0.0f)
+    , lix_(x_, 0.0f, 480.0f, 3.0f)
+    , zoom_(1.0f)
+    , qi_(zoom_, 1.0f, 2.0f, 1.0f, 3.0f)
     {        
+        cam_.rotation(-90.0f); // rotate camera to go landscape
+        cam_.position( vector_2d(-240.0f, -160.0f) ); // set camera 0,0 to left,bottom of physical screen
+        
         connect_update();
         connect_render();        
     }
     
 private:
-    resource_manager        res_man_;
-    boost::shared_ptr<texture>   texture_;
-    sprite                  spr_;
+    resource_manager            res_man_;
+    boost::shared_ptr<texture>  texture_;
+    sprite                      spr_;
+    camera                      cam_;
     
-    float                   alpha_;
-    linear_interpolator     li_;
-    
-    vector_2d               pos_;
-    vector_2d               velocity_;
-    
+    float y_;
+    linear_interpolator liy_;
+
+    float x_;
+    linear_interpolator lix_;
+
+    float zoom_;
+    quadratic_interpolator qi_;    
 protected:
     
     virtual void update(const clock_info& clock) 
@@ -68,32 +79,25 @@ protected:
             ++fps;
         }
         
-        li_.update(clock.delta_time);
+        liy_.update(clock.delta_time);
+        lix_.update(clock.delta_time);
+        qi_.update(clock.delta_time);
         
-        pos_ += velocity_ * clock.delta_time;
-        
-        if(pos_.X() >= 320.0f || pos_.X() <= 0.0f)
-            velocity_.X(-velocity_.X());
-        
-        if(pos_.Y() >= 480.0f || pos_.Y() <= 0.0f)
-            velocity_.Y(-velocity_.Y());
+        cam_.zoom(zoom_);
     }
     
     virtual void render(const clock_info& clock) 
-    {  
-        glEnable(GL_BLEND);
-        if( 0 )
-            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        else {
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
+    {          
+        cam_.apply();
         
-        glColor4f(1.0, 1.0, 1.5, alpha_);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glColor4f(1.0, 1.0, 1.0, 1.0);
         
         glPushMatrix();
-        glTranslatef(pos_.X(), pos_.Y(), 0);
-        glRotatef(alpha_*360.0f, 0, 0, 1);    
-        glScalef(alpha_, alpha_, 1.0f);
+
+        glTranslatef(x_, y_, 0);
             
         spr_.draw_at_point(point(0, 0));
 

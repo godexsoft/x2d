@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>04_viewport.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +43,11 @@
 			<true/>
 		</dict>
 		<key>241583D414D0B3940014F37B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2451516D14DACA620029D699</key>
 		<dict>
 			<key>primary</key>
 			<true/>
