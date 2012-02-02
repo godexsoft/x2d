@@ -202,6 +202,11 @@ namespace math {
         inline operator CGRect() { return CGRectMake(origin.x, origin.y, size.width, size.height); }
         inline operator const CGRect() const { return CGRectMake(origin.x, origin.y, size.width, size.height); }
 #endif
+        rect(float x, float y, float width, float height)
+        : origin(x, y)
+        , size(width, height)
+        {            
+        }
         
         point origin;
         size size;        

@@ -18,12 +18,7 @@ namespace base {
 
     class camera
     {
-    private:
-        size        frustum_;
-
-        float       rotation_;
-        float       zoom_;        
-        vector_2d   position_;
+        friend class viewport;
         
     public:
         camera(const size& frustum)
@@ -77,6 +72,13 @@ namespace base {
             // move to camera position
             glTranslatef(position_.X(), position_.Y(), 0.0);
         }
+
+    private:
+        size        frustum_;
+        
+        float       rotation_;
+        float       zoom_;        
+        vector_2d   position_;
     };
 
 } // namespace base

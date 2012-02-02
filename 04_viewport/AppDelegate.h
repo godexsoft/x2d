@@ -15,9 +15,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    x2d::kernel _k;
-    x2d::liverpool::liverpool_manager _lvp_man;
-    boost::shared_ptr<scene> obj;
+    boost::shared_ptr<x2d::kernel>      _k;
+    x2d::liverpool::liverpool_manager   _lvp_man;
+    boost::shared_ptr<scene>            obj;
 }
 
 @property (strong, nonatomic) UIWindow *window;

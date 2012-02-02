@@ -55,6 +55,8 @@
 		245151A714DACC860029D699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2451519214DACBE80029D699 /* InfoPlist.strings */; };
 		245151A814DACC860029D699 /* viewport-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 2451519B14DACBE80029D699 /* viewport-Prefix.pch */; };
 		245151A914DACC860029D699 /* viewport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2451519C14DACBE80029D699 /* viewport.plist */; };
+		245151AB14DACE360029D699 /* viewport.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151AA14DACE360029D699 /* viewport.h */; };
+		245151AD14DAEED40029D699 /* color_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151AC14DAEED40029D699 /* color_info.h */; };
 		2467286914D6E34C003AAA04 /* rapidxml_iterators.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */; };
 		2467286A14D6E34C003AAA04 /* rapidxml_print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286614D6E34C003AAA04 /* rapidxml_print.hpp */; };
 		2467286B14D6E34C003AAA04 /* rapidxml_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */; };
@@ -172,6 +174,8 @@
 		2451519B14DACBE80029D699 /* viewport-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "viewport-Prefix.pch"; path = "04_viewport/viewport-Prefix.pch"; sourceTree = "<group>"; };
 		2451519C14DACBE80029D699 /* viewport.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = viewport.plist; path = 04_viewport/viewport.plist; sourceTree = "<group>"; };
 		245151A514DACC740029D699 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 04_viewport/resources.zip; sourceTree = "<group>"; };
+		245151AA14DACE360029D699 /* viewport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = viewport.h; path = src/base/viewport.h; sourceTree = "<group>"; };
+		245151AC14DAEED40029D699 /* color_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = color_info.h; path = src/base/color_info.h; sourceTree = "<group>"; };
 		2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_iterators.hpp; path = libs/rapidxml/rapidxml_iterators.hpp; sourceTree = SOURCE_ROOT; };
 		2467286614D6E34C003AAA04 /* rapidxml_print.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_print.hpp; path = libs/rapidxml/rapidxml_print.hpp; sourceTree = SOURCE_ROOT; };
 		2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_utils.hpp; path = libs/rapidxml/rapidxml_utils.hpp; sourceTree = SOURCE_ROOT; };
@@ -683,12 +687,14 @@
 			isa = PBXGroup;
 			children = (
 				24BDCC5E14CC7E56006F36A1 /* base_object.h */,
-				2415837F14CDD9380014F37B /* camera.h */,
 				2415838914CE09460014F37B /* texture.cpp */,
 				2415838814CE04990014F37B /* texture.h */,
 				2415842914D611170014F37B /* sprite.h */,
 				2415842B14D613900014F37B /* sprite.cpp */,
 				2467298C14DA9BA0003AAA04 /* exceptions.h */,
+				2415837F14CDD9380014F37B /* camera.h */,
+				245151AA14DACE360029D699 /* viewport.h */,
+				245151AC14DAEED40029D699 /* color_info.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -741,6 +747,8 @@
 				2467298114D9F215003AAA04 /* object_support.h in Headers */,
 				2467298614D9F5C7003AAA04 /* animation.h in Headers */,
 				2467298D14DA9BA0003AAA04 /* exceptions.h in Headers */,
+				245151AB14DACE360029D699 /* viewport.h in Headers */,
+				245151AD14DAEED40029D699 /* color_info.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

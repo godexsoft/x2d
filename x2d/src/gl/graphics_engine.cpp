@@ -13,22 +13,8 @@
 namespace x2d {
 namespace graphics {
 
-    void graphics_engine_bare::init(float x, float y, float width, float height)
+    void graphics_engine_bare::init()
     {
-        // set up OpenGL projection matrix
-        glMatrixMode(GL_PROJECTION);
-        
-        glViewport(0, 0, width, height);
-        glScissor(0, 0, width, height);
-
-#ifdef ES1_GLEXT_H_GUARD
-        glOrthof(0, width, 0, height, -1, 100);
-#elif defined (_OPENGL_H)
-        glOrtho(0, width, 0, height, -1, 100);
-#endif
-        
-        glMatrixMode(GL_MODELVIEW);
-        
         // initialize OpenGL states
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         glEnable(GL_TEXTURE_2D);
@@ -37,7 +23,7 @@ namespace graphics {
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
         glLoadIdentity();
-        glClearColor(0.4f,0.4f,0.4f,1.0f);
+        glClearColor(0.0f,0.0f,0.0f,1.0f);
         
         // clear
         glClear(GL_COLOR_BUFFER_BIT);
@@ -103,7 +89,7 @@ namespace graphics {
         set_current_context();
         
         glBindFramebufferOES(GL_FRAMEBUFFER_OES, view_frame_buf_);
-        glViewport(0, 0, backing_width_, backing_height_);
+//        glViewport(0, 0, backing_width_, backing_height_);
         glClear(GL_COLOR_BUFFER_BIT);
     }
 #elif defined(_OPENGL_H)

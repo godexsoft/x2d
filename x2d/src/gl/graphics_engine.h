@@ -29,7 +29,7 @@ public:
     /**
      * Initialize graphics subsystem
      */
-    void init(float x, float y, float width, float height);
+    void init();
     void shutdown();
     
     void create_frame_buffer(); 

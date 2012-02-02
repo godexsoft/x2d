@@ -43,8 +43,11 @@ namespace fs = x2d::filesystem;
     // Load stuff
     _lvp_man.mount("resources.zip", "res");
     
+    // create a kernel
+    _k = boost::shared_ptr<kernel>( new kernel() );
+    
     // register some object with our kernel
-    obj = boost::shared_ptr<scene>( new scene(_k, _lvp_man) );
+    obj = boost::shared_ptr<scene>( new scene(*_k, _lvp_man) );
     
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
@@ -53,7 +56,7 @@ namespace fs = x2d::filesystem;
 
 - (void)step
 {
-    _k.step();
+    _k->step();
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -80,8 +83,11 @@ namespace fs = x2d::filesystem;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    LOG("Pause.");
-    _k.pause();
+    if(_k)
+    {
+        LOG("Pause.");
+        _k->pause();
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -91,8 +97,11 @@ namespace fs = x2d::filesystem;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    LOG("Resume.");
-    _k.resume();
+    if(_k)
+    {
+        LOG("Resume.");
+        _k->resume();
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

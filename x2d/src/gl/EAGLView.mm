@@ -60,8 +60,7 @@
             objc_callback(@selector(shutdown), self) );        
         
         // init opengl
-        graphics_engine::instance().init(frame.origin.x, frame.origin.y,
-                                         frame.size.width, frame.size.height);
+        graphics_engine::instance().init();
 	}
 	
     return self;

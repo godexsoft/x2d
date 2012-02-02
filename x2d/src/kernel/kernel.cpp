@@ -11,16 +11,26 @@
 #include "base_object.h"
 #include "platform.h"
 #include "graphics_engine.h"
+#include "math_util.h"
 
 namespace x2d 
 {
-
     kernel::kernel()    
     : sys_clock_()
     , pause_time_(sys_clock_.current_time())
     , is_paused_(false)
     , sys_timer_(*this, sys_clock_)
+    , cur_viewport_(-1)
+    , camera_(size(320, 240)) // TODO: don't hardcode!
+    , camera2_(size(320, 240)) // TODO: don't hardcode!
     {
+        camera2_.rotation(-90);
+        
+        // add default viewport
+        // FIXME
+        viewports_.push_back( viewport( rect(0, 0, 320, 240), camera_, color_info(1.0, 0, 0) ) ); //TODO: don't hardcode!
+        viewports_.push_back( viewport( rect(40, 250, 160, 120), camera2_, color_info(0.0, 1.0, 0) ) ); //TODO: don't hardcode!
+        
         sys_timer_.handler( boost::bind(&kernel::sys_timer_handler, this, _1) );
         sys_timer_.set(1.0/60.0);
     }
@@ -44,9 +54,26 @@ namespace x2d
         update_signal_(ci);
         
         graphics_engine::instance().start_frame();
-        
-        // render all objects
-        render_signal_(ci);
+
+        // render into every viewport
+        for(int i=0; i<viewports_.size(); ++i)
+        {            
+            // setup current viewport
+            if(cur_viewport_ != i)
+            {
+                viewports_.at(i).use();           
+                cur_viewport_ = i;
+            }
+
+            // draw background
+            viewports_.at(cur_viewport_).clear();
+
+            // setup camera
+            viewports_.at(cur_viewport_).get_camera().apply();
+            
+            // render all objects into this viewport
+            render_signal_(ci);
+        }
         
         graphics_engine::instance().present_frame();
     }

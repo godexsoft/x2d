@@ -16,6 +16,8 @@
 #include "compare.h"
 #include "clock.h"
 #include "timer.h"
+#include "camera.h"
+#include "viewport.h"
 #include "log.h"
 
 namespace x2d 
@@ -96,6 +98,11 @@ namespace x2d
         
         update_signal   update_signal_;
         render_signal   render_signal_;
+        
+        // rendering
+        std::vector<viewport>   viewports_;
+        int                     cur_viewport_;
+        camera          camera_, camera2_;
     };
     
 } // namespace x2d

@@ -23,6 +23,8 @@ class custom_obj
 public:
     custom_obj(kernel& k, configuration& conf, const std::string& key)
     : base_object(k)
+    , x_(0.0f)
+    , qi_(x_, -50.0f, 100.0f, -50.0f, 3.0f)
     {        
         connect_update();
         connect_render();     
@@ -33,12 +35,15 @@ public:
     
 private:
     boost::shared_ptr<animation> anim_;
+    float                   x_;
+    quadratic_interpolator  qi_;
         
 protected:
     
     virtual void update(const clock_info& clock) 
     { 
         anim_->update(clock);
+        qi_.update(clock.delta_time);
     }
     
     virtual void render(const clock_info& clock) 
@@ -49,10 +54,8 @@ protected:
         glColor4f(1.0, 1.0, 1.0, 1.0);
         
         glPushMatrix();
-        glTranslatef(160, 240, 0);
-        
+        glTranslatef(x_, 0.0f, 0.0f);
         anim_->draw_at_point(point(0, 0));
-        
         glPopMatrix();        
 
         glColor4f(1, 1, 1, 1);

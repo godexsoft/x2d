@@ -19,11 +19,11 @@ public:
     fps_counter(kernel& k)
     : base_object(k)
     {        
-        connect_render();        
+        connect_update();        
     }
 protected:
     
-    virtual void render(const clock_info& clock) 
+    virtual void update(const clock_info& clock) 
     { 
         static int fps = 0;
         static double start = clock.time;
