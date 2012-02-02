@@ -33,8 +33,8 @@
             <frame n="frame_1" sprite="graphics.player.anim_1" />
             <frame n="frame_2" sprite="graphics.player.anim_2" />
             <frame n="frame_3" sprite="graphics.player.anim_3" />
-            <frame n="frame_4" sprite="graphics.player.anim_4" />
-            <frame n="frame_5" sprite="graphics.player.anim_5" />
+            <frame n="frame_4" sprite="graphics.player.anim_4" duration="0.1" />
+            <frame n="frame_5" sprite="graphics.player.anim_5" duration="0.06" />
             <frame n="frame_6" sprite="graphics.player.anim_6" />
             <frame n="frame_7" sprite="graphics.player.anim_7" />
             <frame n="frame_8" sprite="graphics.player.anim_8" />

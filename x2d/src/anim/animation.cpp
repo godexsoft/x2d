@@ -15,7 +15,7 @@ namespace anim {
     {
         elapsed_ += clock.delta_time;
         
-        if(elapsed_ >= duration_)
+        if(elapsed_ >= frames_.at(cur_frame_).duration_)
         {
             // switch to next frame
             ++cur_frame_;

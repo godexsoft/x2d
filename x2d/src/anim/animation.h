@@ -20,14 +20,19 @@
 namespace x2d {
 namespace anim {
         
+    class animation;
+    
     /**
      * @brief This class represents a single frame in an animation
      */
     class frame
     {
+        friend class animation;
+        
     public:
-        frame( const boost::shared_ptr<sprite>& spr )
+        frame( const boost::shared_ptr<sprite>& spr, const float& dur )
         : sprite_(spr)
+        , duration_(dur)
         {            
         }
         
@@ -35,6 +40,7 @@ namespace anim {
         
     private:
         boost::shared_ptr<sprite> sprite_;
+        float                     duration_;
     };
     
     typedef std::vector<frame> frames_vec;

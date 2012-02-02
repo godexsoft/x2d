@@ -294,7 +294,8 @@ namespace config {
             // add all frames
             for(int i=0; i<frames_.size(); ++i)
             {
-                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_) ) );
+                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_), 
+                    frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
             }
             
             inst_ = r;
@@ -336,8 +337,23 @@ namespace config {
             throw structure_exception("Frame's animation object is not found: '" + parent_key.string() + "'");
         }
 
-        // add this frame
-        static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value()) );
+        // custom duration?
+        xml_attr* dur = node->first_attribute("duration");
+        if(dur) 
+        {
+            float duration;
+            std::stringstream ss;
+            ss << dur->value();
+            ss >> duration;
+            
+            // add this frame with custom duration
+            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value(), duration) );   
+        }
+        else
+        {
+            // add this frame
+            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value()) );
+        }
     }
     
 } // namespace config
