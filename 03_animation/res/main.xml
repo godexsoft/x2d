@@ -29,7 +29,7 @@
     <namespace n="animations">
     
         <!-- define the animation -->
-        <animation n="player" duration="0.3">
+        <animation n="player" duration="0.08">
             <frame n="frame_1" sprite="graphics.player.anim_1" />
             <frame n="frame_2" sprite="graphics.player.anim_2" />
             <frame n="frame_3" sprite="graphics.player.anim_3" />

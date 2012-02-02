@@ -8,6 +8,7 @@
 
 #include "configuration.h"
 #include "sprite.h"
+#include "exceptions.h"
 
 #include <boost/bind.hpp>
 
@@ -43,24 +44,21 @@ namespace config {
 		} 
         catch( rx::parse_error& ex ) 
         {
-			LOG( "RapidXML parse error: %s", ex.what() );
-			throw std::exception();
+			throw parse_exception( std::string("RapidXML parse error: ") + ex.what() );
 		}
 		
 		xml_node *root = doc.first_node( "x2d" );
         
 		if( !root ) 
         {
-            LOG("-- Not a valid x2d config xml. must begin with <x2d> root element.");
-			throw std::exception();
+			throw structure_exception("Not a valid x2d config xml. must begin with <x2d> root element.");
 		}
 		
 		xml_attr *attr = root->first_attribute();
 		if( !attr || std::string("version") != attr->name() 
            || std::string("1.0") != attr->value()) 
 		{
-            LOG("-- Not a valid x2d config xml file version (or version not specified).");
-            throw std::exception();
+            throw structure_exception("Not a valid x2d config xml file version (or version not specified).");
 		}
         
         // finally parse the config

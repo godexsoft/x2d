@@ -81,6 +81,7 @@
 		2467298614D9F5C7003AAA04 /* animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467298514D9F5C7003AAA04 /* animation.h */; };
 		2467298814D9F8BE003AAA04 /* animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298714D9F8BE003AAA04 /* animation.cpp */; };
 		2467298B14D9FCC7003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467297D14D9EF97003AAA04 /* resources.zip */; };
+		2467298D14DA9BA0003AAA04 /* exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2467298C14DA9BA0003AAA04 /* exceptions.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,7 @@
 		2467298514D9F5C7003AAA04 /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = animation.h; path = src/anim/animation.h; sourceTree = "<group>"; };
 		2467298714D9F8BE003AAA04 /* animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = animation.cpp; path = src/anim/animation.cpp; sourceTree = "<group>"; };
 		2467298A14D9FC87003AAA04 /* anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim.png; sourceTree = "<group>"; };
+		2467298C14DA9BA0003AAA04 /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exceptions.h; path = src/base/exceptions.h; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -571,6 +573,7 @@
 				2415838814CE04990014F37B /* texture.h */,
 				2415842914D611170014F37B /* sprite.h */,
 				2415842B14D613900014F37B /* sprite.cpp */,
+				2467298C14DA9BA0003AAA04 /* exceptions.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				2467297F14D9F106003AAA04 /* value_support.h in Headers */,
 				2467298114D9F215003AAA04 /* object_support.h in Headers */,
 				2467298614D9F5C7003AAA04 /* animation.h in Headers */,
+				2467298D14DA9BA0003AAA04 /* exceptions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

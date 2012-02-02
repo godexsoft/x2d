@@ -9,6 +9,7 @@
 #include "configuration.h"
 #include "texture.h"
 #include "sprite.h"
+#include "exceptions.h"
 
 #include <sstream>
 
@@ -26,15 +27,13 @@ namespace config {
         xml_attr* path = node->first_attribute("n");
         if(!path) 
         {
-            LOG("Parsing exception: Float must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Float must have 'n' defined.");
         }
         
         xml_attr* value = node->first_attribute("value");
         if(!value && !node->first_node()) 
         {
-            LOG("Parsing exception: Float must have either 'value' or inner data defined.");
-            throw std::exception();
+            throw parse_exception("Float must have either 'value' or inner data defined.");
         }
         
         if(!value)
@@ -61,8 +60,7 @@ namespace config {
                 }
                 else
                 {
-                    LOG("Parsing exception: Data element can be either <random> or plain value.");
-                    throw std::exception();
+                    throw parse_exception("Data element can be either <random> or plain value.");
                 }
             }
         }
@@ -89,15 +87,13 @@ namespace config {
         xml_attr* path = node->first_attribute("n");
         if(!path) 
         {
-            LOG("Parsing exception: Int must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Int must have 'n' defined.");
         }
         
         xml_attr* value = node->first_attribute("value");
         if(!value && !node->first_node()) 
         {
-            LOG("Parsing exception: Int must have either 'value' or inner data defined.");
-            throw std::exception();
+            throw parse_exception("Int must have either 'value' or inner data defined.");
         }
         
         if(!value)
@@ -124,8 +120,7 @@ namespace config {
                 }
                 else
                 {
-                    LOG("Parsing exception: Data element can be either <random> or plain value.");
-                    throw std::exception();
+                    throw parse_exception("Data element can be either <random> or plain value.");
                 }
             }
         }
@@ -149,8 +144,7 @@ namespace config {
         xml_attr* path = node->first_attribute("n");
         if(!path) 
         {
-            LOG("Parsing exception: Namespace must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Namespace must have 'n' defined.");
         }
         
         // No need to do anything :)
@@ -164,8 +158,7 @@ namespace config {
         xml_attr* path = node->first_attribute("path");
         if(!path) 
         {
-            LOG("Parsing exception: Include must have 'path' defined.");
-            throw std::exception();
+            throw parse_exception("Include must have 'path' defined.");
         }
         
         // parse the whole config into this configuration
@@ -181,15 +174,13 @@ namespace config {
         xml_attr* name = node->first_attribute("n");
         if(!name) 
         {
-            LOG("Parsing exception: Texture type must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Texture type must have 'n' defined.");
         }
         
         xml_attr* path = node->first_attribute("path");
         if(!path) 
         {
-            LOG("Parsing exception: Texture type must have 'path' defined.");
-            throw std::exception();
+            throw parse_exception("Texture type must have 'path' defined.");
         }
         
         config_[key] = boost::shared_ptr<texture_cfg>( new texture_cfg(res_man_, path->value()) );
@@ -207,51 +198,44 @@ namespace config {
         xml_attr* name = node->first_attribute("n");
         if(!name) 
         {
-            LOG("Parsing exception: Sprite type must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Sprite type must have 'n' defined.");
         }
         
         xml_attr* x = node->first_attribute("x");
         if(!x) 
         {
-            LOG("Parsing exception: Sprite type must have 'x' defined.");
-            throw std::exception();
+            throw parse_exception("Sprite type must have 'x' defined.");
         }
         
         xml_attr* y = node->first_attribute("y");
         if(!y) 
         {
-            LOG("Parsing exception: Sprite type must have 'y' defined.");
-            throw std::exception();
+            throw parse_exception("Sprite type must have 'y' defined.");
         }
         
         xml_attr* w = node->first_attribute("w");
         if(!w) 
         {
-            LOG("Parsing exception: Sprite type must have 'w' defined.");
-            throw std::exception();
+            throw parse_exception("Sprite type must have 'w' defined.");
         }
         
         xml_attr* h = node->first_attribute("h");
         if(!h) 
         {
-            LOG("Parsing exception: Sprite type must have 'h' defined.");
-            throw std::exception();
+            throw parse_exception("Sprite type must have 'h' defined.");
         }
         
         // parent must be a texture
         xml_node* parent = node->parent();
         if(! parent || std::string("texture") != parent->name())
         {
-            LOG("Structure exception: Sprite must be a child element of a Texture object.");
-            throw std::exception();
+            throw structure_exception("Sprite must be a child element of a Texture object.");
         }
         
         config_key parent_key = key.remove_last_path_component();        
         if( config_.find(parent_key) == config_.end() )
         {
-            LOG("Structure exception: Sprite's texture is not found: '%s'", parent_key.string().c_str());
-            throw std::exception();        
+            throw structure_exception("Sprite's texture is not found: '" + parent_key.string() + "'");
         }
         
         int xval, yval, wval, hval;
@@ -278,15 +262,13 @@ namespace config {
         xml_attr* name = node->first_attribute("n");
         if(!name) 
         {
-            LOG("Parsing exception: Animation type must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Animation type must have 'n' defined.");
         }
         
         xml_attr* dur = node->first_attribute("duration");
         if(!dur) 
         {
-            LOG("Parsing exception: Animation type must have 'duration' defined.");
-            throw std::exception();
+            throw parse_exception("Animation type must have 'duration' defined.");
         }
         
         float duration;
@@ -332,30 +314,26 @@ namespace config {
         xml_attr* name = node->first_attribute("n");
         if(!name) 
         {
-            LOG("Parsing exception: Frame type must have 'n' defined.");
-            throw std::exception();
+            throw parse_exception("Frame type must have 'n' defined.");
         }
         
         xml_attr* spr = node->first_attribute("sprite");
         if(!spr) 
         {
-            LOG("Parsing exception: Frame type must have 'sprite' defined.");
-            throw std::exception();
+            throw parse_exception("Frame type must have 'sprite' defined.");
         }
         
         // parent must be an animation
         xml_node* parent = node->parent();
         if(! parent || std::string("animation") != parent->name())
         {
-            LOG("Structure exception: Frame must be a child element of an Animation object.");
-            throw std::exception();
+            throw structure_exception("Frame must be a child element of an Animation object.");
         }
         
         config_key parent_key = key.remove_last_path_component();        
         if( config_.find(parent_key) == config_.end() )
         {
-            LOG("Structure exception: Frame's animation object is not found: '%s'", parent_key.string().c_str());
-            throw std::exception();        
+            throw structure_exception("Frame's animation object is not found: '" + parent_key.string() + "'");
         }
 
         // add this frame

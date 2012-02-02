@@ -7,6 +7,7 @@
 //
 
 #include "configuration.h"
+#include "exceptions.h"
 
 #include <sstream>
 
@@ -23,15 +24,13 @@ namespace config {
         xml_attr* from = node->first_attribute("from");
         if(!from) 
         {
-            LOG("Parsing exception: Random must have 'from' defined.");
-            throw std::exception();
+            throw parse_exception("Random must have 'from' defined.");
         }
         
         xml_attr* to = node->first_attribute("to");
         if(!to) 
         {
-            LOG("Parsing exception: Random must have 'to' defined.");
-            throw std::exception();
+            throw parse_exception("Random must have 'to' defined.");
         }
         
         std::stringstream ss;
@@ -55,15 +54,13 @@ namespace config {
         xml_attr* from = node->first_attribute("from");
         if(!from) 
         {
-            LOG("Parsing exception: Random must have 'from' defined.");
-            throw std::exception();
+            throw parse_exception("Random must have 'from' defined.");
         }
         
         xml_attr* to = node->first_attribute("to");
         if(!to) 
         {
-            LOG("Parsing exception: Random must have 'to' defined.");
-            throw std::exception();
+            throw parse_exception("Random must have 'to' defined.");
         }
         
         std::stringstream ss;
