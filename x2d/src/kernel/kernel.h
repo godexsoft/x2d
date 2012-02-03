@@ -34,6 +34,8 @@ namespace x2d
         
         kernel();
         
+        void add_viewport(const boost::shared_ptr<viewport>& vp);
+        
         void pause()
         {
             is_paused_ = true;
@@ -100,9 +102,8 @@ namespace x2d
         render_signal   render_signal_;
         
         // rendering
-        std::vector<viewport>   viewports_;
-        int                     cur_viewport_;
-        camera          camera_, camera2_;
+        std::vector<boost::shared_ptr<viewport> >   viewports_;
+        int                                         cur_viewport_;
     };
     
 } // namespace x2d

@@ -28,7 +28,7 @@ class scene
 public:
     scene(kernel& k, liverpool_manager lvp_man)
     : res_man_(lvp_man)
-    , config_(res_man_, "res/main.xml")
+    , config_(k, res_man_, "res/main.xml")
     {        
         int num_sets = config_.get_value<int>("values.num_sets");        
         for(int i=0; i<num_sets; ++i)

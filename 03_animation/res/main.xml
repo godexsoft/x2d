@@ -1,10 +1,8 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <clock frequency="60" stretch="1.0" />
-    <display size="320 480" />
-    <camera rotation="90" frustum="0 0 480 320" />
-    <viewport value="0 0 480 320" />
+    <camera n="camera" frustum="320 480" />
+    <viewport n="viewport" camera="camera" box="0 0 320 480" />
     
     <!-- namespace for all textures and sprites -->
     <namespace n="graphics">

@@ -1,28 +1,15 @@
 <x2d version="1.0">
     
-    <!--
-        set main clock's frequency and time stretching
-        defaults to 60 and 1.0
+    <!-- engine setup -->
+    <!-- 
+     configure main camera 
      -->
-    <clock frequency="60" stretch="1.0" />
-
-    <!--
-        create a custom clock with 2x time stretching
-
-    <clock n="clock1" stretch="2.0" />
-    -->
+    <camera n="camera" frustum="320 480" />
     
     <!-- 
-        configure main camera
-        will be landscape
+     configure main viewport to match full screen size and camera's frustum 
      -->
-    <camera rotation="-90" frustum="320 480" />
-    
-    <!-- 
-        configure default viewport.
-        match landscape screen size
-     -->
-    <viewport value="0 0 480 320" />
+    <viewport n="viewport" camera="camera" box="0 0 320 480" />
     
     <!--
         include a second config

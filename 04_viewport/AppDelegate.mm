@@ -39,15 +39,12 @@ namespace fs = x2d::filesystem;
 - (void)start:(id)dummy
 {
     NSLog(@"Starting.");
-    
-    // Load stuff
+
+    // mount resources
     _lvp_man.mount("resources.zip", "res");
     
-    // create a kernel
-    _k = boost::shared_ptr<kernel>( new kernel() );
-    
-    // register some object with our kernel
-    obj = boost::shared_ptr<scene>( new scene(*_k, _lvp_man) );
+    // create game
+    _game = boost::shared_ptr<game>( new game(_lvp_man) );
     
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
@@ -56,7 +53,7 @@ namespace fs = x2d::filesystem;
 
 - (void)step
 {
-    _k->step();
+    _game->step();
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -83,11 +80,9 @@ namespace fs = x2d::filesystem;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    if(_k)
-    {
-        LOG("Pause.");
-        _k->pause();
-    }
+    LOG("Pause.");
+    if(_game)
+        _game->pause();    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -97,11 +92,9 @@ namespace fs = x2d::filesystem;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    if(_k)
-    {
-        LOG("Resume.");
-        _k->resume();
-    }
+    LOG("Resume.");
+    if(_game)
+        _game->resume();
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

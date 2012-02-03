@@ -32,7 +32,7 @@ public:
     , res_man_(lvp_man)
     , texture_(res_man_.get<texture>("res/test/graphics/chupa.png"))
     , spr_(texture_, point(0, 0), size(120, 120))
-    , cam_(size(320, 480))
+    , cam_( new camera(size(320, 480)) )
     , y_(0.0f)
     , liy_(y_, 0.0f, 320.0f, 3.0f)
     , x_(0.0f)
@@ -40,8 +40,11 @@ public:
     , zoom_(1.0f)
     , qi_(zoom_, 1.0f, 2.0f, 1.0f, 3.0f)
     {        
-        cam_.rotation(-90.0f); // rotate camera to go landscape
-        cam_.position( vector_2d(-240.0f, -160.0f) ); // set camera 0,0 to left,bottom of physical screen
+        cam_->rotation(-90.0f); // rotate camera to go landscape
+        cam_->position( vector_2d(-240.0f, -160.0f) ); // set camera 0,0 to left,bottom of physical screen
+        
+        // add viewport
+        k.add_viewport(boost::shared_ptr<viewport>( new viewport(rect(0, 0, 320, 480), cam_) ));
         
         connect_update();
         connect_render();        
@@ -51,7 +54,7 @@ private:
     resource_manager            res_man_;
     boost::shared_ptr<texture>  texture_;
     sprite                      spr_;
-    camera                      cam_;
+    boost::shared_ptr<camera>   cam_;
     
     float y_;
     linear_interpolator liy_;
@@ -83,13 +86,11 @@ protected:
         lix_.update(clock.delta_time);
         qi_.update(clock.delta_time);
         
-        cam_.zoom(zoom_);
+        cam_->zoom(zoom_);
     }
     
     virtual void render(const clock_info& clock) 
     {          
-        cam_.apply();
-        
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         

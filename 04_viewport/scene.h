@@ -26,18 +26,15 @@
 class scene 
 {
 public:
-    scene(kernel& k, liverpool_manager lvp_man)
-    : res_man_(lvp_man)
-    , config_(res_man_, "res/main.xml")
+    scene(kernel& k, configuration& conf)
+    : config_(conf)
     {        
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "animations.player") ) );
+        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_) ) );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     
 private:
-    resource_manager          res_man_;
-    configuration             config_;
-
+    configuration&  config_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 

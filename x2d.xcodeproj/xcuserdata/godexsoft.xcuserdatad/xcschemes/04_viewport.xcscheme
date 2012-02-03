@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2451516D14DACA620029D699"
-               BuildableName = "x2d_animation.app"
+               BuildableName = "x2d_viewport.app"
                BlueprintName = "04_viewport"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2451516D14DACA620029D699"
-            BuildableName = "x2d_animation.app"
+            BuildableName = "x2d_viewport.app"
             BlueprintName = "04_viewport"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -50,7 +50,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2451516D14DACA620029D699"
-            BuildableName = "x2d_animation.app"
+            BuildableName = "x2d_viewport.app"
             BlueprintName = "04_viewport"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2451516D14DACA620029D699"
-            BuildableName = "x2d_animation.app"
+            BuildableName = "x2d_viewport.app"
             BlueprintName = "04_viewport"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>

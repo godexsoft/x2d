@@ -84,6 +84,13 @@ namespace config {
         boost::shared_ptr< random_cfg<T> > random_;
     };
     
+    template<typename T>
+    class value_parser
+    {
+    public:
+        static T parse(const std::string& str);
+    };
+    
 } // namespace config
 } // namespace x2d
 using namespace x2d::config;

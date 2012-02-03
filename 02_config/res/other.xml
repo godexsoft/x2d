@@ -22,23 +22,13 @@
         <sprite n="cloud3" x="209" y="95" w="93" h="40" />
 	</texture> 
     
-    <!--
-     animation support:
-     
-    <animation n="anim" duration="0.1">
-        <frame n="frame1" duration="0.2" sprite="cloud1" />
-        <frame n="frame2" sprite="cloud2" />
-        <frame n="frame3" sprite="cloud3" />
-    </animation>
-     -->
-    
     <!-- 
         stand alone sprite with reference to texture object
     <sprite n="test" texture="txtr" x="0" y="0" w="158" h="140" />
      -->
     
     <!-- 
-     generict container which just adds "values." as namespace to all children 
+     generic container which just adds "values." as namespace to all children 
      so "flt" becomes "values.flt" etc.     
      -->
     <namespace n="values">
@@ -55,11 +45,11 @@
          will return random float in given range every time when read.
          -->
         <float n="x">
-            <random from="0.0" to="320.0" />
+            <random from="-160.0" to="160.0" />
         </float>
        
         <float n="y">
-            <random from="0.0" to="480.0" />
+            <random from="-240.0" to="240.0" />
         </float>
         
         <float n="vel">

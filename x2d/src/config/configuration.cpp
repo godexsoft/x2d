@@ -15,12 +15,16 @@
 namespace x2d {
 namespace config {
     
-    configuration::configuration(resource_manager& res_man, const std::string& cfg_path)
-    : res_man_(res_man)
+    configuration::configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path)
+    : kernel_(k)
+    , res_man_(res_man)
     {
         // add supported parsers
         parsers_["float"]       = boost::bind(&configuration::parse_float, this, _1, _2);
         parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
+        
+        parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
+        parsers_["viewport"]    = boost::bind(&configuration::parse_viewport, this, _1, _2);
         
         parsers_["namespace"]   = boost::bind(&configuration::parse_namespace, this, _1, _2);
         parsers_["include"]     = boost::bind(&configuration::parse_include, this, _1, _2);
@@ -107,13 +111,25 @@ namespace config {
     template <>
     boost::shared_ptr<sprite> configuration::get_object<sprite>(const config_key& key)
     {
-        return (*static_cast<sprite_cfg*>( &(*config_[key]) )).get();
+        return static_cast<sprite_cfg*>( &(*config_[key]) )->get();
     }
 
     template <>
     boost::shared_ptr<animation> configuration::get_object<animation>(const config_key& key)
     {
-        return (*static_cast<animation_cfg*>( &(*config_[key]) )).get();
+        return static_cast<animation_cfg*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    boost::shared_ptr<camera> configuration::get_object<camera>(const config_key& key)
+    {
+        return static_cast<camera_cfg*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    boost::shared_ptr<viewport> configuration::get_object<viewport>(const config_key& key)
+    {
+        return static_cast<viewport_cfg*>( &(*config_[key]) )->get();
     }
     
     // getters for primitive metrics
@@ -121,16 +137,56 @@ namespace config {
     float configuration::get_value<float>(const config_key& key)
     {
         typedef value_cfg<float> cfg_type;
-        return (*static_cast<cfg_type*>( &(*config_[key]) )).get();
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
 
     template <>
     int configuration::get_value<int>(const config_key& key)
     {
         typedef value_cfg<int> cfg_type;
-        return (*static_cast<cfg_type*>( &(*config_[key]) )).get();
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
 
+    
+    boost::shared_ptr<animation> animation_cfg::get()
+    {
+        if( boost::shared_ptr<animation> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
+            
+            // add all frames
+            for(int i=0; i<frames_.size(); ++i)
+            {
+                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_), 
+                    frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
+            }
+            
+            inst_ = r;
+            return r;
+        }
+    }
+    
+    boost::shared_ptr<viewport> viewport_cfg::get()
+    {
+        if( boost::shared_ptr<viewport> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<viewport> r = 
+                boost::shared_ptr<viewport>(
+                    new viewport( box_, config_.get_object<camera>(camera_key_), bg_color_ ) );
+            inst_ = r;
+            return r;
+        }
+    }
     
 } // namespace config    
 } // namespace x2d

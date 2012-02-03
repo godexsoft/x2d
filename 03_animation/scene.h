@@ -28,7 +28,7 @@ class scene
 public:
     scene(kernel& k, liverpool_manager lvp_man)
     : res_man_(lvp_man)
-    , config_(res_man_, "res/main.xml")
+    , config_(k, res_man_, "res/main.xml")
     {        
         objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "animations.player") ) );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );

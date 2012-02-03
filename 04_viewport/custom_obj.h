@@ -21,7 +21,7 @@ class custom_obj
 : public base_object
 {
 public:
-    custom_obj(kernel& k, configuration& conf, const std::string& key)
+    custom_obj(kernel& k, configuration& conf)
     : base_object(k)
     , x_(0.0f)
     , qi_(x_, -50.0f, 100.0f, -50.0f, 3.0f)

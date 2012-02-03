@@ -42,7 +42,7 @@ namespace config {
     class configuration
     {
     public:
-        configuration(resource_manager& res_man, const std::string& cfg_path);
+        configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path);
         
         template <typename T>
         boost::shared_ptr<T> get_object(const config_key& key);
@@ -53,13 +53,17 @@ namespace config {
     private:
         void parse_file(const std::string& cfg_path);
         void parse(xml_node* root, const config_key& key=config_key(""));
-        
+
         // parsers for primitive value types
         void parse_float(xml_node* node, const config_key& key);
         void parse_int(xml_node* node, const config_key& key);
         
         template<typename T>
         void parse_random(xml_node* node, const config_key& key);
+        
+        // kernel settings
+        void parse_camera(xml_node* node, const config_key& key);
+        void parse_viewport(xml_node* node, const config_key& key);
         
         // various parsers for each supported element type
         void parse_namespace(xml_node* node, const config_key& key);
@@ -71,6 +75,7 @@ namespace config {
         
         typedef boost::function<void(xml_node*,const config_key&)> parser_type;
         
+        kernel&                                 kernel_;
         resource_manager&                       res_man_;
         std::map<config_key, cfg_base_ptr>      config_;
         std::map<std::string, parser_type>      parsers_;

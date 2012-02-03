@@ -10,12 +10,13 @@
 #include "texture.h"
 #include "sprite.h"
 #include "exceptions.h"
+#include "kernel.h"
 
 #include <sstream>
 
 namespace x2d {
 namespace config {
-
+    
     void configuration::parse_float(xml_node* node, const config_key& key)
     {
         // must have:
@@ -42,13 +43,8 @@ namespace config {
             
             if( data->type() == rx::node_data )
             {
-                std::stringstream ss;
-                float out;
-                
-                ss << data->value();
-                ss >> out;
-
-                config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, out) );
+                config_[key] = boost::shared_ptr< value_cfg<float> >( 
+                    new value_cfg<float>(res_man_, value_parser<float>::parse(data->value())) );
             }
             else
             {
@@ -65,14 +61,9 @@ namespace config {
             }
         }
         else
-        {        
-            std::stringstream ss;
-            float out;
-            
-            ss << value->value();
-            ss >> out;
-            
-            config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(res_man_, out) );
+        {   
+            config_[key] = boost::shared_ptr< value_cfg<float> >( 
+                new value_cfg<float>(res_man_, value_parser<float>::parse(value->value())) );
         }
     }
     
@@ -102,13 +93,8 @@ namespace config {
             
             if( data->type() == rx::node_data )
             {
-                std::stringstream ss;
-                float out;
-                
-                ss << data->value();
-                ss >> out;
-                
-                config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, out) );
+                config_[key] = boost::shared_ptr< value_cfg<int> >(
+                    new value_cfg<int>(res_man_, value_parser<int>::parse(data->value())) );
             }
             else
             {
@@ -126,13 +112,8 @@ namespace config {
         }
         else
         {        
-            std::stringstream ss;
-            float out;
-            
-            ss << value->value();
-            ss >> out;
-            
-            config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(res_man_, out) );
+            config_[key] = boost::shared_ptr< value_cfg<int> >( 
+                new value_cfg<int>(res_man_, value_parser<int>::parse(value->value())) );
         }
     }
     
@@ -237,16 +218,13 @@ namespace config {
         {
             throw structure_exception("Sprite's texture is not found: '" + parent_key.string() + "'");
         }
-        
+
+        // TODO: why not have it as box="x y w h" ?        
         int xval, yval, wval, hval;
-        
-        // TODO: why not have it as box="x y w h" ?
-        std::stringstream ss;
-        ss << x->value() << " " << y->value() << " " 
-        << w->value() << " " << h->value();
-        ss >> xval >> yval >> wval >> hval;        
-        
-        LOG("Result: %d, %d, %d, %d", xval, yval, wval, hval);
+        xval = value_parser<int>::parse(x->value());
+        yval = value_parser<int>::parse(y->value());
+        wval = value_parser<int>::parse(w->value());
+        hval = value_parser<int>::parse(h->value());
         
         config_[key] =  boost::shared_ptr<sprite_cfg>( 
             new sprite_cfg(res_man_, *static_cast<texture_cfg*>(&(*config_[parent_key])), 
@@ -270,39 +248,10 @@ namespace config {
         {
             throw parse_exception("Animation type must have 'duration' defined.");
         }
-        
-        float duration;
-        std::stringstream ss;
-        ss << dur->value();
-        ss >> duration;
-        
-        config_[key] =  boost::shared_ptr<animation_cfg>( new animation_cfg(res_man_, *this, duration) );
-    }
-    
-    // TODO: move out of here!
-    boost::shared_ptr<animation> animation_cfg::get()
-    {
-        if( boost::shared_ptr<animation> p = inst_.lock() )
-        {            
-            // already exists outside of cfg
-            return p;
-        }
-        else
-        {
-            boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
-            
-            // add all frames
-            for(int i=0; i<frames_.size(); ++i)
-            {
-                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_), 
-                    frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
-            }
-            
-            inst_ = r;
-            return r;
-        }
-    }
 
+        config_[key] =  boost::shared_ptr<animation_cfg>( 
+            new animation_cfg(res_man_, *this, value_parser<float>::parse(dur->value())) );
+    }
     
     void configuration::parse_frame(xml_node* node, const config_key& key)
     {
@@ -341,19 +290,115 @@ namespace config {
         xml_attr* dur = node->first_attribute("duration");
         if(dur) 
         {
-            float duration;
-            std::stringstream ss;
-            ss << dur->value();
-            ss >> duration;
-            
             // add this frame with custom duration
-            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value(), duration) );   
+            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( 
+                frame_cfg(spr->value(), value_parser<float>::parse(dur->value())) );   
         }
         else
         {
             // add this frame
             static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value()) );
         }
+    }
+    
+    void configuration::parse_camera(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        // frustum:  frustum of this camera
+        //
+        // can have:
+        // rotation: initial rotation (defaults to 0.0)
+        // zoom:     initial zoom (defaults to 1.0)
+        // position: initial position (defaults to 0,0)
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            throw parse_exception("Camera type must have 'n' defined.");
+        }
+        
+        xml_attr* frustum = node->first_attribute("frustum");
+        if(!frustum) 
+        {
+            throw parse_exception("Camera type must have 'frustum' defined (format: 'width height').");
+        }
+
+        size frus = value_parser<size>::parse(frustum->value());
+
+        // optional
+        float rot = 0.0f;
+        float zm = 1.0f;
+        vector_2d pos(0.0f, 0.0f);
+        
+        xml_attr* rotation = node->first_attribute("rotation");
+        if(rotation) 
+        {            
+            rot = value_parser<float>::parse(rotation->value());
+        }
+
+        xml_attr* zoom = node->first_attribute("zoom");
+        if(zoom) 
+        {            
+            zm = value_parser<float>::parse(zoom->value());
+        }
+
+        xml_attr* position = node->first_attribute("position");
+        if(position) 
+        {            
+            pos = value_parser<vector_2d>::parse(position->value());
+        }
+
+        config_[key] =  
+            boost::shared_ptr<camera_cfg>( 
+                new camera_cfg(res_man_, frus, rot, zm, pos) );
+    }
+
+    void configuration::parse_viewport(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        // box:      position and size of this viewport
+        // camera:   camera to use with this viewport        
+        //
+        // can have:
+        // bgcolor:  background color. defaults to black.
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            throw parse_exception("Viewport type must have 'n' defined.");
+        }
+        
+        xml_attr* box = node->first_attribute("box");
+        if(!box) 
+        {
+            throw parse_exception("Viewport type must have 'box' defined (format: 'x y width height').");
+        }
+
+        xml_attr* cam = node->first_attribute("camera");
+        if(!cam) 
+        {
+            throw parse_exception("Viewport type must have 'camera' defined.");
+        }
+
+        color_info ci(0.0f, 0.0f, 0.0f);
+        rect bx = value_parser<rect>::parse(box->value());        
+        
+        xml_attr* bg = node->first_attribute("bgcolor");
+        if(bg) 
+        {
+            ci = value_parser<color_info>::parse(bg->value());
+        }
+        
+        boost::shared_ptr<viewport_cfg> vp = 
+            boost::shared_ptr<viewport_cfg>( new viewport_cfg(
+                res_man_, *this, bx, cam->value(), ci) );
+        
+        config_[key] = vp;
+        
+        // and add this viewport to the kernel
+        kernel_.add_viewport(vp->get());
     }
     
 } // namespace config

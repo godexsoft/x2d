@@ -15,6 +15,8 @@
 #include "filesystem.h"
 #include "sprite.h"
 #include "animation.h"
+#include "camera.h"
+#include "viewport.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
@@ -154,6 +156,71 @@ namespace config {
         float                       duration_;
         std::vector<frame_cfg>      frames_;
         boost::weak_ptr<animation>  inst_;
+    };
+    
+    class camera_cfg
+    : public cfg_base
+    {
+    public:        
+        camera_cfg(resource_manager& res_man, const size& f, 
+                   float rot, float zm, const vector_2d& pos)
+        : cfg_base(res_man)
+        , frustum_(f)
+        , rotation_(rot)
+        , zoom_(zm)
+        , position_(pos)
+        {            
+        }
+                
+        boost::shared_ptr<camera> get()
+        {
+            if( boost::shared_ptr<camera> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<camera> r = boost::shared_ptr<camera>( new camera(frustum_) );
+                r->position(position_);                
+                r->zoom(zoom_);
+                r->rotation(rotation_);
+                inst_ = r;
+                return r;
+            }
+        }
+        
+    private:
+        size                     frustum_;
+        float                    rotation_;
+        float                    zoom_;
+        vector_2d                position_;
+        boost::weak_ptr<camera>  inst_;
+    };
+    
+    class viewport_cfg
+    : public cfg_base
+    {
+    public:        
+        viewport_cfg(resource_manager& res_man, configuration& cfg, 
+                     const rect& b, const std::string& cam_key, 
+                     const color_info& ci)
+        : cfg_base(res_man)
+        , config_(cfg)
+        , box_(b)
+        , camera_key_(cam_key)
+        , bg_color_(ci)
+        {            
+        }
+        
+        boost::shared_ptr<viewport> get();
+        
+    private:
+        configuration&             config_;
+        rect                       box_;
+        std::string                camera_key_;
+        color_info                 bg_color_;
+        boost::weak_ptr<viewport>  inst_;
     };
     
 } // namespace config

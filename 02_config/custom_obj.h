@@ -49,14 +49,14 @@ protected:
         
         pos_ += velocity_ * clock.delta_time;
         
-        if(pos_.X() >= 320.0f && velocity_.X()>0)
+        if(pos_.X() >= 160.0f && velocity_.X()>0)
             velocity_.X(-velocity_.X());
-        if(pos_.X() <= 0.0f && velocity_.X()<0)
+        if(pos_.X() <= -160.0f && velocity_.X()<0)
             velocity_.X(-velocity_.X());    
         
-        if(pos_.Y() >= 480.0f && velocity_.Y()>0)
+        if(pos_.Y() >= 240.0f && velocity_.Y()>0)
             velocity_.Y(-velocity_.Y());
-        if(pos_.Y() <= 0.0f && velocity_.Y()<0)
+        if(pos_.Y() <= -240.0f && velocity_.Y()<0)
             velocity_.Y(-velocity_.Y());
     }
     
@@ -70,7 +70,6 @@ protected:
         glPushMatrix();
         glTranslatef(pos_.X(), pos_.Y(), 0);
         glRotatef(alpha_*360.0f, 0, 0, 1);
-//        glScalef(1.0f-alpha_, alpha_, 1.0f);
         
         spr_->draw_at_point(point(0, 0));
         

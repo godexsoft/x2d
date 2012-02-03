@@ -22,7 +22,8 @@ namespace base {
     class viewport
     {        
     public:
-        viewport(const rect& b, const camera& cam, const color_info& bg_col=color_info(0.0f, 0.0f, 0.0f))
+        viewport(const rect& b, const boost::shared_ptr<camera>& cam, 
+                 const color_info& bg_col=color_info(0.0f, 0.0f, 0.0f))
         : box_(b)
         , camera_(cam)
         , bg_color_(bg_col)
@@ -38,7 +39,7 @@ namespace base {
         {
         }
         
-        camera& get_camera()
+        boost::shared_ptr<camera> get_camera()
         {
             return camera_;
         }
@@ -53,7 +54,7 @@ namespace base {
             glLoadIdentity();  
             
 #ifdef ES1_GLEXT_H_GUARD
-            glOrthof(0, camera_.frustum_.width, 0, camera_.frustum_.height, -1, 100);
+            glOrthof(0, camera_->frustum_.width, 0, camera_->frustum_.height, -1, 100);
 #elif defined (_OPENGL_H)
             glOrtho(0, camera_.frustum_.width, 0, camera_.frustum_.height, -1, 100);
 #endif
@@ -70,8 +71,8 @@ namespace base {
             glPushMatrix();
             glLoadIdentity();
             
-            float width =  camera_.frustum_.width;
-            float height = camera_.frustum_.height;
+            float width =  camera_->frustum_.width;
+            float height = camera_->frustum_.height;
             
             float vertices[] =
             {      
@@ -90,9 +91,9 @@ namespace base {
         }
         
     private:
-        rect        box_;
-        camera      camera_;
-        color_info  bg_color_;
+        rect                        box_;
+        boost::shared_ptr<camera>   camera_;
+        color_info                  bg_color_;
     };
         
 } // namespace base
