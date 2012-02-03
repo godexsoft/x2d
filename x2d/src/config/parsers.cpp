@@ -400,6 +400,46 @@ namespace config {
         // and add this viewport to the kernel
         kernel_.add_viewport(vp->get());
     }
+
+    void configuration::parse_input(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        //
+        // can have:
+        // touch:           boolean; enable/disable touch input. defaults to true
+        // accelerometer:   boolean; enable/disable accelerometer input. defaults to false
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            throw parse_exception("Input type must have 'n' defined.");
+        }
+        
+        bool want_touch = true;
+        xml_attr* tch = node->first_attribute("touch");
+        if(tch) 
+        {
+            want_touch = value_parser<bool>::parse(tch->value());
+        }
+        
+        bool want_accel = false;
+        xml_attr* accel = node->first_attribute("accelerometer");
+        if(accel) 
+        {
+            want_accel = value_parser<bool>::parse(accel->value());
+        }
+                
+        boost::shared_ptr<input_cfg> inp = 
+            boost::shared_ptr<input_cfg>( new input_cfg(
+                res_man_, kernel_, want_touch, want_accel) );
+        
+        config_[key] = inp;
+        
+        // and bind this input manager with the kernel
+        kernel_.set_input_manager(inp->get());
+    }
+
     
 } // namespace config
 } // namespace x2d

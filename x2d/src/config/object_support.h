@@ -17,6 +17,7 @@
 #include "animation.h"
 #include "camera.h"
 #include "viewport.h"
+#include "input_manager.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
@@ -221,6 +222,42 @@ namespace config {
         std::string                camera_key_;
         color_info                 bg_color_;
         boost::weak_ptr<viewport>  inst_;
+    };
+
+    class input_cfg
+    : public cfg_base
+    {
+    public:        
+        input_cfg(resource_manager& res_man, kernel& k, bool want_touch, bool want_accel)
+        : cfg_base(res_man)
+        , kernel_(k)
+        , want_touch_(want_touch)
+        , want_accel_(want_accel)
+        {            
+        }
+        
+        boost::shared_ptr<input_manager> get()
+        {
+            if( boost::shared_ptr<input_manager> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<input_manager> r = 
+                    boost::shared_ptr<input_manager>( 
+                        new input_manager(kernel_, want_touch_, want_accel_) );
+                inst_ = r;
+                return r;
+            }
+        }
+        
+    private:
+        kernel&                         kernel_;
+        bool                            want_touch_;
+        bool                            want_accel_;
+        boost::weak_ptr<input_manager>  inst_;
     };
     
 } // namespace config

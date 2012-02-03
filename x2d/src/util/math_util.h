@@ -11,6 +11,7 @@
 #define __X2D_MATH_UTIL_H__
 
 #include <cmath>
+#include <cstring>
 
 #ifdef __APPLE__
 #include <CoreGraphics/CoreGraphics.h>
@@ -151,7 +152,7 @@ namespace math {
         {            
         }
         
-#ifdef __APPLE_
+#ifdef __APPLE__
         size(const CGSize& s)
         : width(s.width)
         , height(s.height)
@@ -175,7 +176,7 @@ namespace math {
         {            
         }
         
-#ifdef __APPLE_
+#ifdef __APPLE__
         point(const CGPoint& p)
         : x(p.x)
         , y(p.y)
@@ -192,7 +193,7 @@ namespace math {
 
     struct rect
     {        
-#ifdef __APPLE_
+#ifdef __APPLE__
         rect(const CGRect& r)
         : origin(r.origin)
         , size(r.size)
@@ -212,7 +213,8 @@ namespace math {
         size size;        
     };
     
-    inline vector_2d operator *(float t, const vector_2d& v) {
+    inline vector_2d operator *(float t, const vector_2d& v) 
+    {
         return (vector_2d(t * v.X(), t * v.Y()));
     }
     
@@ -228,6 +230,47 @@ namespace math {
         return fmaxf(min, fminf(v, max));
     }
 
+    // affine
+    class affine_matrix 
+    {
+        union {
+            float data_[9];
+            struct {
+                float
+                d0, d1, d2,
+                d3, d4, d5,
+                d6, d7, d8;
+            };
+        };
+        
+        affine_matrix(float d[]);   // used by static initializers only
+        
+    public:
+        // create identity
+        affine_matrix()
+        {
+            // fill with 0.0f and then make identity
+            d1=0.0f; d2=0.0f; d3=0.0f;
+            d0=1.0f; d4=1.0f; d8=1.0f;
+            d5=0.0f; d6=0.0f; d7=0.0f;
+        }
+        
+        affine_matrix(const affine_matrix& m) 
+        {
+            memcpy(data_, m.data_, 9 * sizeof(float));
+        }
+        
+        static const affine_matrix translation(float x, float y);
+        static const affine_matrix scale(float x, float y);
+        
+        // apply to a vector and point
+        vector_2d apply(const vector_2d& v);
+        point apply(const point& p);
+        
+        // operators
+        affine_matrix& operator *=(const affine_matrix& m);
+    };
+    
 } // namespace math
 } // namespace x2d
 using namespace x2d::math;

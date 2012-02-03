@@ -58,6 +58,8 @@
 		245151AB14DACE360029D699 /* viewport.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151AA14DACE360029D699 /* viewport.h */; };
 		245151AD14DAEED40029D699 /* color_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151AC14DAEED40029D699 /* color_info.h */; };
 		245151BF14DB56430029D699 /* value_parsers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 245151BE14DB56430029D699 /* value_parsers.cpp */; };
+		245151D514DC22FC0029D699 /* input_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151D414DC22FC0029D699 /* input_manager.h */; };
+		245151D714DC2A300029D699 /* touch.h in Headers */ = {isa = PBXBuildFile; fileRef = 245151D614DC2A300029D699 /* touch.h */; };
 		2467286914D6E34C003AAA04 /* rapidxml_iterators.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */; };
 		2467286A14D6E34C003AAA04 /* rapidxml_print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286614D6E34C003AAA04 /* rapidxml_print.hpp */; };
 		2467286B14D6E34C003AAA04 /* rapidxml_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */; };
@@ -179,6 +181,8 @@
 		245151AC14DAEED40029D699 /* color_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = color_info.h; path = src/base/color_info.h; sourceTree = "<group>"; };
 		245151BC14DB421C0029D699 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 04_viewport/game.h; sourceTree = "<group>"; };
 		245151BE14DB56430029D699 /* value_parsers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = value_parsers.cpp; path = src/config/value_parsers.cpp; sourceTree = "<group>"; };
+		245151D414DC22FC0029D699 /* input_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = input_manager.h; path = src/input/input_manager.h; sourceTree = "<group>"; };
+		245151D614DC2A300029D699 /* touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = touch.h; path = src/input/touch.h; sourceTree = "<group>"; };
 		2467286514D6E34C003AAA04 /* rapidxml_iterators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_iterators.hpp; path = libs/rapidxml/rapidxml_iterators.hpp; sourceTree = SOURCE_ROOT; };
 		2467286614D6E34C003AAA04 /* rapidxml_print.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_print.hpp; path = libs/rapidxml/rapidxml_print.hpp; sourceTree = SOURCE_ROOT; };
 		2467286714D6E34C003AAA04 /* rapidxml_utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rapidxml_utils.hpp; path = libs/rapidxml/rapidxml_utils.hpp; sourceTree = SOURCE_ROOT; };
@@ -423,6 +427,15 @@
 			path = 04_viewport/res/graphics;
 			sourceTree = "<group>";
 		};
+		245151D214DC22C20029D699 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				245151D414DC22FC0029D699 /* input_manager.h */,
+				245151D614DC2A300029D699 /* touch.h */,
+			);
+			name = input;
+			sourceTree = "<group>";
+		};
 		2467285314D6E232003AAA04 /* config */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +661,7 @@
 		24BDCC4314CC63B5006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
+				245151D214DC22C20029D699 /* input */,
 				2467298414D9F5B0003AAA04 /* anim */,
 				2467285314D6E232003AAA04 /* config */,
 				2415841E14D2E4510014F37B /* resource */,
@@ -754,6 +768,8 @@
 				2467298D14DA9BA0003AAA04 /* exceptions.h in Headers */,
 				245151AB14DACE360029D699 /* viewport.h in Headers */,
 				245151AD14DAEED40029D699 /* color_info.h in Headers */,
+				245151D514DC22FC0029D699 /* input_manager.h in Headers */,
+				245151D714DC2A300029D699 /* touch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,6 +1161,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "04_viewport/viewport-Prefix.pch";
 				INFOPLIST_FILE = 04_viewport/viewport.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = x2d_viewport;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1156,6 +1173,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "04_viewport/viewport-Prefix.pch";
 				INFOPLIST_FILE = 04_viewport/viewport.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = x2d_viewport;
 				WRAPPER_EXTENSION = app;
 			};

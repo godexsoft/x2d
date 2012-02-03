@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "kernel.h"
+#import "math_util.h"
 
 @interface EAGLView : UIView 
 {
     EAGLContext* context_;
+    kernel*      _k;
+    
+    affine_matrix input_transform;
 }
+
+- (id) initWithFrame:(const CGRect&)frame kernel:(kernel*)k;
+
 @end

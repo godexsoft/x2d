@@ -13,7 +13,19 @@
 
 namespace x2d {
 namespace config {
-      
+   
+    template<>
+    bool value_parser<bool>::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        ss << str;
+        
+        bool b;
+        ss >> b;
+        
+        return b;
+    }
+    
     template<>
     float value_parser<float>::parse(const std::string& str)
     {

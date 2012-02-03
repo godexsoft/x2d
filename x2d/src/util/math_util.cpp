@@ -228,7 +228,74 @@ namespace math {
     {
         return rad * (180/M_PI);
     }
+    
+    // affine matrix
+    affine_matrix::affine_matrix(float m[]) 
+    {
+        memcpy(data_, m, 9 * sizeof(float));
+    }
+    
+    affine_matrix& affine_matrix::operator *=(const affine_matrix& m) 
+    {
+        float temp[9];
+        int i;
+        
+#define A(row,col)  data_[(col*3)+row]
+#define B(row,col)  m.data_[(col*3)+row]
+#define T(row,col)  temp[(col*3)+row]
+        
+        for (i = 0; i < 3; i++) 
+        {
+            T(i, 0) = A(i, 0) * B(0, 0) + A(i, 1) * B(1, 0) + A(i, 2) * B(2, 0);
+            T(i, 1) = A(i, 0) * B(0, 1) + A(i, 1) * B(1, 1) + A(i, 2) * B(2, 1);
+            T(i, 2) = A(i, 0) * B(0, 2) + A(i, 1) * B(1, 2) + A(i, 2) * B(2, 2);
+        }
+        
+#undef A
+#undef B
+#undef T
+        memcpy(data_, temp, 9 * sizeof(float));
+        return *this;
+    }
+    
+    const affine_matrix affine_matrix::translation(float x, float y) 
+    {
+        return affine_matrix((float[]){
+            1,0,x,
+            0,1,y,
+            0,0,1
+        });
+    }
+    
+    const affine_matrix affine_matrix::scale(float x, float y) 
+    {
+        return affine_matrix((float[]){
+            x,0,0,
+            0,y,0,
+            0,0,1
+        });
+    }
 
+    vector_2d affine_matrix::apply(const vector_2d& v) 
+    {
+        vector_2d o;
+        
+        o.X( v.X() * d0 + v.Y() * d1 + d2 );
+        o.Y( v.X() * d3 + v.Y() * d4 + d5 );
+        
+        return o;
+    }
+
+    point affine_matrix::apply(const point& p) 
+    {
+        point o(0,0);
+        
+        o.x = p.x * d0 + p.y * d1 + d2;
+        o.y = p.x * d3 + p.y * d4 + d5;
+        
+        return o;
+    }
+    
 } // namespace math
 } // namespace x2d
 

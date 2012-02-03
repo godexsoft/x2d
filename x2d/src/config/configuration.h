@@ -64,6 +64,7 @@ namespace config {
         // kernel settings
         void parse_camera(xml_node* node, const config_key& key);
         void parse_viewport(xml_node* node, const config_key& key);
+        void parse_input(xml_node* node, const config_key& key);
         
         // various parsers for each supported element type
         void parse_namespace(xml_node* node, const config_key& key);

@@ -18,6 +18,7 @@
 #include "timer.h"
 #include "camera.h"
 #include "viewport.h"
+#include "input_manager.h"
 #include "log.h"
 
 namespace x2d 
@@ -44,16 +45,19 @@ namespace x2d
         
         void resume()
         {
-            is_paused_ = false;
-            clock_info resume_time = sys_clock_.current_time();
-            
-            double compensation = resume_time.time - pause_time_.time;
-
-            // compensate all active timers
-            for( timer_container::iterator it = timers_.begin(); it != timers_.end(); ++it)
+            if(is_paused_)
             {
-                LOG("Compensating timer by %f", compensation / sys_clock_.stretch_);
-                (*it)->compensate(compensation / sys_clock_.stretch_);
+                is_paused_ = false;
+                clock_info resume_time = sys_clock_.current_time();
+                
+                double compensation = resume_time.time - pause_time_.time;
+
+                // compensate all active timers
+                for( timer_container::iterator it = timers_.begin(); it != timers_.end(); ++it)
+                {
+                    LOG("Compensating timer by %f", compensation / sys_clock_.stretch_);
+                    (*it)->compensate(compensation / sys_clock_.stretch_);
+                }
             }
         }
         
@@ -86,10 +90,39 @@ namespace x2d
                                 t ), timers_.end());  
         }
         
+        // input support. this will be called by the input device
+        // the kernel just passes it through to the input manager if any
+        inline void on_touches_began(const std::vector<touch>& touches)
+        {
+            if(input_man_)
+            {
+                input_man_->on_touches_began(touches);
+            }
+        }
+        
+        inline void on_touches_moved(const std::vector<touch>& touches)
+        {
+            if(input_man_)
+            {
+                input_man_->on_touches_moved(touches);
+            }
+        }
+        
+        inline void on_touches_ended(const std::vector<touch>& touches)
+        {
+            if(input_man_)
+            {
+                input_man_->on_touches_ended(touches);
+            }
+        }
+        
+        void set_input_manager(const boost::shared_ptr<input_manager>& inp)
+        {
+            input_man_ = inp;
+        }
+        
     private:                
-        /**
-         * System clock. Runs without time stretching
-         */
+        // system
         time::clock     sys_clock_;
         timer           sys_timer_;
         
@@ -98,12 +131,19 @@ namespace x2d
         
         timer_container timers_;
         
+        // slots
         update_signal   update_signal_;
         render_signal   render_signal_;
+        // touch_input_signal
+        // accelerometer_input_signal
         
         // rendering
-        std::vector<boost::shared_ptr<viewport> >   viewports_;
-        int                                         cur_viewport_;
+        typedef std::vector<boost::shared_ptr<viewport> > vp_vec;
+        vp_vec          viewports_;
+        int             cur_viewport_;
+        
+        // input
+        boost::shared_ptr<input_manager> input_man_;
     };
     
 } // namespace x2d

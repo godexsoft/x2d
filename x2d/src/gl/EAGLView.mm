@@ -12,6 +12,7 @@
 #import <OpenGLES/EAGLDrawable.h>
 
 #include "graphics_engine.h"
+#include "input_manager.h"
 #include "objc_callback.h"
 #include "log.h"
 
@@ -29,10 +30,20 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame 
+- (id) initWithFrame:(const CGRect&)frame kernel:(kernel*)k
 {    
     if ((self = [super initWithFrame:frame])) 
     {
+        // save kernel pointer
+        _k = k;
+        
+        // generate transformation matrix
+        input_transform =  affine_matrix::translation(0.0f, (-frame.size.height)+10);
+        input_transform *= affine_matrix::scale(1.0f, -1.0f);
+        
+        // support retina
+        self.contentScaleFactor = 2.0f;
+        
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
         
@@ -48,7 +59,7 @@
             LOG("Couldn't init OpenGLES.");
             throw std::exception();
         }
-        
+                
         // setup callbacks for platform stuff
         graphics_engine::instance().set_cur_ctx_cb( 
             objc_callback(@selector(setCurCtx), self) );
@@ -101,17 +112,38 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-    LOG("Touch began");
+    std::vector<touch> tchs;
+    
+    for(UITouch* t in touches)
+    {
+        tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
+    }
+    
+    _k->on_touches_began( input_manager::transform(tchs, input_transform) );
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-    LOG("Touch moved");
+    std::vector<touch> tchs;
+    
+    for(UITouch* t in touches)
+    {
+        tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
+    }
+    
+    _k->on_touches_moved( input_manager::transform(tchs, input_transform) );
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-    LOG("Touch ended");
+    std::vector<touch> tchs;
+    
+    for(UITouch* t in touches)
+    {
+        tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
+    }
+    
+    _k->on_touches_ended( input_manager::transform(tchs, input_transform) );
 }
 
 @end
