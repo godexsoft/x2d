@@ -14,7 +14,9 @@
 #include "math_util.h"
 #include "filesystem.h"
 #include "sprite.h"
+#include "object.h"
 #include "platform.h"
+#include "exceptions.h"
 
 #include "rapidxml.hpp"
 #include <boost/function.hpp>
@@ -44,9 +46,42 @@ namespace config {
     public:
         configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path);
         
+        /**
+         * Bind c++ type to configuration key
+         */
+        template <typename T>
+        void bind(const config_key& key)
+        {
+            create_obj_bindings_.insert( 
+                std::make_pair(key, boost::bind(&configuration::create_object<T>, this, _1)) );
+//            get_obj_bindings_.insert( 
+//                std::make_pair(key, boost::bind(&configuration::get_object<T>, this, _1)) );
+        }
+        
+        /**
+         * Create new object of requested custom type
+         */
+        template <typename T>
+        const boost::shared_ptr<T> create_object(const config_key& key)
+        {
+            LOG("Calling strong-typed create_object for key %s", key.string().c_str());
+            return static_cast<object_cfg*>( &(*config_[key]) )->create<T>();
+        }
+        
+        /**
+         * Create new object without custom type
+         */
+        const boost::shared_ptr<object> create_object(const config_key& key);
+        
+        /**
+         * Create if required and return a shared version of a given object.
+         */
         template <typename T>
         boost::shared_ptr<T> get_object(const config_key& key);
 
+        /**
+         * Get a configuration value (metric)
+         */
         template <typename T>
         T get_value(const config_key& key);
         
@@ -73,13 +108,20 @@ namespace config {
         void parse_sprite(xml_node* node, const config_key& key);
         void parse_animation(xml_node* node, const config_key& key);
         void parse_frame(xml_node* node, const config_key& key);
+
+        // objects
+        void parse_object(xml_node* node, const config_key& key);
         
-        typedef boost::function<void(xml_node*,const config_key&)> parser_type;
+        typedef boost::function<void(xml_node*,const config_key&)> parser_type;        
+        typedef boost::function<boost::shared_ptr<object>(const config_key&)> binding_type;           
         
         kernel&                                 kernel_;
         resource_manager&                       res_man_;
         std::map<config_key, cfg_base_ptr>      config_;
         std::map<std::string, parser_type>      parsers_;
+
+        std::map<config_key, binding_type>     create_obj_bindings_;
+//        std::map<config_key, binding_type>     get_obj_bindings_;
     };
     
 } // namespace config

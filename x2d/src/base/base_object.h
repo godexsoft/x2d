@@ -28,6 +28,10 @@ namespace x2d
         : kernel_(k)
         {        
         }
+        
+        virtual ~base_object()
+        {
+        }
            
     protected:
         kernel& kernel_;        

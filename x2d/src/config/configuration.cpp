@@ -34,6 +34,8 @@ namespace config {
         parsers_["animation"]   = boost::bind(&configuration::parse_animation, this, _1, _2);
         parsers_["frame"]       = boost::bind(&configuration::parse_frame, this, _1, _2);
         
+        parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
+        
         // finally parse the config
         parse_file(cfg_path);
     }
@@ -107,6 +109,21 @@ namespace config {
                 }
 			}
 		}		        
+    }
+    
+    const boost::shared_ptr<object> configuration::create_object(const config_key& key)
+    {
+        LOG("Try to lookup binding for '%s'", key.string().c_str());
+        // try to find binding first
+        if(create_obj_bindings_.find(key) != create_obj_bindings_.end())
+        {
+            LOG("FOUND!");
+            // forward to strong-typed version
+            return create_obj_bindings_[key]( key );
+        }
+
+        LOG("No binding. return plain object version!");
+        return static_cast<object_cfg*>( &(*config_[key]) )->create();
     }
     
     template <>

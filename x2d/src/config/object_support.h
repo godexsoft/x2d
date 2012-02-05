@@ -260,6 +260,55 @@ namespace config {
         boost::weak_ptr<input_manager>  inst_;
     };
     
+    class object_cfg
+    : public cfg_base
+    {
+    public:        
+        object_cfg(resource_manager& res_man, configuration& c, kernel& k, const object_traits& t)
+        : cfg_base(res_man)
+        , config_(c)
+        , kernel_(k)
+        , traits_(t)
+        {        
+            LOG("Create new object config.");
+        }
+        
+        /*
+        boost::shared_ptr<object> get()
+        {
+            if( boost::shared_ptr<object> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<object> r = boost::shared_ptr<sprite>( new sprite(texture_.get(), origin_, size_) );
+                inst_ = r;
+                return r;
+            }
+        }
+         */
+
+        template <typename T>
+        const boost::shared_ptr<T> create()
+        {
+            return boost::shared_ptr<T>( new T(kernel_, config_, traits_) );
+        }
+        
+        const boost::shared_ptr<object> create()
+        {
+            return boost::shared_ptr<object>( new object(kernel_, config_, traits_) );            
+        }
+        
+    private:
+        configuration&  config_;
+        kernel&         kernel_;
+        object_traits   traits_;
+//        boost::weak_ptr<sprite>  inst_;
+    };
+
+    
 } // namespace config
 } // namespace x2d
 using namespace x2d::config;

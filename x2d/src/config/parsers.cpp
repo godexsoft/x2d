@@ -11,6 +11,7 @@
 #include "sprite.h"
 #include "exceptions.h"
 #include "kernel.h"
+#include "object.h"
 
 #include <sstream>
 
@@ -440,6 +441,53 @@ namespace config {
         kernel_.set_input_manager(inp->get());
     }
 
+    void configuration::parse_object(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        //
+        // can have:
+        // position: position vector2d
+        // scale:    scale as float
+        // rotation: rotation as float angle in degrees
+        
+        xml_attr* name = node->first_attribute("n");
+        if(!name) 
+        {
+            throw parse_exception("Object type must have 'n' defined.");
+        }
+        
+        object_traits tr;
+        
+        xml_attr* position = node->first_attribute("position");
+        if(position) 
+        {
+            tr.position = value_parser<vector_2d>::parse(position->value());
+        }
+        
+        xml_attr* scale = node->first_attribute("scale");
+        if(scale) 
+        {
+            tr.scale = value_parser<float>::parse(scale->value());
+        }
+        
+        xml_attr* rotation = node->first_attribute("rotation");
+        if(rotation) 
+        {
+            tr.rotation = value_parser<float>::parse(rotation->value());
+        }
+                
+        xml_attr* anim = node->first_attribute("animation");
+        if(anim) 
+        {
+            tr.animation = anim->value();
+            tr.has_animation = true;
+        }
+        
+        config_[key] = 
+            boost::shared_ptr<object_cfg>( 
+                new object_cfg(res_man_, *this, kernel_, tr) );
+    }
     
 } // namespace config
 } // namespace x2d
