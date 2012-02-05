@@ -44,6 +44,22 @@ namespace base {
             return camera_;
         }
         
+        rect box() const
+        {
+            return box_;
+        }
+        
+        point get_world_location(const point& p) const
+        {
+            // translate screen-space pixel size to viewport-space pixel size
+            float xs = camera_->frustum_.width / box_.size.width;
+            float ys = camera_->frustum_.height / box_.size.height;
+            point vp = point(p.x*xs, p.y*ys);
+            
+            LOG("Request world location from viewport location: %f %f", vp.x, vp.y);
+            return camera_->inverted_transformation(vp);
+        }
+        
         /**
          * Start using this viewport.
          * The method sets opengl up to use this viewport.

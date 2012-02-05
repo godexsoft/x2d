@@ -1,13 +1,16 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera1" frustum="320 240" />
+    <camera n="camera1" frustum="320 240" rotation="180"/>
     <camera n="camera2" frustum="240 320" rotation="-90" />
-    <camera n="camera3" frustum="240 320" rotation="90" position="10 10" zoom="1.5" />
+<!--    <camera n="camera3" frustum="240 320" rotation="90" position="10 10" zoom="1.5" /> -->
+    <camera n="camera3" frustum="240 320" rotation="90" position="50 50" zoom="1.5" />
     
     <viewport n="viewport1" box="0 0 320 240" camera="camera1" bgcolor="1 0 0" />
     <viewport n="viewport2" box="10 250 120 160" camera="camera2" bgcolor="0 1 0" />
     <viewport n="viewport3" box="140 250 120 160" camera="camera3" bgcolor="0 0 1" />
+    
+    <input n="input" accelerometer="false" touch="true" />
     
     <!-- namespace for all textures and sprites -->
     <namespace n="graphics">

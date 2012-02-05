@@ -208,6 +208,15 @@ namespace math {
         , size(width, height)
         {            
         }
+      
+        inline bool contains_point(const point& p)
+        {
+            if(p.x >= origin.x && p.x <= origin.x+size.width)
+                if(p.y >= origin.y && p.y <= origin.y+size.height)
+                    return true;
+            
+            return false;
+        }
         
         point origin;
         size size;        
@@ -217,13 +226,9 @@ namespace math {
     {
         return (vector_2d(t * v.X(), t * v.Y()));
     }
-    
-    inline void point_transform(float out[4], const float m[16], const float in[4]);
-    inline void matrix_multiply(float* product, const float* a, const float* b);
-    inline bool matrix_invert(const float* m, float* out);
-        
-    inline float to_rad( float deg );
-    inline float to_deg( float rad );
+            
+    float to_rad( float deg );
+    float to_deg( float rad );
             
     inline float clamp(float v, float min, float max)
     {
@@ -262,6 +267,11 @@ namespace math {
         
         static const affine_matrix translation(float x, float y);
         static const affine_matrix scale(float x, float y);
+        static const affine_matrix rotate(float angle);
+        const affine_matrix inverse();
+        
+        double determinant_of_minor(int y, int x);
+        double determinant();
         
         // apply to a vector and point
         vector_2d apply(const vector_2d& v);

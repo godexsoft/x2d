@@ -31,6 +31,21 @@ namespace x2d
         viewports_.push_back(vp);
     }
     
+    boost::shared_ptr<viewport> kernel::get_viewport_at(const point& p)
+    {
+        for(int i=0; i<viewports_.size(); ++i)
+        {      
+            if(viewports_.at(i)->box().contains_point(p))
+            {
+                LOG("Found viewport %d", i);
+                return viewports_.at(i);
+            }
+        }   
+        
+        LOG("Viewport could not be matched for point %f %f", p.x, p.y);
+        return boost::shared_ptr<viewport>(); // not found
+    }
+    
     void kernel::connect_update( base_object* o )
     {
         update_signal_.connect( boost::bind(&base_object::update, o, _1) );
@@ -39,6 +54,63 @@ namespace x2d
     void kernel::connect_render( base_object* o )
     {
         render_signal_.connect( boost::bind(&base_object::render, o, _1) );
+    }
+    
+    void kernel::connect_touch_input( space s, base_object* o )
+    {
+        switch(s)
+        {
+            case SCREEN_SPACE:
+                screen_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, SCREEN_SPACE, _1) );
+                screen_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, SCREEN_SPACE, _1) );
+                screen_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, SCREEN_SPACE, _1) );
+                break;
+            case WORLD_SPACE:
+                world_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, WORLD_SPACE, _1) );
+                world_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, WORLD_SPACE, _1) );
+                world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1) );
+                break;
+        }
+    }
+    
+    
+    void kernel::dispatch_touches_began(space s, const std::vector<touch>& touches)
+    {
+        switch(s)
+        {
+            case SCREEN_SPACE:
+                screen_touches_began_signal_(touches);
+                break;
+            case WORLD_SPACE:
+                world_touches_began_signal_(touches);
+                break;
+        }
+    }
+    
+    void kernel::dispatch_touches_moved(space s, const std::vector<touch>& touches)
+    {
+        switch(s)
+        {
+            case SCREEN_SPACE:
+                screen_touches_moved_signal_(touches);
+                break;
+            case WORLD_SPACE:
+                world_touches_moved_signal_(touches);
+                break;
+        }
+    }
+    
+    void kernel::dispatch_touches_ended(space s, const std::vector<touch>& touches)
+    {
+        switch(s)
+        {
+            case SCREEN_SPACE:
+                screen_touches_ended_signal_(touches);
+                break;
+            case WORLD_SPACE:
+                world_touches_ended_signal_(touches);
+                break;
+        }
     }
     
     /**

@@ -61,20 +61,9 @@ namespace input {
         }
         
     private:
-        inline void on_touches_began(const std::vector<touch>& touches)
-        {
-            LOG("Touches began: %f/%f", touches.at(0).location().x, touches.at(0).location().y);
-        }
-        
-        inline void on_touches_moved(const std::vector<touch>& touches)
-        {
-            LOG("Touches moved: %f/%f", touches.at(0).location().x, touches.at(0).location().y);
-        }
-        
-        inline void on_touches_ended(const std::vector<touch>& touches)
-        {
-            LOG("Touches ended: %f/%f", touches.at(0).location().x, touches.at(0).location().y);
-        }
+        void on_touches_began(const std::vector<touch>& touches);    
+        void on_touches_moved(const std::vector<touch>& touches);
+        void on_touches_ended(const std::vector<touch>& touches);
         
         kernel&     kernel_;
         bool        want_touch_;

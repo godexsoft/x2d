@@ -44,7 +44,7 @@ namespace fs = x2d::filesystem;
     _lvp_man.mount("resources.zip", "res");
     
     // create game
-    _game = boost::shared_ptr<game>( new game(_lvp_man) );
+    _game = boost::shared_ptr<game>( new game(_lvp_man, _k) );
     
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
@@ -61,7 +61,7 @@ namespace fs = x2d::filesystem;
     self.window = [[[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     
     // create opengl view
-    self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];    
+    self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) kernel:&_k] autorelease];    
     self.window.multipleTouchEnabled = YES;
     self.window.userInteractionEnabled = YES;
     self.window.rootViewController = nil;

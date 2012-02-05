@@ -6,11 +6,16 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+#pragma once
 #ifndef __X2D_BASE_OBJECT_H__
 #define __X2D_BASE_OBJECT_H__
 
 #include "log.h"
 #include "kernel.h"
+#include "space.h"
+#include "touch.h"
+
+#include <vector>
 
 namespace x2d 
 {
@@ -44,6 +49,16 @@ namespace x2d
         {
             kernel_.connect_render(this);
         }        
+
+        /**
+         * Used to connect the touch_input function to the kernel.
+         * Should be invoked in the constructor of a child class.
+         * Can be invoked multiple times, once for each space.
+         */
+        void connect_touch_input(space s)
+        {
+            kernel_.connect_touch_input(s, this);
+        }       
         
         /**
          * Base update function. Override this if you need updates.
@@ -58,6 +73,27 @@ namespace x2d
          * @see connect_render.
          */
         virtual void render(const clock_info& clock) {}
+        
+        /**
+         * Touch input began receiver. One can connect multiple receivers for different spaces.
+         * Don't forget to connect.
+         * @see connect_touch_input
+         */
+        virtual void touch_input_began(space s, const std::vector<touch>& touches) {}
+        
+        /**
+         * Touch input moved receiver. One can connect multiple receivers for different spaces.
+         * Don't forget to connect.
+         * @see connect_touch_input
+         */
+        virtual void touch_input_moved(space s, const std::vector<touch>& touches) {}
+        
+        /**
+         * Touch input ended receiver. One can connect multiple receivers for different spaces.
+         * Don't forget to connect.
+         * @see connect_touch_input
+         */
+        virtual void touch_input_ended(space s, const std::vector<touch>& touches) {}
     };
 
 } // namespace x2d

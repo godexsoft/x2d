@@ -72,6 +72,17 @@ namespace base {
             // move to camera position
             glTranslatef(position_.X(), position_.Y(), 0.0);
         }
+        
+        // inverse of 'apply' on point in space
+        const point inverted_transformation(const point& p)
+        {
+            affine_matrix m = affine_matrix::translation(-frustum_.width/2.0f, -frustum_.height/2.0f);
+            m              *= affine_matrix::rotate( math::to_rad(360.0f-rotation_) );
+            m              *= affine_matrix::scale(1.0f/zoom_, 1.0f/zoom_);
+            m              *= affine_matrix::translation(-position_.X(), -position_.Y());
+//            m               = m.inverse();
+            return m.apply(p);
+        }
 
     private:
         size        frustum_;

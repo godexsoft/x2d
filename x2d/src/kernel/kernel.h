@@ -19,6 +19,7 @@
 #include "camera.h"
 #include "viewport.h"
 #include "input_manager.h"
+#include "space.h"
 #include "log.h"
 
 namespace x2d 
@@ -30,12 +31,14 @@ namespace x2d
     public:
         typedef boost::signal<void (const clock_info&)> update_signal;        
         typedef boost::signal<void (const clock_info&)> render_signal;        
-        
+        typedef boost::signal<void (const std::vector<touch>&)> touch_input_signal;        
+
         typedef std::deque<timer*> timer_container;
         
         kernel();
         
         void add_viewport(const boost::shared_ptr<viewport>& vp);
+        boost::shared_ptr<viewport> get_viewport_at(const point& p); // point is screen-space
         
         void pause()
         {
@@ -68,6 +71,7 @@ namespace x2d
         // TODO: priorities (by z?)
         void connect_update( base_object* o );
         void connect_render( base_object* o );
+        void connect_touch_input( space s, base_object* o );
         
         time::clock& sys_clock() 
         { 
@@ -121,6 +125,10 @@ namespace x2d
             input_man_ = inp;
         }
         
+        void dispatch_touches_began(space s, const std::vector<touch>& touches);
+        void dispatch_touches_moved(space s, const std::vector<touch>& touches);
+        void dispatch_touches_ended(space s, const std::vector<touch>& touches);
+
     private:                
         // system
         time::clock     sys_clock_;
@@ -132,10 +140,10 @@ namespace x2d
         timer_container timers_;
         
         // slots
-        update_signal   update_signal_;
-        render_signal   render_signal_;
-        // touch_input_signal
-        // accelerometer_input_signal
+        update_signal       update_signal_;
+        render_signal       render_signal_;
+        touch_input_signal  world_touches_began_signal_, world_touches_moved_signal_, world_touches_ended_signal_;
+        touch_input_signal  screen_touches_began_signal_, screen_touches_moved_signal_, screen_touches_ended_signal_;
         
         // rendering
         typedef std::vector<boost::shared_ptr<viewport> > vp_vec;

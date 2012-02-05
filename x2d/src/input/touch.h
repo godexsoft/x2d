@@ -18,14 +18,25 @@ namespace input {
     class touch 
     {
     private:
+        bool            is_valid_;
         float           timestamp_;            // Time of touch event
         point           location_;             // Location of this touch
         point           prev_location_;        // Previous location
         unsigned int    tap_count_;
-        
+                
     public:
+        touch()
+        : is_valid_(false)
+        , timestamp_(0.0f)
+        , location_(0,0)
+        , prev_location_(0,0)
+        , tap_count_(0)
+        {            
+        }
+        
         touch(const point& loc, const point& prev_loc, unsigned int tap_count, float timestamp)
-        : timestamp_(timestamp)
+        : is_valid_(true)
+        , timestamp_(timestamp)
         , location_(loc)
         , prev_location_(prev_loc)
         , tap_count_(tap_count)
@@ -33,7 +44,8 @@ namespace input {
         }
         
         touch(const point& loc)
-        : timestamp_(0.0f)
+        : is_valid_(true)
+        , timestamp_(0.0f)
         , location_(loc)
         , prev_location_(loc)
         , tap_count_(1)
@@ -58,6 +70,11 @@ namespace input {
         inline const float timestamp() const 
         { 
             return timestamp_; 
+        }
+        
+        inline const bool is_valid() const
+        {
+            return is_valid_;
         }
     };
 

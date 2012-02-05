@@ -1,8 +1,8 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera" frustum="640 960" />
-    <viewport n="viewport" camera="camera" box="0 0 640 960" bgcolor="0.5 0.5 0.5" />
+    <camera n="camera" frustum="320 480" />
+    <viewport n="viewport" camera="camera" box="0 0 320 480" bgcolor="0.5 0.5 0.5" />
     <input n="input" accelerometer="false" touch="true" />
     
     <!-- namespace for all textures and sprites -->

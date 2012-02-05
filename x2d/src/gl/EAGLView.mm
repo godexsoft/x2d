@@ -38,11 +38,11 @@
         _k = k;
         
         // generate transformation matrix
-        input_transform =  affine_matrix::translation(0.0f, (-frame.size.height)+10);
+        input_transform =  affine_matrix::translation(0.0f, -frame.size.height);
         input_transform *= affine_matrix::scale(1.0f, -1.0f);
         
         // support retina
-        self.contentScaleFactor = 2.0f;
+        // self.contentScaleFactor = 2.0f;
         
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
