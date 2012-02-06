@@ -15,6 +15,9 @@
 namespace x2d {
 namespace input {
     
+    /**
+     * @brief This class represents a single touch input (one finger action).
+     */
     class touch 
     {
     private:

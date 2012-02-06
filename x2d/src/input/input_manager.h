@@ -22,11 +22,21 @@ namespace x2d {
     class kernel;
     
 namespace input {
-    
+
+    /**
+     * @brief This class is used to transform touches using the given affine matrix.
+     * 
+     * This transformation functor can be used with stl algorithms like transform
+     * to apply affine transformations to each touch's location and previous location.
+     */
     struct transform_touches 
     : public std::unary_function<const touch, const touch> 
-    {
+    {        
         affine_matrix& m_;
+     
+        /**
+         * @param[in] m The affine transformation matrix to apply
+         */
         transform_touches(affine_matrix& m) 
         : m_(m) 
         {
@@ -38,11 +48,24 @@ namespace input {
         }
     };
     
+    /**
+     * @brief Input manager class.
+     *
+     * This class is used together with the kernel. The kernel of x2d is forwarding
+     * screen-space touch and acceleration input from hardware to the input manager and
+     * the input manager is applying all required transformations and sends the calculated
+     * world-space touches back to the kernel which in turn sends them to any subscribed objects.
+     */
     class input_manager
     {
         friend class kernel;
                 
     public:
+        /**
+         * @param[in] k The kernel
+         * @param[in] wt true if touch input is required; false otherwise
+         * @param[in] wa true if accelerometer input is required; false otherwise         
+         */
         input_manager(kernel& k, bool wt, bool wa)        
         : kernel_(k)
         , want_touch_(wt)
@@ -50,6 +73,13 @@ namespace input {
         {            
         }
         
+        /**
+         * Apply affine transformation to every touch in the given collection.
+         *
+         * @param[in] touches Collection of touches to transform
+         * @param[in] mat The affine transformation to apply to every touch
+         * @return Collection of transformed touches
+         */
         static const std::vector<touch> transform(const std::vector<touch>& touches, affine_matrix& mat) 
         {            
             std::vector<touch> tr;
@@ -61,8 +91,22 @@ namespace input {
         }
         
     private:
+        /**
+         * Called by the kernel when hardware touch input began.
+         * @see kernel
+         */
         void on_touches_began(const std::vector<touch>& touches);    
+        
+        /**
+         * Called by the kernel when hardware touch input moved.
+         * @see kernel
+         */
         void on_touches_moved(const std::vector<touch>& touches);
+        
+        /**
+         * Called by the kernel when hardware touch input ended.
+         * @see kernel
+         */
         void on_touches_ended(const std::vector<touch>& touches);
         
         kernel&     kernel_;

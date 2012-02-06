@@ -30,7 +30,9 @@ namespace filesystem {
     directory_iterator::fs_obj_ptr directory_iterator::open_path( const directory_iterator::path_type& p );
     
     
-    // Wrapper for filesystem object
+    /**
+     * @brief Wrapper for filesystem object
+     */
     template<class _PathType>
     class fs_obj_impl : public fs_obj_base<_PathType> 
     {
@@ -45,7 +47,12 @@ namespace filesystem {
         , ft_(type_undef)
         { 
         }
-        
+
+        /**
+         * Construction from Dir handle.
+         * @param[in] p Path
+         * @param[in] d dir handle
+         */
         fs_obj_impl(const path_type& p, DIR* d)
         : path_(p)
         , dir_handle_(d)
@@ -53,7 +60,12 @@ namespace filesystem {
         , ft_(type_dir)
         { 
         }
-        
+
+        /**
+         * Construction from File handle.
+         * @param[in] p Path
+         * @param[in] f File handle
+         */
         fs_obj_impl(const path_type& p, FILE* f)
         : path_(p)
         , dir_handle_(NULL)
@@ -98,7 +110,9 @@ namespace filesystem {
         file_type			ft_;
     };
     
-    // Implementation of fdstream in terms of FILE structure
+    /**
+     * @brief Implementation of fdstream in terms of FILE structure
+     */
     template<>		
     class ifd_basic_stream<fd_type> 
     {        

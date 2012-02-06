@@ -42,6 +42,11 @@ namespace liverpool {
 		std::string  path_;			
 		
 	public:
+        /**
+         * @param[in] path  Path to file
+         * @param[in] ofst  Offset inside liverpool zip archive
+         * @param[in] sz    Size of the data block representing the entry
+         */
 		entry(const std::string& path, int ofst, int sz)
 		: type_( *path.rbegin()=='/'? type_dir : type_file )
 		, offset_(ofst)
@@ -108,9 +113,9 @@ namespace liverpool {
 			}
 		}
 				
-		void dump() const;		
-		
-		/// Access as a filesystem
+		/**
+         * @brief Access as a filesystem
+         */
 		template<int _OFFSET>
 		class filter : public std::unary_function<entry, bool> 
         {
@@ -119,6 +124,9 @@ namespace liverpool {
 			unsigned int depth_;
 			
 		public:
+            /**
+             * @param[in] path  Path to file
+             */
 			filter(std::string& path) 
 			: path_(path)
 			{

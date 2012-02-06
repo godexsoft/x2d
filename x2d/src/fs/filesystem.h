@@ -28,24 +28,35 @@ namespace filesystem {
         typedef std::basic_string<_CharType> _StringType;
         typedef basic_path<_CharType, _SEP> path_type;
 
-        // Construct path from string
+        /**
+         * Construction from string
+         * @param[in] p Path
+         */
         basic_path(const _StringType& p) 
         : path_(p)
         { 
         }
         
-        // From bytes
+        /**
+         * Construction from bytes
+         * @param[in] bytes Byte array
+         */
         basic_path(const _CharType bytes[]) 
         : path_(bytes)
         { 
         }		
         
+        /**
+         * Empty path construction
+         */
         basic_path() 
         : path_()
         { 
         }
         
-        // Concatination
+        /**
+         * Concatination operator
+         */
         friend const path_type operator /(const path_type& p, const path_type& pp) 
         { 
             if(p.path_.empty())
@@ -76,21 +87,30 @@ namespace filesystem {
             return string() < p.string();
         }
         
-        // Return last path component
+        /**
+         * Get the last path component.
+         * @return Last path component as string
+         */
         const _StringType last_path_component() const 
         {
             size_t p = path_.rfind(_SEP);
             return path_.substr(p?p+1:p);
         }
 
-        // Return path without last path component
+        /**
+         * Get path without last path component.
+         * @return path without last path component
+         */
         const path_type remove_last_path_component() const 
         {
             size_t p = path_.rfind(_SEP);
             return path_type( path_.substr(0,p) );
         }
         
-        // Convert back to string
+        /**
+         * Convert back to string
+         * @return String representation
+         */
         inline const _StringType string() const 
         { 
             return path_; 
@@ -108,7 +128,7 @@ namespace filesystem {
     } file_type;    
     
     /**
-     * A basetype for fs_obj_impl
+     * @brief A basetype for fs_obj_impl
      */
     template<class _PathType>
     class fs_obj_base 
@@ -119,7 +139,9 @@ namespace filesystem {
         virtual boost::shared_ptr<fs_obj_base<_PathType> > next() = 0;
     };			
     
-    // Directory iterator implementation
+    /**
+     * @brief Directory iterator implementation
+     */
     template<class _PathType>
     class basic_directory_iterator 
     : public std::iterator<std::input_iterator_tag, _PathType&, void, _PathType&, void>

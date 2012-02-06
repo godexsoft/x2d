@@ -30,12 +30,20 @@ namespace anim {
         friend class animation;
         
     public:
+        /**
+         * @param[in] spr   The sprite to use for this frame
+         * @param[in] dur   Duration of this frame expressed in seconds
+         */
         frame( const boost::shared_ptr<sprite>& spr, const float& dur )
         : sprite_(spr)
         , duration_(dur)
         {            
         }
         
+        /**
+         * Draw the frame.
+         * @param[in] pos   Position to draw at
+         */
         void draw_at_point(point pos) const;
         
     private:
@@ -51,6 +59,9 @@ namespace anim {
     class animation
     {
     public:
+        /**
+         * @param[in] d Default duration for each frame in animation
+         */
         animation(float d)
         : duration_(d)
         , is_paused_(false)
@@ -59,11 +70,18 @@ namespace anim {
         {            
         }
         
+        /**
+         * Add a frame to the animation
+         * @param[in] f Frame to add
+         */
         void add(const frame& f)
         {
             frames_.push_back(f);
         }
         
+        /**
+         * Start the animation at first frame
+         */
         void start()
         {
             cur_frame_ = 0;
@@ -71,17 +89,32 @@ namespace anim {
             is_paused_ = false;
         }
         
+        /**
+         * Freeze the animation
+         */
         void pause()
         {
             is_paused_ = true;            
         }
         
+        /**
+         * Resume animation after freeze
+         */
         void resume()
         {
             is_paused_ = false;
         }
         
+        /**
+         * Update animation with given clock info
+         * @param[in] clock  The clock info
+         */
         void update(const clock_info& clock);
+        
+        /**
+         * Draw animation at position
+         * @param[in] pos   Position to draw at
+         */
         void draw_at_point(point pos) const;
         
     private:

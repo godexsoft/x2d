@@ -15,14 +15,27 @@
 namespace x2d {
 namespace resource {
     
+    /**
+     * @brief The resource manager.
+     * Resource manager is used to manage resources such as textures, sounds and xml files.
+     * It uses a liverpool manager to access the actual files.
+     */
     class resource_manager
     {
     public:
+        /**
+         * @param[in] lvp_man   Liverpool manager to use
+         */
         resource_manager(liverpool_manager& lvp_man)
         : lvp_man_(lvp_man)
         {            
         }
         
+        /**
+         * Get a resource of specified type.
+         * @param[in] key   Key (path) to the resource
+         * @return Shared pointer containing the resource
+         */
         template<typename T>
         boost::shared_ptr<T> get(const std::string& key)
         {

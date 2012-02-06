@@ -22,7 +22,11 @@
 
 namespace x2d {
 namespace graphics {
-        
+       
+/**
+ * @brief Graphics subsystem.
+ * Note: This class is used as singleton in the application.
+ */
 class graphics_engine_bare
 {
 public:

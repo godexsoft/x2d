@@ -32,11 +32,22 @@ namespace config {
     typedef rx::xml_node<char>      xml_node;
     typedef rx::xml_document<char>  xml_doc;	
     
+    /**
+     * Configuration key is a string.
+     * Every component is separated by a dot.
+     */
     typedef basic_path<char, '.'>   config_key;
     
+    /**
+     * @brief Base config class.     
+     * Used with boost::shared_ptr to allow placing child classes into same stl container.
+     */
     class cfg_base
     {        
     public:
+        /**
+         * @param[in] res_man The resource manager to use
+         */
         cfg_base(resource_manager& res_man)
         : res_man_(res_man)
         {            
@@ -48,16 +59,26 @@ namespace config {
     
     typedef boost::shared_ptr<cfg_base> cfg_base_ptr;
     
+    /**
+     * @brief Support for '<texture>' configuration node.
+     */ 
     class texture_cfg
     : public cfg_base
     { 
     public:
+        /**
+         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] p       Path to texture inside the resource manager
+         */
         texture_cfg(resource_manager& res_man, const std::string& p)
         : cfg_base(res_man)
         , path_(p)
         {
         }
         
+        /**
+         * Create if required and return a shared version of the texture.
+         */
         boost::shared_ptr<texture> get()
         {    
             if( boost::shared_ptr<texture> p = inst_.lock() )
@@ -78,10 +99,19 @@ namespace config {
         boost::weak_ptr<texture>  inst_;
     };
     
+    /**
+     * @brief Support for '<sprite>' configuration node.
+     */ 
     class sprite_cfg
     : public cfg_base
     {
     public:        
+        /**
+         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] t       Texture to use
+         * @param[in] p       Offset inside texture
+         * @param[in] s       Size of the sprite
+         */
         sprite_cfg(resource_manager& res_man, 
                    texture_cfg& t, 
                    const point& p, const size& s)
@@ -92,6 +122,9 @@ namespace config {
         {            
         }
         
+        /**
+         * Create if required and return a shared version of the sprite.
+         */
         boost::shared_ptr<sprite> get()
         {
             if( boost::shared_ptr<sprite> p = inst_.lock() )
@@ -116,11 +149,20 @@ namespace config {
     
     class animation_cfg;
     
+    /**
+     * @brief Support for '<frame>' configuration node.
+     * This class describes one frame of the animation.
+     * @see animation_cfg
+     */ 
     class frame_cfg
     {
         friend class animation_cfg;
         
     public:        
+        /**
+         * @param[in] spr   Sprite to use
+         * @param[in] d     Duration for this frame
+         */
         frame_cfg(const std::string& spr, const float& d=0.0f)
         : sprite_key_(spr)
         , duration_(d) // 0.0 or negative means use animation's default
@@ -134,10 +176,19 @@ namespace config {
     
     class configuration;
     
+    /**
+     * @brief Support for '<animation>' configuration node.
+     * @see frame_cfg
+     */ 
     class animation_cfg
     : public cfg_base
     {
-    public:        
+    public:  
+        /**
+         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] cfg     Configuration object
+         * @param[in] d       Default duration for every frame in the animation
+         */
         animation_cfg(resource_manager& res_man, configuration& cfg, const float& d)
         : cfg_base(res_man)
         , config_(cfg)
@@ -145,11 +196,19 @@ namespace config {
         {            
         }
         
+        /**
+         * Used to add a frame to the animation.
+         * @param[in] f     The frame config
+         * @see frame_cfg
+         */
         void add(const frame_cfg& f)
         {
             frames_.push_back(f);
         }
         
+        /**
+         * Create if required and return a shared version of the animation.
+         */
         boost::shared_ptr<animation> get();
         
     private:
@@ -159,10 +218,21 @@ namespace config {
         boost::weak_ptr<animation>  inst_;
     };
     
+    /**
+     * @brief Support for '<camera>' configuration node.
+     * @see viewport_cfg
+     */ 
     class camera_cfg
     : public cfg_base
     {
-    public:        
+    public:    
+        /**
+         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] f       Camera frustum
+         * @param[in] rot     Rotation expressed in degrees
+         * @param[in] zm      Zoom level (scale)
+         * @param[in] pos     Position of the camera (given in world space)
+         */
         camera_cfg(resource_manager& res_man, const size& f, 
                    float rot, float zm, const vector_2d& pos)
         : cfg_base(res_man)
@@ -172,7 +242,10 @@ namespace config {
         , position_(pos)
         {            
         }
-                
+         
+        /**
+         * Create if required and return a shared version of the camera.
+         */
         boost::shared_ptr<camera> get()
         {
             if( boost::shared_ptr<camera> p = inst_.lock() )
@@ -199,10 +272,21 @@ namespace config {
         boost::weak_ptr<camera>  inst_;
     };
     
+    /**
+     * @brief Support for '<viewport>' configuration node.
+     * @see camera_cfg
+     */ 
     class viewport_cfg
     : public cfg_base
     {
-    public:        
+    public:  
+        /**
+         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] cfg     Configuration object
+         * @param[in] b       Viewport rectangle
+         * @param[in] cam_key Camera configuration key (name) to use
+         * @param[in] ci      Background color information
+         */
         viewport_cfg(resource_manager& res_man, configuration& cfg, 
                      const rect& b, const std::string& cam_key, 
                      const color_info& ci)
@@ -214,6 +298,9 @@ namespace config {
         {            
         }
         
+        /**
+         * Create if required and return a shared version of the viewport.
+         */
         boost::shared_ptr<viewport> get();
         
     private:
@@ -224,10 +311,19 @@ namespace config {
         boost::weak_ptr<viewport>  inst_;
     };
 
+    /**
+     * @brief Support for '<input>' configuration node.
+     */ 
     class input_cfg
     : public cfg_base
     {
-    public:        
+    public:      
+        /**
+         * @param[in] res_man       The resource manager (for cfg_base)
+         * @param[in] k             Kernel object
+         * @param[in] want_touch    true if touch input required; false otherwise
+         * @param[in] want_accel    true if accelerometer input required; false otherwise
+         */
         input_cfg(resource_manager& res_man, kernel& k, bool want_touch, bool want_accel)
         : cfg_base(res_man)
         , kernel_(k)
@@ -236,6 +332,9 @@ namespace config {
         {            
         }
         
+        /**
+         * Create if required and return a shared version of the input manager.
+         */
         boost::shared_ptr<input_manager> get()
         {
             if( boost::shared_ptr<input_manager> p = inst_.lock() )
@@ -260,10 +359,19 @@ namespace config {
         boost::weak_ptr<input_manager>  inst_;
     };
     
+    /**
+     * @brief Support for '<object>' configuration node.
+     */ 
     class object_cfg
     : public cfg_base
     {
     public:        
+        /**
+         * @param[in] res_man   The resource manager (for cfg_base)
+         * @param[in] c         Configuration object
+         * @param[in] k         Kernel object
+         * @param[in] t         Object traits
+         */
         object_cfg(resource_manager& res_man, configuration& c, kernel& k, const object_traits& t)
         : cfg_base(res_man)
         , config_(c)
@@ -290,12 +398,20 @@ namespace config {
         }
          */
 
+        /**
+         * Create a new custom type object and return a shared_ptr containing it
+         */
         template <typename T>
         const boost::shared_ptr<T> create()
         {
             return boost::shared_ptr<T>( new T(kernel_, config_, traits_) );
         }
         
+        /**
+         * Create a new object and return a shared_ptr containing it.
+         * Note: internally, x2d will look for a user type binding under the given config key
+         * and if found it will instantiate a custom user type instead of the generic object type.
+         */
         const boost::shared_ptr<object> create()
         {
             return boost::shared_ptr<object>( new object(kernel_, config_, traits_) );            

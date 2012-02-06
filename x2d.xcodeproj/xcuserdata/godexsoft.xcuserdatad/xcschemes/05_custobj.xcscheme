@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "244DDD1C14DEFD8800F4E029"
-               BuildableName = "x2d_viewport.app"
+               BuildableName = "x2d_custobj.app"
                BlueprintName = "05_custobj"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "244DDD1C14DEFD8800F4E029"
-            BuildableName = "x2d_viewport.app"
+            BuildableName = "x2d_custobj.app"
             BlueprintName = "05_custobj"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -45,12 +45,13 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       debugDocumentVersioning = "YES"
+      enablesOpenGLESFrameCapture = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "244DDD1C14DEFD8800F4E029"
-            BuildableName = "x2d_viewport.app"
+            BuildableName = "x2d_custobj.app"
             BlueprintName = "05_custobj"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -68,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "244DDD1C14DEFD8800F4E029"
-            BuildableName = "x2d_viewport.app"
+            BuildableName = "x2d_custobj.app"
             BlueprintName = "05_custobj"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
