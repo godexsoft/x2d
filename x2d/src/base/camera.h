@@ -14,6 +14,9 @@
 #include "graphics_engine.h"
 
 namespace x2d {
+    
+    class object;
+    
 namespace base {
 
     /**
@@ -100,7 +103,12 @@ namespace base {
             m              *= affine_matrix::translation(-position_.X(), -position_.Y());
             return m.apply(p);
         }
-
+        
+        /**
+         * Get world position out of camera-space position
+         */
+        void calculate_in_world(const boost::shared_ptr<object>& o);
+        
     private:
         size        frustum_;
         

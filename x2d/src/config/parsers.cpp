@@ -453,6 +453,7 @@ namespace config {
         // rotation:  rotation as float angle in degrees
         // sprite:    sprite to draw
         // animation: animation to draw        
+        // space:     'world' (default), 'screen' or 'camera' space
         
         xml_attr* name = node->first_attribute("n");
         if(!name) 
@@ -499,7 +500,17 @@ namespace config {
             tr.sprite = spr->value();
             tr.has_sprite = true;
         }
-
+                
+        xml_attr* sp = node->first_attribute("space");
+        if(sp) 
+        {
+            tr.obj_space = value_parser<space>::parse( sp->value() );
+        }
+        else
+        {
+            tr.obj_space = WORLD_SPACE;
+        }
+        
         config_[key] = 
             boost::shared_ptr<object_cfg>( 
                 new object_cfg(res_man_, *this, kernel_, tr) );

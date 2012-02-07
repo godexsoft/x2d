@@ -39,6 +39,7 @@ namespace config {
         , want_accelerometer_input(false)
         , has_animation(false)
         , has_sprite(false)
+        , obj_space(WORLD_SPACE)
         {            
         }
         
@@ -58,6 +59,9 @@ namespace config {
         
         bool        has_sprite;
         std::string sprite;
+        
+        // space
+        space       obj_space;
     };
     
     /**
@@ -82,6 +86,36 @@ namespace config {
             children_.push_back(child);
         }
         
+        void position(const vector_2d& p)        
+        {
+            position_ = p;
+        }
+
+        void rotation(float a)        
+        {
+            rotation_ = a;
+        }
+        
+        void scale(float s)
+        {
+            scale_ = s;
+        }
+        
+        const vector_2d& camera_space_position() const
+        {
+            return camera_space_position_;
+        }
+        
+        float camera_space_scale() const
+        {
+            return camera_space_scale_;
+        }
+
+        float camera_space_rotation() const
+        {
+            return camera_space_rotation_;
+        }
+
     protected:
         
         virtual void update(const clock_info& clock);        
@@ -92,9 +126,16 @@ namespace config {
             return config_;
         }
         
+        space       space_;
+        
         vector_2d   position_;
+        vector_2d   camera_space_position_; // used if space_ == CAMERA_SPACE
+        
         float       scale_;
+        float       camera_space_scale_; // used if space_ == CAMERA_SPACE
+        
         float       rotation_;
+        float       camera_space_rotation_; // used if space_ == CAMERA_SPACE
         
         boost::shared_ptr<animation> cur_animation_;
         boost::shared_ptr<sprite>    cur_sprite_;

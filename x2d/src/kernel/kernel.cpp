@@ -10,6 +10,7 @@
 #include "kernel.h"
 #include "base_object.h"
 #include "platform.h"
+#include "object.h"
 #include "graphics_engine.h"
 #include "math_util.h"
 
@@ -133,6 +134,13 @@ namespace x2d
                 cur_viewport_ = i;
             }
 
+            // calculate world space out of camera space for each object which needs it
+            for(int i=0; i<camera_space_objects_.size(); ++i)
+            {
+                boost::shared_ptr<object> o = camera_space_objects_.at(i);
+                viewports_.at(cur_viewport_)->get_camera()->calculate_in_world(o);
+            }
+            
             // draw background
             viewports_.at(cur_viewport_)->clear();
 
@@ -140,7 +148,7 @@ namespace x2d
             viewports_.at(cur_viewport_)->get_camera()->apply();
             
             // render all objects into this viewport
-            render_signal_(ci);
+            render_signal_(ci); // TODO: ordered by z and by actual opengl texture
         }
         
         graphics_engine::instance().present_frame();

@@ -7,6 +7,7 @@
 //
 
 #include "configuration.h"
+#include "space.h"
 #include "exceptions.h"
 
 #include <sstream>
@@ -114,6 +115,27 @@ namespace config {
         else
         {
             return color_info(r, g, b);
+        }
+    }
+    
+    template<>
+    space value_parser<space>::parse(const std::string& str)
+    {
+        if(str == "world")
+        {
+            return WORLD_SPACE;
+        }
+        else if(str == "camera")
+        {
+            return CAMERA_SPACE;
+        }
+        else if(str == "screen")
+        {
+            return SCREEN_SPACE;
+        }
+        else
+        {
+            throw parse_exception("Space type must be one of 'screen', 'camera' or 'world'. Got '" + str + "' instead.");
         }
     }
 } // namespace config

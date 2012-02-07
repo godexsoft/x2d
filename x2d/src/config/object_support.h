@@ -389,6 +389,12 @@ namespace config {
         {
             boost::shared_ptr<T> p = boost::shared_ptr<T>( new T(kernel_, config_, traits_) );            
             add_children(p);
+            
+            if(traits_.obj_space == CAMERA_SPACE)
+            {
+                kernel_.add_camera_space_object( p );                
+            }
+            
             return p;
         }
         
@@ -399,6 +405,12 @@ namespace config {
         {
             boost::shared_ptr<object> p = boost::shared_ptr<object>( new object(kernel_, config_, traits_) );
             add_children(p);
+                        
+            if(traits_.obj_space == CAMERA_SPACE)
+            {
+                kernel_.add_camera_space_object( p );                
+            }
+            
             return p;
         }
                 

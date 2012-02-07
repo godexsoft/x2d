@@ -14,10 +14,14 @@ namespace x2d {
     object::object(kernel& k, config::configuration& c, const object_traits& t)
     : base_object(k)
     , config_(c)
+    , space_(t.obj_space)
     , position_(t.position)
+    , camera_space_position_(t.position)
     , scale_(t.scale)
-    , rotation_(t.rotation)
-    {        
+    , camera_space_scale_(t.scale)
+    , rotation_(t.rotation)    
+    , camera_space_rotation_(t.rotation)
+    {               
         if(t.want_screen_touch_input)
         {
             connect_touch_input(SCREEN_SPACE);
@@ -33,9 +37,15 @@ namespace x2d {
             // TODO accel connect
         }
         
+        if(t.has_animation || t.has_sprite)
+        {
+            connect_render();
+        }
+        
         if(t.has_animation)
         {
             cur_animation_ = config_.get_object<animation>(t.animation);
+            connect_update(); // animation needs updating
         }
         
         if(t.has_sprite)
@@ -80,6 +90,7 @@ namespace x2d {
         {
             cur_animation_->draw_at_point(point(0, 0));
         }
+        
         if(cur_sprite_)
         {
             cur_sprite_->draw_at_point(point(0, 0));

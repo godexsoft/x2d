@@ -21,7 +21,8 @@ namespace base {
     enum space
     {       
         WORLD_SPACE  = 1,
-        SCREEN_SPACE = 2
+        SCREEN_SPACE = 2,
+        CAMERA_SPACE = 3        
     };
     
 } // namespace base

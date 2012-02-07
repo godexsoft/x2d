@@ -25,6 +25,7 @@
 namespace x2d 
 {
     class base_object;
+    class object;
  
     /**
      * @brief x2d kernel
@@ -45,6 +46,17 @@ namespace x2d
          * @param[in] vp Shared pointer containing a viewport to add
          */
         void add_viewport(const boost::shared_ptr<viewport>& vp);
+        
+        /**
+         * Add a camera-space object.
+         * These objects will be first positioned in world-space so that they remain on their place
+         * independent of camera transformations.
+         * @param[in] obj The object to add
+         */
+        void add_camera_space_object(const boost::shared_ptr<object>& obj)
+        {
+            camera_space_objects_.push_back(obj);
+        }
         
         /**
          * Get viewport at screen-space location
@@ -184,6 +196,9 @@ namespace x2d
         touch_input_signal  screen_touches_began_signal_, screen_touches_moved_signal_, screen_touches_ended_signal_;
         
         // rendering
+        typedef std::vector<boost::shared_ptr<object> >   obj_vec;
+        obj_vec         camera_space_objects_;
+        
         typedef std::vector<boost::shared_ptr<viewport> > vp_vec;
         vp_vec          viewports_;
         int             cur_viewport_;

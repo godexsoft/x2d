@@ -29,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>06_hud.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>2467294914D9EA5B003AAA04</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2487CA6214E18137006A7E22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
