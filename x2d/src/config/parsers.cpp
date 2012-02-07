@@ -447,9 +447,12 @@ namespace config {
         // n:        name of the element
         //
         // can have:
-        // position: position vector2d
-        // scale:    scale as float
-        // rotation: rotation as float angle in degrees
+        // parent:    parent object (inherit space - position, rotation, scale, etc.)
+        // position:  position vector2d
+        // scale:     scale as float
+        // rotation:  rotation as float angle in degrees
+        // sprite:    sprite to draw
+        // animation: animation to draw        
         
         xml_attr* name = node->first_attribute("n");
         if(!name) 
@@ -458,6 +461,12 @@ namespace config {
         }
         
         object_traits tr;
+        
+        xml_attr* parent = node->first_attribute("parent");
+        if(parent) 
+        {
+            static_cast<object_cfg*>(&(*config_[parent->value()]))->add( key );
+        }
         
         xml_attr* position = node->first_attribute("position");
         if(position) 
@@ -483,7 +492,14 @@ namespace config {
             tr.animation = anim->value();
             tr.has_animation = true;
         }
-        
+
+        xml_attr* spr = node->first_attribute("sprite");
+        if(spr) 
+        {
+            tr.sprite = spr->value();
+            tr.has_sprite = true;
+        }
+
         config_[key] = 
             boost::shared_ptr<object_cfg>( 
                 new object_cfg(res_man_, *this, kernel_, tr) );

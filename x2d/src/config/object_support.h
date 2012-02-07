@@ -381,47 +381,47 @@ namespace config {
             LOG("Create new object config.");
         }
         
-        /*
-        boost::shared_ptr<object> get()
-        {
-            if( boost::shared_ptr<object> p = inst_.lock() )
-            {            
-                // already exists outside of cfg
-                return p;
-            }
-            else
-            {
-                boost::shared_ptr<object> r = boost::shared_ptr<sprite>( new sprite(texture_.get(), origin_, size_) );
-                inst_ = r;
-                return r;
-            }
-        }
-         */
-
         /**
          * Create a new custom type object and return a shared_ptr containing it
          */
         template <typename T>
         const boost::shared_ptr<T> create()
         {
-            return boost::shared_ptr<T>( new T(kernel_, config_, traits_) );
+            boost::shared_ptr<T> p = boost::shared_ptr<T>( new T(kernel_, config_, traits_) );            
+            add_children(p);
+            return p;
         }
         
         /**
          * Create a new object and return a shared_ptr containing it.
-         * Note: internally, x2d will look for a user type binding under the given config key
-         * and if found it will instantiate a custom user type instead of the generic object type.
          */
         const boost::shared_ptr<object> create()
         {
-            return boost::shared_ptr<object>( new object(kernel_, config_, traits_) );            
+            boost::shared_ptr<object> p = boost::shared_ptr<object>( new object(kernel_, config_, traits_) );
+            add_children(p);
+            return p;
+        }
+                
+        /**
+         * Add a child object.
+         * @param[in] k Configuration key of child object
+         */
+        void add(const config_key& k)
+        {
+            children_.push_back(k);
         }
         
-    private:
+    private:        
+        /**
+         * Create and add children to object
+         */
+        void add_children(const boost::shared_ptr<object>& p);
+        
         configuration&  config_;
         kernel&         kernel_;
         object_traits   traits_;
-//        boost::weak_ptr<sprite>  inst_;
+        
+        std::vector<config_key> children_;
     };
 
     

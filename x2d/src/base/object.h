@@ -38,6 +38,7 @@ namespace config {
         , want_world_touch_input(true)
         , want_accelerometer_input(false)
         , has_animation(false)
+        , has_sprite(false)
         {            
         }
         
@@ -54,6 +55,9 @@ namespace config {
         // graphics
         bool        has_animation;
         std::string animation;
+        
+        bool        has_sprite;
+        std::string sprite;
     };
     
     /**
@@ -67,6 +71,15 @@ namespace config {
         
         virtual ~object() 
         {
+        }
+        
+        /**
+         * Add a child object.
+         * @param[in] child The child object to add
+         */
+        void add_child(const boost::shared_ptr<object>& child)
+        {
+            children_.push_back(child);
         }
         
     protected:
@@ -84,6 +97,7 @@ namespace config {
         float       rotation_;
         
         boost::shared_ptr<animation> cur_animation_;
+        boost::shared_ptr<sprite>    cur_sprite_;
         
         std::vector< boost::shared_ptr<object> >     children_;
         

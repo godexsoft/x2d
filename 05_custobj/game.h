@@ -26,12 +26,9 @@ public:
     , k_(k)
     , config_(k_, rm_, "res/main.xml")
     {
-        LOG("Bindings...");
-        
         // create bindings for custom objects
         config_.bind<custom_obj>("objects.player");
-        
-        LOG("End of Bindings...");
+        config_.bind<small_obj>("objects.child");
         
         // init first scene
         cur_scene_ = boost::shared_ptr<scene>( new scene(k_, config_) );

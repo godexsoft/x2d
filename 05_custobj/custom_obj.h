@@ -24,20 +24,26 @@ class custom_obj
 public:
     custom_obj(kernel& k, configuration& c, const object_traits& t)
     : object(k, c, t)
-    , x_(0.0f)
-    , qi_(x_, -50.0f, 100.0f, -50.0f, 3.0f)
+    , li_(rotation_, 0.0f, 360.0f, 2.0f)
     {    
         connect_update();
         connect_render();  
     }
     
 private:
-    float                   x_;
-    quadratic_interpolator  qi_;
+    linear_interpolator     li_;
     
 protected:
+     
+    void update(const clock_info& clock)
+    {
+        li_.update(clock.delta_time);
         
-    virtual void touch_input_began(space s, const std::vector<touch>& touches) 
+        // call parent update
+        object::update(clock);
+    }
+    
+    void touch_input_began(space s, const std::vector<touch>& touches) 
     {
         if(s == WORLD_SPACE)
         {
@@ -52,7 +58,7 @@ protected:
         }
     }
     
-    virtual void touch_input_moved(space s, const std::vector<touch>& touches) 
+    void touch_input_moved(space s, const std::vector<touch>& touches) 
     {
         if(s == WORLD_SPACE)
         {
@@ -62,5 +68,30 @@ protected:
 
 };
 
+
+class small_obj 
+: public object
+{
+public:
+    small_obj(kernel& k, configuration& c, const object_traits& t)
+    : object(k, c, t)
+    , li_(rotation_, 360.0f, 0.0f, 1.0f)
+    {    
+        // it's a child object so it will get updated and rendered regardless
+    }
+    
+private:
+    linear_interpolator     li_;
+    
+protected:
+    
+    void update(const clock_info& clock)
+    {
+        li_.update(clock.delta_time);
+        
+        // call parent update
+        object::update(clock);
+    }
+};
 
 #endif // __X2D_CUSTOM_OBJ_H__

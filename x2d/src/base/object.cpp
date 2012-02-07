@@ -37,6 +37,11 @@ namespace x2d {
         {
             cur_animation_ = config_.get_object<animation>(t.animation);
         }
+        
+        if(t.has_sprite)
+        {
+            cur_sprite_ = config_.get_object<sprite>(t.sprite);
+        }
     }
     
     void object::update(const clock_info& clock) 
@@ -45,6 +50,10 @@ namespace x2d {
         {
             cur_animation_->update(clock);
         }
+        
+        // update all children
+        std::for_each(children_.begin(), children_.end(), 
+            boost::bind(&object::update, _1, clock));
     }
     
     void object::render(const clock_info& clock)
@@ -71,6 +80,14 @@ namespace x2d {
         {
             cur_animation_->draw_at_point(point(0, 0));
         }
+        if(cur_sprite_)
+        {
+            cur_sprite_->draw_at_point(point(0, 0));
+        }
+        
+        // draw all children in current space (relative to this object)
+        std::for_each(children_.begin(), children_.end(), 
+            boost::bind(&object::render, _1, clock));
         
         glPopMatrix();        
         

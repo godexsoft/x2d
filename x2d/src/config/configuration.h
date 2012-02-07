@@ -83,7 +83,11 @@ namespace config {
         }
         
         /**
-         * Create new object without custom type
+         * Create new object without explicit type specification.
+         *
+         * Note: internally, x2d will look for a user type binding under the given config key
+         * and if found it will instantiate a custom user type instead of the generic object type.
+         *
          * @param[in] key Configuration key
          */
         const boost::shared_ptr<object> create_object(const config_key& key);

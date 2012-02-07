@@ -57,6 +57,14 @@
             scale="1.5"
         />
         
+        <object n="child" 
+            parent="objects.player"
+            position="-50.0 -50.0"
+            rotation="180"
+            scale="0.2"
+            sprite="graphics.player.standing"
+        />
+        
     </namespace>
     <!-- end: objects -->
     
