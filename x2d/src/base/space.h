@@ -15,6 +15,9 @@
 namespace x2d {
 namespace base {
 
+    /**
+     * @brief Space. World or Screen
+     */
     enum space
     {       
         WORLD_SPACE  = 1,

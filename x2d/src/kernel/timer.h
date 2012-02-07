@@ -19,6 +19,9 @@ class kernel;
     
 namespace time {
     
+    /**
+     * @brief Simple timer
+     */
     class timer
     {
         friend class kernel;

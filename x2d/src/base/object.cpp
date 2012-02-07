@@ -39,6 +39,14 @@ namespace x2d {
         }
     }
     
+    void object::update(const clock_info& clock) 
+    { 
+        if(cur_animation_)
+        {
+            cur_animation_->update(clock);
+        }
+    }
+    
     void object::render(const clock_info& clock)
     {  
         glEnable(GL_BLEND);

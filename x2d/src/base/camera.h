@@ -16,11 +16,17 @@
 namespace x2d {
 namespace base {
 
+    /**
+     * @brief A basic 2d camera
+     */
     class camera
     {
         friend class viewport;
         
     public:
+        /**
+         * @param[in] frustum The camera's frustum
+         */
         camera(const size& frustum)
         : frustum_(frustum)
         , rotation_(0.0f)
@@ -29,11 +35,19 @@ namespace base {
         {            
         }
         
+        /**
+         * Set new position
+         * @param[in] v Position given in world coordinates
+         */
         void position(const vector_2d& v)
         {
             position_ = v;
         }
         
+        /**
+         * Turn camera by angle
+         * @param[in] angle The angle
+         */
         void rotation(float angle)
         {
             if(angle < 0.0f) 
@@ -44,6 +58,10 @@ namespace base {
             rotation_ = clamp(angle, 0.0f, 360.0f);
         }
         
+        /**
+         * Zoom scene
+         * @param[in] z Zoom level (scale)
+         */
         void zoom(float z)
         {
             zoom_ = z;
@@ -80,7 +98,6 @@ namespace base {
             m              *= affine_matrix::rotate( math::to_rad(360.0f-rotation_) );
             m              *= affine_matrix::scale(1.0f/zoom_, 1.0f/zoom_);
             m              *= affine_matrix::translation(-position_.X(), -position_.Y());
-//            m               = m.inverse();
             return m.apply(p);
         }
 

@@ -28,11 +28,17 @@ namespace base {
     
     class sprite; // see sprite.h
 
+    /**
+     * @brief Basic 2D texture
+     */
     class texture
     {
         friend class sprite;
         
     protected:
+        /**
+         * Initialize texture from bytes and size
+         */
         void init_texture(const unsigned char* data, int sz);
         
     private:
@@ -42,6 +48,9 @@ namespace base {
         GLfloat             max_s_, max_t_;
         
     public:
+        /**
+         * Construction of null texture
+         */
         texture()
         : name_(0)
         , size_(0,0)
@@ -52,6 +61,9 @@ namespace base {
         {
         }
         
+        /**
+         * Construction of texture from FD stream
+         */
         texture(ifdstream stream);
         
         ~texture();

@@ -19,9 +19,16 @@
 namespace x2d {
 namespace base {
         
+    /**
+     * @brief Simple viewport (virtual screen)
+     */
     class viewport
     {        
     public:
+        /**
+         * @param[in] cam       The camera to use
+         * @param[in] bg_col    Background color
+         */
         viewport(const rect& b, const boost::shared_ptr<camera>& cam, 
                  const color_info& bg_col=color_info(0.0f, 0.0f, 0.0f))
         : box_(b)
@@ -49,6 +56,10 @@ namespace base {
             return box_;
         }
         
+        /**
+         * Get world-space location from screen-space location
+         * @param[in] p Screen-space location
+         */
         point get_world_location(const point& p) const
         {
             // translate screen-space pixel size to viewport-space pixel size
@@ -81,6 +92,9 @@ namespace base {
             glScissor(box_.origin.x, box_.origin.y, box_.size.width, box_.size.height);
         }
 
+        /**
+         * Clear viewport with background color
+         */
         void clear()
         {
             // draw bg

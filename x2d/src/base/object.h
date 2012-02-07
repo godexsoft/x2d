@@ -25,6 +25,9 @@ namespace config {
     
 } // namespace config
     
+    /**
+     * @brief Object traits
+     */
     struct object_traits
     {
         object_traits()
@@ -53,6 +56,9 @@ namespace config {
         std::string animation;
     };
     
+    /**
+     * @brief Default x2d object
+     */
     class object 
     : public base_object    
     {        
@@ -65,14 +71,7 @@ namespace config {
         
     protected:
         
-        virtual void update(const clock_info& clock) 
-        { 
-            if(cur_animation_)
-            {
-                cur_animation_->update(clock);
-            }
-        }
-        
+        virtual void update(const clock_info& clock);        
         virtual void render(const clock_info& clock); 
         
         config::configuration& config()

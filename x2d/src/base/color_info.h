@@ -13,6 +13,9 @@
 namespace x2d {
 namespace base {
         
+    /**
+     * @brief Color information RGBA
+     */
     struct color_info
     {        
         color_info(float rr, float gg, float bb, float aa=1.0f)

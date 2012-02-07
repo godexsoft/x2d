@@ -19,11 +19,17 @@
 
 namespace x2d 
 {
+    /**
+     * Base class for all objects in x2d
+     */
     class base_object 
     {
         friend class kernel;
         
     public:
+        /**
+         * @param[in] k The kernel
+         */
         base_object(kernel& k)
         : kernel_(k)
         {        

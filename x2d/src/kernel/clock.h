@@ -19,6 +19,10 @@ namespace x2d {
     
 namespace time {
 
+    /**
+     * @brief Clock information
+     * Contains delta time and absolute time.
+     */
     struct clock_info
     {    
         /**
@@ -31,6 +35,10 @@ namespace time {
          */
         double delta_time;
         
+        /**
+         * @param[in] t   Absolute time
+         * @param[in] dt  Delta time
+         */
         clock_info(double t, double dt)
         : time(t)        
         , delta_time(dt)
@@ -39,7 +47,7 @@ namespace time {
     };
     
     /**
-     * @brief Clock class
+     * @brief Clock class with time stretch support
      */
     class clock
     : public boost::noncopyable

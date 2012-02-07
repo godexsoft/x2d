@@ -25,7 +25,10 @@
 namespace x2d 
 {
     class base_object;
-    
+ 
+    /**
+     * @brief x2d kernel
+     */
     class kernel
     {
     public:
@@ -37,15 +40,31 @@ namespace x2d
         
         kernel();
         
+        /**
+         * Add a viewport
+         * @param[in] vp Shared pointer containing a viewport to add
+         */
         void add_viewport(const boost::shared_ptr<viewport>& vp);
+        
+        /**
+         * Get viewport at screen-space location
+         * @param[in] p Point to examine
+         * @return Viewport in shared pointer if found; null otherwise
+         */
         boost::shared_ptr<viewport> get_viewport_at(const point& p); // point is screen-space
         
+        /**
+         * Pause the kernel
+         */
         void pause()
         {
             is_paused_ = true;
             pause_time_ = sys_clock_.current_time();
         }
         
+        /**
+         * Resume the kernel after pause
+         */
         void resume()
         {
             if(is_paused_)
@@ -64,7 +83,14 @@ namespace x2d
             }
         }
         
+        /**
+         * Perform one step of the runloop
+         */
         int step();
+        
+        /**
+         * Handler for system timer
+         */
         void sys_timer_handler(const clock_info& ci);
         
         // Signal exposure
@@ -78,6 +104,10 @@ namespace x2d
             return sys_clock_; 
         }
         
+        /**
+         * Enqueue a timer
+         * @param[in] t Timer to add
+         */
         void enqueue(timer* t)
         {
             timers_.insert( 
@@ -86,6 +116,10 @@ namespace x2d
                                     t, ptr_cmp<timer>()), t);
         }
         
+        /**
+         * Remove a timer from the timers queue
+         * @param[in] t Timer to remove
+         */
         void dequeue(timer* t)
         {
             timers_.erase( 
@@ -120,6 +154,10 @@ namespace x2d
             }
         }
         
+        /**
+         * Attach an input manager
+         * @param[in] inp The input manager
+         */
         void set_input_manager(const boost::shared_ptr<input_manager>& inp)
         {
             input_man_ = inp;

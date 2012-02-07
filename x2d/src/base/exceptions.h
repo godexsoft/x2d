@@ -14,17 +14,23 @@
 
 namespace x2d {
 namespace base {
-        
+
+    /**
+     * @brief Base exception class
+     */
     class sys_exception
     : public std::exception
     {
     public:
+        /**
+         * @param[in] msg The message to store
+         */
         sys_exception(const std::string& msg) throw()
         : msg_(msg)
         {            
         }
         
-        ~sys_exception() throw()
+        virtual ~sys_exception() throw()
         {            
         }
         
@@ -37,6 +43,9 @@ namespace base {
         std::string     msg_;
     };
     
+    /**
+     * @brief Config system exception
+     */
     class config_exception
     : public sys_exception
     {    
@@ -47,6 +56,9 @@ namespace base {
         }
     };
 
+    /**
+     * @brief Parsing exception in configuration system
+     */
     class parse_exception
     : public config_exception
     {        
@@ -57,6 +69,9 @@ namespace base {
         }
     };
 
+    /**
+     * @brief Structure exception in configuration system
+     */
     class structure_exception
     : public config_exception
     {    

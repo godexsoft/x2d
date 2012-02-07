@@ -17,9 +17,18 @@
 namespace x2d {
 namespace base {
 
+    /**
+     * @brief Represents a sprite
+     */
     class sprite
     {
     public:
+        /**
+         * Create a sprite from a texture
+         * @param[in] t         Texture to use
+         * @param[in] origin    Offset inside texture
+         * @param[in] sz        Sprite size
+         */
         sprite(const boost::shared_ptr<texture>& t, const point& origin, const size& sz)
         : t_(t)
         , origin_(origin)
@@ -27,6 +36,9 @@ namespace base {
         {            
         }
         
+        /**
+         * @param[in] pos  Location to draw the sprite
+         */
         void draw_at_point(point pos) const;
         
     private:
