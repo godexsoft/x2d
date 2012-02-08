@@ -22,6 +22,7 @@ namespace config {
         // add supported parsers
         parsers_["float"]       = boost::bind(&configuration::parse_float, this, _1, _2);
         parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
+        parsers_["vector"]      = boost::bind(&configuration::parse_vector, this, _1, _2);
         
         parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
         parsers_["viewport"]    = boost::bind(&configuration::parse_viewport, this, _1, _2);
@@ -73,22 +74,8 @@ namespace config {
     }
     
     void configuration::parse(xml_node* root, const config_key& key)
-    {
-        // first parse this node and see if it's usable for us
-        if( root->type() == rx::node_element )
-        {
-         	LOG("-- Parsing: %s", root->name());
-            if( parsers_.find( root->name() ) != parsers_.end() )
-            {            
-                parsers_[root->name()](root, key);
-            }
-            else
-            {
-                LOG("'%s' is not supported.", root->name());
-            }
-        }
-        
-        // now try to parse everything inside this node if it's a container
+    {   
+        // try to parse everything inside this node if it's a container
         for(xml_node* node = root->first_node(); node; node = node->next_sibling()) 
 		{
 			if(node->type() == rx::node_element) 
@@ -108,7 +95,21 @@ namespace config {
                     parse( node, key );
                 }
 			}
-		}		        
+		}	
+        
+        // now parse the actual root node and see if it's usable for us
+        if( root->type() == rx::node_element )
+        {
+         	LOG("-- Parsing: %s", root->name());
+            if( parsers_.find( root->name() ) != parsers_.end() )
+            {            
+                parsers_[root->name()](root, key);
+            }
+            else
+            {
+                LOG("'%s' is not supported.", root->name());
+            }
+        }
     }
     
     const boost::shared_ptr<object> configuration::create_object(const config_key& key)
@@ -127,6 +128,12 @@ namespace config {
     }
     
     template <>
+    boost::shared_ptr<texture> configuration::get_object<texture>(const config_key& key)
+    {
+        return static_cast<texture_cfg*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
     boost::shared_ptr<sprite> configuration::get_object<sprite>(const config_key& key)
     {
         return static_cast<sprite_cfg*>( &(*config_[key]) )->get();
@@ -138,6 +145,13 @@ namespace config {
         return static_cast<animation_cfg*>( &(*config_[key]) )->get();
     }
 
+    template <>
+    const boost::shared_ptr<animation> configuration::create_sys_object<animation>(const config_key& key)
+    {
+        return static_cast<animation_cfg*>( &(*config_[key]) )->create();
+    }
+
+    
     template <>
     boost::shared_ptr<camera> configuration::get_object<camera>(const config_key& key)
     {
@@ -165,6 +179,28 @@ namespace config {
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
 
+    template <>
+    vector_2d configuration::get_value<vector_2d>(const config_key& key)
+    {
+        typedef value_cfg<vector_2d> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
+    boost::shared_ptr<sprite> sprite_cfg::get()
+    {
+        if( boost::shared_ptr<sprite> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>( 
+                new sprite( config_.get_object<texture>(texture_), origin_, size_) );
+            inst_ = r;
+            return r;
+        }
+    }
     
     boost::shared_ptr<animation> animation_cfg::get()
     {
@@ -175,15 +211,39 @@ namespace config {
         }
         else
         {
-            boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
-            
-            // add all frames
-            for(int i=0; i<frames_.size(); ++i)
-            {
-                r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_), 
-                    frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
-            }
-            
+            boost::shared_ptr<animation> r = create();
+            inst_ = r;
+            return r;
+        }
+    }
+    
+    boost::shared_ptr<animation> animation_cfg::create()
+    {
+        boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
+        
+        // add all frames
+        for(int i=0; i<frames_.size(); ++i)
+        {
+            r->add( frame( config_.get_object<sprite>( frames_.at(i).sprite_key_), 
+                frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
+        }
+
+        return r;
+    }    
+    
+    boost::shared_ptr<camera> camera_cfg::get()
+    {
+        if( boost::shared_ptr<camera> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<camera> r = boost::shared_ptr<camera>( new camera(frustum_) );
+            r->position(position_.get(config_));                
+            r->zoom(zoom_.get(config_));
+            r->rotation(rotation_.get(config_));
             inst_ = r;
             return r;
         }

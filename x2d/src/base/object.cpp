@@ -11,16 +11,30 @@
 
 namespace x2d {
 
+    object_traits::object_traits()
+    : position("", vector_2d(0.0f,0.0f))
+    , scale("", 0.0f)
+    , rotation("", 0.0f)
+    , want_screen_touch_input(false)
+    , want_world_touch_input(true)
+    , want_accelerometer_input(false)
+    , has_animation(false)
+    , has_sprite(false)
+    , obj_space(WORLD_SPACE)
+    , has_parent(false)
+    {            
+    }
+    
     object::object(kernel& k, config::configuration& c, const object_traits& t)
     : base_object(k)
     , config_(c)
     , space_(t.obj_space)
-    , position_(t.position)
-    , camera_space_position_(t.position)
-    , scale_(t.scale)
-    , camera_space_scale_(t.scale)
-    , rotation_(t.rotation)    
-    , camera_space_rotation_(t.rotation)
+    , position_(t.position.get(c))
+    , camera_space_position_(t.position.get(c))
+    , scale_(t.scale.get(c))
+    , camera_space_scale_(t.scale.get(c))
+    , rotation_(t.rotation.get(c))    
+    , camera_space_rotation_(t.rotation.get(c))
     {               
         if(t.want_screen_touch_input)
         {
@@ -47,7 +61,7 @@ namespace x2d {
         
         if(t.has_animation)
         {
-            cur_animation_ = config_.get_object<animation>(t.animation);
+            cur_animation_ = config_.create_sys_object<animation>(t.animation);
             if(!t.has_parent)
             {
                 connect_update(); // animation needs updating

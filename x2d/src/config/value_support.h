@@ -30,13 +30,11 @@ namespace config {
     { 
     public:
         /**
-         * @param[in] res_man The resource manager for cfg_base
          * @param[in] min     Min possible value to generate
          * @param[in] max     Max possible value to generate
          */
-        random_cfg(resource_manager& res_man, const T& min, const T& max)
-        : cfg_base(res_man)
-        , gen_(platform::time::current_time())
+        random_cfg(const T& min, const T& max)
+        : gen_(platform::time::current_time())
         , dist_(min, max)
         {
         }
@@ -55,6 +53,40 @@ namespace config {
     };
     
     /**
+     * @brief '<random>' for vector_2d type config type support
+     */
+    template<>
+    class random_cfg<vector_2d>
+    : public cfg_base
+    { 
+    public:
+        /**
+         * @param[in] min     Min possible value to generate
+         * @param[in] max     Max possible value to generate
+         */
+        random_cfg(const vector_2d& min, const vector_2d& max)
+        : gen_(platform::time::current_time())
+        , dist_x_(min.X(), max.X())
+        , dist_y_(min.Y(), max.Y())
+        {
+        }
+        
+        /**
+         * Return next random vector
+         */
+        vector_2d get()
+        {    
+            return vector_2d(dist_x_(gen_), dist_y_(gen_));
+        }
+        
+    private:        
+        boost::random::mt19937 gen_;
+        boost::random::uniform_real_distribution<> dist_x_;
+        boost::random::uniform_real_distribution<> dist_y_;
+    };
+
+    
+    /**
      * @brief Value config type support: <float>, <int>, etc.
      */
     template<typename T>
@@ -65,12 +97,10 @@ namespace config {
         /**
          * Construction from static value.
          *
-         * @param[in] res_man The resource manager for cfg_base
          * @param[in] v       The value to hold
          */
-        value_cfg(resource_manager& res_man, const T& v)
-        : cfg_base(res_man)
-        , val_(v)
+        value_cfg(const T& v)
+        : val_(v)
         {
         }
         
@@ -80,9 +110,8 @@ namespace config {
          * @param[in] res_man The resource manager for cfg_base
          * @param[in] rnd     Random generator to hold
          */
-        value_cfg(resource_manager& res_man, const boost::shared_ptr<random_cfg<T> >& rnd)
-        : cfg_base(res_man)
-        , val_(0.0f)
+        value_cfg(const boost::shared_ptr<random_cfg<T> >& rnd)
+        : val_()
         , random_(rnd)
         {
         }

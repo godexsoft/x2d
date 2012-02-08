@@ -87,6 +87,11 @@ namespace filesystem {
             return string() < p.string();
         }
         
+        operator const std::string () const
+        {
+            return string();
+        }
+        
         /**
          * Get the last path component.
          * @return Last path component as string

@@ -14,6 +14,7 @@
 #include "base_object.h"
 #include "space.h"
 #include "animation.h"
+#include "value_holder.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -25,29 +26,19 @@ namespace config {
     
 } // namespace config
     
+    using namespace x2d::config;
+    
     /**
      * @brief Object traits
      */
     struct object_traits
     {
-        object_traits()
-        : position(0.0f,0.0f)
-        , scale(0.0f)
-        , rotation(0.0f)
-        , want_screen_touch_input(false)
-        , want_world_touch_input(true)
-        , want_accelerometer_input(false)
-        , has_animation(false)
-        , has_sprite(false)
-        , obj_space(WORLD_SPACE)
-        , has_parent(false)
-        {            
-        }
+        object_traits();
         
         // basic object properties
-        vector_2d   position;
-        float       scale;
-        float       rotation;
+        value_holder<vector_2d> position;
+        value_holder<float>     scale;
+        value_holder<float>     rotation;
         
         // input methods requested by object
         bool        want_screen_touch_input;

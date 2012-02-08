@@ -1,0 +1,129 @@
+<x2d version="1.0">
+    
+    <!-- engine setup -->
+    <camera n="camera" frustum="320 480" />    
+    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
+    <input n="input" accelerometer="false" touch="true" />
+    
+    <!-- namespace for all textures and sprites -->
+    <namespace n="graphics">
+        
+        <!-- define our texture and sprites -->
+        <texture n="player" path="res/graphics/anim.png">
+            <sprite n="anim_1"   x="0"   y="0"   w="128" h="128" />
+            <sprite n="anim_2"   x="128" y="0"   w="128" h="128" />
+            <sprite n="anim_3"   x="256" y="0"   w="128" h="128" />
+            <sprite n="anim_4"   x="384" y="0"   w="128" h="128" />
+            <sprite n="anim_5"   x="0"   y="128" w="128" h="128" />
+            <sprite n="anim_6"   x="128" y="128" w="128" h="128" />
+            <sprite n="anim_7"   x="256" y="128" w="128" h="128" />
+            <sprite n="anim_8"   x="384" y="128" w="128" h="128" />
+            <sprite n="standing" x="384" y="256" w="128" h="128" />
+        </texture> 
+        
+    </namespace> 
+    <!-- end: graphics -->
+    
+    <!-- namespace for all animations -->
+    <namespace n="animations">
+        
+        <!-- define the animation -->
+        <animation n="player" duration="0.1">
+            <frame n="frame_1" sprite="graphics.player.anim_1" />
+            <frame n="frame_2" sprite="graphics.player.anim_2" />
+            <frame n="frame_3" sprite="graphics.player.anim_3" />
+            <frame n="frame_4" sprite="graphics.player.anim_4" />
+            <frame n="frame_5" sprite="graphics.player.anim_5" />
+            <frame n="frame_6" sprite="graphics.player.anim_6" />
+            <frame n="frame_7" sprite="graphics.player.anim_7" />
+            <frame n="frame_8" sprite="graphics.player.anim_8" />
+        </animation>
+        
+    </namespace> 
+    <!-- end: animations -->
+    
+    <!-- 
+     our spawner.
+     This spawner will spawn objects at the given position
+     and the position they will move to is bottom of the screen (point_at).
+     It will spawn 3 objects every 3 seconds.
+     Every spawned object will be automatically destroyed after 2 seconds.
+     -->
+    <spawner n = "spawner">
+        <!-- this defines which objects the spawner will spawn -->
+        <string n = "objects">
+            objects.obj1 
+            objects.obj2
+            objects.obj3
+        </string>
+
+        <!-- sets the position of the spawner on every spawn -->
+        <vector n = "position">
+            <random from = "-100 -100" 
+                      to = "100 100" />
+        </vector>
+        
+        <!-- set the count of objects to spawn on every wave -->
+        <int    n = "wave_size" 
+            value = "3" />        
+
+        <!-- set delay between waves -->
+        <float  n = "wave_delay" 
+            value = "2.0" />
+        
+        <!-- set the lolation in world-space where the spawner is pointing at (like a gun) -->
+        <vector n = "point_at">
+            <random from = "-10.0 -250.0" 
+                      to = "10.0 -210.0" />
+        </vector>
+        
+        <!-- set the lifetime of spawned objects -->
+        <float  n = "lifetime" 
+            value = "2.0" />
+    </spawner>
+    
+    <!-- namespace for all objects -->
+    <namespace n="objects">
+        
+        <object n       =   "obj1"             
+            animation   =   "animations.player" >
+                 
+            <vector n = "position">
+                <random from = "-100 -100" 
+                          to = "100 100" />
+            </vector>
+            
+            <!-- this will be used every time the object is created by create_object -->
+            <float n = "scale">
+                <random from = "0.1"
+                          to = "1.9" />
+            </float>            
+            
+            <float n = "rotation">
+                <random from = "0"
+                          to = "360" />
+            </float>            
+        </object>
+        
+        <object n       =   "obj2"             
+            animation   =   "animations.player"  
+            scale       =   "0.3"
+            rotation    =   "45"                
+        />
+        
+        <object n       =   "obj3"             
+            animation   =   "animations.player"  
+            scale       =   "0.6"
+            rotation    =   "-80"                
+        />
+        
+        <object n       =   "generator" 
+            sprite      =   "graphics.player.standing"
+            position    =   "0.0 180.0"
+            spawner     =   "spawner"
+        />
+        
+    </namespace>
+    <!-- end: objects -->
+    
+</x2d>

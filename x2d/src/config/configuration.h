@@ -100,11 +100,27 @@ namespace config {
         boost::shared_ptr<T> get_object(const config_key& key);
 
         /**
+         * Create a system object such as animation.
+         */
+        template <typename T>
+        const boost::shared_ptr<T> create_sys_object(const config_key& key);
+        
+        /**
          * Get a configuration value (metric)
          * @param[in] key Configuration key
          */
         template <typename T>
         T get_value(const config_key& key);
+        
+        /**
+         * Determine whether some value/object exists under given key.
+         * @param[in] key The key to examine
+         * @return true if exists; false otherwise
+         */
+        bool exists(const config_key& key)
+        {
+            return config_.find(key) != config_.end();
+        }
         
     private:
         /**
@@ -122,9 +138,28 @@ namespace config {
          */
         void parse(xml_node* root, const config_key& key=config_key(""));
 
+        // getting attribute
+        template<typename T>
+        value_holder<T> get_attr(xml_node* node, const config_key& key, 
+                                 const std::string& name, const T& default_value)
+        {
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return value_holder<T>(key / name, value_parser<T>::parse(node->value()));
+            }
+            else if(config_.find(key / name) != config_.end() )
+            {
+                return value_holder<T>(key / name, default_value);
+            }
+            
+            return value_holder<T>("", default_value);
+        }
+        
         // parsers for primitive value types
         void parse_float(xml_node* node, const config_key& key);
         void parse_int(xml_node* node, const config_key& key);
+        void parse_vector(xml_node* node, const config_key& key);
         
         template<typename T>
         void parse_random(xml_node* node, const config_key& key);

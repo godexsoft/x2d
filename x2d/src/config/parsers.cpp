@@ -12,6 +12,7 @@
 #include "exceptions.h"
 #include "kernel.h"
 #include "object.h"
+#include "value_holder.h"
 
 #include <sstream>
 
@@ -45,7 +46,7 @@ namespace config {
             if( data->type() == rx::node_data )
             {
                 config_[key] = boost::shared_ptr< value_cfg<float> >( 
-                    new value_cfg<float>(res_man_, value_parser<float>::parse(data->value())) );
+                    new value_cfg<float>( value_parser<float>::parse(data->value())) );
             }
             else
             {
@@ -64,7 +65,7 @@ namespace config {
         else
         {   
             config_[key] = boost::shared_ptr< value_cfg<float> >( 
-                new value_cfg<float>(res_man_, value_parser<float>::parse(value->value())) );
+                new value_cfg<float>( value_parser<float>::parse(value->value())) );
         }
     }
     
@@ -95,7 +96,7 @@ namespace config {
             if( data->type() == rx::node_data )
             {
                 config_[key] = boost::shared_ptr< value_cfg<int> >(
-                    new value_cfg<int>(res_man_, value_parser<int>::parse(data->value())) );
+                    new value_cfg<int>( value_parser<int>::parse(data->value())) );
             }
             else
             {
@@ -114,10 +115,60 @@ namespace config {
         else
         {        
             config_[key] = boost::shared_ptr< value_cfg<int> >( 
-                new value_cfg<int>(res_man_, value_parser<int>::parse(value->value())) );
+                new value_cfg<int>( value_parser<int>::parse(value->value())) );
         }
     }
     
+    void configuration::parse_vector(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:      name
+        // can have:
+        // value:  the value
+        // or value can be provided as child
+        
+        xml_attr* path = node->first_attribute("n");
+        if(!path) 
+        {
+            throw parse_exception("Vector must have 'n' defined.");
+        }
+        
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node()) 
+        {
+            throw parse_exception("Vector must have either 'value' or inner data defined.");
+        }
+        
+        if(!value)
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data )
+            {
+                config_[key] = boost::shared_ptr< value_cfg<vector_2d> >(
+                    new value_cfg<vector_2d>( value_parser<vector_2d>::parse(data->value())) );
+            }
+            else
+            {
+                // check if it's random
+                if( std::string("random") == data->name() )
+                {
+                    LOG("Random detected.");
+                    parse_random<vector_2d>(data, key);
+                }
+                else
+                {
+                    throw parse_exception("Data element can be either <random> or plain value.");
+                }
+            }
+        }
+        else
+        {        
+            config_[key] = boost::shared_ptr< value_cfg<vector_2d> >( 
+                new value_cfg<vector_2d>( value_parser<vector_2d>::parse(value->value())) );
+        }
+    }
+
     void configuration::parse_namespace(xml_node* node, const config_key& key)
     {
         // must have:
@@ -215,10 +266,6 @@ namespace config {
         }
         
         config_key parent_key = key.remove_last_path_component();        
-        if( config_.find(parent_key) == config_.end() )
-        {
-            throw structure_exception("Sprite's texture is not found: '" + parent_key.string() + "'");
-        }
 
         // TODO: why not have it as box="x y w h" ?        
         int xval, yval, wval, hval;
@@ -228,7 +275,7 @@ namespace config {
         hval = value_parser<int>::parse(h->value());
         
         config_[key] =  boost::shared_ptr<sprite_cfg>( 
-            new sprite_cfg(res_man_, *static_cast<texture_cfg*>(&(*config_[parent_key])), 
+            new sprite_cfg(*this, parent_key, 
                 point(xval, yval), size(wval, hval)) );
     }
 
@@ -250,8 +297,17 @@ namespace config {
             throw parse_exception("Animation type must have 'duration' defined.");
         }
 
-        config_[key] =  boost::shared_ptr<animation_cfg>( 
-            new animation_cfg(res_man_, *this, value_parser<float>::parse(dur->value())) );
+        if( config_.find(key) == config_.end() )
+        {
+            // No animation object exists! No frames defined?
+            throw structure_exception("Animation has no frames. Invalid animation.");
+        }
+        else
+        {
+            // Set duration
+            static_cast<animation_cfg*>(&(*config_[key]))
+                ->set_duration( value_parser<float>::parse(dur->value()) );   
+        }
     }
     
     void configuration::parse_frame(xml_node* node, const config_key& key)
@@ -281,12 +337,14 @@ namespace config {
             throw structure_exception("Frame must be a child element of an Animation object.");
         }
         
-        config_key parent_key = key.remove_last_path_component();        
+        config_key parent_key = key.remove_last_path_component();
         if( config_.find(parent_key) == config_.end() )
         {
-            throw structure_exception("Frame's animation object is not found: '" + parent_key.string() + "'");
+            // No animation exists yet. Must create one as this is the first frame.
+            config_[parent_key] = boost::shared_ptr<animation_cfg>( 
+                new animation_cfg(*this) );
         }
-
+        
         // custom duration?
         xml_attr* dur = node->first_attribute("duration");
         if(dur) 
@@ -327,32 +385,12 @@ namespace config {
 
         size frus = value_parser<size>::parse(frustum->value());
 
-        // optional
-        float rot = 0.0f;
-        float zm = 1.0f;
-        vector_2d pos(0.0f, 0.0f);
-        
-        xml_attr* rotation = node->first_attribute("rotation");
-        if(rotation) 
-        {            
-            rot = value_parser<float>::parse(rotation->value());
-        }
-
-        xml_attr* zoom = node->first_attribute("zoom");
-        if(zoom) 
-        {            
-            zm = value_parser<float>::parse(zoom->value());
-        }
-
-        xml_attr* position = node->first_attribute("position");
-        if(position) 
-        {            
-            pos = value_parser<vector_2d>::parse(position->value());
-        }
-
         config_[key] =  
             boost::shared_ptr<camera_cfg>( 
-                new camera_cfg(res_man_, frus, rot, zm, pos) );
+                new camera_cfg(*this, frus, 
+                    get_attr<float>(node, key, "rotation", 0.0f),
+                    get_attr<float>(node, key, "zoom", 1.0f), 
+                    get_attr<vector_2d>(node, key, "position", vector_2d(0.0f, 0.0f))) );
     }
 
     void configuration::parse_viewport(xml_node* node, const config_key& key)
@@ -394,7 +432,7 @@ namespace config {
         
         boost::shared_ptr<viewport_cfg> vp = 
             boost::shared_ptr<viewport_cfg>( new viewport_cfg(
-                res_man_, *this, bx, cam->value(), ci) );
+                *this, bx, cam->value(), ci) );
         
         config_[key] = vp;
         
@@ -433,7 +471,7 @@ namespace config {
                 
         boost::shared_ptr<input_cfg> inp = 
             boost::shared_ptr<input_cfg>( new input_cfg(
-                res_man_, kernel_, want_touch, want_accel) );
+                kernel_, want_touch, want_accel) );
         
         config_[key] = inp;
         
@@ -470,24 +508,10 @@ namespace config {
             tr.has_parent = true;
         }
         
-        xml_attr* position = node->first_attribute("position");
-        if(position) 
-        {
-            tr.position = value_parser<vector_2d>::parse(position->value());
-        }
+        tr.position =   get_attr<vector_2d>(node, key, "position", vector_2d(0.0f, 0.0f));
+        tr.scale =      get_attr<float>(node, key, "scale", 1.0f);
+        tr.rotation =   get_attr<float>(node, key, "rotation", 0.0f);
         
-        xml_attr* scale = node->first_attribute("scale");
-        if(scale) 
-        {
-            tr.scale = value_parser<float>::parse(scale->value());
-        }
-        
-        xml_attr* rotation = node->first_attribute("rotation");
-        if(rotation) 
-        {
-            tr.rotation = value_parser<float>::parse(rotation->value());
-        }
-                
         xml_attr* anim = node->first_attribute("animation");
         if(anim) 
         {
@@ -514,7 +538,7 @@ namespace config {
         
         config_[key] = 
             boost::shared_ptr<object_cfg>( 
-                new object_cfg(res_man_, *this, kernel_, tr) );
+                new object_cfg(*this, kernel_, tr) );
     }
     
 } // namespace config

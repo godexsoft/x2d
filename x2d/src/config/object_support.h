@@ -45,16 +45,9 @@ namespace config {
     class cfg_base
     {        
     public:
-        /**
-         * @param[in] res_man The resource manager to use
-         */
-        cfg_base(resource_manager& res_man)
-        : res_man_(res_man)
+        cfg_base()
         {            
         }
-        
-    protected:
-        resource_manager& res_man_;
     };
     
     typedef boost::shared_ptr<cfg_base> cfg_base_ptr;
@@ -67,11 +60,11 @@ namespace config {
     { 
     public:
         /**
-         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] res_man The resource manager
          * @param[in] p       Path to texture inside the resource manager
          */
         texture_cfg(resource_manager& res_man, const std::string& p)
-        : cfg_base(res_man)
+        : res_man_(res_man)
         , path_(p)
         {
         }
@@ -94,7 +87,8 @@ namespace config {
             }
         }
         
-    private:        
+    private:    
+        resource_manager&         res_man_;
         std::string               path_;
         boost::weak_ptr<texture>  inst_;
     };
@@ -107,15 +101,15 @@ namespace config {
     {
     public:        
         /**
-         * @param[in] res_man The resource manager (for cfg_base)
          * @param[in] t       Texture to use
          * @param[in] p       Offset inside texture
          * @param[in] s       Size of the sprite
          */
-        sprite_cfg(resource_manager& res_man, 
-                   texture_cfg& t, 
-                   const point& p, const size& s)
-        : cfg_base(res_man)
+        sprite_cfg(configuration& c,
+                   const config_key& t, 
+                   const point& p, 
+                   const size& s)
+        : config_(c)
         , texture_(t)
         , origin_(p)
         , size_(s)
@@ -125,23 +119,11 @@ namespace config {
         /**
          * Create if required and return a shared version of the sprite.
          */
-        boost::shared_ptr<sprite> get()
-        {
-            if( boost::shared_ptr<sprite> p = inst_.lock() )
-            {            
-                // already exists outside of cfg
-                return p;
-            }
-            else
-            {
-                boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>( new sprite(texture_.get(), origin_, size_) );
-                inst_ = r;
-                return r;
-            }
-        }
+        boost::shared_ptr<sprite> get();
         
     private:
-        texture_cfg&             texture_;
+        configuration&           config_;
+        config_key               texture_;
         point                    origin_;
         size                     size_;        
         boost::weak_ptr<sprite>  inst_;
@@ -185,14 +167,12 @@ namespace config {
     {
     public:  
         /**
-         * @param[in] res_man The resource manager (for cfg_base)
          * @param[in] cfg     Configuration object
          * @param[in] d       Default duration for every frame in the animation
          */
-        animation_cfg(resource_manager& res_man, configuration& cfg, const float& d)
-        : cfg_base(res_man)
-        , config_(cfg)
-        , duration_(d)
+        animation_cfg(configuration& cfg)
+        : config_(cfg)
+        , duration_(0.0f)
         {            
         }
         
@@ -207,9 +187,23 @@ namespace config {
         }
         
         /**
+         * Sets default duration.
+         * @param[in] d The duration
+         */
+        void set_duration(float d)
+        {
+            duration_ = d;
+        }
+        
+        /**
          * Create if required and return a shared version of the animation.
          */
         boost::shared_ptr<animation> get();
+
+        /**
+         * Create a new animation instance and return it without saving a local copy.
+         */
+        boost::shared_ptr<animation> create();        
         
     private:
         configuration&              config_;
@@ -227,15 +221,15 @@ namespace config {
     {
     public:    
         /**
-         * @param[in] res_man The resource manager (for cfg_base)
+         * @param[in] c       The configuration
          * @param[in] f       Camera frustum
          * @param[in] rot     Rotation expressed in degrees
          * @param[in] zm      Zoom level (scale)
          * @param[in] pos     Position of the camera (given in world space)
          */
-        camera_cfg(resource_manager& res_man, const size& f, 
-                   float rot, float zm, const vector_2d& pos)
-        : cfg_base(res_man)
+        camera_cfg(configuration& c, const size& f, const value_holder<float>& rot, 
+                   const value_holder<float>& zm, const value_holder<vector_2d>& pos)
+        : config_(c)
         , frustum_(f)
         , rotation_(rot)
         , zoom_(zm)
@@ -246,29 +240,14 @@ namespace config {
         /**
          * Create if required and return a shared version of the camera.
          */
-        boost::shared_ptr<camera> get()
-        {
-            if( boost::shared_ptr<camera> p = inst_.lock() )
-            {            
-                // already exists outside of cfg
-                return p;
-            }
-            else
-            {
-                boost::shared_ptr<camera> r = boost::shared_ptr<camera>( new camera(frustum_) );
-                r->position(position_);                
-                r->zoom(zoom_);
-                r->rotation(rotation_);
-                inst_ = r;
-                return r;
-            }
-        }
+        boost::shared_ptr<camera> get();
         
     private:
+        configuration&           config_;
         size                     frustum_;
-        float                    rotation_;
-        float                    zoom_;
-        vector_2d                position_;
+        value_holder<float>      rotation_;
+        value_holder<float>      zoom_;
+        value_holder<vector_2d>  position_;
         boost::weak_ptr<camera>  inst_;
     };
     
@@ -281,17 +260,15 @@ namespace config {
     {
     public:  
         /**
-         * @param[in] res_man The resource manager (for cfg_base)
          * @param[in] cfg     Configuration object
          * @param[in] b       Viewport rectangle
          * @param[in] cam_key Camera configuration key (name) to use
          * @param[in] ci      Background color information
          */
-        viewport_cfg(resource_manager& res_man, configuration& cfg, 
-                     const rect& b, const std::string& cam_key, 
+        viewport_cfg(configuration& cfg, const rect& b, 
+                     const std::string& cam_key, 
                      const color_info& ci)
-        : cfg_base(res_man)
-        , config_(cfg)
+        : config_(cfg)
         , box_(b)
         , camera_key_(cam_key)
         , bg_color_(ci)
@@ -319,14 +296,12 @@ namespace config {
     {
     public:      
         /**
-         * @param[in] res_man       The resource manager (for cfg_base)
          * @param[in] k             Kernel object
          * @param[in] want_touch    true if touch input required; false otherwise
          * @param[in] want_accel    true if accelerometer input required; false otherwise
          */
-        input_cfg(resource_manager& res_man, kernel& k, bool want_touch, bool want_accel)
-        : cfg_base(res_man)
-        , kernel_(k)
+        input_cfg(kernel& k, bool want_touch, bool want_accel)
+        : kernel_(k)
         , want_touch_(want_touch)
         , want_accel_(want_accel)
         {            
@@ -367,18 +342,15 @@ namespace config {
     {
     public:        
         /**
-         * @param[in] res_man   The resource manager (for cfg_base)
          * @param[in] c         Configuration object
          * @param[in] k         Kernel object
          * @param[in] t         Object traits
          */
-        object_cfg(resource_manager& res_man, configuration& c, kernel& k, const object_traits& t)
-        : cfg_base(res_man)
-        , config_(c)
+        object_cfg(configuration& c, kernel& k, const object_traits& t)
+        : config_(c)
         , kernel_(k)
         , traits_(t)
         {        
-            LOG("Create new object config.");
         }
         
         /**
