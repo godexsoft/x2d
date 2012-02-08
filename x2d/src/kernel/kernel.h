@@ -107,8 +107,8 @@ namespace x2d
         
         // Signal exposure
         // TODO: priorities (by z?)
-        void connect_update( base_object* o );
-        void connect_render( base_object* o );
+        boost::signals::connection connect_update( base_object* o );
+        boost::signals::connection connect_render( base_object* o );
         void connect_touch_input( space s, base_object* o );
         
         time::clock& sys_clock() 

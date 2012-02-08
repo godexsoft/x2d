@@ -467,6 +467,7 @@ namespace config {
         if(parent) 
         {
             static_cast<object_cfg*>(&(*config_[parent->value()]))->add( key );
+            tr.has_parent = true;
         }
         
         xml_attr* position = node->first_attribute("position");

@@ -47,14 +47,14 @@ namespace x2d
         return boost::shared_ptr<viewport>(); // not found
     }
     
-    void kernel::connect_update( base_object* o )
+    boost::signals::connection kernel::connect_update( base_object* o )
     {
-        update_signal_.connect( boost::bind(&base_object::update, o, _1) );
+        return update_signal_.connect( boost::bind(&base_object::update, o, _1) );
     }
     
-    void kernel::connect_render( base_object* o )
+    boost::signals::connection kernel::connect_render( base_object* o )
     {
-        render_signal_.connect( boost::bind(&base_object::render, o, _1) );
+        return render_signal_.connect( boost::bind(&base_object::render, o, _1) );
     }
     
     void kernel::connect_touch_input( space s, base_object* o )

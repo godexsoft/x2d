@@ -39,13 +39,19 @@ namespace x2d {
         
         if(t.has_animation || t.has_sprite)
         {
-            connect_render();
+            if(!t.has_parent)
+            {
+                connect_render();
+            }
         }
         
         if(t.has_animation)
         {
             cur_animation_ = config_.get_object<animation>(t.animation);
-            connect_update(); // animation needs updating
+            if(!t.has_parent)
+            {
+                connect_update(); // animation needs updating
+            }
         }
         
         if(t.has_sprite)

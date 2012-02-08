@@ -23,6 +23,7 @@ namespace x2d
      * Base class for all objects in x2d
      */
     class base_object 
+    : public boost::signals::trackable // automatic management of slot connections
     {
         friend class kernel;
         
@@ -48,7 +49,8 @@ namespace x2d
          */
         void connect_update()
         {
-            kernel_.connect_update(this);
+            if(!update_connection_.connected())
+                update_connection_ = kernel_.connect_update(this);
         }
 
         /**
@@ -57,7 +59,8 @@ namespace x2d
          */
         void connect_render()
         {
-            kernel_.connect_render(this);
+            if(!render_connection_.connected())
+                render_connection_ = kernel_.connect_render(this);
         }        
 
         /**
@@ -104,6 +107,11 @@ namespace x2d
          * @see connect_touch_input
          */
         virtual void touch_input_ended(space s, const std::vector<touch>& touches) {}
+        
+    private:
+        boost::signals::connection update_connection_;
+        boost::signals::connection render_connection_;
+        boost::signals::connection touch_input_connection_;
     };
 
 } // namespace x2d

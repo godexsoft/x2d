@@ -40,6 +40,7 @@ namespace config {
         , has_animation(false)
         , has_sprite(false)
         , obj_space(WORLD_SPACE)
+        , has_parent(false)
         {            
         }
         
@@ -62,6 +63,7 @@ namespace config {
         
         // space
         space       obj_space;
+        bool        has_parent;
     };
     
     /**
@@ -84,6 +86,11 @@ namespace config {
         void add_child(const boost::shared_ptr<object>& child)
         {
             children_.push_back(child);
+
+            // Now connect update and render if we did not before.
+            // Need these connections to update children.
+            connect_update();
+            connect_render();
         }
         
         void position(const vector_2d& p)        
