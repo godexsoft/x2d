@@ -20,6 +20,7 @@
 #include "viewport.h"
 #include "input_manager.h"
 #include "space.h"
+#include "math_util.h"
 #include "log.h"
 
 namespace x2d 
@@ -33,10 +34,11 @@ namespace x2d
     class kernel
     {
     public:
-        typedef boost::signal<void (const clock_info&)> update_signal;        
-        typedef boost::signal<void (const clock_info&)> render_signal;        
+        typedef boost::signal<void (const clock_info&)>         update_signal;        
+        typedef boost::signal<void (const clock_info&)>         render_signal;        
         typedef boost::signal<void (const std::vector<touch>&)> touch_input_signal;        
-
+        typedef boost::signal<void (const vector_2d&)>          accel_input_signal;        
+        
         typedef std::deque<timer*> timer_container;
         
         kernel();
@@ -110,6 +112,7 @@ namespace x2d
         boost::signals::connection connect_update( base_object* o );
         boost::signals::connection connect_render( base_object* o );
         void connect_touch_input( space s, base_object* o );
+        void connect_accelerometer_input( base_object* o );
         
         time::clock& sys_clock() 
         { 
@@ -166,6 +169,14 @@ namespace x2d
             }
         }
         
+        inline void on_acceleration(float x, float y, float z)
+        {
+            if(input_man_)
+            {
+                input_man_->on_acceleration(x, y, z);
+            }
+        }
+        
         /**
          * Attach an input manager
          * @param[in] inp The input manager
@@ -178,6 +189,7 @@ namespace x2d
         void dispatch_touches_began(space s, const std::vector<touch>& touches);
         void dispatch_touches_moved(space s, const std::vector<touch>& touches);
         void dispatch_touches_ended(space s, const std::vector<touch>& touches);
+        void dispatch_accelerometer_input( const vector_2d& accel );
 
     private:                
         // system
@@ -194,6 +206,7 @@ namespace x2d
         render_signal       render_signal_;
         touch_input_signal  world_touches_began_signal_, world_touches_moved_signal_, world_touches_ended_signal_;
         touch_input_signal  screen_touches_began_signal_, screen_touches_moved_signal_, screen_touches_ended_signal_;
+        accel_input_signal  accel_input_signal_;
         
         // rendering
         typedef std::vector<boost::shared_ptr<object> >   obj_vec;

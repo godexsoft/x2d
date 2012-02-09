@@ -16,15 +16,15 @@ namespace base {
         glPushMatrix();
         glTranslatef(pos.x, pos.y, 0.0f);
         
-        float uv_width =  (size_.width * t_->max_s_)  / (t_->size_.width * t_->max_s_);
-        float uv_height = (size_.height * t_->max_t_) / (t_->size_.height * t_->max_t_);
+        float uv_width =  (size_.width * t_->max_s_) / (t_->size_.width * t_->max_s_) * t_->max_s_;
+        float uv_height = (size_.height * t_->max_t_) / (t_->size_.height * t_->max_t_) * t_->max_t_;
         
         float y_off = (origin_.y * t_->max_s_) / (t_->size_.width * t_->max_s_);
         float x_off = (origin_.x * t_->max_t_) / (t_->size_.height * t_->max_t_);
         
         float width_off = x_off + uv_width;
         float height_off = y_off + uv_height;
-        
+
         float coordinates[] = 
         {
             x_off,        height_off,
@@ -35,7 +35,7 @@ namespace base {
         
         float width = size_.width;
         float height = size_.height;
-        
+
         float vertices[] =
         {      
             -width / 2,     -height / 2,    0.0,

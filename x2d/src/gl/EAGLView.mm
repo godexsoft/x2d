@@ -72,6 +72,11 @@
         
         // init opengl
         graphics_engine::instance().init();
+        
+        // init accelerometer
+        UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
+        accel.delegate = self;
+        accel.updateInterval = 1.0f/60.0f;
 	}
 	
     return self;
@@ -144,6 +149,12 @@
     }
     
     _k->on_touches_ended( input_manager::transform(tchs, input_transform) );
+}
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer
+		didAccelerate:(UIAcceleration *)acceleration
+{
+    _k->on_acceleration(acceleration.x, acceleration.y, acceleration.z);
 }
 
 @end

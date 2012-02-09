@@ -10,7 +10,7 @@
 #import "kernel.h"
 #import "math_util.h"
 
-@interface EAGLView : UIView 
+@interface EAGLView : UIView <UIAccelerometerDelegate>
 {
     EAGLContext* context_;
     kernel*      _k;

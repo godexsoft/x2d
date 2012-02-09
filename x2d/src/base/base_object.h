@@ -64,13 +64,22 @@ namespace x2d
         }        
 
         /**
-         * Used to connect the touch_input function to the kernel.
+         * Used to connect the touch_input* functions to the kernel.
          * Should be invoked in the constructor of a child class.
          * Can be invoked multiple times, once for each space.
          */
         void connect_touch_input(space s)
         {
             kernel_.connect_touch_input(s, this);
+        }       
+
+        /**
+         * Used to connect the accelerometer_input function to the kernel.
+         * Should be invoked in the constructor of a child class.
+         */
+        void connect_accelerometer_input()
+        {
+            kernel_.connect_accelerometer_input(this);
         }       
         
         /**
@@ -108,10 +117,15 @@ namespace x2d
          */
         virtual void touch_input_ended(space s, const std::vector<touch>& touches) {}
         
+        /**
+         * Accelerometer input receiver.
+         * @see connect_accelerometer_input
+         */
+        virtual void accelerometer_input(const vector_2d& acceleration) {}
+        
     private:
         boost::signals::connection update_connection_;
         boost::signals::connection render_connection_;
-        boost::signals::connection touch_input_connection_;
     };
 
 } // namespace x2d

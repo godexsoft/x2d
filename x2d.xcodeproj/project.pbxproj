@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240F052414E40C86002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
+		240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		240F053014E41E30002AEEB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		240F053114E41E30002AEEB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		240F053214E41E30002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		240F053314E41E30002AEEB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		240F053414E41E30002AEEB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		240F054814E41F4A002AEEB2 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 240F054614E41F4A002AEEB2 /* AppDelegate.mm */; };
+		240F054E14E41F70002AEEB2 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 240F054C14E41F70002AEEB2 /* scene.cpp */; };
+		240F055414E41F85002AEEB2 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240F055014E41F85002AEEB2 /* demo.plist */; };
+		240F055514E41F85002AEEB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 240F055114E41F85002AEEB2 /* InfoPlist.strings */; };
+		240F055614E41F85002AEEB2 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 240F055314E41F85002AEEB2 /* main.mm */; };
+		240F055814E41F92002AEEB2 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 240F055714E41F92002AEEB2 /* resources.zip */; };
 		241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		241583C814D0B2DA0014F37B /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
 		241583C914D0B2DA0014F37B /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
@@ -154,6 +168,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		240F052814E41E30002AEEB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
 		241583D614D0B3940014F37B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
@@ -206,6 +227,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		240F053D14E41E30002AEEB2 /* x2d_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		240F054514E41F4A002AEEB2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = demo/AppDelegate.h; sourceTree = "<group>"; };
+		240F054614E41F4A002AEEB2 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = demo/AppDelegate.mm; sourceTree = "<group>"; };
+		240F054714E41F4A002AEEB2 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = demo/game.h; sourceTree = "<group>"; };
+		240F054914E41F5A002AEEB2 /* graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphics; path = demo/res/graphics; sourceTree = "<group>"; };
+		240F054A14E41F5A002AEEB2 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = demo/res/main.xml; sourceTree = "<group>"; };
+		240F054B14E41F70002AEEB2 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = demo/fps_counter.h; sourceTree = "<group>"; };
+		240F054C14E41F70002AEEB2 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = demo/scene.cpp; sourceTree = "<group>"; };
+		240F054D14E41F70002AEEB2 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = demo/scene.h; sourceTree = "<group>"; };
+		240F054F14E41F85002AEEB2 /* demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "demo-Prefix.pch"; path = "demo/demo-Prefix.pch"; sourceTree = "<group>"; };
+		240F055014E41F85002AEEB2 /* demo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = demo.plist; path = demo/demo.plist; sourceTree = "<group>"; };
+		240F055214E41F85002AEEB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = demo/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		240F055314E41F85002AEEB2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = demo/main.mm; sourceTree = "<group>"; };
+		240F055714E41F92002AEEB2 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = demo/resources.zip; sourceTree = "<group>"; };
 		2415837F14CDD9380014F37B /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = src/base/camera.h; sourceTree = "<group>"; };
 		2415838114CDD9DA0014F37B /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math_util.cpp; path = src/util/math_util.cpp; sourceTree = "<group>"; };
 		2415838814CE04990014F37B /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = src/base/texture.h; sourceTree = "<group>"; };
@@ -382,10 +417,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		240F052D14E41E30002AEEB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */,
+				240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */,
+				240F053014E41E30002AEEB2 /* QuartzCore.framework in Frameworks */,
+				240F053114E41E30002AEEB2 /* CoreGraphics.framework in Frameworks */,
+				240F053214E41E30002AEEB2 /* boost.framework in Frameworks */,
+				240F053314E41E30002AEEB2 /* UIKit.framework in Frameworks */,
+				240F053414E41E30002AEEB2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		241583BA14D0B27E0014F37B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240F052414E40C86002AEEB2 /* boost.framework in Frameworks */,
 				241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +541,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		240F054014E41E8C002AEEB2 /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				240F054514E41F4A002AEEB2 /* AppDelegate.h */,
+				240F054614E41F4A002AEEB2 /* AppDelegate.mm */,
+				240F054714E41F4A002AEEB2 /* game.h */,
+				240F054414E41EB1002AEEB2 /* resources */,
+				240F054314E41EAE002AEEB2 /* objects */,
+				240F054214E41EAB002AEEB2 /* Supporting Files */,
+				240F054114E41EA4002AEEB2 /* generated */,
+			);
+			name = demo;
+			sourceTree = "<group>";
+		};
+		240F054114E41EA4002AEEB2 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				240F055714E41F92002AEEB2 /* resources.zip */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
+		240F054214E41EAB002AEEB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				240F054F14E41F85002AEEB2 /* demo-Prefix.pch */,
+				240F055014E41F85002AEEB2 /* demo.plist */,
+				240F055114E41F85002AEEB2 /* InfoPlist.strings */,
+				240F055314E41F85002AEEB2 /* main.mm */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		240F054314E41EAE002AEEB2 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				240F054B14E41F70002AEEB2 /* fps_counter.h */,
+				240F054C14E41F70002AEEB2 /* scene.cpp */,
+				240F054D14E41F70002AEEB2 /* scene.h */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
+		240F054414E41EB1002AEEB2 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				240F054914E41F5A002AEEB2 /* graphics */,
+				240F054A14E41F5A002AEEB2 /* main.xml */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
 		241583F914D0B67C0014F37B /* objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,6 +1056,7 @@
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
+				240F054014E41E8C002AEEB2 /* demo */,
 				24BDCCA114CCF942006F36A1 /* 01_object */,
 				2467288914D6E574003AAA04 /* 02_config */,
 				2467296414D9EB95003AAA04 /* 03_animation */,
@@ -978,6 +1081,7 @@
 				244DDD3514DEFD8800F4E029 /* x2d_custobj.app */,
 				2487CA7A14E18137006A7E22 /* x2d_hud.app */,
 				2487CAEA14E290B0006A7E22 /* x2d_spawner.app */,
+				240F053D14E41E30002AEEB2 /* x2d_demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1147,6 +1251,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		240F052614E41E30002AEEB2 /* demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 240F053A14E41E30002AEEB2 /* Build configuration list for PBXNativeTarget "demo" */;
+			buildPhases = (
+				240F052914E41E30002AEEB2 /* Sources */,
+				240F052D14E41E30002AEEB2 /* Frameworks */,
+				240F053514E41E30002AEEB2 /* ShellScript */,
+				240F053614E41E30002AEEB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				240F052714E41E30002AEEB2 /* PBXTargetDependency */,
+			);
+			name = demo;
+			productName = x2d;
+			productReference = 240F053D14E41E30002AEEB2 /* x2d_demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		241583BC14D0B27E0014F37B /* libx2d */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 241583C514D0B27E0014F37B /* Build configuration list for PBXNativeTarget "libx2d" */;
@@ -1324,11 +1447,22 @@
 				244DDD1C14DEFD8800F4E029 /* 05_custobj */,
 				2487CA6214E18137006A7E22 /* 06_hud */,
 				2487CAD214E290B0006A7E22 /* 07_spawner */,
+				240F052614E41E30002AEEB2 /* demo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		240F053614E41E30002AEEB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				240F055414E41F85002AEEB2 /* demo.plist in Resources */,
+				240F055514E41F85002AEEB2 /* InfoPlist.strings in Resources */,
+				240F055814E41F92002AEEB2 /* resources.zip in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		241583E214D0B3940014F37B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1402,6 +1536,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		240F053514E41E30002AEEB2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd demo/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+		};
 		244DDD2C14DEFD8800F4E029 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1483,6 +1630,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		240F052914E41E30002AEEB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				240F054814E41F4A002AEEB2 /* AppDelegate.mm in Sources */,
+				240F054E14E41F70002AEEB2 /* scene.cpp in Sources */,
+				240F055614E41F85002AEEB2 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		241583B914D0B27E0014F37B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1590,6 +1747,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		240F052714E41E30002AEEB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 240F052814E41E30002AEEB2 /* PBXContainerItemProxy */;
+		};
 		241583D514D0B3940014F37B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
@@ -1628,6 +1790,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		240F055114E41F85002AEEB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				240F055214E41F85002AEEB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		241583EE14D0B4E20014F37B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1688,6 +1858,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		240F053B14E41E30002AEEB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
+				INFOPLIST_FILE = demo/demo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = x2d_demo;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		240F053C14E41E30002AEEB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
+				INFOPLIST_FILE = demo/demo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = x2d_demo;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		241583C614D0B27E0014F37B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1922,6 +2116,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		240F053A14E41E30002AEEB2 /* Build configuration list for PBXNativeTarget "demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				240F053B14E41E30002AEEB2 /* Debug */,
+				240F053C14E41E30002AEEB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		241583C514D0B27E0014F37B /* Build configuration list for PBXNativeTarget "libx2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

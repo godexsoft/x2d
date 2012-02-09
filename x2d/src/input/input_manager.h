@@ -108,6 +108,12 @@ namespace input {
          * @see kernel
          */
         void on_touches_ended(const std::vector<touch>& touches);
+
+        /**
+         * Called by the kernel when hardware accelerometer input arrive.
+         * @see kernel
+         */
+        void on_acceleration(float x, float y, float z);
         
         kernel&     kernel_;
         bool        want_touch_;

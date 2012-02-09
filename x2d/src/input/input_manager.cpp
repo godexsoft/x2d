@@ -103,6 +103,11 @@ namespace input {
         if(!touches_world.empty())        
             kernel_.dispatch_touches_ended(WORLD_SPACE,  touches_world);
     }
+    
+    void input_manager::on_acceleration(float x, float y, float z)
+    {
+        kernel_.dispatch_accelerometer_input( vector_2d(x, y) );
+    }
 
 } // namespace input
 } // namespace x2d

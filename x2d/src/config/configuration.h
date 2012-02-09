@@ -146,7 +146,7 @@ namespace config {
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
             {
-                return value_holder<T>(key / name, value_parser<T>::parse(node->value()));
+                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
             }
             else if(config_.find(key / name) != config_.end() )
             {
