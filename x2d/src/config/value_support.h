@@ -66,8 +66,8 @@ namespace config {
          */
         random_cfg(const vector_2d& min, const vector_2d& max)
         : gen_(platform::time::current_time())
-        , dist_x_(min.X(), max.X())
-        , dist_y_(min.Y(), max.Y())
+        , dist_x_(min.x(), max.x())
+        , dist_y_(min.y(), max.y())
         {
         }
         

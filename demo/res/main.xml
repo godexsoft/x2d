@@ -1,9 +1,21 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera" frustum="320 480" rotation="90" />    
-    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.1 0.1 0.1" />    
-    <input n="input" accelerometer="false" touch="true" />
+    <camera     n = "camera"
+          frustum = "320 480"  
+         rotation = "90" 
+    />    
+    
+    <viewport   n = "viewport" 
+              box = "0 0 320 480" 
+           camera = "camera" 
+          bgcolor = "0.1 0.1 0.1" 
+    />    
+    
+    <input      n = "input"
+    accelerometer = "false"          
+            touch = "true" 
+    />
     
     <!-- namespace for all textures and sprites -->
     <namespace n="graphics">
@@ -41,25 +53,25 @@
     <!-- end: graphics -->
     
     <!-- namespace for all animations -->
-    <namespace n="animations">
+    <namespace n = "animations">
         
         <!-- define the animation -->
-        <animation n="player" duration="0.1">
-            <frame n="frame_1" sprite="graphics.player.anim_1" />
-            <frame n="frame_2" sprite="graphics.player.anim_2" />
-            <frame n="frame_3" sprite="graphics.player.anim_3" />
-            <frame n="frame_4" sprite="graphics.player.anim_4" />
-            <frame n="frame_5" sprite="graphics.player.anim_5" />
-            <frame n="frame_6" sprite="graphics.player.anim_6" />
-            <frame n="frame_7" sprite="graphics.player.anim_7" />
-            <frame n="frame_8" sprite="graphics.player.anim_8" />
+        <animation n = "player" duration = "0.1">
+            <frame n = "frame_1" sprite = "graphics.player.anim_1" />
+            <frame n = "frame_2" sprite = "graphics.player.anim_2" />
+            <frame n = "frame_3" sprite = "graphics.player.anim_3" />
+            <frame n = "frame_4" sprite = "graphics.player.anim_4" />
+            <frame n = "frame_5" sprite = "graphics.player.anim_5" />
+            <frame n = "frame_6" sprite = "graphics.player.anim_6" />
+            <frame n = "frame_7" sprite = "graphics.player.anim_7" />
+            <frame n = "frame_8" sprite = "graphics.player.anim_8" />
         </animation>
         
     </namespace> 
     <!-- end: animations -->
     
     <!-- namespace for all objects -->
-    <namespace n="objects">
+    <namespace n = "objects">
 
         <object n       =   "background"             
             space       =   "camera"

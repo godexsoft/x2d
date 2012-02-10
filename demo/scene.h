@@ -49,11 +49,11 @@ private:
         {
             static vector_2d r(0,-1);
             
-            r = vector_2d ( lerp(r.X(), acceleration.X(), 0.1f), 
-                            lerp(r.Y(), acceleration.Y(), 0.1f) );
+            r = vector_2d ( lerp(r.x(), acceleration.x(), 0.1f), 
+                            lerp(r.y(), acceleration.y(), 0.1f) );
             
-            float d2 = r.X() * r.X() + r.Y() * r.Y();
-            float theta = (d2 == 0.0) ? 0.0 : atan2(r.Y(), r.X());                            
+            float d2 = r.x() * r.x() + r.y() * r.y();
+            float theta = (d2 == 0.0) ? 0.0 : atan2(r.y(), r.x());                            
             
             config_.get_object<camera>("camera")
                 ->rotation( to_deg( 1.570796327f + theta ) );

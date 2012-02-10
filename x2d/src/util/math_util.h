@@ -132,15 +132,46 @@ namespace math {
         inline operator const CGPoint() const { return CGPointMake(x_, y_); }
 #endif
         
-        inline const float X() const { return x_; };
-        inline const float Y() const { return y_; };
+        inline const float x() const { return x_; };
+        inline const float y() const { return y_; };
         
-        void X( float x ) { x_ = x; };
-        void Y( float y ) { y_ = y; };
+        void x( float xx ) { x_ = xx; };
+        void y( float yy ) { y_ = yy; };
         
     private:
         float x_;
         float y_;
+    };
+    
+    class vector_25d
+    : public vector_2d
+    {
+    public:
+        vector_25d()
+        : vector_2d(0.0f, 0.0f)
+        , z_(0.0f)
+        { 
+        }
+        
+        vector_25d(float x, float y, float z)
+        : vector_2d(x, y)
+        , z_(z)
+        { 
+        }
+        
+#ifdef __APPLE__
+        vector_25d(CGPoint point)
+        : vector_2d(point.x, point.y)
+        , z_(0.0f) 
+        { 
+        }
+#endif
+        
+        inline const float z() const { return z_; }
+        void z( float zz ) { z_ = zz; }
+        
+    private:
+        float z_;
     };
     
     
@@ -224,7 +255,7 @@ namespace math {
     
     inline vector_2d operator *(float t, const vector_2d& v) 
     {
-        return (vector_2d(t * v.X(), t * v.Y()));
+        return (vector_2d(t * v.x(), t * v.y()));
     }
             
     float to_rad( float deg );

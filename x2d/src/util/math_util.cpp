@@ -150,8 +150,8 @@ namespace math {
     {
         vector_2d o;
         
-        o.X( v.X() * d0 + v.Y() * d1 + d2 );
-        o.Y( v.X() * d3 + v.Y() * d4 + d5 );
+        o.x( v.x() * d0 + v.y() * d1 + d2 );
+        o.y( v.x() * d3 + v.y() * d4 + d5 );
         
         return o;
     }

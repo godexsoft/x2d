@@ -94,7 +94,7 @@ namespace x2d {
         glColor4f(1.0, 1.0, 1.0, 1.0);
         
         glPushMatrix();
-        glTranslatef(position_.X(), position_.Y(), 0.0f);
+        glTranslatef(position_.x(), position_.y(), 0.0f);
         
         if(rotation_ != 0.0f)
         {

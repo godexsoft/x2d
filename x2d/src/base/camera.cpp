@@ -15,13 +15,13 @@ namespace base {
     void camera::calculate_in_world(const boost::shared_ptr<object>& o)
     {
         // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
-        vector_2d vp( o->camera_space_position().X()*frustum_.width, o->camera_space_position().Y()*frustum_.height );
+        vector_2d vp( o->camera_space_position().x()*frustum_.width, o->camera_space_position().y()*frustum_.height );
         
         // revert all camera stuff
         affine_matrix m = affine_matrix::translation(-frustum_.width/2.0f, -frustum_.height/2.0f);
         m              *= affine_matrix::rotate( math::to_rad(360.0f-rotation_) );
         m              *= affine_matrix::scale(1.0f/zoom_, 1.0f/zoom_);
-        m              *= affine_matrix::translation(-position_.X(), -position_.Y());
+        m              *= affine_matrix::translation(-position_.x(), -position_.y());
         vp = m.apply(vp);
         
         float rot = 360.0f-rotation_;
