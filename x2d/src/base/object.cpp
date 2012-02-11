@@ -88,12 +88,7 @@ namespace x2d {
     }
     
     void object::render(const clock_info& clock)
-    {  
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
-        glColor4f(1.0, 1.0, 1.0, 1.0);
-        
+    {          
         glPushMatrix();
         glTranslatef(position_.x(), position_.y(), 0.0f);
         
@@ -107,6 +102,16 @@ namespace x2d {
             glScalef(scale_, scale_, 1.0f);
         }
         
+        // draw all children which are behind the parent 
+        // in current space (relative to this object)
+        std::for_each(std::find_if(children_.begin(), children_.end(), 
+            boost::bind(&vector_25d::z, boost::bind(&object::position_, _1)) > position_.z() ), children_.end(), 
+                boost::bind(&object::render, _1, clock) );
+       
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4f(1.0, 1.0, 1.0, 1.0);
+
         if(cur_animation_)
         {
             cur_animation_->draw_at_point(point(0, 0));
@@ -116,16 +121,18 @@ namespace x2d {
         {
             cur_sprite_->draw_at_point(point(0, 0));
         }
-        
-        // draw all children in current space (relative to this object)
-        std::for_each(children_.begin(), children_.end(), 
-            boost::bind(&object::render, _1, clock));
-        
-        glPopMatrix();        
-        
+
         glColor4f(1, 1, 1, 1);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);   
         glDisable(GL_BLEND);
+        
+        // draw all children which are in front of the parent 
+        // in current space (relative to this object)
+        std::for_each(std::find_if(children_.begin(), children_.end(), 
+            boost::bind(&vector_25d::z, boost::bind(&object::position_, _1)) < position_.z() ), children_.end(), 
+                boost::bind(&object::render, _1, clock) );        
+        
+        glPopMatrix();        
     }
 
 

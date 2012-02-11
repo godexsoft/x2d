@@ -59,9 +59,17 @@
         
         <object n="child" 
             parent="objects.player"
-            position="-50.0 -50.0"
+            position="-30.0 -30.0 0.1"
             rotation="180"
-            scale="0.2"
+            scale="0.7"
+            sprite="graphics.player.standing"
+        />
+        
+        <object n="child2" 
+            parent="objects.player"
+            position="30.0 30.0 -0.1"
+            rotation="180"
+            scale="0.7"
             sprite="graphics.player.standing"
         />
         

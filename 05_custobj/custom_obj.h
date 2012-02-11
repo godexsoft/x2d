@@ -26,8 +26,6 @@ public:
     : object(k, c, t)
     , li_(rotation_, 0.0f, 360.0f, 2.0f)
     {    
-        connect_update();
-        connect_render();  
     }
     
 private:
@@ -47,14 +45,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            LOG("NUM WORLD TOUCHES: %d", touches.size());
-            position_ = vector_2d( touches.at(0).location() );
-        }
-        else
-        {
-            LOG("NUM SCREEN TOUCHES: %d", touches.size());
-            point loc = touches.at(0).location();
-            LOG("Screen space received: %f %f", loc.x, loc.y);
+            position(vector_2d( touches.at(0).location() ));
         }
     }
     
@@ -62,7 +53,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            position_ = vector_2d( touches.at(0).location() );
+            position(vector_2d( touches.at(0).location() ));
         }
     }
 
