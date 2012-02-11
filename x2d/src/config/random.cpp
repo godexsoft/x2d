@@ -92,11 +92,37 @@ namespace config {
             throw parse_exception("Random must have 'to' defined.");
         }
         
-        vector_2d min = value_parser<vector_2d>::parse(from->value());
-        vector_2d max = value_parser<vector_2d>::parse(to->value());
+        vector_25d min = value_parser<vector_25d>::parse(from->value());
+        vector_25d max = value_parser<vector_25d>::parse(to->value());
         
-        config_[key] = boost::shared_ptr< value_cfg<vector_2d> >( new value_cfg<vector_2d>(
-            boost::shared_ptr< random_cfg<vector_2d> >( new random_cfg<vector_2d>(min, max) ) ) );
+        config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( new value_cfg<vector_25d>(
+            boost::shared_ptr< random_cfg<vector_25d> >( new random_cfg<vector_25d>(min, max) ) ) );
+    }
+    
+    template<>
+    void configuration::parse_random<vector_25d>(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // from: minimal value to generate
+        // to:   maximum value to generate
+        
+        xml_attr* from = node->first_attribute("from");
+        if(!from) 
+        {
+            throw parse_exception("Random must have 'from' defined.");
+        }
+        
+        xml_attr* to = node->first_attribute("to");
+        if(!to) 
+        {
+            throw parse_exception("Random must have 'to' defined.");
+        }
+        
+        vector_25d min = value_parser<vector_25d>::parse(from->value());
+        vector_25d max = value_parser<vector_25d>::parse(to->value());
+        
+        config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( new value_cfg<vector_25d>(
+            boost::shared_ptr< random_cfg<vector_25d> >( new random_cfg<vector_25d>(min, max) ) ) );
     }
 
 } // namespace config

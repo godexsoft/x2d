@@ -12,7 +12,7 @@
 namespace x2d {
 
     object_traits::object_traits()
-    : position("", vector_2d(0.0f,0.0f))
+    : position("", vector_25d(0.0f,0.0f,0.0f))
     , scale("", 0.0f)
     , rotation("", 0.0f)
     , want_screen_touch_input(false)
@@ -55,7 +55,8 @@ namespace x2d {
         {
             if(!t.has_parent)
             {
-                connect_render();
+                LOG("Connecting render: %f", position_.z());
+                connect_render(position_.z());
             }
         }
         

@@ -30,6 +30,15 @@ namespace config {
         
         return def_val_;
     }
+    
+    template<>
+    vector_25d value_holder<vector_25d>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<vector_25d>(key_);
+        
+        return def_val_;
+    }
             
 } // namespace config
 } // namespace x2d

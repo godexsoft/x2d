@@ -52,9 +52,9 @@ namespace x2d
         return update_signal_.connect( boost::bind(&base_object::update, o, _1) );
     }
     
-    boost::signals::connection kernel::connect_render( base_object* o )
+    boost::signals::connection kernel::connect_render( base_object* o, float z )
     {
-        return render_signal_.connect( boost::bind(&base_object::render, o, _1) );
+        return render_signal_.connect( z, boost::bind(&base_object::render, o, _1) );
     }
     
     void kernel::connect_touch_input( space s, base_object* o )

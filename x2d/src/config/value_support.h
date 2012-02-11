@@ -53,6 +53,41 @@ namespace config {
     };
     
     /**
+     * @brief '<random>' for vector_25d type config type support
+     */
+    template<>
+    class random_cfg<vector_25d>
+    : public cfg_base
+    { 
+    public:
+        /**
+         * @param[in] min     Min possible value to generate
+         * @param[in] max     Max possible value to generate
+         */
+        random_cfg(const vector_25d& min, const vector_25d& max)
+        : gen_(platform::time::current_time())
+        , dist_x_(min.x(), max.x())
+        , dist_y_(min.y(), max.y())
+        , dist_z_(min.z(), max.z())
+        {
+        }
+        
+        /**
+         * Return next random vector
+         */
+        vector_25d get()
+        {    
+            return vector_25d(dist_x_(gen_), dist_y_(gen_), dist_z_(gen_));
+        }
+        
+    private:        
+        boost::random::mt19937 gen_;
+        boost::random::uniform_real_distribution<> dist_x_;
+        boost::random::uniform_real_distribution<> dist_y_;
+        boost::random::uniform_real_distribution<> dist_z_;
+    };
+
+    /**
      * @brief '<random>' for vector_2d type config type support
      */
     template<>
@@ -84,7 +119,6 @@ namespace config {
         boost::random::uniform_real_distribution<> dist_x_;
         boost::random::uniform_real_distribution<> dist_y_;
     };
-
     
     /**
      * @brief Value config type support: <float>, <int>, etc.

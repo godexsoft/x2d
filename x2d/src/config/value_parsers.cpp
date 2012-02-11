@@ -88,6 +88,24 @@ namespace config {
     }
     
     template<>
+    vector_25d value_parser<vector_25d>::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        ss << str;
+        
+        float x, y, z;
+        ss >> x >> y;
+
+        if(!(ss >> z))
+        {
+            z = 0.0f;
+        }
+        
+        LOG("Parsed vector25d is %f/%f/%f", x, y, z);
+        return vector_25d(x, y, z);
+    }
+    
+    template<>
     vector_2d value_parser<vector_2d>::parse(const std::string& str)
     {
         std::stringstream ss;
@@ -95,7 +113,7 @@ namespace config {
         
         float x, y;
         ss >> x >> y;
-        
+
         return vector_2d(x, y);
     }
     

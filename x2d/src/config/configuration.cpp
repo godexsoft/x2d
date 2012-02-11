@@ -186,6 +186,13 @@ namespace config {
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
     
+    template <>
+    vector_25d configuration::get_value<vector_25d>(const config_key& key)
+    {
+        typedef value_cfg<vector_25d> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
     boost::shared_ptr<sprite> sprite_cfg::get()
     {
         if( boost::shared_ptr<sprite> p = inst_.lock() )

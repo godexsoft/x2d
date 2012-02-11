@@ -47,7 +47,7 @@ public:
         k.add_viewport(boost::shared_ptr<viewport>( new viewport(rect(0, 0, 320, 480), cam_) ));
         
         connect_update();
-        connect_render();        
+        connect_render(0.0f);        
     }
     
 private:

@@ -76,13 +76,13 @@
         <object n       =   "background"             
             space       =   "camera"
             sprite      =   "graphics.bg.background" 
-            position    =   "0.5 0.5"
+            position    =   "0.5 0.5 1.0"
             rotation    =   "90"
         />                
         
         <object n       =   "road"
             sprite      =   "graphics.scenary.road"
-            position    =   "0 -70"
+            position    =   "0 -70 0.1"
         />
         
         <object n       =   "player"             

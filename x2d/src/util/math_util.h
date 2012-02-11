@@ -169,7 +169,7 @@ namespace math {
         
         inline const float z() const { return z_; }
         void z( float zz ) { z_ = zz; }
-        
+      
     private:
         float z_;
     };

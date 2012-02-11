@@ -36,9 +36,9 @@ namespace config {
         object_traits();
         
         // basic object properties
-        value_holder<vector_2d> position;
-        value_holder<float>     scale;
-        value_holder<float>     rotation;
+        value_holder<vector_25d> position;
+        value_holder<float>      scale;
+        value_holder<float>      rotation;
         
         // input methods requested by object
         bool        want_screen_touch_input;
@@ -81,13 +81,22 @@ namespace config {
             // Now connect update and render if we did not before.
             // Need these connections to update children.
             connect_update();
-            connect_render();
+            
+            LOG("Connecting render: %f", position_.z());
+            connect_render(position_.z());
         }
         
-        void position(const vector_2d& p)        
+        void position(const vector_25d& p)        
         {
             position_ = p;
         }
+
+        void position(const vector_2d& p)        
+        {
+            position_.x(p.x());
+            position_.y(p.y());
+            // retain z value
+        }        
 
         void rotation(float a)        
         {
@@ -99,7 +108,7 @@ namespace config {
             scale_ = s;
         }
         
-        const vector_2d& camera_space_position() const
+        const vector_25d& camera_space_position() const
         {
             return camera_space_position_;
         }
@@ -126,8 +135,8 @@ namespace config {
         
         space       space_;
         
-        vector_2d   position_;
-        vector_2d   camera_space_position_; // used if space_ == CAMERA_SPACE
+        vector_25d  position_;
+        vector_25d  camera_space_position_; // used if space_ == CAMERA_SPACE
         
         float       scale_;
         float       camera_space_scale_; // used if space_ == CAMERA_SPACE

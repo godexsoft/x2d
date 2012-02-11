@@ -145,8 +145,8 @@ namespace config {
             
             if( data->type() == rx::node_data )
             {
-                config_[key] = boost::shared_ptr< value_cfg<vector_2d> >(
-                    new value_cfg<vector_2d>( value_parser<vector_2d>::parse(data->value())) );
+                config_[key] = boost::shared_ptr< value_cfg<vector_25d> >(
+                    new value_cfg<vector_25d>( value_parser<vector_25d>::parse(data->value())) );
             }
             else
             {
@@ -154,7 +154,7 @@ namespace config {
                 if( std::string("random") == data->name() )
                 {
                     LOG("Random detected.");
-                    parse_random<vector_2d>(data, key);
+                    parse_random<vector_25d>(data, key);
                 }
                 else
                 {
@@ -164,8 +164,8 @@ namespace config {
         }
         else
         {        
-            config_[key] = boost::shared_ptr< value_cfg<vector_2d> >( 
-                new value_cfg<vector_2d>( value_parser<vector_2d>::parse(value->value())) );
+            config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( 
+                new value_cfg<vector_25d>( value_parser<vector_25d>::parse(value->value())) );
         }
     }
 
@@ -508,7 +508,7 @@ namespace config {
             tr.has_parent = true;
         }
         
-        tr.position =   get_attr<vector_2d>(node, key, "position", vector_2d(0.0f, 0.0f));
+        tr.position =   get_attr<vector_25d>(node, key, "position", vector_25d(0.0f, 0.0f, 0.0f));
         tr.scale =      get_attr<float>(node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(node, key, "rotation", 0.0f);
         

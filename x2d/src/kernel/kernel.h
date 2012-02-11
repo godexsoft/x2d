@@ -33,9 +33,11 @@ namespace x2d
      */
     class kernel
     {
-    public:
-        typedef boost::signal<void (const clock_info&)>         update_signal;        
-        typedef boost::signal<void (const clock_info&)>         render_signal;        
+    public:        
+        typedef boost::signal<void(const clock_info&)>          update_signal;        
+        typedef boost::signal<void(const clock_info&), 
+            boost::last_value<boost::function_traits<void(const clock_info&)>::result_type>,
+            float, std::greater<float> >                        render_signal;        
         typedef boost::signal<void (const std::vector<touch>&)> touch_input_signal;        
         typedef boost::signal<void (const vector_2d&)>          accel_input_signal;        
         
@@ -108,9 +110,8 @@ namespace x2d
         void sys_timer_handler(const clock_info& ci);
         
         // Signal exposure
-        // TODO: priorities (by z?)
         boost::signals::connection connect_update( base_object* o );
-        boost::signals::connection connect_render( base_object* o );
+        boost::signals::connection connect_render( base_object* o, float z );
         void connect_touch_input( space s, base_object* o );
         void connect_accelerometer_input( base_object* o );
         

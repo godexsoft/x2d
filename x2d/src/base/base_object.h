@@ -56,11 +56,12 @@ namespace x2d
         /**
          * Used to connect the render function to the kernel.
          * Should be invoked in the constructor of a child class.
+         * @param[in] z The priority. The bigger z is the faster it will get rendered
          */
-        void connect_render()
+        void connect_render(float z)
         {
             if(!render_connection_.connected())
-                render_connection_ = kernel_.connect_render(this);
+                render_connection_ = kernel_.connect_render(this, z);
         }        
 
         /**
