@@ -23,9 +23,30 @@ namespace config {
 
     /**
      * @brief '<random>' config type support
+     * Note: the default template generates no random numbers.
+     * Only certain types are supported with random.
      */
     template<typename T>
     class random_cfg
+    : public cfg_base
+    { 
+    public:
+        random_cfg(const T& min, const T& max)
+        {
+        }
+        
+        T get()
+        {    
+            throw sys_exception("Random is not supported for this type.");
+        }
+    };
+
+    
+    /**
+     * @brief '<random>' for int type config type support
+     */
+    template<>
+    class random_cfg<int>
     : public cfg_base
     { 
     public:
@@ -33,7 +54,7 @@ namespace config {
          * @param[in] min     Min possible value to generate
          * @param[in] max     Max possible value to generate
          */
-        random_cfg(const T& min, const T& max)
+        random_cfg(const int& min, const int& max)
         : gen_(platform::time::current_time())
         , dist_(min, max)
         {
@@ -42,7 +63,39 @@ namespace config {
         /**
          * Return next random value
          */
-        T get()
+        int get()
+        {    
+            return dist_(gen_);
+        }
+        
+    private:        
+        boost::random::mt19937 gen_;
+        boost::random::uniform_int_distribution<> dist_;
+    };
+
+    
+    /**
+     * @brief '<random>' for float type config type support
+     */
+    template<>
+    class random_cfg<float>
+    : public cfg_base
+    { 
+    public:
+        /**
+         * @param[in] min     Min possible value to generate
+         * @param[in] max     Max possible value to generate
+         */
+        random_cfg(const float& min, const float& max)
+        : gen_(platform::time::current_time())
+        , dist_(min, max)
+        {
+        }
+        
+        /**
+         * Return next random value
+         */
+        float get()
         {    
             return dist_(gen_);
         }

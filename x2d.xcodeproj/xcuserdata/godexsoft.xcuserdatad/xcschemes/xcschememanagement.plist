@@ -39,10 +39,15 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
-		<key>demo.xcscheme</key>
+		<key>08_font.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
+		</dict>
+		<key>demo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
@@ -103,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>2487CAD214E290B0006A7E22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2487CB6814E6F7BC006A7E22</key>
 		<dict>
 			<key>primary</key>
 			<true/>

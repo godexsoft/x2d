@@ -155,10 +155,29 @@ namespace config {
             
             return value_holder<T>("", default_value);
         }
-        
+
+        // getting mandatory attribute
+        template<typename T>
+        value_holder<T> get_mandatory_attr(xml_node* node, const config_key& key, 
+                                           const std::string& name, const std::exception& e)
+        {
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
+            }
+            else if(config_.find(key / name) != config_.end() )
+            {
+                return value_holder<T>(key / name, T());
+            }
+            
+            throw e;
+        }
+
         // parsers for primitive value types
         void parse_float(xml_node* node, const config_key& key);
         void parse_int(xml_node* node, const config_key& key);
+        void parse_string(xml_node* node, const config_key& key);
         void parse_vector(xml_node* node, const config_key& key);
         
         template<typename T>
@@ -176,7 +195,8 @@ namespace config {
         void parse_sprite(xml_node* node, const config_key& key);
         void parse_animation(xml_node* node, const config_key& key);
         void parse_frame(xml_node* node, const config_key& key);
-
+        void parse_font(xml_node* node, const config_key& key);
+        
         // objects
         void parse_object(xml_node* node, const config_key& key);
         

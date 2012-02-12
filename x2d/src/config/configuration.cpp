@@ -22,6 +22,7 @@ namespace config {
         // add supported parsers
         parsers_["float"]       = boost::bind(&configuration::parse_float, this, _1, _2);
         parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
+        parsers_["string"]      = boost::bind(&configuration::parse_string, this, _1, _2);
         parsers_["vector"]      = boost::bind(&configuration::parse_vector, this, _1, _2);
         
         parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
@@ -34,6 +35,7 @@ namespace config {
         parsers_["sprite"]      = boost::bind(&configuration::parse_sprite, this, _1, _2);
         parsers_["animation"]   = boost::bind(&configuration::parse_animation, this, _1, _2);
         parsers_["frame"]       = boost::bind(&configuration::parse_frame, this, _1, _2);
+        parsers_["font"]        = boost::bind(&configuration::parse_font, this, _1, _2);
         
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
         
@@ -163,6 +165,12 @@ namespace config {
     {
         return static_cast<viewport_cfg*>( &(*config_[key]) )->get();
     }
+
+    template <>
+    boost::shared_ptr<font> configuration::get_object<font>(const config_key& key)
+    {
+        return static_cast<font_cfg*>( &(*config_[key]) )->get();
+    }
     
     // getters for primitive metrics
     template <>
@@ -179,6 +187,41 @@ namespace config {
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
 
+    template <>
+    point configuration::get_value<point>(const config_key& key)
+    {
+        typedef value_cfg<point> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    size configuration::get_value<size>(const config_key& key)
+    {
+        typedef value_cfg<size> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    rect configuration::get_value<rect>(const config_key& key)
+    {
+        typedef value_cfg<rect> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
+    std::string configuration::get_value<std::string>(const config_key& key)
+    {
+        typedef value_cfg<std::string> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
+    color_info configuration::get_value<color_info>(const config_key& key)
+    {
+        typedef value_cfg<color_info> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
     template <>
     vector_2d configuration::get_value<vector_2d>(const config_key& key)
     {
@@ -270,6 +313,23 @@ namespace config {
                     new viewport( box_, config_.get_object<camera>(camera_key_), bg_color_ ) );
             inst_ = r;
             return r;
+        }
+    }
+    
+    boost::shared_ptr<font> font_cfg::get()
+    {
+        if( boost::shared_ptr<font> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<font> f = 
+                boost::shared_ptr<font>(
+                    new font( characters_, widths_, height_, spacing_, config_.get_object<texture>(texture_) ) );
+            inst_ = f;
+            return f;
         }
     }
     

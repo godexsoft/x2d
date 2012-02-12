@@ -15,6 +15,7 @@
 #include "filesystem.h"
 #include "sprite.h"
 #include "animation.h"
+#include "font.h"
 #include "camera.h"
 #include "viewport.h"
 #include "input_manager.h"
@@ -210,6 +211,50 @@ namespace config {
         float                       duration_;
         std::vector<frame_cfg>      frames_;
         boost::weak_ptr<animation>  inst_;
+    };
+    
+    /**
+     * @brief Support for '<font>' configuration node.
+     */ 
+    class font_cfg
+    : public cfg_base
+    {
+    public:  
+        /**
+         * @param[in] cfg     Configuration object
+         * @param[in] h       Height of the font
+         * @param[in] s       Spacing on x and y
+         * @param[in] tk      Texture key
+         * @param[in] ch      Characters supported by this font         
+         * @param[in] wid     Width of each character
+         */
+        font_cfg(configuration& cfg,
+                 int h, const size& s,
+                 const std::string& tk,
+                 const std::string& ch,
+                 const std::vector<int>& wid)
+        : config_(cfg)
+        , height_(h)
+        , spacing_(s)        
+        , texture_(tk)
+        , characters_(ch)
+        , widths_(wid)
+        {            
+        }
+        
+        /**
+         * Create if required and return a shared version of the font.
+         */
+        boost::shared_ptr<font> get();
+        
+    private:
+        configuration&             config_;
+        int                        height_;
+        size                       spacing_;
+        std::string                texture_;
+        std::string                characters_;
+        std::vector<int>           widths_;
+        boost::weak_ptr<font>      inst_;
     };
     
     /**

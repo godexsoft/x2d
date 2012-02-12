@@ -177,6 +177,12 @@ namespace math {
     
     struct size
     {
+        size()
+        : width(0.0f)
+        , height(0.0f)
+        {            
+        }
+        
         size(float w, float h)
         : width(w)
         , height(h)
@@ -201,6 +207,12 @@ namespace math {
     
     struct point
     {
+        point()
+        : x(0.0f)
+        , y(0.0f)
+        {            
+        }
+        
         point(float ix, float iy)
         : x(ix)
         , y(iy)
@@ -233,7 +245,12 @@ namespace math {
         
         inline operator CGRect() { return CGRectMake(origin.x, origin.y, size.width, size.height); }
         inline operator const CGRect() const { return CGRectMake(origin.x, origin.y, size.width, size.height); }
-#endif
+#endif  
+        
+        rect()
+        {            
+        }
+        
         rect(float x, float y, float width, float height)
         : origin(x, y)
         , size(width, height)

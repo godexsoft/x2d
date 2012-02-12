@@ -168,18 +168,51 @@ namespace config {
                 new value_cfg<vector_25d>( value_parser<vector_25d>::parse(value->value())) );
         }
     }
+    
+    void configuration::parse_string(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:      name
+        // can have:
+        // value:  the value
+        // or value can be provided as child
 
+        LOG("Parsing n in string");
+        std::string n = get_mandatory_attr<std::string>(node, key, "n",
+            parse_exception("String type must have 'n' defined.")).get(*this);
+
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node()) 
+        {
+            throw parse_exception("String must have either 'value' or inner data defined.");
+        }
+        
+        if(!value)
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data || data->type() == rx::node_cdata)
+            {
+                config_[key] = boost::shared_ptr< value_cfg<std::string> >(
+                    new value_cfg<std::string>( value_parser<std::string>::parse(data->value())) );
+            }
+            else
+            {
+                throw parse_exception("Data element of String must be plain value or CDATA.");
+            }
+        }
+        else
+        {        
+            config_[key] = boost::shared_ptr< value_cfg<std::string> >( 
+                new value_cfg<std::string>( value_parser<std::string>::parse(value->value())) );
+        }
+    }    
+    
     void configuration::parse_namespace(xml_node* node, const config_key& key)
     {
         // must have:
         // n: name of the namespace
-        
-        xml_attr* path = node->first_attribute("n");
-        if(!path) 
-        {
-            throw parse_exception("Namespace must have 'n' defined.");
-        }
-        
+
         // No need to do anything :)
     }
     
@@ -188,14 +221,11 @@ namespace config {
         // must have:
         // path:    path to other configuration file
         
-        xml_attr* path = node->first_attribute("path");
-        if(!path) 
-        {
-            throw parse_exception("Include must have 'path' defined.");
-        }
+        std::string path = get_mandatory_attr<std::string>(node, key, "path",
+            parse_exception("Include type must have 'path' defined.")).get(*this);
         
         // parse the whole config into this configuration
-        parse_file( path->value() );
+        parse_file( path );
     }
     
     void configuration::parse_texture(xml_node* node, const config_key& key)
@@ -204,19 +234,10 @@ namespace config {
         // n:       name of the element
         // path:    path to texture file
         
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Texture type must have 'n' defined.");
-        }
+        std::string path = get_mandatory_attr<std::string>(node, key, "path",
+            parse_exception("Texture type must have 'path' defined.")).get(*this);
         
-        xml_attr* path = node->first_attribute("path");
-        if(!path) 
-        {
-            throw parse_exception("Texture type must have 'path' defined.");
-        }
-        
-        config_[key] = boost::shared_ptr<texture_cfg>( new texture_cfg(res_man_, path->value()) );
+        config_[key] = boost::shared_ptr<texture_cfg>( new texture_cfg(res_man_, path) );
     }
     
     void configuration::parse_sprite(xml_node* node, const config_key& key)
@@ -228,36 +249,18 @@ namespace config {
         // w: width of sprite
         // h: height of sprite
         
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Sprite type must have 'n' defined.");
-        }
+        int x = get_mandatory_attr<int>(node, key, "x",
+            parse_exception("Sprite type must have 'x' defined.")).get(*this);
         
-        xml_attr* x = node->first_attribute("x");
-        if(!x) 
-        {
-            throw parse_exception("Sprite type must have 'x' defined.");
-        }
+        int y = get_mandatory_attr<int>(node, key, "y",
+            parse_exception("Sprite type must have 'y' defined.")).get(*this);
         
-        xml_attr* y = node->first_attribute("y");
-        if(!y) 
-        {
-            throw parse_exception("Sprite type must have 'y' defined.");
-        }
+        int w = get_mandatory_attr<int>(node, key, "w",
+            parse_exception("Sprite type must have 'w' defined.")).get(*this);
         
-        xml_attr* w = node->first_attribute("w");
-        if(!w) 
-        {
-            throw parse_exception("Sprite type must have 'w' defined.");
-        }
-        
-        xml_attr* h = node->first_attribute("h");
-        if(!h) 
-        {
-            throw parse_exception("Sprite type must have 'h' defined.");
-        }
-        
+        int h = get_mandatory_attr<int>(node, key, "h",
+            parse_exception("Sprite type must have 'h' defined.")).get(*this);
+
         // parent must be a texture
         xml_node* parent = node->parent();
         if(! parent || std::string("texture") != parent->name())
@@ -267,16 +270,9 @@ namespace config {
         
         config_key parent_key = key.remove_last_path_component();        
 
-        // TODO: why not have it as box="x y w h" ?        
-        int xval, yval, wval, hval;
-        xval = value_parser<int>::parse(x->value());
-        yval = value_parser<int>::parse(y->value());
-        wval = value_parser<int>::parse(w->value());
-        hval = value_parser<int>::parse(h->value());
-        
         config_[key] =  boost::shared_ptr<sprite_cfg>( 
             new sprite_cfg(*this, parent_key, 
-                point(xval, yval), size(wval, hval)) );
+                point(x, y), size(w, h)) );
     }
 
     void configuration::parse_animation(xml_node* node, const config_key& key)
@@ -285,17 +281,8 @@ namespace config {
         // n:        name of the element
         // duration: default duration for every frame
         
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Animation type must have 'n' defined.");
-        }
-        
-        xml_attr* dur = node->first_attribute("duration");
-        if(!dur) 
-        {
-            throw parse_exception("Animation type must have 'duration' defined.");
-        }
+        float dur = get_mandatory_attr<float>(node, key, "duration",
+            parse_exception("Animation type must have 'duration' defined.")).get(*this);
 
         if( config_.find(key) == config_.end() )
         {
@@ -306,7 +293,7 @@ namespace config {
         {
             // Set duration
             static_cast<animation_cfg*>(&(*config_[key]))
-                ->set_duration( value_parser<float>::parse(dur->value()) );   
+                ->set_duration(dur);   
         }
     }
     
@@ -318,18 +305,9 @@ namespace config {
         // can have:
         // duration: duration for this frame
         
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Frame type must have 'n' defined.");
-        }
-        
-        xml_attr* spr = node->first_attribute("sprite");
-        if(!spr) 
-        {
-            throw parse_exception("Frame type must have 'sprite' defined.");
-        }
-        
+        std::string spr = get_mandatory_attr<std::string>(node, key, "sprite",
+            parse_exception("Frame type must have 'sprite' defined.")).get(*this);
+
         // parent must be an animation
         xml_node* parent = node->parent();
         if(! parent || std::string("animation") != parent->name())
@@ -351,13 +329,58 @@ namespace config {
         {
             // add this frame with custom duration
             static_cast<animation_cfg*>(&(*config_[parent_key]))->add( 
-                frame_cfg(spr->value(), value_parser<float>::parse(dur->value())) );   
+                frame_cfg(spr, value_parser<float>::parse(dur->value())) );   
         }
         else
         {
             // add this frame
-            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr->value()) );
+            static_cast<animation_cfg*>(&(*config_[parent_key]))->add( frame_cfg(spr) );
         }
+    }
+    
+    void configuration::parse_font(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:          name of the element
+        // height:     height of the font
+        // spacing:    spacing between sprites
+        // texture:    texture object key
+        // characters: the characters supported by this font
+        // widths:     list of widths per character (given as string with spaces)
+        
+        int height = get_mandatory_attr<int>(node, key, "height",
+            parse_exception("Font type must have 'height' defined.")).get(*this);
+        
+        size spacing = get_mandatory_attr<size>(node, key, "spacing", 
+            parse_exception("Font type must have 'spacing' defined.")).get(*this);
+        
+        std::string txtr = get_mandatory_attr<std::string>(node, key, "texture", 
+            parse_exception("Font type must have 'texture' defined.")).get(*this);
+        
+        std::string characters = get_mandatory_attr<std::string>(node, key, "characters", 
+            parse_exception("Font type must have 'characters' defined.")).get(*this);
+        
+        std::string widths = get_mandatory_attr<std::string>(node, key, "widths",
+            parse_exception("Font type must have 'widths' defined.")).get(*this);
+
+        // get vector of ints out of string widths
+        int v;
+        std::vector<int> widths_vec;
+
+        std::stringstream ss;
+        ss << widths;
+        
+        while( ss >> v )
+        {
+            widths_vec.push_back(v);
+        }
+        
+        LOG("Parsed %d widths from font.widths string.", widths_vec.size());
+        
+        config_[key] =  
+            boost::shared_ptr<font_cfg>( 
+                new font_cfg(*this, height, spacing, txtr, characters, widths_vec));
+
     }
     
     void configuration::parse_camera(xml_node* node, const config_key& key)
@@ -370,24 +393,13 @@ namespace config {
         // rotation: initial rotation (defaults to 0.0)
         // zoom:     initial zoom (defaults to 1.0)
         // position: initial position (defaults to 0,0)
-        
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Camera type must have 'n' defined.");
-        }
-        
-        xml_attr* frustum = node->first_attribute("frustum");
-        if(!frustum) 
-        {
-            throw parse_exception("Camera type must have 'frustum' defined (format: 'width height').");
-        }
-
-        size frus = value_parser<size>::parse(frustum->value());
+               
+        size frustum = get_mandatory_attr<size>(node, key, "frustum",
+            parse_exception("Camera type must have 'frustum' defined (format: 'width height').")).get(*this);
 
         config_[key] =  
             boost::shared_ptr<camera_cfg>( 
-                new camera_cfg(*this, frus, 
+                new camera_cfg(*this, frustum, 
                     get_attr<float>(node, key, "rotation", 0.0f),
                     get_attr<float>(node, key, "zoom", 1.0f), 
                     get_attr<vector_2d>(node, key, "position", vector_2d(0.0f, 0.0f))) );
@@ -402,37 +414,18 @@ namespace config {
         //
         // can have:
         // bgcolor:  background color. defaults to black.
-        
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Viewport type must have 'n' defined.");
-        }
-        
-        xml_attr* box = node->first_attribute("box");
-        if(!box) 
-        {
-            throw parse_exception("Viewport type must have 'box' defined (format: 'x y width height').");
-        }
 
-        xml_attr* cam = node->first_attribute("camera");
-        if(!cam) 
-        {
-            throw parse_exception("Viewport type must have 'camera' defined.");
-        }
+        rect box = get_mandatory_attr<rect>(node, key, "box",
+            parse_exception("Viewport type must have 'box' defined (format: 'x y width height').")).get(*this);
 
-        color_info ci(0.0f, 0.0f, 0.0f);
-        rect bx = value_parser<rect>::parse(box->value());        
+        std::string cam = get_mandatory_attr<std::string>(node, key, "camera",
+            parse_exception("Viewport type must have 'camera' defined.")).get(*this);
         
-        xml_attr* bg = node->first_attribute("bgcolor");
-        if(bg) 
-        {
-            ci = value_parser<color_info>::parse(bg->value());
-        }
+        color_info ci = get_attr<color_info>(node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f)).get(*this);
         
         boost::shared_ptr<viewport_cfg> vp = 
             boost::shared_ptr<viewport_cfg>( new viewport_cfg(
-                *this, bx, cam->value(), ci) );
+                *this, box, cam, ci) );
         
         config_[key] = vp;
         
@@ -448,13 +441,7 @@ namespace config {
         // can have:
         // touch:           boolean; enable/disable touch input. defaults to true
         // accelerometer:   boolean; enable/disable accelerometer input. defaults to false
-        
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Input type must have 'n' defined.");
-        }
-        
+                
         bool want_touch = true;
         xml_attr* tch = node->first_attribute("touch");
         if(tch) 
@@ -492,12 +479,6 @@ namespace config {
         // sprite:    sprite to draw
         // animation: animation to draw        
         // space:     'world' (default), 'screen' or 'camera' space
-        
-        xml_attr* name = node->first_attribute("n");
-        if(!name) 
-        {
-            throw parse_exception("Object type must have 'n' defined.");
-        }
         
         object_traits tr;
         

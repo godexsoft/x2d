@@ -23,6 +23,60 @@ namespace config {
     }
 
     template<>
+    int value_holder<int>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<int>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
+    std::string value_holder<std::string>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<std::string>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
+    point value_holder<point>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<point>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
+    size value_holder<size>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<size>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
+    rect value_holder<rect>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<rect>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
+    color_info value_holder<color_info>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<color_info>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
     vector_2d value_holder<vector_2d>::get(configuration& c) const
     {
         if(!key_.empty() && c.exists(key_))

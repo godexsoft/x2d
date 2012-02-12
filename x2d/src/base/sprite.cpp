@@ -16,11 +16,16 @@ namespace base {
         glPushMatrix();
         glTranslatef(pos.x, pos.y, 0.0f);
         
-        float uv_width =  (size_.width * t_->max_s_) / (t_->size_.width * t_->max_s_) * t_->max_s_;
-        float uv_height = (size_.height * t_->max_t_) / (t_->size_.height * t_->max_t_) * t_->max_t_;
+        float uv_width =  size_.width / t_->width_;
+        float uv_height = size_.height / t_->height_;
         
-        float y_off = (origin_.y * t_->max_s_) / (t_->size_.width * t_->max_s_);
-        float x_off = (origin_.x * t_->max_t_) / (t_->size_.height * t_->max_t_);
+        float x_off = origin_.x / t_->width_;
+        float y_off = origin_.y / t_->height_;
+
+        // 14/512 = width of sprite 0.027343
+        // 32/512 = offset_x 0.0625
+        // 0.0625 + 0.027343 = 0.089843
+        // 512 * 0.089843 = 46
         
         float width_off = x_off + uv_width;
         float height_off = y_off + uv_height;
