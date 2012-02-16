@@ -11,6 +11,7 @@
         <!-- define our texture and sprites -->
         <texture n="degrassi" path="res/fonts/degrassi.png" />        
         <texture n="sony_sketch" path="res/fonts/sony_sketch.png" />        
+        <texture n="sony_sketch_stroked" path="res/fonts/sony_sketch_stroked.png" />        
         
     </namespace> 
     <!-- end: graphics -->
@@ -49,6 +50,24 @@
             </string>
         </font>        
         
+        <font    n = "sony_sketch_stroked"
+            height = "32"
+            spacing = "2 2" 
+            texture = "graphics.sony_sketch_stroked" 
+            >
+            <string n = "characters">
+                <![CDATA[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~]]>
+            </string>
+            
+            <string n = "widths">
+                12 12 13 22 19 27 22 11 14 13 16 19 11 14 11 18 20 16 20 19 19 20 
+                20 20 20 20 11 11 19 19 19 18 24 22 20 19 20 19 19 20 20 12 14 20 
+                19 24 20 20 20 20 20 19 18 20 22 25 21 21 19 13 17 13 16 20 13 19 
+                19 17 19 19 14 19 19 11 14 18 12 23 18 19 19 19 14 18 14 19 20 23 
+                18 19 19 14 15 14 22
+            </string>
+        </font>        
+
     </namespace>
     <!-- end: fonts -->
     

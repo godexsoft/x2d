@@ -15,6 +15,7 @@
 #import "resource_manager.h"
 #import "platform.h"
 #import "texture.h"
+#import "sound.h"
 
 #import <QuartzCore/QuartzCore.h>
 #include <iostream>
@@ -42,6 +43,9 @@ namespace fs = x2d::filesystem;
 
     // mount resources
     _lvp_man.mount("resources.zip", "res");
+    
+    // init sound
+    sound_engine::instance();
     
     // create game
     try 

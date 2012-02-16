@@ -61,6 +61,11 @@ namespace config {
          */
         configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path);
         
+        resource_manager& resman() const
+        {
+            return res_man_;
+        }
+        
         /**
          * Bind c++ type to configuration key
          * @param[in] key Configuration key
