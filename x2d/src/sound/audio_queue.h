@@ -57,6 +57,8 @@ namespace snd {
         void reset();
         bool is_playing() const;
         
+        void on_volume_change();
+        
     private:
         
         static void buffer_cb(   void *user_data, AudioQueueRef aq, AudioQueueBufferRef buf)
@@ -126,22 +128,10 @@ namespace snd_driver {
     public:
         audio_queue_driver();
         ~audio_queue_driver();
-        
-        void master_volume(float v);
-        void music_volume(float v);
-        void sfx_volume(float v);
-        
-        const float master_volume() const;
-        const float music_volume() const;
-        const float sfx_volume() const;
-        
+                
     private:
         ALCdevice	*device_;
         ALCcontext  *context_;
-        
-        float master_volume_;
-        float music_volume_;
-        float sfx_volume_;        
     };
     
 } // namespace snd_driver

@@ -23,14 +23,8 @@ namespace config {
     
     template<>
     bool value_parser<bool>::parse(const std::string& str)
-    {
-        std::stringstream ss;
-        ss << str;
-        
-        bool b;
-        ss >> b;
-        
-        return b;
+    {        
+        return str=="true" || str=="1" || str=="yes" || str=="y";
     }
     
     template<>

@@ -25,9 +25,22 @@ namespace x2d {
 namespace snd {
     
     /**
+     * @brief Base class for both music and sfx
+     */
+    struct sound
+    {    
+        sound();
+        virtual ~sound();        
+        
+        // update from the engine
+        virtual void on_volume_change() = 0;
+    };
+    
+    /**
      * @brief Sound effect resource
      */
     class sfx
+    : public sound
     {
     public:
         sfx(configuration& conf, const boost::shared_ptr<ifdstream>& ifd, 
@@ -40,6 +53,9 @@ namespace snd {
         
         void play();
         
+        // updates
+        void on_volume_change() { obj_->on_volume_change(); }
+        
     private:
         configuration&                               conf_;
         boost::shared_ptr< sfx_obj<X2D_SND_DRIVER> > obj_;
@@ -50,18 +66,23 @@ namespace snd {
      * @brief Background music resource
      */
     class music
+    : public sound
     {
     public:
         music(const boost::shared_ptr<ifdstream>& ifd, bool loop, float gain)        
         : obj_( new music_obj<X2D_SND_DRIVER>( ifd, loop, gain ) )
         {         
             LOG("Music resource volume level: %f", gain);
+            LOG("Music resource loop: %s", loop?"yes":"no");
         }
         
         void play() 
         {
             obj_->play();
         }
+        
+        // updates
+        void on_volume_change() { obj_->on_volume_change(); }
         
     private:
         boost::shared_ptr< music_obj<X2D_SND_DRIVER> > obj_;

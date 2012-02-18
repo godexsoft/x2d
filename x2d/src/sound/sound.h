@@ -25,20 +25,18 @@
 
 namespace x2d {
 namespace snd {
-
+    
+    class sound;
+    
     /**
      * @brief Common sound engine
      */
     class sound_engine_bare
     {
-    public:
-        void play( const std::string& file_path );                
+        friend class sound;
+        friend class boost::details::pool::singleton_default<sound_engine_bare>;
         
-        void stop();
-        void pause();
-        void resume();
-        void reset();
-
+    public:
         void master_volume(float v);
         void music_volume(float v);
         void sfx_volume(float v);
@@ -47,9 +45,34 @@ namespace snd {
         const float music_volume() const;
         const float sfx_volume() const;
         
-    private:        
+    private:
+        sound_engine_bare()
+        : master_volume_(1.0f)
+        , music_volume_(1.0f)
+        , sfx_volume_(1.0f)
+        {            
+        }
+        
+        // register sfx/music
+        void reg(sound* p)
+        {
+            active_objects_.push_back(p);
+        }
+        
+        // deregister sfx/music
+        void unreg(sound* p)
+        {
+            active_objects_.erase(
+                std::remove( active_objects_.begin(), active_objects_.end(), p),
+                    active_objects_.end());
+        }
+        
         X2D_SND_DRIVER driver_;
-        boost::shared_ptr<music_obj<X2D_SND_DRIVER> > bg_music_;
+        std::vector<sound*> active_objects_;
+        
+        float master_volume_;
+        float music_volume_;
+        float sfx_volume_; 
     };
     
     typedef boost::details::pool::singleton_default<sound_engine_bare> sound_engine;

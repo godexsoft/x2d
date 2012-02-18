@@ -9,6 +9,7 @@
 #include "audio_queue.h"
 #include "math_util.h"
 #include "exceptions.h"
+#include "sound.h"
 #include "log.h"
 #include <string>
 #include <boost/lexical_cast.hpp>
@@ -272,46 +273,20 @@ namespace snd {
         return noErr;
     }
     
+    template<>
+    void music_obj<audio_queue_driver>::on_volume_change()
+    {
+        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, 
+            volume_ * sound_engine::instance().master_volume() * sound_engine::instance().music_volume());
+    }
+
+    
 } // namespace snd
 namespace snd_driver {
 
-    void audio_queue_driver::master_volume(float v)
-    {
-        master_volume_ = clamp(v, 0.0f, 1.0f);
-    }
-    
-    void audio_queue_driver::music_volume(float v)
-    {
-        music_volume_ = clamp(v, 0.0f, 1.0f);
-    }
-    
-    void audio_queue_driver::sfx_volume(float v)
-    {
-        sfx_volume_ = clamp(v, 0.0f, 1.0f);
-    }
-    
-    const float audio_queue_driver::master_volume() const
-    {
-        return master_volume_;
-    }
-    
-    const float audio_queue_driver::music_volume() const
-    {
-        return music_volume_;
-    }
-    
-    const float audio_queue_driver::sfx_volume() const
-    {
-        return sfx_volume_;
-    }
-    
-    
     audio_queue_driver::audio_queue_driver()
     : device_(NULL)
     , context_(NULL)
-    , master_volume_(1.0f)
-    , music_volume_(1.0f)
-    , sfx_volume_(1.0f)
     {
         LOG("Sound engine initializing..");
         

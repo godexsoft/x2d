@@ -8,6 +8,7 @@
 
 #include "openal_fx.h"
 #include "exceptions.h"
+#include "sound.h"
 #include <boost/lexical_cast.hpp>
 #include <vector>
 
@@ -15,8 +16,9 @@ namespace x2d {
 namespace snd {
         
     template<>
-    sfx_obj<audio_queue_driver>::sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float pitch)    
+    sfx_obj<audio_queue_driver>::sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float pitch, float volume)    
     : ifd_(ifd)
+    , volume_(volume)
     {
         OSStatus res = AudioFileOpenWithCallbacks(this, &sfx_obj::af_read_cb, &sfx_obj::af_write_cb,
                                                   &sfx_obj::af_get_size_cb, &sfx_obj::af_set_size_cb, 
@@ -45,7 +47,7 @@ namespace snd {
         alSource3f(source_, AL_DIRECTION, 0.0, 0.0, 0.0);
         
         alSourcef(source_, AL_PITCH, pitch);
-        alSourcef(source_, AL_GAIN, 1.0f);
+        alSourcef(source_, AL_GAIN, volume_);
         
         alSourcei(source_, AL_LOOPING, loop?AL_TRUE:AL_FALSE);	
         alSourcef(source_, AL_ROLLOFF_FACTOR, 0.0);
@@ -166,6 +168,13 @@ namespace snd {
     void sfx_obj<audio_queue_driver>::pitch(float p)
     {
         alSourcef(source_, AL_PITCH, p);
+    }
+    
+    template<>
+    void sfx_obj<audio_queue_driver>::on_volume_change()
+    {
+        alSourcef(source_, AL_GAIN, 
+            volume_ * sound_engine::instance().master_volume() * sound_engine::instance().sfx_volume());    
     }
     
 } // namespace snd

@@ -35,13 +35,15 @@ namespace snd {
         friend class snd_driver::audio_queue_driver;
         
     public:
-        sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop=false, float pitch=1.0f);
+        sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop=false, float pitch=1.0f, float volume=1.0f);
         ~sfx_obj();
         
         void play();
         void stop();
         void reset();
         void pitch(float p);
+        
+        void on_volume_change();
         
         static OSStatus af_read_cb(void *user_data, SInt64 pos, UInt32	req_cnt, void *buffer, UInt32 *actual_cnt)
         {
@@ -80,6 +82,8 @@ namespace snd {
 
         UInt32							num_packets_to_read_;
         UInt32                          max_packet_size_;
+        
+        float                           volume_;
     };
     
 } // namespace snd
