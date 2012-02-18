@@ -36,6 +36,8 @@ namespace config {
         parsers_["animation"]   = boost::bind(&configuration::parse_animation, this, _1, _2);
         parsers_["frame"]       = boost::bind(&configuration::parse_frame, this, _1, _2);
         parsers_["font"]        = boost::bind(&configuration::parse_font, this, _1, _2);
+        parsers_["music"]       = boost::bind(&configuration::parse_music, this, _1, _2);
+        parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);        
         
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
         
@@ -172,6 +174,18 @@ namespace config {
         return static_cast<font_cfg*>( &(*config_[key]) )->get();
     }
     
+    template <>
+    boost::shared_ptr<music> configuration::get_object<music>(const config_key& key)
+    {
+        return static_cast<music_cfg*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    boost::shared_ptr<sfx> configuration::get_object<sfx>(const config_key& key)
+    {
+        return static_cast<sfx_cfg*>( &(*config_[key]) )->get();
+    }
+    
     // getters for primitive metrics
     template <>
     float configuration::get_value<float>(const config_key& key)
@@ -187,6 +201,13 @@ namespace config {
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
 
+    template <>
+    bool configuration::get_value<bool>(const config_key& key)
+    {
+        typedef value_cfg<bool> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
     template <>
     point configuration::get_value<point>(const config_key& key)
     {
@@ -333,6 +354,23 @@ namespace config {
         }
     }
     
+    boost::shared_ptr<sfx> sfx_cfg::get()
+    {
+        if( boost::shared_ptr<sfx> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<sfx> r = 
+            boost::shared_ptr<sfx>( new sfx(config_, 
+                config_.resman().get<ifdstream>(path_), loop_, pitch_) );
+            inst_ = r;
+            return r;
+        }
+    }
+
     void object_cfg::add_children(const boost::shared_ptr<object>& p)
     {
         for(int i=0; i<children_.size(); ++i)

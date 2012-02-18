@@ -30,6 +30,15 @@ namespace config {
         
         return def_val_;
     }
+ 
+    template<>
+    bool value_holder<bool>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<bool>(key_);
+        
+        return def_val_;
+    }
     
     template<>
     std::string value_holder<std::string>::get(configuration& c) const

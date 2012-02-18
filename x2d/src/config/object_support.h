@@ -16,6 +16,7 @@
 #include "sprite.h"
 #include "animation.h"
 #include "font.h"
+#include "sound_resource.h"
 #include "camera.h"
 #include "viewport.h"
 #include "input_manager.h"
@@ -255,6 +256,91 @@ namespace config {
         std::string                characters_;
         std::vector<int>           widths_;
         boost::weak_ptr<font>      inst_;
+    };
+    
+    /**
+     * @brief Support for '<music>' configuration node.
+     */ 
+    class music_cfg
+    : public cfg_base
+    {
+    public:  
+        /**
+         * @param[in] rm     Resource manager
+         * @param[in] path   Path to resource
+         * @param[in] loop   Loop the music? true or false
+         * @param[in] gain   Volume level
+         */
+        music_cfg(resource_manager& rm, const std::string& path, bool loop, float gain)
+        : res_man_(rm)
+        , path_(path)
+        , loop_(loop)
+        , gain_(gain)
+        {                        
+        }
+        
+        /**
+         * Create if required and return a shared version of the music.
+         */
+        boost::shared_ptr<music> get()
+        {
+            if( boost::shared_ptr<music> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<music> r = 
+                    boost::shared_ptr<music>( new music(res_man_.get<ifdstream>(path_), loop_, gain_) );
+                inst_ = r;
+                return r;
+            }
+        }
+        
+    private:
+        resource_manager&          res_man_;
+        const std::string          path_;
+        bool                       loop_;
+        float                      gain_;
+        
+        boost::weak_ptr<music>     inst_;
+    };
+
+    /**
+     * @brief Support for '<sfx>' configuration node.
+     */ 
+    class sfx_cfg
+    : public cfg_base
+    {
+    public:  
+        /**
+         * @param[in] conf   The configuration
+         * @param[in] path   Path to resource
+         * @param[in] loop   Loop the sfx? true or false
+         * @param[in] pitch  Pitch for the sfx
+         */
+        sfx_cfg(configuration& conf, const std::string& path, 
+                bool loop, const value_holder<float>& pitch)
+        : config_(conf)
+        , path_(path)
+        , loop_(loop)
+        , pitch_(pitch)
+        {                        
+        }
+        
+        /**
+         * Create if required and return a shared version of the sfx.
+         */
+        boost::shared_ptr<sfx> get();
+        
+    private:
+        configuration&             config_;
+        const std::string          path_;
+        bool                       loop_;
+        value_holder<float>        pitch_;
+        
+        boost::weak_ptr<sfx>       inst_;
     };
     
     /**

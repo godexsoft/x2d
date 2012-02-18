@@ -44,10 +44,15 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>demo.xcscheme</key>
+		<key>09_sound.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>demo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>241583D414D0B3940014F37B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>243F95CC14F0052200922D55</key>
 		<dict>
 			<key>primary</key>
 			<true/>

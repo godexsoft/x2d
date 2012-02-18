@@ -32,23 +32,7 @@ namespace snd {
     class sound_engine_bare
     {
     public:
-        
-        /**
-         * Play the given music resource
-         */
-        void play( const boost::shared_ptr<music>& m );
-
-        /**
-         * Play the given SFX resource
-         */
-        void play( const boost::shared_ptr<sfx>& m );
-
-        void play( const std::string& file_path );
-        
-        void play(resource_manager& rm, const std::string& path);
-        
-        boost::shared_ptr<sfx_obj<X2D_SND_DRIVER> > get_sfx(resource_manager& rm, const std::string& path);
-        
+        void play( const std::string& file_path );                
         
         void stop();
         void pause();

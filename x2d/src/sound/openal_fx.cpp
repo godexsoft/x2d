@@ -9,25 +9,23 @@
 #include "openal_fx.h"
 #include "exceptions.h"
 #include <boost/lexical_cast.hpp>
+#include <vector>
 
 namespace x2d {
 namespace snd {
         
     template<>
-    sfx_obj<audio_queue_driver>::sfx_obj(resource_manager& rm, const std::string& path)    
+    sfx_obj<audio_queue_driver>::sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float pitch)    
+    : ifd_(ifd)
     {
-        // get the ifdstream
-        ifd_ = rm.get<ifdstream>(path);
-        LOG("Got ifdstream from path..");
-        
         OSStatus res = AudioFileOpenWithCallbacks(this, &sfx_obj::af_read_cb, &sfx_obj::af_write_cb,
                                                   &sfx_obj::af_get_size_cb, &sfx_obj::af_set_size_cb, 
                                                   kAudioFileCAFType, &audio_file_);
         
         if(res)
         {
-            throw sys_exception("audio_queue_driver: couldn't open SFX file in liverpool fs at '" + path 
-                                + "'. AudioFileOpen returned " + boost::lexical_cast<std::string>(res));
+            throw sys_exception("audio_queue_driver: couldn't open SFX file in liverpool fs. AudioFileOpen returned " 
+                + boost::lexical_cast<std::string>(res));
         }
         
         UInt32 size = sizeof(data_format_);
@@ -35,8 +33,8 @@ namespace snd {
         
         if (res != 0) 
         {
-            throw sys_exception("audio_queue_driver: couldn't load SFX file from liverpool path '" + path 
-                                + "'. AudioFileReadBytes returned " + boost::lexical_cast<std::string>(res));
+            throw sys_exception("audio_queue_driver: couldn't load SFX file from liverpool fs. AudioFileReadBytes returned " 
+                + boost::lexical_cast<std::string>(res));
         }
         
         alGenBuffers(NUM_BUFFERS, buffers_);
@@ -46,10 +44,10 @@ namespace snd {
         alSource3f(source_, AL_VELOCITY, 0.0, 0.0, 0.0);
         alSource3f(source_, AL_DIRECTION, 0.0, 0.0, 0.0);
         
-        alSourcef(source_, AL_PITCH, 1.0f);
+        alSourcef(source_, AL_PITCH, pitch);
         alSourcef(source_, AL_GAIN, 1.0f);
         
-        alSourcei(source_, AL_LOOPING, AL_FALSE);	
+        alSourcei(source_, AL_LOOPING, loop?AL_TRUE:AL_FALSE);	
         alSourcef(source_, AL_ROLLOFF_FACTOR, 0.0);
         alSourcei(source_, AL_SOURCE_RELATIVE, AL_TRUE);        
         
@@ -162,6 +160,12 @@ namespace snd {
     void sfx_obj<audio_queue_driver>::reset()
     {
         alSourceRewind(source_);
+    }
+    
+    template<>
+    void sfx_obj<audio_queue_driver>::pitch(float p)
+    {
+        alSourcef(source_, AL_PITCH, p);
     }
     
 } // namespace snd

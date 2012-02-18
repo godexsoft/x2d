@@ -51,6 +51,24 @@
 		243F95C714EDACD000922D55 /* openal_fx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95C614EDACD000922D55 /* openal_fx.cpp */; };
 		243F95C914EDB61600922D55 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		243F95CB14EDC80900922D55 /* loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 243F95CA14EDC80800922D55 /* loop.caf */; };
+		243F95D514F0052200922D55 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		243F95D614F0052200922D55 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		243F95D714F0052200922D55 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7A14E9D1750056C5E5 /* CoreAudio.framework */; };
+		243F95D814F0052200922D55 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
+		243F95D914F0052200922D55 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		243F95DA14F0052200922D55 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		243F95DB14F0052200922D55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		243F95DC14F0052200922D55 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		243F95DD14F0052200922D55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		243F95DE14F0052200922D55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		243F95FD14F0063600922D55 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95F814F0063600922D55 /* custom_obj.cpp */; };
+		243F95FE14F0063600922D55 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95FB14F0063600922D55 /* scene.cpp */; };
+		243F960414F0064F00922D55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 243F95FF14F0064F00922D55 /* InfoPlist.strings */; };
+		243F960514F0064F00922D55 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 243F960114F0064F00922D55 /* main.mm */; };
+		243F960614F0064F00922D55 /* sound.plist in Resources */ = {isa = PBXBuildFile; fileRef = 243F960314F0064F00922D55 /* sound.plist */; };
+		243F960814F0065D00922D55 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 243F960714F0065D00922D55 /* resources.zip */; };
+		243F960C14F0066C00922D55 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 243F960A14F0066C00922D55 /* AppDelegate.mm */; };
+		243F960E14F01C0E00922D55 /* sound_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F960D14F01C0E00922D55 /* sound_resource.cpp */; };
 		24408C5F14E8637C0056C5E5 /* sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24408C5E14E8637C0056C5E5 /* sound.cpp */; };
 		24408C7414E9B4950056C5E5 /* audio_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24408C7314E9B4950056C5E5 /* audio_queue.cpp */; };
 		24408C7D14E9D18E0056C5E5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
@@ -180,6 +198,13 @@
 			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
 			remoteInfo = libx2d;
 		};
+		243F95CE14F0052200922D55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
 		244DDD1E14DEFD8800F4E029 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
@@ -276,6 +301,25 @@
 		243F95C614EDACD000922D55 /* openal_fx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openal_fx.cpp; path = src/sound/openal_fx.cpp; sourceTree = "<group>"; };
 		243F95C814EDB61600922D55 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		243F95CA14EDC80800922D55 /* loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = loop.caf; path = 08_font/res/sound/loop.caf; sourceTree = "<group>"; };
+		243F95E814F0052200922D55 /* x2d_sound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_sound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		243F95F014F0061200922D55 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 09_sound/res/main.xml; sourceTree = "<group>"; };
+		243F95F214F0061200922D55 /* bg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bg.caf; sourceTree = "<group>"; };
+		243F95F314F0061200922D55 /* loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loop.caf; sourceTree = "<group>"; };
+		243F95F414F0061200922D55 /* swoosh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh.caf; sourceTree = "<group>"; };
+		243F95F814F0063600922D55 /* custom_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = custom_obj.cpp; path = 09_sound/custom_obj.cpp; sourceTree = "<group>"; };
+		243F95F914F0063600922D55 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 09_sound/custom_obj.h; sourceTree = "<group>"; };
+		243F95FA14F0063600922D55 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 09_sound/fps_counter.h; sourceTree = "<group>"; };
+		243F95FB14F0063600922D55 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 09_sound/scene.cpp; sourceTree = "<group>"; };
+		243F95FC14F0063600922D55 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 09_sound/scene.h; sourceTree = "<group>"; };
+		243F960014F0064F00922D55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = 09_sound/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		243F960114F0064F00922D55 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 09_sound/main.mm; sourceTree = "<group>"; };
+		243F960214F0064F00922D55 /* sound-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "sound-Prefix.pch"; path = "09_sound/sound-Prefix.pch"; sourceTree = "<group>"; };
+		243F960314F0064F00922D55 /* sound.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sound.plist; path = 09_sound/sound.plist; sourceTree = "<group>"; };
+		243F960714F0065D00922D55 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 09_sound/resources.zip; sourceTree = "<group>"; };
+		243F960914F0066C00922D55 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 09_sound/AppDelegate.h; sourceTree = "<group>"; };
+		243F960A14F0066C00922D55 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 09_sound/AppDelegate.mm; sourceTree = "<group>"; };
+		243F960B14F0066C00922D55 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 09_sound/game.h; sourceTree = "<group>"; };
+		243F960D14F01C0E00922D55 /* sound_resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sound_resource.cpp; path = src/sound/sound_resource.cpp; sourceTree = "<group>"; };
 		24408C5814E828930056C5E5 /* degrassi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = degrassi.png; path = 08_font/res/fonts/degrassi.png; sourceTree = SOURCE_ROOT; };
 		24408C5914E828930056C5E5 /* sony_sketch_stroked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sony_sketch_stroked.png; path = 08_font/res/fonts/sony_sketch_stroked.png; sourceTree = SOURCE_ROOT; };
 		24408C5A14E828930056C5E5 /* sony_sketch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sony_sketch.png; path = 08_font/res/fonts/sony_sketch.png; sourceTree = SOURCE_ROOT; };
@@ -492,6 +536,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		243F95D414F0052200922D55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243F95D514F0052200922D55 /* OpenAL.framework in Frameworks */,
+				243F95D614F0052200922D55 /* AudioToolbox.framework in Frameworks */,
+				243F95D714F0052200922D55 /* CoreAudio.framework in Frameworks */,
+				243F95D814F0052200922D55 /* libx2d.a in Frameworks */,
+				243F95D914F0052200922D55 /* OpenGLES.framework in Frameworks */,
+				243F95DA14F0052200922D55 /* QuartzCore.framework in Frameworks */,
+				243F95DB14F0052200922D55 /* CoreGraphics.framework in Frameworks */,
+				243F95DC14F0052200922D55 /* boost.framework in Frameworks */,
+				243F95DD14F0052200922D55 /* UIKit.framework in Frameworks */,
+				243F95DE14F0052200922D55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		244DDD2414DEFD8800F4E029 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -687,6 +748,71 @@
 			name = resource;
 			sourceTree = "<group>";
 		};
+		243F95EB14F005BC00922D55 /* 09_sound */ = {
+			isa = PBXGroup;
+			children = (
+				243F960914F0066C00922D55 /* AppDelegate.h */,
+				243F960A14F0066C00922D55 /* AppDelegate.mm */,
+				243F960B14F0066C00922D55 /* game.h */,
+				243F95EF14F005E800922D55 /* resources */,
+				243F95EE14F005E500922D55 /* objects */,
+				243F95ED14F005E200922D55 /* Supporting Files */,
+				243F95EC14F005DE00922D55 /* generated */,
+			);
+			name = 09_sound;
+			sourceTree = "<group>";
+		};
+		243F95EC14F005DE00922D55 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				243F960714F0065D00922D55 /* resources.zip */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
+		243F95ED14F005E200922D55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				243F95FF14F0064F00922D55 /* InfoPlist.strings */,
+				243F960114F0064F00922D55 /* main.mm */,
+				243F960214F0064F00922D55 /* sound-Prefix.pch */,
+				243F960314F0064F00922D55 /* sound.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		243F95EE14F005E500922D55 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				243F95F814F0063600922D55 /* custom_obj.cpp */,
+				243F95F914F0063600922D55 /* custom_obj.h */,
+				243F95FA14F0063600922D55 /* fps_counter.h */,
+				243F95FB14F0063600922D55 /* scene.cpp */,
+				243F95FC14F0063600922D55 /* scene.h */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
+		243F95EF14F005E800922D55 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				243F95F014F0061200922D55 /* main.xml */,
+				243F95F114F0061200922D55 /* sound */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		243F95F114F0061200922D55 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				243F95F214F0061200922D55 /* bg.caf */,
+				243F95F314F0061200922D55 /* loop.caf */,
+				243F95F414F0061200922D55 /* swoosh.caf */,
+			);
+			name = sound;
+			path = 09_sound/res/sound;
+			sourceTree = "<group>";
+		};
 		24408C5B14E860E00056C5E5 /* sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +821,7 @@
 				24408C6F14E9B1460056C5E5 /* audio_queue.h */,
 				24408C7314E9B4950056C5E5 /* audio_queue.cpp */,
 				24408C7514E9B9100056C5E5 /* sound_resource.h */,
+				243F960D14F01C0E00922D55 /* sound_resource.cpp */,
 				243F95C414EDABD800922D55 /* openal_fx.h */,
 				243F95C614EDACD000922D55 /* openal_fx.cpp */,
 			);
@@ -1218,6 +1345,7 @@
 				2487CA6014E18122006A7E22 /* 06_hud */,
 				2487CAED14E29118006A7E22 /* 07_spawner */,
 				2487CB6314E6F79E006A7E22 /* 08_font */,
+				243F95EB14F005BC00922D55 /* 09_sound */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
@@ -1237,6 +1365,7 @@
 				2487CAEA14E290B0006A7E22 /* x2d_spawner.app */,
 				240F053D14E41E30002AEEB2 /* x2d_demo.app */,
 				2487CB7F14E6F7BC006A7E22 /* x2d_font.app */,
+				243F95E814F0052200922D55 /* x2d_sound.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1443,6 +1572,25 @@
 			productReference = 241583E714D0B3940014F37B /* x2d_object.app */;
 			productType = "com.apple.product-type.application";
 		};
+		243F95CC14F0052200922D55 /* 09_sound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 243F95E514F0052200922D55 /* Build configuration list for PBXNativeTarget "09_sound" */;
+			buildPhases = (
+				243F95CF14F0052200922D55 /* Sources */,
+				243F95D414F0052200922D55 /* Frameworks */,
+				243F95DF14F0052200922D55 /* ShellScript */,
+				243F95E014F0052200922D55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				243F95CD14F0052200922D55 /* PBXTargetDependency */,
+			);
+			name = 09_sound;
+			productName = x2d;
+			productReference = 243F95E814F0052200922D55 /* x2d_sound.app */;
+			productType = "com.apple.product-type.application";
+		};
 		244DDD1C14DEFD8800F4E029 /* 05_custobj */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 244DDD3214DEFD8800F4E029 /* Build configuration list for PBXNativeTarget "05_custobj" */;
@@ -1605,6 +1753,7 @@
 				2487CA6214E18137006A7E22 /* 06_hud */,
 				2487CAD214E290B0006A7E22 /* 07_spawner */,
 				2487CB6814E6F7BC006A7E22 /* 08_font */,
+				243F95CC14F0052200922D55 /* 09_sound */,
 				240F052614E41E30002AEEB2 /* demo */,
 			);
 		};
@@ -1627,6 +1776,16 @@
 			files = (
 				241583F814D0B5770014F37B /* InfoPlist.strings in Resources */,
 				2415841914D0E57F0014F37B /* resources.zip in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		243F95E014F0052200922D55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243F960414F0064F00922D55 /* InfoPlist.strings in Resources */,
+				243F960614F0064F00922D55 /* sound.plist in Resources */,
+				243F960814F0065D00922D55 /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1717,6 +1876,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd demo/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+		};
+		243F95DF14F0052200922D55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd 09_sound/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
 		};
 		244DDD2C14DEFD8800F4E029 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1852,6 +2024,7 @@
 				24408C5F14E8637C0056C5E5 /* sound.cpp in Sources */,
 				24408C7414E9B4950056C5E5 /* audio_queue.cpp in Sources */,
 				243F95C714EDACD000922D55 /* openal_fx.cpp in Sources */,
+				243F960E14F01C0E00922D55 /* sound_resource.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1862,6 +2035,17 @@
 				241583F614D0B5620014F37B /* AppDelegate.mm in Sources */,
 				241583F714D0B5620014F37B /* main.mm in Sources */,
 				241583FB14D0B6C10014F37B /* custom_obj.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		243F95CF14F0052200922D55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243F95FD14F0063600922D55 /* custom_obj.cpp in Sources */,
+				243F95FE14F0063600922D55 /* scene.cpp in Sources */,
+				243F960514F0064F00922D55 /* main.mm in Sources */,
+				243F960C14F0066C00922D55 /* AppDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1954,6 +2138,11 @@
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
 			targetProxy = 241583D614D0B3940014F37B /* PBXContainerItemProxy */;
 		};
+		243F95CD14F0052200922D55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 243F95CE14F0052200922D55 /* PBXContainerItemProxy */;
+		};
 		244DDD1D14DEFD8800F4E029 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
@@ -2007,6 +2196,14 @@
 			);
 			name = InfoPlist.strings;
 			path = ../01_object/en.lproj;
+			sourceTree = "<group>";
+		};
+		243F95FF14F0064F00922D55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				243F960014F0064F00922D55 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		244DDD4D14DEFF4F00F4E029 /* InfoPlist.strings */ = {
@@ -2130,6 +2327,30 @@
 				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
 				INFOPLIST_FILE = 01_object/object.plist;
 				PRODUCT_NAME = x2d_object;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		243F95E614F0052200922D55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
+				INFOPLIST_FILE = 09_sound/sound.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = x2d_sound;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		243F95E714F0052200922D55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
+				INFOPLIST_FILE = 09_sound/sound.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = x2d_sound;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2373,6 +2594,15 @@
 			buildConfigurations = (
 				241583E514D0B3940014F37B /* Debug */,
 				241583E614D0B3940014F37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		243F95E514F0052200922D55 /* Build configuration list for PBXNativeTarget "09_sound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				243F95E614F0052200922D55 /* Debug */,
+				243F95E714F0052200922D55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

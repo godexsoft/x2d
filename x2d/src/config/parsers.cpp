@@ -383,6 +383,50 @@ namespace config {
 
     }
     
+    void configuration::parse_music(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:          name of the element
+        // path:       path to resource
+        //
+        // can have:
+        // loop:       loop the music? true or false. false is default.
+        // volume:     defaults to 1.0 - full gain
+        
+        std::string path = get_mandatory_attr<std::string>(node, key, "path", 
+            parse_exception("Music type must have 'path' defined.")).get(*this);
+        
+        bool loop = get_attr<bool>(node, key, "loop", false).get(*this);
+        float gain = get_attr<float>(node, key, "volume", 1.0f).get(*this);
+        
+        config_[key] =  
+            boost::shared_ptr<music_cfg>( 
+                new music_cfg(res_man_, path, loop, gain));
+        
+    }
+
+    void configuration::parse_sfx(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:          name of the element
+        // path:       path to resource
+        //
+        // can have:
+        // pitch:      pitch for the effect. defaults to 1.0f
+        // loop:       loop the sfx? false is default.
+        
+        std::string path = get_mandatory_attr<std::string>(node, key, "path", 
+            parse_exception("Sfx type must have 'path' defined.")).get(*this);
+        
+        bool loop   = get_attr<bool>(node, key, "loop", false).get(*this);
+        value_holder<float> pitch = get_attr<float>(node, key, "pitch", 1.0f);        
+        
+        config_[key] =  
+        boost::shared_ptr<sfx_cfg>( 
+            new sfx_cfg(*this, path, loop, pitch));
+        
+    }
+    
     void configuration::parse_camera(xml_node* node, const config_key& key)
     {
         // must have:

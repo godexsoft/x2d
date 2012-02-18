@@ -201,6 +201,8 @@ namespace config {
         void parse_animation(xml_node* node, const config_key& key);
         void parse_frame(xml_node* node, const config_key& key);
         void parse_font(xml_node* node, const config_key& key);
+        void parse_music(xml_node* node, const config_key& key);
+        void parse_sfx(xml_node* node, const config_key& key);
         
         // objects
         void parse_object(xml_node* node, const config_key& key);

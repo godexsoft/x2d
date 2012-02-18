@@ -10,14 +10,13 @@
 #ifndef __X2D_OPENAL_FX_H__
 #define __X2D_OPENAL_FX_H__
 
-#include <boost/shared_ptr.hpp>
-#include "resource_manager.h"
-#include "sound_resource.h"
-    
+#include <boost/shared_ptr.hpp>    
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
 
 #include <AudioToolbox/AudioFile.h>
+
+#include "filesystem.h"
 
 #define NUM_BUFFERS 3
 #define BUFFER_SIZE_BYTES 131072     // 128 KB buffers
@@ -36,12 +35,13 @@ namespace snd {
         friend class snd_driver::audio_queue_driver;
         
     public:
-        sfx_obj(resource_manager& rm, const std::string& path);
+        sfx_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop=false, float pitch=1.0f);
         ~sfx_obj();
         
         void play();
         void stop();
         void reset();
+        void pitch(float p);
         
         static OSStatus af_read_cb(void *user_data, SInt64 pos, UInt32	req_cnt, void *buffer, UInt32 *actual_cnt)
         {

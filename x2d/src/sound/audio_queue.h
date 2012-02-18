@@ -11,14 +11,14 @@
 #define __X2D_AUDIO_QUEUE_H__
 
 #include <boost/shared_ptr.hpp>
-#include "resource_manager.h"
-#include "sound_resource.h"
 
 #include <AudioToolbox/AudioQueue.h>
 #include <AudioToolbox/AudioFile.h>
 
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
+
+#include "filesystem.h"
 
 #define NUM_BUFFERS 3
 #define BUFFER_SIZE_BYTES 131072     // 128 KB buffers
@@ -41,12 +41,12 @@ namespace snd {
         /**
          * Open AudioQueue from a file on the fs
          */
-        music_obj(const std::string& file_path, bool loop=false);
+        music_obj(const std::string& file_path, bool loop=false, float gain=1.0f);
         
         /**
          * Open AudioQueue from resource inside liverpool fs
          */
-        music_obj(resource_manager& rm, const std::string& path, bool loop=false);
+        music_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop=false, float gain=1.0f);
         
         ~music_obj();
         

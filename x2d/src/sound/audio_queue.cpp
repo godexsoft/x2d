@@ -101,11 +101,11 @@ namespace snd {
     }
     
     template<>
-    music_obj<audio_queue_driver>::music_obj(const std::string& file_path, bool loop)
+    music_obj<audio_queue_driver>::music_obj(const std::string& file_path, bool loop, float gain)
     : packet_index_(0)
     , start_packet_index_(0)
     , stop_packet_index_(0)
-    , volume_(1.0f) // default is full gain
+    , volume_(gain)
     , loop_(loop)
     {
         CFURLRef file_url = CFURLCreateFromFileSystemRepresentation(NULL, (const UInt8 *)file_path.c_str(), file_path.size(), false);
@@ -150,20 +150,19 @@ namespace snd {
             free(cookie);
         }
         
+        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);        
         prime();
     }
     
     template<>
-    music_obj<audio_queue_driver>::music_obj(resource_manager& rm, const std::string& path, bool loop)
+    music_obj<audio_queue_driver>::music_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float gain)
     : packet_index_(0)
     , start_packet_index_(0)
     , stop_packet_index_(0)
-    , volume_(1.0f) // default is full gain
+    , volume_(gain)
     , loop_(loop)
-    {
-        // get the ifdstream
-        ifd_ = rm.get<ifdstream>(path);
-        
+    , ifd_(ifd)
+    {        
         LOG("Got ifdstream from path..");
         
         OSStatus res = AudioFileOpenWithCallbacks(this, &music_obj::af_read_cb, &music_obj::af_write_cb,
@@ -172,8 +171,8 @@ namespace snd {
         
         if(res)
         {
-            throw sys_exception("audio_queue_driver: couldn't open audio file in liverpool fs at '" + path 
-                                + "'. AudioFile returned " + boost::lexical_cast<std::string>(res));
+            throw sys_exception("audio_queue_driver: couldn't open audio file in liverpool fs. AudioFile returned " 
+                                    + boost::lexical_cast<std::string>(res));
         }
         
         UInt32 size = sizeof(data_format_);
@@ -209,6 +208,7 @@ namespace snd {
             free(cookie);
         }
         
+        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);
         prime();   
     }
     
