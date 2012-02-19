@@ -392,16 +392,26 @@ namespace config {
         // can have:
         // loop:       loop the music? true or false. false is default.
         // volume:     defaults to 1.0 - full gain
+        // fadein:     fade in time given in seconds. defaults to 0.0 - no fade in
+        // fadeout:    fade out time given in seconds. defaults to 0.0 - no fade out
+        // start:      start of the track given in seconds (seek)
+        // end:        end of the track given in seconds
         
         std::string path = get_mandatory_attr<std::string>(node, key, "path", 
             parse_exception("Music type must have 'path' defined.")).get(*this);
         
-        bool loop = get_attr<bool>(node, key, "loop", false).get(*this);
-        float gain = get_attr<float>(node, key, "volume", 1.0f).get(*this);
+        bool loop   = get_attr<bool>(node, key, "loop", false).get(*this);
+        float gain  = get_attr<float>(node, key, "volume", 1.0f).get(*this);
+
+        float fade_in   = get_attr<float>(node, key, "fadein", 0.0f).get(*this);
+        float fade_out  = get_attr<float>(node, key, "fadeout", 0.0f).get(*this);
+        
+        float start = get_attr<float>(node, key, "start", 0.0f).get(*this);
+        float end   = get_attr<float>(node, key, "end", 0.0f).get(*this);
         
         config_[key] =  
             boost::shared_ptr<music_cfg>( 
-                new music_cfg(res_man_, path, loop, gain));
+                new music_cfg(res_man_, kernel_, path, loop, gain, fade_in, fade_out, start, end));
         
     }
 

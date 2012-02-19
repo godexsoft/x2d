@@ -267,15 +267,23 @@ namespace config {
     public:  
         /**
          * @param[in] rm     Resource manager
+         * @param[in] k      The kernel
          * @param[in] path   Path to resource
          * @param[in] loop   Loop the music? true or false
          * @param[in] gain   Volume level
          */
-        music_cfg(resource_manager& rm, const std::string& path, bool loop, float gain)
+        music_cfg(resource_manager& rm, kernel& k, const std::string& path, 
+                  bool loop, float gain, float fade_in, float fade_out,
+                  float start, float end)
         : res_man_(rm)
+        , kernel_(k)
         , path_(path)
         , loop_(loop)
         , gain_(gain)
+        , fade_in_(fade_in)
+        , fade_out_(fade_out)
+        , start_(start)
+        , end_(end)
         {                        
         }
         
@@ -292,19 +300,25 @@ namespace config {
             else
             {
                 boost::shared_ptr<music> r = 
-                    boost::shared_ptr<music>( new music(res_man_.get<ifdstream>(path_), loop_, gain_) );
+                    boost::shared_ptr<music>( new music(kernel_, res_man_.get<ifdstream>(path_), 
+                        loop_, gain_, fade_in_, fade_out_, start_, end_) );
                 inst_ = r;
                 return r;
             }
         }
         
     private:
-        resource_manager&          res_man_;
-        const std::string          path_;
-        bool                       loop_;
-        float                      gain_;
+        resource_manager&       res_man_;
+        kernel&                 kernel_;
+        const std::string       path_;
+        bool                    loop_;
+        float                   gain_;
+        float                   fade_in_;
+        float                   fade_out_;
+        float                   start_;
+        float                   end_;
         
-        boost::weak_ptr<music>     inst_;
+        boost::weak_ptr<music>  inst_;
     };
 
     /**

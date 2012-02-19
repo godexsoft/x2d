@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "243F95CC14F0052200922D55"
-               BuildableName = "08_font copy.app"
+               BuildableName = "x2d_sound.app"
                BlueprintName = "09_sound"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "243F95CC14F0052200922D55"
-            BuildableName = "08_font copy.app"
+            BuildableName = "x2d_sound.app"
             BlueprintName = "09_sound"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -45,12 +45,13 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       debugDocumentVersioning = "YES"
+      enablesOpenGLESFrameCapture = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "243F95CC14F0052200922D55"
-            BuildableName = "08_font copy.app"
+            BuildableName = "x2d_sound.app"
             BlueprintName = "09_sound"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -68,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "243F95CC14F0052200922D55"
-            BuildableName = "08_font copy.app"
+            BuildableName = "x2d_sound.app"
             BlueprintName = "09_sound"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>

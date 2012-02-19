@@ -57,6 +57,20 @@ namespace snd {
     void music_obj<audio_queue_driver>::reset()
     {
     }
+
+    template<>
+    void music_obj<audio_queue_driver>::volume(float v)
+    {
+        volume_ = clamp(v, 0.0f, 1.0f);
+        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);        
+    }
+    
+    template<>
+    const float music_obj<audio_queue_driver>::volume() const
+    {
+        return volume_;
+    }
+
     
     template<>
     UInt32 music_obj<audio_queue_driver>::read_packets(AudioQueueBufferRef buffer)
@@ -83,6 +97,93 @@ namespace snd {
     }
     
     template<>
+    void music_obj<audio_queue_driver>::calculate_seek(float start, float end)
+    {
+        bool want_start = start != 0.0f;
+        bool want_end   = end != 0.0f;
+   
+        total_time_ = 0.0f;
+        
+        // variable bitrate requires calculations per packet
+        if (data_format_.mBytesPerPacket == 0 || data_format_.mFramesPerPacket == 0) 
+        {		
+            UInt32 num_packets = num_packets_to_read_;
+            UInt32 num_bytes;
+            
+            void* dummy_data = malloc(max_packet_size_*num_packets);
+            
+            // read all file
+            while(true) 
+            {
+                AudioFileReadPackets(audio_file_, false, &num_bytes, packet_descriptions_, packet_index_, &num_packets, dummy_data);
+                
+                if (num_packets > 0) 
+                {
+                    for(int i=0; i<num_packets; ++i) {
+                        
+                        if(packet_descriptions_[i].mVariableFramesInPacket == 0) 
+                        {
+                            total_time_ += data_format_.mFramesPerPacket / data_format_.mSampleRate;
+                        } 
+                        else 
+                        {
+                            total_time_ += packet_descriptions_[i].mVariableFramesInPacket / data_format_.mSampleRate;
+                        }
+                        
+                        if(want_start && total_time_ >= start)
+                        {
+                            start_packet_index_ = packet_index_;
+                            want_start = false;
+                        }
+                        
+                        if(want_end && total_time_ >= end)
+                        {
+                            stop_packet_index_ = packet_index_;
+                            want_end = false;
+                        }
+                        
+                        packet_index_ += 1;
+                    }
+                } 
+                else 
+                { 
+                    break; // done
+                }
+            }
+            
+            free(dummy_data);            
+        } 
+        else 
+        {
+            UInt32 size = sizeof(UInt64);
+            UInt64 total_packets;
+            
+            OSStatus err = AudioFileGetProperty(audio_file_, kAudioFilePropertyAudioDataPacketCount, &size, &total_packets);
+            if(err != noErr)
+            {
+                throw sys_exception("audio_queue: Can't get total packet count from CBR audio file. " 
+                        + boost::lexical_cast<std::string>(err));
+            }
+
+            float packet_time =  data_format_.mFramesPerPacket / data_format_.mSampleRate;
+ 
+            if(want_start)
+            {
+                start_packet_index_ = start/packet_time;
+            }
+            
+            if(want_end)
+            {
+                stop_packet_index_ = end/packet_time;
+            }
+            
+            total_time_ = total_packets*packet_time;
+        }
+        
+        LOG("Total length of track: %f", total_time_);
+    }
+    
+    template<>
     void music_obj<audio_queue_driver>::prime()
     {
         UInt32 i;
@@ -102,7 +203,8 @@ namespace snd {
     }
     
     template<>
-    music_obj<audio_queue_driver>::music_obj(const std::string& file_path, bool loop, float gain)
+    music_obj<audio_queue_driver>::music_obj(const std::string& file_path, bool loop, float gain,
+                                             float start, float end)
     : packet_index_(0)
     , start_packet_index_(0)
     , stop_packet_index_(0)
@@ -151,12 +253,14 @@ namespace snd {
             free(cookie);
         }
         
-        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);        
+        calculate_seek(start, end);
+        volume(volume_);
         prime();
     }
     
     template<>
-    music_obj<audio_queue_driver>::music_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float gain)
+    music_obj<audio_queue_driver>::music_obj(const boost::shared_ptr<ifdstream>& ifd, bool loop, float gain,
+                                             float start, float end)
     : packet_index_(0)
     , start_packet_index_(0)
     , stop_packet_index_(0)
@@ -209,7 +313,8 @@ namespace snd {
             free(cookie);
         }
         
-        AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);
+        calculate_seek(start, end);        
+        volume(volume_);
         prime();   
     }
     
@@ -230,7 +335,6 @@ namespace snd {
         }
     }
     
-    
     template<>
     void music_obj<audio_queue_driver>::buffer_callback(AudioQueueBufferRef buffer)
     {
@@ -240,6 +344,25 @@ namespace snd {
             {
                 packet_index_ = start_packet_index_;
                 read_packets(buffer);
+            }
+        }
+    }
+    
+    template<>
+    void music_obj<audio_queue_driver>::playback_callback()
+    {
+        // if the callback is requested
+        if(on_playback_) 
+        {
+            if(! is_playing() ) 
+            {
+                // stopped
+                on_playback_(false);
+            } 
+            else 
+            {
+                // started
+                on_playback_(true);
             }
         }
     }

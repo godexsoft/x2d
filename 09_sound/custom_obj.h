@@ -41,7 +41,7 @@ protected:
     void update(const clock_info& ci)
     {
         ci_.update(ci.delta_time);
-        sound_engine::instance().music_volume(mus_);
+        // sound_engine::instance().music_volume(mus_);
     }
     
     void touch_input_began(space s, const std::vector<touch>& touches)

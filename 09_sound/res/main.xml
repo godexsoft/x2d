@@ -11,7 +11,9 @@
         <music n = "bg"
             path = "res/sound/loop.caf"
             loop = "true"      
-          volume = "0.3"
+          volume = "0.8"
+          fadein = "1.0"
+         fadeout = "1.0"
         />
         
         <sfx   n = "swoosh"
