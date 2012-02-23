@@ -30,6 +30,8 @@
 namespace x2d {
 namespace config {
     
+    class plugin;
+    
     /**
      * @brief Simple data blob to read configuration data into.
      */
@@ -53,7 +55,15 @@ namespace config {
      */
     class configuration
     {
+        friend class plugin;
+        
     public:
+        /**
+         * @param[in] k         The kernel
+         * @param[in] res_man   The resource manager to use
+         */
+        configuration(kernel& k, resource_manager& res_man);
+        
         /**
          * @param[in] k         The kernel
          * @param[in] res_man   The resource manager to use
@@ -61,10 +71,26 @@ namespace config {
          */
         configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path);
         
-        resource_manager& resman() const
+        kernel& get_kernel() const
+        {
+            return kernel_;
+        }
+        
+        resource_manager& get_resman() const
         {
             return res_man_;
         }
+
+        /**
+         * Load an x2d plugin.
+         */
+        void load_plugin(const boost::shared_ptr<plugin>& plg);
+        
+        /**
+         * Parse given file into this configuration instance.
+         * @param[in] cfg_path Path to configuration xml
+         */
+        void parse_file(const std::string& cfg_path);
         
         /**
          * Bind c++ type to configuration key
@@ -127,13 +153,51 @@ namespace config {
             return config_.find(key) != config_.end();
         }
         
+        
+        // getting attribute
+        template<typename T>
+        static
+        value_holder<T> get_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                 const std::string& name, const T& default_value)
+        {
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
+            }
+            else if(cfg.config_.find(key / name) != cfg.config_.end() )
+            {
+                return value_holder<T>(key / name, default_value);
+            }
+            
+            return value_holder<T>("", default_value);
+        }
+        
+        // getting mandatory attribute
+        template<typename T>
+        static
+        value_holder<T> get_mandatory_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                           const std::string& name, const std::exception& e)
+        {
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
+            }
+            else if(cfg.config_.find(key / name) != cfg.config_.end() )
+            {
+                return value_holder<T>(key / name, T());
+            }
+            
+            throw e;
+        }
+        
     private:
         /**
-         * Parse given file into this configuration instance.
-         * @param[in] cfg_path Path to configuration xml
+         * Loads x2d default parsers.
          */
-        void parse_file(const std::string& cfg_path);
-        
+        void load_core_parsers();
+                
         /**
          * Parse given xml node and store under given key.
          * Note: this method is called recursively.
@@ -142,42 +206,6 @@ namespace config {
          * @param[in] key   Configuration key
          */
         void parse(xml_node* root, const config_key& key=config_key(""));
-
-        // getting attribute
-        template<typename T>
-        value_holder<T> get_attr(xml_node* node, const config_key& key, 
-                                 const std::string& name, const T& default_value)
-        {
-            xml_attr* at = node->first_attribute(name.c_str());
-            if(at) 
-            {
-                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
-            }
-            else if(config_.find(key / name) != config_.end() )
-            {
-                return value_holder<T>(key / name, default_value);
-            }
-            
-            return value_holder<T>("", default_value);
-        }
-
-        // getting mandatory attribute
-        template<typename T>
-        value_holder<T> get_mandatory_attr(xml_node* node, const config_key& key, 
-                                           const std::string& name, const std::exception& e)
-        {
-            xml_attr* at = node->first_attribute(name.c_str());
-            if(at) 
-            {
-                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
-            }
-            else if(config_.find(key / name) != config_.end() )
-            {
-                return value_holder<T>(key / name, T());
-            }
-            
-            throw e;
-        }
 
         // parsers for primitive value types
         void parse_float(xml_node* node, const config_key& key);

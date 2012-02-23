@@ -9,17 +9,33 @@
 #include "configuration.h"
 #include "sprite.h"
 #include "exceptions.h"
+#include "plugin.h"
 
 #include <boost/bind.hpp>
 
 namespace x2d {
 namespace config {
+
+    configuration::configuration(kernel& k, resource_manager& res_man)
+    : kernel_(k)
+    , res_man_(res_man)
+    {
+        load_core_parsers();
+    }
     
     configuration::configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path)
     : kernel_(k)
     , res_man_(res_man)
     {
-        // add supported parsers
+        load_core_parsers();
+        
+        // finally parse the config
+        parse_file(cfg_path);
+    }
+    
+    void configuration::load_core_parsers()
+    {
+        // add x2d core parsers
         parsers_["float"]       = boost::bind(&configuration::parse_float, this, _1, _2);
         parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
         parsers_["string"]      = boost::bind(&configuration::parse_string, this, _1, _2);
@@ -39,10 +55,7 @@ namespace config {
         parsers_["music"]       = boost::bind(&configuration::parse_music, this, _1, _2);
         parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);        
         
-        parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
-        
-        // finally parse the config
-        parse_file(cfg_path);
+        parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);        
     }
     
     void configuration::parse_file(const std::string& cfg_path)
@@ -114,6 +127,11 @@ namespace config {
                 LOG("'%s' is not supported.", root->name());
             }
         }
+    }
+    
+    void configuration::load_plugin(const boost::shared_ptr<plugin>& plg)
+    {
+        plg->load_extensions( parsers_ );
     }
     
     const boost::shared_ptr<object> configuration::create_object(const config_key& key)
@@ -365,7 +383,7 @@ namespace config {
         {
             boost::shared_ptr<sfx> r = 
             boost::shared_ptr<sfx>( new sfx(config_, 
-                config_.resman().get<ifdstream>(path_), loop_, pitch_) );
+                config_.get_resman().get<ifdstream>(path_), loop_, pitch_) );
             inst_ = r;
             return r;
         }
