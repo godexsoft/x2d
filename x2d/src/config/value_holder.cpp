@@ -86,19 +86,19 @@ namespace config {
     }
     
     template<>
-    vector_2d value_holder<vector_2d>::get(configuration& c) const
+    glm::vec2 value_holder<glm::vec2>::get(configuration& c) const
     {
         if(!key_.empty() && c.exists(key_))
-            return c.get_value<vector_2d>(key_);
+            return c.get_value<glm::vec2>(key_);
         
         return def_val_;
     }
     
     template<>
-    vector_25d value_holder<vector_25d>::get(configuration& c) const
+    glm::vec3 value_holder<glm::vec3>::get(configuration& c) const
     {
         if(!key_.empty() && c.exists(key_))
-            return c.get_value<vector_25d>(key_);
+            return c.get_value<glm::vec3>(key_);
         
         return def_val_;
     }

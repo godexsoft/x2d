@@ -262,16 +262,16 @@ namespace config {
     }
     
     template <>
-    vector_2d configuration::get_value<vector_2d>(const config_key& key)
+    glm::vec2 configuration::get_value<glm::vec2>(const config_key& key)
     {
-        typedef value_cfg<vector_2d> cfg_type;
+        typedef value_cfg<glm::vec2> cfg_type;
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
     
     template <>
-    vector_25d configuration::get_value<vector_25d>(const config_key& key)
+    glm::vec3 configuration::get_value<glm::vec3>(const config_key& key)
     {
-        typedef value_cfg<vector_25d> cfg_type;
+        typedef value_cfg<glm::vec3> cfg_type;
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
     

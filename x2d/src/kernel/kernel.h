@@ -20,7 +20,7 @@
 #include "viewport.h"
 #include "input_manager.h"
 #include "space.h"
-#include "math_util.h"
+#include "glm.hpp"
 #include "log.h"
 
 namespace x2d 
@@ -39,7 +39,7 @@ namespace x2d
             boost::last_value<boost::function_traits<void(const clock_info&)>::result_type>,
             float, std::greater<float> >                        render_signal;        
         typedef boost::signal<void (const std::vector<touch>&)> touch_input_signal;        
-        typedef boost::signal<void (const vector_2d&)>          accel_input_signal;        
+        typedef boost::signal<void (const glm::vec3&)>          accel_input_signal;        
         
         typedef std::deque<timer*> timer_container;
         
@@ -190,7 +190,7 @@ namespace x2d
         void dispatch_touches_began(space s, const std::vector<touch>& touches);
         void dispatch_touches_moved(space s, const std::vector<touch>& touches);
         void dispatch_touches_ended(space s, const std::vector<touch>& touches);
-        void dispatch_accelerometer_input( const vector_2d& accel );
+        void dispatch_accelerometer_input( const glm::vec3& accel );
 
     private:                
         // system

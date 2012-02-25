@@ -36,7 +36,7 @@ namespace config {
         object_traits();
         
         // basic object properties
-        value_holder<vector_25d> position;
+        value_holder<glm::vec3>  position;
         value_holder<float>      scale;
         value_holder<float>      rotation;
         
@@ -82,19 +82,19 @@ namespace config {
             // Need these connections to update children.
             connect_update();
             
-            LOG("Connecting render: %f", position_.z());
-            connect_render(position_.z());
+            LOG("Connecting render: %f", position_.z);
+            connect_render(position_.z);
         }
         
-        void position(const vector_25d& p)        
+        void position(const glm::vec3& p)        
         {
             position_ = p;
         }
 
-        void position(const vector_2d& p)        
+        void position(const glm::vec2& p)        
         {
-            position_.x(p.x());
-            position_.y(p.y());
+            position_.x = p.x;
+            position_.y = p.y;
             // retain z value
         }        
 
@@ -108,7 +108,7 @@ namespace config {
             scale_ = s;
         }
         
-        const vector_25d& camera_space_position() const
+        const glm::vec3& camera_space_position() const
         {
             return camera_space_position_;
         }
@@ -135,8 +135,8 @@ namespace config {
         
         space       space_;
         
-        vector_25d  position_;
-        vector_25d  camera_space_position_; // used if space_ == CAMERA_SPACE
+        glm::vec3   position_;
+        glm::vec3   camera_space_position_; // used if space_ == CAMERA_SPACE
         
         float       scale_;
         float       camera_space_scale_; // used if space_ == CAMERA_SPACE

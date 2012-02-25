@@ -41,7 +41,7 @@ public:
     , qi_(zoom_, 1.0f, 2.0f, 1.0f, 3.0f)
     {        
         cam_->rotation(-90.0f); // rotate camera to go landscape
-        cam_->position( vector_2d(-240.0f, -160.0f) ); // set camera 0,0 to left,bottom of physical screen
+        cam_->position( glm::vec2(-240.0f, -160.0f) ); // set camera 0,0 to left,bottom of physical screen
         
         // add viewport
         k.add_viewport(boost::shared_ptr<viewport>( new viewport(rect(0, 0, 320, 480), cam_) ));

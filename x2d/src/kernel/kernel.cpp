@@ -126,7 +126,7 @@ namespace x2d
         }
     }
     
-    void kernel::dispatch_accelerometer_input( const vector_2d& accel )
+    void kernel::dispatch_accelerometer_input( const glm::vec3& accel )
     {
         accel_input_signal_(accel);
     }

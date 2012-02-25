@@ -19,7 +19,7 @@ namespace widget {
     , text_(text)
     , font_(fnt)
     {     
-        connect_render(position_.z());
+        connect_render(position_.z);
     }
     
     void label::update(const clock_info& clock)
@@ -30,7 +30,7 @@ namespace widget {
     void label::render(const clock_info& clock)
     {
         glPushMatrix();
-        glTranslatef(position_.x(), position_.y(), 0.0f);
+        glTranslatef(position_.x, position_.y, 0.0f);
         
         if(rotation_ != 0.0f)
         {

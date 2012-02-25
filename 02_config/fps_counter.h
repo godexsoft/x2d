@@ -19,7 +19,7 @@ public:
     fps_counter(kernel& k)
     : base_object(k)
     {        
-        connect_render();        
+        connect_render(0.0);        
     }
 protected:
     

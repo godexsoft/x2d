@@ -51,7 +51,7 @@ protected:
         if(s == WORLD_SPACE)
         {
             LOG("NUM WORLD TOUCHES: %d", touches.size());
-            config().get_object<camera>("camera")->position( vector_2d(touches.at(0).location().x, touches.at(0).location().y ) );
+            config().get_object<camera>("camera")->position( glm::vec2(touches.at(0).location().x, touches.at(0).location().y ) );
         }
         else
         {
@@ -65,7 +65,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            position_ = vector_2d( touches.at(0).location() );
+            position(glm::vec2( touches.at(0).location().x, touches.at(0).location().y ));
         }
     }
 

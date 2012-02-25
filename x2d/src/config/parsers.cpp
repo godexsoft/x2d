@@ -145,8 +145,8 @@ namespace config {
             
             if( data->type() == rx::node_data )
             {
-                config_[key] = boost::shared_ptr< value_cfg<vector_25d> >(
-                    new value_cfg<vector_25d>( value_parser<vector_25d>::parse(data->value())) );
+                config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >(
+                    new value_cfg<glm::vec3>( value_parser<glm::vec3>::parse(data->value())) );
             }
             else
             {
@@ -154,7 +154,7 @@ namespace config {
                 if( std::string("random") == data->name() )
                 {
                     LOG("Random detected.");
-                    parse_random<vector_25d>(data, key);
+                    parse_random<glm::vec3>(data, key);
                 }
                 else
                 {
@@ -164,8 +164,8 @@ namespace config {
         }
         else
         {        
-            config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( 
-                new value_cfg<vector_25d>( value_parser<vector_25d>::parse(value->value())) );
+            config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >( 
+                new value_cfg<glm::vec3>( value_parser<glm::vec3>::parse(value->value())) );
         }
     }
     
@@ -456,7 +456,7 @@ namespace config {
                 new camera_cfg(*this, frustum, 
                     get_attr<float>(*this, node, key, "rotation", 0.0f),
                     get_attr<float>(*this, node, key, "zoom", 1.0f), 
-                    get_attr<vector_2d>(*this, node, key, "position", vector_2d(0.0f, 0.0f))) );
+                    get_attr<glm::vec2>(*this, node, key, "position", glm::vec2(0.0f, 0.0f))) );
     }
 
     void configuration::parse_viewport(xml_node* node, const config_key& key)
@@ -543,7 +543,7 @@ namespace config {
             tr.has_parent = true;
         }
         
-        tr.position =   get_attr<vector_25d>(*this, node, key, "position", vector_25d(0.0f, 0.0f, 0.0f));
+        tr.position =   get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
         

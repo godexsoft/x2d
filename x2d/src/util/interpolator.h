@@ -12,7 +12,7 @@
 #ifndef __X2D_INTERPOLATOR_H__
 #define __X2D_INTERPOLATOR_H__
 
-#include "math_util.h"
+#include "glm.hpp"
 
 namespace x2d {
 namespace util {
@@ -69,7 +69,7 @@ namespace util {
         
         virtual void calculate()
         {        
-            float b = clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
+            float b = glm::clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
             val_ = min_ * (1.0f - b) + max_ * b;
         }
 
@@ -96,7 +96,7 @@ namespace util {
         
         virtual void calculate()
         {        
-            float b = clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
+            float b = glm::clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
             float a = 1.0f - b;
             val_ = min_*a*a + mid_*2*a*b + max_*b*b;
         }
@@ -127,7 +127,7 @@ namespace util {
         
         virtual void calculate()
         {        
-            float b = clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
+            float b = glm::clamp( elapsed_time_ / total_time_, 0.0f, 1.0f);
             float a = 1.0f - b;
             val_ = min_*a*a*a + mid1_*3*a*a*b + mid2_*3*a*b*b + max_*b*b*b;
         }

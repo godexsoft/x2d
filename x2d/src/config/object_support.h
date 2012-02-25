@@ -373,7 +373,7 @@ namespace config {
          * @param[in] pos     Position of the camera (given in world space)
          */
         camera_cfg(configuration& c, const size& f, const value_holder<float>& rot, 
-                   const value_holder<float>& zm, const value_holder<vector_2d>& pos)
+                   const value_holder<float>& zm, const value_holder<glm::vec2>& pos)
         : config_(c)
         , frustum_(f)
         , rotation_(rot)
@@ -392,7 +392,7 @@ namespace config {
         size                     frustum_;
         value_holder<float>      rotation_;
         value_holder<float>      zoom_;
-        value_holder<vector_2d>  position_;
+        value_holder<glm::vec2>  position_;
         boost::weak_ptr<camera>  inst_;
     };
     

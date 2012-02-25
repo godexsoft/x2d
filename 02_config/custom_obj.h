@@ -25,11 +25,11 @@ public:
     , spr_( conf.get_object<sprite>(key) )
     , alpha_(0.0f)
     , li_(alpha_, 0.0f, 1.0f, 1.0f)
-    , pos_( conf.get_value<float>("values.x"), conf.get_value<float>("values.y") ) // use random
-    , velocity_( conf.get_value<float>("values.vel"), conf.get_value<float>("values.vel") ) // use random
+    , pos_( conf.get_value<float>("values.x"), conf.get_value<float>("values.y"), 0.0f ) // use random
+    , velocity_( conf.get_value<float>("values.vel"), conf.get_value<float>("values.vel"), 0.0f ) // use random
     {        
         connect_update();
-        connect_render();     
+        connect_render(pos_.z);     
     }
     
 private:
@@ -38,8 +38,8 @@ private:
     float                     alpha_;
     linear_interpolator       li_;
     
-    vector_2d                 pos_;
-    vector_2d                 velocity_;
+    glm::vec3                 pos_;
+    glm::vec3                 velocity_;
     
 protected:
     
@@ -47,17 +47,17 @@ protected:
     { 
         li_.update(clock.delta_time);
         
-        pos_ += velocity_ * clock.delta_time;
+        pos_ += velocity_ * (float)clock.delta_time;
         
-        if(pos_.X() >= 160.0f && velocity_.X()>0)
-            velocity_.X(-velocity_.X());
-        if(pos_.X() <= -160.0f && velocity_.X()<0)
-            velocity_.X(-velocity_.X());    
+        if(pos_.x >= 160.0f && velocity_.x>0)
+            velocity_.x = -velocity_.x;
+        if(pos_.x <= -160.0f && velocity_.x<0)
+            velocity_.x = -velocity_.x;
         
-        if(pos_.Y() >= 240.0f && velocity_.Y()>0)
-            velocity_.Y(-velocity_.Y());
-        if(pos_.Y() <= -240.0f && velocity_.Y()<0)
-            velocity_.Y(-velocity_.Y());
+        if(pos_.y >= 240.0f && velocity_.y>0)
+            velocity_.y = -velocity_.y;
+        if(pos_.y <= -240.0f && velocity_.y<0)
+            velocity_.y = -velocity_.y;
     }
     
     virtual void render(const clock_info& clock) 
@@ -68,7 +68,7 @@ protected:
         glColor4f(1.0, 1.0, 1.0, alpha_);
         
         glPushMatrix();
-        glTranslatef(pos_.X(), pos_.Y(), 0);
+        glTranslatef(pos_.x, pos_.y, 0);
         glRotatef(alpha_*360.0f, 0, 0, 1);
         
         spr_->draw_at_point(point(0, 0));

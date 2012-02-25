@@ -45,7 +45,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            position(vector_2d( touches.at(0).location() ));
+            position(glm::vec2( touches.at(0).location().x, touches.at(0).location().y ));
         }
     }
     
@@ -53,7 +53,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            position(vector_2d( touches.at(0).location() ));
+            position(glm::vec2( touches.at(0).location().x, touches.at(0).location().y  ));
         }
     }
 

@@ -74,7 +74,7 @@ namespace config {
     }
 
     template<>
-    void configuration::parse_random<vector_2d>(xml_node* node, const config_key& key)
+    void configuration::parse_random<glm::vec3>(xml_node* node, const config_key& key)
     {
         // must have:
         // from: minimal value to generate
@@ -92,37 +92,11 @@ namespace config {
             throw parse_exception("Random must have 'to' defined.");
         }
         
-        vector_25d min = value_parser<vector_25d>::parse(from->value());
-        vector_25d max = value_parser<vector_25d>::parse(to->value());
+        glm::vec3 min = value_parser<glm::vec3>::parse(from->value());
+        glm::vec3 max = value_parser<glm::vec3>::parse(to->value());
         
-        config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( new value_cfg<vector_25d>(
-            boost::shared_ptr< random_cfg<vector_25d> >( new random_cfg<vector_25d>(min, max) ) ) );
-    }
-    
-    template<>
-    void configuration::parse_random<vector_25d>(xml_node* node, const config_key& key)
-    {
-        // must have:
-        // from: minimal value to generate
-        // to:   maximum value to generate
-        
-        xml_attr* from = node->first_attribute("from");
-        if(!from) 
-        {
-            throw parse_exception("Random must have 'from' defined.");
-        }
-        
-        xml_attr* to = node->first_attribute("to");
-        if(!to) 
-        {
-            throw parse_exception("Random must have 'to' defined.");
-        }
-        
-        vector_25d min = value_parser<vector_25d>::parse(from->value());
-        vector_25d max = value_parser<vector_25d>::parse(to->value());
-        
-        config_[key] = boost::shared_ptr< value_cfg<vector_25d> >( new value_cfg<vector_25d>(
-            boost::shared_ptr< random_cfg<vector_25d> >( new random_cfg<vector_25d>(min, max) ) ) );
+        config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >( new value_cfg<glm::vec3>(
+            boost::shared_ptr< random_cfg<glm::vec3> >( new random_cfg<glm::vec3>(min, max) ) ) );
     }
 
 } // namespace config

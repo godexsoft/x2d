@@ -11,7 +11,11 @@
 #define __X2D_CAMERA_H__
 
 #include "math_util.h"
+#include "log.h"
 #include "graphics_engine.h"
+
+#include "glm.hpp"
+#include "matrix_transform.hpp"
 
 namespace x2d {
     
@@ -42,7 +46,7 @@ namespace base {
          * Set new position
          * @param[in] v Position given in world coordinates
          */
-        void position(const vector_2d& v)
+        void position(const glm::vec2& v)
         {
             position_ = v;
         }
@@ -58,7 +62,7 @@ namespace base {
                 angle = 360.0f + angle;    
             }
             
-            rotation_ = clamp(angle, 0.0f, 360.0f);
+            rotation_ = glm::clamp(angle, 0.0f, 360.0f);
         }
         
         /**
@@ -91,18 +95,11 @@ namespace base {
             }
 
             // move to camera position
-            glTranslatef(position_.x(), position_.y(), 0.0);
+            glTranslatef(position_.x, position_.y, 0.0);
         }
         
         // inverse of 'apply' on point in space
-        const point inverted_transformation(const point& p)
-        {
-            affine_matrix m = affine_matrix::translation(-frustum_.width/2.0f, -frustum_.height/2.0f);
-            m              *= affine_matrix::rotate( math::to_rad(360.0f-rotation_) );
-            m              *= affine_matrix::scale(1.0f/zoom_, 1.0f/zoom_);
-            m              *= affine_matrix::translation(-position_.x(), -position_.y());
-            return m.apply(p);
-        }
+        const point inverted_transformation(const point& p);
         
         /**
          * Get world position out of camera-space position
@@ -114,7 +111,7 @@ namespace base {
         
         float       rotation_;
         float       zoom_;        
-        vector_2d   position_;
+        glm::vec2   position_;
     };
 
 } // namespace base

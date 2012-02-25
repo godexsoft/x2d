@@ -13,8 +13,8 @@
 #include "base_object.h"
 #include "font.h"
 #include "interpolator.h"
-#include "sound.h"
 #include "platform.h"
+#include "resource_manager.h"
 
 class custom_obj 
 : public base_object
@@ -32,7 +32,6 @@ public:
     , lib_(b_, 0.0f, 1.0f, 1.2f)
     , rot_(0.0f)
     , lirot_(rot_, 0.0f, 360.0f, 2.0f)
-    , sfx_(sound_engine::instance().get_sfx(rm, "res/sound/swoosh.caf"))
     {    
         connect_update();
         connect_render(0.0f);
@@ -54,8 +53,6 @@ private:
     
     float rot_;
     linear_interpolator lirot_;
-    
-    boost::shared_ptr<sfx_obj<X2D_SND_DRIVER> > sfx_;
 protected:
 
     void update(const clock_info& clock)
@@ -91,11 +88,6 @@ protected:
     
     void touch_input_began(space s, const std::vector<touch>& touches)
     {
-        // sound_engine::instance().play( platform::filesystem::path_for_resource("bg.mp3") );        
-        // sound_engine::instance().play( res_man_, "res/sound/loop.caf" );        
-     
-        sfx_->reset();
-        sfx_->play();
     }
 };
 

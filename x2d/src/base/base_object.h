@@ -122,7 +122,7 @@ namespace x2d
          * Accelerometer input receiver.
          * @see connect_accelerometer_input
          */
-        virtual void accelerometer_input(const vector_2d& acceleration) {}
+        virtual void accelerometer_input(const glm::vec3& acceleration) {}
         
     private:
         boost::signals::connection update_connection_;

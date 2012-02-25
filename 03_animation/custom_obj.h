@@ -25,7 +25,7 @@ public:
     : base_object(k)
     {        
         connect_update();
-        connect_render();     
+        connect_render(0.0f);     
         
         anim_ = conf.get_object<animation>("animations.player");        
         anim_->start();

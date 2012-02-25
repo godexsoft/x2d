@@ -13,7 +13,7 @@ using namespace std;
 namespace x2d {
 namespace util {
 
-    void log::lst_log(const string& format, va_list lst) 
+    void logger::lst_log(const string& format, va_list lst) 
     {
     #ifdef ANDROID
         char *buf = NULL;
@@ -34,7 +34,7 @@ extern "C" void x2d_log(const char* format, ...)
 	va_list			lst;
 	va_start(lst, format);
 	
-	log::lst_log(format, lst);
+	logger::lst_log(format, lst);
 
 	va_end(lst);
 }

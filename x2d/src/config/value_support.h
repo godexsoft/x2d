@@ -106,10 +106,10 @@ namespace config {
     };
     
     /**
-     * @brief '<random>' for vector_25d type config type support
+     * @brief '<random>' for vec3 type config type support
      */
     template<>
-    class random_cfg<vector_25d>
+    class random_cfg<glm::vec3>
     : public cfg_base
     { 
     public:
@@ -117,20 +117,20 @@ namespace config {
          * @param[in] min     Min possible value to generate
          * @param[in] max     Max possible value to generate
          */
-        random_cfg(const vector_25d& min, const vector_25d& max)
+        random_cfg(const glm::vec3& min, const glm::vec3& max)
         : gen_(platform::time::current_time())
-        , dist_x_(min.x(), max.x())
-        , dist_y_(min.y(), max.y())
-        , dist_z_(min.z(), max.z())
+        , dist_x_(min.x, max.x)
+        , dist_y_(min.y, max.y)
+        , dist_z_(min.z, max.z)
         {
         }
         
         /**
          * Return next random vector
          */
-        vector_25d get()
+        glm::vec3 get()
         {    
-            return vector_25d(dist_x_(gen_), dist_y_(gen_), dist_z_(gen_));
+            return glm::vec3(dist_x_(gen_), dist_y_(gen_), dist_z_(gen_));
         }
         
     private:        
@@ -141,10 +141,10 @@ namespace config {
     };
 
     /**
-     * @brief '<random>' for vector_2d type config type support
+     * @brief '<random>' for vec2 type config type support
      */
     template<>
-    class random_cfg<vector_2d>
+    class random_cfg<glm::vec2>
     : public cfg_base
     { 
     public:
@@ -152,19 +152,19 @@ namespace config {
          * @param[in] min     Min possible value to generate
          * @param[in] max     Max possible value to generate
          */
-        random_cfg(const vector_2d& min, const vector_2d& max)
+        random_cfg(const glm::vec2& min, const glm::vec2& max)
         : gen_(platform::time::current_time())
-        , dist_x_(min.x(), max.x())
-        , dist_y_(min.y(), max.y())
+        , dist_x_(min.x, max.x)
+        , dist_y_(min.y, max.y)
         {
         }
         
         /**
          * Return next random vector
          */
-        vector_2d get()
+        glm::vec2 get()
         {    
-            return vector_2d(dist_x_(gen_), dist_y_(gen_));
+            return glm::vec2(dist_x_(gen_), dist_y_(gen_));
         }
         
     private:        

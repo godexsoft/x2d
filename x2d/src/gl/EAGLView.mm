@@ -38,8 +38,8 @@
         _k = k;
         
         // generate transformation matrix
-        input_transform =  affine_matrix::translation(0.0f, -frame.size.height);
-        input_transform *= affine_matrix::scale(1.0f, -1.0f);
+        input_transform = glm::translate( glm::mat4(1.0f), glm::vec3(0.0f, frame.size.height, 0.0f) );
+        input_transform = glm::scale(input_transform, glm::vec3(1.0f, -1.0f, 1.0f));
         
         // support retina
         // self.contentScaleFactor = 2.0f;

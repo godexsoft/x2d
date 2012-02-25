@@ -21,7 +21,6 @@
 #include "font.h"
 #include "fps_counter.h"
 #include "custom_obj.h"
-#include "sound.h"
 
 #include <vector>
 
@@ -31,9 +30,8 @@ public:
     scene(kernel& k, configuration& conf)
     : config_(conf)
     {
-        sound_engine::instance().play( config_.resman(), "res/sound/loop.caf" );        
-//        sound_engine::instance().play( platform::filesystem::path_for_resource( "loop.caf" ) );              
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_.resman(), config_.get_object<font>("fonts.sony_sketch_stroked") ) ) );
+        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_.get_resman(), 
+            config_.get_object<font>("fonts.sony_sketch_stroked") ) ) );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     

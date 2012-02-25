@@ -26,10 +26,10 @@ public:
     : base_object(k)
     , x_(0.0f)
     , qi_(x_, -50.0f, 100.0f, -50.0f, 3.0f)
-    , position_(0,0)
+    , position_(0,0,0)
     {        
         connect_update();
-        connect_render();  
+        connect_render(position_.z);  
         
         connect_touch_input(SCREEN_SPACE);
         connect_touch_input(WORLD_SPACE);
@@ -43,7 +43,7 @@ private:
     float                   x_;
     quadratic_interpolator  qi_;
     
-    vector_2d position_;
+    glm::vec3               position_;
         
 protected:
     
@@ -61,7 +61,7 @@ protected:
         glColor4f(1.0, 1.0, 1.0, 1.0);
         
         glPushMatrix();
-        glTranslatef(position_.X(), position_.Y(), 0.0f);
+        glTranslatef(position_.x, position_.y, 0.0f);
         anim_->draw_at_point(point(0, 0));
         glPopMatrix();        
 
@@ -75,7 +75,7 @@ protected:
         if(s == WORLD_SPACE)
         {
             LOG("NUM WORLD TOUCHES: %d", touches.size());
-            position_ = vector_2d( touches.at(0).location() );
+            position_ = glm::vec3( touches.at(0).location().x, touches.at(0).location().y, 0.0f );
         }
         else
         {
@@ -89,7 +89,7 @@ protected:
     {
         if(s == WORLD_SPACE)
         {
-            position_ = vector_2d( touches.at(0).location() );
+            position_ = glm::vec3( touches.at(0).location().x, touches.at(0).location().y, 0.0f );
         }
     }
 

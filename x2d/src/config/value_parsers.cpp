@@ -88,7 +88,7 @@ namespace config {
     }
     
     template<>
-    vector_25d value_parser<vector_25d>::parse(const std::string& str)
+    glm::vec3 value_parser<glm::vec3>::parse(const std::string& str)
     {
         std::stringstream ss;
         ss << str;
@@ -101,12 +101,11 @@ namespace config {
             z = 0.0f;
         }
         
-        LOG("Parsed vector25d is %f/%f/%f", x, y, z);
-        return vector_25d(x, y, z);
+        return glm::vec3(x, y, z);
     }
     
     template<>
-    vector_2d value_parser<vector_2d>::parse(const std::string& str)
+    glm::vec2 value_parser<glm::vec2>::parse(const std::string& str)
     {
         std::stringstream ss;
         ss << str;
@@ -114,7 +113,7 @@ namespace config {
         float x, y;
         ss >> x >> y;
 
-        return vector_2d(x, y);
+        return glm::vec2(x, y);
     }
     
     template<>

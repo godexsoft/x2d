@@ -106,7 +106,7 @@ namespace input {
     
     void input_manager::on_acceleration(float x, float y, float z)
     {
-        kernel_.dispatch_accelerometer_input( vector_2d(x, y) );
+        kernel_.dispatch_accelerometer_input( glm::vec3(x, y, z) );
     }
 
 } // namespace input

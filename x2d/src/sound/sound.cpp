@@ -17,7 +17,7 @@ namespace snd {
     
     void sound_engine_bare::master_volume(float v)
     {
-        master_volume_ = clamp(v, 0.0f, 1.0f);
+        master_volume_ = glm::clamp(v, 0.0f, 1.0f);
 
         for(std::vector<sound*>::iterator it = active_objects_.begin();
             it != active_objects_.end(); ++it)
@@ -29,7 +29,7 @@ namespace snd {
     
     void sound_engine_bare::music_volume(float v)
     {
-        music_volume_ = clamp(v, 0.0f, 1.0f);
+        music_volume_ = glm::clamp(v, 0.0f, 1.0f);
         
         for(std::vector<sound*>::iterator it = active_objects_.begin();
             it != active_objects_.end(); ++it)
@@ -41,7 +41,7 @@ namespace snd {
     
     void sound_engine_bare::sfx_volume(float v)
     {
-        sfx_volume_ = clamp(v, 0.0f, 1.0f);
+        sfx_volume_ = glm::clamp(v, 0.0f, 1.0f);
         
         for(std::vector<sound*>::iterator it = active_objects_.begin();
             it != active_objects_.end(); ++it)

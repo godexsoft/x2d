@@ -7,7 +7,7 @@
 //
 
 #include "audio_queue.h"
-#include "math_util.h"
+#include "glm.hpp"
 #include "exceptions.h"
 #include "sound.h"
 #include "log.h"
@@ -61,7 +61,7 @@ namespace snd {
     template<>
     void music_obj<audio_queue_driver>::volume(float v)
     {
-        volume_ = clamp(v, 0.0f, 1.0f);
+        volume_ = glm::clamp(v, 0.0f, 1.0f);
         AudioQueueSetParameter(queue_, kAudioQueueParam_Volume, volume_);        
     }
     

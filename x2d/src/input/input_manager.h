@@ -11,7 +11,7 @@
 #define __X2D_INPUT_MANAGER_H__
 
 #include "touch.h"
-#include "math_util.h"
+#include "glm.hpp"
 #include "log.h"
 
 #include <vector>
@@ -32,19 +32,25 @@ namespace input {
     struct transform_touches 
     : public std::unary_function<const touch, const touch> 
     {        
-        affine_matrix& m_;
+        glm::mat4& m_;
      
         /**
          * @param[in] m The affine transformation matrix to apply
          */
-        transform_touches(affine_matrix& m) 
+        transform_touches(glm::mat4& m) 
         : m_(m) 
         {
         }
         
         const touch operator()(const touch& t) 
         {
-            return touch( m_.apply(t.location()), m_.apply(t.prev_location()), t.tap_count(), t.timestamp() );
+            glm::vec4 tt (t.location().x, t.location().y, 0.0f, 1.0f);
+            glm::vec4 ptt(t.prev_location().x, t.prev_location().y, 0.0f, 1.0f);
+
+            tt = m_ * tt;
+            ptt = m_ * ptt;
+            
+            return touch( point(tt.x, tt.y), point(ptt.x, ptt.y), t.tap_count(), t.timestamp() );
         }
     };
     
@@ -80,7 +86,7 @@ namespace input {
          * @param[in] mat The affine transformation to apply to every touch
          * @return Collection of transformed touches
          */
-        static const std::vector<touch> transform(const std::vector<touch>& touches, affine_matrix& mat) 
+        static const std::vector<touch> transform(const std::vector<touch>& touches, glm::mat4& mat) 
         {            
             std::vector<touch> tr;
             tr.reserve(touches.size());

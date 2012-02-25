@@ -32,7 +32,7 @@
 namespace x2d {
 namespace util {
     
-    class log 
+    class logger 
     {
     public:
         static void lst_log(const std::string& format, va_list lst);

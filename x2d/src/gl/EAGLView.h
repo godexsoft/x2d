@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "kernel.h"
-#import "math_util.h"
+#import "glm.hpp"
 
 @interface EAGLView : UIView <UIAccelerometerDelegate>
 {
     EAGLContext* context_;
     kernel*      _k;
     
-    affine_matrix input_transform;
+    glm::mat4 input_transform;
 }
 
 - (id) initWithFrame:(const CGRect&)frame kernel:(kernel*)k;
