@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2403496814FA705E00B1CFC9 /* zone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403496714FA705E00B1CFC9 /* zone.h */; };
+		2403496B14FA7D4700B1CFC9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		2403496C14FA7D4F00B1CFC9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		240F052414E40C86002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
@@ -212,6 +215,7 @@
 		24C7489814F65E90004E07DD /* libx2d_ui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C7489514F65E1F004E07DD /* libx2d_ui.a */; };
 		24C748A014F664C8004E07DD /* ui_plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C7489F14F664C8004E07DD /* ui_plugin.cpp */; };
 		24C748A214F66AA3004E07DD /* plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C748A114F66AA2004E07DD /* plugin.cpp */; };
+		24EE266214FAC9D20073100A /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EE266114FAC9D20073100A /* context.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +313,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2403496714FA705E00B1CFC9 /* zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zone.h; path = src/base/zone.h; sourceTree = "<group>"; };
 		240F053D14E41E30002AEEB2 /* x2d_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F054514E41F4A002AEEB2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = demo/AppDelegate.h; sourceTree = "<group>"; };
 		240F054614E41F4A002AEEB2 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = demo/AppDelegate.mm; sourceTree = "<group>"; };
@@ -792,6 +797,7 @@
 		24C7489D14F66095004E07DD /* plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plugin.h; path = src/config/plugin.h; sourceTree = "<group>"; };
 		24C7489F14F664C8004E07DD /* ui_plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_plugin.cpp; path = plugins/ui/config/ui_plugin.cpp; sourceTree = SOURCE_ROOT; };
 		24C748A114F66AA2004E07DD /* plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plugin.cpp; path = src/config/plugin.cpp; sourceTree = "<group>"; };
+		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -855,6 +861,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2403496C14FA7D4F00B1CFC9 /* AudioToolbox.framework in Frameworks */,
+				2403496B14FA7D4700B1CFC9 /* OpenAL.framework in Frameworks */,
 				244DDD2514DEFD8800F4E029 /* libx2d.a in Frameworks */,
 				244DDD2614DEFD8800F4E029 /* OpenGLES.framework in Frameworks */,
 				244DDD2714DEFD8800F4E029 /* QuartzCore.framework in Frameworks */,
@@ -988,6 +996,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2403496A14FA7D0000B1CFC9 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				2446087814F81ECF004708DC /* glm */,
+				2467286414D6E30D003AAA04 /* rapidxml */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
 		240F054014E41E8C002AEEB2 /* demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -2002,9 +2019,8 @@
 		24BDCC2714CC6300006F36A1 /* x2d */ = {
 			isa = PBXGroup;
 			children = (
+				2403496A14FA7D0000B1CFC9 /* libs */,
 				2487CB6014E6F09B006A7E22 /* doc */,
-				2446087814F81ECF004708DC /* glm */,
-				2467286414D6E30D003AAA04 /* rapidxml */,
 				24C7486D14F65DC5004E07DD /* plugins */,
 				24BDCC4314CC63B5006F36A1 /* x2d */,
 				24BDCC6114CC86BD006F36A1 /* platform.mm */,
@@ -2088,6 +2104,8 @@
 				244DDD5514DF45B900F4E029 /* object.cpp */,
 				244DDD1714DED9C500F4E029 /* object.h */,
 				2487CB1414E299B1006A7E22 /* spawner.h */,
+				2403496714FA705E00B1CFC9 /* zone.h */,
+				24EE266114FAC9D20073100A /* context.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -2202,6 +2220,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2403496814FA705E00B1CFC9 /* zone.h in Headers */,
+				24EE266214FAC9D20073100A /* context.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
