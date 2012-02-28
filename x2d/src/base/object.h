@@ -15,6 +15,7 @@
 #include "space.h"
 #include "animation.h"
 #include "value_holder.h"
+#include "context.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -55,6 +56,9 @@ namespace config {
         // space
         space       obj_space;
         bool        has_parent;
+        
+        // context list
+        std::vector<std::string>    contexts;
     };
     
     /**
@@ -66,9 +70,7 @@ namespace config {
     public:
         object(kernel& k, config::configuration& c, const object_traits& t=object_traits());
         
-        virtual ~object() 
-        {
-        }
+        virtual ~object(); 
         
         /**
          * Add a child object.
@@ -84,6 +86,11 @@ namespace config {
             
             LOG("Connecting render: %f", position_.z);
             connect_render(position_.z);
+        }
+        
+        const glm::vec3 position() const
+        {
+            return position_;
         }
         
         void position(const glm::vec3& p)        
@@ -147,6 +154,7 @@ namespace config {
         boost::shared_ptr<animation> cur_animation_;
         boost::shared_ptr<sprite>    cur_sprite_;
         
+        std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
         
     private:

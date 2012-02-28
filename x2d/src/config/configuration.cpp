@@ -56,6 +56,8 @@ namespace config {
         parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);        
         
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);        
+        parsers_["context"]     = boost::bind(&configuration::parse_context, this, _1, _2);        
+        parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
     }
     
     void configuration::parse_file(const std::string& cfg_path)
@@ -202,6 +204,18 @@ namespace config {
     boost::shared_ptr<sfx> configuration::get_object<sfx>(const config_key& key)
     {
         return static_cast<sfx_cfg*>( &(*config_[key]) )->get();
+    }
+
+    template <>
+    boost::shared_ptr<context> configuration::get_object<context>(const config_key& key)
+    {
+        return static_cast<context_cfg*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
+    boost::shared_ptr<zone> configuration::get_object<zone>(const config_key& key)
+    {
+        return static_cast<zone_cfg*>( &(*config_[key]) )->get();
     }
     
     // getters for primitive metrics
@@ -389,6 +403,28 @@ namespace config {
         }
     }
 
+    boost::shared_ptr<zone> zone_cfg::get()
+    {
+        if( boost::shared_ptr<zone> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            // create and add to all specified contexts. TODO: support '*' context
+            // currently always creating rectangular zone
+            boost::shared_ptr<zone> r = boost::shared_ptr<zone>( new rectangular_zone(config_.get_kernel(), box_) );
+            for(std::vector<std::string>::iterator it = ctx_lst_.begin(); it != ctx_lst_.end(); ++it)
+            {
+                r->add_context( config_.get_object<context>(*it) );
+            }
+            
+            inst_ = r;
+            return r;
+        }
+    }
+    
     void object_cfg::add_children(const boost::shared_ptr<object>& p)
     {
         for(int i=0; i<children_.size(); ++i)

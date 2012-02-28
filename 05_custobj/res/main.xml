@@ -1,7 +1,7 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera" frustum="320 480" rotation="90"/>    
+    <camera n="camera" frustum="320 480" />    
     <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
     <input n="input" accelerometer="false" touch="true" />
     
@@ -41,6 +41,31 @@
             
     </namespace> 
     <!-- end: animations -->
+
+    <!-- namespace for all contexts -->
+    <namespace n="contexts">
+        
+        <context n = "enemies" />
+        <context n = "players" />
+
+    </namespace>
+    <!-- end: contexts -->
+    
+    <!-- namespace for all zones -->
+    <namespace n="zones">
+        
+        <!-- left border on the screen -->
+        <zone n = "first" rect = "-160 -240 50 480" contexts = "contexts.players contexts.enemies">
+            TODO: lua code will go here. Currently bound in c++ code.
+        </zone>
+        
+        <!-- right border on the screen -->
+        <zone n = "finish_level" rect = "110 -240 50 480" contexts = "contexts.players">
+            TODO: lua code will go here. Currently bound in c++ code.
+        </zone>
+        
+    </namespace>
+    <!-- end: zones -->
     
     <!-- namespace for all objects -->
     <namespace n="objects">
@@ -50,11 +75,12 @@
          x2d will create "player" objects with create_object
          or create (if required) and return a shared object with get_object.
          -->
-        <object n="player" 
-            position="-50.0 0.0"
-            animation="animations.player"
-            rotation="45"
-            scale="1.5"
+        <object    n = "player" 
+            contexts = "contexts.players"
+            position = "-50.0 0.0"
+           animation = "animations.player"
+            rotation = "45"
+               scale = "1.5"
         />
         
         <object n="child" 

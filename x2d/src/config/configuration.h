@@ -232,7 +232,9 @@ namespace config {
         void parse_music(xml_node* node, const config_key& key);
         void parse_sfx(xml_node* node, const config_key& key);
         
-        // objects
+        // object system
+        void parse_context(xml_node* node, const config_key& key);
+        void parse_zone(xml_node* node, const config_key& key);
         void parse_object(xml_node* node, const config_key& key);
         
         typedef boost::function<void(xml_node*,const config_key&)>              parser_type;        

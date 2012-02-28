@@ -519,7 +519,48 @@ namespace config {
         // and bind this input manager with the kernel
         kernel_.set_input_manager(inp->get());
     }
+    
+    void configuration::parse_context(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        
+        config_[key] = boost::shared_ptr<context_cfg>( new context_cfg() );
+    }
 
+    void configuration::parse_zone(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        //
+        // must have one of:
+        // rect:     specify a rectangular zone. rect given as 4 ints separated by a space
+        //
+        // can have:
+        // contexts: list of contexts separated by space. if empty or '*' then all available contexts are matched
+        
+        // currently it's mandatory
+        rect box = get_mandatory_attr<rect>(*this, node, key, "rect",
+            parse_exception("Zone type must have 'rect' defined (format: 'x y width height').")).get(*this);
+
+        std::string ctxs = get_attr<std::string>(*this, node, key, "contexts", "*").get(*this);
+        
+        // get vector of strings out of string ctxs
+        std::string v;
+        std::vector<std::string> ctx_vec;
+        
+        std::stringstream ss;
+        ss << ctxs;
+        
+        while( ss >> v )
+        {
+            ctx_vec.push_back(v);
+        }
+        
+        LOG("Parsed %d contexts from zone.contexts string.", ctx_vec.size());
+        config_[key] = boost::shared_ptr<zone_cfg>( new zone_cfg(*this, box, ctx_vec) );
+    }
+    
     void configuration::parse_object(xml_node* node, const config_key& key)
     {
         // must have:
@@ -527,12 +568,13 @@ namespace config {
         //
         // can have:
         // parent:    parent object (inherit space - position, rotation, scale, etc.)
+        // contexts:  list of contexts separated by space
         // position:  position vector2d
         // scale:     scale as float
         // rotation:  rotation as float angle in degrees
         // sprite:    sprite to draw
         // animation: animation to draw        
-        // space:     'world' (default), 'screen' or 'camera' space
+        // space:     'world' (default), 'screen' or 'camera' space        
         
         object_traits tr;
         
@@ -541,6 +583,24 @@ namespace config {
         {
             static_cast<object_cfg*>(&(*config_[parent->value()]))->add( key );
             tr.has_parent = true;
+        }
+        
+// TODO:
+//        std::vector<std::string> def_ctx_vec;
+//        def_ctx_vec.push_back("*");        
+//        std::vector<std::string> ctx_vec = get_list_attr<std::string>(*this, node, key, "contexts", def_ctx_vec).get(*this);
+
+        // no contexts by default
+        std::string ctxs = get_attr<std::string>(*this, node, key, "contexts", "").get(*this);
+        
+        // get vector of strings out of string ctxs
+        std::string v;
+        std::stringstream ss;
+        ss << ctxs;
+        
+        while( ss >> v )
+        {
+            tr.contexts.push_back(v);
         }
         
         tr.position =   get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));

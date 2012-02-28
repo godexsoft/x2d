@@ -71,7 +71,6 @@ namespace fs = x2d::filesystem;
     self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) kernel:&_k] autorelease];    
     self.window.multipleTouchEnabled = YES;
     self.window.userInteractionEnabled = YES;
-    self.window.rootViewController = nil;
     
     [self.window addSubview:self.gl_view];
     [self.window makeKeyAndVisible];

@@ -20,6 +20,8 @@
 #include "camera.h"
 #include "viewport.h"
 #include "input_manager.h"
+#include "context.h"
+#include "zone.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
@@ -478,6 +480,66 @@ namespace config {
         bool                            want_accel_;
         boost::weak_ptr<input_manager>  inst_;
     };
+
+    
+    /**
+     * @brief Support for '<context>' configuration node.
+     */ 
+    class context_cfg
+    : public cfg_base
+    {
+    public:        
+        
+        /**
+         * Create if required and return a shared version of the context.
+         */
+        boost::shared_ptr<context> get()
+        {
+            if( boost::shared_ptr<context> p = inst_.lock() )
+            {            
+                // already exists outside of cfg
+                return p;
+            }
+            else
+            {
+                boost::shared_ptr<context> r = boost::shared_ptr<context>( new context() );
+                inst_ = r;
+                return r;
+            }
+        }
+        
+    private:
+        boost::weak_ptr<context>  inst_;        
+    };
+
+    
+    /**
+     * @brief Support for '<zone>' configuration node.
+     */ 
+    class zone_cfg
+    : public cfg_base
+    {
+    public:        
+        
+        zone_cfg(configuration& cfg, const rect& box, const std::vector<std::string>& ctx)
+        : config_(cfg)
+        , box_(box)
+        , ctx_lst_(ctx)
+        {            
+        }
+        
+        /**
+         * Create if required and return a shared version of the zone.
+         */
+        boost::shared_ptr<zone> get();
+        
+    private:
+        boost::weak_ptr<zone>       inst_;        
+        
+        configuration&              config_;
+        rect                        box_; 
+        std::vector<std::string>    ctx_lst_;
+    };
     
     /**
      * @brief Support for '<object>' configuration node.
@@ -546,11 +608,11 @@ namespace config {
          */
         void add_children(const boost::shared_ptr<object>& p);
         
-        configuration&  config_;
-        kernel&         kernel_;
-        object_traits   traits_;
+        configuration&              config_;
+        kernel&                     kernel_;
+        object_traits               traits_;
         
-        std::vector<config_key> children_;
+        std::vector<config_key>     children_;
     };
 
     

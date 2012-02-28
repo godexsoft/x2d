@@ -11,18 +11,22 @@
 #define __X2D_CONTEXT_H__
 
 namespace x2d {
+
+    class object;   
+    
 namespace base {
     
-    class object;
+    class zone;
     
     /**
      * @brief Context for objects
      */
     class context
     {
-        friend class object;
+        friend class object;    
+        friend class zone;
         
-    private:
+    private:       
         void reg_object(object* o)
         {
             objects_.push_back(o);

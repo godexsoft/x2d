@@ -73,6 +73,25 @@ namespace x2d {
         {
             cur_sprite_ = config_.get_object<sprite>(t.sprite);
         }
+        
+        // populate contexts and register with them
+        for(std::vector<std::string>::const_iterator it = t.contexts.begin(); it != t.contexts.end(); ++it)
+        {
+            LOG("Getting context with key '%s'", (*it).c_str());
+            boost::shared_ptr<context> ctx = config_.get_object<context>( *it );
+
+            ctx->reg_object(this);
+            contexts_.push_back( ctx );            
+        }
+    }
+    
+    object::~object()
+    {
+        // unregister object from all contexts it's in atm.
+        for(std::vector<boost::shared_ptr<context> >::const_iterator it = contexts_.begin(); it != contexts_.end(); ++it)
+        {
+            (*it)->unreg_object(this);            
+        }
     }
     
     void object::update(const clock_info& clock) 
