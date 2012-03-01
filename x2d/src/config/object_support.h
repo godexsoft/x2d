@@ -484,9 +484,11 @@ namespace config {
     {
     public:        
         
-        spawner_cfg(configuration& cfg, const std::vector<std::string>& objects, int wave_size, float wave_delay)
+        spawner_cfg(configuration& cfg, const std::vector<std::string>& objects,
+                    const glm::vec3& pos, int wave_size, float wave_delay)
         : config_(cfg)
         , obj_lst_(objects)
+        , position_(pos)
         , wave_size_(wave_size)
         , wave_delay_(wave_delay)
         {            
@@ -500,6 +502,7 @@ namespace config {
     private:
         configuration&              config_;
         std::vector<std::string>    obj_lst_;
+        glm::vec3                   position_;
         int                         wave_size_;
         float                       wave_delay_;
     };

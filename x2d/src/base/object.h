@@ -20,6 +20,7 @@
 #include "object_traits.h"
 
 #include <boost/shared_ptr.hpp>
+#include <boost/enable_shared_from_this.hpp>
 
 namespace x2d {
 namespace config {
@@ -34,7 +35,8 @@ using namespace x2d::config;
      * @brief Default x2d object
      */
     class object 
-    : public base_object    
+    : public boost::enable_shared_from_this<object>
+    , public base_object    
     {        
     public:
         object(kernel& k, config::configuration& c, const object_traits& t=object_traits());
@@ -47,6 +49,7 @@ using namespace x2d::config;
          */
         void add_child(const boost::shared_ptr<object>& child)
         {
+            child->set_parent(shared_from_this());
             children_.push_back(child);
 
             // Now connect update and render if we did not before.
@@ -74,6 +77,13 @@ using namespace x2d::config;
             // retain z value
         }        
 
+        const glm::vec3 world_position() const
+        {
+            if(parent_)
+                return parent_->world_position() + position_;
+            return position_;
+        }
+        
         void rotation(float a)        
         {
             rotation_ = a;
@@ -109,6 +119,11 @@ using namespace x2d::config;
             return config_;
         }
         
+        void set_parent(const boost::shared_ptr<object>& o)
+        {
+            parent_ = o;
+        }
+        
         space       space_;
         
         glm::vec3   position_;
@@ -127,6 +142,7 @@ using namespace x2d::config;
         
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
+        boost::shared_ptr<object>                    parent_;
         
     private:
         config::configuration&  config_;

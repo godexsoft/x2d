@@ -30,8 +30,12 @@ namespace base {
 
     class spawner
     {
+        friend class object;
+        
     public:
-        spawner(kernel& k, configuration& conf, int ws=1, float wd=0.0f, float lt=0.0f);
+        spawner(kernel& k, configuration& conf, const std::vector<std::string>& obj_lst,
+                const glm::vec3& pos=glm::vec3(0,0,0),
+                int ws=1, float wd=0.0f, float lt=0.0f);
         
         virtual ~spawner()
         {            
@@ -52,6 +56,17 @@ namespace base {
             life_time_ = lt;
         }
         
+        void position(const glm::vec3& pos)
+        {
+            position_ = pos;
+        }
+        
+        const glm::vec3 position() const 
+        {
+            return position_;
+        }
+        
+        const glm::vec3 world_position() const;        
         /**
          * Generate one wave.
          */
@@ -80,20 +95,28 @@ namespace base {
             spawn(); // generate one wave
         }
 
+        void set_parent(object* o)
+        {
+            parent_ = o;
+        }
+        
     private:
         typedef std::vector<boost::shared_ptr<object> >     objects_vec;
 
         kernel&         kernel_;
         configuration&  config_;
-        timer           timer_;
-        
-        objects_vec     objects_;
+        timer           timer_; 
+
+        std::vector<std::string>    obj_lst_;        
+        objects_vec                 objects_;
+
+        glm::vec3       position_;
         
         int             wave_size_;
         float           wave_delay_;
         float           life_time_;
         
-        object_traits   template_;        
+        object*         parent_;
     };
     
 } // namespace base

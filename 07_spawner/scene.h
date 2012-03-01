@@ -24,24 +24,42 @@
 #include <vector>
 
 class scene 
+: public base_object
 {
 public:
     scene(kernel& k, configuration& conf)
-    : config_(conf)
-//    , spawner_(k, config_)
+    : base_object(k)
+    , config_(conf)
     {        
-        objects_.push_back( config_.create_object("objects.player") );
-        objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
+        player_ = config_.create_object("objects.player");        
+
+        connect_touch_input(WORLD_SPACE);
+    }
+    
+protected:
+    void touch_input_began(space s, const std::vector<touch>& touches) 
+    {
+        glm::vec2 pos;
+        point p = touches.at(0).location();
+        pos.x = p.x;
+        pos.y = p.y;
         
-//        spawner_.wave_delay(2.0f);
-//        spawner_.start();
+        player_->position(pos);
+    }
+    
+    void touch_input_moved(space s, const std::vector<touch>& touches) 
+    {
+        glm::vec2 pos;
+        point p = touches.at(0).location();
+        pos.x = p.x;
+        pos.y = p.y;
+        
+        player_->position(pos);
     }
     
 private:
     configuration&  config_;
-    std::vector< boost::shared_ptr<base_object> >   objects_;
-    
-//    spawner         spawner_;
+    boost::shared_ptr< object > player_;
 };
 
 #endif // __SCENE_H__

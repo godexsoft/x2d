@@ -323,7 +323,7 @@ namespace config {
     boost::shared_ptr<spawner> spawner_cfg::create()
     {
         boost::shared_ptr<spawner> r = boost::shared_ptr<spawner>( 
-            new spawner(config_.get_kernel(), config_, wave_size_, wave_delay_) );        
+            new spawner(config_.get_kernel(), config_, obj_lst_, position_, wave_size_, wave_delay_) );        
         return r;
     }    
     

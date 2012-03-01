@@ -77,12 +77,8 @@ namespace x2d {
         
         if(t.has_spawner)
         {
-//            if(!t.has_parent)
-//            {
-//                connect_update(); // spawner
-//            }
-            
             spawner_ = config_.create_sys_object<spawner>(t.spawner);
+            spawner_->set_parent(this); // the spawner will live while this object lives
         }
         
         // populate contexts and register with them

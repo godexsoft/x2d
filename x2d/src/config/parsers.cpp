@@ -532,11 +532,12 @@ namespace config {
         {
             obj_vec.push_back(v);
         }
-        
+
+        glm::vec3 position = get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0,0,0)).get(*this); 
         int wave_size = get_attr<int>(*this, node, key, "wave_size", 1).get(*this);
         float wave_delay = get_attr<float>(*this, node, key, "wave_delay", 0.0f).get(*this); 
         
-        config_[key] = boost::shared_ptr<spawner_cfg>( new spawner_cfg(*this, obj_vec, wave_size, wave_delay) );
+        config_[key] = boost::shared_ptr<spawner_cfg>( new spawner_cfg(*this, obj_vec, position, wave_size, wave_delay) );
     }
     
     void configuration::parse_context(xml_node* node, const config_key& key)
