@@ -28,20 +28,20 @@ class scene
 public:
     scene(kernel& k, configuration& conf)
     : config_(conf)
-    , spawner_(k, config_)
+//    , spawner_(k, config_)
     {        
-        objects_.push_back( config_.create_object("objects.generator") );
+        objects_.push_back( config_.create_object("objects.player") );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
         
-        spawner_.wave_delay(2.0f);
-        spawner_.start();
+//        spawner_.wave_delay(2.0f);
+//        spawner_.start();
     }
     
 private:
     configuration&  config_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
     
-    spawner         spawner_;
+//    spawner         spawner_;
 };
 
 #endif // __SCENE_H__

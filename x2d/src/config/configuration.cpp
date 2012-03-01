@@ -53,7 +53,8 @@ namespace config {
         parsers_["frame"]       = boost::bind(&configuration::parse_frame, this, _1, _2);
         parsers_["font"]        = boost::bind(&configuration::parse_font, this, _1, _2);
         parsers_["music"]       = boost::bind(&configuration::parse_music, this, _1, _2);
-        parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);        
+        parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);                
+        parsers_["spawner"]     = boost::bind(&configuration::parse_spawner, this, _1, _2);        
         
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);        
         parsers_["context"]     = boost::bind(&configuration::parse_context, this, _1, _2);        
@@ -164,15 +165,15 @@ namespace config {
     }
 
     template <>
-    boost::shared_ptr<animation> configuration::get_object<animation>(const config_key& key)
-    {
-        return static_cast<animation_cfg*>( &(*config_[key]) )->get();
-    }
-
-    template <>
     const boost::shared_ptr<animation> configuration::create_sys_object<animation>(const config_key& key)
     {
         return static_cast<animation_cfg*>( &(*config_[key]) )->create();
+    }
+
+    template <>
+    const boost::shared_ptr<spawner> configuration::create_sys_object<spawner>(const config_key& key)
+    {
+        return static_cast<spawner_cfg*>( &(*config_[key]) )->create();
     }
 
     
@@ -304,22 +305,7 @@ namespace config {
             return r;
         }
     }
-    
-    boost::shared_ptr<animation> animation_cfg::get()
-    {
-        if( boost::shared_ptr<animation> p = inst_.lock() )
-        {            
-            // already exists outside of cfg
-            return p;
-        }
-        else
-        {
-            boost::shared_ptr<animation> r = create();
-            inst_ = r;
-            return r;
-        }
-    }
-    
+        
     boost::shared_ptr<animation> animation_cfg::create()
     {
         boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
@@ -331,6 +317,13 @@ namespace config {
                 frames_.at(i).duration_>0.0f?frames_.at(i).duration_:duration_ ) );
         }
 
+        return r;
+    }    
+
+    boost::shared_ptr<spawner> spawner_cfg::create()
+    {
+        boost::shared_ptr<spawner> r = boost::shared_ptr<spawner>( 
+            new spawner(config_.get_kernel(), config_, wave_size_, wave_delay_) );        
         return r;
     }    
     

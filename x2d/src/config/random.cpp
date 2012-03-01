@@ -99,5 +99,11 @@ namespace config {
             boost::shared_ptr< random_cfg<glm::vec3> >( new random_cfg<glm::vec3>(min, max) ) ) );
     }
 
+    // random seed for generators
+    boost::random::mt19937 random_cfg<int>::gen_ = boost::random::mt19937(platform::time::current_time());
+    boost::random::mt19937 random_cfg<float>::gen_ = boost::random::mt19937(platform::time::current_time());
+    boost::random::mt19937 random_cfg<glm::vec2>::gen_ = boost::random::mt19937(platform::time::current_time());
+    boost::random::mt19937 random_cfg<glm::vec3>::gen_ = boost::random::mt19937(platform::time::current_time());
+    
 } // namespace config
 } // namespace x2d

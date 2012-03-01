@@ -20,6 +20,7 @@ namespace x2d {
     , want_accelerometer_input(false)
     , has_animation(false)
     , has_sprite(false)
+    , has_spawner(false)
     , obj_space(WORLD_SPACE)
     , has_parent(false)
     {            
@@ -72,6 +73,16 @@ namespace x2d {
         if(t.has_sprite)
         {
             cur_sprite_ = config_.get_object<sprite>(t.sprite);
+        }
+        
+        if(t.has_spawner)
+        {
+//            if(!t.has_parent)
+//            {
+//                connect_update(); // spawner
+//            }
+            
+            spawner_ = config_.create_sys_object<spawner>(t.spawner);
         }
         
         // populate contexts and register with them

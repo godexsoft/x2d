@@ -200,11 +200,6 @@ namespace config {
         }
         
         /**
-         * Create if required and return a shared version of the animation.
-         */
-        boost::shared_ptr<animation> get();
-
-        /**
          * Create a new animation instance and return it without saving a local copy.
          */
         boost::shared_ptr<animation> create();        
@@ -481,6 +476,33 @@ namespace config {
         boost::weak_ptr<input_manager>  inst_;
     };
 
+    /**
+     * @brief Support for '<spawner>' configuration node.
+     */ 
+    class spawner_cfg
+    : public cfg_base
+    {
+    public:        
+        
+        spawner_cfg(configuration& cfg, const std::vector<std::string>& objects, int wave_size, float wave_delay)
+        : config_(cfg)
+        , obj_lst_(objects)
+        , wave_size_(wave_size)
+        , wave_delay_(wave_delay)
+        {            
+        }
+        
+        /**
+         * Create a new spawner instance and return it without saving a local copy.
+         */
+        boost::shared_ptr<spawner> create();        
+        
+    private:
+        configuration&              config_;
+        std::vector<std::string>    obj_lst_;
+        int                         wave_size_;
+        float                       wave_delay_;
+    };
     
     /**
      * @brief Support for '<context>' configuration node.

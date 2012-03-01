@@ -55,8 +55,7 @@ namespace config {
          * @param[in] max     Max possible value to generate
          */
         random_cfg(const int& min, const int& max)
-        : gen_(platform::time::current_time())
-        , dist_(min, max)
+        : dist_(min, max)
         {
         }
         
@@ -69,7 +68,7 @@ namespace config {
         }
         
     private:        
-        boost::random::mt19937 gen_;
+        static boost::random::mt19937 gen_;
         boost::random::uniform_int_distribution<> dist_;
     };
 
@@ -87,8 +86,7 @@ namespace config {
          * @param[in] max     Max possible value to generate
          */
         random_cfg(const float& min, const float& max)
-        : gen_(platform::time::current_time())
-        , dist_(min, max)
+        : dist_(min, max)
         {
         }
         
@@ -101,7 +99,7 @@ namespace config {
         }
         
     private:        
-        boost::random::mt19937 gen_;
+        static boost::random::mt19937 gen_;
         boost::random::uniform_real_distribution<> dist_;
     };
     
@@ -118,8 +116,7 @@ namespace config {
          * @param[in] max     Max possible value to generate
          */
         random_cfg(const glm::vec3& min, const glm::vec3& max)
-        : gen_(platform::time::current_time())
-        , dist_x_(min.x, max.x)
+        : dist_x_(min.x, max.x)
         , dist_y_(min.y, max.y)
         , dist_z_(min.z, max.z)
         {
@@ -134,7 +131,7 @@ namespace config {
         }
         
     private:        
-        boost::random::mt19937 gen_;
+        static boost::random::mt19937 gen_;
         boost::random::uniform_real_distribution<> dist_x_;
         boost::random::uniform_real_distribution<> dist_y_;
         boost::random::uniform_real_distribution<> dist_z_;
@@ -153,8 +150,7 @@ namespace config {
          * @param[in] max     Max possible value to generate
          */
         random_cfg(const glm::vec2& min, const glm::vec2& max)
-        : gen_(platform::time::current_time())
-        , dist_x_(min.x, max.x)
+        : dist_x_(min.x, max.x)
         , dist_y_(min.y, max.y)
         {
         }
@@ -168,7 +164,7 @@ namespace config {
         }
         
     private:        
-        boost::random::mt19937 gen_;
+        static boost::random::mt19937 gen_;
         boost::random::uniform_real_distribution<> dist_x_;
         boost::random::uniform_real_distribution<> dist_y_;
     };

@@ -12,26 +12,26 @@
 
 #include "timer.h"
 #include "kernel.h"
-#include "configuration.h"
-#include "object.h"
 #include "log.h"
+#include "object_traits.h"
 
-namespace x2d {
+namespace x2d { 
+    
+    class object;
+    
+namespace config {
+    
+    class configuration;
+    
+} // namespace config
+using namespace x2d::config;
+    
 namespace base {
 
     class spawner
     {
     public:
-        spawner(kernel& k, configuration& conf, int ws=1, float wd=0.0f, float lt=0.0f)
-        : kernel_(k)
-        , config_(conf)
-        , timer_(k)
-        , wave_size_(ws)  // spawn 1 object
-        , wave_delay_(wd) // manual
-        , life_time_(lt)  // forever
-        {     
-            timer_.handler( boost::bind(&spawner::update, this, _1) );
-        }
+        spawner(kernel& k, configuration& conf, int ws=1, float wd=0.0f, float lt=0.0f);
         
         virtual ~spawner()
         {            
@@ -55,24 +55,15 @@ namespace base {
         /**
          * Generate one wave.
          */
-        void spawn()
-        {
-            for(int i=0; i<wave_size_; ++i)
-            {
-                boost::shared_ptr<object> o = config_.create_object("objects.obj1");
-//                o->position( template_.position.get(config_) );
-                objects_.push_back( o );
-            }
-            
-            LOG("Spawned objects.. new size: %d", objects_.size());
-        }
+        void spawn();
         
         /**
          * Start generating objects on timer.
          */
         void start()
         {    
-            timer_.set(wave_delay_);
+            if(wave_delay_ > 0.0f)
+                timer_.set(wave_delay_);
         }
         
         /**
@@ -102,9 +93,7 @@ namespace base {
         float           wave_delay_;
         float           life_time_;
         
-        object_traits   template_;
-        
-        
+        object_traits   template_;        
     };
     
 } // namespace base

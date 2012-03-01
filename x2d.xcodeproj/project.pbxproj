@@ -149,6 +149,8 @@
 		2467298314D9F320003AAA04 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298214D9F320003AAA04 /* random.cpp */; };
 		2467298814D9F8BE003AAA04 /* animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298714D9F8BE003AAA04 /* animation.cpp */; };
 		2467298B14D9FCC7003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467297D14D9EF97003AAA04 /* resources.zip */; };
+		2483FC4214FFB7990035A90C /* spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2483FC4114FFB7990035A90C /* spawner.cpp */; };
+		2483FC4514FFB9280035A90C /* object_traits.h in Headers */ = {isa = PBXBuildFile; fileRef = 2483FC4414FFB9280035A90C /* object_traits.h */; };
 		2487CA6B14E18137006A7E22 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		2487CA6C14E18137006A7E22 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2487CA6D14E18137006A7E22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
@@ -699,6 +701,8 @@
 		2467298714D9F8BE003AAA04 /* animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = animation.cpp; path = src/anim/animation.cpp; sourceTree = "<group>"; };
 		2467298A14D9FC87003AAA04 /* anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim.png; sourceTree = "<group>"; };
 		2467298C14DA9BA0003AAA04 /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exceptions.h; path = src/base/exceptions.h; sourceTree = "<group>"; };
+		2483FC4114FFB7990035A90C /* spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spawner.cpp; path = src/base/spawner.cpp; sourceTree = "<group>"; };
+		2483FC4414FFB9280035A90C /* object_traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object_traits.h; path = src/base/object_traits.h; sourceTree = "<group>"; };
 		2487CA7A14E18137006A7E22 /* x2d_hud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_hud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2487CA8E14E181EC006A7E22 /* anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim.png; sourceTree = "<group>"; };
 		2487CA8F14E181EC006A7E22 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 06_hud/res/main.xml; sourceTree = "<group>"; };
@@ -2105,11 +2109,13 @@
 				245151AC14DAEED40029D699 /* color_info.h */,
 				24BDCC5E14CC7E56006F36A1 /* base_object.h */,
 				244DDD1A14DEDAB400F4E029 /* space.h */,
+				2483FC4414FFB9280035A90C /* object_traits.h */,
 				244DDD5514DF45B900F4E029 /* object.cpp */,
 				244DDD1714DED9C500F4E029 /* object.h */,
-				2487CB1414E299B1006A7E22 /* spawner.h */,
 				2403496714FA705E00B1CFC9 /* zone.h */,
 				24EE266114FAC9D20073100A /* context.h */,
+				2483FC4114FFB7990035A90C /* spawner.cpp */,
+				2487CB1414E299B1006A7E22 /* spawner.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -2226,6 +2232,7 @@
 			files = (
 				2403496814FA705E00B1CFC9 /* zone.h in Headers */,
 				24EE266214FAC9D20073100A /* context.h in Headers */,
+				2483FC4514FFB9280035A90C /* object_traits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2811,6 +2818,7 @@
 				243F960E14F01C0E00922D55 /* sound_resource.cpp in Sources */,
 				24C748A214F66AA3004E07DD /* plugin.cpp in Sources */,
 				2446096114F81EFD004708DC /* dummy.cpp in Sources */,
+				2483FC4214FFB7990035A90C /* spawner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

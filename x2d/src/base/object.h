@@ -14,8 +14,10 @@
 #include "base_object.h"
 #include "space.h"
 #include "animation.h"
+#include "spawner.h"
 #include "value_holder.h"
 #include "context.h"
+#include "object_traits.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -26,41 +28,8 @@ namespace config {
     class object_cfg;
     
 } // namespace config
-    
-    using namespace x2d::config;
-    
-    /**
-     * @brief Object traits
-     */
-    struct object_traits
-    {
-        object_traits();
+using namespace x2d::config;
         
-        // basic object properties
-        value_holder<glm::vec3>  position;
-        value_holder<float>      scale;
-        value_holder<float>      rotation;
-        
-        // input methods requested by object
-        bool        want_screen_touch_input;
-        bool        want_world_touch_input;
-        bool        want_accelerometer_input;
-        
-        // graphics
-        bool        has_animation;
-        std::string animation;
-        
-        bool        has_sprite;
-        std::string sprite;
-        
-        // space
-        space       obj_space;
-        bool        has_parent;
-        
-        // context list
-        std::vector<std::string>    contexts;
-    };
-    
     /**
      * @brief Default x2d object
      */
@@ -153,6 +122,8 @@ namespace config {
         
         boost::shared_ptr<animation> cur_animation_;
         boost::shared_ptr<sprite>    cur_sprite_;
+        
+        boost::shared_ptr<spawner>   spawner_;
         
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;

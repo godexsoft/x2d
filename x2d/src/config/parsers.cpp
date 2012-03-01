@@ -495,20 +495,9 @@ namespace config {
         // can have:
         // touch:           boolean; enable/disable touch input. defaults to true
         // accelerometer:   boolean; enable/disable accelerometer input. defaults to false
-                
-        bool want_touch = true;
-        xml_attr* tch = node->first_attribute("touch");
-        if(tch) 
-        {
-            want_touch = value_parser<bool>::parse(tch->value());
-        }
         
-        bool want_accel = false;
-        xml_attr* accel = node->first_attribute("accelerometer");
-        if(accel) 
-        {
-            want_accel = value_parser<bool>::parse(accel->value());
-        }
+        bool want_touch = get_attr<bool>(*this, node, key, "touch", true).get(*this);        
+        bool want_accel = get_attr<bool>(*this, node, key, "accelerometer", false).get(*this);
                 
         boost::shared_ptr<input_cfg> inp = 
             boost::shared_ptr<input_cfg>( new input_cfg(
@@ -518,6 +507,36 @@ namespace config {
         
         // and bind this input manager with the kernel
         kernel_.set_input_manager(inp->get());
+    }
+    
+    void configuration::parse_spawner(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:          name of the element
+        // objects:    list of objects to spawn
+        //
+        // can have:
+        // wave_size:  size of one wave. count of objects to spawn at once
+        // wave_delay: delay between automatic spawns
+               
+        std::string objects = get_mandatory_attr<std::string>(*this, node, key, "objects", 
+            parse_exception("Spawner type must have 'objects' defined.")).get(*this);
+        
+        std::string v;
+        std::vector<std::string> obj_vec;
+        
+        std::stringstream ss;
+        ss << objects;
+        
+        while( ss >> v )
+        {
+            obj_vec.push_back(v);
+        }
+        
+        int wave_size = get_attr<int>(*this, node, key, "wave_size", 1).get(*this);
+        float wave_delay = get_attr<float>(*this, node, key, "wave_delay", 0.0f).get(*this); 
+        
+        config_[key] = boost::shared_ptr<spawner_cfg>( new spawner_cfg(*this, obj_vec, wave_size, wave_delay) );
     }
     
     void configuration::parse_context(xml_node* node, const config_key& key)
@@ -575,6 +594,7 @@ namespace config {
         // sprite:    sprite to draw
         // animation: animation to draw        
         // space:     'world' (default), 'screen' or 'camera' space        
+        // spawner:   configuration key to attach a spawner
         
         object_traits tr;
         
@@ -620,7 +640,14 @@ namespace config {
             tr.sprite = spr->value();
             tr.has_sprite = true;
         }
-                
+
+        xml_attr* spw = node->first_attribute("spawner");
+        if(spw) 
+        {
+            tr.spawner = spw->value();
+            tr.has_spawner = true;
+        }
+        
         xml_attr* sp = node->first_attribute("space");
         if(sp) 
         {

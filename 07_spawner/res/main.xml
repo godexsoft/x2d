@@ -69,7 +69,7 @@
 
         <!-- set delay between waves -->
         <float  n = "wave_delay" 
-            value = "2.0" />
+            value = "0.5" />
         
         <!-- set the lolation in world-space where the spawner is pointing at (like a gun) -->
         <vector n = "point_at">
@@ -89,8 +89,8 @@
             animation   =   "animations.player" >
                  
             <vector n = "position">
-                <random from = "-100 -100" 
-                          to = "100 100" />
+                <random from = "-100 -100 -0.1" 
+                          to = "100 100 0.1" />
             </vector>
             
             <!-- this will be used every time the object is created by create_object -->
@@ -117,12 +117,21 @@
             rotation    =   "-80"                
         />
         
-        <object n       =   "generator" 
-            sprite      =   "graphics.player.standing"
-            position    =   "0.0 180.0"
-            spawner     =   "spawner"
+        <!-- Running player -->
+        <object n       =   "player" 
+            animation   =   "animations.player"  
+            position    =   "0.0 0.0"
         />
         
+        <!-- his 'gun' :) -->
+        <object n       =   "gun" 
+            parent      =   "objects.player"
+            sprite      =   "graphics.player.standing"
+            position    =   "-30.0 0.0"
+            scale       =   "0.3"
+            spawner     =   "spawner"
+        />                      
+                
     </namespace>
     <!-- end: objects -->
     
