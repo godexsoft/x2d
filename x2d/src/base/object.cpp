@@ -33,9 +33,7 @@ namespace x2d {
     , position_(t.position.get(c))
     , camera_space_position_(t.position.get(c))
     , scale_(t.scale.get(c))
-    , camera_space_scale_(t.scale.get(c))
     , rotation_(t.rotation.get(c))    
-    , camera_space_rotation_(t.rotation.get(c))
     {               
         if(t.want_screen_touch_input)
         {
@@ -57,7 +55,7 @@ namespace x2d {
             if(!t.has_parent)
             {
                 LOG("Connecting render: %f", position_.z);
-                connect_render(position_.z);
+                connect_render(position_.z, space_ == CAMERA_SPACE);
             }
         }
         

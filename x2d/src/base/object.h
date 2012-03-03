@@ -57,7 +57,7 @@ using namespace x2d::config;
             connect_update();
             
             LOG("Connecting render: %f", position_.z);
-            connect_render(position_.z);
+            connect_render(position_.z, space_ == CAMERA_SPACE);
         }
         
         const glm::vec3 position() const
@@ -99,16 +99,6 @@ using namespace x2d::config;
             return camera_space_position_;
         }
         
-        float camera_space_scale() const
-        {
-            return camera_space_scale_;
-        }
-
-        float camera_space_rotation() const
-        {
-            return camera_space_rotation_;
-        }
-
     protected:
         
         virtual void update(const clock_info& clock);        
@@ -130,10 +120,7 @@ using namespace x2d::config;
         glm::vec3   camera_space_position_; // used if space_ == CAMERA_SPACE
         
         float       scale_;
-        float       camera_space_scale_; // used if space_ == CAMERA_SPACE
-        
         float       rotation_;
-        float       camera_space_rotation_; // used if space_ == CAMERA_SPACE
         
         boost::shared_ptr<animation> cur_animation_;
         boost::shared_ptr<sprite>    cur_sprite_;

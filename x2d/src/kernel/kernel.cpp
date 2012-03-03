@@ -52,9 +52,10 @@ namespace x2d
         return update_signal_.connect( boost::bind(&base_object::update, o, _1) );
     }
     
-    boost::signals::connection kernel::connect_render( base_object* o, float z )
+    boost::signals::connection kernel::connect_render( base_object* o, float z, bool camera_space )
     {
-        return render_signal_.connect( z, boost::bind(&base_object::render, o, _1) );
+        boost::function<void(const clock_info&)> s = boost::bind(&base_object::render, o, _1); // the real render function
+        return render_signal_.connect( z, boost::bind(&kernel::render_wrapper, this, camera_space, s, _1) );
     }
     
     void kernel::connect_touch_input( space s, base_object* o )
@@ -136,6 +137,22 @@ namespace x2d
         accel_input_signal_.connect( boost::bind(&base_object::accelerometer_input, o, _1) );
     }    
     
+    void kernel::render_wrapper(bool camera_space, 
+        const boost::function<void(const clock_info&)>& f, const clock_info& ci)
+    {
+        // setup camera
+        if(camera_space)
+        {
+            viewports_.at(cur_viewport_)->get_camera()->remove();
+        }
+        else
+        {
+            viewports_.at(cur_viewport_)->get_camera()->apply();
+        }
+        
+        f(ci);
+    }
+    
     /**
      * System timer callback
      */ 
@@ -148,29 +165,31 @@ namespace x2d
 
         // render into every viewport
         for(int i=0; i<viewports_.size(); ++i)
-        {            
+        {   
             // setup current viewport
             if(cur_viewport_ != i)
             {
                 viewports_.at(i)->use();           
                 cur_viewport_ = i;
             }
-
-            // calculate world space out of camera space for each object which needs it
+            
+            // calculate screen space out of camera space for each object which needs it
+            // TODO: move this code up to render_wrapper and get rid of the camera_space_objects list completely
             for(int i=0; i<camera_space_objects_.size(); ++i)
             {
                 boost::shared_ptr<object> o = camera_space_objects_.at(i);
-                viewports_.at(cur_viewport_)->get_camera()->calculate_in_world(o);
+                viewports_.at(cur_viewport_)->get_camera()->calculate_in_screen(o);
             }
             
             // draw background
             viewports_.at(cur_viewport_)->clear();
-
-            // setup camera
-            viewports_.at(cur_viewport_)->get_camera()->apply();
             
             // render all objects into this viewport
-            render_signal_(ci); // TODO: ordered by z and by actual opengl texture
+            // thru the render_wrapper function
+            render_signal_(ci);
+
+            // remove camera matrix (reset state)
+            viewports_.at(cur_viewport_)->get_camera()->remove();
         }
         
         graphics_engine::instance().present_frame();

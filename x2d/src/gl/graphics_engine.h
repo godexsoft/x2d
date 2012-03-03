@@ -63,16 +63,7 @@ public:
         shutdown_ = f;
     }    
     
-    void bind_texture(GLint t)
-    {
-        static GLint cur = t;
-        
-        if(cur != t)
-        {
-            glBindTexture(GL_TEXTURE_2D, t);
-            cur = t;
-        }
-    }
+    void bind_texture(GLint t);
     
 private:
     GLint backing_width_;

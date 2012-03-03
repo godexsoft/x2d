@@ -89,8 +89,9 @@ namespace graphics {
         set_current_context();
         
         glBindFramebufferOES(GL_FRAMEBUFFER_OES, view_frame_buf_);
-//        glViewport(0, 0, backing_width_, backing_height_);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        bind_texture(0);
     }
 #elif defined(_OPENGL_H)
     void graphics_engine_bare::start_frame() 
@@ -117,5 +118,18 @@ namespace graphics {
     }    
 #endif // gl es1
 
+    
+    void graphics_engine_bare::bind_texture(GLint t)
+    {
+        static GLint cur = 0;
+        
+        if(cur != t)
+        {
+            glBindTexture(GL_TEXTURE_2D, t);
+            cur = t;
+        }
+    }
+
+    
 } // namespace graphics
 } // namespace x2d

@@ -39,6 +39,7 @@ namespace base {
         , rotation_(0.0f)
         , zoom_(1.0f)
         , position_(0.0f, 0.0f)
+        , is_applied(false)
         {            
         }
         
@@ -74,10 +75,25 @@ namespace base {
             zoom_ = z;
         }
         
-        void apply()
+        /**
+         * Remove the camera matrix for opengl
+         */
+        void remove()
         {
             glLoadIdentity();
-
+            is_applied = false;
+        }
+        
+        /**
+         * Apply the camera matrix for opengl
+         */
+        void apply()
+        {
+            if(is_applied)
+                return;
+            
+            glLoadIdentity();
+            
             // move to center of screen
             glTranslatef(frustum_.width / 2.0f, 
                          frustum_.height / 2.0f, 0.0);
@@ -96,15 +112,17 @@ namespace base {
 
             // move to camera position
             glTranslatef(position_.x, position_.y, 0.0);
+            
+            is_applied = true;
         }
         
         // inverse of 'apply' on point in space
         const point inverted_transformation(const point& p);
         
         /**
-         * Get world position out of camera-space position
+         * Get screen position out of camera-space position
          */
-        void calculate_in_world(const boost::shared_ptr<object>& o);
+        void calculate_in_screen(const boost::shared_ptr<object>& o);
         
     private:
         size        frustum_;
@@ -112,6 +130,8 @@ namespace base {
         float       rotation_;
         float       zoom_;        
         glm::vec2   position_;
+        
+        bool        is_applied;
     };
 
 } // namespace base

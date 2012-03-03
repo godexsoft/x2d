@@ -111,7 +111,7 @@ namespace x2d
         
         // Signal exposure
         boost::signals::connection connect_update( base_object* o );
-        boost::signals::connection connect_render( base_object* o, float z );
+        boost::signals::connection connect_render( base_object* o, float z, bool camera_space = false );
         void connect_touch_input( space s, base_object* o );
         void connect_accelerometer_input( base_object* o );
         
@@ -192,7 +192,18 @@ namespace x2d
         void dispatch_touches_ended(space s, const std::vector<touch>& touches);
         void dispatch_accelerometer_input( const glm::vec3& accel );
 
-    private:                
+    private:          
+        
+        /**
+         * We use this wrapper when rendering registered objects.
+         * This wrapper knows whether the object is in world space or camera space.
+         * @param[in] camera_space True if in camera space; false otherwise
+         * @param[in] f The real renderer to call
+         * @param[in] ci The clock info to pass to the real renderer
+         */
+        void render_wrapper(bool camera_space, 
+            const boost::function<void(const clock_info&)>& f, const clock_info& ci);
+        
         // system
         time::clock     sys_clock_;
         timer           sys_timer_;

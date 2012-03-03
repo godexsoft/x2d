@@ -34,37 +34,12 @@ namespace base {
         return point(pp.x, pp.y);
     }
     
-    void camera::calculate_in_world(const boost::shared_ptr<object>& o)
+    void camera::calculate_in_screen(const boost::shared_ptr<object>& o)
     {
         // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
         glm::vec4 pp( o->camera_space_position().x * frustum_.width, o->camera_space_position().y * frustum_.height, 0.0f, 1.0f ); // w = 1
         
-        // revert all camera stuff
-        glm::mat4 m(1.0f);
-    
-        if(position_.x != 0.0f || position_.y != 0.0f)
-            m = glm::translate(m, glm::vec3(-position_.x, -position_.y, 0.0f));
-        
-        if(zoom_ != 1.0f)
-            m = glm::scale(m, glm::vec3(1.0f/zoom_, 1.0f/zoom_, 1.0f));
-        
-        if(rotation_ != 0.0f)
-            m = glm::rotate(m, 360.0f-rotation_, glm::vec3(0,0,1));
-        
-        m = glm::translate(m, glm::vec3(-frustum_.width/2.0f, -frustum_.height/2.0f, 0.0f) );
-        
-        pp = m * pp;    
-        
-        float rot = 360.0f-rotation_;
-        rot += o->camera_space_rotation();
-        
-        float zm = 1.0f/zoom_;
-        zm *= o->camera_space_scale();
-        
-        // set new properties in world-space
         o->position( glm::vec2(pp.x, pp.y) );
-        o->rotation(rot);
-        o->scale(zm);
     }
 
 } // namespace base

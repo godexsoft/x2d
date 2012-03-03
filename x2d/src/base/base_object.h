@@ -57,11 +57,12 @@ namespace x2d
          * Used to connect the render function to the kernel.
          * Should be invoked in the constructor of a child class.
          * @param[in] z The priority. The bigger z is the faster it will get rendered
+         * @param[in] camera_space True if object is in camera space; false otherwise
          */
-        void connect_render(float z)
+        void connect_render(float z, bool camera_space = false)
         {
             if(!render_connection_.connected())
-                render_connection_ = kernel_.connect_render(this, z);
+                render_connection_ = kernel_.connect_render(this, z, camera_space);
         }        
 
         /**
