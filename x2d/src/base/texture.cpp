@@ -7,6 +7,7 @@
 //
 
 #include "texture.h"
+#include "graphics_engine.h"
 #include "log.h"
 
 #include <vector>
@@ -86,15 +87,15 @@ namespace base {
         }
        
         LOG("Init OpenGL texture: width %d, height %d, size = [%dx%d]", width, height, width_, height_);
-        int saveName;
+        int savename;
         
         glGenTextures(1, &name_);
-        glGetIntegerv(GL_TEXTURE_BINDING_2D, &saveName);
-        glBindTexture(GL_TEXTURE_2D, name_);
+        glGetIntegerv(GL_TEXTURE_BINDING_2D, &savename);
+        graphics_engine::instance().bind_texture(name_);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &pot_data.at(0));
-        glBindTexture(GL_TEXTURE_2D, saveName);
+        graphics_engine::instance().bind_texture(savename);
         
         
         size_ = x2d::math::size(width_, height_);
@@ -136,7 +137,7 @@ namespace base {
             width / 2,      height / 2,     0.0
         };
         
-        glBindTexture(GL_TEXTURE_2D, name_);
+        graphics_engine::instance().bind_texture(name_);
         glVertexPointer(3, GL_FLOAT, 0, vertices);
         glTexCoordPointer(2, GL_FLOAT, 0, coordinates);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

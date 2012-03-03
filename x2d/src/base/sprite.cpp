@@ -7,6 +7,7 @@
 //
 
 #include "sprite.h"
+#include "graphics_engine.h"
 
 namespace x2d {
 namespace base {
@@ -51,7 +52,7 @@ namespace base {
 
         glEnable(GL_BLEND);
         
-        glBindTexture(GL_TEXTURE_2D, t_->name_);
+        graphics_engine::instance().bind_texture(t_->name_);
         glVertexPointer(3, GL_FLOAT, 0, vertices);
         glTexCoordPointer(2, GL_FLOAT, 0, coordinates);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
