@@ -57,11 +57,23 @@ namespace x2d
          * independent of camera transformations.
          * @param[in] obj The object to add
          */
-        void add_camera_space_object(const boost::shared_ptr<object>& obj)
+        void add_camera_space_object(object* obj)
         {
             camera_space_objects_.push_back(obj);
         }
-        
+
+        /**
+         * Remove a camera-space object if it was added.
+         * @param[in] obj The object to remove
+         */
+        void remove_camera_space_object(object* obj)
+        {
+            camera_space_objects_.erase(
+                std::remove(camera_space_objects_.begin(), 
+                            camera_space_objects_.end(), obj), 
+                    camera_space_objects_.end());
+        }
+
         /**
          * Get viewport at screen-space location
          * @param[in] p Point to examine
@@ -221,7 +233,7 @@ namespace x2d
         accel_input_signal  accel_input_signal_;
         
         // rendering
-        typedef std::vector<boost::shared_ptr<object> >   obj_vec;
+        typedef std::vector<object*>   obj_vec;
         obj_vec         camera_space_objects_;
         
         typedef std::vector<boost::shared_ptr<viewport> > vp_vec;

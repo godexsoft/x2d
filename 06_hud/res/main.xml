@@ -60,7 +60,6 @@
             <!-- left-top corner in camera space -->
             <object n="button1"
                 parent="objects.hud.buttons"
-                space = "camera"
                 position="0.1 0.95" 
                 sprite="graphics.player.standing"        
                 scale="0.5"
@@ -70,7 +69,6 @@
             <!-- left-bottom corner in camera space -->
             <object n="button2"
                 parent="objects.hud.buttons"
-                space = "camera"
                 position="0.1 0.05" 
                 sprite="graphics.player.standing"        
                 scale="0.5"

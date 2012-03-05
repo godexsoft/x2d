@@ -122,7 +122,7 @@ namespace base {
         /**
          * Get screen position out of camera-space position
          */
-        void calculate_in_screen(const boost::shared_ptr<object>& o);
+        void calculate_in_screen(object* o);
         
     private:
         size        frustum_;

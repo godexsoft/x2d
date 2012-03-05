@@ -79,6 +79,12 @@ namespace x2d {
             spawner_->set_parent(this); // the spawner will live while this object lives
         }
         
+        // check space and add object to list of camera space objects
+        if(space_ == CAMERA_SPACE && !t.has_parent)
+        {
+            kernel_.add_camera_space_object(this);
+        }
+        
         // populate contexts and register with them
         for(std::vector<std::string>::const_iterator it = t.contexts.begin(); it != t.contexts.end(); ++it)
         {
@@ -97,6 +103,8 @@ namespace x2d {
         {
             (*it)->unreg_object(this);            
         }
+        
+        kernel_.remove_camera_space_object(this);
     }
     
     void object::update(const clock_info& clock) 

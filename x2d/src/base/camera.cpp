@@ -34,11 +34,10 @@ namespace base {
         return point(pp.x, pp.y);
     }
     
-    void camera::calculate_in_screen(const boost::shared_ptr<object>& o)
+    void camera::calculate_in_screen(object* o)
     {
         // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
-        glm::vec4 pp( o->camera_space_position().x * frustum_.width, o->camera_space_position().y * frustum_.height, 0.0f, 1.0f ); // w = 1
-        
+        glm::vec4 pp( o->camera_space_position().x * frustum_.width, o->camera_space_position().y * frustum_.height, 0.0f, 1.0f ); // w = 1        
         o->position( glm::vec2(pp.x, pp.y) );
     }
 

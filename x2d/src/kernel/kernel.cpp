@@ -174,10 +174,9 @@ namespace x2d
             }
             
             // calculate screen space out of camera space for each object which needs it
-            // TODO: move this code up to render_wrapper and get rid of the camera_space_objects list completely
             for(int i=0; i<camera_space_objects_.size(); ++i)
             {
-                boost::shared_ptr<object> o = camera_space_objects_.at(i);
+                object* o = camera_space_objects_.at(i);
                 viewports_.at(cur_viewport_)->get_camera()->calculate_in_screen(o);
             }
             

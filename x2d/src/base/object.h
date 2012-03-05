@@ -52,6 +52,13 @@ using namespace x2d::config;
             child->set_parent(shared_from_this());
             children_.push_back(child);
 
+            // inherit space
+            if(space_ == CAMERA_SPACE)
+            {
+                // also add this object to the list of camera space objects
+                kernel_.add_camera_space_object(child.get());
+            }
+            
             // Now connect update and render if we did not before.
             // Need these connections to update children.
             connect_update();
