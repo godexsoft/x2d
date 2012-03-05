@@ -31,6 +31,7 @@ public:
     , config_(k, res_man_, "res/main.xml")
     {        
         objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_, "animations.player") ) );
+        objects_.push_back( config_.create_object("objects.test") );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     

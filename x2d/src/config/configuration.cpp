@@ -300,7 +300,7 @@ namespace config {
         else
         {
             boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>( 
-                new sprite( config_.get_object<texture>(texture_), origin_, size_) );
+                new sprite( config_.get_object<texture>(texture_), origin_, size_, pivot_) );
             inst_ = r;
             return r;
         }
@@ -308,7 +308,7 @@ namespace config {
         
     boost::shared_ptr<animation> animation_cfg::create()
     {
-        boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_) );
+        boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_, pivot_) );
         
         // add all frames
         for(int i=0; i<frames_.size(); ++i)

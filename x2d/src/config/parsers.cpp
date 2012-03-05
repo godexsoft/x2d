@@ -248,6 +248,9 @@ namespace config {
         // y: y offset inside texture
         // w: width of sprite
         // h: height of sprite
+        //
+        // can have:
+        // pivot:    the pivot as 2d vector. defaults to 0,0
         
         int x = get_mandatory_attr<int>(*this, node, key, "x",
             parse_exception("Sprite type must have 'x' defined.")).get(*this);
@@ -261,6 +264,8 @@ namespace config {
         int h = get_mandatory_attr<int>(*this, node, key, "h",
             parse_exception("Sprite type must have 'h' defined.")).get(*this);
 
+        glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
+        
         // parent must be a texture
         xml_node* parent = node->parent();
         if(! parent || std::string("texture") != parent->name())
@@ -272,7 +277,7 @@ namespace config {
 
         config_[key] =  boost::shared_ptr<sprite_cfg>( 
             new sprite_cfg(*this, parent_key, 
-                point(x, y), size(w, h)) );
+                point(x, y), size(w, h), pivot) );
     }
 
     void configuration::parse_animation(xml_node* node, const config_key& key)
@@ -280,10 +285,13 @@ namespace config {
         // must have:
         // n:        name of the element
         // duration: default duration for every frame
+        //
+        // can have:
+        // pivot:    the pivot as 2d vector. defaults to 0,0
         
         float dur = get_mandatory_attr<float>(*this, node, key, "duration",
             parse_exception("Animation type must have 'duration' defined.")).get(*this);
-
+        
         if( config_.find(key) == config_.end() )
         {
             // No animation object exists! No frames defined?
@@ -291,9 +299,15 @@ namespace config {
         }
         else
         {
+            glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
+
             // Set duration
             static_cast<animation_cfg*>(&(*config_[key]))
                 ->set_duration(dur);   
+            
+            // Set pivot
+            static_cast<animation_cfg*>(&(*config_[key]))
+                ->set_pivot(pivot);   
         }
     }
     

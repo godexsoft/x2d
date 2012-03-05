@@ -15,6 +15,7 @@
 
 #include "sprite.h"
 #include "math_util.h"
+#include "glm.hpp"
 #include "clock.h"
 
 namespace x2d {
@@ -61,9 +62,11 @@ namespace anim {
     public:
         /**
          * @param[in] d Default duration for each frame in animation
+         * @param[in] pivot The pivot for the animation
          */
-        animation(float d)
+        animation(float d, const glm::vec2& pivot=glm::vec2(0,0))
         : duration_(d)
+        , pivot_(pivot)
         , is_paused_(false)
         , cur_frame_(0)
         , elapsed_(0.0f)
@@ -119,6 +122,7 @@ namespace anim {
         
     private:
         float       duration_; // default duration
+        glm::vec2   pivot_;
         bool        is_paused_;
         
         frames_vec  frames_;

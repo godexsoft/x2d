@@ -13,6 +13,7 @@
 #include "math_util.h"
 #include "texture.h"
 #include "math_util.h"
+#include "glm.hpp"
 
 namespace x2d {
 namespace base {
@@ -28,11 +29,17 @@ namespace base {
          * @param[in] t         Texture to use
          * @param[in] origin    Offset inside texture
          * @param[in] sz        Sprite size
+         * @param[in] pivot     The pivot
          */
-        sprite(const boost::shared_ptr<texture>& t, const point& origin, const size& sz)
+        sprite(const boost::shared_ptr<texture>& t, 
+               const point& origin, 
+               const size& sz, 
+               const glm::vec2& pivot=glm::vec2(0,0)
+        )
         : t_(t)
         , origin_(origin)
         , size_(sz)
+        , pivot_(pivot)
         {            
         }
         
@@ -45,6 +52,7 @@ namespace base {
         boost::shared_ptr<texture>   t_;
         point                        origin_;
         size                         size_;
+        glm::vec2                    pivot_;
     };
     
 } // namespace base

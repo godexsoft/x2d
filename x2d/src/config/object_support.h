@@ -108,15 +108,19 @@ namespace config {
          * @param[in] t       Texture to use
          * @param[in] p       Offset inside texture
          * @param[in] s       Size of the sprite
+         * @param[in] pivot   The pivot
          */
         sprite_cfg(configuration& c,
                    const config_key& t, 
                    const point& p, 
-                   const size& s)
+                   const size& s,
+                   const glm::vec2& pivot=glm::vec2(0,0) 
+        )
         : config_(c)
         , texture_(t)
         , origin_(p)
         , size_(s)
+        , pivot_(pivot)
         {            
         }
         
@@ -129,7 +133,8 @@ namespace config {
         configuration&           config_;
         config_key               texture_;
         point                    origin_;
-        size                     size_;        
+        size                     size_;  
+        glm::vec2                pivot_;
         boost::weak_ptr<sprite>  inst_;
     };
     
@@ -172,11 +177,11 @@ namespace config {
     public:  
         /**
          * @param[in] cfg     Configuration object
-         * @param[in] d       Default duration for every frame in the animation
          */
         animation_cfg(configuration& cfg)
         : config_(cfg)
         , duration_(0.0f)
+        , pivot_(glm::vec2(0,0))
         {            
         }
         
@@ -200,6 +205,15 @@ namespace config {
         }
         
         /**
+         * Sets the pivot.
+         * @param[in] p The pivot
+         */
+        void set_pivot(const glm::vec2& p)
+        {
+            pivot_ = p;
+        }
+        
+        /**
          * Create a new animation instance and return it without saving a local copy.
          */
         boost::shared_ptr<animation> create();        
@@ -207,6 +221,7 @@ namespace config {
     private:
         configuration&              config_;
         float                       duration_;
+        glm::vec2                   pivot_;
         std::vector<frame_cfg>      frames_;
         boost::weak_ptr<animation>  inst_;
     };

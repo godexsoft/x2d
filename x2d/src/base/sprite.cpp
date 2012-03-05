@@ -15,6 +15,8 @@ namespace base {
     void sprite::draw_at_point(point pos) const
     {
         glPushMatrix();
+        glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
+        
         glTranslatef(pos.x, pos.y, 0.0f);
         
         float uv_width =  size_.width / t_->width_;

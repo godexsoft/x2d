@@ -30,13 +30,18 @@ namespace anim {
     }
     
     void frame::draw_at_point(point pos) const
-    {
+    {        
         sprite_->draw_at_point(pos);
     }
     
     void animation::draw_at_point(point pos) const
     {
+        glPushMatrix();
+        glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
+        
         frames_.at(cur_frame_).draw_at_point(pos);
+        
+        glPopMatrix();
     }
     
 } // namespace anim

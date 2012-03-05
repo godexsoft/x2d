@@ -27,7 +27,7 @@ public:
         connect_update();
         connect_render(0.0f);     
         
-        anim_ = conf.get_object<animation>("animations.player");        
+        anim_ = conf.create_sys_object<animation>("animations.player");        
         anim_->start();
     }
     
@@ -48,6 +48,7 @@ protected:
         glColor4f(1, 1, 1, 1);
         
         glPushMatrix();
+        glTranslatef(-160, 240, 0.0);
         anim_->draw_at_point(point(0, 0));
         glPopMatrix();        
 

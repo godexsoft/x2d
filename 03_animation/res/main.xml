@@ -18,7 +18,7 @@
             <sprite n="anim_6"   x="128" y="128" w="128" h="128" />
             <sprite n="anim_7"   x="256" y="128" w="128" h="128" />
             <sprite n="anim_8"   x="384" y="128" w="128" h="128" />
-            <sprite n="standing" x="384" y="256" w="128" h="128" />
+            <sprite n="standing" x="384" y="256" w="128" h="128" pivot = "0 -56" />
         </texture> 
 
     </namespace> 
@@ -28,7 +28,10 @@
     <namespace n="animations">
     
         <!-- define the animation -->
-        <animation n="player" duration="0.08">
+        <animation 
+                   n = "player" 
+            duration = "0.08" 
+               pivot = "-64 64" >
             <frame n="frame_1" sprite="graphics.player.anim_1" />
             <frame n="frame_2" sprite="graphics.player.anim_2" />
             <frame n="frame_3" sprite="graphics.player.anim_3" />
@@ -41,5 +44,9 @@
             
     </namespace> 
     <!-- end: animations -->
+    
+    <namespace n = "objects">
+        <object n = "test" sprite = "graphics.player.standing" position = "0 -240" />
+    </namespace>
     
 </x2d>

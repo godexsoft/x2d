@@ -195,6 +195,8 @@
 		2487CB9614E6F8B0006A7E22 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB9514E6F8B0006A7E22 /* resources.zip */; };
 		2487CB9C14E705CB006A7E22 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9A14E705CA006A7E22 /* custom_obj.cpp */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
+		24B7C3141504E1C5000A11D3 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		24B7C3161504E1E4000A11D3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24C7483C14F654C6004E07DD /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		24C7483D14F654C6004E07DD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24C7483E14F654C6004E07DD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7A14E9D1750056C5E5 /* CoreAudio.framework */; };
@@ -915,6 +917,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B7C3161504E1E4000A11D3 /* AudioToolbox.framework in Frameworks */,
+				24B7C3141504E1C5000A11D3 /* OpenAL.framework in Frameworks */,
 				2467295214D9EA5B003AAA04 /* libx2d.a in Frameworks */,
 				2467295314D9EA5B003AAA04 /* OpenGLES.framework in Frameworks */,
 				2467295414D9EA5B003AAA04 /* QuartzCore.framework in Frameworks */,
