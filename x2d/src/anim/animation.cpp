@@ -39,6 +39,11 @@ namespace anim {
         glPushMatrix();
         glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
         
+        if(flip_x_)
+            glScalef(-1.0f, 1.0f, 1.0f);
+        if(flip_y_)
+            glScalef(1.0f, -1.0f, 1.0f);
+        
         frames_.at(cur_frame_).draw_at_point(pos);
         
         glPopMatrix();

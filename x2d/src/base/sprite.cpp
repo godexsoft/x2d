@@ -19,6 +19,11 @@ namespace base {
         
         glTranslatef(pos.x, pos.y, 0.0f);
         
+        if(flip_x_)
+            glScalef(-1.0f, 1.0f, 1.0f);
+        if(flip_y_)
+            glScalef(1.0f, -1.0f, 1.0f);
+        
         float uv_width =  size_.width / t_->width_;
         float uv_height = size_.height / t_->height_;
         

@@ -109,18 +109,24 @@ namespace config {
          * @param[in] p       Offset inside texture
          * @param[in] s       Size of the sprite
          * @param[in] pivot   The pivot
+         * @param[in] flip_x  Sets flipping on x axis
+         * @param[in] flip_y  Sets flipping on x axis         
          */
         sprite_cfg(configuration& c,
                    const config_key& t, 
                    const point& p, 
                    const size& s,
-                   const glm::vec2& pivot=glm::vec2(0,0) 
+                   const glm::vec2& pivot=glm::vec2(0,0),
+                   bool flip_x=false,
+                   bool flip_y=false
         )
         : config_(c)
         , texture_(t)
         , origin_(p)
         , size_(s)
         , pivot_(pivot)
+        , flip_x_(flip_x)
+        , flip_y_(flip_y)
         {            
         }
         
@@ -135,6 +141,8 @@ namespace config {
         point                    origin_;
         size                     size_;  
         glm::vec2                pivot_;
+        bool                     flip_x_;
+        bool                     flip_y_;
         boost::weak_ptr<sprite>  inst_;
     };
     
@@ -182,6 +190,8 @@ namespace config {
         : config_(cfg)
         , duration_(0.0f)
         , pivot_(glm::vec2(0,0))
+        , flip_x_(false)
+        , flip_y_(false)
         {            
         }
         
@@ -214,6 +224,24 @@ namespace config {
         }
         
         /**
+         * Sets x flipping.
+         * @param[in] f true or false
+         */
+        void set_flip_x(bool f)
+        {
+            flip_x_ = f;
+        }
+
+        /**
+         * Sets y flipping.
+         * @param[in] f true or false
+         */
+        void set_flip_y(bool f)
+        {
+            flip_y_ = f;
+        }
+        
+        /**
          * Create a new animation instance and return it without saving a local copy.
          */
         boost::shared_ptr<animation> create();        
@@ -222,6 +250,8 @@ namespace config {
         configuration&              config_;
         float                       duration_;
         glm::vec2                   pivot_;
+        bool                        flip_x_;
+        bool                        flip_y_;
         std::vector<frame_cfg>      frames_;
         boost::weak_ptr<animation>  inst_;
     };

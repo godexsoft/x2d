@@ -63,10 +63,14 @@ namespace anim {
         /**
          * @param[in] d Default duration for each frame in animation
          * @param[in] pivot The pivot for the animation
+         * @param[in] flip_x Sets flipping on x axis
+         * @param[in] flip_y Sets flipping on y axis
          */
-        animation(float d, const glm::vec2& pivot=glm::vec2(0,0))
+        animation(float d, const glm::vec2& pivot=glm::vec2(0,0), bool flip_x=false, bool flip_y=false)
         : duration_(d)
         , pivot_(pivot)
+        , flip_x_(flip_x)
+        , flip_y_(flip_y)
         , is_paused_(false)
         , cur_frame_(0)
         , elapsed_(0.0f)
@@ -123,6 +127,9 @@ namespace anim {
     private:
         float       duration_; // default duration
         glm::vec2   pivot_;
+        bool        flip_x_;
+        bool        flip_y_;
+
         bool        is_paused_;
         
         frames_vec  frames_;

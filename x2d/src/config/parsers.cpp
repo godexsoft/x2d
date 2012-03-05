@@ -251,6 +251,8 @@ namespace config {
         //
         // can have:
         // pivot:    the pivot as 2d vector. defaults to 0,0
+        // flip_x:   flip on x axis if true. don't flip if false (default)
+        // flip_y:   flip on y axis if true. don't flip if false (default)
         
         int x = get_mandatory_attr<int>(*this, node, key, "x",
             parse_exception("Sprite type must have 'x' defined.")).get(*this);
@@ -265,6 +267,8 @@ namespace config {
             parse_exception("Sprite type must have 'h' defined.")).get(*this);
 
         glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
+        bool flip_x = get_attr<bool>(*this, node, key, "flip_x", false).get(*this);
+        bool flip_y = get_attr<bool>(*this, node, key, "flip_y", false).get(*this);
         
         // parent must be a texture
         xml_node* parent = node->parent();
@@ -277,7 +281,7 @@ namespace config {
 
         config_[key] =  boost::shared_ptr<sprite_cfg>( 
             new sprite_cfg(*this, parent_key, 
-                point(x, y), size(w, h), pivot) );
+                point(x, y), size(w, h), pivot, flip_x, flip_y) );
     }
 
     void configuration::parse_animation(xml_node* node, const config_key& key)
@@ -288,6 +292,8 @@ namespace config {
         //
         // can have:
         // pivot:    the pivot as 2d vector. defaults to 0,0
+        // flip_x:   flip on x axis if true. don't flip if false (default)
+        // flip_y:   flip on y axis if true. don't flip if false (default)
         
         float dur = get_mandatory_attr<float>(*this, node, key, "duration",
             parse_exception("Animation type must have 'duration' defined.")).get(*this);
@@ -300,6 +306,8 @@ namespace config {
         else
         {
             glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
+            bool flip_x = get_attr<bool>(*this, node, key, "flip_x", false).get(*this);
+            bool flip_y = get_attr<bool>(*this, node, key, "flip_y", false).get(*this);
 
             // Set duration
             static_cast<animation_cfg*>(&(*config_[key]))
@@ -308,6 +316,12 @@ namespace config {
             // Set pivot
             static_cast<animation_cfg*>(&(*config_[key]))
                 ->set_pivot(pivot);   
+            
+            // Set flip stuff
+            static_cast<animation_cfg*>(&(*config_[key]))
+                ->set_flip_x(flip_x);   
+            static_cast<animation_cfg*>(&(*config_[key]))
+                ->set_flip_y(flip_y);            
         }
     }
     
