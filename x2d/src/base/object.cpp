@@ -21,6 +21,8 @@ namespace x2d {
     , has_animation(false)
     , has_sprite(false)
     , has_spawner(false)
+    , has_text(false)
+    , align(LEFT_ALIGN)
     , obj_space(WORLD_SPACE)
     , has_parent(false)
     {            
@@ -34,6 +36,7 @@ namespace x2d {
     , camera_space_position_(t.position.get(c))
     , scale_(t.scale.get(c))
     , rotation_(t.rotation.get(c))    
+    , align_(t.align)
     {               
         if(t.want_screen_touch_input)
         {
@@ -50,7 +53,7 @@ namespace x2d {
             // TODO accel connect
         }
         
-        if(t.has_animation || t.has_sprite)
+        if(t.has_animation || t.has_sprite || t.has_text)
         {
             if(!t.has_parent)
             {
@@ -79,6 +82,12 @@ namespace x2d {
             spawner_->set_parent(this); // the spawner will live while this object lives
         }
         
+        if(t.has_text)
+        {
+            cur_font_ = config_.get_object<font>(t.font);
+            text_ = boost::shared_ptr<std::string>( new std::string(t.text) );
+        }
+    
         // check space and add object to list of camera space objects
         if(space_ == CAMERA_SPACE && !t.has_parent)
         {
@@ -146,12 +155,17 @@ namespace x2d {
 
         if(cur_animation_)
         {
-            cur_animation_->draw_at_point(point(0, 0));
+            cur_animation_->draw();
         }
         
         if(cur_sprite_)
         {
-            cur_sprite_->draw_at_point(point(0, 0));
+            cur_sprite_->draw();
+        }
+        
+        if(text_)
+        {
+            cur_font_->print(*text_, align_);
         }
 
         glColor4f(1, 1, 1, 1);

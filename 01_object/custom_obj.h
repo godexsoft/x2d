@@ -100,7 +100,7 @@ protected:
 
         glTranslatef(x_, y_, 0);
             
-        spr_.draw_at_point(point(0, 0));
+        spr_.draw();
 
         glPopMatrix();        
         glDisable(GL_BLEND);

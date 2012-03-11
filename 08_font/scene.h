@@ -30,14 +30,16 @@ public:
     scene(kernel& k, configuration& conf)
     : config_(conf)
     {
-        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_.get_resman(), 
-            config_.get_object<font>("fonts.sony_sketch_stroked") ) ) );
+//        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_.get_resman(), 
+//            config_.get_object<font>("fonts.sony_sketch_stroked") ) ) );
+        objects_.push_back( config_.create_object("str") );
+        objects_.push_back( config_.create_object("str2") );
+        objects_.push_back( config_.create_object("str3") );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     
 private:
     configuration&  config_;
-    boost::shared_ptr<font> font_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 

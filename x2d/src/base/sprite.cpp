@@ -12,13 +12,11 @@
 namespace x2d {
 namespace base {
 
-    void sprite::draw_at_point(point pos) const
+    void sprite::draw() const
     {
         glPushMatrix();
         glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
-        
-        glTranslatef(pos.x, pos.y, 0.0f);
-        
+                
         if(flip_x_)
             glScalef(-1.0f, 1.0f, 1.0f);
         if(flip_y_)

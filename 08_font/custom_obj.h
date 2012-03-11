@@ -30,8 +30,6 @@ public:
     , lig_(g_, 0.0f, 1.0f, 0.9f)
     , b_(0.0f)
     , lib_(b_, 0.0f, 1.0f, 1.2f)
-    , rot_(0.0f)
-    , lirot_(rot_, 0.0f, 360.0f, 2.0f)
     {    
         connect_update();
         connect_render(0.0f);
@@ -51,8 +49,6 @@ private:
     float b_;
     linear_interpolator lib_;
     
-    float rot_;
-    linear_interpolator lirot_;
 protected:
 
     void update(const clock_info& clock)
@@ -60,8 +56,6 @@ protected:
         lir_.update(clock.delta_time);
         lig_.update(clock.delta_time);
         lib_.update(clock.delta_time);
-        
-        lirot_.update(clock.delta_time);
     }
     
     void render(const clock_info& clock)
@@ -71,14 +65,26 @@ protected:
         glColor4f(r_, g_, b_, 1.0);
 
         glPushMatrix();
-        std::string txt("\"quotes\"! Welcome to x2d :-)");        
-        size sz = font_->calculate_size(txt);        
-
-        glRotatef(rot_, 0, 0, 1);
-        glTranslatef(-sz.width/2, 0, 0);
+        std::string txt("i can haz right align");        
         
-        font_->print(txt);
+        glTranslatef(240, -100, 0);
+        font_->print(txt, RIGHT_ALIGN);
 
+        glPopMatrix();
+        glPushMatrix();
+        txt = "i can haz left align";
+
+        glTranslatef(-240, 0, 0);
+        font_->print(txt, LEFT_ALIGN);
+
+        glPopMatrix();
+        glPushMatrix();
+        txt = "i can haz center align";
+        
+        glTranslatef(0, 100, 0);
+        font_->print(txt, CENTER_ALIGN);
+
+        
         glDisable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1, 1, 1, 1);

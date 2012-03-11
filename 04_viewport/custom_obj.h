@@ -62,7 +62,7 @@ protected:
         
         glPushMatrix();
         glTranslatef(position_.x, position_.y, 0.0f);
-        anim_->draw_at_point(point(0, 0));
+        anim_->draw();
         glPopMatrix();        
 
         glColor4f(1, 1, 1, 1);

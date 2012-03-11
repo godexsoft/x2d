@@ -70,8 +70,10 @@ namespace base {
         
         virtual inline size size() const { return size_; }
         
-        virtual void draw_in_rect(rect box) const;
-        virtual void draw_at_point(point pos) const;
+        /**
+         * Draw the texture
+         */
+        virtual void draw() const;
     };
     
 } // namespace base

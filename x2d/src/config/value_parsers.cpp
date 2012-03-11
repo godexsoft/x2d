@@ -155,5 +155,26 @@ namespace config {
             throw parse_exception("Space type must be one of 'screen', 'camera' or 'world'. Got '" + str + "' instead.");
         }
     }
+    
+    template<>
+    alignment value_parser<alignment>::parse(const std::string& str)
+    {
+        if(str == "left")
+        {
+            return LEFT_ALIGN;
+        }
+        else if(str == "right")
+        {
+            return RIGHT_ALIGN;
+        }
+        else if(str == "center")
+        {
+            return CENTER_ALIGN;
+        }
+        else
+        {
+            throw parse_exception("Align type must be one of 'left', 'center' or 'right'. Got '" + str + "' instead.");
+        }
+    }
 } // namespace config
 } // namespace x2d

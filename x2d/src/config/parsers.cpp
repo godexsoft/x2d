@@ -624,6 +624,9 @@ namespace config {
         // animation: animation to draw        
         // space:     'world' (default), 'screen' or 'camera' space        
         // spawner:   configuration key to attach a spawner
+        // font:      font to use when drawing text
+        // text:      text to render. must have font specified to use this
+        // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
         
         object_traits tr;
         
@@ -685,6 +688,34 @@ namespace config {
         else
         {
             tr.obj_space = WORLD_SPACE;
+        }
+
+        xml_attr* align = node->first_attribute("align");
+        if(align) 
+        {
+            tr.align = value_parser<alignment>::parse( align->value() );
+        }
+        else
+        {
+            tr.align = LEFT_ALIGN;
+        }
+
+        xml_attr* fnt = node->first_attribute("font");
+        if(fnt) 
+        {
+            tr.font = fnt->value();
+        }
+        
+        xml_attr* text = node->first_attribute("text");
+        if(text) 
+        {
+            if(!fnt)
+            {
+                throw structure_exception("Text is specified but Font is not. Can't construct object.");
+            }
+            
+            tr.text = text->value();
+            tr.has_text = true;
         }
         
         config_[key] = 

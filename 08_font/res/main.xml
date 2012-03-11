@@ -71,8 +71,23 @@
     </namespace>
     <!-- end: fonts -->
     
-    <string n = "str">
-        x2d Rocks
-    </string>
+    <object n = "str"
+         font = "fonts.sony_sketch_stroked" 
+         text = "i can haz text!:-)" 
+        align = "center"
+    />
+    
+    <object n = "str2"
+         font = "fonts.sony_sketch" 
+         text = "another text test" 
+     position = "-240 -100"
+    />
+    
+    <object n = "str3"
+         font = "fonts.degrassi" 
+         text = "Omg x2d" 
+        align = "right"
+     position = "240 100"
+    />
     
 </x2d>

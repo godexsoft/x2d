@@ -37,15 +37,27 @@ namespace bitmapfont {
             point orig(cur_x_offset, cur_y_offset);
             
             glyphs_.insert( std::make_pair(characters.at(i), 
-                                           glyph(sz, boost::shared_ptr<sprite>( new sprite( texture_, orig, sz ) ) ) ) );
+                glyph(sz, boost::shared_ptr<sprite>( new sprite( texture_, orig, sz ) ) ) ) );
             
             LOG("[%c] Sprite inside glyph: %f %f %f %f", characters.at(i), orig.x, orig.y, sz.width, sz.height);                
             cur_x_offset += sz.width + spacing_.width;
         }
     }
             
-    void font::print(const std::string& txt)
+    void font::print(const std::string& txt, alignment align)
     {
+        
+        if(align == RIGHT_ALIGN)
+        {
+            size s = calculate_size(txt);
+            glTranslatef(-s.width, 0, 0);
+        }
+        else if(align == CENTER_ALIGN)
+        {
+            size s = calculate_size(txt);
+            glTranslatef(-s.width/2, 0, 0);
+        }
+        
         int cursor_x = 0;
         
         for(int i=0; i<txt.size(); ++i)
@@ -59,7 +71,7 @@ namespace bitmapfont {
                 cursor_x += it->second.size_.width/2;
                 
                 glTranslatef(cursor_x, 0.0, 0.0);
-                it->second.spr_->draw_at_point(point(0,0));
+                it->second.spr_->draw();
                 
                 glPopMatrix();                                
                 cursor_x += it->second.size_.width/2;
@@ -83,7 +95,7 @@ namespace bitmapfont {
                 max_height = fmaxf(max_height, it->second.size_.height);
             }
         }             
-        
+                
         return size(cursor_x, max_height);
     }
         

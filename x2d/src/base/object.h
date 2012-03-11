@@ -15,6 +15,7 @@
 #include "space.h"
 #include "animation.h"
 #include "spawner.h"
+#include "font.h"
 #include "value_holder.h"
 #include "context.h"
 #include "object_traits.h"
@@ -129,8 +130,11 @@ using namespace x2d::config;
         float       scale_;
         float       rotation_;
         
-        boost::shared_ptr<animation> cur_animation_;
-        boost::shared_ptr<sprite>    cur_sprite_;
+        boost::shared_ptr<animation>   cur_animation_;
+        boost::shared_ptr<sprite>      cur_sprite_;
+        boost::shared_ptr<font>        cur_font_;
+        boost::shared_ptr<std::string> text_;
+        alignment                      align_;
         
         boost::shared_ptr<spawner>   spawner_;
         

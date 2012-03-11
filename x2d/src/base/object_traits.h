@@ -11,6 +11,7 @@
 #define __X2D_OBJECT_TRAITS_H__
 
 #include "value_holder.h"
+#include "math_util.h"
 #include "glm.hpp"
 
 #include <vector>
@@ -44,6 +45,12 @@ namespace x2d {
         
         bool        has_spawner;
         std::string spawner;
+                
+        // text and font        
+        std::string text;
+        bool        has_text;
+        std::string font;
+        alignment   align;
         
         // space
         space       obj_space;

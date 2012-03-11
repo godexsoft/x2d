@@ -43,9 +43,8 @@ namespace anim {
         
         /**
          * Draw the frame.
-         * @param[in] pos   Position to draw at
          */
-        void draw_at_point(point pos) const;
+        void draw() const;
         
     private:
         boost::shared_ptr<sprite> sprite_;
@@ -119,10 +118,9 @@ namespace anim {
         void update(const clock_info& clock);
         
         /**
-         * Draw animation at position
-         * @param[in] pos   Position to draw at
+         * Draw the current frame of the animation
          */
-        void draw_at_point(point pos) const;
+        void draw() const;
         
     private:
         float       duration_; // default duration

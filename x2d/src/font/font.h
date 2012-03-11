@@ -52,7 +52,7 @@ namespace bitmapfont {
              int height, const size& spacing, boost::shared_ptr<texture> txtr);
         
         size calculate_size(const std::string& txt);
-        void print(const std::string& txt);
+        void print(const std::string& txt, alignment align=LEFT_ALIGN);
         
     private:
         boost::shared_ptr<texture>     texture_;

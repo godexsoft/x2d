@@ -50,9 +50,9 @@ namespace base {
         }
         
         /**
-         * @param[in] pos  Location to draw the sprite
+         * Draw the sprite
          */
-        void draw_at_point(point pos) const;
+        void draw() const;
         
     private:
         boost::shared_ptr<texture>   t_;

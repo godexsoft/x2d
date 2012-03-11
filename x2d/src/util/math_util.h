@@ -114,6 +114,13 @@ namespace math {
         point origin;
         size size;        
     };
+    
+    enum alignment
+    {
+        LEFT_ALIGN = 1,
+        CENTER_ALIGN,
+        RIGHT_ALIGN
+    };
        
 } // namespace math
 } // namespace x2d

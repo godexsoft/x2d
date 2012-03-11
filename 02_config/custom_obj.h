@@ -71,7 +71,7 @@ protected:
         glTranslatef(pos_.x, pos_.y, 0);
         glRotatef(alpha_*360.0f, 0, 0, 1);
         
-        spr_->draw_at_point(point(0, 0));
+        spr_->draw();
         
         glPopMatrix();        
 

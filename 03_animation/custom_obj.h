@@ -49,7 +49,7 @@ protected:
         
         glPushMatrix();
         glTranslatef(-160, 240, 0.0);
-        anim_->draw_at_point(point(0, 0));
+        anim_->draw();
         glPopMatrix();        
 
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);   

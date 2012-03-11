@@ -109,14 +109,9 @@ namespace base {
         LOG("Created maxs=%f, maxt=%f", max_s_, max_t_);
     }
     
-    void texture::draw_in_rect(rect box) const
-    {
-    }
-    
-    void texture::draw_at_point(point pos) const
+    void texture::draw() const
     {
         glPushMatrix();
-        glTranslatef(pos.x, pos.y, 0.0f);
         glEnable(GL_BLEND);
         
         float coordinates[] =
