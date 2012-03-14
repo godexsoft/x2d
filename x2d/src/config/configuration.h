@@ -192,6 +192,27 @@ namespace config {
             throw e;
         }
         
+        // getting a list attribute
+        template<typename T>
+        static
+        value_holder<std::vector<T> > get_list_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                    const std::string& name, const std::string& default_value)
+        {
+            typedef value_holder<std::vector<T> > holder_type;
+            
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return holder_type(key / name, value_parser<std::vector<T> >::parse(at->value()));
+            }
+            else if(cfg.config_.find(key / name) != cfg.config_.end() )
+            {
+                return holder_type(key / name, value_parser<std::vector<T> >::parse(default_value));
+            }
+            
+            return holder_type("", value_parser<std::vector<T> >::parse(default_value));
+        }
+        
     private:
         /**
          * Loads x2d default parsers.
@@ -212,6 +233,7 @@ namespace config {
         void parse_int(xml_node* node, const config_key& key);
         void parse_string(xml_node* node, const config_key& key);
         void parse_vector(xml_node* node, const config_key& key);
+        void parse_list(xml_node* node, const config_key& key);
         
         template<typename T>
         void parse_random(xml_node* node, const config_key& key);

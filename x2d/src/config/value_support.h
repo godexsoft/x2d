@@ -204,12 +204,15 @@ namespace config {
          */
         T get()
         {    
+            LOG("Calling GET in value_cfg...");
             if(!random_)
             {
+                LOG("Return plain value!");
                 return val_;
             }
             else                
             {
+                LOG("Return random value..");
                 return random_->get();
             }
         }

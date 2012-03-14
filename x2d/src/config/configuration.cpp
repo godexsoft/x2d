@@ -40,6 +40,7 @@ namespace config {
         parsers_["int"]         = boost::bind(&configuration::parse_int, this, _1, _2);
         parsers_["string"]      = boost::bind(&configuration::parse_string, this, _1, _2);
         parsers_["vector"]      = boost::bind(&configuration::parse_vector, this, _1, _2);
+        parsers_["list"]        = boost::bind(&configuration::parse_list, this, _1, _2);
         
         parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
         parsers_["viewport"]    = boost::bind(&configuration::parse_viewport, this, _1, _2);
@@ -287,6 +288,13 @@ namespace config {
     glm::vec3 configuration::get_value<glm::vec3>(const config_key& key)
     {
         typedef value_cfg<glm::vec3> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
+    std::vector<std::string> configuration::get_value<std::vector<std::string> >(const config_key& key)
+    {
+        typedef value_cfg<std::vector<std::string> > cfg_type;
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
     

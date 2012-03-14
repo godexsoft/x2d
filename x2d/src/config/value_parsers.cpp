@@ -52,6 +52,23 @@ namespace config {
     }
     
     template<>
+    std::vector<std::string> value_parser<std::vector<std::string> >::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        ss << str;
+        
+        std::vector<std::string> tmp;
+        std::string s;
+        
+        while(ss >> s)
+        {
+            tmp.push_back(s);
+        }
+        
+        return tmp;
+    }
+    
+    template<>
     point value_parser<point>::parse(const std::string& str)
     {
         std::stringstream ss;
@@ -176,5 +193,6 @@ namespace config {
             throw parse_exception("Align type must be one of 'left', 'center' or 'right'. Got '" + str + "' instead.");
         }
     }
+    
 } // namespace config
 } // namespace x2d

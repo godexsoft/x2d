@@ -208,6 +208,47 @@ namespace config {
         }
     }    
     
+    void configuration::parse_list(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:      name
+        // can have:
+        // value:  the value
+        // or value can be provided as child
+        
+        xml_attr* path = node->first_attribute("n");
+        if(!path) 
+        {
+            throw parse_exception("List must have 'n' defined.");
+        }
+        
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node()) 
+        {
+            throw parse_exception("List must have either 'value' or inner data defined.");
+        }
+        
+        if(!value)
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data || data->type() == rx::node_cdata )
+            {
+                config_[key] = boost::shared_ptr< value_cfg<std::vector<std::string> > >(
+                    new value_cfg<std::vector<std::string> >( value_parser<std::vector<std::string> >::parse(data->value())) );
+            }
+            else
+            {
+                throw parse_exception("List data element can be only plain value.");
+            }
+        }
+        else
+        {        
+            config_[key] = boost::shared_ptr< value_cfg<std::vector<std::string> > >(
+                new value_cfg<std::vector<std::string> >( value_parser<std::vector<std::string> >::parse(value->value())) );
+        }
+    }
+    
     void configuration::parse_namespace(xml_node* node, const config_key& key)
     {
         // must have:
@@ -547,19 +588,12 @@ namespace config {
         // wave_size:  size of one wave. count of objects to spawn at once
         // wave_delay: delay between automatic spawns
                
-        std::string objects = get_mandatory_attr<std::string>(*this, node, key, "objects", 
-            parse_exception("Spawner type must have 'objects' defined.")).get(*this);
+//        std::string objects = get_mandatory_attr<std::string>(*this, node, key, "objects", 
+//            parse_exception("Spawner type must have 'objects' defined.")).get(*this);
+//        
+//        LOG("Got as string: '%s'", objects.c_str());
         
-        std::string v;
-        std::vector<std::string> obj_vec;
-        
-        std::stringstream ss;
-        ss << objects;
-        
-        while( ss >> v )
-        {
-            obj_vec.push_back(v);
-        }
+        std::vector<std::string> obj_vec = get_list_attr<std::string>(*this, node, key, "objects", "").get(*this);
 
         glm::vec3 position = get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0,0,0)).get(*this); 
         int wave_size = get_attr<int>(*this, node, key, "wave_size", 1).get(*this);
@@ -591,20 +625,9 @@ namespace config {
         rect box = get_mandatory_attr<rect>(*this, node, key, "rect",
             parse_exception("Zone type must have 'rect' defined (format: 'x y width height').")).get(*this);
 
-        std::string ctxs = get_attr<std::string>(*this, node, key, "contexts", "*").get(*this);
-        
         // get vector of strings out of string ctxs
-        std::string v;
-        std::vector<std::string> ctx_vec;
-        
-        std::stringstream ss;
-        ss << ctxs;
-        
-        while( ss >> v )
-        {
-            ctx_vec.push_back(v);
-        }
-        
+        std::vector<std::string> ctx_vec = get_list_attr<std::string>(*this, node, key, "contexts", "*").get(*this);
+
         LOG("Parsed %d contexts from zone.contexts string.", ctx_vec.size());
         config_[key] = boost::shared_ptr<zone_cfg>( new zone_cfg(*this, box, ctx_vec) );
     }
@@ -636,25 +659,10 @@ namespace config {
             static_cast<object_cfg*>(&(*config_[parent->value()]))->add( key );
             tr.has_parent = true;
         }
-        
-// TODO:
-//        std::vector<std::string> def_ctx_vec;
-//        def_ctx_vec.push_back("*");        
-//        std::vector<std::string> ctx_vec = get_list_attr<std::string>(*this, node, key, "contexts", def_ctx_vec).get(*this);
 
         // no contexts by default
-        std::string ctxs = get_attr<std::string>(*this, node, key, "contexts", "").get(*this);
-        
-        // get vector of strings out of string ctxs
-        std::string v;
-        std::stringstream ss;
-        ss << ctxs;
-        
-        while( ss >> v )
-        {
-            tr.contexts.push_back(v);
-        }
-        
+        tr.contexts = get_list_attr<std::string>(*this, node, key, "contexts", "").get(*this);
+
         tr.position =   get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);

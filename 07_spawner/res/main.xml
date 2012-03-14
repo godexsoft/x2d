@@ -51,10 +51,10 @@
      -->
     <spawner n = "spawner">
         <!-- this defines which objects the spawner will spawn -->
-        <string n = "objects">
+        <list n = "objects">
             objects.obj1 
             objects.obj2
-        </string>
+        </list>
 
         <!-- 
          sets the position of the spawner relative to its parent.

@@ -102,6 +102,15 @@ namespace config {
         
         return def_val_;
     }
-            
+   
+    template<>
+    std::vector<std::string> value_holder<std::vector<std::string> >::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<std::vector<std::string> >(key_);
+        
+        return def_val_;
+    }
+    
 } // namespace config
 } // namespace x2d
