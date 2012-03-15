@@ -103,7 +103,6 @@ namespace config {
         return def_val_;
     }
    
-    template<>
     std::vector<std::string> value_holder<std::vector<std::string> >::get(configuration& c) const
     {
         if(!key_.empty() && c.exists(key_))
@@ -111,6 +110,20 @@ namespace config {
         
         return def_val_;
     }
+    
+    std::string value_holder<std::vector<std::string> >::random(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+        {
+            std::vector<std::string> vec = c.get_value<std::vector<std::string> >(key_);
+            return vec.at(static_cast<int>( next_rand() * vec.size() ));
+        }
+        
+        return def_val_.at(static_cast<int>( next_rand() * def_val_.size() ));
+    }
+    
+    // keep the linker happy
+    boost::random::mt19937 value_holder<std::vector<std::string> >::gen_ = boost::random::mt19937(platform::time::current_time());
     
 } // namespace config
 } // namespace x2d

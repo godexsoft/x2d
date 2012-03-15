@@ -51,9 +51,12 @@
      -->
     <spawner n = "spawner">
         <!-- this defines which objects the spawner will spawn -->
+        <!-- obj1 will be selected more often than others. -->
         <list n = "objects">
             objects.obj1 
             objects.obj2
+            objects.obj3
+            objects.obj1
         </list>
 
         <!-- 
@@ -101,10 +104,30 @@
         </object>
         
         <object n       =   "obj2"             
-            sprite      =   "graphics.player.standing"
-            scale       =   "0.2"
-            rotation    =   "45"                
-        />
+            sprite      =   "graphics.player.standing" >
+            <float n = "scale">
+                <random from = "0.1"
+                to = "0.2" />
+            </float>            
+            
+            <float n = "rotation">
+                <random from = "0"
+                to = "360" />
+            </float>            
+        </object>
+
+        <object n       =   "obj3"             
+            sprite      =   "graphics.player.anim_4" >
+            <float n = "scale">
+                <random from = "0.1"
+                to = "0.2" />
+            </float>            
+            
+            <float n = "rotation">
+                <random from = "0"
+                to = "360" />
+            </float>            
+        </object>
         
         <!-- Running player -->
         <object n       =   "player" 
