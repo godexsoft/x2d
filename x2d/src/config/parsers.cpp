@@ -588,11 +588,9 @@ namespace config {
         // wave_size:  size of one wave. count of objects to spawn at once
         // wave_delay: delay between automatic spawns
 
-//        std::string objects = get_mandatory_attr<std::string>(*this, node, key, "objects", 
-//            parse_exception("Spawner type must have 'objects' defined.")).get(*this);
-
-        // TODO: exception!
-        value_holder<std::vector<std::string> > obj_vec = get_list_attr<std::string>(*this, node, key, "objects", "");
+        value_holder<std::vector<std::string> > obj_vec = 
+            get_mandatory_list_attr<std::string>(*this, node, key, "objects", 
+                parse_exception("Spawner type must have 'objects' defined."));
 
         glm::vec3 position = get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0,0,0)).get(*this); 
         int wave_size = get_attr<int>(*this, node, key, "wave_size", 1).get(*this);

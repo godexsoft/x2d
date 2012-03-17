@@ -212,6 +212,27 @@ namespace config {
             
             return holder_type("", value_parser<std::vector<T> >::parse(default_value));
         }
+
+        // getting a mandatory list attribute
+        template<typename T>
+        static
+        value_holder<std::vector<T> > get_mandatory_list_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                              const std::string& name, const std::exception& e)
+        {
+            typedef value_holder<std::vector<T> > holder_type;
+            
+            xml_attr* at = node->first_attribute(name.c_str());
+            if(at) 
+            {
+                return holder_type(key / name, value_parser<std::vector<T> >::parse(at->value()));
+            }
+            else if(cfg.config_.find(key / name) != cfg.config_.end() )
+            {
+                return holder_type(key / name, std::vector<T>());
+            }
+                                
+            throw e;
+        }
         
     private:
         /**
