@@ -109,6 +109,12 @@ namespace filesystem {
         const path_type remove_last_path_component() const 
         {
             size_t p = path_.rfind(_SEP);
+            
+            if(p == _StringType::npos)
+            {
+                return _StringType(); // the whole string was the last path component
+            }
+            
             return path_type( path_.substr(0,p) );
         }
         

@@ -153,6 +153,13 @@ namespace config {
             return config_.find(key) != config_.end();
         }
         
+        /**
+         * Lookup a configuration key based on a user-provided key and current base path
+         * @param[in] key The key to find
+         * @param[in] base Current config path
+         * @return The fully qualified configuration key if found or empty string otherwise
+         */
+        std::string lookup_key(const std::string& key, const config_key& base);
         
         // getting attribute
         template<typename T>
@@ -191,6 +198,11 @@ namespace config {
             
             throw e;
         }
+
+        // getting mandatory key attribute
+        static
+        value_holder<std::string> get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                         const std::string& name, const std::exception& e);
         
         // getting a list attribute
         template<typename T>

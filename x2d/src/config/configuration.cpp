@@ -133,6 +133,41 @@ namespace config {
         }
     }
     
+    std::string configuration::lookup_key(const std::string& key, const config_key& base)
+    {
+        if( key.find('.') == std::string::npos )
+        {
+            // this is probably a relative path.
+            config_key tmp_key = base;
+            
+            while(true)
+            {                    
+                std::string kk = tmp_key / key;
+                LOG("Check key: '%s'", kk.c_str());
+                
+                if(exists(kk))
+                {
+                    LOG("Found key '%s' from '%s'", kk.c_str(), key.c_str());
+                    return kk;
+                }
+                
+                if(tmp_key.string().empty())
+                {
+                    break; // already checked everything
+                }
+                
+                // try deeper
+                tmp_key = tmp_key.remove_last_path_component();
+            }
+        }
+        else if(exists(key)) 
+        {
+            return key; // it's a fully qualified key
+        }
+        
+        return std::string(); // empty means not found
+    }
+    
     void configuration::load_plugin(const boost::shared_ptr<plugin>& plg)
     {
         plg->load_extensions( parsers_ );
@@ -297,6 +332,26 @@ namespace config {
         typedef value_cfg<std::vector<std::string> > cfg_type;
         return static_cast<cfg_type*>( &(*config_[key]) )->get();
     }
+    
+    
+    value_holder<std::string> configuration::get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                                    const std::string& name, const std::exception& e)
+    {
+        xml_attr* at = node->first_attribute(name.c_str());
+        if(at) 
+        {
+            std::string k = cfg.lookup_key(value_parser<std::string>::parse(at->value()), key);
+            return value_holder<std::string>("", k);
+        }
+        else if( cfg.exists(key / name) )
+        {
+            std::string k = cfg.lookup_key(cfg.get_value<std::string>(key / name), key);
+            return value_holder<std::string>("", k);
+        }
+        
+        throw e;
+    }
+    
     
     boost::shared_ptr<sprite> sprite_cfg::get()
     {

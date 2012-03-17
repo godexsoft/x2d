@@ -374,7 +374,7 @@ namespace config {
         // can have:
         // duration: duration for this frame
         
-        std::string spr = get_mandatory_attr<std::string>(*this, node, key, "sprite",
+        std::string spr = get_mandatory_key_attr(*this, node, key, "sprite",
             parse_exception("Frame type must have 'sprite' defined.")).get(*this);
 
         // parent must be an animation
@@ -423,7 +423,7 @@ namespace config {
         size spacing = get_mandatory_attr<size>(*this, node, key, "spacing", 
             parse_exception("Font type must have 'spacing' defined.")).get(*this);
         
-        std::string txtr = get_mandatory_attr<std::string>(*this, node, key, "texture", 
+        std::string txtr = get_mandatory_key_attr(*this, node, key, "texture", 
             parse_exception("Font type must have 'texture' defined.")).get(*this);
         
         std::string characters = get_mandatory_attr<std::string>(*this, node, key, "characters", 
@@ -541,9 +541,9 @@ namespace config {
         rect box = get_mandatory_attr<rect>(*this, node, key, "box",
             parse_exception("Viewport type must have 'box' defined (format: 'x y width height').")).get(*this);
 
-        std::string cam = get_mandatory_attr<std::string>(*this, node, key, "camera",
+        std::string cam = get_mandatory_key_attr(*this, node, key, "camera",
             parse_exception("Viewport type must have 'camera' defined.")).get(*this);
-        
+
         color_info ci = get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f)).get(*this);
         
         boost::shared_ptr<viewport_cfg> vp = 
@@ -653,8 +653,19 @@ namespace config {
         xml_attr* parent = node->first_attribute("parent");
         if(parent) 
         {
-            static_cast<object_cfg*>(&(*config_[parent->value()]))->add( key );
-            tr.has_parent = true;
+            std::string k = lookup_key(parent->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                static_cast<object_cfg*>(&(*config_[k]))->add( key );
+                tr.has_parent = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's parent is not found under key '") 
+                        + parent->value() + "'.");
+            }
         }
 
         // no contexts by default
@@ -667,22 +678,55 @@ namespace config {
         xml_attr* anim = node->first_attribute("animation");
         if(anim) 
         {
-            tr.animation = anim->value();
-            tr.has_animation = true;
+            std::string k = lookup_key(anim->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.animation = k;
+                tr.has_animation = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's animation is not found under key '") 
+                        + anim->value() + "'.");
+            }
         }
 
         xml_attr* spr = node->first_attribute("sprite");
         if(spr) 
         {
-            tr.sprite = spr->value();
-            tr.has_sprite = true;
+            std::string k = lookup_key(spr->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.sprite = k;
+                tr.has_sprite = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's sprite is not found under key '") 
+                        + spr->value() + "'.");
+            }
         }
 
         xml_attr* spw = node->first_attribute("spawner");
         if(spw) 
         {
-            tr.spawner = spw->value();
-            tr.has_spawner = true;
+            std::string k = lookup_key(spw->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.spawner = k;
+                tr.has_spawner = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's spawner is not found under key '") 
+                        + spw->value() + "'.");
+            }
         }
         
         xml_attr* sp = node->first_attribute("space");
@@ -708,7 +752,18 @@ namespace config {
         xml_attr* fnt = node->first_attribute("font");
         if(fnt) 
         {
-            tr.font = fnt->value();
+            std::string k = lookup_key(fnt->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.font = k;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's font is not found under key '") 
+                        + fnt->value() + "'.");
+            }
         }
         
         xml_attr* text = node->first_attribute("text");
