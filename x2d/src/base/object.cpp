@@ -23,6 +23,7 @@ namespace x2d {
     , has_spawner(false)
     , has_text(false)
     , align(LEFT_ALIGN)
+    , camera("camera") // FIXME
     , obj_space(WORLD_SPACE)
     , has_parent(false)
     {            
@@ -31,6 +32,7 @@ namespace x2d {
     object::object(kernel& k, config::configuration& c, const object_traits& t)
     : base_object(k)
     , config_(c)
+    , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
     , position_(t.position.get(c))
     , camera_space_position_(t.position.get(c))
@@ -114,6 +116,25 @@ namespace x2d {
         }
         
         kernel_.remove_camera_space_object(this);
+    }
+    
+    const glm::vec3 object::world_position() const
+    {
+        // TODO: if we are in camera-space then we must calculate using the camera_
+        if(space_ == CAMERA_SPACE)
+        {
+            if(parent_)
+                return parent_->world_position() + camera_->to_world(camera_space_position_);
+
+            return camera_->to_world(camera_space_position_);
+        }
+        else 
+        {        
+            if(parent_)
+                return parent_->world_position() + position_;
+            
+            return position_;
+        }
     }
     
     void object::update(const clock_info& clock) 

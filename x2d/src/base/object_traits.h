@@ -52,6 +52,8 @@ namespace x2d {
         std::string font;
         alignment   align;
         
+        std::string camera;
+        
         // space
         space       obj_space;
         bool        has_parent;

@@ -85,12 +85,7 @@ using namespace x2d::config;
             // retain z value
         }        
 
-        const glm::vec3 world_position() const
-        {
-            if(parent_)
-                return parent_->world_position() + position_;
-            return position_;
-        }
+        const glm::vec3 world_position() const;
         
         void rotation(float a)        
         {
@@ -122,7 +117,12 @@ using namespace x2d::config;
             parent_ = o;
         }
         
-        space       space_;
+    private:
+        config::configuration&  config_;
+
+    protected:        
+        boost::shared_ptr<camera>   camera_;
+        space                       space_;
         
         glm::vec3   position_;
         glm::vec3   camera_space_position_; // used if space_ == CAMERA_SPACE
@@ -141,9 +141,6 @@ using namespace x2d::config;
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
         boost::shared_ptr<object>                    parent_;
-        
-    private:
-        config::configuration&  config_;
     };
     
 } // namespace x2d

@@ -50,6 +50,8 @@
 		2415841914D0E57F0014F37B /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2415841814D0E57F0014F37B /* resources.zip */; };
 		2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415841C14D2DBC20014F37B /* liverpool_manager.cpp */; };
 		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
+		241D5145151A7D5B00197BDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		241D5147151A7D6000197BDC /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		243F95C714EDACD000922D55 /* openal_fx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95C614EDACD000922D55 /* openal_fx.cpp */; };
 		243F95C914EDB61600922D55 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		243F95CB14EDC80900922D55 /* loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 243F95CA14EDC80800922D55 /* loop.caf */; };
@@ -813,6 +815,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241D5147151A7D6000197BDC /* OpenAL.framework in Frameworks */,
+				241D5145151A7D5B00197BDC /* AudioToolbox.framework in Frameworks */,
 				240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */,
 				240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */,
 				240F053014E41E30002AEEB2 /* QuartzCore.framework in Frameworks */,
@@ -3378,7 +3382,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3405,6 +3409,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

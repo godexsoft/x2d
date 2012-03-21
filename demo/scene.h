@@ -28,41 +28,19 @@ class scene
 : public base_object
 {
 public:
-    scene(kernel& k, configuration& conf)
-    : base_object(k)
-    , config_(conf)
-    {        
-        connect_accelerometer_input();
-        
-        objects_.push_back( config_.create_object("objects.background") );
-        objects_.push_back( config_.create_object("objects.road") );
-        objects_.push_back( config_.create_object("objects.player") );
-        
-        objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
-    }
+    scene(kernel& k, configuration& conf);
+    
+protected:
+    virtual void update(const clock_info& clock);
     
 private:
     
-    void accelerometer_input(const vector_2d& acceleration) 
-    {        
-        if(vector_2d::mag_squared(acceleration) > 0.2f)
-        {
-            static vector_2d r(0,-1);
-            
-            r = vector_2d ( lerp(r.x(), acceleration.x(), 0.1f), 
-                            lerp(r.y(), acceleration.y(), 0.1f) );
-            
-            float d2 = r.x() * r.x() + r.y() * r.y();
-            float theta = (d2 == 0.0) ? 0.0 : atan2(r.y(), r.x());                            
-            
-            config_.get_object<camera>("camera")
-                ->rotation( to_deg( 1.570796327f + theta ) );
-        }          
-
-    }
-    
     configuration&  config_;
+    boost::shared_ptr<camera> camera_;
+    
     std::vector< boost::shared_ptr<base_object> >   objects_;
+    
+    boost::shared_ptr<base_object> house_spawner_;
 };
 
 #endif // __SCENE_H__

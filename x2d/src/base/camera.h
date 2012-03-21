@@ -53,6 +53,15 @@ namespace base {
         }
         
         /**
+         * Get current camera position
+         * @return Camera position given in world coordinates
+         */
+        const glm::vec2 position() const
+        {
+            return position_;
+        }
+        
+        /**
          * Turn camera by angle
          * @param[in] angle The angle
          */
@@ -87,34 +96,10 @@ namespace base {
         /**
          * Apply the camera matrix for opengl
          */
-        void apply()
-        {
-            if(is_applied)
-                return;
-            
-            glLoadIdentity();
-            
-            // move to center of screen
-            glTranslatef(frustum_.width / 2.0f, 
-                         frustum_.height / 2.0f, 0.0);
-            
-            // rotate about center of screen
-            if(rotation_ != 0.0f)
-            {
-                glRotatef(rotation_, 0, 0, 1);
-            }
-
-            // zoom scene
-            if(zoom_ != 1.0f)
-            {
-                glScalef(zoom_, zoom_, 1.0);
-            }
-
-            // move to camera position
-            glTranslatef(position_.x, position_.y, 0.0);
-            
-            is_applied = true;
-        }
+        void apply();
+        
+        // get world position from camera-space position
+        const glm::vec3 to_world(const glm::vec3& p);
         
         // inverse of 'apply' on point in space
         const point inverted_transformation(const point& p);

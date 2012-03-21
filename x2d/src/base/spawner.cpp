@@ -43,7 +43,10 @@ namespace base {
             boost::shared_ptr<object> o = config_.create_object(obj_lst_.random(config_));
             
             glm::vec3 pos = o->position();
-            pos += world_position();            
+            pos += world_position();     
+            
+            LOG("SPAWNED OBJECT NEW POSITION: %f/%f", pos.x, pos.y);
+            
             o->position( pos );
             
             objects_.push_back( o );

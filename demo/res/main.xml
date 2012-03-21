@@ -4,6 +4,7 @@
     <camera     n = "camera"
           frustum = "320 480"  
          rotation = "90" 
+             zoom = "0.2"
     />    
     
     <viewport   n = "viewport" 
@@ -38,8 +39,8 @@
         </texture>
         
         <texture n="scenary" path="res/graphics/scenary.png">
-            <sprite n="cafe"    x="0"   y="0"    w="158" h="140" />
-            <sprite n="house"   x="0"   y="139"  w="158" h="216" />
+            <sprite n="cafe"    x="0"   y="0"    w="158" h="140" pivot="0 -70" />
+            <sprite n="house"   x="0"   y="139"  w="158" h="216" pivot="0 -104" />
             <sprite n="tree"    x="157" y="0"    w="53"  h="95" />
             <sprite n="lantern" x="157" y="184"  w="42"  h="172" />
             <sprite n="fence"   x="303" y="0"    w="60"  h="49" />
@@ -70,6 +71,29 @@
     </namespace> 
     <!-- end: animations -->
     
+    <!-- namespace for spawners -->
+    <namespace n = "spawners">
+        
+        <spawner n = "houses">
+            
+            <list n = "objects">
+                objects.scenary.house 
+                objects.scenary.cafe
+            </list>
+            
+            <int    n = "wave_size" 
+                value = "1" />        
+            
+            <!-- set delay between waves -->
+            <float  n = "wave_delay">
+                <random from="0.8" to="1.5" />
+            </float>
+            
+        </spawner>
+    
+    </namespace>
+    <!-- end: spawners -->
+    
     <!-- namespace for all objects -->
     <namespace n = "objects">
 
@@ -80,14 +104,36 @@
             rotation    =   "90"
         />                
         
-        <object n       =   "road"
-            sprite      =   "graphics.scenary.road"
-            position    =   "0 -70 0.1"
-        />
-        
         <object n       =   "player"             
             animation   =   "animations.player" 
-        />                
+        />   
+                
+        <!-- namespace for scenary objects -->
+        <namespace n = "scenary">
+            
+            <object n       =   "road"
+                sprite      =   "graphics.scenary.road"
+                position    =   "0 -70 0.1"
+            /> 
+            
+            <object n       =   "house"
+                sprite      =   "graphics.scenary.house"
+            /> 
+            
+            <object n       =   "cafe"
+                sprite      =   "graphics.scenary.cafe"
+            />             
+            
+            <!-- spawning objects -->
+            <object n       =   "house_spawner"
+                position    =   "0.5 0 0.1"
+                 spawner    =   "spawners.houses"
+                   space    =   "camera"
+            /> 
+            
+        </namespace>
+        <!-- end: scenary -->
+        
     </namespace>
     <!-- end: objects -->
     
