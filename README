@@ -1,0 +1,22 @@
+-- x2d is a crossplatform 2d game engine written in modern c++ --
+
+------------------------------
+Currently supported platforms:
+
+- iOS
+
+---------
+Requires:
+
+- Boost compiled as framework for iOS. Read my article and follow step by step: http://alex.tapmania.org/2011/11/boost-as-framework-on-ios.html
+
+--------
+Tracker:
+
+- Will add issues to github's tracker. Currently all issues are in unfuddle (private).
+
+-----------
+Contribute:
+
+If you want to contribute please feel free to contact me at godexsoft [at] gmail (dt) com
+Cheers.
