@@ -414,9 +414,11 @@ namespace config {
          * @param[in] zm      Zoom level (scale)
          * @param[in] pos     Position of the camera (given in world space)
          */
-        camera_cfg(configuration& c, const size& f, const value_holder<float>& rot, 
-                   const value_holder<float>& zm, const value_holder<glm::vec2>& pos)
+        camera_cfg(configuration& c, const std::string& p, const size& f, 
+                   const value_holder<float>& rot, const value_holder<float>& zm, 
+                   const value_holder<glm::vec2>& pos)
         : config_(c)
+        , parent_(p)
         , frustum_(f)
         , rotation_(rot)
         , zoom_(zm)
@@ -431,6 +433,7 @@ namespace config {
         
     private:
         configuration&           config_;
+        std::string              parent_;
         size                     frustum_;
         value_holder<float>      rotation_;
         value_holder<float>      zoom_;

@@ -21,6 +21,16 @@
 #include "context.h"
 
 namespace x2d {
+        
+    class object;
+        
+namespace config {
+            
+    class configuration;
+            
+} // namespace config
+using namespace x2d::config;
+
 namespace base {
 
     /**
@@ -29,11 +39,13 @@ namespace base {
     class zone
     : public base_object
     {
+        friend class object;
         typedef boost::function<void(object&)> trigger_type;
         
     public:
         zone(kernel& k)
         : base_object(k)
+        , parent_(NULL)
         {
             connect_update(); // we want updates
         }
@@ -57,6 +69,11 @@ namespace base {
     protected:
         typedef std::vector< boost::shared_ptr<context> > ctx_vec;
         
+        void set_parent(object* o)
+        {
+            parent_ = o;
+        }
+        
         void update(const clock_info& clock)
         {
             // check all objects in all contexts
@@ -79,6 +96,8 @@ namespace base {
         
         // contexts
         ctx_vec   ctx_list_;
+        
+        object*   parent_;
     };
     
     /**
@@ -96,7 +115,16 @@ namespace base {
         
         bool match(const glm::vec3& position)
         {
-            return rect_.contains_point( point(position.x, position.y) );
+            if(parent_ != NULL)
+            {                
+                glm::vec3 p = parent_->world_position();
+                return rect(p.x + rect_.origin.x, p.y + rect_.origin.y, 
+                    rect_.size.width, rect_.size.height).contains_point( point(position.x, position.y) );
+            }
+            else
+            {            
+                return rect_.contains_point( point(position.x, position.y) );
+            }
         }
         
     private:

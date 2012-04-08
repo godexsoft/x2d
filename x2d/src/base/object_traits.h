@@ -45,7 +45,10 @@ namespace x2d {
         
         bool        has_spawner;
         std::string spawner;
-                
+
+        bool        has_zone;
+        std::string zone;
+        
         // text and font        
         std::string text;
         bool        has_text;

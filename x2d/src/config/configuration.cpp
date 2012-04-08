@@ -334,6 +334,25 @@ namespace config {
     }
     
     
+    value_holder<std::string> configuration::get_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                          const std::string& name, const std::string& default_value)
+    {
+        xml_attr* at = node->first_attribute(name.c_str());
+        if(at) 
+        {
+            std::string k = cfg.lookup_key(value_parser<std::string>::parse(at->value()), key);
+            return value_holder<std::string>("", k);
+        }
+        else if( cfg.exists(key / name) )
+        {
+            std::string k = cfg.lookup_key(cfg.get_value<std::string>(key / name), key);
+            return value_holder<std::string>("", k);
+        }
+        
+        return value_holder<std::string>("", default_value);
+    }
+    
+    
     value_holder<std::string> configuration::get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
                                                                     const std::string& name, const std::exception& e)
     {
@@ -399,7 +418,17 @@ namespace config {
         }
         else
         {
-            boost::shared_ptr<camera> r = boost::shared_ptr<camera>( new camera(frustum_) );
+            boost::shared_ptr<camera> r;
+            
+            if(parent_.empty() == false)
+            {
+                r = boost::shared_ptr<camera>( new camera(frustum_, config_.get_object<camera>(parent_)) );
+            }
+            else
+            {
+                r = boost::shared_ptr<camera>( new camera(frustum_, boost::shared_ptr<camera>()) );
+            }
+            
             r->position(position_.get(config_));                
             r->zoom(zoom_.get(config_));
             r->rotation(rotation_.get(config_));

@@ -35,25 +35,25 @@ namespace base {
     }
     
     const glm::vec3 camera::to_world(const glm::vec3& p)
-    {
-        // transform to screen space first
-        glm::vec4 pp( p.x * frustum_.width, p.y * frustum_.height, 0.0f, 1.0f ); // w = 1        
+    {            
+        glm::vec4 pp( p.x * frustum_.width, p.y * frustum_.height, 0.0f, 1.0f );
         
+        // save us from matrix inverse
         glm::mat4 m(1.0f);
         
         if(position_.x != 0.0f || position_.y != 0.0f)
             m = glm::translate(m, glm::vec3(-position_.x, -position_.y, 0.0f));
-        
-        if(zoom_ != 1.0f)
-            m = glm::scale(m, glm::vec3(zoom_, zoom_, 1.0f));
-        
-        if(rotation_ != 0.0f)
-            m = glm::rotate(m, rotation_, glm::vec3(0,0,1));
-        
-        m = glm::translate(m, glm::vec3(frustum_.width/2.0f, frustum_.height/2.0f, 0.0f) );
 
-        pp = m * pp;
-        return glm::vec3(pp.x, pp.y, p.z); // note the original z value
+        if(zoom_ != 1.0f)
+            m = glm::scale(m, glm::vec3(1.0f/zoom_, 1.0f/zoom_, 1.0f));
+                
+        if(rotation_ != 0.0f)
+            m = glm::rotate(m, 360.0f-rotation_, glm::vec3(0,0,1));
+
+        m = glm::translate(m, glm::vec3(-frustum_.width/2.0f, -frustum_.height/2.0f, 0.0f) );
+        
+        pp = m * pp;            
+        return glm::vec3(pp.x, pp.y, p.z);
     }
     
     void camera::apply()
@@ -62,7 +62,7 @@ namespace base {
             return;
         
         glLoadIdentity();
-        
+
         // move to center of screen
         glTranslatef(frustum_.width / 2.0f, 
                      frustum_.height / 2.0f, 0.0);

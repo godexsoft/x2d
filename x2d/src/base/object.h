@@ -68,6 +68,14 @@ using namespace x2d::config;
             connect_render(position_.z, space_ == CAMERA_SPACE);
         }
         
+        void release(object& obj)
+        {
+            if(spawner_)
+            {
+                spawner_->release(obj);
+            }
+        }
+        
         const glm::vec3 position() const
         {
             return position_;
@@ -137,6 +145,7 @@ using namespace x2d::config;
         alignment                      align_;
         
         boost::shared_ptr<spawner>   spawner_;
+        boost::shared_ptr<zone>      zone_;
         
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;

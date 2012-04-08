@@ -90,6 +90,11 @@ namespace base {
             timer_.cancel();
         }
         
+        /**
+         * Release ownership of some object spawned by this spawner
+         */
+        void release(object& obj);
+        
     protected:
         void update(const clock_info& clock) 
         {

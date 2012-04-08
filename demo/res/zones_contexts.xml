@@ -1,0 +1,19 @@
+<x2d version="1.0">
+
+    <!-- namespace for all contexts -->
+    <namespace n = "contexts">
+        
+        <context n = "scenary" />                
+        
+    </namespace>
+    <!-- end: contexts -->
+
+    <!-- namespace for all zones -->
+    <namespace n = "zones">
+        
+        <zone n = "destroy_scenary" rect = "0 -200 100 400" contexts = "contexts.scenary" />
+        
+    </namespace>
+    <!-- end: zones -->
+    
+</x2d>

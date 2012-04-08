@@ -21,6 +21,7 @@ namespace x2d {
     , has_animation(false)
     , has_sprite(false)
     , has_spawner(false)
+    , has_zone(false)
     , has_text(false)
     , align(LEFT_ALIGN)
     , camera("camera") // FIXME
@@ -84,6 +85,12 @@ namespace x2d {
             spawner_->set_parent(this); // the spawner will live while this object lives
         }
         
+        if(t.has_zone)
+        {
+            zone_ = config_.get_object<zone>(t.zone);
+            zone_->set_parent(this); // moves along the object
+        }
+        
         if(t.has_text)
         {
             cur_font_ = config_.get_object<font>(t.font);
@@ -109,6 +116,8 @@ namespace x2d {
     
     object::~object()
     {
+        LOG("Removing object from everywhere");
+        
         // unregister object from all contexts it's in atm.
         for(std::vector<boost::shared_ptr<context> >::const_iterator it = contexts_.begin(); it != contexts_.end(); ++it)
         {

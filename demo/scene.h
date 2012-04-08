@@ -35,12 +35,18 @@ protected:
     
 private:
     
+    void on_destroy_object(object& obj);
+    
     configuration&  config_;
     boost::shared_ptr<camera> camera_;
     
     std::vector< boost::shared_ptr<base_object> >   objects_;
     
-    boost::shared_ptr<base_object> house_spawner_;
+    boost::shared_ptr<object> house_spawner_;
+    boost::shared_ptr<object> small_stuff_spawner_;
+
+    boost::shared_ptr<object> house_destroyer_;
+    boost::shared_ptr<zone> scenary_destroyer_;
 };
 
 #endif // __SCENE_H__

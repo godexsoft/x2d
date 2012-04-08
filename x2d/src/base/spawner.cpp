@@ -45,15 +45,29 @@ namespace base {
             glm::vec3 pos = o->position();
             pos += world_position();     
             
-            LOG("SPAWNED OBJECT NEW POSITION: %f/%f", pos.x, pos.y);
-            
             o->position( pos );
-            
             objects_.push_back( o );
         }
         
         LOG("Spawned objects.. new size: %d", objects_.size());
     }
     
+    void spawner::release(object& obj)
+    {
+        // TODO: this code is ugly. do something :)
+        for( objects_vec::iterator it = objects_.begin();
+            it != objects_.end(); ++it)
+        {
+            if((*it).get() == &obj)
+            {
+                LOG("ERASE object from spawner ownership!!!!");
+                objects_.erase(it);
+                return;
+            }        
+        }
+        
+        LOG("couldn't find object in spawner ownership!");
+    }
+
 } // namespace base
 } // namespace x2d

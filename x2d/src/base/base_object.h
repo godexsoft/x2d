@@ -38,6 +38,9 @@ namespace x2d
         
         virtual ~base_object()
         {
+            LOG("base_object destruction...");
+            update_connection_.disconnect();
+            render_connection_.disconnect();
         }
            
     protected:

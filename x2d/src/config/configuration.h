@@ -199,6 +199,11 @@ namespace config {
             throw e;
         }
 
+        // getting key attribute
+        static
+        value_holder<std::string> get_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                               const std::string& name, const std::string& default_value);
+        
         // getting mandatory key attribute
         static
         value_holder<std::string> get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 

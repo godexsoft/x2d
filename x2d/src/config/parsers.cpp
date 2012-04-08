@@ -513,6 +513,7 @@ namespace config {
         // frustum:  frustum of this camera
         //
         // can have:
+        // parent:   the parent camera
         // rotation: initial rotation (defaults to 0.0)
         // zoom:     initial zoom (defaults to 1.0)
         // position: initial position (defaults to 0,0)
@@ -520,9 +521,11 @@ namespace config {
         size frustum = get_mandatory_attr<size>(*this, node, key, "frustum",
             parse_exception("Camera type must have 'frustum' defined (format: 'width height').")).get(*this);
 
+        std::string parent = get_key_attr(*this, node, key, "parent", std::string()).get(*this);
+        
         config_[key] =  
             boost::shared_ptr<camera_cfg>( 
-                new camera_cfg(*this, frustum, 
+                new camera_cfg(*this, parent, frustum,                    
                     get_attr<float>(*this, node, key, "rotation", 0.0f),
                     get_attr<float>(*this, node, key, "zoom", 1.0f), 
                     get_attr<glm::vec2>(*this, node, key, "position", glm::vec2(0.0f, 0.0f))) );
@@ -642,8 +645,10 @@ namespace config {
         // rotation:  rotation as float angle in degrees
         // sprite:    sprite to draw
         // animation: animation to draw        
+        // camera:    the camera to use
         // space:     'world' (default), 'screen' or 'camera' space        
         // spawner:   configuration key to attach a spawner
+        // zone:      configuration key to attach a zone
         // font:      font to use when drawing text
         // text:      text to render. must have font specified to use this
         // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
@@ -729,6 +734,41 @@ namespace config {
             }
         }
         
+        xml_attr* zn = node->first_attribute("zone");
+        if(zn) 
+        {
+            std::string k = lookup_key(zn->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.zone = k;
+                tr.has_zone = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's zone is not found under key '") 
+                        + zn->value() + "'.");
+            }
+        }
+        
+        xml_attr* cam = node->first_attribute("camera");
+        if(cam) 
+        {
+            std::string k = lookup_key(cam->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false) 
+            {
+                tr.camera = k;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's camera is not found under key '") 
+                        + cam->value() + "'.");
+            }
+        }
+
         xml_attr* sp = node->first_attribute("space");
         if(sp) 
         {

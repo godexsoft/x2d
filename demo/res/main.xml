@@ -3,10 +3,10 @@
     <!-- engine setup -->
     <camera     n = "camera"
           frustum = "320 480"  
-         rotation = "90" 
-             zoom = "0.2"
+             zoom = "0.5"
+         rotation = "90"
     />    
-    
+
     <viewport   n = "viewport" 
               box = "0 0 320 480" 
            camera = "camera" 
@@ -41,9 +41,9 @@
         <texture n="scenary" path="res/graphics/scenary.png">
             <sprite n="cafe"    x="0"   y="0"    w="158" h="140" pivot="0 -70" />
             <sprite n="house"   x="0"   y="139"  w="158" h="216" pivot="0 -104" />
-            <sprite n="tree"    x="157" y="0"    w="53"  h="95" />
-            <sprite n="lantern" x="157" y="184"  w="42"  h="172" />
-            <sprite n="fence"   x="303" y="0"    w="60"  h="49" />
+            <sprite n="tree"    x="157" y="0"    w="53"  h="95"  pivot="0 -45" />
+            <sprite n="lantern" x="157" y="184"  w="42"  h="172" pivot="0 -75" />
+            <sprite n="fence"   x="303" y="0"    w="60"  h="49"  pivot="0 -20" />
             <sprite n="cloud1"  x="209" y="0"    w="93"  h="48" />
             <sprite n="cloud2"  x="209" y="48"   w="93"  h="48" />
             <sprite n="cloud3"  x="209" y="95"   w="93"  h="40" />
@@ -86,13 +86,32 @@
             
             <!-- set delay between waves -->
             <float  n = "wave_delay">
-                <random from="0.8" to="1.5" />
+                <random from="0.6" to="1.2" />
             </float>
             
         </spawner>
-    
+
+        <spawner n = "small_stuff">
+            
+            <list n = "objects">
+                objects.scenary.lantern 
+                objects.scenary.tree
+                objects.scenary.fence
+            </list>
+            
+            <int    n = "wave_size" 
+            value = "1" />        
+            
+            <float  n = "wave_delay">
+                <random from="0.3" to="1.0" />
+            </float>
+            
+        </spawner>
+        
     </namespace>
     <!-- end: spawners -->
+    
+    <include path = "res/zones_contexts.xml" />
     
     <!-- namespace for all objects -->
     <namespace n = "objects">
@@ -113,21 +132,55 @@
             
             <object n       =   "road"
                 sprite      =   "graphics.scenary.road"
-                position    =   "0 -70 0.1"
+                position    =   "0 -70 0.3"
             /> 
             
             <object n       =   "house"
                 sprite      =   "graphics.scenary.house"
+                contexts    =   "contexts.scenary"
+                position    =   "0 0 0.2"
             /> 
             
             <object n       =   "cafe"
                 sprite      =   "graphics.scenary.cafe"
+                contexts    =   "contexts.scenary"
+                position    =   "0 0 0.2"
+            />             
+            
+            <object n       =   "fence"
+                sprite      =   "graphics.scenary.fence"
+                contexts    =   "contexts.scenary"
+                position    =   "0 0 0.1"
+            />             
+            <object n       =   "lantern"
+                sprite      =   "graphics.scenary.lantern"
+                contexts    =   "contexts.scenary"
+                position    =   "0 0 0.1"
+            />             
+
+            <object n       =   "tree"
+                sprite      =   "graphics.scenary.tree"
+                contexts    =   "contexts.scenary"
+                position    =   "0 0 0.1"
             />             
             
             <!-- spawning objects -->
             <object n       =   "house_spawner"
-                position    =   "0.5 0 0.1"
+                position    =   "0.6 -0.1 0.2"
                  spawner    =   "spawners.houses"
+                   space    =   "camera"
+            /> 
+
+            <object n       =   "small_stuff_spawner"
+                position    =   "0.6 -0.1 0.1"
+                 spawner    =   "spawners.small_stuff"
+                   space    =   "camera"
+            /> 
+            
+            <!-- destroying objects -->
+            <object n       =   "scenary_destroyer"
+                position    =   "0.5 1.1 0.0"
+                    zone    =   "zones.destroy_scenary"
                    space    =   "camera"
             /> 
             
@@ -136,5 +189,5 @@
         
     </namespace>
     <!-- end: objects -->
-    
+        
 </x2d>

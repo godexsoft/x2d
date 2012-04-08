@@ -17,6 +17,8 @@
 #include "glm.hpp"
 #include "matrix_transform.hpp"
 
+#include <boost/shared_ptr.hpp>
+
 namespace x2d {
     
     class object;
@@ -34,8 +36,9 @@ namespace base {
         /**
          * @param[in] frustum The camera's frustum
          */
-        camera(const size& frustum)
-        : frustum_(frustum)
+        camera(const size& frustum, const boost::shared_ptr<camera>& parent=boost::shared_ptr<camera>())
+        : parent_(parent)
+        , frustum_(frustum)
         , rotation_(0.0f)
         , zoom_(1.0f)
         , position_(0.0f, 0.0f)
@@ -110,6 +113,7 @@ namespace base {
         void calculate_in_screen(object* o);
         
     private:
+        boost::shared_ptr<camera> parent_;
         size        frustum_;
         
         float       rotation_;
