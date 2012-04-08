@@ -1,9 +1,9 @@
--- x2d is a crossplatform 2d game engine written in modern c++ --
+-- x2d is a (crossplatform) 2d game engine written in modern c++ --
 
 ------------------------------
 Currently supported platforms:
 
-- iOS
+- iOS only :D
 
 ---------
 Requires:
@@ -13,7 +13,7 @@ Requires:
 --------
 Tracker:
 
-- Will add issues to github's tracker. Currently all issues are in unfuddle (private).
+- All issues are on the github project's issues page.
 
 -----------
 Contribute:
