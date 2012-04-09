@@ -11,7 +11,7 @@
     <!-- namespace for all zones -->
     <namespace n = "zones">
         
-        <zone n = "destroy_scenary" rect = "0 -200 100 400" contexts = "contexts.scenary" />
+        <zone n = "destroy_scenary" rect = "0 -400 200 800" contexts = "contexts.scenary" />
         
     </namespace>
     <!-- end: zones -->

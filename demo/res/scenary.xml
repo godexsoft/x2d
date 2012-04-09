@@ -43,7 +43,7 @@
             contexts    =   "contexts.scenary">
             
             <vector n = "position">
-                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+                <random from = "0 -20 0.4" to = "0 20 0.4" />
             </vector>                
         </object>
         
@@ -52,7 +52,7 @@
             contexts    =   "contexts.scenary">
             
             <vector n = "position">
-                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+                <random from = "0 -20 0.4" to = "0 20 0.4" />
             </vector>
         </object>
         
@@ -61,7 +61,7 @@
             contexts    =   "contexts.scenary">
             
             <vector n = "position">
-                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+                <random from = "0 -20 0.4" to = "0 20 0.4" />
             </vector>
         </object>
         

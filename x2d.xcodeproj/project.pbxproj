@@ -808,6 +808,9 @@
 		24C7489D14F66095004E07DD /* plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plugin.h; path = src/config/plugin.h; sourceTree = "<group>"; };
 		24C7489F14F664C8004E07DD /* ui_plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_plugin.cpp; path = plugins/ui/config/ui_plugin.cpp; sourceTree = SOURCE_ROOT; };
 		24C748A114F66AA2004E07DD /* plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plugin.cpp; path = src/config/plugin.cpp; sourceTree = "<group>"; };
+		24EA29D71533460600EE209C /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = demo/res/graphics.xml; sourceTree = "<group>"; };
+		24EA29D91533466000EE209C /* spawners.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = spawners.xml; path = demo/res/spawners.xml; sourceTree = "<group>"; };
+		24EA29DA15334EB500EE209C /* scenary.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = scenary.xml; path = demo/res/scenary.xml; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1071,6 +1074,9 @@
 				240F054914E41F5A002AEEB2 /* graphics */,
 				240F054A14E41F5A002AEEB2 /* main.xml */,
 				2490C1AF1531FC9F00F90732 /* zones_contexts.xml */,
+				24EA29D71533460600EE209C /* graphics.xml */,
+				24EA29D91533466000EE209C /* spawners.xml */,
+				24EA29DA15334EB500EE209C /* scenary.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";

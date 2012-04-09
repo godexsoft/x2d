@@ -117,8 +117,11 @@ namespace config {
          */
         random_cfg(const glm::vec3& min, const glm::vec3& max)
         : dist_x_(min.x, max.x)
+        , x_( std::make_pair(min.x==max.x, min.x) )
         , dist_y_(min.y, max.y)
+        , y_( std::make_pair(min.y==max.y, min.y) )
         , dist_z_(min.z, max.z)
+        , z_( std::make_pair(min.z==max.z, min.z) )
         {
         }
         
@@ -127,14 +130,19 @@ namespace config {
          */
         glm::vec3 get()
         {    
-            return glm::vec3(dist_x_(gen_), dist_y_(gen_), dist_z_(gen_));
+            return glm::vec3(x_.first?x_.second:dist_x_(gen_), 
+                             y_.first?y_.second:dist_y_(gen_),
+                             z_.first?z_.second:dist_z_(gen_));
         }
         
     private:        
         static boost::random::mt19937 gen_;
         boost::random::uniform_real_distribution<> dist_x_;
+        std::pair<bool, float> x_;
         boost::random::uniform_real_distribution<> dist_y_;
+        std::pair<bool, float> y_;
         boost::random::uniform_real_distribution<> dist_z_;
+        std::pair<bool, float> z_;
     };
 
     /**
@@ -151,7 +159,9 @@ namespace config {
          */
         random_cfg(const glm::vec2& min, const glm::vec2& max)
         : dist_x_(min.x, max.x)
+        , x_( std::make_pair(min.x==max.x, min.x) )
         , dist_y_(min.y, max.y)
+        , y_( std::make_pair(min.y==max.y, min.y) )
         {
         }
         
@@ -160,13 +170,16 @@ namespace config {
          */
         glm::vec2 get()
         {    
-            return glm::vec2(dist_x_(gen_), dist_y_(gen_));
+            return glm::vec2(x_.first?x_.second:dist_x_(gen_), 
+                             y_.first?y_.second:dist_y_(gen_));
         }
         
     private:        
         static boost::random::mt19937 gen_;
         boost::random::uniform_real_distribution<> dist_x_;
+        std::pair<bool, float> x_;
         boost::random::uniform_real_distribution<> dist_y_;
+        std::pair<bool, float> y_;
     };
     
     /**
