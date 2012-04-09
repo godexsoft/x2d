@@ -1,14 +1,23 @@
 -- x2d is a (crossplatform) 2d game engine written in modern c++ --
 
+--------
+License:
+
+x2d is released under the New BSD license.
+Check out the LICENSE file for details.
+
 ------------------------------
 Currently supported platforms:
 
 - iOS only :D
 
----------
-Requires:
+--------------
+Requires/Uses:
 
 - Boost compiled as framework for iOS. Read my article and follow step by step: http://alex.tapmania.org/2011/11/boost-as-framework-on-ios.html
+- RapidXML - http://rapidxml.sourceforge.net/ (sources included and compiled together with x2d)
+- PicoPNG - http://lodev.org/lodepng/ (source file included and compiled as part of x2d)
+- glm - http://glm.g-truc.net/ (sources included and compiled together with x2d)
 
 --------
 Tracker:
