@@ -64,16 +64,15 @@ namespace base {
         /**
          * Construction of texture from FD stream
          */
-        texture(ifdstream stream);
-        
+        texture(ifdstream stream);        
         ~texture();
         
-        virtual inline size size() const { return size_; }
+        inline size size() const { return size_; }
         
         /**
          * Draw the texture
          */
-        virtual void draw() const;
+        void draw() const;
     };
     
 } // namespace base
