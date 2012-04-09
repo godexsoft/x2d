@@ -266,7 +266,7 @@ namespace config {
             parse_exception("Include type must have 'path' defined.")).get(*this);
         
         // parse the whole config into this configuration
-        parse_file( path );
+        parse_file( path, key );
     }
     
     void configuration::parse_texture(xml_node* node, const config_key& key)

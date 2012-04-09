@@ -23,7 +23,8 @@ scene::scene(kernel& k, configuration& conf)
     // create the spawners
     house_spawner_ = config_.create_object("objects.scenary.house_spawner");
     small_stuff_spawner_ = config_.create_object("objects.scenary.small_stuff_spawner");    
-
+    cloud_spawner_ = config_.create_object("objects.scenary.cloud_spawner");    
+    
     // get all zones and configure them
     scenary_destroyer_ = config_.get_object<zone>("zones.destroy_scenary");
     scenary_destroyer_->set_trigger( boost::bind(&scene::on_destroy_object, this, _1) );
@@ -37,6 +38,7 @@ scene::scene(kernel& k, configuration& conf)
 void scene::update(const clock_info& clock) 
 { 
     camera_->position( camera_->position() + glm::vec2(250.0f * clock.delta_time, 0.0f) );
+    camera_->zoom( camera_->zoom() - 0.01*clock.delta_time );
 }
 
 void scene::on_destroy_object(object& obj)
@@ -44,4 +46,5 @@ void scene::on_destroy_object(object& obj)
     // we don't really know which one is holding the object :)
     house_spawner_->release(obj);
     small_stuff_spawner_->release(obj);
+    cloud_spawner_->release(obj);
 }

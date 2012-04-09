@@ -1,0 +1,56 @@
+<x2d version="1.0">
+
+    <!-- namespace for all textures and sprites -->
+    <namespace n="graphics">
+        
+        <!-- define our texture and sprites -->
+        <texture n="player" path="res/graphics/anim.png">
+            <sprite n="anim_1"   x="0"   y="0"   w="128" h="128" />
+            <sprite n="anim_2"   x="128" y="0"   w="128" h="128" />
+            <sprite n="anim_3"   x="256" y="0"   w="128" h="128" />
+            <sprite n="anim_4"   x="384" y="0"   w="128" h="128" />
+            <sprite n="anim_5"   x="0"   y="128" w="128" h="128" />
+            <sprite n="anim_6"   x="128" y="128" w="128" h="128" />
+            <sprite n="anim_7"   x="256" y="128" w="128" h="128" />
+            <sprite n="anim_8"   x="384" y="128" w="128" h="128" />
+            <sprite n="standing" x="384" y="256" w="128" h="128" />
+        </texture>
+        
+        <texture n="bg" path="res/graphics/bg.png">
+            <sprite n="background" x="0" y="0" w="480" h="320" />
+        </texture>
+        
+        <texture n="scenary" path="res/graphics/scenary.png">
+            <sprite n="cafe"    x="0"   y="0"    w="158" h="140" pivot="0 -70" />
+            <sprite n="house"   x="0"   y="139"  w="158" h="216" pivot="0 -104" />
+            <sprite n="tree"    x="157" y="0"    w="53"  h="95"  pivot="0 -45" />
+            <sprite n="lantern" x="157" y="184"  w="42"  h="172" pivot="0 -75" />
+            <sprite n="fence"   x="303" y="0"    w="60"  h="49"  pivot="0 -20" />
+            <sprite n="cloud1"  x="209" y="0"    w="93"  h="48" />
+            <sprite n="cloud2"  x="209" y="48"   w="93"  h="48" />
+            <sprite n="cloud3"  x="209" y="95"   w="93"  h="40" />
+            <sprite n="road"    x="0"   y="355"  w="480" h="80" />
+        </texture> 
+        
+    </namespace> 
+    <!-- end: graphics -->
+    
+    <!-- namespace for all animations -->
+    <namespace n = "animations">
+        
+        <!-- define the animation -->
+        <animation n = "player" duration = "0.1">
+            <frame n = "frame_1" sprite = "graphics.player.anim_1" />
+            <frame n = "frame_2" sprite = "graphics.player.anim_2" />
+            <frame n = "frame_3" sprite = "graphics.player.anim_3" />
+            <frame n = "frame_4" sprite = "graphics.player.anim_4" />
+            <frame n = "frame_5" sprite = "graphics.player.anim_5" />
+            <frame n = "frame_6" sprite = "graphics.player.anim_6" />
+            <frame n = "frame_7" sprite = "graphics.player.anim_7" />
+            <frame n = "frame_8" sprite = "graphics.player.anim_8" />
+        </animation>
+        
+    </namespace> 
+    <!-- end: animations -->
+    
+</x2d>

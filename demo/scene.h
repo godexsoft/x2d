@@ -44,7 +44,8 @@ private:
     
     boost::shared_ptr<object> house_spawner_;
     boost::shared_ptr<object> small_stuff_spawner_;
-
+    boost::shared_ptr<object> cloud_spawner_;
+    
     boost::shared_ptr<object> house_destroyer_;
     boost::shared_ptr<zone> scenary_destroyer_;
 };

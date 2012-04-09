@@ -90,7 +90,7 @@ namespace config {
          * Parse given file into this configuration instance.
          * @param[in] cfg_path Path to configuration xml
          */
-        void parse_file(const std::string& cfg_path);
+        void parse_file(const std::string& cfg_path, const std::string& root_key="");
         
         /**
          * Bind c++ type to configuration key

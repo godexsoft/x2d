@@ -1,0 +1,97 @@
+<x2d version="1.0">
+    
+    <!-- namespace for scenary objects -->
+    <namespace n = "scenary">
+        
+        <object n       =   "road"
+            sprite      =   "graphics.scenary.road"
+            position    =   "0 -70 0.3"
+        /> 
+        
+        <object n       =   "house"
+            sprite      =   "graphics.scenary.house"
+            contexts    =   "contexts.scenary"
+            position    =   "0 0 0.2"
+        /> 
+        
+        <object n       =   "cafe"
+            sprite      =   "graphics.scenary.cafe"
+            contexts    =   "contexts.scenary"
+            position    =   "0 0 0.2"
+        />             
+        
+        <object n       =   "fence"
+            sprite      =   "graphics.scenary.fence"
+            contexts    =   "contexts.scenary"
+            position    =   "0 0 0.1"
+        />             
+        
+        <object n       =   "lantern"
+            sprite      =   "graphics.scenary.lantern"
+            contexts    =   "contexts.scenary"
+            position    =   "0 0 0.1"
+        />
+        
+        <object n       =   "tree"
+            sprite      =   "graphics.scenary.tree"
+            contexts    =   "contexts.scenary" 
+            position    =   "0 0 0.1"            
+        />
+        
+        <object n       =   "cloud1"
+            sprite      =   "graphics.scenary.cloud1"
+            contexts    =   "contexts.scenary">
+            
+            <vector n = "position">
+                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+            </vector>                
+        </object>
+        
+        <object n       =   "cloud2"
+            sprite      =   "graphics.scenary.cloud2"
+            contexts    =   "contexts.scenary">
+            
+            <vector n = "position">
+                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+            </vector>
+        </object>
+        
+        <object n       =   "cloud3"
+            sprite      =   "graphics.scenary.cloud3"
+            contexts    =   "contexts.scenary">
+            
+            <vector n = "position">
+                <random from = "0 -20 0.39" to = "0.1 20 0.41" />
+            </vector>
+        </object>
+        
+        <!-- spawning objects -->
+        <object n       =   "house_spawner"
+            position    =   "0.6 -0.1 0.2"
+             spawner    =   "spawners.houses"
+               space    =   "camera"
+        /> 
+        
+        <object n       =   "small_stuff_spawner"
+            position    =   "0.6 -0.1 0.1"
+             spawner    =   "spawners.small_stuff"
+               space    =   "camera"
+        /> 
+        
+        <object n       =   "cloud_spawner"
+            position    =   "0.2 -0.1 0.4"
+             spawner    =   "spawners.clouds"
+               space    =   "camera"
+        /> 
+        
+        <!-- destroying objects -->
+        <object n       =   "scenary_destroyer"
+            position    =   "0.5 1.1 0.0"
+                zone    =   "zones.destroy_scenary"
+               space    =   "camera"
+        /> 
+        
+    </namespace>
+    <!-- end: scenary -->
+    
+</x2d>

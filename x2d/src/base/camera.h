@@ -79,6 +79,15 @@ namespace base {
         }
         
         /**
+         * Get current zoom
+         * @return Current zoom level
+         */
+        const float zoom() const
+        {
+            return zoom_;
+        }
+        
+        /**
          * Zoom scene
          * @param[in] z Zoom level (scale)
          */

@@ -62,7 +62,7 @@ namespace config {
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
     }
     
-    void configuration::parse_file(const std::string& cfg_path)
+    void configuration::parse_file(const std::string& cfg_path, const std::string& root_key)
     {
         boost::shared_ptr<conf> cfg = res_man_.get<conf>(cfg_path);
         
@@ -91,7 +91,7 @@ namespace config {
 		}
         
         // finally parse the config
-        parse(root);
+        parse(root, root_key);
     }
     
     void configuration::parse(xml_node* root, const config_key& key)
