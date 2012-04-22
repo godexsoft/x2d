@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+#pragma once
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
@@ -22,7 +23,7 @@
 
 #include <vector>
 
-#define lerp(A, B, T)          ((A) + ((T) * ((B) - (A))))
+#include "player.h"
 
 class scene 
 : public base_object
@@ -35,19 +36,18 @@ protected:
     
 private:
     
-    void on_destroy_object(object& obj);
+    void on_land(object& obj);
     
     configuration&  config_;
     boost::shared_ptr<camera> camera_;
     
     std::vector< boost::shared_ptr<base_object> >   objects_;
+    boost::shared_ptr<zone> crash_zone_;
     
-    boost::shared_ptr<object> house_spawner_;
-    boost::shared_ptr<object> small_stuff_spawner_;
-    boost::shared_ptr<object> cloud_spawner_;
+    boost::shared_ptr<object> platform_;
+    boost::shared_ptr<player> player_;
     
-    boost::shared_ptr<object> house_destroyer_;
-    boost::shared_ptr<zone> scenary_destroyer_;
+    float platform_width_;
 };
 
 #endif // __SCENE_H__

@@ -11,25 +11,21 @@
 scene::scene(kernel& k, configuration& conf)
 : base_object(k)
 , config_(conf)
-{   
-    connect_update();
-    
+, player_( conf.create_object<player>("objects.player") )
+, platform_width_( conf.get_value<float>("objects.scenary.platform.width") )
+{       
+    connect_update();    
     camera_ = config_.get_object<camera>("camera");
-    
-    objects_.push_back( config_.create_object("objects.background") );
-    objects_.push_back( config_.create_object("objects.scenary.road") );
-    objects_.push_back( config_.create_object("objects.player") );
-    
-    // create the spawners
-    house_spawner_ = config_.create_object("objects.scenary.house_spawner");
-    small_stuff_spawner_ = config_.create_object("objects.scenary.small_stuff_spawner");    
-    cloud_spawner_ = config_.create_object("objects.scenary.cloud_spawner");    
-    
+        
     // get all zones and configure them
-    scenary_destroyer_ = config_.get_object<zone>("zones.destroy_scenary");
-    scenary_destroyer_->set_trigger( boost::bind(&scene::on_destroy_object, this, _1) );
-    
-    house_destroyer_ = config_.create_object("objects.scenary.scenary_destroyer");
+    crash_zone_ = config_.get_object<zone>("zones.crash_or_land");
+    crash_zone_->set_trigger( boost::bind(&scene::on_land, this, _1) );
+
+    // create all scenary objects
+    objects_.push_back( config_.create_object("objects.background") );
+    objects_.push_back( config_.create_object("objects.scenary.moon_surface") );
+    platform_ = config_.create_object("objects.scenary.platform");
+    objects_.push_back( config_.create_object("objects.ui.fuel_bar") );
     
     // for debug only
     objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
@@ -37,14 +33,23 @@ scene::scene(kernel& k, configuration& conf)
 
 void scene::update(const clock_info& clock) 
 { 
-    camera_->position( camera_->position() + glm::vec2(250.0f * clock.delta_time, 0.0f) );
-    camera_->zoom( camera_->zoom() - 0.01*clock.delta_time );
 }
 
-void scene::on_destroy_object(object& obj)
+void scene::on_land(object& obj)
 {
-    // we don't really know which one is holding the object :)
-    house_spawner_->release(obj);
-    small_stuff_spawner_->release(obj);
-    cloud_spawner_->release(obj);
+    float player_x = player_->world_position().x;
+    float platform_x = platform_->world_position().x;
+    
+    bool on_platform = false;
+    if( fabsf(player_x - platform_x) < platform_width_/2.0f )
+        on_platform = true;
+    
+    if( player_->landing_allowed() && on_platform )
+    {
+        player_->finish();
+    } 
+    else
+    {     
+        player_->crash();
+    }
 }

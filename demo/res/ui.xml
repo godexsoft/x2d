@@ -1,0 +1,20 @@
+<x2d version="1.0">
+    
+    <!-- namespace for ui objects -->
+    <namespace n = "ui">
+        
+        <object n       =   "fuel_bar"
+            position    =   "0.95 0.8 0.0"
+               space    =   "camera"
+              sprite    =   "graphics.all.empty_fuel_bar"
+        />         
+        
+        <object n       =   "fuel_bar_filling"
+              parent    =   "fuel_bar"
+              sprite    =   "graphics.all.fuel_bar"
+            position    =   "0 -0.14"
+        />
+    </namespace>
+    <!-- end: ui -->
+    
+</x2d>

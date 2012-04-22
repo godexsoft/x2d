@@ -16,7 +16,7 @@
 #include "configuration.h"
 #include "resource_manager.h"
 
-#include "custom_obj.h"
+#include "player.h"
 
 class game 
 {
@@ -26,6 +26,9 @@ public:
     , k_(k)
     , config_(k_, rm_, "res/main.xml")
     {
+        // bindings
+        config_.bind<player>("objects.player");    
+        
         // init first scene
         cur_scene_ = boost::shared_ptr<scene>( new scene(k_, config_) );
     }

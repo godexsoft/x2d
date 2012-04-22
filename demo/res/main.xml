@@ -3,27 +3,21 @@
     <!-- engine setup -->
     <camera     n = "camera"
           frustum = "320 480"  
-             zoom = "0.5"
-         rotation = "90"
     />    
 
     <viewport   n = "viewport" 
               box = "0 0 320 480" 
            camera = "camera" 
-          bgcolor = "0.1 0.1 0.1" 
     />    
     
     <input      n = "input"
-    accelerometer = "false"          
+    accelerometer = "true"          
             touch = "true" 
     />
     
     <!-- all graphics and animations -->
     <include path = "res/graphics.xml" />
-    
-    <!-- all spawners -->
-    <include path = "res/spawners.xml" />
-    
+        
     <!-- all zones and contexts -->
     <include path = "res/zones_contexts.xml" />
     
@@ -32,17 +26,28 @@
 
         <object n       =   "background"             
             space       =   "camera"
-            sprite      =   "graphics.bg.background" 
+            sprite      =   "graphics.game.background" 
             position    =   "0.5 0.5 1.0"
-            rotation    =   "90"
         />                
         
-        <object n       =   "player"             
-            animation   =   "animations.player" 
-        />   
-              
-        <!-- add all scenary objects -->
+        <!-- the ship -->
+        <object n       =   "player"
+            sprite      =   "graphics.all.ship"
+            contexts    =   "contexts.game"
+        >
+            <float  n = "initial_fuel"      value = "100" />
+            <vector n = "initial_velocity"  value = "0 -40" />
+
+            <vector n = "position">
+                <random from = "-100 100" to = "100 220" />
+            </vector>
+        </object>
+        
+        <!-- all scenary objects -->
         <include path = "res/scenary.xml" />
+        
+        <!-- all ui objects -->
+        <include path = "res/ui.xml" />
         
     </namespace>
     <!-- end: objects -->

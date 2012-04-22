@@ -3,7 +3,7 @@
     <!-- namespace for all contexts -->
     <namespace n = "contexts">
         
-        <context n = "scenary" />                
+        <context n = "game" />                
         
     </namespace>
     <!-- end: contexts -->
@@ -11,7 +11,7 @@
     <!-- namespace for all zones -->
     <namespace n = "zones">
         
-        <zone n = "destroy_scenary" rect = "0 -400 200 800" contexts = "contexts.scenary" />
+        <zone n = "crash_or_land" rect = "-160 -150 320 200" contexts = "contexts.game" />        
         
     </namespace>
     <!-- end: zones -->

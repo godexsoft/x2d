@@ -95,6 +95,11 @@ using namespace x2d::config;
 
         const glm::vec3 world_position() const;
         
+        const float rotation() const
+        {
+            return rotation_;
+        }
+        
         void rotation(float a)        
         {
             rotation_ = a;

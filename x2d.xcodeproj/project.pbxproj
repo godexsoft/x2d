@@ -52,6 +52,7 @@
 		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
 		241D5145151A7D5B00197BDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		241D5147151A7D6000197BDC /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		243A31821539D43100E78268 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243A31811539D43100E78268 /* player.cpp */; };
 		243F95C714EDACD000922D55 /* openal_fx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95C614EDACD000922D55 /* openal_fx.cpp */; };
 		243F95C914EDB61600922D55 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		243F95CB14EDC80900922D55 /* loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 243F95CA14EDC80800922D55 /* loop.caf */; };
@@ -322,6 +323,7 @@
 
 /* Begin PBXFileReference section */
 		2403496714FA705E00B1CFC9 /* zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zone.h; path = src/base/zone.h; sourceTree = "<group>"; };
+		2405FFAC15447890001E956A /* ui.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ui.xml; path = demo/res/ui.xml; sourceTree = "<group>"; };
 		240F053D14E41E30002AEEB2 /* x2d_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F054514E41F4A002AEEB2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = demo/AppDelegate.h; sourceTree = "<group>"; };
 		240F054614E41F4A002AEEB2 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = demo/AppDelegate.mm; sourceTree = "<group>"; };
@@ -362,6 +364,8 @@
 		2415842714D6079A0014F37B /* picopng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picopng.h; path = src/util/picopng.h; sourceTree = "<group>"; };
 		2415842914D611170014F37B /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = src/base/sprite.h; sourceTree = "<group>"; };
 		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
+		243A317F1539D3DC00E78268 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = demo/player.h; sourceTree = "<group>"; };
+		243A31811539D43100E78268 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = demo/player.cpp; sourceTree = "<group>"; };
 		243F95C414EDABD800922D55 /* openal_fx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openal_fx.h; path = src/sound/openal_fx.h; sourceTree = "<group>"; };
 		243F95C614EDACD000922D55 /* openal_fx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openal_fx.cpp; path = src/sound/openal_fx.cpp; sourceTree = "<group>"; };
 		243F95C814EDB61600922D55 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -809,7 +813,6 @@
 		24C7489F14F664C8004E07DD /* ui_plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_plugin.cpp; path = plugins/ui/config/ui_plugin.cpp; sourceTree = SOURCE_ROOT; };
 		24C748A114F66AA2004E07DD /* plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plugin.cpp; path = src/config/plugin.cpp; sourceTree = "<group>"; };
 		24EA29D71533460600EE209C /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = demo/res/graphics.xml; sourceTree = "<group>"; };
-		24EA29D91533466000EE209C /* spawners.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = spawners.xml; path = demo/res/spawners.xml; sourceTree = "<group>"; };
 		24EA29DA15334EB500EE209C /* scenary.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = scenary.xml; path = demo/res/scenary.xml; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1064,6 +1067,8 @@
 				240F054B14E41F70002AEEB2 /* fps_counter.h */,
 				240F054C14E41F70002AEEB2 /* scene.cpp */,
 				240F054D14E41F70002AEEB2 /* scene.h */,
+				243A31811539D43100E78268 /* player.cpp */,
+				243A317F1539D3DC00E78268 /* player.h */,
 			);
 			name = objects;
 			sourceTree = "<group>";
@@ -1075,8 +1080,8 @@
 				240F054A14E41F5A002AEEB2 /* main.xml */,
 				2490C1AF1531FC9F00F90732 /* zones_contexts.xml */,
 				24EA29D71533460600EE209C /* graphics.xml */,
-				24EA29D91533466000EE209C /* spawners.xml */,
 				24EA29DA15334EB500EE209C /* scenary.xml */,
+				2405FFAC15447890001E956A /* ui.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -2798,6 +2803,7 @@
 				240F054814E41F4A002AEEB2 /* AppDelegate.mm in Sources */,
 				240F054E14E41F70002AEEB2 /* scene.cpp in Sources */,
 				240F055614E41F85002AEEB2 /* main.mm in Sources */,
+				243A31821539D43100E78268 /* player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
