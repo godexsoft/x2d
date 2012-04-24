@@ -142,6 +142,8 @@ using namespace x2d::config;
         
         float       scale_;
         float       rotation_;
+        size        box_;
+        color_info  bgcolor_;
         
         boost::shared_ptr<animation>   cur_animation_;
         boost::shared_ptr<sprite>      cur_sprite_;

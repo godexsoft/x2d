@@ -7,12 +7,14 @@
             position    =   "0.95 0.8 0.0"
                space    =   "camera"
               sprite    =   "graphics.all.empty_fuel_bar"
+                 box    =   "14 150"
+             bgcolor    =   "1 1 1 0.4"
         />         
         
         <object n       =   "fuel_bar_filling"
               parent    =   "fuel_bar"
               sprite    =   "graphics.all.fuel_bar"
-            position    =   "0 -0.14"
+            position    =   "0 0"
         />
     </namespace>
     <!-- end: ui -->

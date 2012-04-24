@@ -30,6 +30,8 @@ namespace x2d {
         value_holder<glm::vec3>  position;
         value_holder<float>      scale;
         value_holder<float>      rotation;
+        size                     box;
+        color_info               bgcolor;
         
         // input methods requested by object
         bool        want_screen_touch_input;

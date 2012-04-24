@@ -645,10 +645,12 @@ namespace config {
         // rotation:  rotation as float angle in degrees
         // sprite:    sprite to draw
         // animation: animation to draw        
+        // bgcolor:   color to fill with (given as vector of four floats: r g b a)
         // camera:    the camera to use
         // space:     'world' (default), 'screen' or 'camera' space        
         // spawner:   configuration key to attach a spawner
         // zone:      configuration key to attach a zone
+        // box:       rectangle (can be filled with color etc.)
         // font:      font to use when drawing text
         // text:      text to render. must have font specified to use this
         // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
@@ -679,6 +681,8 @@ namespace config {
         tr.position =   get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
+        tr.box =        get_attr<size>(*this, node, key, "box", size(10.0f, 10.0f)).get(*this); // TODO: other defaults?
+        tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         
         xml_attr* anim = node->first_attribute("animation");
         if(anim) 

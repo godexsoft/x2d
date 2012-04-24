@@ -15,6 +15,8 @@ namespace x2d {
     : position("", glm::vec3(0.0f,0.0f,0.0f))
     , scale("", 0.0f)
     , rotation("", 0.0f)
+    , box(size(10.0f, 10.0f)) // TODO: other defaults
+    , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
     , want_accelerometer_input(false)
@@ -39,6 +41,8 @@ namespace x2d {
     , camera_space_position_(t.position.get(c))
     , scale_(t.scale.get(c))
     , rotation_(t.rotation.get(c))    
+    , box_(t.box)
+    , bgcolor_(t.bgcolor)
     , align_(t.align)
     {               
         if(t.want_screen_touch_input)
@@ -179,6 +183,32 @@ namespace x2d {
             boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1)) > position_.z ), children_.end(), 
                 boost::bind(&object::render, _1, clock) );
        
+        // draw the rect with bgcolor if required
+        if(bgcolor_.a > 0.0f)
+        {
+            glDisable(GL_TEXTURE_2D);
+            glColor4f(bgcolor_.r, bgcolor_.g, bgcolor_.b, bgcolor_.a);
+            glPushMatrix();
+            
+            float vertices[] =
+            {      
+                -box_.width / 2,     -box_.height / 2,    0.0,
+                box_.width / 2,      -box_.height / 2,    0.0,
+                -box_.width / 2,     box_.height / 2,     0.0,
+                box_.width / 2,      box_.height / 2,     0.0
+            };
+            
+            glEnable(GL_BLEND);
+            glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glVertexPointer(3, GL_FLOAT, 0, vertices);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+            glDisable(GL_BLEND);        
+            glPopMatrix();
+            glEnable(GL_TEXTURE_2D);
+        }
+        
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1.0, 1.0, 1.0, 1.0);

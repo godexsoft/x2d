@@ -14,7 +14,7 @@
         <texture n="all" path="res/graphics/all.png">
             <sprite n="empty_fuel_bar"  x="2"   y="2"   w="14"  h="150" />
             <sprite n="explosion"       x="2"   y="154" w="114" h="99" />
-            <sprite n="fuel_bar"        x="240" y="2"   w="12"  h="8" />
+            <sprite n="fuel_bar"        x="240" y="2"   w="12"  h="8" pivot="0 -4" />
             <sprite n="light_green"     x="36"  y="122" w="16"  h="16" />
             <sprite n="light_red"       x="18"  y="122" w="16"  h="16" />
             <sprite n="platform"        x="18"  y="2"   w="92"  h="20" />
