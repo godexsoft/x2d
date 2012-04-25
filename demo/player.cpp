@@ -23,7 +23,8 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
 : object(k, conf, t)
 , finished_( false )
 , thrust_( false )
-, fuel_( conf.get_value<float>("objects.player.initial_fuel") )
+, max_fuel_( conf.get_value<float>("objects.player.initial_fuel") )
+, fuel_( max_fuel_ )
 , accel_( 0.0f )
 , rotation_velocity_( 0.0f )
 , velocity_( conf.get_value<glm::vec2>("objects.player.initial_velocity") )
@@ -49,6 +50,11 @@ void player::crash()
 void player::finish()
 {
     finished_ = true;
+}
+
+float player::fuel_percent() const
+{
+    return fuel_/max_fuel_;
 }
 
 void player::update(const clock_info& clock)

@@ -48,67 +48,33 @@ using namespace x2d::config;
          * Add a child object.
          * @param[in] child The child object to add
          */
-        void add_child(const boost::shared_ptr<object>& child)
-        {
-            child->set_parent(shared_from_this());
-            children_.push_back(child);
-
-            // Now connect update and render if we did not before.
-            // Need these connections to update children.
-            connect_update();
-            
-            LOG("Connecting render: %f", position_.z);
-            connect_render(position_.z, space_ == CAMERA_SPACE);
-        }
+        void add_child(const boost::shared_ptr<object>& child);
         
-        void release(object& obj)
-        {
-            if(spawner_)
-            {
-                spawner_->release(obj);
-            }
-        }
-        
-        const glm::vec3 position() const
-        {
-            return position_;
-        }
-        
-        void position(const glm::vec3& p)        
-        {
-            position_ = p;
-        }
+        void release(object& obj);
 
-        void position(const glm::vec2& p)        
-        {
-            position_.x = p.x;
-            position_.y = p.y;
-            // retain z value
-        }        
-
+        const glm::vec3 position() const;
+        
+        void position(const glm::vec3& p);
+        
+        void position(const glm::vec2& p);
+        
         const glm::vec3 world_position() const;
         
-        const float rotation() const
-        {
-            return rotation_;
-        }
+        const float rotation() const;
         
-        void rotation(float a)        
-        {
-            rotation_ = a;
-        }
+        void rotation(float a);
         
-        void scale(float s)
-        {
-            scale_ = s;
-        }
+        void scale(float s);
         
-        const glm::vec3& camera_space_position() const
-        {
-            return camera_space_position_;
-        }
+        void pivot(const glm::vec2& p);
+        
+        void box(const size& s);
+        
+        const glm::vec3& camera_space_position() const;
         
         void position_children_camera_space();
+        
+        boost::shared_ptr<object> child_by_name(const std::string& n);
         
     protected:
         
@@ -129,6 +95,7 @@ using namespace x2d::config;
         config::configuration&  config_;
 
     protected:        
+        const std::string           name_;
         boost::shared_ptr<camera>   camera_;
         space                       space_;
         
@@ -137,7 +104,13 @@ using namespace x2d::config;
         
         float       scale_;
         float       rotation_;
+        
         size        box_;
+        size        camera_space_box_;
+        
+        glm::vec2   pivot_;
+        glm::vec2   camera_space_pivot_;
+        
         color_info  bgcolor_;
         
         boost::shared_ptr<animation>   cur_animation_;

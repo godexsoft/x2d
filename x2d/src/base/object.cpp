@@ -12,10 +12,12 @@
 namespace x2d {
 
     object_traits::object_traits()
-    : position("", glm::vec3(0.0f,0.0f,0.0f))
+    : name("_no_name_") // can't really happen if you use x2d config system
+    , position("", glm::vec3(0.0f,0.0f,0.0f))
     , scale("", 0.0f)
     , rotation("", 0.0f)
     , box(size(10.0f, 10.0f)) // TODO: other defaults
+    , pivot(glm::vec2(0.0f, 0.0f)) // center
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
@@ -35,6 +37,7 @@ namespace x2d {
     object::object(kernel& k, config::configuration& c, const object_traits& t)
     : base_object(k)
     , config_(c)
+    , name_(t.name)
     , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
     , position_(t.position.get(c))
@@ -42,6 +45,9 @@ namespace x2d {
     , scale_(t.scale.get(c))
     , rotation_(t.rotation.get(c))    
     , box_(t.box)
+    , camera_space_box_(t.box)
+    , pivot_(t.pivot)
+    , camera_space_pivot_(t.pivot)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
     {               
@@ -130,26 +136,7 @@ namespace x2d {
         
         kernel_.remove_camera_space_object(this);
     }
-    
-    const glm::vec3 object::world_position() const
-    {
-        // TODO: if we are in camera-space then we must calculate using the camera_
-        if(space_ == CAMERA_SPACE)
-        {
-            if(parent_)
-                return parent_->world_position() + camera_->to_world(camera_space_position_);
-
-            return camera_->to_world(camera_space_position_);
-        }
-        else 
-        {        
-            if(parent_)
-                return parent_->world_position() + position_;
-            
-            return position_;
-        }
-    }
-    
+        
     void object::update(const clock_info& clock) 
     { 
         if(cur_animation_)
@@ -189,6 +176,7 @@ namespace x2d {
             glDisable(GL_TEXTURE_2D);
             glColor4f(bgcolor_.r, bgcolor_.g, bgcolor_.b, bgcolor_.a);
             glPushMatrix();
+            glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
             
             float vertices[] =
             {      
@@ -247,9 +235,132 @@ namespace x2d {
             it != children_.end(); ++it)
         {
             // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
-            glm::vec4 pp( (*it)->camera_space_position().x * box_.width, (*it)->camera_space_position().y * box_.height, 0.0f, 1.0f ); // w = 1        
+            glm::vec2 pp( (*it)->camera_space_position().x * box_.width, (*it)->camera_space_position().y * box_.height );
             (*it)->position( glm::vec2(-(box_.width/2)+pp.x, -(box_.height/2)+pp.y) );
+            
+            // also pivot and box needs adjustment            
+            (*it)->box_ = size((*it)->camera_space_box_.width * box_.width, (*it)->camera_space_box_.height * box_.height);
+            
+            glm::vec2 pi( (*it)->camera_space_pivot_.x * (*it)->box_.width, (*it)->camera_space_pivot_.y * (*it)->box_.height );
+            (*it)->pivot_ = glm::vec2(-((*it)->box_.width/2)+pi.x, -((*it)->box_.height/2)+pi.y);
+
         }
+    }
+    
+    boost::shared_ptr<object> object::child_by_name(const std::string& n)
+    {
+        for(std::vector< boost::shared_ptr<object> >::iterator it = children_.begin(); 
+            it != children_.end(); ++it)
+        {
+            if((*it)->name_ == n)
+                return *it;                        
+        }
+        
+        // TODO: custom exception?
+        throw std::runtime_error("Couldn't find child by name: '" + n + "'");
+    }
+    
+    void object::add_child(const boost::shared_ptr<object>& child)
+    {
+        child->set_parent(shared_from_this());
+        children_.push_back(child);
+        
+        // Now connect update and render if we did not before.
+        // Need these connections to update children.
+        connect_update();
+        
+        LOG("Connecting render: %f", position_.z);
+        connect_render(position_.z, space_ == CAMERA_SPACE);
+    }
+    
+    void object::release(object& obj)
+    {
+        if(spawner_)
+        {
+            spawner_->release(obj);
+        }
+    }
+    
+    const glm::vec3 object::position() const
+    {
+        return position_;
+    }
+    
+    void object::position(const glm::vec3& p)        
+    {
+        position_ = p;
+    }
+    
+    void object::position(const glm::vec2& p)        
+    {
+        position_.x = p.x;
+        position_.y = p.y;
+        // retain z value
+    }        
+    
+    const glm::vec3 object::world_position() const
+    {
+        // TODO: if we are in camera-space then we must calculate using the camera_
+        if(space_ == CAMERA_SPACE)
+        {
+            if(parent_)
+                return parent_->world_position() + camera_->to_world(camera_space_position_);
+            
+            return camera_->to_world(camera_space_position_);
+        }
+        else 
+        {        
+            if(parent_)
+                return parent_->world_position() + position_;
+            
+            return position_;
+        }
+    }
+    
+    const float object::rotation() const
+    {
+        return rotation_;
+    }
+    
+    void object::rotation(float a)        
+    {
+        rotation_ = a;
+    }
+    
+    void object::scale(float s)
+    {
+        scale_ = s;
+    }
+    
+    void object::pivot(const glm::vec2& p)
+    {
+        if(space_ == CAMERA_SPACE ||
+           (parent_ != NULL && parent_->space_ == CAMERA_SPACE))
+        {
+            camera_space_pivot_ = p;
+        }
+        else
+        {
+            pivot_ = p;
+        }
+    }
+    
+    void object::box(const size& s)
+    {
+        if(space_ == CAMERA_SPACE || 
+           (parent_ != NULL && parent_->space_ == CAMERA_SPACE) )
+        {
+            camera_space_box_ = s;
+        }
+        else
+        {
+            box_ = s;
+        }
+    }
+    
+    const glm::vec3& object::camera_space_position() const
+    {
+        return camera_space_position_;
     }
     
 } // namespace x2d

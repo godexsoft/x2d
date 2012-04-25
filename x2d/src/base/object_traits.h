@@ -27,10 +27,12 @@ namespace x2d {
         object_traits();
         
         // basic object properties
+        std::string              name;
         value_holder<glm::vec3>  position;
         value_holder<float>      scale;
         value_holder<float>      rotation;
         size                     box;
+        glm::vec2                pivot;
         color_info               bgcolor;
         
         // input methods requested by object

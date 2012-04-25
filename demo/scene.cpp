@@ -25,7 +25,8 @@ scene::scene(kernel& k, configuration& conf)
     objects_.push_back( config_.create_object("objects.background") );
     objects_.push_back( config_.create_object("objects.scenary.moon_surface") );
     platform_ = config_.create_object("objects.scenary.platform");
-    objects_.push_back( config_.create_object("objects.ui.fuel_bar") );
+    fuel_bar_ = config_.create_object("objects.ui.fuel_bar");
+    fuel_bar_filling_ = fuel_bar_->child_by_name("fuel_bar_filling");
     
     // for debug only
     objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
@@ -33,6 +34,8 @@ scene::scene(kernel& k, configuration& conf)
 
 void scene::update(const clock_info& clock) 
 { 
+    // update size of fuel filling
+    fuel_bar_filling_->box( size(1.0f, player_->fuel_percent()) );
 }
 
 void scene::on_land(object& obj)

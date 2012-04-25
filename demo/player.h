@@ -23,6 +23,8 @@ public:
     void crash();
     void finish();
     
+    float fuel_percent() const;
+    
 protected:
     virtual void update(const clock_info& clock);
     void touch_input_began(space s, const std::vector<touch>& touches);
@@ -32,6 +34,8 @@ protected:
 private:
     bool        finished_;
     bool        thrust_;
+    
+    float       max_fuel_;
     float       fuel_;
     float       accel_;
 
