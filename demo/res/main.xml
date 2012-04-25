@@ -35,7 +35,7 @@
             sprite      =   "graphics.all.ship"
             contexts    =   "contexts.game"
         >
-            <float  n = "initial_fuel"      value = "10" />
+            <float  n = "initial_fuel"      value = "20" />
             <vector n = "initial_velocity"  value = "0 -40" />
 
             <vector n = "position">

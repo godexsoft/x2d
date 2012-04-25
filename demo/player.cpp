@@ -33,6 +33,16 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
     connect_render(WORLD_SPACE);
     connect_touch_input(WORLD_SPACE);
     connect_accelerometer_input();
+    
+    // get child object links
+    main_thrust_ = child_by_name("ship_main_thrust");
+    left_thrust_ = child_by_name("ship_left_thrust");
+    right_thrust_ = child_by_name("ship_right_thrust");
+    
+    // probably invisible initially :)
+    main_thrust_->visible(thrust_);
+    left_thrust_->visible(thrust_);
+    right_thrust_->visible(thrust_);
 }
 
 bool player::landing_allowed()
@@ -49,6 +59,11 @@ void player::crash()
 
 void player::finish()
 {
+    // make sure to turn off engines
+    main_thrust_->visible(false);
+    left_thrust_->visible(false);
+    right_thrust_->visible(false);
+    
     finished_ = true;
 }
 
@@ -89,11 +104,16 @@ void player::update(const clock_info& clock)
     orientation_.x = sinf( glm::radians(rotation()) );
     orientation_.y = cosf( glm::radians(rotation()) );    
     
-    // if thrusting
     if(thrust && fuel_ > 0.0f)
     {
         force.x = -orientation_.x * kMainThrust;
         force.y = orientation_.y  * kMainThrust;
+        
+        main_thrust_->visible(true);
+    }
+    else
+    {
+        main_thrust_->visible(false);
     }
     
     velocity_.x += force.x / kMass * clock.delta_time;
@@ -102,17 +122,40 @@ void player::update(const clock_info& clock)
     if( fabsf(accel_) >= kLateralThrustThreshold ) 
     {
         thrust = true;
-        velocity_.x += (accel_ > 0.0 ? accel_ - kLateralThrustThreshold 
+        velocity_.x += (accel_ > 0.0f ? accel_ - kLateralThrustThreshold 
                         : accel_ + kLateralThrustThreshold) * kLateralSpeed;
-        rotation_velocity_ = -(accel_ > 0.0 ? accel_ - kLateralThrustThreshold 
+        rotation_velocity_ = -(accel_ > 0.0f ? accel_ - kLateralThrustThreshold 
                                : accel_ + kLateralThrustThreshold) * kRotationSpeed;
+
+        // display thrust only if we have fuel left
+        if(fuel_ > 0.0f)
+        {
+            // toggle thrust display
+            if( accel_ > 0.0f )
+            {
+                left_thrust_->visible(true);
+            } 
+            else
+            {
+                right_thrust_->visible(true);
+            }
+        }
+    } 
+    else
+    {
+        left_thrust_->visible(false);
+        right_thrust_->visible(false);
     }
     
     if(thrust)
+    {
         fuel_ -= clock.delta_time;
+    }
     
     if(fuel_ < 0.0f)
+    {
         fuel_ = 0.0f;
+    }
 }
 
 void player::touch_input_began(space s, const std::vector<touch>& touches) 

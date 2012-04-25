@@ -42,6 +42,11 @@ private:
     float       rotation_velocity_;
     glm::vec2   velocity_;
     glm::vec2   orientation_;
+    
+    // child objects
+    boost::shared_ptr<object> main_thrust_;
+    boost::shared_ptr<object> left_thrust_;
+    boost::shared_ptr<object> right_thrust_;
 };
 
 #endif // __PLAYER_H__
