@@ -36,8 +36,7 @@ using namespace x2d::config;
      * @brief Default x2d object
      */
     class object 
-    : public boost::enable_shared_from_this<object>
-    , public base_object    
+    : public base_object    
     {        
     public:
         object(kernel& k, config::configuration& c, const object_traits& t=object_traits());
@@ -70,6 +69,8 @@ using namespace x2d::config;
         
         void box(const size& s);
         
+        void visible(bool v);
+        
         const glm::vec3& camera_space_position() const;
         
         void position_children_camera_space();
@@ -86,7 +87,7 @@ using namespace x2d::config;
             return config_;
         }
         
-        void set_parent(const boost::shared_ptr<object>& o)
+        void set_parent(object* o)
         {
             parent_ = o;
         }
@@ -122,9 +123,11 @@ using namespace x2d::config;
         boost::shared_ptr<spawner>   spawner_;
         boost::shared_ptr<zone>      zone_;
         
+        bool                         is_visible_;
+        
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
-        boost::shared_ptr<object>                    parent_;
+        object                                      *parent_;
     };
     
 } // namespace x2d

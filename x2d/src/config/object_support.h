@@ -639,10 +639,7 @@ namespace config {
         template <typename T>
         const boost::shared_ptr<T> create()
         {
-            boost::shared_ptr<T> p = boost::shared_ptr<T>( new T(kernel_, config_, traits_) );            
-            add_children(p);
-            
-            return p;
+            return boost::shared_ptr<T>( new T(kernel_, config_, traits_) );            
         }
         
         /**
@@ -650,10 +647,7 @@ namespace config {
          */
         const boost::shared_ptr<object> create()
         {
-            boost::shared_ptr<object> p = boost::shared_ptr<object>( new object(kernel_, config_, traits_) );
-            add_children(p);
-            
-            return p;
+            return boost::shared_ptr<object>( new object(kernel_, config_, traits_) );
         }
                 
         /**
@@ -662,20 +656,13 @@ namespace config {
          */
         void add(const config_key& k)
         {
-            children_.push_back(k);
+            traits_.children.push_back(k);
         }
         
-    private:        
-        /**
-         * Create and add children to object
-         */
-        void add_children(const boost::shared_ptr<object>& p);
-        
+    private:                
         configuration&              config_;
         kernel&                     kernel_;
-        object_traits               traits_;
-        
-        std::vector<config_key>     children_;
+        object_traits               traits_;        
     };
 
     

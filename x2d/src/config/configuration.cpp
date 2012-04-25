@@ -509,14 +509,6 @@ namespace config {
             return r;
         }
     }
-    
-    void object_cfg::add_children(const boost::shared_ptr<object>& p)
-    {
-        for(int i=0; i<children_.size(); ++i)
-        {
-            p->add_child( config_.create_object(children_.at(i)) );
-        }
-    }
-    
+        
 } // namespace config    
 } // namespace x2d

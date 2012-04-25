@@ -63,7 +63,9 @@ namespace x2d {
         
         // space
         space       obj_space;
+        
         bool        has_parent;
+        std::vector<std::string>    children;
         
         // context list
         std::vector<std::string>    contexts;

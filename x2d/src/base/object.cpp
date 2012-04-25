@@ -50,6 +50,8 @@ namespace x2d {
     , camera_space_pivot_(t.pivot)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
+    , is_visible_(true)
+    , parent_(NULL)
     {               
         if(t.want_screen_touch_input)
         {
@@ -113,6 +115,12 @@ namespace x2d {
             kernel_.add_camera_space_object(this);
         }
         
+        // add children
+        for(std::vector<std::string>::const_iterator it = t.children.begin(); it != t.children.end(); ++it)
+        {
+            add_child( config_.create_object(*it) );
+        }
+        
         // populate contexts and register with them
         for(std::vector<std::string>::const_iterator it = t.contexts.begin(); it != t.contexts.end(); ++it)
         {
@@ -151,6 +159,9 @@ namespace x2d {
     
     void object::render(const clock_info& clock)
     {          
+        if(!is_visible_)
+            return;
+        
         glPushMatrix();
         glTranslatef(position_.x, position_.y, 0.0f);
         
@@ -262,7 +273,7 @@ namespace x2d {
     
     void object::add_child(const boost::shared_ptr<object>& child)
     {
-        child->set_parent(shared_from_this());
+        child->set_parent(this);
         children_.push_back(child);
         
         // Now connect update and render if we did not before.
@@ -361,6 +372,11 @@ namespace x2d {
     const glm::vec3& object::camera_space_position() const
     {
         return camera_space_position_;
+    }
+    
+    void object::visible(bool v)
+    {
+        is_visible_ = v;
     }
     
 } // namespace x2d
