@@ -7,14 +7,20 @@
 //
 
 #include "scene.h"
+#include "game.h"
 
-scene::scene(kernel& k, configuration& conf)
+scene::scene(kernel& k, configuration& conf, game& g)
 : base_object(k)
 , config_(conf)
+, game_(g)
 , player_( conf.create_object<player>("objects.player") )
 , platform_width_( conf.get_value<float>("objects.scenary.platform.width") )
+, finished_(false)
 {       
     connect_update();    
+    connect_touch_input(WORLD_SPACE);
+    connect_accelerometer_input();
+
     camera_ = config_.get_object<camera>("camera");
         
     // get all zones and configure them
@@ -28,8 +34,10 @@ scene::scene(kernel& k, configuration& conf)
     fuel_bar_ = config_.create_object("objects.ui.fuel_bar");
     fuel_bar_filling_ = fuel_bar_->child_by_name("fuel_bar_filling");
     
+#ifdef DEBUG
     // for debug only
     objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
+#endif
 }
 
 void scene::update(const clock_info& clock) 
@@ -45,14 +53,41 @@ void scene::on_land(object& obj)
     
     bool on_platform = false;
     if( fabsf(player_x - platform_x) < platform_width_/2.0f )
+    {
         on_platform = true;
+    }
+    
+    player_->finish();
+    finished_ = true;
     
     if( player_->landing_allowed() && on_platform )
     {
-        player_->finish();
+        // landed
     } 
     else
     {     
-        player_->crash();
+        // draw crash etc.
     }
+}
+
+void scene::touch_input_began(space s, const std::vector<touch>& touches) 
+{
+    if(finished_)
+    {
+        // restart the game
+        game_.start_game();
+        return;
+    }
+    
+    player_->main_thrust(true);
+}
+
+void scene::touch_input_ended(space s, const std::vector<touch>& touches) 
+{
+    player_->main_thrust(false);
+}
+
+void scene::accelerometer_input(const glm::vec3& acceleration)
+{
+    player_->lateral_thrust(acceleration.x);
 }

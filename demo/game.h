@@ -12,7 +12,10 @@
 
 #include "kernel.h"
 #include "liverpool_manager.h"
+
 #include "scene.h"
+#include "title.h"
+
 #include "configuration.h"
 #include "resource_manager.h"
 
@@ -30,7 +33,7 @@ public:
         config_.bind<player>("objects.player");    
         
         // init first scene
-        cur_scene_ = boost::shared_ptr<scene>( new scene(k_, config_) );
+        cur_scene_ = boost::shared_ptr<base_object>( new title(k_, config_, *this) );
     }
     
     inline void step()
@@ -48,12 +51,17 @@ public:
         k_.resume();
     }
     
+    void start_game()
+    {        
+        cur_scene_ = boost::shared_ptr<base_object>( new scene(k_, config_, *this) );   
+    }
+    
 private:
     resource_manager    rm_;
     x2d::kernel&        k_;
 
-    configuration       config_;
-    boost::shared_ptr<scene>   cur_scene_;
+    configuration                    config_;
+    boost::shared_ptr<base_object>   cur_scene_;
 };
 
 #endif // __X2D_GAME_H__

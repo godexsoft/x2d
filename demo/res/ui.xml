@@ -1,5 +1,18 @@
 <x2d version="1.0">
     
+    <!-- keep background and title in the root 'objects' namespace -->
+    <object n       =   "background"             
+        space       =   "camera"
+        sprite      =   "graphics.game.background" 
+        position    =   "0.5 0.5 1.0"
+    />                
+
+    <object n       =   "title"             
+        space       =   "camera"
+        sprite      =   "graphics.title.background" 
+        position    =   "0.5 0.5 1.0"
+    />  
+    
     <!-- namespace for ui objects -->
     <namespace n = "ui">
         

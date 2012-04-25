@@ -20,16 +20,15 @@ public:
     player(kernel& k, configuration& conf, const object_traits& t);
     
     bool landing_allowed();
-    void crash();
     void finish();
     
     float fuel_percent() const;
     
+    void main_thrust(bool enabled);
+    void lateral_thrust(float accel);
+    
 protected:
     virtual void update(const clock_info& clock);
-    void touch_input_began(space s, const std::vector<touch>& touches);
-    void touch_input_ended(space s, const std::vector<touch>& touches);
-    void accelerometer_input(const glm::vec3& acceleration);
     
 private:
     bool        finished_;

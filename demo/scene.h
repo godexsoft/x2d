@@ -25,20 +25,26 @@
 
 #include "player.h"
 
+class game;
+
 class scene 
 : public base_object
 {
 public:
-    scene(kernel& k, configuration& conf);
+    scene(kernel& k, configuration& conf, game& g);
     
 protected:
     virtual void update(const clock_info& clock);
-    
+    void touch_input_began(space s, const std::vector<touch>& touches);
+    void touch_input_ended(space s, const std::vector<touch>& touches);
+    void accelerometer_input(const glm::vec3& acceleration);
+
 private:
     
     void on_land(object& obj);
     
-    configuration&  config_;
+    configuration   &config_;
+    game            &game_;
     boost::shared_ptr<camera> camera_;
     
     std::vector< boost::shared_ptr<base_object> >   objects_;
@@ -53,6 +59,8 @@ private:
     boost::shared_ptr<player> player_;
     
     float platform_width_;
+    
+    bool finished_;
 };
 
 #endif // __SCENE_H__

@@ -24,12 +24,6 @@
     <!-- namespace for all objects -->
     <namespace n = "objects">
 
-        <object n       =   "background"             
-            space       =   "camera"
-            sprite      =   "graphics.game.background" 
-            position    =   "0.5 0.5 1.0"
-        />                
-        
         <!-- the ship -->
         <object n       =   "player"
             sprite      =   "graphics.all.ship"

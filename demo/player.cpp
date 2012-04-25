@@ -31,8 +31,6 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
 {   
     connect_update();
     connect_render(WORLD_SPACE);
-    connect_touch_input(WORLD_SPACE);
-    connect_accelerometer_input();
     
     // get child object links
     main_thrust_ = child_by_name("ship_main_thrust");
@@ -51,12 +49,6 @@ bool player::landing_allowed()
             && (fabsf(rotation()) <= kMaxRotation) );
 }
 
-void player::crash()
-{
-    // TODO: draw crash
-    finish();
-}
-
 void player::finish()
 {
     // make sure to turn off engines
@@ -64,12 +56,22 @@ void player::finish()
     left_thrust_->visible(false);
     right_thrust_->visible(false);
     
-    finished_ = true;
+    finished_ = true;    
 }
 
 float player::fuel_percent() const
 {
     return fuel_/max_fuel_;
+}
+
+void player::main_thrust(bool enabled)
+{
+    thrust_ = enabled;
+}
+
+void player::lateral_thrust(float accel)
+{
+    accel_ = accel;
 }
 
 void player::update(const clock_info& clock)
@@ -156,19 +158,4 @@ void player::update(const clock_info& clock)
     {
         fuel_ = 0.0f;
     }
-}
-
-void player::touch_input_began(space s, const std::vector<touch>& touches) 
-{
-    thrust_ = true;
-}
-
-void player::touch_input_ended(space s, const std::vector<touch>& touches) 
-{
-    thrust_ = false;
-}
-
-void player::accelerometer_input(const glm::vec3& acceleration)
-{
-    accel_ = acceleration.x;
 }
