@@ -241,5 +241,15 @@ namespace x2d {
         glPopMatrix();        
     }
 
-
+    void object::position_children_camera_space()
+    {
+        for(std::vector< boost::shared_ptr<object> >::iterator it = children_.begin(); 
+            it != children_.end(); ++it)
+        {
+            // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
+            glm::vec4 pp( (*it)->camera_space_position().x * box_.width, (*it)->camera_space_position().y * box_.height, 0.0f, 1.0f ); // w = 1        
+            (*it)->position( glm::vec2(-(box_.width/2)+pp.x, -(box_.height/2)+pp.y) );
+        }
+    }
+    
 } // namespace x2d

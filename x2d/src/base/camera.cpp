@@ -90,6 +90,10 @@ namespace base {
         // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
         glm::vec4 pp( o->camera_space_position().x * frustum_.width, o->camera_space_position().y * frustum_.height, 0.0f, 1.0f ); // w = 1        
         o->position( glm::vec2(pp.x, pp.y) );
+        
+        // also calculate all children which happen to be camera-spaced
+        // their frustum is their parent object's box
+        o->position_children_camera_space();
     }
 
 } // namespace base

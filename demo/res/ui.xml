@@ -14,7 +14,7 @@
         <object n       =   "fuel_bar_filling"
               parent    =   "fuel_bar"
               sprite    =   "graphics.all.fuel_bar"
-            position    =   "0 0"
+            position    =   "0.5 0"
         />
     </namespace>
     <!-- end: ui -->
