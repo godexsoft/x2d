@@ -9,18 +9,9 @@
 #include "player.h"
 #include "log.h"
 
-#define kMainThrust 10000
-#define kMass	 80   
-#define kGravity 40
-#define kLateralThrustThreshold 0.1
-#define kLateralSpeed	10
-#define kRotationSpeed	100   
-
-#define kMaxVelocity				75   //Pixels/s
-#define kMaxRotation				8   //Degrees
-
 player::player(kernel& k, configuration& conf, const object_traits& t)
 : object(k, conf, t)
+, config_(conf)
 , finished_( false )
 , thrust_( false )
 , max_fuel_( conf.get_value<float>("objects.player.initial_fuel") )
@@ -45,8 +36,8 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
 
 bool player::landing_allowed()
 {
-    return ( (velocity_.y >= -kMaxVelocity) 
-            && (fabsf(rotation()) <= kMaxRotation) );
+    return ( (velocity_.y >= -config_.get_value<float>("settings.max_velocity")) 
+            && (fabsf(rotation()) <= config_.get_value<float>("settings.max_rotation")) );
 }
 
 void player::finish()
@@ -82,7 +73,8 @@ void player::update(const clock_info& clock)
     object::update(clock);
     bool thrust = thrust_;
     
-    glm::vec2 force(0.0f, -kMass * kGravity);
+    glm::vec2 force(0.0f, -config_.get_value<float>("settings.mass") 
+        * config_.get_value<float>("settings.gravity"));
     position( position() + glm::vec3(velocity_.x * clock.delta_time, 
                                      velocity_.y * clock.delta_time, 0.0f) );
     
@@ -108,8 +100,8 @@ void player::update(const clock_info& clock)
     
     if(thrust && fuel_ > 0.0f)
     {
-        force.x = -orientation_.x * kMainThrust;
-        force.y = orientation_.y  * kMainThrust;
+        force.x = -orientation_.x * config_.get_value<float>("settings.main_thrust");
+        force.y = orientation_.y  * config_.get_value<float>("settings.main_thrust");
         
         main_thrust_->visible(true);
     }
@@ -118,16 +110,18 @@ void player::update(const clock_info& clock)
         main_thrust_->visible(false);
     }
     
-    velocity_.x += force.x / kMass * clock.delta_time;
-    velocity_.y += force.y / kMass * clock.delta_time;
+    velocity_.x += force.x / config_.get_value<float>("settings.mass") * clock.delta_time;
+    velocity_.y += force.y / config_.get_value<float>("settings.mass") * clock.delta_time;
     
-    if( fabsf(accel_) >= kLateralThrustThreshold ) 
+    if( fabsf(accel_) >= config_.get_value<float>("settings.lateral_th") ) 
     {
         thrust = true;
-        velocity_.x += (accel_ > 0.0f ? accel_ - kLateralThrustThreshold 
-                        : accel_ + kLateralThrustThreshold) * kLateralSpeed;
-        rotation_velocity_ = -(accel_ > 0.0f ? accel_ - kLateralThrustThreshold 
-                               : accel_ + kLateralThrustThreshold) * kRotationSpeed;
+        velocity_.x += (accel_ > 0.0f ? accel_ - config_.get_value<float>("settings.lateral_th") 
+                        : accel_ + config_.get_value<float>("settings.lateral_th")) 
+                        * config_.get_value<float>("settings.lateral_speed");
+        rotation_velocity_ = -(accel_ > 0.0f ? accel_ - config_.get_value<float>("settings.lateral_th") 
+                               : accel_ + config_.get_value<float>("settings.lateral_th")) 
+                                * config_.get_value<float>("settings.rotation_speed");
 
         // display thrust only if we have fuel left
         if(fuel_ > 0.0f)

@@ -31,6 +31,7 @@ protected:
     virtual void update(const clock_info& clock);
     
 private:
+    configuration& config_;
     bool        finished_;
     bool        thrust_;
     

@@ -65,4 +65,19 @@
     </namespace>
     <!-- end: objects -->
         
+    <!-- namespace for settings -->
+    <namespace n = "settings">
+
+        <float n = "main_thrust"    value = "10000" />
+        <float n = "mass"           value = "80" />
+        <float n = "gravity"        value = "40" />
+        <float n = "lateral_th"     value = "0.1" />
+        <float n = "lateral_speed"  value = "10" />
+        <float n = "rotation_speed" value = "100" />
+        <float n = "max_velocity"   value = "75" />
+        <float n = "max_rotation"   value = "8" />
+        
+    </namespace>
+    <!-- end: settings -->
+    
 </x2d>
