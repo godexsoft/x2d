@@ -369,6 +369,16 @@ namespace x2d {
         }
     }
     
+    const std::string object::text() const
+    {
+        return *text_;
+    }
+    
+    void object::text(const std::string& t)
+    {
+        text_ = boost::shared_ptr<std::string>(new std::string(t) );
+    }
+    
     const glm::vec3& object::camera_space_position() const
     {
         return camera_space_position_;

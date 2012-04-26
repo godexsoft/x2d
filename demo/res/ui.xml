@@ -12,6 +12,27 @@
         sprite      =   "graphics.title.background" 
         position    =   "0.5 0.5 1.0"
     />  
+    <!-- namespace for fonts -->
+    <namespace n = "fonts">
+        <font    n = "sony_sketch_stroked"
+            height = "32"
+            spacing = "2 2" 
+            texture = "graphics.sony_sketch_stroked" 
+            >
+            <string n = "characters">
+                <![CDATA[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~]]>
+            </string>
+            
+            <string n = "widths">
+                12 12 13 22 19 27 22 11 14 13 16 19 11 14 11 18 20 16 20 19 19 20
+                20 20 20 20 11 11 19 19 19 18 24 22 20 19 20 19 19 20 20 12 14 20
+                19 24 20 20 20 20 20 19 18 20 22 25 21 21 19 13 17 13 16 20 13 19
+                19 17 19 19 14 19 19 11 14 18 12 23 18 19 19 19 14 18 14 19 20 23
+                18 19 19 14 15 14 22
+            </string>
+        </font>
+    </namespace>
+    <!-- end: fonts -->
     
     <!-- namespace for ui objects -->
     <namespace n = "ui">
@@ -22,8 +43,7 @@
               sprite    =   "graphics.all.empty_fuel_bar"
                  box    =   "14 150"
         />         
-        <!--              sprite    =   "graphics.all.fuel_bar"
--->        
+
         <object n       =   "fuel_bar_filling"
               parent    =   "fuel_bar"
             position    =   "0.5 0 0.1"
@@ -31,6 +51,31 @@
              bgcolor    =   "1 0 0 0.2"
                pivot    =   "0.5 0"
         />
+        
+        <object n       = "win" />
+        
+        <object n       = "win_label"
+           parent       = "win"
+             font       = "objects.fonts.sony_sketch_stroked" 
+             text       = "You win!" 
+            align       = "center"
+         position       = "0 20"
+        />
+
+        <object n       = "score_holder"
+           parent       = "win"
+             font       = "objects.fonts.sony_sketch_stroked" 
+             text       = "Score: " 
+            align       = "center"
+         position       = "0 -20"
+        />
+        
+        <object n       = "lose"
+             font       = "objects.fonts.sony_sketch_stroked" 
+             text       = "You lose!" 
+            align       = "center"
+        />        
+        
     </namespace>
     <!-- end: ui -->
     

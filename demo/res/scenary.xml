@@ -20,6 +20,13 @@
             
             <float n = "width" value = "80" />
         </object>
+
+        <!-- position is used as offset off the ship in code -->
+        <object n       =   "explosion"
+              sprite    =   "graphics.all.explosion"
+            rotation    =   "90"
+            position    =   "0 -10"
+        /> 
         
     </namespace>
     <!-- end: scenary -->

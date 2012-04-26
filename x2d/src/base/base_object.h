@@ -55,6 +55,15 @@ namespace x2d
             if(!update_connection_.connected())
                 update_connection_ = kernel_.connect_update(this);
         }
+        
+        /**
+         * Disconnect the update function from the kernel
+         */
+        void disconnect_update()
+        {
+            if(update_connection_.connected())
+                update_connection_.disconnect();
+        }
 
         /**
          * Used to connect the render function to the kernel.
@@ -68,6 +77,15 @@ namespace x2d
                 render_connection_ = kernel_.connect_render(this, z, camera_space);
         }        
 
+        /**
+         * Disconnect the render function from the kernel
+         */
+        void disconnect_render()
+        {
+            if(render_connection_.connected())
+                render_connection_.disconnect();
+        }
+        
         /**
          * Used to connect the touch_input* functions to the kernel.
          * Should be invoked in the constructor of a child class.

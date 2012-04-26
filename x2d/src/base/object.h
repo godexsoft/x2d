@@ -61,6 +61,8 @@ using namespace x2d::config;
         
         const float rotation() const;
         
+        const std::string text() const;
+        
         void rotation(float a);
         
         void scale(float s);
@@ -68,6 +70,8 @@ using namespace x2d::config;
         void pivot(const glm::vec2& p);
         
         void box(const size& s);
+        
+        void text(const std::string& t);
         
         void visible(bool v);
         

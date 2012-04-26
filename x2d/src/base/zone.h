@@ -47,12 +47,22 @@ namespace base {
         : base_object(k)
         , parent_(NULL)
         {
-            connect_update(); // we want updates
+            enable();
         }
         
         void set_trigger(const trigger_type& trigger)
         {
             trigger_ = trigger;
+        }
+        
+        void disable()
+        {
+            disconnect_update();
+        }
+
+        void enable()
+        {
+            connect_update();
         }
         
         void add_context(const boost::shared_ptr<context>& ctx)

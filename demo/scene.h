@@ -50,16 +50,20 @@ private:
     std::vector< boost::shared_ptr<base_object> >   objects_;
     boost::shared_ptr<zone> crash_zone_;
     
+    boost::shared_ptr<object> explosion_;
     boost::shared_ptr<object> platform_;
     
     // the fuel bar holder and it's 'filling'
     boost::shared_ptr<object> fuel_bar_;
     boost::shared_ptr<object> fuel_bar_filling_;
     
-    boost::shared_ptr<player> player_;
+    // win/lose banners
+    boost::shared_ptr<object> win_banner_;
+    boost::shared_ptr<object> score_holder_;
+    boost::shared_ptr<object> lose_banner_;
     
-    float platform_width_;
-    
+    boost::shared_ptr<player> player_;    
+    float platform_width_;    
     bool finished_;
 };
 

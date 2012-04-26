@@ -9,6 +9,8 @@
 #include "scene.h"
 #include "game.h"
 
+#include <boost/lexical_cast.hpp>
+
 scene::scene(kernel& k, configuration& conf, game& g)
 : base_object(k)
 , config_(conf)
@@ -26,13 +28,26 @@ scene::scene(kernel& k, configuration& conf, game& g)
     // get all zones and configure them
     crash_zone_ = config_.get_object<zone>("zones.crash_or_land");
     crash_zone_->set_trigger( boost::bind(&scene::on_land, this, _1) );
-
+    
+    // enable the zone as it's shared (get_object) 
+    // and can be disabled from prev. game 
+    crash_zone_->enable();
+    
     // create all scenary objects
     objects_.push_back( config_.create_object("objects.background") );
     objects_.push_back( config_.create_object("objects.scenary.moon_surface") );
+    explosion_ = config_.create_object("objects.scenary.explosion"); 
     platform_ = config_.create_object("objects.scenary.platform");
     fuel_bar_ = config_.create_object("objects.ui.fuel_bar");
     fuel_bar_filling_ = fuel_bar_->child_by_name("fuel_bar_filling");
+    
+    win_banner_ = config_.create_object("objects.ui.win");
+    score_holder_ = win_banner_->child_by_name("score_holder");
+    lose_banner_ = config_.create_object("objects.ui.lose");
+    
+    explosion_->visible(false);
+    win_banner_->visible(false);
+    lose_banner_->visible(false);
     
 #ifdef DEBUG
     // for debug only
@@ -48,6 +63,9 @@ void scene::update(const clock_info& clock)
 
 void scene::on_land(object& obj)
 {
+    // thanks, we are done with the crash zone
+    crash_zone_->disable();
+    
     float player_x = player_->world_position().x;
     float platform_x = platform_->world_position().x;
     
@@ -63,10 +81,18 @@ void scene::on_land(object& obj)
     if( player_->landing_allowed() && on_platform )
     {
         // landed
+        score_holder_->text( score_holder_->text() + 
+            boost::lexical_cast<std::string>( 
+                floor(player_->fuel_percent() * 100) ) );
+        win_banner_->visible(true);
     } 
     else
     {     
-        // draw crash etc.
+        // draw explosion. position is initially an offset
+        explosion_->position( player_->world_position() + explosion_->position() );
+        explosion_->visible(true);
+        
+        lose_banner_->visible(true);
     }
 }
 

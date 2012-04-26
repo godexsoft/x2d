@@ -24,6 +24,8 @@
             <sprite n="thrust_right"    x="240" y="12"  w="10"  h="16" />
         </texture> 
         
+        <texture n="sony_sketch_stroked" path="res/fonts/sony_sketch_stroked.png" />
+        
     </namespace> 
     <!-- end: graphics -->
     
