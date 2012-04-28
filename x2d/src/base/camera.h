@@ -50,51 +50,37 @@ namespace base {
          * Set new position
          * @param[in] v Position given in world coordinates
          */
-        void position(const glm::vec2& v)
-        {
-            position_ = v;
-        }
+        void position(const glm::vec2& v);
         
         /**
          * Get current camera position
          * @return Camera position given in world coordinates
          */
-        const glm::vec2 position() const
-        {
-            return position_;
-        }
+        const glm::vec2 position() const;
         
         /**
          * Turn camera by angle
          * @param[in] angle The angle
          */
-        void rotation(float angle)
-        {
-            if(angle < 0.0f) 
-            {
-                angle = 360.0f + angle;    
-            }
-            
-            rotation_ = glm::clamp(angle, 0.0f, 360.0f);
-        }
+        void rotation(float angle);
         
         /**
          * Get current zoom
          * @return Current zoom level
          */
-        const float zoom() const
-        {
-            return zoom_;
-        }
+        const float zoom() const;
         
         /**
          * Zoom scene
          * @param[in] z Zoom level (scale)
          */
-        void zoom(float z)
-        {
-            zoom_ = z;
-        }
+        void zoom(float z);
+        
+        /**
+         * Get camera's frustum
+         * @return The frustum size
+         */
+        const size frustum() const;
         
         /**
          * Remove the camera matrix for opengl

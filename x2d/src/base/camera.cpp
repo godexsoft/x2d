@@ -12,6 +12,41 @@
 namespace x2d {
 namespace base {
 
+    void camera::position(const glm::vec2& v)
+    {
+        position_ = v;
+    }
+    
+    const glm::vec2 camera::position() const
+    {
+        return position_;
+    }
+    
+    void camera::rotation(float angle)
+    {
+        if(angle < 0.0f) 
+        {
+            angle = 360.0f + angle;    
+        }
+        
+        rotation_ = glm::clamp(angle, 0.0f, 360.0f);
+    }
+    
+    const float camera::zoom() const
+    {
+        return zoom_;
+    }
+    
+    void camera::zoom(float z)
+    {
+        zoom_ = z;
+    }
+    
+    const size camera::frustum() const
+    {
+        return frustum_;
+    }
+    
     const point camera::inverted_transformation(const point& p)
     {
         glm::vec4 pp(p.x, p.y, 0.0f, 1.0f); // w = 1

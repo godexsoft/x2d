@@ -79,18 +79,20 @@ void player::update(const clock_info& clock)
     position( position() + glm::vec3(velocity_.x * clock.delta_time, 
                                      velocity_.y * clock.delta_time, 0.0f) );
     
-    if(position().x < -160.0f)
+    size fr = camera_->frustum();
+    
+    if(position().x < -fr.width/2)
     {
-        position( glm::vec2(320.0f + position().x, position().y) );
+        position( glm::vec2(fr.width + position().x, position().y) );
     }
-    else if(position().x > 160.0f)
+    else if(position().x > fr.width/2)
     {
         position( glm::vec2(0.0f - position().x, position().y) );
     }
     
-    if(position().y > 240.0f) 
+    if(position().y > fr.height/2) 
     {
-        position( glm::vec2(position().x, 240.0f) );
+        position( glm::vec2(position().x, fr.height/2) );
         velocity_.y = 0.0f;
     }
     
