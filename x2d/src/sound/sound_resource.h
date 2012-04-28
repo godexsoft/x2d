@@ -54,6 +54,7 @@ namespace snd {
         }
         
         void play();
+        void stop();
         
         // updates
         void on_volume_change() { obj_->on_volume_change(); }

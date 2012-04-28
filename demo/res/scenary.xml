@@ -26,6 +26,7 @@
               sprite    =   "graphics.all.explosion"
             rotation    =   "90"
             position    =   "0 -10"
+           visible      =   "false"
         /> 
         
     </namespace>

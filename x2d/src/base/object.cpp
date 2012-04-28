@@ -22,6 +22,7 @@ namespace x2d {
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
     , want_accelerometer_input(false)
+    , visible(true)
     , has_animation(false)
     , has_sprite(false)
     , has_spawner(false)
@@ -50,7 +51,7 @@ namespace x2d {
     , camera_space_pivot_(t.pivot)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
-    , is_visible_(true)
+    , is_visible_(t.visible)
     , parent_(NULL)
     {               
         if(t.want_screen_touch_input)

@@ -65,6 +65,11 @@ private:
     boost::shared_ptr<player> player_;    
     float platform_width_;    
     bool finished_;
+    
+    // sounds
+    boost::shared_ptr<sfx>  start_sfx_;
+    boost::shared_ptr<sfx>  success_sfx_;
+    boost::shared_ptr<sfx>  fail_sfx_;
 };
 
 #endif // __SCENE_H__

@@ -765,6 +765,8 @@
 		2487CB9B14E705CB006A7E22 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 08_font/custom_obj.h; sourceTree = "<group>"; };
 		2487CB9D14E7262D006A7E22 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = font.cpp; path = src/font/font.cpp; sourceTree = "<group>"; };
 		2490920E154A09A2000EE894 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = demo/res/fonts; sourceTree = "<group>"; };
+		24909210154B6B9D000EE894 /* sound.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = sound.xml; path = demo/res/sound.xml; sourceTree = "<group>"; };
+		24909211154B6BA8000EE894 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sound; path = demo/res/sound; sourceTree = "<group>"; };
 		2490C1AF1531FC9F00F90732 /* zones_contexts.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zones_contexts.xml; path = demo/res/zones_contexts.xml; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1082,6 +1084,7 @@
 		240F054414E41EB1002AEEB2 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				24909211154B6BA8000EE894 /* sound */,
 				2490920E154A09A2000EE894 /* fonts */,
 				240F054914E41F5A002AEEB2 /* graphics */,
 				240F054A14E41F5A002AEEB2 /* main.xml */,
@@ -1089,6 +1092,7 @@
 				24EA29D71533460600EE209C /* graphics.xml */,
 				24EA29DA15334EB500EE209C /* scenary.xml */,
 				2405FFAC15447890001E956A /* ui.xml */,
+				24909210154B6B9D000EE894 /* sound.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";

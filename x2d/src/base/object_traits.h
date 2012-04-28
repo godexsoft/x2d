@@ -40,6 +40,8 @@ namespace x2d {
         bool        want_world_touch_input;
         bool        want_accelerometer_input;
         
+        bool        visible;
+        
         // graphics
         bool        has_animation;
         std::string animation;

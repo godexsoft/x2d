@@ -19,6 +19,7 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
 , accel_( 0.0f )
 , rotation_velocity_( 0.0f )
 , velocity_( conf.get_value<glm::vec2>("objects.player.initial_velocity") )
+, thrust_sfx_( conf.get_object<sfx>("sounds.thrust") )
 {   
     connect_update();
     connect_render(WORLD_SPACE);
@@ -27,11 +28,6 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
     main_thrust_ = child_by_name("ship_main_thrust");
     left_thrust_ = child_by_name("ship_left_thrust");
     right_thrust_ = child_by_name("ship_right_thrust");
-    
-    // probably invisible initially :)
-    main_thrust_->visible(thrust_);
-    left_thrust_->visible(thrust_);
-    right_thrust_->visible(thrust_);
 }
 
 bool player::landing_allowed()
@@ -57,6 +53,11 @@ float player::fuel_percent() const
 
 void player::main_thrust(bool enabled)
 {
+    if(enabled && thrust_ != enabled)
+    {
+        thrust_sfx_->play();
+    }
+    
     thrust_ = enabled;
 }
 

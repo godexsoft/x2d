@@ -52,28 +52,31 @@
                pivot    =   "0.5 0"
         />
         
-        <object n       = "win" />
+        <object n       = "win" 
+             visible    = "false"
+        />
         
         <object n       = "win_label"
-           parent       = "win"
-             font       = "objects.fonts.sony_sketch_stroked" 
-             text       = "You win!" 
-            align       = "center"
-         position       = "0 20"
+              parent    = "win"
+                font    = "objects.fonts.sony_sketch_stroked" 
+                text    = "You win!" 
+               align    = "center"
+            position    = "0 20"
         />
 
         <object n       = "score_holder"
-           parent       = "win"
-             font       = "objects.fonts.sony_sketch_stroked" 
-             text       = "Score: " 
-            align       = "center"
-         position       = "0 -20"
+              parent    = "win"
+                font    = "objects.fonts.sony_sketch_stroked" 
+                text    = "Score: " 
+               align    = "center"
+            position    = "0 -20"
         />
         
         <object n       = "lose"
-             font       = "objects.fonts.sony_sketch_stroked" 
-             text       = "You lose!" 
-            align       = "center"
+             visible    = "false"
+                font    = "objects.fonts.sony_sketch_stroked" 
+                text    = "You lose!" 
+                align   = "center"
         />        
         
     </namespace>

@@ -18,6 +18,9 @@ scene::scene(kernel& k, configuration& conf, game& g)
 , player_( conf.create_object<player>("objects.player") )
 , platform_width_( conf.get_value<float>("objects.scenary.platform.width") )
 , finished_(false)
+, start_sfx_( conf.get_object<sfx>("sounds.start") )
+, success_sfx_( conf.get_object<sfx>("sounds.success") )
+, fail_sfx_( conf.get_object<sfx>("sounds.fail") )
 {       
     connect_update();    
     connect_touch_input(WORLD_SPACE);
@@ -44,15 +47,13 @@ scene::scene(kernel& k, configuration& conf, game& g)
     win_banner_ = config_.create_object("objects.ui.win");
     score_holder_ = win_banner_->child_by_name("score_holder");
     lose_banner_ = config_.create_object("objects.ui.lose");
-    
-    explosion_->visible(false);
-    win_banner_->visible(false);
-    lose_banner_->visible(false);
-    
+        
 #ifdef DEBUG
     // for debug only
     objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
 #endif
+    
+    start_sfx_->play();
 }
 
 void scene::update(const clock_info& clock) 
@@ -84,7 +85,9 @@ void scene::on_land(object& obj)
         score_holder_->text( score_holder_->text() + 
             boost::lexical_cast<std::string>( 
                 floor(player_->fuel_percent() * 100) ) );
-        win_banner_->visible(true);
+
+        win_banner_->visible(true);        
+        success_sfx_->play();
     } 
     else
     {     
@@ -92,7 +95,8 @@ void scene::on_land(object& obj)
         explosion_->position( player_->world_position() + explosion_->position() );
         explosion_->visible(true);
         
-        lose_banner_->visible(true);
+        lose_banner_->visible(true);        
+        fail_sfx_->play();
     }
 }
 

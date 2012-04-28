@@ -29,6 +29,11 @@ namespace snd {
         obj_->pitch(pitch_.get(conf_));
         obj_->play();
     }     
+
+    void sfx::stop()
+    {
+        obj_->reset();
+    }     
     
     void music::update(const clock_info& ci)
     {

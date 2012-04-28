@@ -688,6 +688,7 @@ namespace config {
         tr.box =        get_attr<size>(*this, node, key, "box", size(10.0f, 10.0f)).get(*this); // TODO: other defaults?
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         tr.pivot =      get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
+        tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
         
         xml_attr* anim = node->first_attribute("animation");
         if(anim) 

@@ -12,6 +12,7 @@
 
 #include "object.h"
 #include "configuration.h"
+#include "sound.h"
 
 class player 
 : public object
@@ -47,6 +48,9 @@ private:
     boost::shared_ptr<object> main_thrust_;
     boost::shared_ptr<object> left_thrust_;
     boost::shared_ptr<object> right_thrust_;
+
+    // sounds
+    boost::shared_ptr<sfx>  thrust_sfx_;
 };
 
 #endif // __PLAYER_H__
