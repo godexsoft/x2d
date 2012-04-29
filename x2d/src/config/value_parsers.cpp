@@ -174,6 +174,31 @@ namespace config {
     }
     
     template<>
+    parent_space value_parser<parent_space>::parse(const std::string& str)
+    {
+        if(str == "none")
+        {
+            return PARENT_SPACE_NONE;
+        }
+        else if(str == "both")
+        {
+            return PARENT_SPACE_BOTH;
+        }
+        else if(str == "position")
+        {
+            return PARENT_SPACE_POSITION;
+        }
+        else if(str == "box")
+        {
+            return PARENT_SPACE_BOX;
+        }
+        else
+        {
+            throw parse_exception("ParentSpace type must be one of 'none', 'both', 'position' or 'box'. Got '" + str + "' instead.");
+        }
+    }
+    
+    template<>
     alignment value_parser<alignment>::parse(const std::string& str)
     {
         if(str == "left")

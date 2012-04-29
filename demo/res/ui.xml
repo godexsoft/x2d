@@ -14,10 +14,11 @@
     />  
     <!-- namespace for fonts -->
     <namespace n = "fonts">
+        
         <font    n = "sony_sketch_stroked"
             height = "32"
-            spacing = "2 2" 
-            texture = "graphics.sony_sketch_stroked" 
+           spacing = "2 2" 
+           texture = "graphics.sony_sketch_stroked" 
             >
             <string n = "characters">
                 <![CDATA[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~]]>
@@ -31,15 +32,40 @@
                 18 19 19 14 15 14 22
             </string>
         </font>
+        
+        <font    n = "sony_sketch"
+            height = "24"
+           spacing = "2 2" 
+           texture = "graphics.sony_sketch" 
+            >
+            <string n = "characters">
+                <![CDATA[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~]]>
+            </string>
+            
+            <string n = "widths">
+                4 4 5 14 11 19 14 3 6 5 8 11 3 6 3 10 12 8 12 11 11 12 12 12 12 12 
+                3 3 11 11 11 10 16 14 12 11 12 11 11 12 12 4 6 12 11 16 12 12 12 12 
+                12 11 10 12 14 17 13 13 11 5 9 5 8 12 5 11 11 9 11 11 6 11 11 3 6 
+                10 4 15 10 11 11 11 6 10 6 11 12 15 10 11 11 6 7 6 14
+            </string>
+        </font>     
+        
     </namespace>
     <!-- end: fonts -->
     
     <!-- namespace for ui objects -->
     <namespace n = "ui">
         
-        <object n       =   "fuel_bar"
-            position    =   "0.95 0.8 0.0"
+        <!-- HUD is same size as our camera's frustum -->
+        <object n       =   "hud"
                space    =   "camera"
+            position    =   "0.5 0.5"
+        />
+
+        <object n       =   "fuel_bar"
+              parent    =   "hud" 
+        parent_space    =   "position"
+            position    =   "0.95 0.82 0.0"
               sprite    =   "graphics.all.empty_fuel_bar"
                  box    =   "14 150"
         />         
@@ -76,9 +102,49 @@
              visible    = "false"
                 font    = "objects.fonts.sony_sketch_stroked" 
                 text    = "You lose!" 
-                align   = "center"
+               align    = "center"
+        />        
+
+        <!-- velocity meter hud -->
+        <object n       = "velocity_meter" 
+              parent    = "hud"
+            position    = "0.27 0.97"
+                 box    = "0.25 0.015"
+        />
+        
+        <object n       = "velocity_meter_label"
+              parent    = "velocity_meter"
+                font    = "objects.fonts.sony_sketch" 
+                text    = "velocity:" 
+               align    = "right"
         />        
         
+        <object n       = "velocity_meter_icon"
+              parent    = "velocity_meter"
+              sprite    = "graphics.all.light_red"
+            position    = "0.7 0"
+        />        
+
+        <!-- orientation meter hud -->
+        <object n       = "orientation_meter" 
+              parent    = "hud"        
+            position    = "0.70 0.97"
+                 box    = "0.25 0.015"
+        />
+        
+        <object n       = "orientation_meter_label"
+              parent    = "orientation_meter"
+                font    = "objects.fonts.sony_sketch" 
+                text    = "orientation:" 
+               align    = "right"
+        />        
+        
+        <object n       = "orientation_meter_icon"
+              parent    = "orientation_meter"
+              sprite    = "graphics.all.light_red"
+            position    = "0.7 0"
+        />        
+
     </namespace>
     <!-- end: ui -->
     

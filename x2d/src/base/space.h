@@ -25,6 +25,14 @@ namespace base {
         CAMERA_SPACE = 3        
     };
     
+    enum parent_space
+    {
+        PARENT_SPACE_POSITION = 1,
+        PARENT_SPACE_BOX = 2,
+        PARENT_SPACE_BOTH = 3,
+        PARENT_SPACE_NONE = 4
+    };
+    
 } // namespace base
 } // namespace x2d
 using namespace x2d::base;

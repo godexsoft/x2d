@@ -73,13 +73,23 @@ using namespace x2d::config;
         
         void text(const std::string& t);
         
+        void set_sprite(const boost::shared_ptr<sprite>& spr);
+        
         void visible(bool v);
         
         const glm::vec3& camera_space_position() const;
+
+        const size box() const;
         
-        void position_children_camera_space();
+        const size camera_space_box() const;
         
+        const glm::vec2 pivot() const;
+        
+        const glm::vec2 camera_space_pivot() const;
+                
         boost::shared_ptr<object> child_by_name(const std::string& n);
+        
+        void reposition_in_parent_space(const size& b);
         
     protected:
         
@@ -103,6 +113,7 @@ using namespace x2d::config;
         const std::string           name_;
         boost::shared_ptr<camera>   camera_;
         space                       space_;
+        parent_space                parent_space_;
         
         glm::vec3   position_;
         glm::vec3   camera_space_position_; // used if space_ == CAMERA_SPACE
@@ -132,6 +143,7 @@ using namespace x2d::config;
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
         object                                      *parent_;
+        bool                                         has_parent_;
     };
     
 } // namespace x2d

@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "player.h"
+#include "hud.h"
 
 class game;
 
@@ -52,17 +53,15 @@ private:
     
     boost::shared_ptr<object> explosion_;
     boost::shared_ptr<object> platform_;
-    
-    // the fuel bar holder and it's 'filling'
-    boost::shared_ptr<object> fuel_bar_;
-    boost::shared_ptr<object> fuel_bar_filling_;
-    
+        
     // win/lose banners
     boost::shared_ptr<object> win_banner_;
     boost::shared_ptr<object> score_holder_;
     boost::shared_ptr<object> lose_banner_;
     
     boost::shared_ptr<player> player_;    
+    boost::shared_ptr<hud>    hud_;
+
     float platform_width_;    
     bool finished_;
     

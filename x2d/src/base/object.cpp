@@ -16,8 +16,8 @@ namespace x2d {
     , position("", glm::vec3(0.0f,0.0f,0.0f))
     , scale("", 0.0f)
     , rotation("", 0.0f)
-    , box(size(10.0f, 10.0f)) // TODO: other defaults
-    , pivot(glm::vec2(0.0f, 0.0f)) // center
+    , box(size(1.0f, 1.0f)) // TODO: other defaults? maybe size of sprite if any?
+    , pivot(glm::vec2(0.0f, 0.0f)) // center in world space
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
@@ -31,6 +31,7 @@ namespace x2d {
     , align(LEFT_ALIGN)
     , camera("camera") // FIXME
     , obj_space(WORLD_SPACE)
+    , par_space(PARENT_SPACE_NONE) // all in world space by default
     , has_parent(false)
     {            
     }
@@ -41,6 +42,7 @@ namespace x2d {
     , name_(t.name)
     , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
+    , parent_space_(t.par_space)
     , position_(t.position.get(c))
     , camera_space_position_(t.position.get(c))
     , scale_(t.scale.get(c))
@@ -53,6 +55,7 @@ namespace x2d {
     , align_(t.align)
     , is_visible_(t.visible)
     , parent_(NULL)
+    , has_parent_(t.has_parent)
     {               
         if(t.want_screen_touch_input)
         {
@@ -71,7 +74,7 @@ namespace x2d {
         
         if(t.has_animation || t.has_sprite || t.has_text)
         {
-            if(!t.has_parent)
+            if(!has_parent_)
             {
                 LOG("Connecting render: %f", position_.z);
                 connect_render(position_.z, space_ == CAMERA_SPACE);
@@ -81,7 +84,7 @@ namespace x2d {
         if(t.has_animation)
         {
             cur_animation_ = config_.create_sys_object<animation>(t.animation);
-            if(!t.has_parent)
+            if(!has_parent_)
             {
                 connect_update(); // animation needs updating
             }
@@ -111,7 +114,7 @@ namespace x2d {
         }
     
         // check space and add object to list of camera space objects
-        if(space_ == CAMERA_SPACE && !t.has_parent)
+        if(space_ == CAMERA_SPACE && !has_parent_)
         {
             kernel_.add_camera_space_object(this);
         }
@@ -241,21 +244,39 @@ namespace x2d {
         glPopMatrix();        
     }
 
-    void object::position_children_camera_space()
+    void object::reposition_in_parent_space(const size& b)
     {
+        // only need to calculate box if working in parent space
+        if(parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_BOX)
+        {
+            box_ = size( camera_space_box_.width * b.width, 
+                         camera_space_box_.height * b.height);
+        }
+
+        // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
+        if(parent_ && 
+           (parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_POSITION))
+        {            
+            position( glm::vec2(-(b.width/2) + camera_space_position_.x * b.width, 
+                                -(b.height/2) + camera_space_position_.y * b.height) );
+        } 
+        else
+        {
+            position( glm::vec2(camera_space_position_.x * b.width, 
+                                camera_space_position_.y * b.height) );            
+        }
+        
+        if(parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_BOX)
+        {
+            glm::vec2 pi( camera_space_pivot_.x * box_.width, camera_space_pivot_.y * box_.height );
+            pivot_ = glm::vec2(-(box_.width/2)+pi.x, -(box_.height/2)+pi.y);
+        }
+        
+        // and all children relative to their parent
         for(std::vector< boost::shared_ptr<object> >::iterator it = children_.begin(); 
             it != children_.end(); ++it)
         {
-            // position is 0.0,0.0 == left-bottom corner; 1.0,1.0 == right-top corner. 0.5,0.5 = center
-            glm::vec2 pp( (*it)->camera_space_position().x * box_.width, (*it)->camera_space_position().y * box_.height );
-            (*it)->position( glm::vec2(-(box_.width/2)+pp.x, -(box_.height/2)+pp.y) );
-            
-            // also pivot and box needs adjustment            
-            (*it)->box_ = size((*it)->camera_space_box_.width * box_.width, (*it)->camera_space_box_.height * box_.height);
-            
-            glm::vec2 pi( (*it)->camera_space_pivot_.x * (*it)->box_.width, (*it)->camera_space_pivot_.y * (*it)->box_.height );
-            (*it)->pivot_ = glm::vec2(-((*it)->box_.width/2)+pi.x, -((*it)->box_.height/2)+pi.y);
-
+            (*it)->reposition_in_parent_space(box_);
         }
     }
     
@@ -277,12 +298,15 @@ namespace x2d {
         child->set_parent(this);
         children_.push_back(child);
         
-        // Now connect update and render if we did not before.
-        // Need these connections to update children.
-        connect_update();
-        
-        LOG("Connecting render: %f", position_.z);
-        connect_render(position_.z, space_ == CAMERA_SPACE);
+        if(!has_parent_)
+        {
+            // Now connect update and render if we did not before.
+            // Need these connections to update children.
+            connect_update();
+
+            LOG("Connecting render: %f", position_.z);
+            connect_render(position_.z, space_ == CAMERA_SPACE);
+        }
     }
     
     void object::release(object& obj)
@@ -346,8 +370,7 @@ namespace x2d {
     
     void object::pivot(const glm::vec2& p)
     {
-        if(space_ == CAMERA_SPACE ||
-           (parent_ != NULL && parent_->space_ == CAMERA_SPACE))
+        if(parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_BOX)
         {
             camera_space_pivot_ = p;
         }
@@ -359,8 +382,7 @@ namespace x2d {
     
     void object::box(const size& s)
     {
-        if(space_ == CAMERA_SPACE || 
-           (parent_ != NULL && parent_->space_ == CAMERA_SPACE) )
+        if(parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_BOX)
         {
             camera_space_box_ = s;
         }
@@ -383,6 +405,31 @@ namespace x2d {
     const glm::vec3& object::camera_space_position() const
     {
         return camera_space_position_;
+    }
+    
+    const size object::box() const
+    {
+        return box_;
+    }
+    
+    const size object::camera_space_box() const
+    {
+        return camera_space_box_;
+    }
+    
+    const glm::vec2 object::pivot() const
+    {
+        return pivot_;
+    }
+    
+    const glm::vec2 object::camera_space_pivot() const
+    {
+        return camera_space_pivot_;
+    }
+    
+    void object::set_sprite(const boost::shared_ptr<sprite>& spr)
+    {
+        cur_sprite_ = spr;
     }
     
     void object::visible(bool v)

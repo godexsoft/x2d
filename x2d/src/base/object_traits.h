@@ -64,9 +64,10 @@ namespace x2d {
         std::string camera;
         
         // space
-        space       obj_space;
+        space           obj_space;        
+        parent_space    par_space;
         
-        bool        has_parent;
+        bool            has_parent;
         std::vector<std::string>    children;
         
         // context list

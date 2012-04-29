@@ -20,6 +20,7 @@
 #include "resource_manager.h"
 
 #include "player.h"
+#include "hud.h"
 
 class game 
 {
@@ -31,6 +32,7 @@ public:
     {
         // bindings
         config_.bind<player>("objects.player");    
+        config_.bind<hud>("objects.ui.hud");    
         
         // init first scene
         cur_scene_ = boost::shared_ptr<base_object>( new title(k_, config_, *this) );

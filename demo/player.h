@@ -20,7 +20,10 @@ class player
 public:
     player(kernel& k, configuration& conf, const object_traits& t);
     
-    bool landing_allowed();
+    bool landing_allowed() const;
+    bool is_good_orientation() const;
+    bool is_good_velocity() const;
+    
     void finish();
     
     float fuel_percent() const;

@@ -25,6 +25,7 @@
         </texture> 
         
         <texture n="sony_sketch_stroked" path="res/fonts/sony_sketch_stroked.png" />
+        <texture n="sony_sketch" path="res/fonts/sony_sketch.png" />
         
     </namespace> 
     <!-- end: graphics -->

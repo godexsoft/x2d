@@ -198,6 +198,7 @@
 		2487CB9614E6F8B0006A7E22 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB9514E6F8B0006A7E22 /* resources.zip */; };
 		2487CB9C14E705CB006A7E22 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9A14E705CA006A7E22 /* custom_obj.cpp */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
+		24909214154C5A79000EE894 /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24909212154C5A78000EE894 /* hud.cpp */; };
 		24B7C3141504E1C5000A11D3 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		24B7C3161504E1E4000A11D3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24C7483C14F654C6004E07DD /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
@@ -767,6 +768,8 @@
 		2490920E154A09A2000EE894 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = demo/res/fonts; sourceTree = "<group>"; };
 		24909210154B6B9D000EE894 /* sound.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = sound.xml; path = demo/res/sound.xml; sourceTree = "<group>"; };
 		24909211154B6BA8000EE894 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sound; path = demo/res/sound; sourceTree = "<group>"; };
+		24909212154C5A78000EE894 /* hud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hud.cpp; path = demo/hud.cpp; sourceTree = "<group>"; };
+		24909213154C5A79000EE894 /* hud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hud.h; path = demo/hud.h; sourceTree = "<group>"; };
 		2490C1AF1531FC9F00F90732 /* zones_contexts.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zones_contexts.xml; path = demo/res/zones_contexts.xml; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1077,6 +1080,8 @@
 				24E066951548AA6900844182 /* title.h */,
 				243A31811539D43100E78268 /* player.cpp */,
 				243A317F1539D3DC00E78268 /* player.h */,
+				24909212154C5A78000EE894 /* hud.cpp */,
+				24909213154C5A79000EE894 /* hud.h */,
 			);
 			name = objects;
 			sourceTree = "<group>";
@@ -2816,6 +2821,7 @@
 				240F055614E41F85002AEEB2 /* main.mm in Sources */,
 				243A31821539D43100E78268 /* player.cpp in Sources */,
 				24E066961548AA6900844182 /* title.cpp in Sources */,
+				24909214154C5A79000EE894 /* hud.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,10 +30,19 @@ player::player(kernel& k, configuration& conf, const object_traits& t)
     right_thrust_ = child_by_name("ship_right_thrust");
 }
 
-bool player::landing_allowed()
+bool player::landing_allowed() const
 {
-    return ( (velocity_.y >= -config_.get_value<float>("settings.max_velocity")) 
-            && (fabsf(rotation()) <= config_.get_value<float>("settings.max_rotation")) );
+    return ( is_good_velocity() && is_good_orientation() );
+}
+
+bool player::is_good_velocity() const
+{
+    return velocity_.y >= -config_.get_value<float>("settings.max_velocity");
+}
+
+bool player::is_good_orientation() const
+{
+    return fabsf(rotation()) <= config_.get_value<float>("settings.max_rotation");
 }
 
 void player::finish()

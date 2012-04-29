@@ -16,6 +16,7 @@ scene::scene(kernel& k, configuration& conf, game& g)
 , config_(conf)
 , game_(g)
 , player_( conf.create_object<player>("objects.player") )
+, hud_( conf.create_object<hud>("objects.ui.hud") )
 , platform_width_( conf.get_value<float>("objects.scenary.platform.width") )
 , finished_(false)
 , start_sfx_( conf.get_object<sfx>("sounds.start") )
@@ -41,13 +42,11 @@ scene::scene(kernel& k, configuration& conf, game& g)
     objects_.push_back( config_.create_object("objects.scenary.moon_surface") );
     explosion_ = config_.create_object("objects.scenary.explosion"); 
     platform_ = config_.create_object("objects.scenary.platform");
-    fuel_bar_ = config_.create_object("objects.ui.fuel_bar");
-    fuel_bar_filling_ = fuel_bar_->child_by_name("fuel_bar_filling");
     
     win_banner_ = config_.create_object("objects.ui.win");
     score_holder_ = win_banner_->child_by_name("score_holder");
     lose_banner_ = config_.create_object("objects.ui.lose");
-        
+    
 #ifdef DEBUG
     // for debug only
     objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
@@ -58,8 +57,8 @@ scene::scene(kernel& k, configuration& conf, game& g)
 
 void scene::update(const clock_info& clock) 
 { 
-    // update size of fuel filling
-    fuel_bar_filling_->box( size(1.0f, player_->fuel_percent()) );
+    hud_->update_fuel( player_->fuel_percent() );
+    hud_->update_indicators( player_->is_good_orientation(), player_->is_good_velocity() );
 }
 
 void scene::on_land(object& obj)

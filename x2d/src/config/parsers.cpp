@@ -648,6 +648,7 @@ namespace config {
         // bgcolor:   color to fill with (given as vector of four floats: r g b a)
         // camera:    the camera to use
         // space:     'world' (default), 'screen' or 'camera' space        
+        // parent_space: 'both' (default), 'position' or 'box'
         // spawner:   configuration key to attach a spawner
         // zone:      configuration key to attach a zone
         // box:       rectangle (can be filled with color etc.)
@@ -682,12 +683,10 @@ namespace config {
         // no contexts by default
         tr.contexts = get_list_attr<std::string>(*this, node, key, "contexts", "").get(*this);
 
-        tr.position =   get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
-        tr.box =        get_attr<size>(*this, node, key, "box", size(10.0f, 10.0f)).get(*this); // TODO: other defaults?
+        tr.box =        get_attr<size>(*this, node, key, "box", size(1.0f, 1.0f)).get(*this); // TODO: other defaults?
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
-        tr.pivot =      get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
         
         xml_attr* anim = node->first_attribute("animation");
@@ -778,7 +777,7 @@ namespace config {
                         + cam->value() + "'.");
             }
         }
-
+        
         xml_attr* sp = node->first_attribute("space");
         if(sp) 
         {
@@ -789,6 +788,32 @@ namespace config {
             tr.obj_space = WORLD_SPACE;
         }
 
+        // camera or parent space
+        if(tr.obj_space == CAMERA_SPACE || tr.has_parent)
+        {
+            tr.par_space =      PARENT_SPACE_BOTH;
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0.5,0.5)).get(*this);            
+            tr.position =       get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.5f, 0.5f, 0.0f));
+        }
+        else
+        {
+            tr.par_space =      PARENT_SPACE_NONE;
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);            
+            tr.position =       get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
+        }
+
+        xml_attr* psp = node->first_attribute("parent_space");
+        if(psp) 
+        {
+            tr.par_space = value_parser<parent_space>::parse( psp->value() );
+        }
+        
+        if(tr.par_space == PARENT_SPACE_POSITION)
+        {
+            // don't use the default pivot at 0.5,0.5 - use 0.0,0.0
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);            
+        }
+        
         xml_attr* align = node->first_attribute("align");
         if(align) 
         {
