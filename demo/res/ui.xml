@@ -66,6 +66,7 @@
               parent    =   "hud" 
         parent_space    =   "position"
             position    =   "0.95 0.82 0.0"
+              sprite    =   "graphics.all.empty_fuel_bar"
                  box    =   "14 150"
         />         
 
