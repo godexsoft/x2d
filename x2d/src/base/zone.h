@@ -89,13 +89,27 @@ namespace base {
             // check all objects in all contexts
             for(ctx_vec::iterator it = ctx_list_.begin(); it != ctx_list_.end(); ++it)
             {
-                for(std::vector<object*>::iterator oit = (*it)->objects_.begin(); 
-                        oit != (*it)->objects_.end(); ++oit)
+                bool found = true;
+                
+                while(found)
                 {
-                    if(match( (*oit)->position() ) )
+                    found = false;
+                    
+                    for(std::vector<object*>::iterator oit = (*it)->objects_.begin(); 
+                            oit != (*it)->objects_.end();)
                     {
-                        if(trigger_)
-                            trigger_(*(*oit));
+                        object* o = *oit;
+                        ++oit;
+                        
+                        if(match( o->position() ) )
+                        {
+                            if(trigger_) 
+                            {
+                                trigger_(*o);
+                                found = true;
+                                break;
+                            }
+                        }
                     }
                 }
             }

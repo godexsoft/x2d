@@ -1,0 +1,76 @@
+<x2d version="1.0">
+    
+    <!-- engine setup -->
+    <camera     n = "camera"
+          frustum = "320 480"  
+         rotation = "90"
+    />    
+
+    <viewport   n = "viewport" 
+              box = "0 0 320 480" 
+           camera = "camera" 
+    />    
+    
+    <input      n = "input"
+    accelerometer = "true"          
+            touch = "true" 
+    />
+    
+    <!-- all graphics and animations -->
+    <include path = "res/graphics.xml" />
+    
+    <!-- all zones and contexts -->
+    <include path = "res/zones_contexts.xml" />
+    
+    <!-- namespace for all objects -->
+    <namespace n = "objects">
+
+        <object n       =   "title"             
+            space       =   "camera"
+            sprite      =   "graphics.title.bg" 
+            position    =   "0.5 0.5 1.0"
+            rotation    =   "90"
+        />  
+
+        <object n       =   "bullet"
+            sprite      =   "graphics.invaders.bullet"
+            contexts    =   "contexts.bullets"
+        />
+
+        <spawner n = "bullet_spawner">            
+            <list n = "objects">
+                objects.bullet
+            </list>
+            
+            <int    n = "wave_size" 
+                value = "1" />
+            
+            <float  n = "wave_delay"
+                value = "0" />            
+        </spawner>
+        
+        <!-- the ship -->
+        <object n       =   "player"
+            sprite      =   "graphics.invaders.ship"
+            spawner     =   "bullet_spawner"
+        />
+        
+    </namespace>
+    <!-- end: objects -->
+        
+    <!-- namespace for settings -->
+    <namespace n = "settings">
+
+        <float n = "main_thrust"    value = "10000" />
+        <float n = "mass"           value = "80" />
+        <float n = "gravity"        value = "40" />
+        <float n = "lateral_th"     value = "0.1" />
+        <float n = "lateral_speed"  value = "10" />
+        <float n = "rotation_speed" value = "100" />
+        <float n = "max_velocity"   value = "75" />
+        <float n = "max_rotation"   value = "8" />
+        
+    </namespace>
+    <!-- end: settings -->
+    
+</x2d>

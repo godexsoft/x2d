@@ -1,0 +1,19 @@
+<x2d version="1.0">
+
+    <!-- namespace for all contexts -->
+    <namespace n = "contexts">
+        
+        <context n = "bullets" />                
+        
+    </namespace>
+    <!-- end: contexts -->
+
+    <!-- namespace for all zones -->
+    <namespace n = "zones">
+        
+        <zone n = "off_screen" rect = "220 -160 200 320" contexts = "contexts.bullets" />        
+        
+    </namespace>
+    <!-- end: zones -->
+    
+</x2d>

@@ -52,6 +52,24 @@
 		2415842C14D613900014F37B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415842B14D613900014F37B /* sprite.cpp */; };
 		241D5145151A7D5B00197BDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		241D5147151A7D6000197BDC /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		24365898156AD22600D6AA9F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		24365899156AD22600D6AA9F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		2436589A156AD22600D6AA9F /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
+		2436589B156AD22600D6AA9F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
+		2436589C156AD22600D6AA9F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
+		2436589D156AD22600D6AA9F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
+		2436589E156AD22600D6AA9F /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
+		2436589F156AD22600D6AA9F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		243658A0156AD22600D6AA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
+		243658B5156AD3AC00D6AA9F /* title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243658B3156AD3AC00D6AA9F /* title.cpp */; };
+		243658B9156AD3BC00D6AA9F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 243658B7156AD3BC00D6AA9F /* AppDelegate.mm */; };
+		243658BF156AD3E100D6AA9F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 243658BA156AD3E100D6AA9F /* InfoPlist.strings */; };
+		243658C0156AD3E100D6AA9F /* invaders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 243658BD156AD3E100D6AA9F /* invaders.plist */; };
+		243658C1156AD3E100D6AA9F /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 243658BE156AD3E100D6AA9F /* main.mm */; };
+		243658C6156ADA8B00D6AA9F /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 243658C5156ADA8B00D6AA9F /* resources.zip */; };
+		243658C9156AE23A00D6AA9F /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243658C7156AE23A00D6AA9F /* scene.cpp */; };
+		243658CC156AE39400D6AA9F /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243658CA156AE39300D6AA9F /* player.cpp */; };
+		243658CF156AEA7300D6AA9F /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243658CD156AEA7300D6AA9F /* bullet.cpp */; };
 		243A31821539D43100E78268 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243A31811539D43100E78268 /* player.cpp */; };
 		243F95C714EDACD000922D55 /* openal_fx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95C614EDACD000922D55 /* openal_fx.cpp */; };
 		243F95C914EDB61600922D55 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
@@ -244,6 +262,13 @@
 			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
 			remoteInfo = libx2d;
 		};
+		2436588F156AD22600D6AA9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 241583BC14D0B27E0014F37B;
+			remoteInfo = libx2d;
+		};
 		243F95CE14F0052200922D55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24BDCC1414CC6300006F36A1 /* Project object */;
@@ -366,6 +391,28 @@
 		2415842714D6079A0014F37B /* picopng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picopng.h; path = src/util/picopng.h; sourceTree = "<group>"; };
 		2415842914D611170014F37B /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = src/base/sprite.h; sourceTree = "<group>"; };
 		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
+		243658A9156AD22600D6AA9F /* invaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = invaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		243658B2156AD3AC00D6AA9F /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = invaders/fps_counter.h; sourceTree = "<group>"; };
+		243658B3156AD3AC00D6AA9F /* title.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = title.cpp; path = invaders/title.cpp; sourceTree = "<group>"; };
+		243658B4156AD3AC00D6AA9F /* title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = title.h; path = invaders/title.h; sourceTree = "<group>"; };
+		243658B6156AD3BC00D6AA9F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = invaders/AppDelegate.h; sourceTree = "<group>"; };
+		243658B7156AD3BC00D6AA9F /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = invaders/AppDelegate.mm; sourceTree = "<group>"; };
+		243658B8156AD3BC00D6AA9F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = invaders/game.h; sourceTree = "<group>"; };
+		243658BB156AD3E100D6AA9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = invaders/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		243658BC156AD3E100D6AA9F /* invaders-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "invaders-Prefix.pch"; path = "invaders/invaders-Prefix.pch"; sourceTree = "<group>"; };
+		243658BD156AD3E100D6AA9F /* invaders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = invaders.plist; path = invaders/invaders.plist; sourceTree = "<group>"; };
+		243658BE156AD3E100D6AA9F /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = invaders/main.mm; sourceTree = "<group>"; };
+		243658C2156AD55A00D6AA9F /* graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphics; path = invaders/res/graphics; sourceTree = "<group>"; };
+		243658C3156AD55A00D6AA9F /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = invaders/res/main.xml; sourceTree = "<group>"; };
+		243658C4156AD62600D6AA9F /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = invaders/res/graphics.xml; sourceTree = "<group>"; };
+		243658C5156ADA8B00D6AA9F /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = invaders/resources.zip; sourceTree = "<group>"; };
+		243658C7156AE23A00D6AA9F /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = invaders/scene.cpp; sourceTree = "<group>"; };
+		243658C8156AE23A00D6AA9F /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = invaders/scene.h; sourceTree = "<group>"; };
+		243658CA156AE39300D6AA9F /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = invaders/player.cpp; sourceTree = "<group>"; };
+		243658CB156AE39400D6AA9F /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = invaders/player.h; sourceTree = "<group>"; };
+		243658CD156AEA7300D6AA9F /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bullet.cpp; path = invaders/bullet.cpp; sourceTree = "<group>"; };
+		243658CE156AEA7300D6AA9F /* bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bullet.h; path = invaders/bullet.h; sourceTree = "<group>"; };
+		243658D0156AEE0A00D6AA9F /* zones_contexts.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zones_contexts.xml; path = invaders/res/zones_contexts.xml; sourceTree = "<group>"; };
 		243A317F1539D3DC00E78268 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = demo/player.h; sourceTree = "<group>"; };
 		243A31811539D43100E78268 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = demo/player.cpp; sourceTree = "<group>"; };
 		243F95C414EDABD800922D55 /* openal_fx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openal_fx.h; path = src/sound/openal_fx.h; sourceTree = "<group>"; };
@@ -868,6 +915,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		24365897156AD22600D6AA9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24365898156AD22600D6AA9F /* OpenAL.framework in Frameworks */,
+				24365899156AD22600D6AA9F /* AudioToolbox.framework in Frameworks */,
+				2436589A156AD22600D6AA9F /* libx2d.a in Frameworks */,
+				2436589B156AD22600D6AA9F /* OpenGLES.framework in Frameworks */,
+				2436589C156AD22600D6AA9F /* QuartzCore.framework in Frameworks */,
+				2436589D156AD22600D6AA9F /* CoreGraphics.framework in Frameworks */,
+				2436589E156AD22600D6AA9F /* boost.framework in Frameworks */,
+				2436589F156AD22600D6AA9F /* UIKit.framework in Frameworks */,
+				243658A0156AD22600D6AA9F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		243F95D414F0052200922D55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1139,6 +1202,66 @@
 				2415841F14D2E4860014F37B /* resource_manager.h */,
 			);
 			name = resource;
+			sourceTree = "<group>";
+		};
+		243658AD156AD34E00D6AA9F /* invaders */ = {
+			isa = PBXGroup;
+			children = (
+				243658B6156AD3BC00D6AA9F /* AppDelegate.h */,
+				243658B7156AD3BC00D6AA9F /* AppDelegate.mm */,
+				243658B8156AD3BC00D6AA9F /* game.h */,
+				243658AE156AD35A00D6AA9F /* resources */,
+				243658B1156AD37200D6AA9F /* objects */,
+				243658AF156AD36100D6AA9F /* Supporting Files */,
+				243658B0156AD36B00D6AA9F /* generated */,
+			);
+			name = invaders;
+			sourceTree = "<group>";
+		};
+		243658AE156AD35A00D6AA9F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				243658C2156AD55A00D6AA9F /* graphics */,
+				243658C3156AD55A00D6AA9F /* main.xml */,
+				243658C4156AD62600D6AA9F /* graphics.xml */,
+				243658D0156AEE0A00D6AA9F /* zones_contexts.xml */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		243658AF156AD36100D6AA9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				243658BA156AD3E100D6AA9F /* InfoPlist.strings */,
+				243658BC156AD3E100D6AA9F /* invaders-Prefix.pch */,
+				243658BD156AD3E100D6AA9F /* invaders.plist */,
+				243658BE156AD3E100D6AA9F /* main.mm */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		243658B0156AD36B00D6AA9F /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				243658C5156ADA8B00D6AA9F /* resources.zip */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
+		243658B1156AD37200D6AA9F /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				243658CD156AEA7300D6AA9F /* bullet.cpp */,
+				243658CE156AEA7300D6AA9F /* bullet.h */,
+				243658CA156AE39300D6AA9F /* player.cpp */,
+				243658CB156AE39400D6AA9F /* player.h */,
+				243658B2156AD3AC00D6AA9F /* fps_counter.h */,
+				243658B3156AD3AC00D6AA9F /* title.cpp */,
+				243658B4156AD3AC00D6AA9F /* title.h */,
+				243658C7156AE23A00D6AA9F /* scene.cpp */,
+				243658C8156AE23A00D6AA9F /* scene.h */,
+			);
+			name = objects;
 			sourceTree = "<group>";
 		};
 		243F95EB14F005BC00922D55 /* 09_sound */ = {
@@ -2005,6 +2128,7 @@
 		24BDCC1214CC6300006F36A1 = {
 			isa = PBXGroup;
 			children = (
+				243658AD156AD34E00D6AA9F /* invaders */,
 				240F054014E41E8C002AEEB2 /* demo */,
 				24BDCCA114CCF942006F36A1 /* 01_object */,
 				2467288914D6E574003AAA04 /* 02_config */,
@@ -2038,6 +2162,7 @@
 				243F95E814F0052200922D55 /* x2d_sound.app */,
 				24C7484E14F654C6004E07DD /* x2d_ui.app */,
 				24C7489514F65E1F004E07DD /* libx2d_ui.a */,
+				243658A9156AD22600D6AA9F /* invaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2337,6 +2462,25 @@
 			productReference = 241583E714D0B3940014F37B /* x2d_object.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2436588D156AD22600D6AA9F /* invaders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 243658A6156AD22600D6AA9F /* Build configuration list for PBXNativeTarget "invaders" */;
+			buildPhases = (
+				24365890156AD22600D6AA9F /* Sources */,
+				24365897156AD22600D6AA9F /* Frameworks */,
+				243658A1156AD22600D6AA9F /* ShellScript */,
+				243658A2156AD22600D6AA9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2436588E156AD22600D6AA9F /* PBXTargetDependency */,
+			);
+			name = invaders;
+			productName = x2d;
+			productReference = 243658A9156AD22600D6AA9F /* invaders.app */;
+			productType = "com.apple.product-type.application";
+		};
 		243F95CC14F0052200922D55 /* 09_sound */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 243F95E514F0052200922D55 /* Build configuration list for PBXNativeTarget "09_sound" */;
@@ -2560,6 +2704,7 @@
 				243F95CC14F0052200922D55 /* 09_sound */,
 				24C7483314F654C6004E07DD /* 10_ui */,
 				240F052614E41E30002AEEB2 /* demo */,
+				2436588D156AD22600D6AA9F /* invaders */,
 			);
 		};
 /* End PBXProject section */
@@ -2581,6 +2726,16 @@
 			files = (
 				241583F814D0B5770014F37B /* InfoPlist.strings in Resources */,
 				2415841914D0E57F0014F37B /* resources.zip in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		243658A2156AD22600D6AA9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243658BF156AD3E100D6AA9F /* InfoPlist.strings in Resources */,
+				243658C0156AD3E100D6AA9F /* invaders.plist in Resources */,
+				243658C6156ADA8B00D6AA9F /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2691,6 +2846,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd demo/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+		};
+		243658A1156AD22600D6AA9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd invaders/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
 		};
 		243F95DF14F0052200922D55 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2872,6 +3040,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		24365890156AD22600D6AA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243658B5156AD3AC00D6AA9F /* title.cpp in Sources */,
+				243658B9156AD3BC00D6AA9F /* AppDelegate.mm in Sources */,
+				243658C1156AD3E100D6AA9F /* main.mm in Sources */,
+				243658C9156AE23A00D6AA9F /* scene.cpp in Sources */,
+				243658CC156AE39400D6AA9F /* player.cpp in Sources */,
+				243658CF156AEA7300D6AA9F /* bullet.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		243F95CF14F0052200922D55 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2992,6 +3173,11 @@
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
 			targetProxy = 241583D614D0B3940014F37B /* PBXContainerItemProxy */;
 		};
+		2436588E156AD22600D6AA9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 241583BC14D0B27E0014F37B /* libx2d */;
+			targetProxy = 2436588F156AD22600D6AA9F /* PBXContainerItemProxy */;
+		};
 		243F95CD14F0052200922D55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 241583BC14D0B27E0014F37B /* libx2d */;
@@ -3065,6 +3251,14 @@
 			);
 			name = InfoPlist.strings;
 			path = ../01_object/en.lproj;
+			sourceTree = "<group>";
+		};
+		243658BA156AD3E100D6AA9F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				243658BB156AD3E100D6AA9F /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		243F95FF14F0064F00922D55 /* InfoPlist.strings */ = {
@@ -3204,6 +3398,30 @@
 				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
 				INFOPLIST_FILE = 01_object/object.plist;
 				PRODUCT_NAME = x2d_object;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		243658A7156AD22600D6AA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "invaders/invaders-Prefix.pch";
+				INFOPLIST_FILE = invaders/invaders.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = invaders;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		243658A8156AD22600D6AA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "invaders/invaders-Prefix.pch";
+				INFOPLIST_FILE = invaders/invaders.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = invaders;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3527,6 +3745,15 @@
 			buildConfigurations = (
 				241583E514D0B3940014F37B /* Debug */,
 				241583E614D0B3940014F37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		243658A6156AD22600D6AA9F /* Build configuration list for PBXNativeTarget "invaders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				243658A7156AD22600D6AA9F /* Debug */,
+				243658A8156AD22600D6AA9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
