@@ -59,6 +59,11 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>invaders.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -88,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>241583D414D0B3940014F37B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2436588D156AD22600D6AA9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

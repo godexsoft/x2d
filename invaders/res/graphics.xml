@@ -9,16 +9,16 @@
         
         <texture n="invaders" path="res/graphics/invaders.png">
             <sprite n="soldier_1"  x="0"    y="0"   w="32"  h="23" />
-            <sprite n="soldier_2"  x="33"   y="0"   w="32"  h="23" />
-            <sprite n="soldier_3"  x="66"   y="0"   w="32"  h="23" />
-            <sprite n="soldier_4"  x="99"   y="0"   w="32"  h="23" />            
+            <sprite n="soldier_2"  x="32"   y="0"   w="32"  h="23" />
+            <sprite n="soldier_3"  x="64"   y="0"   w="32"  h="23" />
+            <sprite n="soldier_4"  x="96"   y="0"   w="32"  h="23" />            
             <sprite n="mega_1"  x="0"    y="24"   w="32"  h="23" />
-            <sprite n="mega_2"  x="33"   y="24"   w="32"  h="23" />
-            <sprite n="mega_3"  x="66"   y="24"   w="32"  h="23" />
-            <sprite n="mega_4"  x="99"   y="24"   w="32"  h="23" />
+            <sprite n="mega_2"  x="32"   y="24"   w="32"  h="23" />
+            <sprite n="mega_3"  x="64"   y="24"   w="32"  h="23" />
+            <sprite n="mega_4"  x="96"   y="24"   w="32"  h="23" />
             
             <sprite n="ship"    x="0"    y="48"   w="32"  h="23" />            
-            <sprite n="bullet"  x="33"    y="48"   w="4"  h="4" />            
+            <sprite n="bullet"  x="32"    y="48"   w="4"  h="4" />            
         </texture> 
         
     </namespace> 

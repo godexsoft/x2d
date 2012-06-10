@@ -29,14 +29,14 @@ void player::fire(bool f)
 
 void player::move(float accel)
 {
-    position( glm::vec2(position().x, position().y - accel) );
+    position( glm::vec2(position().x, position().y - accel*10) );
 }
 
 void player::update(const clock_info& clock)
 {
     object::update(clock);
     
-    if(fire_ && clock.time - last_fire_ > 0.3)
+    if(fire_ && clock.time - last_fire_ > 0.1)
     {
         last_fire_ = clock.time;        
         spawner_->spawn();

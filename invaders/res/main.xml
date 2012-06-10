@@ -54,21 +54,46 @@
             sprite      =   "graphics.invaders.ship"
             spawner     =   "bullet_spawner"
         />
+
+        <!-- the enemy -->
+        <object n       =   "enemy"
+            sprite      =   "graphics.invaders.soldier_3">
+        </object>
+        
+        <spawner n = "enemy_spawner">            
+            <list n = "objects">
+                objects.enemy
+            </list>
+            
+            <int    n = "wave_size" 
+                value = "1" />
+            
+            <float  n = "wave_delay"
+                value = "1" />            
+        </spawner>
+        
+        <object n       =   "invading_space"
+            spawner     =   "enemy_spawner"
+            position    =   "200 0"
+        />
         
     </namespace>
     <!-- end: objects -->
         
     <!-- namespace for settings -->
     <namespace n = "settings">
-
-        <float n = "main_thrust"    value = "10000" />
-        <float n = "mass"           value = "80" />
-        <float n = "gravity"        value = "40" />
-        <float n = "lateral_th"     value = "0.1" />
-        <float n = "lateral_speed"  value = "10" />
-        <float n = "rotation_speed" value = "100" />
-        <float n = "max_velocity"   value = "75" />
-        <float n = "max_rotation"   value = "8" />
+        
+        <float n = "enemy_offset_from">
+            <random from = "-200" to = "-100" />
+        </float>
+        
+        <float n = "enemy_offset_to">
+            <random from = "200" to = "400" />
+        </float>
+        
+        <float n = "enemy_roundtrip_time">
+            <random from = "0.5" to = "3.0" />
+        </float>
         
     </namespace>
     <!-- end: settings -->

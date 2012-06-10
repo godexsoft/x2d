@@ -10,6 +10,7 @@
 		2403496814FA705E00B1CFC9 /* zone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403496714FA705E00B1CFC9 /* zone.h */; };
 		2403496B14FA7D4700B1CFC9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		2403496C14FA7D4F00B1CFC9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		240D0A781584F3D5001B74FF /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 240D0A761584F3D5001B74FF /* enemy.cpp */; };
 		240F052414E40C86002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
@@ -351,6 +352,8 @@
 /* Begin PBXFileReference section */
 		2403496714FA705E00B1CFC9 /* zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zone.h; path = src/base/zone.h; sourceTree = "<group>"; };
 		2405FFAC15447890001E956A /* ui.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ui.xml; path = demo/res/ui.xml; sourceTree = "<group>"; };
+		240D0A761584F3D5001B74FF /* enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enemy.cpp; path = invaders/enemy.cpp; sourceTree = "<group>"; };
+		240D0A771584F3D5001B74FF /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enemy.h; path = invaders/enemy.h; sourceTree = "<group>"; };
 		240F053D14E41E30002AEEB2 /* x2d_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F054514E41F4A002AEEB2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = demo/AppDelegate.h; sourceTree = "<group>"; };
 		240F054614E41F4A002AEEB2 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = demo/AppDelegate.mm; sourceTree = "<group>"; };
@@ -1255,6 +1258,8 @@
 				243658CE156AEA7300D6AA9F /* bullet.h */,
 				243658CA156AE39300D6AA9F /* player.cpp */,
 				243658CB156AE39400D6AA9F /* player.h */,
+				240D0A761584F3D5001B74FF /* enemy.cpp */,
+				240D0A771584F3D5001B74FF /* enemy.h */,
 				243658B2156AD3AC00D6AA9F /* fps_counter.h */,
 				243658B3156AD3AC00D6AA9F /* title.cpp */,
 				243658B4156AD3AC00D6AA9F /* title.h */,
@@ -3050,6 +3055,7 @@
 				243658C9156AE23A00D6AA9F /* scene.cpp in Sources */,
 				243658CC156AE39400D6AA9F /* player.cpp in Sources */,
 				243658CF156AEA7300D6AA9F /* bullet.cpp in Sources */,
+				240D0A781584F3D5001B74FF /* enemy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

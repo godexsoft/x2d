@@ -21,6 +21,7 @@
 
 #include "player.h"
 #include "bullet.h"
+#include "enemy.h"
 // #include "hud.h"
 
 class game 
@@ -34,6 +35,7 @@ public:
         // bindings
         config_.bind<player>("objects.player");    
         config_.bind<bullet>("objects.bullet");    
+        config_.bind<enemy>("objects.enemy");    
 //        config_.bind<hud>("objects.ui.hud");    
         
         // init first scene

@@ -21,5 +21,5 @@ void bullet::update(const clock_info& clock)
 {
     object::update(clock);
     
-    position( glm::vec2( position().x + clock.delta_time * 200.0, position().y ) );
+    position( glm::vec2( position().x + clock.delta_time * 500.0, position().y ) );
 }

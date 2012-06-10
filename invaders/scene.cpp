@@ -35,6 +35,8 @@ scene::scene(kernel& k, configuration& conf, game& g)
 //    win_banner_ = config_.create_object("objects.ui.win");
 //    score_holder_ = win_banner_->child_by_name("score_holder");
 //    lose_banner_ = config_.create_object("objects.ui.lose");
+
+    objects_.push_back( config_.create_object("objects.invading_space") );
     
 #ifdef DEBUG
     // for debug only
