@@ -1,0 +1,62 @@
+//
+//  physics.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<body>' configuration node.
+ */ 
+class body_cfg
+: public cfg_base
+{
+public:        
+    /**
+     * @param[in] c         Configuration object
+     * @param[in] k         Kernel object
+     */
+    body_cfg(configuration& c, kernel& k)
+    : config_(c)
+    , kernel_(k)
+    {        
+    }
+    
+    /**
+     * Create a new body instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<body> create();        
+                            
+private:                
+    configuration&              config_;
+    kernel&                     kernel_;
+};
+
+
+/**
+ * @brief Support for '<part>' configuration node.
+ */ 
+class body_part_cfg
+: public cfg_base
+{
+public:        
+    /**
+     * @param[in] c         Configuration object
+     * @param[in] k         Kernel object
+     */
+    body_part_cfg(configuration& c, kernel& k)
+    : config_(c)
+    , kernel_(k)
+    {        
+    }
+    
+    /**
+     * Create a new part instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<body_part> create();        
+    
+private:                
+    configuration&              config_;
+    kernel&                     kernel_;
+};

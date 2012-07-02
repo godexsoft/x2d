@@ -1,0 +1,38 @@
+//
+//  spawner.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<spawner>' configuration node.
+ */ 
+class spawner_cfg
+: public cfg_base
+{
+public:        
+    
+    spawner_cfg(configuration& cfg, const value_holder<std::vector<std::string> >& objects,
+                const glm::vec3& pos, int wave_size, float wave_delay)
+    : config_(cfg)
+    , obj_lst_(objects)
+    , position_(pos)
+    , wave_size_(wave_size)
+    , wave_delay_(wave_delay)
+    {            
+    }
+    
+    /**
+     * Create a new spawner instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<spawner> create();        
+    
+private:
+    configuration&                          config_;
+    value_holder<std::vector<std::string> > obj_lst_;
+    glm::vec3                               position_;
+    int                                     wave_size_;
+    float                                   wave_delay_;
+};

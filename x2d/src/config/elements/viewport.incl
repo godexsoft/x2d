@@ -1,0 +1,44 @@
+//
+//  viewport.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<viewport>' configuration node.
+ * @see camera_cfg
+ */ 
+class viewport_cfg
+: public cfg_base
+{
+public:  
+    /**
+     * @param[in] cfg     Configuration object
+     * @param[in] b       Viewport rectangle
+     * @param[in] cam_key Camera configuration key (name) to use
+     * @param[in] ci      Background color information
+     */
+    viewport_cfg(configuration& cfg, const rect& b, 
+                 const std::string& cam_key, 
+                 const color_info& ci)
+    : config_(cfg)
+    , box_(b)
+    , camera_key_(cam_key)
+    , bg_color_(ci)
+    {            
+    }
+    
+    /**
+     * Create if required and return a shared version of the viewport.
+     */
+    boost::shared_ptr<viewport> get();
+    
+private:
+    configuration&             config_;
+    rect                       box_;
+    std::string                camera_key_;
+    color_info                 bg_color_;
+    boost::weak_ptr<viewport>  inst_;
+};

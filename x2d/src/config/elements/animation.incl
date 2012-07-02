@@ -1,0 +1,90 @@
+//
+//  animation.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+class configuration;
+
+/**
+ * @brief Support for '<animation>' configuration node.
+ * @see frame_cfg
+ */ 
+class animation_cfg
+: public cfg_base
+{
+public:  
+    /**
+     * @param[in] cfg     Configuration object
+     */
+    animation_cfg(configuration& cfg)
+    : config_(cfg)
+    , duration_(0.0f)
+    , pivot_(glm::vec2(0,0))
+    , flip_x_(false)
+    , flip_y_(false)
+    {            
+    }
+    
+    /**
+     * Used to add a frame to the animation.
+     * @param[in] f     The frame config
+     * @see frame_cfg
+     */
+    void add(const frame_cfg& f)
+    {
+        frames_.push_back(f);
+    }
+    
+    /**
+     * Sets default duration.
+     * @param[in] d The duration
+     */
+    void set_duration(float d)
+    {
+        duration_ = d;
+    }
+    
+    /**
+     * Sets the pivot.
+     * @param[in] p The pivot
+     */
+    void set_pivot(const glm::vec2& p)
+    {
+        pivot_ = p;
+    }
+    
+    /**
+     * Sets x flipping.
+     * @param[in] f true or false
+     */
+    void set_flip_x(bool f)
+    {
+        flip_x_ = f;
+    }
+
+    /**
+     * Sets y flipping.
+     * @param[in] f true or false
+     */
+    void set_flip_y(bool f)
+    {
+        flip_y_ = f;
+    }
+    
+    /**
+     * Create a new animation instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<animation> create();        
+    
+private:
+    configuration&              config_;
+    float                       duration_;
+    glm::vec2                   pivot_;
+    bool                        flip_x_;
+    bool                        flip_y_;
+    std::vector<frame_cfg>      frames_;
+    boost::weak_ptr<animation>  inst_;
+};

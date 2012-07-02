@@ -1,0 +1,34 @@
+//
+//  frame.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+class animation_cfg;
+
+/**
+ * @brief Support for '<frame>' configuration node.
+ * This class describes one frame of the animation.
+ * @see animation_cfg
+ */ 
+class frame_cfg
+{
+    friend class animation_cfg;
+    
+public:        
+    /**
+     * @param[in] spr   Sprite to use
+     * @param[in] d     Duration for this frame
+     */
+    frame_cfg(const std::string& spr, const float& d=0.0f)
+    : sprite_key_(spr)
+    , duration_(d) // 0.0 or negative means use animation's default
+    {            
+    }
+    
+private:
+    std::string                 sprite_key_;
+    float                       duration_;
+};

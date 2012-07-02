@@ -1,0 +1,48 @@
+//
+//  texture.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<texture>' configuration node.
+ */ 
+class texture_cfg
+: public cfg_base
+{ 
+public:
+    /**
+     * @param[in] res_man The resource manager
+     * @param[in] p       Path to texture inside the resource manager
+     */
+    texture_cfg(resource_manager& res_man, const std::string& p)
+    : res_man_(res_man)
+    , path_(p)
+    {
+    }
+    
+    /**
+     * Create if required and return a shared version of the texture.
+     */
+    boost::shared_ptr<texture> get()
+    {    
+        if( boost::shared_ptr<texture> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<texture> r = boost::shared_ptr<texture>( res_man_.get<texture>(path_) );
+            inst_ = r;
+            return r;
+        }
+    }
+    
+private:    
+    resource_manager&         res_man_;
+    std::string               path_;
+    boost::weak_ptr<texture>  inst_;
+};

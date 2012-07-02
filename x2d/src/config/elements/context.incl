@@ -1,0 +1,37 @@
+//
+//  context.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<context>' configuration node.
+ */ 
+class context_cfg
+: public cfg_base
+{
+public:        
+    
+    /**
+     * Create if required and return a shared version of the context.
+     */
+    boost::shared_ptr<context> get()
+    {
+        if( boost::shared_ptr<context> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<context> r = boost::shared_ptr<context>( new context() );
+            inst_ = r;
+            return r;
+        }
+    }
+    
+private:
+    boost::weak_ptr<context>  inst_;        
+};

@@ -1,0 +1,35 @@
+//
+//  zone.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<zone>' configuration node.
+ */ 
+class zone_cfg
+: public cfg_base
+{
+public:        
+    
+    zone_cfg(configuration& cfg, const rect& box, const std::vector<std::string>& ctx)
+    : config_(cfg)
+    , box_(box)
+    , ctx_lst_(ctx)
+    {            
+    }
+    
+    /**
+     * Create if required and return a shared version of the zone.
+     */
+    boost::shared_ptr<zone> get();
+    
+private:
+    boost::weak_ptr<zone>       inst_;        
+    
+    configuration&              config_;
+    rect                        box_; 
+    std::vector<std::string>    ctx_lst_;
+};

@@ -1,0 +1,56 @@
+//
+//  sprite.incl
+//  x2d
+//
+//  Created by Alex Kremer on 1/7/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<sprite>' configuration node.
+ */ 
+class sprite_cfg
+: public cfg_base
+{
+public:        
+    /**
+     * @param[in] t       Texture to use
+     * @param[in] p       Offset inside texture
+     * @param[in] s       Size of the sprite
+     * @param[in] pivot   The pivot
+     * @param[in] flip_x  Sets flipping on x axis
+     * @param[in] flip_y  Sets flipping on x axis         
+     */
+    sprite_cfg(configuration& c,
+               const config_key& t, 
+               const point& p, 
+               const size& s,
+               const glm::vec2& pivot=glm::vec2(0,0),
+               bool flip_x=false,
+               bool flip_y=false
+    )
+    : config_(c)
+    , texture_(t)
+    , origin_(p)
+    , size_(s)
+    , pivot_(pivot)
+    , flip_x_(flip_x)
+    , flip_y_(flip_y)
+    {            
+    }
+    
+    /**
+     * Create if required and return a shared version of the sprite.
+     */
+    boost::shared_ptr<sprite> get();
+    
+private:
+    configuration&           config_;
+    config_key               texture_;
+    point                    origin_;
+    size                     size_;  
+    glm::vec2                pivot_;
+    bool                     flip_x_;
+    bool                     flip_y_;
+    boost::weak_ptr<sprite>  inst_;
+};
