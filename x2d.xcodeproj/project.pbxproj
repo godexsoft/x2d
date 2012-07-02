@@ -378,9 +378,6 @@
 
 /* Begin PBXFileReference section */
 		2401F125158A79AA00BC2425 /* libbox2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbox2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2401F129158A79AA00BC2425 /* box2d-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "box2d-Prefix.pch"; sourceTree = "<group>"; };
-		2401F12A158A79AA00BC2425 /* box2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = box2d.h; sourceTree = "<group>"; };
-		2401F12B158A79AA00BC2425 /* box2d.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = box2d.m; sourceTree = "<group>"; };
 		2401F132158A7A2A00BC2425 /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2BroadPhase.cpp; path = libs/box2d/Box2D/Collision/b2BroadPhase.cpp; sourceTree = SOURCE_ROOT; };
 		2401F133158A7A2A00BC2425 /* b2CollideCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2CollideCircle.cpp; path = libs/box2d/Box2D/Collision/b2CollideCircle.cpp; sourceTree = SOURCE_ROOT; };
 		2401F134158A7A2A00BC2425 /* b2CollideEdge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2CollideEdge.cpp; path = libs/box2d/Box2D/Collision/b2CollideEdge.cpp; sourceTree = SOURCE_ROOT; };
@@ -1152,24 +1149,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2401F127158A79AA00BC2425 /* box2d */ = {
-			isa = PBXGroup;
-			children = (
-				2401F12A158A79AA00BC2425 /* box2d.h */,
-				2401F12B158A79AA00BC2425 /* box2d.m */,
-				2401F128158A79AA00BC2425 /* Supporting Files */,
-			);
-			path = box2d;
-			sourceTree = "<group>";
-		};
-		2401F128158A79AA00BC2425 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2401F129158A79AA00BC2425 /* box2d-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		2401F131158A79E600BC2425 /* box2d */ = {
 			isa = PBXGroup;
 			children = (
@@ -2235,7 +2214,6 @@
 				243F95EB14F005BC00922D55 /* 09_sound */,
 				24C7485214F6552B004E07DD /* 10_ui */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
-				2401F127158A79AA00BC2425 /* box2d */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
 			);
