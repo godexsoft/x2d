@@ -23,6 +23,8 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 
+#include <Box2D/Box2D.h>
+
 namespace x2d {
 namespace config {
     
@@ -144,6 +146,9 @@ using namespace x2d::config;
         std::vector< boost::shared_ptr<object> >     children_;
         object                                      *parent_;
         bool                                         has_parent_;
+        
+        // physics
+        b2Body*     body_;
     };
     
 } // namespace x2d

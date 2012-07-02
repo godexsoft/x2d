@@ -134,6 +134,9 @@ namespace x2d {
             ctx->reg_object(this);
             contexts_.push_back( ctx );            
         }
+        
+        // save pointer to this inside the body
+//        body_->SetUserData(this);
     }
     
     object::~object()

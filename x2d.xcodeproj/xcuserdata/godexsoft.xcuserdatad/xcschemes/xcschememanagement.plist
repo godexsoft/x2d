@@ -54,15 +54,15 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>box2d.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>demo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
-		</dict>
-		<key>invaders.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
@@ -77,6 +77,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2401F124158A79AA00BC2425</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>240F052614E41E30002AEEB2</key>
 		<dict>
 			<key>primary</key>
