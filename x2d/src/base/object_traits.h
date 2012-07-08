@@ -61,6 +61,10 @@ namespace x2d {
         std::string font;
         alignment   align;
         
+        // physics
+        bool        has_body;
+        std::string body;
+        
         std::string camera;
         
         // space

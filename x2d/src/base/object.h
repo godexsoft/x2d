@@ -18,12 +18,12 @@
 #include "font.h"
 #include "value_holder.h"
 #include "context.h"
+#include "body_part.h"
+#include "body.h"
 #include "object_traits.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
-
-#include <Box2D/Box2D.h>
 
 namespace x2d {
 namespace config {
@@ -148,7 +148,7 @@ using namespace x2d::config;
         bool                                         has_parent_;
         
         // physics
-        b2Body*     body_;
+        boost::shared_ptr<body>    body_;
     };
     
 } // namespace x2d

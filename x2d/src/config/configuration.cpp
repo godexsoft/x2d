@@ -215,6 +215,18 @@ namespace config {
         return static_cast<spawner_cfg*>( &(*config_[key]) )->create();
     }
 
+    template <>
+    const boost::shared_ptr<body> configuration::create_sys_object<body>(const config_key& key)
+    {
+        return static_cast<body_cfg*>( &(*config_[key]) )->create();
+    }
+
+    template <>
+    const boost::shared_ptr<body_part> configuration::create_sys_object<body_part>(const config_key& key)
+    {
+        return static_cast<body_part_cfg*>( &(*config_[key]) )->create();
+    }
+
     
     template <>
     boost::shared_ptr<camera> configuration::get_object<camera>(const config_key& key)
@@ -411,6 +423,30 @@ namespace config {
             new spawner(config_.get_kernel(), config_, obj_lst_, position_, wave_size_, wave_delay_) );        
         return r;
     }    
+    
+    boost::shared_ptr<body> body_cfg::create()
+    {
+        boost::shared_ptr<body> r = boost::shared_ptr<body>( 
+            new body(config_.get_kernel(), config_, dynamic_) );        
+        
+        // create all parts and add them
+        for(int i=0; i<parts_.size(); ++i)
+        {
+            r->add_part( config_.create_sys_object<body_part>(parts_.at(i)) );            
+        }
+        
+        return r;
+    }    
+    
+    boost::shared_ptr<body_part> body_part_cfg::create()
+    {
+        boost::shared_ptr<body_part> r = 
+            boost::shared_ptr<body_part>( 
+                new body_part(config_, obj_) );        
+        
+        return r;
+    }    
+
     
     boost::shared_ptr<camera> camera_cfg::get()
     {

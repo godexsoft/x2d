@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+class body_part_cfg;
+
 /**
  * @brief Support for '<body>' configuration node.
  */ 
@@ -16,21 +18,36 @@ public:
     /**
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
+     * @param[in] dynamic   Whether body is dynamic
      */
-    body_cfg(configuration& c, kernel& k)
+    body_cfg(configuration& c, kernel& k, bool dynamic)
     : config_(c)
     , kernel_(k)
+    , dynamic_(dynamic)
     {        
     }
     
     /**
      * Create a new body instance and return it without saving a local copy.
      */
-    boost::shared_ptr<x2d::physics::body> create();        
+    boost::shared_ptr<body> create();        
                             
+    void add(const std::string& part_key) 
+    {
+        parts_.push_back(part_key);
+    }
+    
+    void set_dynamic(const bool dynamic)
+    {
+        dynamic_ = dynamic;
+    }
+    
 private:                
     configuration&              config_;
     kernel&                     kernel_;
+    
+    bool                        dynamic_;    
+    std::vector<std::string>    parts_;
 };
 
 
@@ -44,19 +61,23 @@ public:
     /**
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
+     * @param[in] obj       Object to attach to this part
      */
-    body_part_cfg(configuration& c, kernel& k)
+    body_part_cfg(configuration& c, kernel& k, const std::string& obj)
     : config_(c)
     , kernel_(k)
-    {        
+    , obj_(obj)
+    {
     }
     
     /**
      * Create a new part instance and return it without saving a local copy.
      */
-    boost::shared_ptr<x2d::physics::body_part> create();        
+    boost::shared_ptr<body_part> create();        
   
 private:                
     configuration&              config_;
     kernel&                     kernel_;
+    
+    std::string                 obj_;
 };

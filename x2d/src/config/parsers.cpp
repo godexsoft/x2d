@@ -636,16 +636,60 @@ namespace config {
     {
         // must have:
         // n:        name of the element
+        // 
+        // can have:
+        // dynamic:  boolean. defaults to false
+        // 
         
-        config_[key] = boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_) );
+        bool dynamic = get_attr<bool>(*this, node, key, "dynamic", false).get(*this);
+        
+        if( config_.find(key) == config_.end() )
+        {
+            // No body object exists! No parts defined?
+            throw structure_exception("Body has no parts. Invalid body definition.");
+        }
+        else
+        {
+            // Set dynamic
+            static_cast<body_cfg*>(&(*config_[key]))
+                ->set_dynamic(dynamic);   
+        }
     }
 
     void configuration::parse_body_part_box(xml_node* node, const config_key& key)
     {
+        // NOTE: this element must appear nested in a <body> element
+        //
         // must have:
         // n:        name of the element
+        //
+        // can have:
+        // object:   key of the object to attach to this part
+     
+        // parent must be a body
+        xml_node* parent = node->parent();
+        if(! parent || std::string("body") != parent->name())
+        {
+            throw structure_exception("BodyPart must be a child element of a Body object.");
+        }
         
-        config_[key] = boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_) );
+        config_key parent_key = key.remove_last_path_component();
+        if( config_.find(parent_key) == config_.end() )
+        {
+            // No body exists yet
+            config_[parent_key] = 
+                boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_, false) );
+        }
+        
+        // get the object property
+        std::string obj = get_attr<std::string>(*this, node, key, "object", "").get(*this);
+        
+        // add this part
+        boost::shared_ptr<body_part_cfg> part = 
+            boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_, obj) );
+        config_[key] = part;
+        
+        static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );        
     }
     
     void configuration::parse_object(xml_node* node, const config_key& key)
@@ -672,6 +716,7 @@ namespace config {
         // font:      font to use when drawing text
         // text:      text to render. must have font specified to use this
         // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
+        // body:      physics body
         
         object_traits tr;
         
@@ -868,7 +913,14 @@ namespace config {
             tr.text = text->value();
             tr.has_text = true;
         }
-        
+
+        xml_attr* body = node->first_attribute("body");
+        if(body) 
+        {
+            tr.body = body->value();
+            tr.has_body = true;
+        }
+
         config_[key] = 
             boost::shared_ptr<object_cfg>( 
                 new object_cfg(*this, kernel_, tr) );

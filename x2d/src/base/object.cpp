@@ -29,6 +29,7 @@ namespace x2d {
     , has_zone(false)
     , has_text(false)
     , align(LEFT_ALIGN)
+    , has_body(false)
     , camera("camera") // FIXME
     , obj_space(WORLD_SPACE)
     , par_space(PARENT_SPACE_NONE) // all in world space by default
@@ -119,6 +120,12 @@ namespace x2d {
             kernel_.add_camera_space_object(this);
         }
         
+        // add physics body if available
+        if(t.has_body) 
+        {
+            body_ = config_.create_sys_object<body>(t.body);
+        }
+        
         // add children
         for(std::vector<std::string>::const_iterator it = t.children.begin(); it != t.children.end(); ++it)
         {
@@ -134,9 +141,6 @@ namespace x2d {
             ctx->reg_object(this);
             contexts_.push_back( ctx );            
         }
-        
-        // save pointer to this inside the body
-//        body_->SetUserData(this);
     }
     
     object::~object()

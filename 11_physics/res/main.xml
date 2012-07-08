@@ -19,84 +19,14 @@
     
         <part:box n = "box_part"
               solid = "true"
+             object = "box_part_obj"
         />
     </body>
     
-    <!--
-    <body n = "dude_body"
-        dynamic = "true" >
-        
-        <part:box    n = "left_leg_part" 
-        bottomLeft = "local_to_object" 
-        topRight = "local_to_object" 
-        solid = "true" />
-        
-        <part:box    n = "right_leg_part" 
-        bottomLeft = "local_to_object" 
-        topRight = "local_to_object" 
-        solid = "true" />
-        
-        <part:box    n = "body_part" 
-        bottomLeft = "local_to_object" 
-        topRight = "local_to_object"
-        solid = "true" />
-        
-        <part:sphere n = "head_part"  
-        center = "0 0" 
-        radius = "12"
-        solid = "true" />
-        
-        <!-- fix left leg and body --
-        <joint:revolute 
-        n = "body_left_leg_joint"
-        parent = "body_part"
-        child = "left_leg_part" 
-        parentAnchor = "-10 -10"
-        childAnchor = "0 10" />
-        
-        <!-- fix right leg and body --
-        <joint:revolute 
-        n = "body_right_leg_joint"
-        parent = "body_part"
-        child = "right_leg_part" 
-        parentAnchor = "10 -10"
-        childAnchor = "0 10" />
-        
-        <!-- fix head and body --
-        <joint:revolute 
-        n = "body_head_joint"
-        parent = "body_part"
-        child = "head_part" 
-        parentAnchor = "0 20"
-        childAnchor = "0 -5" />
-        
-    </body>
-    -->
-    
-    <object n = "box_obj" 
-     bodyPart = "box_body.box_part" 
+    <object n = "box_part_obj" 
        sprite = "graphics.box.box" />    
-    
-    <!-- all parts of dudes' body --
-    <object n = "head_obj"
-    parent = "dude_obj" 
-    bodyPart = "dude_body.head_part"
-    sprite = "graphics.head" />
-    <!--
-    <object n = "left_leg_obj"
-    parent = "dude_obj" 
-    bodyPart = "dude_body.left_leg_part"
-    sprite = "graphics.leg" />
-    
-    <object n = "right_leg_obj"
-    parent = "dude_obj" 
-    bodyPart = "dude_body.right_leg_part"
-    sprite = "graphics.leg" />
-    
-    <object n = "body_obj"
-    parent = "dude_obj" 
-    bodyPart = "dude_body.body_part"
-    sprite = "graphics.body" />
--->
+        
+    <object n = "box_obj" 
+         body = "box_body" />    
     
 </x2d>
