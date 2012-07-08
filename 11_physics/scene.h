@@ -11,7 +11,6 @@
 
 #include "configuration.h"
 #include "fps_counter.h"
-#include "custom_obj.h"
 
 #include <vector>
 
@@ -21,7 +20,7 @@ public:
     scene(kernel& k, configuration& conf)
     : config_(conf)
     {
-        // objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_) ) );
+        objects_.push_back( config_.create_object("box_obj") );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     

@@ -60,6 +60,9 @@ namespace config {
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);        
         parsers_["context"]     = boost::bind(&configuration::parse_context, this, _1, _2);        
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
+
+        parsers_["body"]        = boost::bind(&configuration::parse_body, this, _1, _2);        
+        parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);        
     }
     
     void configuration::parse_file(const std::string& cfg_path, const std::string& root_key)

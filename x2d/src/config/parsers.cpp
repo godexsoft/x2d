@@ -632,6 +632,22 @@ namespace config {
         config_[key] = boost::shared_ptr<zone_cfg>( new zone_cfg(*this, box, ctx_vec) );
     }
     
+    void configuration::parse_body(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        
+        config_[key] = boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_) );
+    }
+
+    void configuration::parse_body_part_box(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        
+        config_[key] = boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_) );
+    }
+    
     void configuration::parse_object(xml_node* node, const config_key& key)
     {
         // must have:

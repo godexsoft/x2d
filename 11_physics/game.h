@@ -16,8 +16,6 @@
 #include "configuration.h"
 #include "resource_manager.h"
 
-#include "custom_obj.h"
-
 class game 
 {
 public:

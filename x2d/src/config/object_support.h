@@ -22,6 +22,8 @@
 #include "input_manager.h"
 #include "context.h"
 #include "zone.h"
+#include "body.h"
+#include "body_part.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
