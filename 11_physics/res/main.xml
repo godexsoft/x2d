@@ -1,0 +1,15 @@
+<x2d version="1.0">
+    
+    <!-- engine setup -->
+    <camera n="camera" frustum="320 480" />    
+    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
+    <input n="input" accelerometer="false" touch="true" />
+
+    
+    <!-- namespace for all textures and sprites -->
+    <namespace n="graphics">
+        
+    </namespace> 
+    <!-- end: graphics -->
+        
+</x2d>
