@@ -662,9 +662,6 @@ namespace config {
         //
         // must have:
         // n:        name of the element
-        //
-        // can have:
-        // object:   key of the object to attach to this part
      
         // parent must be a body
         xml_node* parent = node->parent();
@@ -681,12 +678,19 @@ namespace config {
                 boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_, false) );
         }
         
-        // get the object property
-        std::string obj = get_attr<std::string>(*this, node, key, "object", "").get(*this);
+        size bottomLeft = 
+            get_attr<size>(*this, node, key, "bottomLeft", 
+                size(-1.0f, -1.0f)).get(*this);
+
+        size topRight = 
+            get_attr<size>(*this, node, key, "topRight", 
+                size(1.0f, 1.0f)).get(*this);
+        
         
         // add this part
         boost::shared_ptr<body_part_cfg> part = 
-            boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_, obj) );
+            boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_, 
+                bottomLeft, topRight) );
         config_[key] = part;
         
         static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );        
@@ -749,6 +753,12 @@ namespace config {
         tr.box =        get_attr<size>(*this, node, key, "box", size(1.0f, 1.0f)).get(*this); // TODO: other defaults?
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
+
+        xml_attr* bgcolor = node->first_attribute("bgcolor");
+        if(bgcolor) 
+        {
+            tr.has_bgcolor = true;
+        }
         
         xml_attr* anim = node->first_attribute("animation");
         if(anim) 

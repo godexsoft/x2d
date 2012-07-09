@@ -137,6 +137,12 @@ namespace config {
         const boost::shared_ptr<T> create_sys_object(const config_key& key);
         
         /**
+         * Create a system object such as body_part with parameter.
+         */
+        template <typename T, typename A>
+        const boost::shared_ptr<T> create_sys_object_1(const config_key& key, A& a);
+        
+        /**
          * Get a configuration value (metric)
          * @param[in] key Configuration key
          */

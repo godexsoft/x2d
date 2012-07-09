@@ -18,6 +18,7 @@ namespace x2d {
     , rotation("", 0.0f)
     , box(size(1.0f, 1.0f)) // TODO: other defaults? maybe size of sprite if any?
     , pivot(glm::vec2(0.0f, 0.0f)) // center in world space
+    , has_bgcolor(false)
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
@@ -73,7 +74,7 @@ namespace x2d {
             // TODO accel connect
         }
         
-        if(t.has_animation || t.has_sprite || t.has_text)
+        if(t.has_animation || t.has_sprite || t.has_bgcolor || t.has_text)
         {
             if(!has_parent_)
             {
@@ -123,8 +124,7 @@ namespace x2d {
         // add physics body if available
         if(t.has_body) 
         {
-            LOG("CREATE a body and assign in object! %X", this);
-            body_ = config_.create_sys_object<body>(t.body);
+            body_ = config_.create_sys_object_1<body>(t.body, *this);
             
             if(!has_parent_)
             {
@@ -168,7 +168,6 @@ namespace x2d {
         if(body_) 
         {
             glm::vec2 pos = body_->position();
-            LOG("POSITION: %f %f", pos.x, pos.y);
             
             position(body_->position());
             rotation( glm::degrees(body_->angle()) );

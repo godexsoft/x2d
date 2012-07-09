@@ -11,30 +11,33 @@
 #define __X2D_BODY_PART_H__
 
 #include "log.h"
+#include "math_util.h"
 #include <boost/shared_ptr.hpp>
 
-namespace x2d { 
-    
-    class object;
-    
-    namespace config {
+namespace x2d {     
+namespace config {
         
-        class configuration;
+    class configuration;
         
-    } // namespace config
-    using namespace x2d::config;
+} // namespace config
+using namespace x2d::config;
     
 namespace physics {
 
+    class body;
+    
     class body_part
     {
     public:
-        body_part(configuration& conf, std::string obj_key = "");
+        body_part(configuration& conf, const boost::shared_ptr<body>& b,
+                  size& bottomLeft, size& topRight);
         
     private:
-        configuration&  config_;
-
-        boost::shared_ptr<object> object_;        
+        configuration&              config_;
+        boost::shared_ptr<body>     body_;
+        
+        size    bl_;
+        size    tr_;
     };
     
 } // namespace physics

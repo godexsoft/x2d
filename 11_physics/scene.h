@@ -21,6 +21,7 @@ public:
     : config_(conf)
     {
         objects_.push_back( config_.create_object("box_obj") );
+        objects_.push_back( config_.create_object("floor_obj") );
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     

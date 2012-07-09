@@ -19,14 +19,34 @@
     
         <part:box n = "box_part"
               solid = "true"
-             object = "box_part_obj"
+                 bottomLeft = "10 10"
         />
     </body>
-    
-    <object n = "box_part_obj" 
-       sprite = "graphics.box.box" />    
+
+    <body     n = "floor_body"
+        dynamic = "false" >
         
-    <object n = "box_obj" 
-         body = "box_body" />    
+        <part:box n = "floor_part"
+              solid = "true"
+         bottomLeft = "200 10"
+           topRight = "10 -80"
+        />
+    </body>
+
+    
+    <object n = "box_obj"       
+      bgcolor = "0.6 0.6 0.6 0.5"
+         body = "box_body"
+         size = "10 10"
+          box = "10 10"
+     rotation = "30" />    
+
+    <object n = "floor_obj"        
+         body = "floor_body" 
+     position = "0 -100"
+      bgcolor = "1 0.6 0.6 1"
+         size = "200 10" 
+          box = "200 10" />    
+
     
 </x2d>

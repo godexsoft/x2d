@@ -14,6 +14,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "Box2D/Box2D.h"
+#include "glm.hpp"
 
 #include "clock.h"
 #include "config.h"
@@ -29,11 +30,24 @@ namespace physics {
         friend class boost::details::pool::singleton_default<world_bare>;
         
     public:
-        b2Body* new_body()
+        b2Body* new_body(const glm::vec2& pos, float angle=0, bool dynamic=true)
         {
             b2BodyDef def;
-            def.type = b2_dynamicBody;            
-            def.position.Set(0.0f, 4.0f);
+            if(dynamic) 
+            {
+                def.type = b2_dynamicBody;            
+            } 
+            else 
+            {
+                def.type = b2_staticBody;            
+            }
+            
+            def.position.Set(pos.x, pos.y);
+            
+            if(angle!=0) 
+            {
+                def.angle = angle;
+            }
             
             return world_.CreateBody(&def);
         }        

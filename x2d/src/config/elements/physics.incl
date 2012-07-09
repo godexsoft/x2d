@@ -30,7 +30,7 @@ public:
     /**
      * Create a new body instance and return it without saving a local copy.
      */
-    boost::shared_ptr<body> create();        
+    boost::shared_ptr<body> create(object& obj);        
                             
     void add(const std::string& part_key) 
     {
@@ -61,23 +61,24 @@ public:
     /**
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
-     * @param[in] obj       Object to attach to this part
      */
-    body_part_cfg(configuration& c, kernel& k, const std::string& obj)
+    body_part_cfg(configuration& c, kernel& k, size& bottomLeft, size& topRight)
     : config_(c)
     , kernel_(k)
-    , obj_(obj)
+    , bl_(bottomLeft)
+    , tr_(topRight)
     {
     }
     
     /**
      * Create a new part instance and return it without saving a local copy.
      */
-    boost::shared_ptr<body_part> create();        
+    boost::shared_ptr<body_part> create(const boost::shared_ptr<body>& b);        
   
 private:                
     configuration&              config_;
     kernel&                     kernel_;
     
-    std::string                 obj_;
+    size                        bl_;
+    size                        tr_;
 };

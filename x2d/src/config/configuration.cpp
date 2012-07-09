@@ -216,15 +216,17 @@ namespace config {
     }
 
     template <>
-    const boost::shared_ptr<body> configuration::create_sys_object<body>(const config_key& key)
+    const boost::shared_ptr<body> configuration::create_sys_object_1<body, 
+        object>(const config_key& key, object& obj)
     {
-        return static_cast<body_cfg*>( &(*config_[key]) )->create();
+        return static_cast<body_cfg*>( &(*config_[key]) )->create(obj);
     }
 
     template <>
-    const boost::shared_ptr<body_part> configuration::create_sys_object<body_part>(const config_key& key)
+    const boost::shared_ptr<body_part> configuration::create_sys_object_1<body_part, 
+        boost::shared_ptr<body> >(const config_key& key, boost::shared_ptr<body>& b)
     {
-        return static_cast<body_part_cfg*>( &(*config_[key]) )->create();
+        return static_cast<body_part_cfg*>( &(*config_[key]) )->create(b);
     }
 
     
@@ -424,25 +426,30 @@ namespace config {
         return r;
     }    
     
-    boost::shared_ptr<body> body_cfg::create()
+    boost::shared_ptr<body> body_cfg::create(object& obj)
     {
+        glm::vec3 pos = obj.position();
+        float angle = obj.rotation();
+        
         boost::shared_ptr<body> r = boost::shared_ptr<body>( 
-            new body(config_.get_kernel(), config_, dynamic_) );        
+            new body(config_.get_kernel(), config_, dynamic_, glm::vec2(pos.x, pos.y), angle) );        
         
         // create all parts and add them
         for(int i=0; i<parts_.size(); ++i)
         {
-            r->add_part( config_.create_sys_object<body_part>(parts_.at(i)) );            
+            r->add_part( 
+                config_.create_sys_object_1<body_part, 
+                        boost::shared_ptr<body> >(parts_.at(i), r) );            
         }
         
         return r;
     }    
     
-    boost::shared_ptr<body_part> body_part_cfg::create()
+    boost::shared_ptr<body_part> body_part_cfg::create(const boost::shared_ptr<body>& b)
     {
         boost::shared_ptr<body_part> r = 
             boost::shared_ptr<body_part>( 
-                new body_part(config_, obj_) );        
+                new body_part(config_, b, bl_, tr_) );        
         
         return r;
     }    

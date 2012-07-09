@@ -33,6 +33,8 @@ namespace x2d {
         value_holder<float>      rotation;
         size                     box;
         glm::vec2                pivot;
+        
+        bool                     has_bgcolor;
         color_info               bgcolor;
         
         // input methods requested by object
