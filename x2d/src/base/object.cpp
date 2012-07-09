@@ -123,7 +123,13 @@ namespace x2d {
         // add physics body if available
         if(t.has_body) 
         {
+            LOG("CREATE a body and assign in object! %X", this);
             body_ = config_.create_sys_object<body>(t.body);
+            
+            if(!has_parent_)
+            {
+                connect_update(); // physics require updating
+            }
         }
         
         // add children
@@ -158,6 +164,16 @@ namespace x2d {
         
     void object::update(const clock_info& clock) 
     { 
+        // physics
+        if(body_) 
+        {
+            glm::vec2 pos = body_->position();
+            LOG("POSITION: %f %f", pos.x, pos.y);
+            
+            position(body_->position());
+            rotation( glm::degrees(body_->angle()) );
+        }
+        
         if(cur_animation_)
         {
             cur_animation_->update(clock);

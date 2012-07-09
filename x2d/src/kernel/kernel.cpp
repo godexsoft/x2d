@@ -13,6 +13,7 @@
 #include "object.h"
 #include "graphics_engine.h"
 #include "math_util.h"
+#include "world.h"
 
 namespace x2d 
 {
@@ -158,6 +159,9 @@ namespace x2d
      */ 
     void kernel::sys_timer_handler(const clock_info& ci)
     {
+        // update physics
+        world::instance().update(ci);
+        
         // update all objects
         update_signal_(ci);
         

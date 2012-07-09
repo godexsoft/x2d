@@ -16,6 +16,7 @@
 #include "kernel.h"
 
 #include "body_part.h"
+#include "glm.hpp"
 #include "Box2D/Box2D.h"
 
 namespace x2d { 
@@ -37,6 +38,9 @@ namespace physics {
         body(kernel& k, configuration& conf, bool dynamic);
         
         void add_part(const boost::shared_ptr<body_part>& part);
+        
+        glm::vec2 position() const;
+        float angle() const;
         
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
