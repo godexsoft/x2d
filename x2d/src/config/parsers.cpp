@@ -686,11 +686,19 @@ namespace config {
             get_attr<size>(*this, node, key, "topRight", 
                 size(1.0f, 1.0f)).get(*this);
         
+        float density =
+            get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
+        
+        float restitution =
+            get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
+        
+        float friction =
+            get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
         
         // add this part
         boost::shared_ptr<body_part_cfg> part = 
             boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_, 
-                bottomLeft, topRight) );
+                bottomLeft, topRight, density, restitution, friction) );
         config_[key] = part;
         
         static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );        
@@ -750,7 +758,7 @@ namespace config {
 
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
-        tr.box =        get_attr<size>(*this, node, key, "box", size(1.0f, 1.0f)).get(*this); // TODO: other defaults?
+        tr.box =        get_attr<size>(*this, node, key, "box", size()).get(*this); // TODO: other defaults?
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
 

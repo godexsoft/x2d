@@ -46,6 +46,14 @@ namespace anim {
          */
         void draw() const;
         
+        /**
+         * @return frame size
+         */
+        const size box() const
+        {
+            return sprite_->box();
+        }
+        
     private:
         boost::shared_ptr<sprite> sprite_;
         float                     duration_;
@@ -121,6 +129,14 @@ namespace anim {
          * Draw the current frame of the animation
          */
         void draw() const;
+        
+        /**
+         * @return size of current frame
+         */
+        const size box() const
+        {
+            return frames_.at(cur_frame_).box();
+        }
         
     private:
         float       duration_; // default duration

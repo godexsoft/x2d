@@ -44,6 +44,11 @@ namespace math {
         inline operator CGSize() { return CGSizeMake(width, height); }
         inline operator const CGSize() const { return CGSizeMake(width, height); }
 #endif
+
+        inline const size operator *(float f) const 
+        { 
+            return size(width*f, height*f); 
+        }
         
         float width;
         float height;

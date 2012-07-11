@@ -19,7 +19,9 @@
     
         <part:box n = "box_part"
               solid = "true"
-                 bottomLeft = "10 10"
+            density = "1.0"
+        restitution = "0.4"
+           friction = "0.1"
         />
     </body>
 
@@ -28,8 +30,9 @@
         
         <part:box n = "floor_part"
               solid = "true"
-         bottomLeft = "200 10"
-           topRight = "10 -80"
+            density = "1.0"
+        restitution = "0.1"
+           friction = "0.5"
         />
     </body>
 
@@ -37,16 +40,18 @@
     <object n = "box_obj"       
       bgcolor = "0.6 0.6 0.6 0.5"
          body = "box_body"
-         size = "10 10"
-          box = "10 10"
-     rotation = "30" />    
+       sprite = "graphics.box.box"
+        scale = "0.2"
+    >
+        <float n = "rotation">
+            <random from = "10" to = "90" />
+        </float>
+    </object>
 
     <object n = "floor_obj"        
          body = "floor_body" 
      position = "0 -100"
       bgcolor = "1 0.6 0.6 1"
-         size = "200 10" 
           box = "200 10" />    
 
-    
 </x2d>

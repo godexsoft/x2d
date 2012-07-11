@@ -30,7 +30,8 @@ namespace physics {
     {
     public:
         body_part(configuration& conf, const boost::shared_ptr<body>& b,
-                  size& bottomLeft, size& topRight);
+            size& bottomLeft, size& topRight,
+            float density, float restitution, float friction);
         
     private:
         configuration&              config_;
@@ -38,6 +39,9 @@ namespace physics {
         
         size    bl_;
         size    tr_;
+        float   density_;
+        float   restitution_;
+        float   friction_;
     };
     
 } // namespace physics

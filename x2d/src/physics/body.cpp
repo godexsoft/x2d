@@ -9,13 +9,16 @@
 #include "body.h"
 #include "world.h"
 
+#include "object.h"
+
 namespace x2d {    
 namespace physics {
 
-    body::body(kernel& k, configuration& conf, bool dynamic, 
-        const glm::vec2& pos, float angle)
+    body::body(kernel& k, configuration& conf, const object& obj,
+        bool dynamic, const glm::vec2& pos, float angle)
     : kernel_(k)
     , config_(conf)
+    , object_(obj)
     , dynamic_(dynamic)
     , body_(world::instance().new_body(pos, glm::radians(angle), dynamic))
     {        
@@ -38,10 +41,20 @@ namespace physics {
         b2Vec2 position = body_->GetPosition();
         return glm::vec2(position.x, position.y);
     }
+    
+    void body::position(const glm::vec2& p)
+    {
+        // TODO: find a way to change position at runtime
+    }
 
     float body::angle() const 
     {
         return body_->GetAngle();
+    }
+    
+    size body::get_default_box_size() const
+    {
+        return object_.box();
     }
     
 } // namespace physics

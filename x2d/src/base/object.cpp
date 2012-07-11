@@ -347,6 +347,11 @@ namespace x2d {
     void object::position(const glm::vec3& p)        
     {
         position_ = p;
+
+        if(body_) 
+        {
+            body_->position(glm::vec2(position_.x, position_.y));
+        }
     }
     
     void object::position(const glm::vec2& p)        
@@ -354,6 +359,11 @@ namespace x2d {
         position_.x = p.x;
         position_.y = p.y;
         // retain z value
+        
+        if(body_) 
+        {
+            body_->position(p);
+        }
     }        
     
     const glm::vec3 object::world_position() const
@@ -430,8 +440,32 @@ namespace x2d {
     }
     
     const size object::box() const
-    {
-        return box_;
+    {        
+        if(box_.width != 0 && box_.height != 0) 
+        {
+            LOG("Return box_ as box() of object: %f %f", 
+                box_.width * scale_, box_.height * scale_);
+            
+            return box_ * scale_;
+        }
+        else if(cur_sprite_)
+        {
+            LOG("Return cur_sprite_->box() as box() of object: %f %f", 
+                cur_sprite_->box().width * scale_, 
+                cur_sprite_->box().height * scale_);
+            
+            return cur_sprite_->box() * scale_;
+        }
+        else if(cur_animation_)
+        {
+            LOG("Return cur_animation_->box() as box() of object: %f %f", 
+                cur_animation_->box().width * scale_, 
+                cur_animation_->box().height * scale_);
+            
+            return cur_animation_->box() * scale_;
+        }
+        
+        return size(); // return default
     }
     
     const size object::camera_space_box() const

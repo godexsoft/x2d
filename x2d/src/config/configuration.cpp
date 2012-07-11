@@ -432,7 +432,7 @@ namespace config {
         float angle = obj.rotation();
         
         boost::shared_ptr<body> r = boost::shared_ptr<body>( 
-            new body(config_.get_kernel(), config_, dynamic_, glm::vec2(pos.x, pos.y), angle) );        
+            new body(config_.get_kernel(), config_, obj, dynamic_, glm::vec2(pos.x, pos.y), angle) );        
         
         // create all parts and add them
         for(int i=0; i<parts_.size(); ++i)
@@ -449,7 +449,8 @@ namespace config {
     {
         boost::shared_ptr<body_part> r = 
             boost::shared_ptr<body_part>( 
-                new body_part(config_, b, bl_, tr_) );        
+                new body_part(config_, b, bl_, tr_, 
+                    density_, restitution_, friction_) );        
         
         return r;
     }    

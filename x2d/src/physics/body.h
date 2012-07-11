@@ -35,21 +35,26 @@ namespace physics {
     class body
     {
     public:
-        body(kernel& k, configuration& conf, bool dynamic, 
-             const glm::vec2& pos, float angle);
+        body(kernel& k, configuration& conf, const object& obj,
+             bool dynamic, const glm::vec2& pos, float angle);
         
         void add_part(const boost::shared_ptr<body_part>& part);
         
         void createFixture(b2FixtureDef* fix);
         
         glm::vec2 position() const;
+        void position(const glm::vec2& p);        
+        
         float angle() const;
+        
+        size get_default_box_size() const;
         
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
         
         kernel&         kernel_;
-        configuration&  config_;
+        configuration&  config_;        
+        const object&   object_;
 
         bool         dynamic_;
         

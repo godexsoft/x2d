@@ -54,6 +54,14 @@ namespace base {
          */
         void draw() const;
         
+        /**
+         * @return the size of the sprite
+         */
+        const size box() const
+        {
+            return size_;
+        }
+        
     private:
         boost::shared_ptr<texture>   t_;
         point                        origin_;

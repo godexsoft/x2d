@@ -62,11 +62,15 @@ public:
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
      */
-    body_part_cfg(configuration& c, kernel& k, size& bottomLeft, size& topRight)
+    body_part_cfg(configuration& c, kernel& k, size& bottomLeft, size& topRight,
+        float density, float restitution, float friction)
     : config_(c)
     , kernel_(k)
     , bl_(bottomLeft)
     , tr_(topRight)
+    , density_(density)
+    , restitution_(restitution)
+    , friction_(friction)
     {
     }
     
@@ -81,4 +85,7 @@ private:
     
     size                        bl_;
     size                        tr_;
+    float                       density_;
+    float                       restitution_;
+    float                       friction_;
 };
