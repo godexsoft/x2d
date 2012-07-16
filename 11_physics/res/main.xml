@@ -10,7 +10,10 @@
     <namespace n="graphics">
         <texture n="box" path="res/graphics/box.png">
             <sprite n="box"   x="0"   y="0"   w="64" h="64" />
-        </texture> 
+        </texture>
+        <texture n="ball" path="res/graphics/ball.png">
+            <sprite n="ball"   x="0"   y="0"   w="64" h="64" />
+        </texture>
     </namespace> 
     <!-- end: graphics -->
       
@@ -19,10 +22,39 @@
     
         <part:box n = "box_part"
               solid = "true"
-            density = "1.0"
-        restitution = "0.4"
-           friction = "0.1"
-        />
+        >
+            <float n = "density">
+                <random from = "0.1" to = "1.0" />
+            </float>
+            
+            <float n = "restitution">
+                <random from = "0.1" to = "0.8" />
+            </float>
+            
+            <float n = "friction">
+                <random from = "0.1" to = "0.8" />
+            </float>
+        </part:box>
+    </body>
+    
+    <body     n = "sphere_body"
+        dynamic = "true" >
+        
+        <part:circle n = "sphere_part"
+            solid = "true"
+        >
+            <float n = "density">
+                <random from = "0.1" to = "1.0" />
+            </float>
+            
+            <float n = "restitution">
+                <random from = "0.1" to = "0.8" />
+            </float>
+            
+            <float n = "friction">
+                <random from = "0.1" to = "0.8" />
+            </float>
+        </part:circle>
     </body>
 
     <body     n = "floor_body"
@@ -36,15 +68,38 @@
         />
     </body>
 
+    <spawner n = "spawner">
+        <list n = "objects">
+            box_obj
+            sphere_obj
+        </list>
+                
+        <int    n = "wave_size"
+            value = "1" />
+ 
+        <float  n = "wave_delay"
+            value = "0" />
+    </spawner>
     
     <object n = "box_obj"       
-      bgcolor = "0.6 0.6 0.6 0.5"
          body = "box_body"
        sprite = "graphics.box.box"
-        scale = "0.2"
     >
         <float n = "rotation">
             <random from = "10" to = "90" />
+        </float>
+
+        <float n = "scale">
+            <random from = "0.1" to = "0.5" />
+        </float>
+    </object>
+
+    <object n = "sphere_obj"
+        body = "sphere_body"
+        sprite = "graphics.ball.ball"
+    >
+        <float n = "scale">
+            <random from = "0.1" to = "0.5" />
         </float>
     </object>
 
@@ -52,6 +107,6 @@
          body = "floor_body" 
      position = "0 -100"
       bgcolor = "1 0.6 0.6 1"
-          box = "200 10" />    
+          box = "250 10" />    
 
 </x2d>

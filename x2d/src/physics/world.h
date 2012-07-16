@@ -42,7 +42,8 @@ namespace physics {
                 def.type = b2_staticBody;            
             }
             
-            def.position.Set(pos.x, pos.y);
+            def.position.Set(pos.x * global_scale(),
+                             pos.y * global_scale());
             
             if(angle!=0) 
             {
@@ -56,6 +57,8 @@ namespace physics {
         {
             world_.Step(1.0f/60.f, 8, 3);
         }
+        
+        float global_scale() const;
         
     private:
         world_bare()

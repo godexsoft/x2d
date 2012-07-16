@@ -26,22 +26,51 @@ namespace physics {
 
     class body;
     
+    enum body_part_type
+    {
+        INVALID_TYPE = 0,
+        BOX_TYPE,
+        CIRCLE_TYPE
+    };
+        
     class body_part
     {
     public:
         body_part(configuration& conf, const boost::shared_ptr<body>& b,
-            size& bottomLeft, size& topRight,
-            float density, float restitution, float friction);
+            const float& density, const float& restitution, const float& friction);
         
-    private:
+    protected:
         configuration&              config_;
         boost::shared_ptr<body>     body_;
         
-        size    bl_;
-        size    tr_;
         float   density_;
         float   restitution_;
         float   friction_;
+    };
+    
+    class body_part_box
+    : public body_part
+    {
+    public:
+        body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
+            const float& density, const float& restitution, const float& friction,
+            const size& bottom_left, const size& top_right);
+        
+    private:
+        size    bl_;
+        size    tr_;
+    };
+    
+    class body_part_circle
+    : public body_part
+    {
+    public:
+        body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
+            const float& density, const float& restitution, const float& friction,
+            const float& radius);
+        
+    private:
+        float    radius_;
     };
     
 } // namespace physics

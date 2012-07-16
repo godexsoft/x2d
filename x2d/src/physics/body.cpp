@@ -39,7 +39,8 @@ namespace physics {
     glm::vec2 body::position() const 
     {
         b2Vec2 position = body_->GetPosition();
-        return glm::vec2(position.x, position.y);
+        return glm::vec2(position.x / world::instance().global_scale(),
+                         position.y / world::instance().global_scale());
     }
     
     void body::position(const glm::vec2& p)

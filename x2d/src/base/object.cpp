@@ -167,8 +167,6 @@ namespace x2d {
         // physics
         if(body_) 
         {
-            glm::vec2 pos = body_->position();
-            
             position(body_->position());
             rotation( glm::degrees(body_->angle()) );
         }

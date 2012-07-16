@@ -11,6 +11,11 @@
 
 namespace x2d {
 namespace physics {
-        
+
+    float world_bare::global_scale() const
+    {
+        return 0.1f;
+    }
+    
 } // namespace physics
 } // namespace x2d

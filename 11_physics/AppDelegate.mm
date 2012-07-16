@@ -45,7 +45,7 @@ namespace fs = x2d::filesystem;
     _lvp_man.mount("resources.zip", "res");
     
     // init sound
-    sound_engine::instance();
+    // sound_engine::instance();
     
     // create game
     try 

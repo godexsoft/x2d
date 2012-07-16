@@ -62,7 +62,8 @@ namespace config {
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
 
         parsers_["body"]        = boost::bind(&configuration::parse_body, this, _1, _2);        
-        parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);        
+        parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);
+        parsers_["part:circle"] = boost::bind(&configuration::parse_body_part_circle, this, _1, _2);
     }
     
     void configuration::parse_file(const std::string& cfg_path, const std::string& root_key)
@@ -447,12 +448,22 @@ namespace config {
     
     boost::shared_ptr<body_part> body_part_cfg::create(const boost::shared_ptr<body>& b)
     {
-        boost::shared_ptr<body_part> r = 
-            boost::shared_ptr<body_part>( 
-                new body_part(config_, b, bl_, tr_, 
-                    density_, restitution_, friction_) );        
-        
-        return r;
+        if(type_ == BOX_TYPE)
+        {
+            return
+                boost::shared_ptr<body_part>(
+                    new body_part_box(config_, b, density_, restitution_, friction_,
+                        bl_, tr_) );
+        }
+        else if(type_ == CIRCLE_TYPE)
+        {
+            return
+                boost::shared_ptr<body_part>(
+                    new body_part_circle(config_, b, density_,
+                        restitution_, friction_, radius_) );
+        }
+
+        throw config_exception("Can't create BodyPart with unknown type.");
     }    
 
     

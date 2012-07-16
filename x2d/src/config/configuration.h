@@ -306,8 +306,9 @@ namespace config {
 
         // physics
         void parse_body(xml_node* node, const config_key& key);
+        boost::shared_ptr<body_part_cfg> parse_body_part_common(xml_node* node, const config_key& key);
         void parse_body_part_box(xml_node* node, const config_key& key);
-        void parse_body_part_sphere(xml_node* node, const config_key& key);
+        void parse_body_part_circle(xml_node* node, const config_key& key);
         
         typedef boost::function<void(xml_node*,const config_key&)>              parser_type;        
         typedef boost::function<boost::shared_ptr<object>(const config_key&)>   binding_type;           

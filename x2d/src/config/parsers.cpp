@@ -656,13 +656,8 @@ namespace config {
         }
     }
 
-    void configuration::parse_body_part_box(xml_node* node, const config_key& key)
+    boost::shared_ptr<body_part_cfg> configuration::parse_body_part_common(xml_node* node, const config_key& key)
     {
-        // NOTE: this element must appear nested in a <body> element
-        //
-        // must have:
-        // n:        name of the element
-     
         // parent must be a body
         xml_node* parent = node->parent();
         if(! parent || std::string("body") != parent->name())
@@ -677,31 +672,68 @@ namespace config {
             config_[parent_key] = 
                 boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_, false) );
         }
-        
-        size bottomLeft = 
-            get_attr<size>(*this, node, key, "bottomLeft", 
-                size(-1.0f, -1.0f)).get(*this);
-
-        size topRight = 
-            get_attr<size>(*this, node, key, "topRight", 
-                size(1.0f, 1.0f)).get(*this);
-        
+                
         float density =
-            get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
+        get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
         
         float restitution =
-            get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
+        get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
         
         float friction =
-            get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
+        get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
         
-        // add this part
-        boost::shared_ptr<body_part_cfg> part = 
-            boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_, 
-                bottomLeft, topRight, density, restitution, friction) );
+        boost::shared_ptr<body_part_cfg> part =
+            boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_,
+                density, restitution, friction) );
+                
         config_[key] = part;
+        static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );
         
-        static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );        
+        return part;
+    }
+
+    void configuration::parse_body_part_box(xml_node* node, const config_key& key)
+    {
+        // NOTE: this element must appear nested in a <body> element
+        //
+        // must have:
+        // n:        name of the element
+     
+        boost::shared_ptr<body_part_cfg> part =
+            parse_body_part_common(node, key);
+        
+        size bottom_left =
+            get_attr<size>(*this, node, key, "bottom_left",
+                size(-1.0f, -1.0f)).get(*this);
+
+        size top_right =
+            get_attr<size>(*this, node, key, "top_right",
+                size(1.0f, 1.0f)).get(*this);
+
+        part->bottom_left(bottom_left);
+        part->top_right(top_right);
+        part->type(BOX_TYPE);        
+    }
+    
+    void configuration::parse_body_part_circle(xml_node* node, const config_key& key)
+    {
+        // NOTE: this element must appear nested in a <body> element
+        //
+        // must have:
+        // n:        name of the element
+        //
+        // can have:
+        // radius:   radius of the circle
+        
+        boost::shared_ptr<body_part_cfg> part =
+            parse_body_part_common(node, key);
+        
+        float radius =
+            get_attr<float>(*this, node, key, "radius",
+                0.0f).get(*this);
+        
+        part->radius(radius);
+        part->type(CIRCLE_TYPE);
     }
     
     void configuration::parse_object(xml_node* node, const config_key& key)

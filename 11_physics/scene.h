@@ -21,6 +21,7 @@ public:
     scene(kernel& k, configuration& conf)
     : base_object(k)
     , config_(conf)
+    , spwnr_(config_.create_sys_object<spawner>("spawner"))
     {
         connect_touch_input(WORLD_SPACE);
 
@@ -30,20 +31,12 @@ public:
     
     void touch_input_began(space s, const std::vector<touch>& touches) 
     {
-        boost::shared_ptr<object> obj = config_.create_object("box_obj");
-        
-        glm::vec2 pos;
-        point p = touches.at(0).location();
-        pos.x = p.x;
-        pos.y = p.y;
-        
-        obj->position(pos);
-        objects_.push_back( obj );
+        spwnr_->spawn();
     }
-
     
 private:
     configuration&  config_;
+    boost::shared_ptr<spawner> spwnr_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 

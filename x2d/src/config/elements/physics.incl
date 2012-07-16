@@ -62,16 +62,36 @@ public:
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
      */
-    body_part_cfg(configuration& c, kernel& k, size& bottomLeft, size& topRight,
+    body_part_cfg(configuration& c, kernel& k,
         float density, float restitution, float friction)
     : config_(c)
     , kernel_(k)
-    , bl_(bottomLeft)
-    , tr_(topRight)
+    , type_(INVALID_TYPE)
+    , radius_(0.0f)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
     {
+    }
+
+    void bottom_left(const size& bl)
+    {
+        bl_ = bl;
+    }
+    
+    void top_right(const size& tr)
+    {
+        tr_ = tr;
+    }
+    
+    void radius(const float& r)
+    {
+        radius_ = r;
+    }
+    
+    void type(const body_part_type& t)
+    {
+        type_ = t;
     }
     
     /**
@@ -83,8 +103,10 @@ private:
     configuration&              config_;
     kernel&                     kernel_;
     
+    body_part_type              type_;
     size                        bl_;
     size                        tr_;
+    float                       radius_;
     float                       density_;
     float                       restitution_;
     float                       friction_;
