@@ -14,7 +14,7 @@
 namespace x2d {    
 namespace physics {
 
-    body::body(kernel& k, configuration& conf, const object& obj,
+    body::body(kernel& k, configuration& conf, object& obj,
         bool dynamic, const glm::vec2& pos, float angle)
     : kernel_(k)
     , config_(conf)
@@ -22,8 +22,7 @@ namespace physics {
     , dynamic_(dynamic)
     , body_(world::instance().new_body(pos, glm::radians(angle), dynamic))
     {        
-        LOG("Setting b2Body userdata to 0x%X", this);
-        body_->SetUserData(this);
+        body_->SetUserData(&object_);
     }
     
     void body::add_part(const boost::shared_ptr<body_part>& part)

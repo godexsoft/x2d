@@ -35,7 +35,7 @@ namespace physics {
     class body
     {
     public:
-        body(kernel& k, configuration& conf, const object& obj,
+        body(kernel& k, configuration& conf, object& obj,
              bool dynamic, const glm::vec2& pos, float angle);
         
         void add_part(const boost::shared_ptr<body_part>& part);
@@ -54,7 +54,7 @@ namespace physics {
         
         kernel&         kernel_;
         configuration&  config_;        
-        const object&   object_;
+        object&   object_;
 
         bool         dynamic_;
         

@@ -21,12 +21,20 @@ namespace physics {
         object* o1 = static_cast<object*>(b1->GetUserData());
         object* o2 = static_cast<object*>(b2->GetUserData());
         
-        LOG("Begin contact for objects 0x%X and 0x%X", o1, o2);
+        o1->on_collision_begin(o2);
+        o2->on_collision_begin(o1);
     }
     
     void contact_listener::EndContact(b2Contact* contact)
     {
-        LOG("End contact 0x%X", contact);
+        b2Body* b1 = contact->GetFixtureA()->GetBody();
+        b2Body* b2 = contact->GetFixtureB()->GetBody();
+        
+        object* o1 = static_cast<object*>(b1->GetUserData());
+        object* o2 = static_cast<object*>(b2->GetUserData());
+        
+        o1->on_collision_end(o2);
+        o2->on_collision_end(o1);
     }
     
     void contact_listener::PreSolve(b2Contact* contact, const b2Manifold* old_manifold)

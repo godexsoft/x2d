@@ -491,4 +491,14 @@ namespace x2d {
         is_visible_ = v;
     }
     
+    void object::on_collision_begin(object* with)
+    {
+        LOG("Object collision BEGIN: 0x%X with 0x%X", this, with);
+    }
+
+    void object::on_collision_end(object* with)
+    {
+        LOG("Object collision END: 0x%X with 0x%X", this, with);        
+    }
+
 } // namespace x2d

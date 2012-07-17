@@ -50,29 +50,26 @@ using namespace x2d::config;
          * @param[in] child The child object to add
          */
         void add_child(const boost::shared_ptr<object>& child);
-        
         void release(object& obj);
-
+        boost::shared_ptr<object> child_by_name(const std::string& n);
+        
         const glm::vec3 position() const;
-        
         void position(const glm::vec3& p);
-        
         void position(const glm::vec2& p);
-        
         const glm::vec3 world_position() const;
         
         const float rotation() const;
-        
-        const std::string text() const;
-        
         void rotation(float a);
         
         void scale(float s);
         
         void pivot(const glm::vec2& p);
+        const glm::vec2 pivot() const;
         
         void box(const size& s);
+        const size box() const;
         
+        const std::string text() const;
         void text(const std::string& t);
         
         void set_sprite(const boost::shared_ptr<sprite>& spr);
@@ -80,18 +77,15 @@ using namespace x2d::config;
         void visible(bool v);
         
         const glm::vec3& camera_space_position() const;
-
-        const size box() const;
-        
         const size camera_space_box() const;
-        
-        const glm::vec2 pivot() const;
         
         const glm::vec2 camera_space_pivot() const;
                 
-        boost::shared_ptr<object> child_by_name(const std::string& n);
-        
         void reposition_in_parent_space(const size& b);
+        
+        // collision. can be reimplemented by clients
+        virtual void on_collision_begin(object* with);
+        virtual void on_collision_end(object* with);
         
     protected:
         
