@@ -12,6 +12,12 @@
 namespace x2d {
 namespace physics {
 
+    world_bare::world_bare()
+    : world_(b2Vec2(0.0f, -10.0f))
+    {
+        world_.SetContactListener(&contact_listener_);
+    }
+    
     float world_bare::global_scale() const
     {
         return 0.1f;

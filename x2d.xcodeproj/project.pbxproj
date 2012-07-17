@@ -56,6 +56,8 @@
 		2403496814FA705E00B1CFC9 /* zone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403496714FA705E00B1CFC9 /* zone.h */; };
 		2403496B14FA7D4700B1CFC9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		2403496C14FA7D4F00B1CFC9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		2403907815B60C350017B7DC /* contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2403907615B60C350017B7DC /* contact.cpp */; };
+		2403907915B60C350017B7DC /* contact.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403907715B60C350017B7DC /* contact.h */; };
 		240F052414E40C86002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
@@ -453,6 +455,8 @@
 		2401F169158A7A6A00BC2425 /* b2WheelJoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2WheelJoint.cpp; path = libs/box2d/Box2D/Dynamics/Joints/b2WheelJoint.cpp; sourceTree = SOURCE_ROOT; };
 		2401F16A158A7A6A00BC2425 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2Rope.cpp; path = libs/box2d/Box2D/Rope/b2Rope.cpp; sourceTree = SOURCE_ROOT; };
 		2403496714FA705E00B1CFC9 /* zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zone.h; path = src/base/zone.h; sourceTree = "<group>"; };
+		2403907615B60C350017B7DC /* contact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = contact.cpp; path = src/physics/contact.cpp; sourceTree = "<group>"; };
+		2403907715B60C350017B7DC /* contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = contact.h; path = src/physics/contact.h; sourceTree = "<group>"; };
 		2405FFAC15447890001E956A /* ui.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ui.xml; path = demo/res/ui.xml; sourceTree = "<group>"; };
 		240F053D14E41E30002AEEB2 /* x2d_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F054514E41F4A002AEEB2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = demo/AppDelegate.h; sourceTree = "<group>"; };
@@ -2582,6 +2586,8 @@
 		24DDAD5E15A9E3690064EFC5 /* physics */ = {
 			isa = PBXGroup;
 			children = (
+				2403907615B60C350017B7DC /* contact.cpp */,
+				2403907715B60C350017B7DC /* contact.h */,
 				24DDAD6915AA21AC0064EFC5 /* world.cpp */,
 				24DDAD6715AA091B0064EFC5 /* world.h */,
 				24DDAD6315A9E48A0064EFC5 /* body.cpp */,
@@ -2612,6 +2618,7 @@
 				24DDAD6215A9E3E40064EFC5 /* body_part.h in Headers */,
 				24DDAD6615A9E48A0064EFC5 /* body.h in Headers */,
 				24DDAD6815AA091B0064EFC5 /* world.h in Headers */,
+				2403907915B60C350017B7DC /* contact.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3318,6 +3325,7 @@
 				24DDAD6115A9E3E40064EFC5 /* body_part.cpp in Sources */,
 				24DDAD6515A9E48A0064EFC5 /* body.cpp in Sources */,
 				24DDAD6A15AA21AC0064EFC5 /* world.cpp in Sources */,
+				2403907815B60C350017B7DC /* contact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

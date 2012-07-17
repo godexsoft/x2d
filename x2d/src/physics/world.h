@@ -16,6 +16,7 @@
 #include "Box2D/Box2D.h"
 #include "glm.hpp"
 
+#include "contact.h"
 #include "clock.h"
 #include "config.h"
 
@@ -61,12 +62,10 @@ namespace physics {
         float global_scale() const;
         
     private:
-        world_bare()
-        : world_(b2Vec2(0.0f, -10.0f))
-        {        
-        }
+        world_bare();
         
-        b2World world_;
+        b2World          world_;
+        contact_listener contact_listener_;
     };
     
     typedef boost::details::pool::singleton_default<world_bare> world;
