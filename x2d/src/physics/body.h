@@ -51,9 +51,10 @@ namespace physics {
         
         size get_default_box_size() const;
         
-        // apply stuff
+        // apply/set stuff
         void apply_force_to_center(const glm::vec2& f);
-
+        void set_linear_velocity(const glm::vec2& v);
+        
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
         

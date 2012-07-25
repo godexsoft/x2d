@@ -53,10 +53,13 @@ namespace physics {
     
     void body::position(const glm::vec2& p)
     {
-        // TODO: find a way to change position at runtime
+        body_->SetTransform(
+            b2Vec2(p.x * world::instance().global_scale(),
+                   p.y * world::instance().global_scale()),
+                        body_->GetAngle());
     }
 
-    float body::angle() const 
+    float body::angle() const
     {
         return body_->GetAngle();
     }
@@ -69,6 +72,11 @@ namespace physics {
     void body::apply_force_to_center(const glm::vec2& f)
     {
         body_->ApplyForceToCenter(b2Vec2(f.x, f.y));
+    }
+    
+    void body::set_linear_velocity(const glm::vec2& v)
+    {
+        body_->SetLinearVelocity(b2Vec2(v.x, v.y));
     }
     
 } // namespace physics
