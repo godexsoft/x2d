@@ -334,6 +334,13 @@ namespace config {
     }
 
     template <>
+    short configuration::get_value<short>(const config_key& key)
+    {
+        typedef value_cfg<short> cfg_type;
+        return static_cast<cfg_type*>( &(*config_[key]) )->get();
+    }
+    
+    template <>
     bool configuration::get_value<bool>(const config_key& key)
     {
         typedef value_cfg<bool> cfg_type;
@@ -494,15 +501,15 @@ namespace config {
         {
             return
                 boost::shared_ptr<body_part>(
-                    new body_part_box(config_, b, density_, restitution_, friction_,
-                        bl_, tr_) );
+                    new body_part_box(config_, b, density_, restitution_,
+                        friction_, mask_, category_, bl_, tr_) );
         }
         else if(type_ == CIRCLE_TYPE)
         {
             return
                 boost::shared_ptr<body_part>(
                     new body_part_circle(config_, b, density_,
-                        restitution_, friction_, radius_) );
+                        restitution_, friction_, mask_, category_, radius_) );
         }
 
         throw config_exception("Can't create BodyPart with unknown type.");

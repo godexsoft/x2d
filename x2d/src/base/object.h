@@ -53,6 +53,7 @@ using namespace x2d::config;
         void add_child(const boost::shared_ptr<object>& child);
         void release(object& obj);
         boost::shared_ptr<object> child_by_name(const std::string& n);
+        const std::string name() const;
         
         const glm::vec3 position() const;
         void position(const glm::vec3& p);

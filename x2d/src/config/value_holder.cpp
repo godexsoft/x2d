@@ -32,6 +32,15 @@ namespace config {
     }
  
     template<>
+    short value_holder<short>::get(configuration& c) const
+    {
+        if(!key_.empty() && c.exists(key_))
+            return c.get_value<short>(key_);
+        
+        return def_val_;
+    }
+    
+    template<>
     bool value_holder<bool>::get(configuration& c) const
     {
         if(!key_.empty() && c.exists(key_))

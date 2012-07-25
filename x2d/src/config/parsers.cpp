@@ -682,17 +682,23 @@ namespace config {
         }
                 
         float density =
-        get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
+            get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
         
         float restitution =
-        get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
+            get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
         
         float friction =
-        get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
+            get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
+        
+        signed short mask =
+            get_attr<signed short>(*this, node, key, "mask", 0x0000).get(*this);
+        
+        signed short category =
+            get_attr<signed short>(*this, node, key, "category", 0x0000).get(*this);
         
         boost::shared_ptr<body_part_cfg> part =
             boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_,
-                density, restitution, friction) );
+                density, restitution, friction, mask, category) );
                 
         config_[key] = part;
         static_cast<body_cfg*>(&(*config_[parent_key]))->add( key );
@@ -977,8 +983,19 @@ namespace config {
         xml_attr* body = node->first_attribute("body");
         if(body) 
         {
-            tr.body = body->value();
-            tr.has_body = true;
+            std::string k = lookup_key(body->value(), key.remove_last_path_component());
+                
+            if(k.empty() == false)
+            {
+                tr.body = k;
+                tr.has_body = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's body is not found under key '")
+                        + body->value() + "'.");
+            }
         }
 
         config_[key] = 

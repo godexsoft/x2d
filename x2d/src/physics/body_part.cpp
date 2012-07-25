@@ -14,18 +14,22 @@ namespace x2d {
 namespace physics {
 
     body_part::body_part(configuration& conf,
-        const float& density, const float& restitution, const float& friction)
+        const float& density, const float& restitution, const float& friction,
+        const signed short& mask, const signed short& category)
     : config_(conf)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
+    , mask_(mask)
+    , category_(category)
     {
     }
 
     body_part_box::body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
+        const signed short& mask, const signed short& category,
         const size& bottom_left, const size& top_right)
-    : body_part(conf, density, restitution, friction)
+    : body_part(conf, density, restitution, friction, mask, category)
     , bl_(bottom_left)
     , tr_(top_right)
     {
@@ -39,6 +43,11 @@ namespace physics {
         fix.density = density_;
         fix.restitution = restitution_;
         fix.friction = friction_;
+        
+        LOG("Filters: cat: %d  mask: %d", category_, mask_);
+        
+        fix.filter.categoryBits = category_;
+        fix.filter.maskBits = mask_;
         
         if(bl_.width != 0 && bl_.height != 0)
         {
@@ -64,14 +73,20 @@ namespace physics {
     
     body_part_circle::body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
+        const signed short& mask, const signed short& category,
         const float& radius)
-    : body_part(conf, density, restitution, friction)
+    : body_part(conf, density, restitution, friction, mask, category)
     , radius_(radius)
     {
         b2FixtureDef fix;
         fix.density = density_;
         fix.restitution = restitution_;
         fix.friction = friction_;
+        
+        LOG("Filters: cat: %d  mask: %d", category_, mask_);
+        
+        fix.filter.categoryBits = category_;
+        fix.filter.maskBits = mask_;
         
         if(radius_ == 0.0f)
         {

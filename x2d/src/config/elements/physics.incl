@@ -76,7 +76,8 @@ public:
      * @param[in] k         Kernel object
      */
     body_part_cfg(configuration& c, kernel& k,
-        float density, float restitution, float friction)
+        float density, float restitution, float friction,
+        signed short mask, signed short category)
     : config_(c)
     , kernel_(k)
     , type_(INVALID_TYPE)
@@ -84,6 +85,8 @@ public:
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
+    , mask_(mask)
+    , category_(category)
     {
     }
 
@@ -123,4 +126,6 @@ private:
     float                       density_;
     float                       restitution_;
     float                       friction_;
+    signed short                mask_;
+    signed short                category_;
 };

@@ -356,6 +356,11 @@ namespace x2d {
         throw std::runtime_error("Couldn't find child by name: '" + n + "'");
     }
     
+    const std::string object::name() const
+    {
+        return name_;
+    }
+    
     void object::add_child(const boost::shared_ptr<object>& child)
     {
         child->set_parent(this);

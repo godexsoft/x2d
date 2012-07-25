@@ -37,7 +37,8 @@ namespace physics {
     {
     public:
         body_part(configuration& conf,
-            const float& density, const float& restitution, const float& friction);
+            const float& density, const float& restitution, const float& friction,
+                  const signed short& mask, const signed short& category);
         
     protected:
         configuration&              config_;
@@ -45,6 +46,8 @@ namespace physics {
         float   density_;
         float   restitution_;
         float   friction_;
+        signed short   mask_;
+        signed short   category_;
     };
     
     class body_part_box
@@ -53,6 +56,7 @@ namespace physics {
     public:
         body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
+            const signed short& mask, const signed short& category,
             const size& bottom_left, const size& top_right);
         
     private:
@@ -66,6 +70,7 @@ namespace physics {
     public:
         body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
+            const signed short& mask, const signed short& category,
             const float& radius);
         
     private:

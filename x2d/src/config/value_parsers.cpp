@@ -50,6 +50,26 @@ namespace config {
         
         return i;
     }
+
+    template<>
+    short value_parser<short>::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        
+        if(str.substr(0, 2) == "0x")
+        {
+            ss << std::hex << str.substr(2);
+        }
+        else
+        {
+            ss << str;
+        }
+        
+        short i;
+        ss >> i;
+        
+        return i;
+    }
     
     template<>
     std::vector<std::string> value_parser<std::vector<std::string> >::parse(const std::string& str)
