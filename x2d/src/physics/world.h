@@ -52,7 +52,12 @@ namespace physics {
             }
             
             return world_.CreateBody(&def);
-        }        
+        }
+        
+        void destroy_body(b2Body* b)
+        {
+            world_.DestroyBody(b);
+        }
 
         void update(const clock_info& ci) 
         {

@@ -25,6 +25,12 @@ namespace physics {
         body_->SetUserData(&object_);
     }
     
+    body::~body()
+    {
+        LOG("!!!! Destroy body");
+        world::instance().destroy_body(body_);
+    }
+    
     void body::add_part(const boost::shared_ptr<body_part>& part)
     {
         parts_.push_back(part);        

@@ -107,7 +107,7 @@ namespace base {
         }
         
     private:
-        typedef std::vector<boost::shared_ptr<object> >     objects_vec;
+        typedef std::vector<boost::weak_ptr<object> >     objects_vec;
 
         kernel&         kernel_;
         configuration&  config_;

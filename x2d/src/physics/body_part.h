@@ -36,12 +36,11 @@ namespace physics {
     class body_part
     {
     public:
-        body_part(configuration& conf, const boost::shared_ptr<body>& b,
+        body_part(configuration& conf,
             const float& density, const float& restitution, const float& friction);
         
     protected:
         configuration&              config_;
-        boost::shared_ptr<body>     body_;
         
         float   density_;
         float   restitution_;

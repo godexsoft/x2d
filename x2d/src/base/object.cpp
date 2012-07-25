@@ -20,6 +20,7 @@ namespace x2d {
     , pivot(glm::vec2(0.0f, 0.0f)) // center in world space
     , has_bgcolor(false)
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
+    , lifetime("", 0.0f)
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
     , want_accelerometer_input(false)
@@ -38,9 +39,30 @@ namespace x2d {
     {            
     }
     
+    void object::set_lifetime(const float& ttl)
+    {
+        if(ttl < 0.0f)
+        {
+            lifetime_timer_.cancel();
+        }
+        else
+        {
+            lifetime_timer_.set(ttl);
+        }
+    }
+            
+    void object::on_lifetime_timer(const clock_info& clock)
+    {
+        LOG("Lifetime timer handler...");
+        config_.deregister_object(shared_from_this());
+        lifetime_timer_.cancel();
+        LOG("Object should be dying now..");
+    }
+
     object::object(kernel& k, config::configuration& c, const object_traits& t)
     : base_object(k)
     , config_(c)
+    , lifetime_timer_(k)
     , name_(t.name)
     , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
@@ -58,7 +80,16 @@ namespace x2d {
     , is_visible_(t.visible)
     , parent_(NULL)
     , has_parent_(t.has_parent)
-    {               
+    {
+        lifetime_timer_.handler( boost::bind(&object::on_lifetime_timer, this, _1) );
+        
+        float lt = t.lifetime.get(config_);
+        if(lt > 0.0f)
+        {
+            LOG("Setting lifetime!");
+            set_lifetime(lt);
+        }
+        
         if(t.want_screen_touch_input)
         {
             connect_touch_input(SCREEN_SPACE);
@@ -146,7 +177,7 @@ namespace x2d {
 
             ctx->reg_object(this);
             contexts_.push_back( ctx );            
-        }
+        }        
     }
     
     object::~object()
@@ -160,6 +191,12 @@ namespace x2d {
         }
         
         kernel_.remove_camera_space_object(this);
+    }
+    
+    void object::destroy_self()
+    {
+        LOG("destroy_self called on object 0x%X", this);
+        set_lifetime(0.0f);
     }
         
     void object::update(const clock_info& clock) 

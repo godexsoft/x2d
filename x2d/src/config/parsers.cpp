@@ -761,6 +761,7 @@ namespace config {
         // text:      text to render. must have font specified to use this
         // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
         // body:      physics body
+        // lifetime:  lifetime of the object
         
         object_traits tr;
         
@@ -793,7 +794,8 @@ namespace config {
         tr.box =        get_attr<size>(*this, node, key, "box", size()).get(*this); // TODO: other defaults?
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
-
+        tr.lifetime =   get_attr<float>(*this, node, key, "lifetime", 0.0f);
+        
         xml_attr* bgcolor = node->first_attribute("bgcolor");
         if(bgcolor) 
         {

@@ -13,10 +13,9 @@
 namespace x2d {
 namespace physics {
 
-    body_part::body_part(configuration& conf, const boost::shared_ptr<body>& b,
+    body_part::body_part(configuration& conf,
         const float& density, const float& restitution, const float& friction)
     : config_(conf)
-    , body_(b)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
@@ -26,11 +25,11 @@ namespace physics {
     body_part_box::body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
         const size& bottom_left, const size& top_right)
-    : body_part(conf, b, density, restitution, friction)
+    : body_part(conf, density, restitution, friction)
     , bl_(bottom_left)
     , tr_(top_right)
     {
-        size box = body_->get_default_box_size();
+        size box = b->get_default_box_size();
         
         // box must be defined in order to create a shape
         // TODO: throw exception instead?
@@ -60,13 +59,13 @@ namespace physics {
                        box.height* world::instance().global_scale()/2);
         fix.shape = &shape;
         
-        body_->createFixture(&fix);
+        b->createFixture(&fix);
     }
     
     body_part_circle::body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
         const float& radius)
-    : body_part(conf, b, density, restitution, friction)
+    : body_part(conf, density, restitution, friction)
     , radius_(radius)
     {
         b2FixtureDef fix;
@@ -76,7 +75,7 @@ namespace physics {
         
         if(radius_ == 0.0f)
         {
-            size box = body_->get_default_box_size();
+            size box = b->get_default_box_size();
             
             // box must be defined in order to create a shape
             // TODO: throw exception instead?
@@ -90,7 +89,7 @@ namespace physics {
         shape.m_radius = radius_ * world::instance().global_scale();
         
         fix.shape = &shape;
-        body_->createFixture(&fix);
+        b->createFixture(&fix);
     }
     
 } // namespace physics

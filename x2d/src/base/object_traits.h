@@ -37,6 +37,8 @@ namespace x2d {
         bool                     has_bgcolor;
         color_info               bgcolor;
         
+        value_holder<float>      lifetime;
+        
         // input methods requested by object
         bool        want_screen_touch_input;
         bool        want_world_touch_input;

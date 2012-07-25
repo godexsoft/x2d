@@ -33,12 +33,13 @@ namespace config {
     
 } // namespace config
 using namespace x2d::config;
-        
+    
     /**
      * @brief Default x2d object
      */
     class object 
-    : public base_object    
+    : public base_object
+    , public boost::enable_shared_from_this<object>
     {        
     public:
         object(kernel& k, config::configuration& c, const object_traits& t=object_traits());
@@ -87,6 +88,8 @@ using namespace x2d::config;
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);
         
+        void set_lifetime(const float& ttl);
+        
     protected:
         
         virtual void update(const clock_info& clock);        
@@ -103,8 +106,13 @@ using namespace x2d::config;
         }
         
     private:
-        config::configuration&  config_;
+        
+        void destroy_self();
+        void on_lifetime_timer(const clock_info& clock);
 
+        config::configuration&  config_;
+        timer                   lifetime_timer_;
+        
     protected:        
         const std::string           name_;
         boost::shared_ptr<camera>   camera_;

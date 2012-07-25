@@ -25,8 +25,11 @@ public:
     {
         connect_touch_input(WORLD_SPACE);
 
-        objects_.push_back( config_.create_object("floor_obj") );
+        config_.create_object("floor_obj");
+        
+#ifdef DEBUG
         objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
+#endif
     }
     
     void touch_input_began(space s, const std::vector<touch>& touches) 

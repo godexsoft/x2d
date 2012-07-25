@@ -58,12 +58,15 @@ namespace base {
         for( objects_vec::iterator it = objects_.begin();
             it != objects_.end(); ++it)
         {
-            if((*it).get() == &obj)
+            if( boost::shared_ptr<object> l = (*it).lock() )
             {
-                LOG("ERASE object from spawner ownership!!!!");
-                objects_.erase(it);
-                return;
-            }        
+                if(l.get() == &obj)
+                {
+                    LOG("ERASE object link from spawner on request");
+                    objects_.erase(it);
+                    return;
+                }
+            }
         }
         
         LOG("couldn't find object in spawner ownership!");

@@ -62,19 +62,19 @@ namespace time {
     
     void timer::process(const clock_info& ci)
     {
-        if(handler_) 
-        {
-            // calculate timer delta time instead of clock delta time
-            double dt = ci.time - start_clock_info_.time;
-            clock_info tci(ci.time, dt);
-            
-            handler_(tci);
-        }
-        
-        // and reset
+        // calculate timer delta time instead of clock delta time
+        double dt = ci.time - start_clock_info_.time;
+        clock_info tci(ci.time, dt);
+
+        // reset first
         start_clock_info_.time = ci.time;
         fire_ += frequency_;        
         kernel_.enqueue( this );
+        
+        if(handler_) 
+        {
+            handler_(tci);
+        }
     }
     
 } // namespace time

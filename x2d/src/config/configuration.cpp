@@ -33,6 +33,22 @@ namespace config {
         parse_file(cfg_path);
     }
     
+    void configuration::register_object(const boost::shared_ptr<object>& obj)
+    {
+        LOG("-- Registering object");
+        objects_.push_back(obj);
+    }
+    
+    void configuration::deregister_object(const boost::shared_ptr<object>& obj)
+    {
+        LOG("-- Deregistering object");
+        objects_.erase( std::remove(
+            objects_.begin(),
+            objects_.end(),
+                obj),
+                    objects_.end());
+    }
+    
     void configuration::load_core_parsers()
     {
         // add x2d core parsers
@@ -180,16 +196,23 @@ namespace config {
     const boost::shared_ptr<object> configuration::create_object(const config_key& key)
     {
         LOG("Try to lookup binding for '%s'", key.string().c_str());
+        boost::shared_ptr<object> obj;
+        
         // try to find binding first
         if(create_obj_bindings_.find(key) != create_obj_bindings_.end())
         {
             LOG("FOUND!");
             // forward to strong-typed version
-            return create_obj_bindings_[key]( key );
+            obj = create_obj_bindings_[key]( key );
         }
-
-        LOG("No binding. return plain object version!");
-        return static_cast<object_cfg*>( &(*config_[key]) )->create();
+        else
+        {
+            LOG("No binding. return plain object version!");
+            obj = static_cast<object_cfg*>( &(*config_[key]) )->create();
+        }
+        
+        register_object(obj);
+        return obj;
     }
     
     template <>

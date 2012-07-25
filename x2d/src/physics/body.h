@@ -38,6 +38,8 @@ namespace physics {
         body(kernel& k, configuration& conf, object& obj,
              bool dynamic, const glm::vec2& pos, float angle);
         
+        ~body();
+        
         void add_part(const boost::shared_ptr<body_part>& part);
         
         void createFixture(b2FixtureDef* fix);

@@ -92,6 +92,10 @@
         <float n = "scale">
             <random from = "0.1" to = "0.5" />
         </float>
+
+        <float n = "lifetime">
+            <random from = "3" to = "5" />
+        </float>
     </object>
 
     <object n = "sphere_obj"
@@ -100,6 +104,10 @@
     >
         <float n = "scale">
             <random from = "0.1" to = "0.5" />
+        </float>
+        
+        <float n = "lifetime">
+            <random from = "3" to = "5" />
         </float>
     </object>
 

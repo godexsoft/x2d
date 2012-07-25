@@ -71,6 +71,14 @@ namespace config {
          */
         configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path);
         
+        
+        /*
+         * Object support
+         */
+        void register_object(const boost::shared_ptr<object>& obj);
+        void deregister_object(const boost::shared_ptr<object>& obj);
+        
+        
         kernel& get_kernel() const
         {
             return kernel_;
@@ -258,6 +266,7 @@ namespace config {
         }
         
     private:
+
         /**
          * Loads x2d default parsers.
          */
@@ -315,10 +324,13 @@ namespace config {
         
         kernel&                                 kernel_;
         resource_manager&                       res_man_;
+        
         std::map<config_key, cfg_base_ptr>      config_;
         std::map<std::string, parser_type>      parsers_;
 
-        std::map<config_key, binding_type>     create_obj_bindings_;
+        std::map<config_key, binding_type>      create_obj_bindings_;
+        
+        std::deque< boost::shared_ptr<object> > objects_;
     };
     
 } // namespace config
