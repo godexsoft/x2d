@@ -20,10 +20,12 @@ public:
      * @param[in] k         Kernel object
      * @param[in] dynamic   Whether body is dynamic
      */
-    body_cfg(configuration& c, kernel& k, bool dynamic)
+    body_cfg(configuration& c, kernel& k, bool dynamic, bool bullet, bool fixed_rotation)
     : config_(c)
     , kernel_(k)
     , dynamic_(dynamic)
+    , bullet_(bullet)
+    , fixed_rotation_(fixed_rotation)
     {        
     }
     
@@ -41,12 +43,23 @@ public:
     {
         dynamic_ = dynamic;
     }
+
+    void set_bullet(const bool bullet)
+    {
+        bullet_ = bullet;
+    }
     
+    void set_fixed_rotation(const bool fixed_rotation)
+    {
+        fixed_rotation_ = fixed_rotation;
+    }
 private:                
     configuration&              config_;
     kernel&                     kernel_;
     
-    bool                        dynamic_;    
+    bool                        dynamic_;
+    bool                        bullet_;
+    bool                        fixed_rotation_;
     std::vector<std::string>    parts_;
 };
 

@@ -15,7 +15,7 @@ namespace x2d {
 namespace physics {
 
     body::body(kernel& k, configuration& conf, object& obj,
-        bool dynamic)
+        bool dynamic, bool bullet, bool fixed_rotation)
     : kernel_(k)
     , config_(conf)
     , object_(obj)
@@ -24,11 +24,13 @@ namespace physics {
                                        glm::radians(obj.rotation()), dynamic))
     {        
         body_->SetUserData(&object_);
+        
+        body_->SetBullet(bullet);
+        body_->SetFixedRotation(fixed_rotation);
     }
     
     body::~body()
     {
-        LOG("!!!! Destroy body");
         world::instance().destroy_body(body_);
     }
     

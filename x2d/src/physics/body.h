@@ -36,7 +36,7 @@ namespace physics {
     {
     public:
         body(kernel& k, configuration& conf, object& obj,
-             bool dynamic);
+             bool dynamic, bool bullet, bool fixed_rotation);
         
         ~body();
         
@@ -59,7 +59,7 @@ namespace physics {
         
         kernel&         kernel_;
         configuration&  config_;        
-        object&   object_;
+        object&         object_;
 
         bool         dynamic_;
         

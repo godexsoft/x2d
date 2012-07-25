@@ -639,9 +639,13 @@ namespace config {
         // 
         // can have:
         // dynamic:  boolean. defaults to false
+        // bullet:   boolean. defaults to false
+        // fixed_rotation:   boolean. defaults to false
         // 
         
         bool dynamic = get_attr<bool>(*this, node, key, "dynamic", false).get(*this);
+        bool bullet  = get_attr<bool>(*this, node, key, "bullet", false).get(*this);
+        bool fix_rot = get_attr<bool>(*this, node, key, "fixed_rotation", false).get(*this);
         
         if( config_.find(key) == config_.end() )
         {
@@ -650,9 +654,13 @@ namespace config {
         }
         else
         {
-            // Set dynamic
+            // Set dynamic, bullet and fixed_rotation
             static_cast<body_cfg*>(&(*config_[key]))
-                ->set_dynamic(dynamic);   
+                ->set_dynamic(dynamic);
+            static_cast<body_cfg*>(&(*config_[key]))
+                ->set_bullet(bullet);
+            static_cast<body_cfg*>(&(*config_[key]))
+                ->set_fixed_rotation(fix_rot);
         }
     }
 
@@ -670,7 +678,7 @@ namespace config {
         {
             // No body exists yet
             config_[parent_key] = 
-                boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_, false) );
+                boost::shared_ptr<body_cfg>( new body_cfg(*this, kernel_, false, false, false) );
         }
                 
         float density =

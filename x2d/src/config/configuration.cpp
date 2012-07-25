@@ -475,7 +475,7 @@ namespace config {
     boost::shared_ptr<body> body_cfg::create(object& obj)
     {
         boost::shared_ptr<body> r = boost::shared_ptr<body>( 
-            new body(config_.get_kernel(), config_, obj, dynamic_) );
+            new body(config_.get_kernel(), config_, obj, dynamic_, bullet_, fixed_rotation_) );
         
         // create all parts and add them
         for(int i=0; i<parts_.size(); ++i)
