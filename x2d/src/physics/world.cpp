@@ -23,5 +23,10 @@ namespace physics {
         return 0.1f;
     }
     
+    void world_bare::set_gravity(const glm::vec2& g)
+    {
+        world_.SetGravity(b2Vec2(g.x, g.y));
+    }
+    
 } // namespace physics
 } // namespace x2d

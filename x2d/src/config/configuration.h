@@ -107,8 +107,11 @@ namespace config {
         template <typename T>
         void bind(const config_key& key)
         {
-            create_obj_bindings_.insert( 
+            create_obj_bindings_.insert(
                 std::make_pair(key, boost::bind(&configuration::create_object<T>, this, _1)) );
+            
+            create_obj_1_bindings_.insert(
+                std::make_pair(key, boost::bind(&configuration::create_object_1<T>, this, _1, _2)) );
         }
         
         /**
@@ -120,6 +123,17 @@ namespace config {
         {
             return static_cast<object_cfg*>( &(*config_[key]) )->create<T>();
         }
+
+        /**
+         * Create new object of requested custom type relative to spawner
+         * @param[in] key Configuration key
+         * @param[in] spwn The spawner
+         */
+        template <typename T>
+        const boost::shared_ptr<T> create_object_1(const config_key& key, spawner* spwn)
+        {
+            return static_cast<object_cfg*>( &(*config_[key]) )->create<T>(spwn);
+        }
         
         /**
          * Create new object without explicit type specification.
@@ -130,6 +144,14 @@ namespace config {
          * @param[in] key Configuration key
          */
         const boost::shared_ptr<object> create_object(const config_key& key);
+        
+        /**
+         * Create new object relative to spawner.
+         *
+         * @param[in] key Configuration key
+         * @param[in] spwn The spawner
+         */
+        const boost::shared_ptr<object> create_object_1(const config_key& key, spawner* spwn);
         
         /**
          * Create if required and return a shared version of a given object.
@@ -320,7 +342,8 @@ namespace config {
         void parse_body_part_circle(xml_node* node, const config_key& key);
         
         typedef boost::function<void(xml_node*,const config_key&)>              parser_type;        
-        typedef boost::function<boost::shared_ptr<object>(const config_key&)>   binding_type;           
+        typedef boost::function<boost::shared_ptr<object>(const config_key&)>             binding_type;
+        typedef boost::function<boost::shared_ptr<object>(const config_key&, spawner*)>   binding_1_type;
         
         kernel&                                 kernel_;
         resource_manager&                       res_man_;
@@ -329,6 +352,7 @@ namespace config {
         std::map<std::string, parser_type>      parsers_;
 
         std::map<config_key, binding_type>      create_obj_bindings_;
+        std::map<config_key, binding_1_type>    create_obj_1_bindings_;
         
         std::deque< boost::shared_ptr<object> > objects_;
     };

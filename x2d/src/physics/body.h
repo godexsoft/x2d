@@ -36,7 +36,7 @@ namespace physics {
     {
     public:
         body(kernel& k, configuration& conf, object& obj,
-             bool dynamic, const glm::vec2& pos, float angle);
+             bool dynamic);
         
         ~body();
         
@@ -51,6 +51,9 @@ namespace physics {
         
         size get_default_box_size() const;
         
+        // apply stuff
+        void apply_force_to_center(const glm::vec2& f);
+
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
         

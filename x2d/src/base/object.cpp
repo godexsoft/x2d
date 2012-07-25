@@ -59,7 +59,7 @@ namespace x2d {
         LOG("Object should be dying now..");
     }
 
-    object::object(kernel& k, config::configuration& c, const object_traits& t)
+    object::object(kernel& k, config::configuration& c, const object_traits& t, spawner* spwn)
     : base_object(k)
     , config_(c)
     , lifetime_timer_(k)
@@ -81,6 +81,12 @@ namespace x2d {
     , parent_(NULL)
     , has_parent_(t.has_parent)
     {
+        if(spwn)
+        {
+            LOG("Creating object relative to a spawner...");
+            position_ += spwn->world_position();
+        }
+        
         lifetime_timer_.handler( boost::bind(&object::on_lifetime_timer, this, _1) );
         
         float lt = t.lifetime.get(config_);

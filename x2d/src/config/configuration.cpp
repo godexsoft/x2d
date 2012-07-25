@@ -215,6 +215,28 @@ namespace config {
         return obj;
     }
     
+    const boost::shared_ptr<object> configuration::create_object_1(const config_key& key, spawner* spwn)
+    {
+        LOG("Try to lookup binding for '%s'", key.string().c_str());
+        boost::shared_ptr<object> obj;
+        
+        // try to find binding first
+        if(create_obj_1_bindings_.find(key) != create_obj_1_bindings_.end())
+        {
+            LOG("FOUND!");
+            // forward to strong-typed version
+            obj = create_obj_1_bindings_[key]( key, spwn );
+        }
+        else
+        {
+            LOG("No binding. return plain object version!");
+            obj = static_cast<object_cfg*>( &(*config_[key]) )->create(spwn);
+        }
+        
+        register_object(obj);
+        return obj;
+    }
+    
     template <>
     boost::shared_ptr<texture> configuration::get_object<texture>(const config_key& key)
     {
@@ -452,11 +474,8 @@ namespace config {
     
     boost::shared_ptr<body> body_cfg::create(object& obj)
     {
-        glm::vec3 pos = obj.position();
-        float angle = obj.rotation();
-        
         boost::shared_ptr<body> r = boost::shared_ptr<body>( 
-            new body(config_.get_kernel(), config_, obj, dynamic_, glm::vec2(pos.x, pos.y), angle) );        
+            new body(config_.get_kernel(), config_, obj, dynamic_) );
         
         // create all parts and add them
         for(int i=0; i<parts_.size(); ++i)

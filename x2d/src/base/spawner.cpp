@@ -40,12 +40,7 @@ namespace base {
     {
         for(int i=0; i<wave_size_; ++i)
         {
-            boost::shared_ptr<object> o = config_.create_object(obj_lst_.random(config_));
-            
-            glm::vec3 pos = o->position();
-            pos += world_position();     
-            
-            o->position( pos );
+            boost::shared_ptr<object> o = config_.create_object_1(obj_lst_.random(config_), this);
             objects_.push_back( o );
         }
         

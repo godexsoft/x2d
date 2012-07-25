@@ -15,12 +15,13 @@ namespace x2d {
 namespace physics {
 
     body::body(kernel& k, configuration& conf, object& obj,
-        bool dynamic, const glm::vec2& pos, float angle)
+        bool dynamic)
     : kernel_(k)
     , config_(conf)
     , object_(obj)
     , dynamic_(dynamic)
-    , body_(world::instance().new_body(pos, glm::radians(angle), dynamic))
+    , body_(world::instance().new_body(glm::vec2(obj.position().x, obj.position().y),
+                                       glm::radians(obj.rotation()), dynamic))
     {        
         body_->SetUserData(&object_);
     }
@@ -61,6 +62,11 @@ namespace physics {
     size body::get_default_box_size() const
     {
         return object_.box();
+    }
+    
+    void body::apply_force_to_center(const glm::vec2& f)
+    {
+        body_->ApplyForceToCenter(b2Vec2(f.x, f.y));
     }
     
 } // namespace physics

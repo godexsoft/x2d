@@ -42,7 +42,7 @@ using namespace x2d::config;
     , public boost::enable_shared_from_this<object>
     {        
     public:
-        object(kernel& k, config::configuration& c, const object_traits& t=object_traits());
+        object(kernel& k, config::configuration& c, const object_traits& t=object_traits(), spawner* spwn = NULL);
         
         virtual ~object(); 
         

@@ -64,6 +64,8 @@ namespace physics {
             world_.Step(1.0f/60.f, 8, 3);
         }
         
+        void set_gravity(const glm::vec2& g);
+        
         float global_scale() const;
         
     private:
