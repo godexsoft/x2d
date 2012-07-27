@@ -249,6 +249,8 @@
 		24909214154C5A79000EE894 /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24909212154C5A78000EE894 /* hud.cpp */; };
 		24B7C3141504E1C5000A11D3 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		24B7C3161504E1E4000A11D3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
+		24B9535615C206EF0091DE2C /* object_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24B9535415C206EF0091DE2C /* object_input.cpp */; };
+		24B9535715C206EF0091DE2C /* object_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 24B9535515C206EF0091DE2C /* object_input.h */; };
 		24C7483C14F654C6004E07DD /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		24C7483D14F654C6004E07DD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24C7483E14F654C6004E07DD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7A14E9D1750056C5E5 /* CoreAudio.framework */; };
@@ -917,6 +919,8 @@
 		24B329DE15A119F9002E4344 /* frame.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = frame.incl; sourceTree = "<group>"; };
 		24B329DF15A11A3F002E4344 /* sprite.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = sprite.incl; sourceTree = "<group>"; };
 		24B329E015A11A9B002E4344 /* texture.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = texture.incl; sourceTree = "<group>"; };
+		24B9535415C206EF0091DE2C /* object_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = object_input.cpp; path = src/input/object_input.cpp; sourceTree = "<group>"; };
+		24B9535515C206EF0091DE2C /* object_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object_input.h; path = src/input/object_input.h; sourceTree = "<group>"; };
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1868,6 +1872,8 @@
 		245151D214DC22C20029D699 /* input */ = {
 			isa = PBXGroup;
 			children = (
+				24B9535415C206EF0091DE2C /* object_input.cpp */,
+				24B9535515C206EF0091DE2C /* object_input.h */,
 				245151D414DC22FC0029D699 /* input_manager.h */,
 				245151D814DDB7D60029D699 /* input_manager.cpp */,
 				245151D614DC2A300029D699 /* touch.h */,
@@ -2619,6 +2625,7 @@
 				24DDAD6615A9E48A0064EFC5 /* body.h in Headers */,
 				24DDAD6815AA091B0064EFC5 /* world.h in Headers */,
 				2403907915B60C350017B7DC /* contact.h in Headers */,
+				24B9535715C206EF0091DE2C /* object_input.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3326,6 +3333,7 @@
 				24DDAD6515A9E48A0064EFC5 /* body.cpp in Sources */,
 				24DDAD6A15AA21AC0064EFC5 /* world.cpp in Sources */,
 				2403907815B60C350017B7DC /* contact.cpp in Sources */,
+				24B9535615C206EF0091DE2C /* object_input.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3850,7 +3858,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "06_hud/hud-Prefix.pch";
 				INFOPLIST_FILE = 06_hud/hud.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_hud;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3862,7 +3870,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "06_hud/hud-Prefix.pch";
 				INFOPLIST_FILE = 06_hud/hud.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_hud;
 				WRAPPER_EXTENSION = app;
 			};

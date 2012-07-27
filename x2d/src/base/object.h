@@ -89,7 +89,18 @@ using namespace x2d::config;
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);
         
+        // can be overriden by clients
+        virtual void on_input(const glm::vec2& v)
+        {
+            if(on_input_)
+            {
+                on_input_(v);
+            }
+        }
+        
         void set_lifetime(const float& ttl);
+        
+        void set_on_input(const boost::function<void(const glm::vec2&)>& fn);
         
     protected:
         
@@ -104,6 +115,9 @@ using namespace x2d::config;
         void set_parent(object* o)
         {
             parent_ = o;
+            
+            // moves object to parent space if not world
+            space_ = parent_->space_;
         }
         
     private:
@@ -133,6 +147,8 @@ using namespace x2d::config;
         glm::vec2   camera_space_pivot_;
         
         color_info  bgcolor_;
+        
+        boost::function<void(const glm::vec2&)> on_input_;
         
         boost::shared_ptr<animation>   cur_animation_;
         boost::shared_ptr<sprite>      cur_sprite_;

@@ -19,6 +19,7 @@ namespace config {
     configuration::configuration(kernel& k, resource_manager& res_man)
     : kernel_(k)
     , res_man_(res_man)
+    , object_input_manager_(kernel_)
     {
         load_core_parsers();
     }
@@ -26,6 +27,7 @@ namespace config {
     configuration::configuration(kernel& k, resource_manager& res_man, const std::string& cfg_path)
     : kernel_(k)
     , res_man_(res_man)
+    , object_input_manager_(kernel_)
     {
         load_core_parsers();
         

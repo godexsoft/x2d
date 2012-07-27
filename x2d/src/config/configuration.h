@@ -27,6 +27,8 @@
 #include "object_support.h"
 #include "value_support.h"
 
+#include "object_input.h"
+
 namespace x2d {
 namespace config {
     
@@ -77,8 +79,7 @@ namespace config {
          */
         void register_object(const boost::shared_ptr<object>& obj);
         void deregister_object(const boost::shared_ptr<object>& obj);
-        
-        
+                
         kernel& get_kernel() const
         {
             return kernel_;
@@ -89,6 +90,11 @@ namespace config {
             return res_man_;
         }
 
+        object_input_manager& get_input_manager()
+        {
+            return object_input_manager_;
+        }
+        
         /**
          * Load an x2d plugin.
          */
@@ -355,6 +361,8 @@ namespace config {
         std::map<config_key, binding_1_type>    create_obj_1_bindings_;
         
         std::deque< boost::shared_ptr<object> > objects_;
+        
+        object_input_manager                    object_input_manager_;
     };
     
 } // namespace config

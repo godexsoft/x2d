@@ -22,8 +22,8 @@ class custom_obj
 : public object
 {
 public:
-    custom_obj(kernel& k, configuration& c, const object_traits& t)
-    : object(k, c, t)
+    custom_obj(kernel& k, configuration& c, const object_traits& t, spawner* spwn = NULL)
+    : object(k, c, t, spwn)
     , cam_rot_(0.0f)
     , li_(cam_rot_, 0.0f, 360.0f, 2.0f)
     {    

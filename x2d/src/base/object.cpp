@@ -54,9 +54,11 @@ namespace x2d {
     void object::on_lifetime_timer(const clock_info& clock)
     {
         LOG("Lifetime timer handler...");
+        
+        config_.get_input_manager().deregister_object(this);
         config_.deregister_object(shared_from_this());
-        lifetime_timer_.cancel();
-        LOG("Object should be dying now..");
+        
+        lifetime_timer_.cancel();        
     }
 
     object::object(kernel& k, config::configuration& c, const object_traits& t, spawner* spwn)
@@ -352,8 +354,8 @@ namespace x2d {
                 return *it;                        
         }
         
-        // TODO: custom exception?
-        throw std::runtime_error("Couldn't find child by name: '" + n + "'");
+        LOG("Couldn't find child by name: '%s'", n.c_str());
+        throw sys_exception("Couldn't find child by name: '" + n + "'");
     }
     
     const std::string object::name() const
@@ -414,7 +416,6 @@ namespace x2d {
     
     const glm::vec3 object::world_position() const
     {
-        // TODO: if we are in camera-space then we must calculate using the camera_
         if(space_ == CAMERA_SPACE)
         {
             if(parent_)
@@ -549,4 +550,14 @@ namespace x2d {
         LOG("Object collision END: 0x%X with 0x%X", this, with);        
     }
 
+    void object::set_on_input(const boost::function<void(const glm::vec2&)>& fn)
+    {
+        if(! on_input_)
+        {
+            config_.get_input_manager().register_object(this);
+        }
+        
+        on_input_ = fn;
+    }
+    
 } // namespace x2d
