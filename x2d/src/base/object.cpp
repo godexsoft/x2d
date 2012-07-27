@@ -550,14 +550,33 @@ namespace x2d {
         LOG("Object collision END: 0x%X with 0x%X", this, with);        
     }
 
-    void object::set_on_input(const boost::function<void(const glm::vec2&)>& fn)
+    void object::set_on_input_began(const boost::function<bool(const glm::vec2&)>& fn)
     {
-        if(! on_input_)
+        if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
         {
             config_.get_input_manager().register_object(this);
         }
         
-        on_input_ = fn;
+        on_input_began_ = fn;
+    }
+
+    void object::set_on_input_moved(const boost::function<bool(const glm::vec2&)>& fn)
+    {
+        if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
+        {
+            config_.get_input_manager().register_object(this);
+        }
+        
+        on_input_moved_ = fn;
     }
     
+    void object::set_on_input_ended(const boost::function<bool(const glm::vec2&)>& fn)
+    {
+        if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
+        {
+            config_.get_input_manager().register_object(this);
+        }
+        
+        on_input_ended_ = fn;
+    }
 } // namespace x2d

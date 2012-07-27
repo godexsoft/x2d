@@ -90,17 +90,41 @@ using namespace x2d::config;
         virtual void on_collision_end(object* with);
         
         // can be overriden by clients
-        virtual void on_input(const glm::vec2& v)
+        virtual bool on_input_began(const glm::vec2& v)
         {
-            if(on_input_)
+            if(on_input_began_)
             {
-                on_input_(v);
+                return on_input_began_(v);
             }
+
+            return false;
+        }
+        
+        virtual bool on_input_moved(const glm::vec2& v)
+        {
+            if(on_input_moved_)
+            {
+                return on_input_moved_(v);
+            }
+
+            return false;
+        }
+        
+        virtual bool on_input_ended(const glm::vec2& v)
+        {
+            if(on_input_ended_)
+            {
+                return on_input_ended_(v);
+            }
+            
+            return false;
         }
         
         void set_lifetime(const float& ttl);
         
-        void set_on_input(const boost::function<void(const glm::vec2&)>& fn);
+        void set_on_input_began(const boost::function<bool(const glm::vec2&)>& fn);
+        void set_on_input_moved(const boost::function<bool(const glm::vec2&)>& fn);
+        void set_on_input_ended(const boost::function<bool(const glm::vec2&)>& fn);
         
     protected:
         
@@ -148,7 +172,9 @@ using namespace x2d::config;
         
         color_info  bgcolor_;
         
-        boost::function<void(const glm::vec2&)> on_input_;
+        boost::function<bool(const glm::vec2&)> on_input_began_;
+        boost::function<bool(const glm::vec2&)> on_input_moved_;
+        boost::function<bool(const glm::vec2&)> on_input_ended_;
         
         boost::shared_ptr<animation>   cur_animation_;
         boost::shared_ptr<sprite>      cur_sprite_;

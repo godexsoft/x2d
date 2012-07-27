@@ -31,12 +31,6 @@ namespace input {
         : base_object(k)
         {
             connect_touch_input(WORLD_SPACE);
-            LOG("OBJECT INPUT MANAGER CREATED");
-        }
-        
-        ~object_input_manager()
-        {
-            LOG("OBJECT INPUT MANAGER DYING");
         }
         
         void register_object(object* obj);
@@ -44,10 +38,18 @@ namespace input {
             
         void touch_input_began(space s, const std::vector<touch>& touches);
         void touch_input_moved(space s, const std::vector<touch>& touches);        
+        void touch_input_ended(space s, const std::vector<touch>& touches);
         
     private:
-        typedef std::deque<object*> obj_deque;
-        obj_deque objects_;
+        
+        enum input_state
+        {
+            RELEASED = 0,
+            PRESSED,
+        };
+        
+        typedef std::map<object*, input_state> obj_map;
+        obj_map objects_;
     };
     
 } // namespace input
