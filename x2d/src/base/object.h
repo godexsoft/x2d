@@ -136,15 +136,14 @@ using namespace x2d::config;
             return config_;
         }
         
-        void set_parent(object* o)
-        {
-            parent_ = o;
-            
-            // moves object to parent space if not world
-            space_ = parent_->space_;
-        }
+        void set_parent(object* o);
         
     private:
+        
+        void set_space(const space& s)
+        {
+            space_ = s;
+        }
         
         void destroy_self();
         void on_lifetime_timer(const clock_info& clock);

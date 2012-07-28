@@ -206,6 +206,16 @@ namespace x2d {
         LOG("destroy_self called on object 0x%X", this);
         set_lifetime(0.0f);
     }
+    
+    void object::set_parent(object* o)
+    {
+        parent_ = o;
+        
+        // moves object to parent's space if not world.
+        // but it should not affect children because
+        // they are relative to this object's space.
+        space_ = parent_->space_;
+    }
         
     void object::update(const clock_info& clock) 
     {
@@ -340,13 +350,6 @@ namespace x2d {
         {
             glm::vec2 pi( camera_space_pivot_.x * box_.width, camera_space_pivot_.y * box_.height );
             pivot_ = glm::vec2(-(box_.width/2)+pi.x, -(box_.height/2)+pi.y);
-        }
-        
-        // and all children relative to their parent
-        for(std::vector< boost::shared_ptr<object> >::iterator it = children_.begin(); 
-            it != children_.end(); ++it)
-        {
-            (*it)->reposition_in_parent_space(box_);
         }
     }
     

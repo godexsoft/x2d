@@ -77,7 +77,7 @@ namespace input {
                         it->first->on_input_moved(glm::vec2(tit->location().x, tit->location().y));
                     }
                 }
-                else
+                else if(r.contains_point(tit->prev_location()))
                 {
                     // slide out
                     if(it->second == PRESSED)
