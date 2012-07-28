@@ -208,7 +208,12 @@ namespace x2d {
     }
         
     void object::update(const clock_info& clock) 
-    { 
+    {
+        if(parent_ != NULL && parent_space_ != PARENT_SPACE_NONE)
+        {
+            reposition_in_parent_space(parent_->box());
+        }
+        
         // physics
         if(body_) 
         {
@@ -490,25 +495,14 @@ namespace x2d {
     {        
         if(box_.width != 0 && box_.height != 0) 
         {
-            LOG("Return box_ as box() of object: %f %f", 
-                box_.width * scale_, box_.height * scale_);
-            
             return box_ * scale_;
         }
         else if(cur_sprite_)
         {
-            LOG("Return cur_sprite_->box() as box() of object: %f %f", 
-                cur_sprite_->box().width * scale_, 
-                cur_sprite_->box().height * scale_);
-            
             return cur_sprite_->box() * scale_;
         }
         else if(cur_animation_)
         {
-            LOG("Return cur_animation_->box() as box() of object: %f %f", 
-                cur_animation_->box().width * scale_, 
-                cur_animation_->box().height * scale_);
-            
             return cur_animation_->box() * scale_;
         }
         
