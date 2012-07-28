@@ -3742,7 +3742,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
 				INFOPLIST_FILE = 09_sound/sound.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_sound;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3754,7 +3754,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
 				INFOPLIST_FILE = 09_sound/sound.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_sound;
 				WRAPPER_EXTENSION = app;
 			};
