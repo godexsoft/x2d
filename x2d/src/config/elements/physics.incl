@@ -19,13 +19,18 @@ public:
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
      * @param[in] dynamic   Whether body is dynamic
+     * @param[in] bullet    Mark the body as high-speed
+     * @param[in] fixed_rotation If the body should not allow rotation
+     * @param[in] linear_damping Linear damping
      */
-    body_cfg(configuration& c, kernel& k, bool dynamic, bool bullet, bool fixed_rotation)
+    body_cfg(configuration& c, kernel& k, bool dynamic, bool bullet,
+             bool fixed_rotation, const float& linear_damping)
     : config_(c)
     , kernel_(k)
     , dynamic_(dynamic)
     , bullet_(bullet)
     , fixed_rotation_(fixed_rotation)
+    , linear_damping_(linear_damping)
     {        
     }
     
@@ -39,20 +44,26 @@ public:
         parts_.push_back(part_key);
     }
     
-    void set_dynamic(const bool dynamic)
+    void set_dynamic(const bool& dynamic)
     {
         dynamic_ = dynamic;
     }
 
-    void set_bullet(const bool bullet)
+    void set_bullet(const bool& bullet)
     {
         bullet_ = bullet;
     }
     
-    void set_fixed_rotation(const bool fixed_rotation)
+    void set_fixed_rotation(const bool& fixed_rotation)
     {
         fixed_rotation_ = fixed_rotation;
     }
+    
+    void set_linear_damping(const float& linear_damping)
+    {
+        linear_damping_ = linear_damping;
+    }
+
 private:                
     configuration&              config_;
     kernel&                     kernel_;
@@ -60,6 +71,7 @@ private:
     bool                        dynamic_;
     bool                        bullet_;
     bool                        fixed_rotation_;
+    float                       linear_damping_;
     std::vector<std::string>    parts_;
 };
 

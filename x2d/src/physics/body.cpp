@@ -15,7 +15,8 @@ namespace x2d {
 namespace physics {
 
     body::body(kernel& k, configuration& conf, object& obj,
-        bool dynamic, bool bullet, bool fixed_rotation)
+        bool dynamic, bool bullet, bool fixed_rotation,
+        const float& linear_damping)
     : kernel_(k)
     , config_(conf)
     , object_(obj)
@@ -27,6 +28,7 @@ namespace physics {
         
         body_->SetBullet(bullet);
         body_->SetFixedRotation(fixed_rotation);
+        body_->SetLinearDamping(linear_damping);
     }
     
     body::~body()
@@ -77,6 +79,17 @@ namespace physics {
     void body::set_linear_velocity(const glm::vec2& v)
     {
         body_->SetLinearVelocity(b2Vec2(v.x, v.y));
+    }
+    
+    glm::vec2 body::get_linear_velocity() const
+    {
+        b2Vec2 v = body_->GetLinearVelocity();
+        return glm::vec2(v.x, v.y);
+    }
+    
+    void body::set_linear_damping(const float& d)
+    {
+        body_->SetLinearDamping(d);
     }
     
 } // namespace physics

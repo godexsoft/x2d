@@ -43,11 +43,16 @@ namespace physics {
         fix.density = density_;
         fix.restitution = restitution_;
         fix.friction = friction_;
+
+        if(category_ != 0)
+        {
+            fix.filter.categoryBits = category_;
+        }
         
-        LOG("Filters: cat: %d  mask: %d", category_, mask_);
-        
-        fix.filter.categoryBits = category_;
-        fix.filter.maskBits = mask_;
+        if(mask_ != 0)
+        {
+            fix.filter.maskBits = mask_;
+        }
         
         if(bl_.width != 0 && bl_.height != 0)
         {
@@ -83,10 +88,15 @@ namespace physics {
         fix.restitution = restitution_;
         fix.friction = friction_;
         
-        LOG("Filters: cat: %d  mask: %d", category_, mask_);
+        if(category_ != 0)
+        {
+            fix.filter.categoryBits = category_;
+        }
         
-        fix.filter.categoryBits = category_;
-        fix.filter.maskBits = mask_;
+        if(mask_ != 0)
+        {
+            fix.filter.maskBits = mask_;
+        }
         
         if(radius_ == 0.0f)
         {

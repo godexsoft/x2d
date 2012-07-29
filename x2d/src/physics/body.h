@@ -36,7 +36,8 @@ namespace physics {
     {
     public:
         body(kernel& k, configuration& conf, object& obj,
-             bool dynamic, bool bullet, bool fixed_rotation);
+             bool dynamic, bool bullet, bool fixed_rotation,
+             const float& linear_damping);
         
         ~body();
         
@@ -53,7 +54,11 @@ namespace physics {
         
         // apply/set stuff
         void apply_force_to_center(const glm::vec2& f);
+        
         void set_linear_velocity(const glm::vec2& v);
+        glm::vec2 get_linear_velocity() const;
+        
+        void set_linear_damping(const float& d);
         
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
