@@ -30,7 +30,7 @@ namespace input {
         object_input_manager(kernel& k)
         : base_object(k)
         {
-            connect_touch_input(WORLD_SPACE);
+            connect_touch_input(SCREEN_SPACE);
         }
         
         void register_object(object* obj);

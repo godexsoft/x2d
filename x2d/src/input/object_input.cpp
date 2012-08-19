@@ -28,17 +28,12 @@ namespace input {
     {
         for(obj_map::iterator it = objects_.begin(); it != objects_.end(); ++it)
         {
-            // TODO: use pivot
-            glm::vec3 pos = it->first->world_position();
-            size b = it->first->box();
-            rect r(pos.x - b.width/2,
-                   pos.y - b.height/2,
-                   b.width, b.height);
-                
+            bbox bx = it->first->screen_bbox();
+            
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
             {
-                if(r.contains_point(tit->location()))
+                if(bx.contains_point(tit->location()))
                 {
                     // TODO: report vec2 inside box of object
                     it->second = PRESSED;
@@ -52,17 +47,12 @@ namespace input {
     {
         for(obj_map::iterator it = objects_.begin(); it != objects_.end(); ++it)
         {
-            // TODO: use pivot
-            glm::vec3 pos = it->first->world_position();
-            size b = it->first->box();
-            rect r(pos.x - b.width/2,
-                   pos.y - b.height/2,
-                   b.width, b.height);
+            bbox bx = it->first->screen_bbox();
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
             {
-                if(r.contains_point(tit->location()))
+                if(bx.contains_point(tit->location()))
                 {
                     // slide in
                     if(it->second == RELEASED)
@@ -77,7 +67,7 @@ namespace input {
                         it->first->on_input_moved(glm::vec2(tit->location().x, tit->location().y));
                     }
                 }
-                else if(r.contains_point(tit->prev_location()))
+                else if(bx.contains_point(tit->prev_location()))
                 {
                     // slide out
                     if(it->second == PRESSED)
@@ -94,17 +84,12 @@ namespace input {
     {
         for(obj_map::iterator it = objects_.begin(); it != objects_.end(); ++it)
         {
-            // TODO: use pivot
-            glm::vec3 pos = it->first->world_position();
-            size b = it->first->box();
-            rect r(pos.x - b.width/2,
-                   pos.y - b.height/2,
-                   b.width, b.height);
+            bbox bx = it->first->screen_bbox();
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
             {
-                if(r.contains_point(tit->location()))
+                if(bx.contains_point(tit->location()))
                 {
                     if(it->second == PRESSED)
                     {

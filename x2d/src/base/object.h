@@ -59,6 +59,7 @@ using namespace x2d::config;
         void position(const glm::vec3& p);
         void position(const glm::vec2& p);
         const glm::vec3 world_position() const;
+        const bbox screen_bbox() const;
         
         const float rotation() const;
         void rotation(float a);
@@ -75,6 +76,8 @@ using namespace x2d::config;
         void text(const std::string& t);
         
         void set_sprite(const boost::shared_ptr<sprite>& spr);
+        
+        void set_bgcolor(const color_info& bgcolor);
         
         void visible(bool v);
         
@@ -138,7 +141,10 @@ using namespace x2d::config;
         
         void set_parent(object* o);
         
+        const glm::mat4 final_transform() const;
+        
     private:
+        const glm::vec3 from_parent_to_world() const;
         
         void set_space(const space& s)
         {

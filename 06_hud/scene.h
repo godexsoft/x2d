@@ -30,12 +30,34 @@ public:
     : config_(conf)
     {        
         objects_.push_back( config_.create_object("objects.player") );
-        objects_.push_back( config_.create_object("objects.hud.buttons") );
-        objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
+        
+        but1_ = config_.create_object("objects.hud.button1");
+        but2_ = but1_->child_by_name("button2");
+        but3_ = but2_->child_by_name("button3");
+
+        but1_->set_on_input_began( boost::bind(&scene::inp1_began, this, _1) );
+        but2_->set_on_input_began( boost::bind(&scene::inp2_began, this, _1) );
+        but3_->set_on_input_began( boost::bind(&scene::inp3_began, this, _1) );
+        
+        but1_->set_on_input_ended( boost::bind(&scene::inp1_ended, this, _1) );
+        but2_->set_on_input_ended( boost::bind(&scene::inp2_ended, this, _1) );
+        but3_->set_on_input_ended( boost::bind(&scene::inp3_ended, this, _1) );
+        
+//        objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
     }
     
 private:
+    
+    bool inp1_began(const glm::vec2& location);
+    bool inp2_began(const glm::vec2& location);
+    bool inp3_began(const glm::vec2& location);
+    bool inp1_ended(const glm::vec2& location);
+    bool inp2_ended(const glm::vec2& location);
+    bool inp3_ended(const glm::vec2& location);
+    
     configuration&  config_;
+    boost::shared_ptr<object> buttons_;
+    boost::shared_ptr<object> but1_, but2_, but3_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 

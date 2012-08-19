@@ -1,8 +1,8 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera" frustum="320 480" rotation="90" zoom="2.0" />    
-    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
+    <camera n="camera" frustum="320 480"/>
+    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />
     <input n="input" accelerometer="false" touch="true" />
     
     <!-- namespace for all textures and sprites -->
@@ -48,31 +48,37 @@
         <!-- world space by default -->
         <object n="player" 
             animation="animations.player"
+            position = "50 50"
+            scale = "0.2"
         />
 
         <!-- define stuff that will not move with the camera -->
         <namespace n="hud">
-            
-            <!-- used just as a parent -->
-            <object n = "buttons" 
-                space = "camera"/>
-            
-            <!-- left-top corner in camera space -->
+                        
             <object n="button1"
-                parent="buttons"
-                position="0.1 0.95" 
-                sprite="graphics.player.standing"        
-                scale="0.5"
-                rotation="90"                
+                position="25 50"
+                box = "200 200"
+                scale = "1.2"
+                rotation = "33"
+                bgcolor = "1 0 0 0.2"
             />
-
-            <!-- left-bottom corner in camera space -->
-            <object n="button2"
-                parent="buttons"
-                position="0.1 0.05" 
-                sprite="graphics.player.standing"        
-                scale="0.5"
-                rotation="-90"                
+            
+            <object n = "button2"
+                parent = "button1"
+                position = "0.2 0.3"
+                box = "0.7 0.4"
+                scale = "1.1"
+                bgcolor = "0 1 0 0.2"
+                rotation = "43"
+            />
+            
+            <object n = "button3"
+                parent = "button2"
+                pivot = "0 0"
+                position = "0.1 0.1"
+                box = "0.7 0.4"
+                bgcolor = "0 0 1 0.2"
+                rotation = "90"
             />
             
         </namespace>

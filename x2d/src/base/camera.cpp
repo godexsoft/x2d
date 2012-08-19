@@ -91,6 +91,25 @@ namespace base {
         return glm::vec3(pp.x, pp.y, p.z);
     }
     
+    const glm::mat4 camera::transform() const
+    {
+        // save us from matrix inverse
+        glm::mat4 m(1.0f);
+        
+        m = glm::translate(m, glm::vec3(frustum_.width/2.0f, frustum_.height/2.0f, 0.0f) );
+    
+        if(rotation_ != 0.0f)
+            m = glm::rotate(m, rotation_, glm::vec3(0,0,1));
+
+        if(zoom_ != 1.0f)
+            m = glm::scale(m, glm::vec3(zoom_, zoom_, 1.0f));
+    
+        if(position_.x != 0.0f || position_.y != 0.0f)
+            m = glm::translate(m, glm::vec3(position_.x, position_.y, 0.0f));
+
+        return m;
+    }
+    
     void camera::apply()
     {
         if(is_applied)

@@ -91,6 +91,8 @@ namespace base {
             is_applied = false;
         }
         
+        const glm::mat4 transform() const;
+        
         /**
          * Apply the camera matrix for opengl
          */

@@ -12,6 +12,8 @@
 
 #include <cmath>
 #include <cstring>
+#include "glm.hpp"
+#include "log.h"
 
 #ifdef __APPLE__
 #include <CoreGraphics/CoreGraphics.h>
@@ -79,6 +81,9 @@ namespace math {
         inline operator CGPoint() { return CGPointMake(x, y); }
         inline operator const CGPoint() const { return CGPointMake(x, y); }
 #endif
+
+        inline operator const glm::vec3() const { return glm::vec3(x, y, 0.0f); }
+        inline operator const glm::vec2() const { return glm::vec2(x, y); }
         
         float x;
         float y;
@@ -118,6 +123,39 @@ namespace math {
         
         point origin;
         size size;        
+    };
+    
+    struct bbox
+    {
+        glm::vec3 a, b, c, d;
+        
+        bbox(const glm::vec3& aa, const glm::vec3& bb, const glm::vec3& cc, const glm::vec3& dd)
+        : a(aa)
+        , b(bb)
+        , c(cc)
+        , d(dd)
+        {}
+        
+        inline bool contains_point(const glm::vec3& p)
+        {
+            float aa = triangle_area(a,b,p);
+            float bb = triangle_area(b,c,p);
+            float cc = triangle_area(c,d,p);
+            float dd = triangle_area(d,a,p);
+            
+            if ((aa>0 && bb>0 && cc>0 && dd>0) ||
+                (aa<0 && bb<0 && cc<0 && dd<0))
+            {
+                return true;
+			}
+            
+			return false;
+        }
+        
+        static float triangle_area(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c)
+        {
+			return (c.x*b.y-b.x*c.y)-(c.x*a.y-a.x*c.y)+(b.x*a.y-a.x*b.y);
+		}
     };
     
     enum alignment
