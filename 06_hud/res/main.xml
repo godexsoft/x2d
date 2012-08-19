@@ -1,7 +1,7 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
-    <camera n="camera" frustum="320 480"/>
+    <camera n="camera" frustum="320 480" rotation = "40" zoom = "1.5"/>
     <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />
     <input n="input" accelerometer="false" touch="true" />
     
@@ -56,10 +56,11 @@
         <namespace n="hud">
                         
             <object n="button1"
-                position="25 50"
-                box = "200 200"
-                scale = "1.2"
-                rotation = "33"
+                space = "camera"
+                position="0.4 0.5"
+                box = "0.7 0.7"
+                scale = "1.0"
+                rotation = "0.0"
                 bgcolor = "1 0 0 0.2"
             />
             

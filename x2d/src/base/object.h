@@ -144,7 +144,8 @@ using namespace x2d::config;
         const glm::mat4 final_transform() const;
         
     private:
-        const glm::vec3 from_parent_to_world() const;
+        
+        bool is_camera_space() const;
         
         void set_space(const space& s)
         {

@@ -30,6 +30,12 @@ namespace input {
         {
             bbox bx = it->first->screen_bbox();
             
+            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+                bx.a.x, bx.a.y,
+                bx.b.x, bx.b.y,
+                bx.c.x, bx.c.y,
+                bx.d.x, bx.d.y);
+            
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
             {
@@ -48,6 +54,12 @@ namespace input {
         for(obj_map::iterator it = objects_.begin(); it != objects_.end(); ++it)
         {
             bbox bx = it->first->screen_bbox();
+         
+            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+                bx.a.x, bx.a.y,
+                bx.b.x, bx.b.y,
+                bx.c.x, bx.c.y,
+                bx.d.x, bx.d.y);
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
@@ -85,6 +97,12 @@ namespace input {
         for(obj_map::iterator it = objects_.begin(); it != objects_.end(); ++it)
         {
             bbox bx = it->first->screen_bbox();
+
+            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+                bx.a.x, bx.a.y,
+                bx.b.x, bx.b.y,
+                bx.c.x, bx.c.y,
+                bx.d.x, bx.d.y);
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)

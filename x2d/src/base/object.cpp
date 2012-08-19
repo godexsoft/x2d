@@ -452,6 +452,17 @@ namespace x2d {
         return glm::vec3(pp.x, pp.y, position_.z);
     }
 
+    bool object::is_camera_space() const
+    {
+        if(space_ == CAMERA_SPACE)
+            return true;
+        
+        if(parent_ != NULL)
+            return parent_->is_camera_space();
+        
+        return false;
+    }
+    
     const bbox object::screen_bbox() const
     {
         glm::vec4 bl(-box_.width/2, -box_.height/2, position_.z, 1.0f);
@@ -459,7 +470,10 @@ namespace x2d {
         glm::vec4 tr(box_.width/2, box_.height/2, position_.z, 1.0f);
         glm::vec4 br(box_.width/2, -box_.height/2, position_.z, 1.0f);
         
-        glm::mat4 m = camera_->transform() * final_transform();
+        glm::mat4 m = is_camera_space() ?
+            final_transform() // just the object transformation
+                :
+            (camera_->transform() * final_transform()); // with camera
         bl = m * bl;
         tl = m * tl;
         tr = m * tr;
@@ -469,34 +483,6 @@ namespace x2d {
                     glm::vec3(tl.x, tl.y, position_.z),
                     glm::vec3(tr.x, tr.y, position_.z),
                     glm::vec3(br.x, br.y, position_.z));
-    }
-    
-    const glm::vec3 object::from_parent_to_world() const
-    {
-        size b = parent_->box();
-        glm::vec3 p = camera_space_position();
-        
-        LOG("+++++++ object %s requested from_parent_to_world() for %f %f with parent[%s] box %f %f",
-            name_.c_str(), p.x, p.y, parent_->name_.c_str(), b.width, b.height);
-        glm::vec4 pp( p.x * b.width, p.y * b.height, 0.0f, 1.0f );
-        
-        // save us from matrix inverse
-        glm::mat4 m(1.0f);
-        
-        if(parent_->position_.x != 0.0f || parent_->position_.y != 0.0f)
-            m = glm::translate(m, glm::vec3(-parent_->position_.x, -parent_->position_.y, 0.0f));
-        
-        if(parent_->scale_ != 1.0f)
-            m = glm::scale(m, glm::vec3(1.0f/parent_->scale_, 1.0f/parent_->scale_, 1.0f));
-        
-        if(parent_->rotation_ != 0.0f)
-            m = glm::rotate(m, 360.0f-parent_->rotation_, glm::vec3(0,0,1));
-        
-        m = glm::translate(m, glm::vec3(-b.width/2.0f, -b.height/2.0f, 0.0f) );
-        
-        pp = m * pp;
-        LOG("Outer space location: %f %f", pp.x, pp.y);
-        return glm::vec3(pp.x, pp.y, p.z);
     }
     
     const float object::rotation() const
