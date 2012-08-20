@@ -298,6 +298,7 @@
 		24DDAD6815AA091B0064EFC5 /* world.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DDAD6715AA091B0064EFC5 /* world.h */; };
 		24DDAD6A15AA21AC0064EFC5 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD6915AA21AC0064EFC5 /* world.cpp */; };
 		24E066961548AA6900844182 /* title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E066941548AA6900844182 /* title.cpp */; };
+		24E4BC5115E2B7D0008F162C /* space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BC5015E2B7D0008F162C /* space.cpp */; };
 		24EE266214FAC9D20073100A /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EE266114FAC9D20073100A /* context.h */; };
 /* End PBXBuildFile section */
 
@@ -991,6 +992,7 @@
 		24DDAD6915AA21AC0064EFC5 /* world.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = world.cpp; path = src/physics/world.cpp; sourceTree = "<group>"; };
 		24E066941548AA6900844182 /* title.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = title.cpp; path = demo/title.cpp; sourceTree = "<group>"; };
 		24E066951548AA6900844182 /* title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = title.h; path = demo/title.h; sourceTree = "<group>"; };
+		24E4BC5015E2B7D0008F162C /* space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = space.cpp; path = src/base/space.cpp; sourceTree = "<group>"; };
 		24EA29D71533460600EE209C /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = demo/res/graphics.xml; sourceTree = "<group>"; };
 		24EA29DA15334EB500EE209C /* scenary.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = scenary.xml; path = demo/res/scenary.xml; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
@@ -2422,6 +2424,7 @@
 				245151AA14DACE360029D699 /* viewport.h */,
 				245151AC14DAEED40029D699 /* color_info.h */,
 				24BDCC5E14CC7E56006F36A1 /* base_object.h */,
+				24E4BC5015E2B7D0008F162C /* space.cpp */,
 				244DDD1A14DEDAB400F4E029 /* space.h */,
 				2483FC4414FFB9280035A90C /* object_traits.h */,
 				244DDD5514DF45B900F4E029 /* object.cpp */,
@@ -3334,6 +3337,7 @@
 				24DDAD6A15AA21AC0064EFC5 /* world.cpp in Sources */,
 				2403907815B60C350017B7DC /* contact.cpp in Sources */,
 				24B9535615C206EF0091DE2C /* object_input.cpp in Sources */,
+				24E4BC5115E2B7D0008F162C /* space.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

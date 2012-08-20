@@ -210,11 +210,6 @@ namespace x2d {
     void object::set_parent(object* o)
     {
         parent_ = o;
-        
-//        // moves object to parent's space if not world.
-//        // but it should not affect children because
-//        // they are relative to this object's space.
-//        space_ = parent_->space_;
     }
         
     void object::update(const clock_info& clock) 

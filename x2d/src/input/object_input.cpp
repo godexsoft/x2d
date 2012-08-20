@@ -30,11 +30,11 @@ namespace input {
         {
             bbox bx = it->first->screen_bbox();
             
-            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
-                bx.a.x, bx.a.y,
-                bx.b.x, bx.b.y,
-                bx.c.x, bx.c.y,
-                bx.d.x, bx.d.y);
+//            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+//                bx.a.x, bx.a.y,
+//                bx.b.x, bx.b.y,
+//                bx.c.x, bx.c.y,
+//                bx.d.x, bx.d.y);
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
@@ -55,11 +55,11 @@ namespace input {
         {
             bbox bx = it->first->screen_bbox();
          
-            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
-                bx.a.x, bx.a.y,
-                bx.b.x, bx.b.y,
-                bx.c.x, bx.c.y,
-                bx.d.x, bx.d.y);
+//            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+//                bx.a.x, bx.a.y,
+//                bx.b.x, bx.b.y,
+//                bx.c.x, bx.c.y,
+//                bx.d.x, bx.d.y);
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)
@@ -98,11 +98,11 @@ namespace input {
         {
             bbox bx = it->first->screen_bbox();
 
-            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
-                bx.a.x, bx.a.y,
-                bx.b.x, bx.b.y,
-                bx.c.x, bx.c.y,
-                bx.d.x, bx.d.y);
+//            LOG("[%s] bbox = %f %f, %f %f, %f %f, %f %f", it->first->name().c_str(),
+//                bx.a.x, bx.a.y,
+//                bx.b.x, bx.b.y,
+//                bx.c.x, bx.c.y,
+//                bx.d.x, bx.d.y);
             
             for(std::vector<touch>::const_iterator tit = touches.begin();
                 tit != touches.end(); ++tit)

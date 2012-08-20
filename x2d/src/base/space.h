@@ -16,7 +16,7 @@ namespace x2d {
 namespace base {
 
     /**
-     * @brief Space. World or Screen
+     * @brief Space. World, Camera or Screen
      */
     enum space
     {       
@@ -33,6 +33,50 @@ namespace base {
         PARENT_SPACE_NONE = 4
     };
     
+    /**
+     * @brief This class holds all the spatial properties of an Object
+     */
+    /*
+    class spatial_info
+    {
+    public:
+        spatial_info();
+        
+        const glm::mat4 final_transform() const;
+        
+        const glm::vec3 position() const;
+        void position(const glm::vec3& p);
+        void position(const glm::vec2& p);
+        
+        const float rotation() const;
+        void rotation(float a);
+        
+        const float scale() const;
+        void scale(float s);
+        
+        void pivot(const glm::vec2& p);
+        const glm::vec2 pivot() const;
+        
+        void box(const size& s);
+        const size box() const;
+        
+    private:
+        space           space_;
+        parent_space    parent_space_;
+        
+        glm::vec3   position_;
+        glm::vec3   camera_space_position_;
+        
+        float       scale_;
+        float       rotation_;
+        
+        size        box_;
+        size        camera_space_box_;
+        
+        glm::vec2   pivot_;
+        glm::vec2   camera_space_pivot_;
+    };
+*/    
 } // namespace base
 } // namespace x2d
 using namespace x2d::base;
