@@ -1291,6 +1291,7 @@
 		24E4BD5415E46F4A008F162C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 12_script/AppDelegate.mm; sourceTree = "<group>"; };
 		24E4BD5515E46F4A008F162C /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 12_script/game.h; sourceTree = "<group>"; };
 		24E4BD5715E46F5B008F162C /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 12_script/resources.zip; sourceTree = "<group>"; };
+		24E4BD5B15E472E2008F162C /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = 12_script/res/scripts; sourceTree = "<group>"; };
 		24EA29D71533460600EE209C /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = demo/res/graphics.xml; sourceTree = "<group>"; };
 		24EA29DA15334EB500EE209C /* scenary.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = scenary.xml; path = demo/res/scenary.xml; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
@@ -3080,6 +3081,7 @@
 		24E4BD4415E46D83008F162C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				24E4BD5B15E472E2008F162C /* scripts */,
 				24E4BD4515E46DC0008F162C /* graphics */,
 				24E4BD4615E46DC0008F162C /* main.xml */,
 			);

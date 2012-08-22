@@ -5,4 +5,10 @@
     <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
     <input n="input" accelerometer="false" touch="true" />
 
+    <script n = "inline">
+        io.write("[Inline] Hello world, from ",_VERSION,"!\n")
+    </script>
+    
+    <script n = "file" path = "res/scripts/first.lua" />
+    
 </x2d>
