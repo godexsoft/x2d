@@ -12,6 +12,7 @@ extern "C"
 {
     #include "lua.h"
     #include "lauxlib.h"
+    #include "lualib.h"
 }
 
 #include <luabind/luabind.hpp>
@@ -27,6 +28,9 @@ namespace scripting {
     : lua_(lua_open())
     {
         open(lua_);
+        
+        // register default modules
+        luaL_openlibs(lua_);
         
         // bind all global x2d stuff
         bind_log();
