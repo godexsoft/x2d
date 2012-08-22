@@ -18,6 +18,9 @@ Requires/Uses:
 - RapidXML - http://rapidxml.sourceforge.net/ (sources included and compiled together with x2d)
 - PicoPNG - http://lodev.org/lodepng/ (source file included and compiled as part of x2d)
 - glm - http://glm.g-truc.net/ (sources included and compiled together with x2d)
+- box2d - http://box2d.org/ (sources included and compiled together with x2d)
+- lua - http://lua.org/ (included with x2d)
+- luabind - http://www.rasterbar.com/products/luabind.html (included with x2d)
 
 --------
 Tracker:
