@@ -756,6 +756,77 @@ namespace config {
         part->type(CIRCLE_TYPE);
     }
     
+    void configuration::parse_script(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        //
+        // can have:
+        // ref:   reference another script object (config key)
+        // path:  resource path to load from
+        // value: inline lua script
+        //
+        // or instead of ref, value and path it can contain inline lua code
+        // as inner body of the script element.
+        //
+        // NOTE: only ref, value, path or inline code can be given at once
+        // in the same script config.
+        
+        std::string path = get_attr<std::string>(*this, node, key, "path", std::string()).get(*this);
+        std::string ref = get_key_attr(*this, node, key, "ref", std::string()).get(*this);
+        
+        xml_attr* value = node->first_attribute("value");
+        if(!value && !node->first_node() && path.empty() && ref.empty())
+        {
+            throw parse_exception("Script must have either 'value', 'ref', 'path' or inner script defined.");
+        }
+        
+        if(!path.empty())
+        {
+            if(value || node->first_node() || !ref.empty())
+            {
+                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+            }
+            
+            config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
+                kernel_, "", "", path) );
+        }
+        else if(!ref.empty())
+        {
+            if(value || node->first_node() || !path.empty())
+            {
+                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+            }
+            
+            config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
+                kernel_, "", ref) );
+        }
+        else if(value)
+        {
+            if(node->first_node() || !path.empty() || !ref.empty())
+            {
+                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+            }
+
+            config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
+                kernel_, value_parser<std::string>::parse(value->value())) );
+        }
+        else if(node->first_node())
+        {
+            xml_node* data = node->first_node();
+            
+            if( data->type() == rx::node_data || data->type() == rx::node_cdata)
+            {
+                config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
+                    kernel_, value_parser<std::string>::parse(data->value())) );
+            }
+            else
+            {
+                throw parse_exception("Data element of Script must be plain value or CDATA.");
+            }            
+        }
+    }
+    
     void configuration::parse_object(xml_node* node, const config_key& key)
     {
         // must have:

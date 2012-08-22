@@ -15,6 +15,7 @@
 #include "filesystem.h"
 #include "sprite.h"
 #include "object.h"
+#include "script.h"
 #include "platform.h"
 #include "exceptions.h"
 
@@ -27,6 +28,7 @@
 #include "object_support.h"
 #include "value_support.h"
 
+#include "scripting_engine.h"
 #include "object_input.h"
 
 namespace x2d {
@@ -93,6 +95,11 @@ namespace config {
         object_input_manager& get_input_manager()
         {
             return object_input_manager_;
+        }
+        
+        scripting_engine& get_scripting_engine()
+        {
+            return scripting_engine_;
         }
         
         /**
@@ -347,6 +354,9 @@ namespace config {
         void parse_body_part_box(xml_node* node, const config_key& key);
         void parse_body_part_circle(xml_node* node, const config_key& key);
         
+        // lua scripting
+        void parse_script(xml_node* node, const config_key& key);
+        
         typedef boost::function<void(xml_node*,const config_key&)>              parser_type;        
         typedef boost::function<boost::shared_ptr<object>(const config_key&)>             binding_type;
         typedef boost::function<boost::shared_ptr<object>(const config_key&, spawner*)>   binding_1_type;
@@ -363,6 +373,7 @@ namespace config {
         std::deque< boost::shared_ptr<object> > objects_;
         
         object_input_manager                    object_input_manager_;
+        scripting_engine                        scripting_engine_;
     };
     
 } // namespace config

@@ -36,6 +36,7 @@ namespace util {
     {
     public:
         static void lst_log(const std::string& format, va_list lst);
+        static void simple_log(const std::string& s);
     };
 } // namespace util
 } // namespace x2d
@@ -49,5 +50,6 @@ using namespace x2d::util;
 extern "C"
 #endif
 void x2d_log(const char* format, ...);
+void x2d_log_simple(const char* s);
 
 #endif // __LOG_UTIL_H__

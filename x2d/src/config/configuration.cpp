@@ -79,6 +79,8 @@ namespace config {
         parsers_["context"]     = boost::bind(&configuration::parse_context, this, _1, _2);        
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
 
+        parsers_["script"]      = boost::bind(&configuration::parse_script, this, _1, _2);
+        
         parsers_["body"]        = boost::bind(&configuration::parse_body, this, _1, _2);        
         parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);
         parsers_["part:circle"] = boost::bind(&configuration::parse_body_part_circle, this, _1, _2);
@@ -263,6 +265,12 @@ namespace config {
         return static_cast<spawner_cfg*>( &(*config_[key]) )->create();
     }
 
+    template <>
+    const boost::shared_ptr<script> configuration::create_sys_object<script>(const config_key& key)
+    {
+        return static_cast<script_cfg*>( &(*config_[key]) )->create();
+    }
+    
     template <>
     const boost::shared_ptr<body> configuration::create_sys_object_1<body, 
         object>(const config_key& key, object& obj)
@@ -480,6 +488,13 @@ namespace config {
             new spawner(config_.get_kernel(), config_, obj_lst_, position_, wave_size_, wave_delay_) );        
         return r;
     }    
+
+    boost::shared_ptr<script> script_cfg::create()
+    {
+        boost::shared_ptr<script> r = boost::shared_ptr<script>(
+            new script(data_) );
+        return r;
+    }
     
     boost::shared_ptr<body> body_cfg::create(object& obj)
     {

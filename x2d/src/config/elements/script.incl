@@ -1,0 +1,44 @@
+//
+//  script.incl
+//  x2d
+//
+//  Created by Alex Kremer on 22/8/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<script>' configuration node.
+ */ 
+class script_cfg
+: public cfg_base
+{
+public:        
+    /**
+     * @param[in] c         Configuration object
+     * @param[in] k         Kernel object
+     */
+    script_cfg(configuration& c, kernel& k,
+               const std::string& data,
+               const std::string& ref="",
+               const std::string& path="")
+    : config_(c)
+    , kernel_(k)
+    , data_(data)
+    , ref_(ref)
+    , path_(path)
+    {
+    }
+    
+    /**
+     * Create a new script instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<script> create();
+    
+private:                
+    configuration&  config_;
+    kernel&         kernel_;
+    
+    std::string     data_;
+    std::string     ref_;
+    std::string     path_;
+};
