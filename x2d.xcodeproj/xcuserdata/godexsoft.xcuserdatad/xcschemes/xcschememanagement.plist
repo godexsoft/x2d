@@ -59,15 +59,35 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>12_script.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>all.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
 		<key>box2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>16</integer>
 		</dict>
 		<key>demo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>15</integer>
+		</dict>
+		<key>lua.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>luabind.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
@@ -178,6 +198,26 @@
 			<true/>
 		</dict>
 		<key>24DDAD2015A9DC500064EFC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24E4BC5F15E461C2008F162C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24E4BCCD15E462BE008F162C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24E4BD0315E46C6A008F162C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24E4BD2315E46CD5008F162C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

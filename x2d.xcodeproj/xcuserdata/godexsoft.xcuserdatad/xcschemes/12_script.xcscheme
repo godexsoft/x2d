@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
+   LastUpgradeVersion = "0450"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,31 +14,17 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24BDCC1C14CC6300006F36A1"
-               BuildableName = "x2d.app"
-               BlueprintName = "x2d"
-               ReferencedContainer = "container:x2d.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "241583BC14D0B27E0014F37B"
-               BuildableName = "libx2d.a"
-               BlueprintName = "libx2d"
+               BlueprintIdentifier = "24E4BD2315E46CD5008F162C"
+               BuildableName = "11_physics copy.app"
+               BlueprintName = "12_script"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
@@ -45,16 +32,16 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24BDCC1C14CC6300006F36A1"
-            BuildableName = "x2d.app"
-            BlueprintName = "x2d"
+            BlueprintIdentifier = "24E4BD2315E46CD5008F162C"
+            BuildableName = "11_physics copy.app"
+            BlueprintName = "12_script"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
@@ -64,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24BDCC1C14CC6300006F36A1"
-            BuildableName = "x2d.app"
-            BlueprintName = "x2d"
+            BlueprintIdentifier = "24E4BD2315E46CD5008F162C"
+            BuildableName = "11_physics copy.app"
+            BlueprintName = "12_script"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24BDCC1C14CC6300006F36A1"
-            BuildableName = "x2d.app"
-            BlueprintName = "x2d"
+            BlueprintIdentifier = "24E4BD2315E46CD5008F162C"
+            BuildableName = "11_physics copy.app"
+            BlueprintName = "12_script"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
