@@ -20,6 +20,7 @@ namespace config {
     : kernel_(k)
     , res_man_(res_man)
     , object_input_manager_(kernel_)
+    , scripting_engine_(kernel_)
     {
         load_core_parsers();
     }
@@ -28,6 +29,7 @@ namespace config {
     : kernel_(k)
     , res_man_(res_man)
     , object_input_manager_(kernel_)
+    , scripting_engine_(kernel_)
     {
         load_core_parsers();
         

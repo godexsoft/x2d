@@ -18,20 +18,25 @@
 struct lua_State;
 
 namespace x2d {
+
+    class kernel;
+    
 namespace scripting {
 
     class scripting_engine
     {
     public:
-        scripting_engine();
+        scripting_engine(kernel& k);
         
         void execute(const boost::shared_ptr<script>& s);
         
     private:
         
         void bind_log();
+        void bind_event();
         
-        lua_State* lua_;
+        kernel&     kernel_;
+        lua_State*  lua_;
     };
     
 } // namespace scripting

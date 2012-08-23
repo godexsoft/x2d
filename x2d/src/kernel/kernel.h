@@ -19,6 +19,7 @@
 #include "camera.h"
 #include "viewport.h"
 #include "input_manager.h"
+#include "event_manager.h"
 #include "space.h"
 #include "glm.hpp"
 #include "log.h"
@@ -204,6 +205,11 @@ namespace x2d
         void dispatch_touches_ended(space s, const std::vector<touch>& touches);
         void dispatch_accelerometer_input( const glm::vec3& accel );
 
+        boost::shared_ptr<event_manager> get_event_manager()
+        {
+            return event_man_;
+        }
+        
     private:          
         
         /**
@@ -242,6 +248,9 @@ namespace x2d
         
         // input
         boost::shared_ptr<input_manager> input_man_;
+        
+        // events
+        boost::shared_ptr<event_manager> event_man_;
     };
     
 } // namespace x2d

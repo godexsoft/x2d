@@ -17,12 +17,13 @@
 
 namespace x2d 
 {
-    kernel::kernel()    
+    kernel::kernel()
     : sys_clock_()
     , pause_time_(sys_clock_.current_time())
     , is_paused_(false)
     , sys_timer_(*this, sys_clock_)
     , cur_viewport_(-1)
+    , event_man_(boost::shared_ptr<event_manager>(new event_manager()))
     {
         sys_timer_.handler( boost::bind(&kernel::sys_timer_handler, this, _1) );
         sys_timer_.set(1.0/60.0);

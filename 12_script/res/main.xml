@@ -6,32 +6,19 @@
     <input n="input" accelerometer="false" touch="true" />
 
     <script n = "inline">
-        <![CDATA[
-        delta=1e-6	-- tolerance
-        
-        function bisect(f,a,b,fa,fb)
-        local c=(a+b)/2
-        io.write(n," c=",c," a=",a," b=",b,"\n")
-        if c==a or c==b or math.abs(a-b)<delta then return c,b-a end
-            n=n+1
-            local fc=f(c)
-            if fa*fc<0 then return bisect(f,a,c,fa,fc) else return bisect(f,c,b,fc,fb) end
+        <![CDATA[            
+            function cb()
+                x2d.log("event received in inline lua callback listener!")
             end
             
-            -- find root of f in the inverval [a,b]. needs f(a)*f(b)<0
-            function solve(f,a,b)
-            n=0
-            local z,e=bisect(f,a,b,f(a),f(b))
-            io.write(string.format("after %d steps, root is %.17g with error %.1e, f=%.1e\n",n,z,e,f(z)))
-            end
+            -- listen locally too
+            con = event.listen("test", cb)
             
-            -- our function
-            function f(x)
-            return x*x*x-x-1
-            end
+            -- send the event
+            event.send("test")
             
-            -- find zero in [1,2]
-            solve(f,1,2)
+            -- disconnect the callback
+            con:disconnect()
         ]]>
     </script>
 
@@ -43,7 +30,7 @@
     <object n = "test">
         <script n = "on_create" ref = "inline2" />
         <script n = "on_destroy">
-            io.write("Object is destroyed...")
+            event.send("test_die")
         </script>
         
         <float n = "lifetime">
