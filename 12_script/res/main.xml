@@ -22,10 +22,13 @@
         ]]>
     </script>
 
+    <script n = "mega_script" value = "x2d.log('\n\nHola!\n\n')" />
+    
     <script n = "inline2" value = "x2d.log('[Ref] Object is created!')" />
     <script n = "file" path = "res/scripts/first.lua" />
-    
     <script n = "ref" ref = "file" />
+    
+    <listener n = "listener" event = "mega" script = "mega_script" />
     
     <!-- this object will log to console when created and destroyed -->
     <object n = "test">

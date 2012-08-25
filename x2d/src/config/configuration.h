@@ -16,6 +16,7 @@
 #include "sprite.h"
 #include "object.h"
 #include "script.h"
+#include "listener.h"
 #include "platform.h"
 #include "exceptions.h"
 
@@ -356,6 +357,9 @@ namespace config {
         
         // lua scripting
         void parse_script(xml_node* node, const config_key& key);
+        
+        // event system
+        void parse_listener(xml_node* node, const config_key& key);
         
         typedef boost::function<void(xml_node*,const config_key&)>              parser_type;        
         typedef boost::function<boost::shared_ptr<object>(const config_key&)>             binding_type;

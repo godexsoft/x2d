@@ -827,6 +827,24 @@ namespace config {
         }
     }
     
+    void configuration::parse_listener(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:       name of the element
+        // event:   event name to listen for
+        //
+        // can have:
+        // script:  reference to a script object (config key)
+        
+        std::string ev = get_mandatory_attr<std::string>(*this, node, key, "event",
+            parse_exception("Listener must have event defined.")).get(*this);
+        std::string scr = get_key_attr(*this, node, key, "script",
+            std::string()).get(*this);
+        
+        config_[key] = boost::shared_ptr<listener_cfg>( new listener_cfg(*this,
+            kernel_, ev, scr) );
+    }
+    
     void configuration::parse_object(xml_node* node, const config_key& key)
     {
         // must have:

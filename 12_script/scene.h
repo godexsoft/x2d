@@ -23,14 +23,15 @@ public:
     {
         connect_touch_input(WORLD_SPACE);
         
-        k.get_event_manager()->connect_listener("test", boost::bind(&scene::on_test_event, this));
+        listener_ = config_.create_sys_object<listener>("listener");
+//        listener_->set_callback(boost::bind(&scene::on_test_event, this));
+//        k.get_event_manager()->connect_listener("test", boost::bind(&scene::on_test_event, this));
     }
     
     void touch_input_began(space s, const std::vector<touch>& touches) 
     {
         boost::shared_ptr<script> scr = config_.create_sys_object<script>("ref");
-        config_.get_scripting_engine().execute(scr);
-        
+        config_.get_scripting_engine().execute(scr);        
     }
     
 private:
@@ -40,6 +41,7 @@ private:
     }
     
     configuration&  config_;
+    boost::shared_ptr<listener> listener_;
     std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 

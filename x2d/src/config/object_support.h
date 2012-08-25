@@ -72,6 +72,7 @@ namespace config {
     #include "elements/zone.incl"
     #include "elements/physics.incl"
     #include "elements/script.incl"
+    #include "elements/event.incl"
     #include "elements/object.incl"
     
 } // namespace config

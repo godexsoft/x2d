@@ -1,0 +1,41 @@
+//
+//  event.incl
+//  x2d
+//
+//  Created by Alex Kremer on 25/8/12.
+//  Copyright (c) 2012 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<listener>' configuration node.
+ */ 
+class listener_cfg
+: public cfg_base
+{
+public:        
+    /**
+     * @param[in] c         Configuration object
+     * @param[in] k         Kernel object
+     */
+    listener_cfg(configuration& c, kernel& k,
+               const std::string& ev,
+               const std::string& sc)
+    : config_(c)
+    , kernel_(k)
+    , event_(ev)
+    , script_(sc)
+    {
+    }
+    
+    /**
+     * Create a new listener instance and return it without saving a local copy.
+     */
+    boost::shared_ptr<listener> create();
+    
+private:                
+    configuration&  config_;
+    kernel&         kernel_;
+    
+    std::string     event_;
+    std::string     script_;
+};

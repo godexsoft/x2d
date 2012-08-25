@@ -1,2 +1,2 @@
 io.write("[File] Hello world, from ",_VERSION,"!\n")
-event.send("test")
+event.send("mega")

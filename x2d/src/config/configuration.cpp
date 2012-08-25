@@ -82,6 +82,7 @@ namespace config {
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
 
         parsers_["script"]      = boost::bind(&configuration::parse_script, this, _1, _2);
+        parsers_["listener"]    = boost::bind(&configuration::parse_listener, this, _1, _2);
         
         parsers_["body"]        = boost::bind(&configuration::parse_body, this, _1, _2);        
         parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);
@@ -271,6 +272,12 @@ namespace config {
     const boost::shared_ptr<script> configuration::create_sys_object<script>(const config_key& key)
     {
         return static_cast<script_cfg*>( &(*config_[key]) )->create();
+    }
+
+    template <>
+    const boost::shared_ptr<listener> configuration::create_sys_object<listener>(const config_key& key)
+    {
+        return static_cast<listener_cfg*>( &(*config_[key]) )->create();
     }
     
     template <>
@@ -516,6 +523,19 @@ namespace config {
         else
         {
             r = boost::shared_ptr<script>(new script(data_) );
+        }
+        
+        return r;
+    }
+
+    boost::shared_ptr<listener> listener_cfg::create()
+    {
+        boost::shared_ptr<listener> r =
+            boost::shared_ptr<listener>(new listener(kernel_, config_, event_) );
+        
+        if(!script_.empty())
+        {
+            r->set_script(config_.create_sys_object<script>(script_));
         }
         
         return r;
