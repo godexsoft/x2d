@@ -28,7 +28,7 @@ public:
     
     void touch_input_began(space s, const std::vector<touch>& touches) 
     {
-        boost::shared_ptr<script> scr = config_.create_sys_object<script>("inline");
+        boost::shared_ptr<script> scr = config_.create_sys_object<script>("ref");
         config_.get_scripting_engine().execute(scr);
         
     }

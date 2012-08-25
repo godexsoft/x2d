@@ -493,8 +493,31 @@ namespace config {
 
     boost::shared_ptr<script> script_cfg::create()
     {
-        boost::shared_ptr<script> r = boost::shared_ptr<script>(
-            new script(data_) );
+        boost::shared_ptr<script> r;
+        
+        if(!path_.empty())
+        {
+            boost::shared_ptr<ifdstream> stream = config_.get_resman().get<ifdstream>(path_);
+            
+            long fsize = stream->size();            
+            std::string s(fsize, 0);
+            
+            if (!stream->read(&s[0], fsize))
+            {
+                throw sys_exception("Couldn't read script from path " + path_);
+            }
+            
+            r = boost::shared_ptr<script>(new script(s) );
+        }
+        else if(!ref_.empty())
+        {
+            return config_.create_sys_object<script>(ref_);
+        }
+        else
+        {
+            r = boost::shared_ptr<script>(new script(data_) );
+        }
+        
         return r;
     }
     
