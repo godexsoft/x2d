@@ -13,6 +13,7 @@
 #include "value_holder.h"
 #include "math_util.h"
 #include "glm.hpp"
+#include "filesystem.h"
 
 #include <vector>
 #include <string>
@@ -28,6 +29,7 @@ namespace x2d {
         
         // basic object properties
         std::string              name;
+        basic_path<char, '.'>    path;
         value_holder<glm::vec3>  position;
         value_holder<float>      scale;
         value_holder<float>      rotation;
@@ -80,6 +82,10 @@ namespace x2d {
         
         // context list
         std::vector<std::string>    contexts;
+        
+        // scripts
+        bool has_on_create;
+        bool has_on_destroy;
     };
 
 } // namespace x2d

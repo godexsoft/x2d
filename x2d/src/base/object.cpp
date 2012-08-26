@@ -13,6 +13,7 @@ namespace x2d {
 
     object_traits::object_traits()
     : name("_no_name_") // can't really happen if you use x2d config system
+    , path("_no_path_") // can't really happen if you use x2d config system
     , position("", glm::vec3(0.0f,0.0f,0.0f))
     , scale("", 0.0f)
     , rotation("", 0.0f)
@@ -36,6 +37,8 @@ namespace x2d {
     , obj_space(WORLD_SPACE)
     , par_space(PARENT_SPACE_NONE) // all in world space by default
     , has_parent(false)
+    , has_on_create(false)
+    , has_on_destroy(false)
     {            
     }
     
@@ -66,6 +69,7 @@ namespace x2d {
     , config_(c)
     , lifetime_timer_(k)
     , name_(t.name)
+    , path_(t.path)
     , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
     , parent_space_(t.par_space)
@@ -82,7 +86,19 @@ namespace x2d {
     , is_visible_(t.visible)
     , parent_(NULL)
     , has_parent_(t.has_parent)
+    , on_create_(config_)
+    , on_destroy_(config_)
     {
+        if(t.has_on_create)
+        {
+            on_create_.set_script(config_.create_sys_object<script>(path_ / "on_create"));
+        }
+        
+        if(t.has_on_destroy)
+        {
+            on_destroy_.set_script(config_.create_sys_object<script>(path_ / "on_destroy"));
+        }
+        
         if(spwn)
         {
             LOG("Creating object relative to a spawner...");

@@ -393,6 +393,8 @@
 		24E4BD6C15E6BFB7008F162C /* event_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E4BD6A15E6BFB7008F162C /* event_manager.h */; };
 		24E4BD7015E92F62008F162C /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BD6E15E92F61008F162C /* listener.cpp */; };
 		24E4BD7115E92F62008F162C /* listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E4BD6F15E92F61008F162C /* listener.h */; };
+		24E4BD7315E95359008F162C /* callable.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E4BD7215E95357008F162C /* callable.h */; };
+		24E4BD7715E95885008F162C /* callable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BD7615E95883008F162C /* callable.cpp */; };
 		24EE266214FAC9D20073100A /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EE266114FAC9D20073100A /* context.h */; };
 /* End PBXBuildFile section */
 
@@ -1296,6 +1298,8 @@
 		24E4BD6D15E92A2E008F162C /* event.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = event.incl; sourceTree = "<group>"; };
 		24E4BD6E15E92F61008F162C /* listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = listener.cpp; path = src/event/listener.cpp; sourceTree = "<group>"; };
 		24E4BD6F15E92F61008F162C /* listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = listener.h; path = src/event/listener.h; sourceTree = "<group>"; };
+		24E4BD7215E95357008F162C /* callable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = callable.h; path = src/base/callable.h; sourceTree = "<group>"; };
+		24E4BD7615E95883008F162C /* callable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = callable.cpp; path = src/base/callable.cpp; sourceTree = "<group>"; };
 		24EA29D71533460600EE209C /* graphics.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphics.xml; path = demo/res/graphics.xml; sourceTree = "<group>"; };
 		24EA29DA15334EB500EE209C /* scenary.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = scenary.xml; path = demo/res/scenary.xml; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
@@ -2761,6 +2765,8 @@
 		24BDCC5D14CC7E2B006F36A1 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				24E4BD7615E95883008F162C /* callable.cpp */,
+				24E4BD7215E95357008F162C /* callable.h */,
 				2467298C14DA9BA0003AAA04 /* exceptions.h */,
 				2415838914CE09460014F37B /* texture.cpp */,
 				2415838814CE04990014F37B /* texture.h */,
@@ -3135,6 +3141,7 @@
 				24E4BD6715E5634A008F162C /* scripting_engine.h in Headers */,
 				24E4BD6C15E6BFB7008F162C /* event_manager.h in Headers */,
 				24E4BD7115E92F62008F162C /* listener.h in Headers */,
+				24E4BD7315E95359008F162C /* callable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3915,6 +3922,7 @@
 				24E4BD6615E5634A008F162C /* scripting_engine.cpp in Sources */,
 				24E4BD6B15E6BFB7008F162C /* event_manager.cpp in Sources */,
 				24E4BD7015E92F62008F162C /* listener.cpp in Sources */,
+				24E4BD7715E95885008F162C /* callable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

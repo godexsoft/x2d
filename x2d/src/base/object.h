@@ -21,11 +21,12 @@
 #include "body_part.h"
 #include "body.h"
 #include "object_traits.h"
+#include "callable.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 
-namespace x2d {
+namespace x2d {    
 namespace config {
     
     class configuration;
@@ -40,7 +41,9 @@ using namespace x2d::config;
     class object 
     : public base_object
     , public boost::enable_shared_from_this<object>
-    {        
+    {
+        friend class configuration;
+        
     public:
         object(kernel& k, config::configuration& c, const object_traits& t=object_traits(), spawner* spwn = NULL);
         
@@ -155,11 +158,22 @@ using namespace x2d::config;
         void destroy_self();
         void on_lifetime_timer(const clock_info& clock);
 
+        void on_destroy()
+        {
+            on_destroy_(this);
+        }
+        
+        void on_create()
+        {
+            on_create_(this);
+        }
+        
         config::configuration&  config_;
         timer                   lifetime_timer_;
         
     protected:        
         const std::string           name_;
+        const basic_path<char, '.'> path_;
         boost::shared_ptr<camera>   camera_;
         space                       space_;
         parent_space                parent_space_;
@@ -200,6 +214,10 @@ using namespace x2d::config;
         
         // physics
         boost::shared_ptr<body>    body_;
+        
+        // callables
+        callable<object*> on_create_;
+        callable<object*> on_destroy_;
     };
     
 } // namespace x2d

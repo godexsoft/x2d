@@ -778,14 +778,14 @@ namespace config {
         xml_attr* value = node->first_attribute("value");
         if(!value && !node->first_node() && path.empty() && ref.empty())
         {
-            throw parse_exception("Script must have either 'value', 'ref', 'path' or inner script defined.");
+            throw structure_exception("Script must have either 'value', 'ref', 'path' or inner script defined.");
         }
         
         if(!path.empty())
         {
             if(value || node->first_node() || !ref.empty())
             {
-                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+                throw structure_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
             }
             
             config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
@@ -795,7 +795,7 @@ namespace config {
         {
             if(value || node->first_node() || !path.empty())
             {
-                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+                throw structure_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
             }
             
             config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
@@ -805,7 +805,7 @@ namespace config {
         {
             if(node->first_node() || !path.empty() || !ref.empty())
             {
-                throw parse_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
+                throw structure_exception("Script can only have one of 'value', 'ref', 'path' or inner script defined.");
             }
 
             config_[key] = boost::shared_ptr<script_cfg>( new script_cfg(*this,
@@ -837,7 +837,7 @@ namespace config {
         // script:  reference to a script object (config key)
         
         std::string ev = get_mandatory_attr<std::string>(*this, node, key, "event",
-            parse_exception("Listener must have event defined.")).get(*this);
+            structure_exception("Listener must have event defined.")).get(*this);
         std::string scr = get_key_attr(*this, node, key, "script",
             std::string()).get(*this);
         
@@ -871,6 +871,10 @@ namespace config {
         // align:     text alignment ('left', 'center' or 'right'. defaults to 'left')
         // body:      physics body
         // lifetime:  lifetime of the object
+        //
+        // scripts:
+        // on_create:  executed right after object is instantiated
+        // on_destroy: executed before object is destroyed
         
         object_traits tr;
         
@@ -894,13 +898,14 @@ namespace config {
 
         tr.name =       get_mandatory_attr<std::string>(*this, node, key, "n", 
                             parse_exception("Object must have 'n' defined.")).get(*this);
+        tr.path = key;
         
         // no contexts by default
-        tr.contexts = get_list_attr<std::string>(*this, node, key, "contexts", "").get(*this);
+        tr.contexts =   get_list_attr<std::string>(*this, node, key, "contexts", "").get(*this);
 
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
-        tr.box =        get_attr<size>(*this, node, key, "box", size()).get(*this); // TODO: other defaults?
+        tr.box =        get_attr<size>(*this, node, key, "box", size()).get(*this);
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
         tr.lifetime =   get_attr<float>(*this, node, key, "lifetime", 0.0f);
@@ -1092,8 +1097,18 @@ namespace config {
                         + body->value() + "'.");
             }
         }
-
-        config_[key] = 
+        
+        // scripts
+        if(exists(key / "on_create"))
+        {
+            tr.has_on_create = true;
+        }
+        if(exists(key / "on_destroy"))
+        {
+            tr.has_on_destroy = true;
+        }
+        
+        config_[key] =
             boost::shared_ptr<object_cfg>( 
                 new object_cfg(*this, kernel_, tr) );
     }

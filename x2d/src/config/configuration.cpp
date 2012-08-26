@@ -41,6 +41,9 @@ namespace config {
     {
         LOG("-- Registering object");
         objects_.push_back(obj);
+        
+        // call on_create
+        obj->on_create();
     }
     
     void configuration::deregister_object(const boost::shared_ptr<object>& obj)
@@ -51,6 +54,9 @@ namespace config {
             objects_.end(),
                 obj),
                     objects_.end());
+        
+        // call on_destroy
+        obj->on_destroy();
     }
     
     void configuration::load_core_parsers()
