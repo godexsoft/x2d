@@ -15,8 +15,7 @@ namespace x2d {
     template<>
     void exec_script(configuration& c, const boost::shared_ptr<script>& s, object* o)
     {
-        // TODO: bind object as self in lua
-        c.get_scripting_engine().execute(s);
+        c.get_scripting_engine().execute(s, o);
     }
     
 } // namespace x2d

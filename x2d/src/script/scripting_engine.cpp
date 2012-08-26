@@ -20,6 +20,7 @@ extern "C"
 
 #include "kernel.h"
 #include "event_manager.h"
+#include "object.h"
 
 static void empty_log(const char*) {}
 
@@ -40,6 +41,7 @@ namespace scripting {
         // bind all global x2d stuff
         bind_log();
         bind_event();
+        bind_object();
     }
     
     void scripting_engine::execute(const boost::shared_ptr<script>& s)
@@ -49,6 +51,17 @@ namespace scripting {
             luabind::object error_msg(from_stack(lua_, -1));
             std::cout << "\n\nLUA ERROR: " << error_msg << "\n\n";
         }
+    }
+
+    void scripting_engine::execute(const boost::shared_ptr<script>& s, object* o)
+    {
+        // inject object as self
+        luabind::globals(lua_)["self"] = o;
+        
+        execute(s);
+        
+        // remove object
+        luabind::globals(lua_)["self"] = nil;
     }
     
     void scripting_engine::bind_log()
@@ -119,6 +132,23 @@ namespace scripting {
                 .def("disconnect", &boost::signals::connection::disconnect)
         ];
     }
+
+    void scripting_engine::bind_object()
+    {
+        module(lua_)
+        [
+            class_<color_info>("color_info")
+                .def(constructor<float,float,float,float>())
+        ];
+        
+        module(lua_)
+        [
+            class_<object>("object")
+//                .def(constructor<kernel&,configuration&,const object_traits&,spawner*>())
+                .def("bgcolor", &object::set_bgcolor)
+        ];
+    }
+
     
 } // namespace scripting
 } // namespace x2d

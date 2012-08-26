@@ -20,6 +20,7 @@ struct lua_State;
 namespace x2d {
 
     class kernel;
+    class object;
     
 namespace scripting {
 
@@ -29,11 +30,13 @@ namespace scripting {
         scripting_engine(kernel& k);
         
         void execute(const boost::shared_ptr<script>& s);
+        void execute(const boost::shared_ptr<script>& s, object* o);
         
     private:
         
         void bind_log();
         void bind_event();
+        void bind_object();
         
         kernel&     kernel_;
         lua_State*  lua_;
