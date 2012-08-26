@@ -40,6 +40,7 @@ namespace scripting {
         
         // bind all global x2d stuff
         bind_log();
+        bind_aux_types();
         bind_event();
         bind_object();
     }
@@ -133,7 +134,7 @@ namespace scripting {
         ];
     }
 
-    void scripting_engine::bind_object()
+    void scripting_engine::bind_aux_types()
     {
         module(lua_)
         [
@@ -143,9 +144,22 @@ namespace scripting {
         
         module(lua_)
         [
+            class_<glm::vec2>("vec2")
+                .def(constructor<float,float>()),
+            class_<glm::vec3>("vec3")
+                .def(constructor<float,float,float>())
+        ];
+    }
+    
+    void scripting_engine::bind_object()
+    {
+        module(lua_)
+        [
             class_<object>("object")
-//                .def(constructor<kernel&,configuration&,const object_traits&,spawner*>())
                 .def("bgcolor", &object::set_bgcolor)
+                .def("rotation", (void(object::*)(float))&object::rotation)
+                .def("scale", (void(object::*)(float))&object::scale)
+                .def("position", (void(object::*)(const glm::vec2&))&object::position)
         ];
     }
 

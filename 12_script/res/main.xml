@@ -23,16 +23,7 @@
     </script>
 
     <script n = "mega_script" value = "x2d.log('\n\ntest die Hola!\n\n')" />
-    
-    <script n = "inline2">
-        <![CDATA[
-            x2d.log("creating object...")
-            self:bgcolor(color_info(1, 0, 0, 1))
-        ]]>
-    </script>
-    
     <script n = "file" path = "res/scripts/first.lua" />
-    <script n = "ref" ref = "file" />
     
     <listener n = "listener" event = "test_die" script = "mega_script" />
     
@@ -41,7 +32,7 @@
             box = "100 100"
         bgcolor = "1 1 1 1"
     >
-        <script n = "on_create" ref = "inline2" />
+        <script n = "on_create" ref = "file" />
         <script n = "on_destroy">
             event.send("test_die")
         </script>

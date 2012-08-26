@@ -35,6 +35,7 @@ namespace scripting {
     private:
         
         void bind_log();
+        void bind_aux_types();
         void bind_event();
         void bind_object();
         
