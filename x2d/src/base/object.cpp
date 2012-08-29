@@ -14,11 +14,7 @@ namespace x2d {
     object_traits::object_traits()
     : name("_no_name_") // can't really happen if you use x2d config system
     , path("_no_path_") // can't really happen if you use x2d config system
-    , position("", glm::vec3(0.0f,0.0f,0.0f))
-    , scale("", 0.0f)
-    , rotation("", 0.0f)
-    , box(size(1.0f, 1.0f)) // TODO: other defaults? maybe size of sprite if any?
-    , pivot(glm::vec2(0.0f, 0.0f)) // center in world space
+    , scale(1.0f)
     , has_bgcolor(false)
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , lifetime("", 0.0f)
@@ -37,8 +33,6 @@ namespace x2d {
     , obj_space(WORLD_SPACE)
     , par_space(PARENT_SPACE_NONE) // all in world space by default
     , has_parent(false)
-    , has_on_create(false)
-    , has_on_destroy(false)
     {            
     }
     
@@ -77,26 +71,26 @@ namespace x2d {
     , camera_space_position_(t.position.get(c))
     , scale_(t.scale.get(c))
     , rotation_(t.rotation.get(c))    
-    , box_(t.box)
-    , camera_space_box_(t.box)
-    , pivot_(t.pivot)
-    , camera_space_pivot_(t.pivot)
+    , box_(t.box.get(c))
+    , camera_space_box_(box_) // copy from originally generated value
+    , pivot_(t.pivot.get(c))
+    , camera_space_pivot_(pivot_)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
-    , is_visible_(t.visible)
+    , is_visible_(t.visible.get(c))
     , parent_(NULL)
     , has_parent_(t.has_parent)
     , on_create_(config_)
     , on_destroy_(config_)
     {
-        if(t.has_on_create)
+        if(!t.on_create.empty())
         {
-            on_create_.set_script(config_.create_sys_object<script>(path_ / "on_create"));
+            on_create_.set_script(config_.create_sys_object<script>(t.on_create));
         }
         
-        if(t.has_on_destroy)
+        if(!t.on_destroy.empty())
         {
-            on_destroy_.set_script(config_.create_sys_object<script>(path_ / "on_destroy"));
+            on_destroy_.set_script(config_.create_sys_object<script>(t.on_destroy));
         }
         
         if(spwn)
@@ -114,17 +108,17 @@ namespace x2d {
             set_lifetime(lt);
         }
         
-        if(t.want_screen_touch_input)
+        if(t.want_screen_touch_input.get(config_))
         {
             connect_touch_input(SCREEN_SPACE);
         }
         
-        if(t.want_world_touch_input)
+        if(t.want_world_touch_input.get(config_))
         {
             connect_touch_input(WORLD_SPACE);
         }
         
-        if(t.want_accelerometer_input)
+        if(t.want_accelerometer_input.get(config_))
         {
             // TODO accel connect
         }

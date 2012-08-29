@@ -70,6 +70,14 @@ public:
         traits_.children.push_back(k);
     }
     
+    /**
+     * Get currently parsed object traits.
+     */
+    const object_traits get_traits() const
+    {
+        return traits_;
+    }
+    
 private:                
     configuration&              config_;
     kernel&                     kernel_;

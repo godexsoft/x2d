@@ -206,21 +206,32 @@ namespace config {
         plg->load_extensions( parsers_ );
     }
     
-    const boost::shared_ptr<object> configuration::create_object(const config_key& key)
+    const boost::shared_ptr<object> configuration::create_object(const config_key& key, config_key proto_key)
     {
-        LOG("Try to lookup binding for '%s'", key.string().c_str());
         boost::shared_ptr<object> obj;
         
-        // try to find binding first
-        if(create_obj_bindings_.find(key) != create_obj_bindings_.end())
+        if(proto_key.empty())
         {
-            LOG("FOUND!");
+            proto_key = key;
+        }
+        
+        // try to find binding first
+        if(create_obj_bindings_.find(proto_key) != create_obj_bindings_.end())
+        {
             // forward to strong-typed version
-            obj = create_obj_bindings_[key]( key );
+            obj = create_obj_bindings_[proto_key]( key );
         }
         else
         {
-            LOG("No binding. return plain object version!");
+            // maybe there is a prototype with a binding for this object?
+            config_key proto =
+                static_cast<object_cfg*>( &(*config_[proto_key]) )->get_traits().proto;
+            
+            if(!proto.empty())
+            {
+                return create_object(key, proto);
+            }
+            
             obj = static_cast<object_cfg*>( &(*config_[key]) )->create();
         }
         
@@ -228,21 +239,33 @@ namespace config {
         return obj;
     }
     
-    const boost::shared_ptr<object> configuration::create_object_1(const config_key& key, spawner* spwn)
+    const boost::shared_ptr<object> configuration::create_object_1(
+        const config_key& key, spawner* spwn, config_key proto_key)
     {
-        LOG("Try to lookup binding for '%s'", key.string().c_str());
         boost::shared_ptr<object> obj;
+                
+        if(proto_key.empty())
+        {
+            proto_key = key;
+        }
         
         // try to find binding first
-        if(create_obj_1_bindings_.find(key) != create_obj_1_bindings_.end())
+        if(create_obj_1_bindings_.find(proto_key) != create_obj_1_bindings_.end())
         {
-            LOG("FOUND!");
             // forward to strong-typed version
-            obj = create_obj_1_bindings_[key]( key, spwn );
+            obj = create_obj_1_bindings_[proto_key]( key, spwn );
         }
         else
         {
-            LOG("No binding. return plain object version!");
+            // maybe there is a prototype with a binding for this object?
+            config_key proto =
+                static_cast<object_cfg*>( &(*config_[proto_key]) )->get_traits().proto;
+            
+            if(!proto.empty())
+            {
+                return create_object_1(key, spwn, proto);
+            }
+            
             obj = static_cast<object_cfg*>( &(*config_[key]) )->create(spwn);
         }
         

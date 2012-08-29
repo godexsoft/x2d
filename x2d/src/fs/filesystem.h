@@ -127,6 +127,14 @@ namespace filesystem {
             return path_; 
         }
         
+        /**
+         * @return Whether path is empty or not
+         */
+        inline bool empty() const
+        {
+            return path_.empty();
+        }
+        
     private:        
         _StringType	path_;	// String representation of the path
     };

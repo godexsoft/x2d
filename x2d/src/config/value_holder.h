@@ -23,14 +23,27 @@ namespace config {
     {
     public:
         value_holder(const std::string& k, const T& def)
-        : key_(k)
+        : set_(true)
+        , key_(k)
         , def_val_(def)
         {            
+        }
+        
+        value_holder(const T& def=T())
+        : set_(false)
+        , def_val_(def)
+        {
         }
 
         T get(configuration& c) const;
         
+        const bool is_set() const
+        {
+            return set_;
+        }
+        
     private:
+        bool            set_;
         std::string     key_;
         T               def_val_;
     };
@@ -41,14 +54,27 @@ namespace config {
     {
     public:
         value_holder(const std::string& k, const std::vector<std::string>& def)
-        : key_(k)
+        : set_(true)
+        , key_(k)
         , def_val_(def)
         , dist_(0.0, 1.0)
-        {            
+        {
+        }
+        
+        value_holder(const std::vector<std::string>& def=std::vector<std::string>())
+        : set_(false)
+        , def_val_(def)
+        , dist_(0.0, 1.0)
+        {
         }
         
         std::vector<std::string> get(configuration& c) const;
         std::string random(configuration& c) const;
+        
+        const bool is_set() const
+        {
+            return set_;
+        }
         
     private:
         double next_rand() const
@@ -56,6 +82,7 @@ namespace config {
             return dist_(gen_);
         }
         
+        bool                      set_;
         std::string               key_;
         std::vector<std::string>  def_val_;
         

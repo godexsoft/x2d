@@ -851,6 +851,7 @@ namespace config {
         // n:        name of the element
         //
         // can have:
+        // proto:     prototype for the object (config key pointing at another object)
         // parent:    parent object (inherit space - position, rotation, scale, etc.)
         // contexts:  list of contexts separated by space
         // position:  position vector2d
@@ -876,7 +877,27 @@ namespace config {
         // on_create:  executed right after object is instantiated
         // on_destroy: executed before object is destroyed
         
-        object_traits tr;
+        object_traits tr, proto_tr;
+        
+        // check for prototype
+        xml_attr* proto = node->first_attribute("proto");
+        if(proto)
+        {
+            std::string k = lookup_key(proto->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false)
+            {
+                LOG("Prototype detected.");
+                proto_tr = static_cast<object_cfg*>(&(*config_[k]))->get_traits();
+                tr.proto = k;
+            }
+            else
+            {
+                throw structure_exception(
+                    "Can't locate object prototype at key "
+                        + std::string(proto->value()));
+            }
+        }
         
         xml_attr* parent = node->first_attribute("parent");
         if(parent) 
@@ -905,9 +926,9 @@ namespace config {
 
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
-        tr.box =        get_attr<size>(*this, node, key, "box", size()).get(*this);
+        tr.box =        get_attr<size>(*this, node, key, "box", size());
         tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
-        tr.visible =    get_attr<bool>(*this, node, key, "visible", true).get(*this);
+        tr.visible =    get_attr<bool>(*this, node, key, "visible", true);
         tr.lifetime =   get_attr<float>(*this, node, key, "lifetime", 0.0f);
         
         xml_attr* bgcolor = node->first_attribute("bgcolor");
@@ -1019,13 +1040,13 @@ namespace config {
         if(tr.obj_space == CAMERA_SPACE || tr.has_parent)
         {
             tr.par_space =      PARENT_SPACE_BOTH;
-            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0.5,0.5)).get(*this);            
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0.5,0.5));
             tr.position =       get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.5f, 0.5f, 0.0f));
         }
         else
         {
             tr.par_space =      PARENT_SPACE_NONE;
-            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);            
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0));
             tr.position =       get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0.0f, 0.0f, 0.0f));
         }
 
@@ -1038,7 +1059,7 @@ namespace config {
         if(tr.par_space == PARENT_SPACE_POSITION)
         {
             // don't use the default pivot at 0.5,0.5 - use 0.0,0.0
-            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);            
+            tr.pivot =          get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0));
         }
         
         xml_attr* align = node->first_attribute("align");
@@ -1101,16 +1122,26 @@ namespace config {
         // scripts
         if(exists(key / "on_create"))
         {
-            tr.has_on_create = true;
+            tr.on_create = key / "on_create";
         }
         if(exists(key / "on_destroy"))
         {
-            tr.has_on_destroy = true;
+            tr.on_destroy = key / "on_destroy";
+        }
+        
+        // merge overrides into prototype
+        if(proto)
+        {
+            proto_tr.merge(tr);
+        }
+        else
+        {
+            proto_tr = tr;
         }
         
         config_[key] =
             boost::shared_ptr<object_cfg>( 
-                new object_cfg(*this, kernel_, tr) );
+                new object_cfg(*this, kernel_, proto_tr) );
     }
     
 } // namespace config

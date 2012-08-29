@@ -157,7 +157,8 @@ namespace config {
          *
          * @param[in] key Configuration key
          */
-        const boost::shared_ptr<object> create_object(const config_key& key);
+        const boost::shared_ptr<object> create_object(
+            const config_key& key, config_key proto_key="");
         
         /**
          * Create new object relative to spawner.
@@ -165,7 +166,8 @@ namespace config {
          * @param[in] key Configuration key
          * @param[in] spwn The spawner
          */
-        const boost::shared_ptr<object> create_object_1(const config_key& key, spawner* spwn);
+        const boost::shared_ptr<object> create_object_1(
+            const config_key& key, spawner* spwn, config_key proto_key="");
         
         /**
          * Create if required and return a shared version of a given object.
@@ -227,7 +229,7 @@ namespace config {
                 return value_holder<T>(key / name, default_value);
             }
             
-            return value_holder<T>("", default_value);
+            return value_holder<T>(default_value);
         }
         
         // getting mandatory attribute
