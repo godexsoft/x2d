@@ -28,7 +28,7 @@ namespace bitmapfont {
         {
             size  sz(widths.at(i), height);
             
-            if(cur_x_offset + sz.width > texture_->size().width)
+            if(cur_x_offset + sz.width > texture_->area().width)
             {
                 cur_x_offset = 0;
                 cur_y_offset += height + spacing_.height;

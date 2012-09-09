@@ -10,7 +10,7 @@
 #ifndef __X2D_WORLD_H__
 #define __X2D_WORLD_H__
 
-#include <boost/pool/detail/singleton.hpp>
+#include <boost/thread/detail/singleton.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "Box2D/Box2D.h"
@@ -28,7 +28,7 @@ namespace physics {
      */
     class world_bare
     {
-        friend class boost::details::pool::singleton_default<world_bare>;
+        friend class boost::detail::thread::singleton<world_bare>;
         
     public:
         b2Body* new_body(const glm::vec2& pos, float angle=0, bool dynamic=true)
@@ -75,7 +75,7 @@ namespace physics {
         contact_listener contact_listener_;
     };
     
-    typedef boost::details::pool::singleton_default<world_bare> world;
+    typedef boost::detail::thread::singleton<world_bare> world;
     
 } // namespace physics
 } // namespace x2d

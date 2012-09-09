@@ -39,7 +39,7 @@ namespace base {
     class zone
     : public base_object
     {
-        friend class object;
+        friend class x2d::object;
         typedef boost::function<void(object&)> trigger_type;
         
     public:
@@ -134,7 +134,7 @@ namespace base {
             {                
                 glm::vec3 p = parent_->world_position();
                 return rect(p.x + rect_.origin.x, p.y + rect_.origin.y, 
-                    rect_.size.width, rect_.size.height).contains_point( point(position.x, position.y) );
+                    rect_.area.width, rect_.area.height).contains_point( point(position.x, position.y) );
             }
             else
             {            

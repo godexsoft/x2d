@@ -1,29 +1,27 @@
 //
-//  AppDelegate.m
+//  X2DAppDelegate.mm
 //  x2d
 //
-//  Created by Alex Kremer on 1/22/12.
+//  Created by Alex Kremer on 8/9/12.
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "X2DAppDelegate.h"
 #import "EAGLView.h"
-#import "kernel.h"
-#import "custom_obj.h"
-#import "liverpool.h"
-#import "liverpool_manager.h"
-#import "resource_manager.h"
+
 #import "platform.h"
-#import "texture.h"
-#import "sound.h"
+#import "app_framework.h"
 
 #import <QuartzCore/QuartzCore.h>
 #include <iostream>
 
+// global app pointer :-/
+extern app_framework* g_app;
+
 namespace lp = x2d::liverpool;
 namespace fs = x2d::filesystem;
 
-@implementation AppDelegate
+@implementation X2DAppDelegate
 
 @synthesize window = _window;
 @synthesize gl_view = _gl_view;
@@ -39,24 +37,8 @@ namespace fs = x2d::filesystem;
 
 - (void)start:(id)dummy
 {
-    NSLog(@"Starting.");
+    NSLog(@"x2d iOS: Starting.");
 
-    // mount resources
-    _lvp_man.mount("resources.zip", "res");
-    
-    // init sound
-    // sound_engine::instance();
-    
-    // create game
-    try 
-    {
-        _game = boost::shared_ptr<game>( new game(_lvp_man, _k) );
-    }
-    catch(sys_exception& ex)
-    {
-        LOG("Game exception caught: %s", ex.what());
-    }
-    
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
     [self.dl addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -64,7 +46,7 @@ namespace fs = x2d::filesystem;
 
 - (void)step
 {
-    _game->step();
+    g_app->step();
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -72,7 +54,7 @@ namespace fs = x2d::filesystem;
     self.window = [[[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     
     // create opengl view
-    self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) kernel:&_k] autorelease];    
+    self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     self.window.multipleTouchEnabled = YES;
     self.window.userInteractionEnabled = YES;
     self.window.rootViewController = nil;
@@ -92,8 +74,7 @@ namespace fs = x2d::filesystem;
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     LOG("Pause.");
-    if(_game)
-        _game->pause();    
+    g_app->get_kernel().pause();
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -104,8 +85,7 @@ namespace fs = x2d::filesystem;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     LOG("Resume.");
-    if(_game)
-        _game->resume();
+    g_app->get_kernel().resume();
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

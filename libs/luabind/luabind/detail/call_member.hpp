@@ -374,7 +374,8 @@ typename detail::make_member_proxy<R, Args...>::type call_member(
 
 #endif // LUABIND_CALL_MEMBER_HPP_INCLUDED
 
-#elif BOOST_PP_ITERATION_FLAGS() == 1
+#else 
+#if BOOST_PP_ITERATION_FLAGS() == 1
 
 #define LUABIND_TUPLE_PARAMS(z, n, data) const A##n *
 #define LUABIND_OPERATOR_PARAMS(z, n, data) const A##n & a##n
@@ -386,6 +387,7 @@ typename detail::make_member_proxy<R, Args...>::type call_member(
 	call_member(object const& obj, const char* name BOOST_PP_COMMA_IF(BOOST_PP_ITERATION()) BOOST_PP_ENUM(BOOST_PP_ITERATION(), LUABIND_OPERATOR_PARAMS, _))
 	{
 		typedef boost::tuples::tuple<BOOST_PP_ENUM(BOOST_PP_ITERATION(), LUABIND_TUPLE_PARAMS, _)> tuple_t;
+#endif
 #if BOOST_PP_ITERATION() == 0
 		tuple_t args;
 #else

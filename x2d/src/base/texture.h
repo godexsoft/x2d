@@ -12,13 +12,21 @@
 
 #include "math_util.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
-#include <OpenGLES/ES1/glext.h>
-#define MAX_TEXTURE_SIZE 1024
-#elif defined(__APPLE__)
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/gl.h>
-#define MAX_TEXTURE_SIZE 2048
+#if defined(__APPLE__)
+
+#	if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+#		include <OpenGLES/ES1/glext.h>
+#		define MAX_TEXTURE_SIZE 1024
+#	elif defined(__APPLE__)
+#		include <OpenGL/OpenGL.h>
+#		include <OpenGL/gl.h>
+#		define MAX_TEXTURE_SIZE 2048
+#	endif
+
+#elif defined(ANDROID)
+#	include <EGL/egl.h>
+#	include <GLES/gl.h>
+#	define MAX_TEXTURE_SIZE 1024
 #endif
 
 #include "filesystem.h"
@@ -64,10 +72,10 @@ namespace base {
         /**
          * Construction of texture from FD stream
          */
-        texture(ifdstream stream);        
+        texture(ifdstream);
         ~texture();
         
-        inline size size() const { return size_; }
+        inline size area() const { return size_; }
         
         /**
          * Draw the texture

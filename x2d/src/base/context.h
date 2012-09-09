@@ -23,7 +23,7 @@ namespace base {
      */
     class context
     {
-        friend class object;    
+        friend class x2d::object;
         friend class zone;
         
     private:       

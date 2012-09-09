@@ -24,7 +24,7 @@ namespace time {
      */
     class timer
     {
-        friend class kernel;
+        friend class x2d::kernel;
         typedef boost::function<void(const clock_info&)> handler_type;
         
     public:

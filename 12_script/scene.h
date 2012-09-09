@@ -9,28 +9,24 @@
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
-#include "configuration.h"
-
-#include <vector>
+#include "app_framework.h"
 
 class scene 
 : public base_object
 {
 public:
-    scene(kernel& k, configuration& conf)
-    : base_object(k)
-    , config_(conf)
+    scene(app_framework& app)
+    : base_object(app.get_kernel())
+    , app_(app)
     {
         connect_touch_input(WORLD_SPACE);
         
-        listener_ = config_.create_sys_object<listener>("listener");
+        listener_ = app_.get_config().create_sys_object<listener>("listener");
     }
     
     void touch_input_began(space s, const std::vector<touch>& touches) 
     {
-//        boost::shared_ptr<script> scr = config_.create_sys_object<script>("ref");
-//        config_.get_scripting_engine().execute(scr);
-        config_.create_object("test_object");
+        app_.get_config().create_object("test_object");
     }
     
 private:
@@ -39,9 +35,8 @@ private:
         LOG("TEST EVENT HAPPENED IN SCENE!!");
     }
     
-    configuration&  config_;
+    app_framework&  app_;
     boost::shared_ptr<listener> listener_;
-    std::vector< boost::shared_ptr<base_object> >   objects_;
 };
 
 #endif // __SCENE_H__

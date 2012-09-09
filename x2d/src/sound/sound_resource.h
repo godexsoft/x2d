@@ -14,14 +14,18 @@
 #include "value_holder.h"
 #include "base_object.h"
 #include "interpolator.h"
+#include "sound.h"
 
 #if defined X2D_SND_DRIVER
-    #include "audio_queue.h"
-    #include "openal_fx.h"
+#	if defined X2D_NULL_SOUND
+#		include "null_drivers.h"
+#	elif defined X2D_IOS_SOUND
+#		include "audio_queue.h"
+#		include "openal_fx.h"
+#	endif
 #else
-    #error Selected audio driver does not exist.
+#	error Selected audio driver does not exist.
 #endif
-
 
 namespace x2d {
 namespace snd {

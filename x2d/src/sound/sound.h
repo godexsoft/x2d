@@ -11,14 +11,18 @@
 #define __X2D_SOUND_H__
 
 #include "resource_manager.h"
-#include <boost/pool/detail/singleton.hpp>
+#include <boost/thread/detail/singleton.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "config.h"
 
 #if defined X2D_SND_DRIVER
-    #include "audio_queue.h"
-    #include "openal_fx.h"
+#	if defined X2D_NULL_SOUND
+#		include "null_drivers.h"
+#	elif defined X2D_IOS_SOUND
+#		include "audio_queue.h"
+#		include "openal_fx.h"
+#	endif
 #else
     #error Selected audio driver does not exist.
 #endif
@@ -34,7 +38,7 @@ namespace snd {
     class sound_engine_bare
     {
         friend class sound;
-        friend class boost::details::pool::singleton_default<sound_engine_bare>;
+        friend class boost::detail::thread::singleton<sound_engine_bare>;
         
     public:
         void master_volume(float v);
@@ -75,7 +79,7 @@ namespace snd {
         float sfx_volume_; 
     };
     
-    typedef boost::details::pool::singleton_default<sound_engine_bare> sound_engine;
+    typedef boost::detail::thread::singleton<sound_engine_bare> sound_engine;
     
 } // namespace snd
 } // namespace x2d

@@ -94,12 +94,12 @@ namespace math {
 #ifdef __APPLE__
         rect(const CGRect& r)
         : origin(r.origin)
-        , size(r.size)
+        , area(r.size)
         {            
         }
         
-        inline operator CGRect() { return CGRectMake(origin.x, origin.y, size.width, size.height); }
-        inline operator const CGRect() const { return CGRectMake(origin.x, origin.y, size.width, size.height); }
+        inline operator CGRect() { return CGRectMake(origin.x, origin.y, area.width, area.height); }
+        inline operator const CGRect() const { return CGRectMake(origin.x, origin.y, area.width, area.height); }
 #endif  
         
         rect()
@@ -108,21 +108,21 @@ namespace math {
         
         rect(float x, float y, float width, float height)
         : origin(x, y)
-        , size(width, height)
+        , area(width, height)
         {            
         }
       
         inline bool contains_point(const point& p)
         {
-            if(p.x >= origin.x && p.x <= origin.x+size.width)
-                if(p.y >= origin.y && p.y <= origin.y+size.height)
+            if(p.x >= origin.x && p.x <= origin.x+area.width)
+                if(p.y >= origin.y && p.y <= origin.y+area.height)
                     return true;
             
             return false;
         }
         
         point origin;
-        size size;        
+        size area;
     };
     
     struct bbox

@@ -12,6 +12,11 @@
 #include <exception>
 #include "platform.h"
 
+#ifdef ANDROID
+#include <android/asset_manager.h>
+extern AAssetManager* g_assetManager;
+#endif
+
 using namespace std;
 
 namespace x2d {
@@ -122,6 +127,31 @@ namespace liverpool {
 //      file f( path_for_resource( p.string() ) );
 //      return f.ifd_stream();
         
+#ifdef ANDROID
+    	AAsset* asset = AAssetManager_open(g_assetManager, p.string().c_str(), AASSET_MODE_UNKNOWN);
+    	if (asset == NULL) {
+    	  LOG("COULD NOT OPEN ASSET");
+    	}
+    	// open asset as file descriptor
+    	off_t start, length;
+    	int fd = AAsset_openFileDescriptor(asset, &start, &length);
+    	if(fd < 0)
+    	{
+    	  LOG("COULD NOT OPEN FILE DESCRIPTOR");
+    	}
+
+    	FILE* fp = fdopen( fd, "rb" );
+    	if(!fp)
+    	{
+    		LOG("Could not open a file at '%s'", p.string().c_str());
+    	    throw std::exception();
+    	}
+
+       	AAsset_close(asset);
+    	return ifdstream(fp, start, length);
+
+
+#else
         // first read the resources zip
         std::string pth = path_for_resource( p.string() );
         FILE* fp = fopen( pth.c_str(), "rb" );
@@ -136,6 +166,7 @@ namespace liverpool {
         fseek(fp, 0, SEEK_SET);
         
         return ifdstream(fp, 0, size);
+#endif
     }
     
 	//	 0	4	Central directory file header signature = 0x02014b50

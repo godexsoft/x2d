@@ -1,8 +1,8 @@
 //
-//  AppDelegate.h
+//  X2DAppDelegate.h
 //  x2d
 //
-//  Created by Alex Kremer on 1/22/12.
+//  Created by Alex Kremer on 8/9/12.
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
@@ -11,13 +11,9 @@
 #import "EAGLView.h"
 #import "liverpool_manager.h"
 #import "kernel.h"
-#import "game.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface X2DAppDelegate : UIResponder <UIApplicationDelegate>
 {
-    liverpool_manager         _lvp_man;
-    kernel                    _k;
-    boost::shared_ptr<game>   _game;
 }
 
 @property (strong, nonatomic) UIWindow *window;

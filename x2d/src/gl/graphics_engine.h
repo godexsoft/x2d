@@ -10,14 +10,28 @@
 #ifndef __X2D_GRAPHICS_ENGINE_H__
 #define __X2D_GRAPHICS_ENGINE_H__
 
-#include <boost/pool/detail/singleton.hpp>
+#include <boost/thread/detail/singleton.hpp>
 #include <boost/function.hpp>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
-#include <OpenGLES/ES1/glext.h>
-#elif defined(__APPLE__)
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/gl.h>
+#if defined(__APPLE__)
+
+#	if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+#		include <OpenGLES/ES1/glext.h>
+#		define MAX_TEXTURE_SIZE 1024
+# 	  	define GL_ES_INCLUDED
+#	elif defined(__APPLE__)
+#		include <OpenGL/OpenGL.h>
+#		include <OpenGL/gl.h>
+#		define MAX_TEXTURE_SIZE 2048
+#	endif
+
+#elif defined(ANDROID)
+#	define GL_GLEXT_PROTOTYPES 1
+#	include <EGL/egl.h>
+#	include <GLES/gl.h>
+#   include <GLES/glext.h>
+#	define MAX_TEXTURE_SIZE 1024
+#   define GL_ES_INCLUDED
 #endif
 
 namespace x2d {
@@ -80,7 +94,7 @@ private:
     boost::function<void()> shutdown_;
 };
 
-typedef boost::details::pool::singleton_default<graphics_engine_bare> graphics_engine;
+    typedef boost::detail::thread::singleton<graphics_engine_bare> graphics_engine;
     
 } // namespace graphics
 } // namespace x2d

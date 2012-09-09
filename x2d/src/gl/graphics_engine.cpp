@@ -37,12 +37,12 @@ namespace graphics {
         
     void graphics_engine_bare::shutdown()
     {
-#ifdef ES1_GLEXT_H_GUARD        
+#ifdef GL_ES_INCLUDED
         shutdown_();
 #endif
     }
     
-#ifdef ES1_GLEXT_H_GUARD
+#ifdef GL_ES_INCLUDED
     void graphics_engine_bare::create_frame_buffer() 
     {
         glGenFramebuffersOES(1, &view_frame_buf_);
@@ -64,7 +64,7 @@ namespace graphics {
     }
 #endif // gl es1
     
-#ifdef ES1_GLEXT_H_GUARD
+#ifdef GL_ES_INCLUDED
     void graphics_engine_bare::destroy_frame_buffer() 
     {
         glDeleteFramebuffersOES(1, &view_frame_buf_);
@@ -83,7 +83,7 @@ namespace graphics {
         set_cur_ctx_();
     }
     
-#ifdef ES1_GLEXT_H_GUARD
+#ifdef GL_ES_INCLUDED
     void graphics_engine_bare::start_frame() 
     {
         set_current_context();
@@ -105,7 +105,7 @@ namespace graphics {
         glClear(GL_COLOR_BUFFER_BIT);
     }
     
-#ifdef ES1_GLEXT_H_GUARD
+#ifdef GL_ES_INCLUDED
     void graphics_engine_bare::present_frame() 
     {
         glBindRenderbufferOES(GL_RENDERBUFFER_OES, view_render_buf_);

@@ -243,7 +243,7 @@ namespace filesystem {
 using namespace x2d::filesystem;
 
 // Include platform specific impl
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(ANDROID)
 #include "posix_fs.h"
 #endif
 

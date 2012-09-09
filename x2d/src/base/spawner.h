@@ -30,7 +30,7 @@ namespace base {
 
     class spawner
     {
-        friend class object;
+        friend class x2d::object;
         
     public:
         spawner(kernel& k, configuration& conf, 

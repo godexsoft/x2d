@@ -15,6 +15,10 @@
 #include "input_manager.h"
 #include "objc_callback.h"
 #include "log.h"
+#include "app_framework.h"
+
+// global pointer to the app :-/
+extern app_framework* g_app;
 
 @interface EAGLView (Callbacks)
 - (void)presentRenderBuf;
@@ -30,13 +34,10 @@
     return [CAEAGLLayer class];
 }
 
-- (id) initWithFrame:(const CGRect&)frame kernel:(kernel*)k
+- (id) initWithFrame:(const CGRect&)frame
 {    
     if ((self = [super initWithFrame:frame])) 
     {
-        // save kernel pointer
-        _k = k;
-        
         // generate transformation matrix
         input_transform = glm::translate( glm::mat4(1.0f), glm::vec3(0.0f, frame.size.height, 0.0f) );
         input_transform = glm::scale(input_transform, glm::vec3(1.0f, -1.0f, 1.0f));
@@ -49,7 +50,10 @@
         
         eaglLayer.opaque = YES;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+                                        [NSNumber numberWithBool:NO],
+                                            kEAGLDrawablePropertyRetainedBacking,
+                                            kEAGLColorFormatRGBA8,
+                                            kEAGLDrawablePropertyColorFormat, nil];
 		self.multipleTouchEnabled = YES;
 		self.userInteractionEnabled = YES;
         
@@ -124,7 +128,7 @@
         tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
     }
     
-    _k->on_touches_began( input_manager::transform(tchs, input_transform) );
+    g_app->get_kernel().on_touches_began( input_manager::transform(tchs, input_transform) );
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
@@ -136,7 +140,7 @@
         tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
     }
     
-    _k->on_touches_moved( input_manager::transform(tchs, input_transform) );
+    g_app->get_kernel().on_touches_moved( input_manager::transform(tchs, input_transform) );
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
@@ -148,13 +152,13 @@
         tchs.push_back( touch( [t locationInView:self], [t previousLocationInView:self], t.tapCount, t.timestamp) );
     }
     
-    _k->on_touches_ended( input_manager::transform(tchs, input_transform) );
+    g_app->get_kernel().on_touches_ended( input_manager::transform(tchs, input_transform) );
 }
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer
 		didAccelerate:(UIAcceleration *)acceleration
 {
-    _k->on_acceleration(acceleration.x, acceleration.y, acceleration.z);
+    g_app->get_kernel().on_acceleration(acceleration.x, acceleration.y, acceleration.z);
 }
 
 @end

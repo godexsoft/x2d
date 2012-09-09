@@ -13,11 +13,10 @@
 @interface EAGLView : UIView <UIAccelerometerDelegate>
 {
     EAGLContext* context_;
-    kernel*      _k;
     
     glm::mat4 input_transform;
 }
 
-- (id) initWithFrame:(const CGRect&)frame kernel:(kernel*)k;
+- (id) initWithFrame:(const CGRect&)frame;
 
 @end

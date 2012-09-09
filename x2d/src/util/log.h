@@ -50,6 +50,10 @@ using namespace x2d::util;
 extern "C"
 #endif
 void x2d_log(const char* format, ...);
+
+#ifdef __cplusplus
+extern "C"
+#endif
 void x2d_log_simple(const char* s);
 
 #endif // __LOG_UTIL_H__

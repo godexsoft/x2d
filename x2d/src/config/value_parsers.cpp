@@ -119,7 +119,7 @@ namespace config {
         ss << str;
         
         rect r(0, 0, 0, 0);        
-        ss >> r.origin.x >> r.origin.y >> r.size.width >> r.size.height;
+        ss >> r.origin.x >> r.origin.y >> r.area.width >> r.area.height;
         
         return r;
     }

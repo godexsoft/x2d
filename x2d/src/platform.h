@@ -12,6 +12,14 @@
 #include <string>
 
 namespace platform {
+    
+    struct device_capabilities
+    {
+        device_capabilities()
+        {            
+        }
+    };
+    
 namespace time {
         
     double current_time();
@@ -25,6 +33,7 @@ namespace filesystem {
 } // namespace filesystem
 } // namespace platform
 
+using namespace platform;
 using namespace platform::time;
 using namespace platform::filesystem;
 

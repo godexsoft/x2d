@@ -14,6 +14,7 @@
 #include "glm.hpp"
 #include "log.h"
 
+#include <algorithm>
 #include <vector>
 
 namespace x2d {
@@ -64,7 +65,7 @@ namespace input {
      */
     class input_manager
     {
-        friend class kernel;
+        friend class x2d::kernel;
                 
     public:
         /**

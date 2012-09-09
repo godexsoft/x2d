@@ -12,6 +12,7 @@
 
 #include "liverpool.h"
 #include <map>
+#include <string>
 
 namespace x2d {
 namespace liverpool {
@@ -33,7 +34,7 @@ namespace liverpool {
          * @param[in] mount_point The name of the mount point to unmount
          */
         void unmount(const std::string& mount_point);
-        
+
         /**
          * Retrieve a reference to an open liverpool filesystem.
          *

@@ -37,7 +37,7 @@ namespace base {
         {            
             LOG("Creating viewport (%f %f %f %f)", 
                 box_.origin.x, box_.origin.y,
-                box_.size.width, box_.size.height);
+                box_.area.width, box_.area.height);
             
             LOG("Done creating viewport...");
         }
@@ -63,8 +63,8 @@ namespace base {
         point get_world_location(const point& p) const
         {
             // translate screen-space pixel size to viewport-space pixel size
-            float xs = camera_->frustum_.width / box_.size.width;
-            float ys = camera_->frustum_.height / box_.size.height;
+            float xs = camera_->frustum_.width / box_.area.width;
+            float ys = camera_->frustum_.height / box_.area.height;
             point vp = point(p.x*xs, p.y*ys);
             
             LOG("Request world location from viewport location: %f %f", vp.x, vp.y);
@@ -80,7 +80,7 @@ namespace base {
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();  
             
-#ifdef ES1_GLEXT_H_GUARD
+#ifdef GL_ES_INCLUDED
             glOrthof(0, camera_->frustum_.width, 0, camera_->frustum_.height, -1, 100);
 #elif defined (_OPENGL_H)
             glOrtho(0, camera_.frustum_.width, 0, camera_.frustum_.height, -1, 100);
@@ -88,8 +88,8 @@ namespace base {
             glMatrixMode(GL_MODELVIEW);
 
             // setup our (smaller) viewport and tell opengl we want to cut everything out of view
-            glViewport(box_.origin.x, box_.origin.y, box_.size.width, box_.size.height);
-            glScissor(box_.origin.x, box_.origin.y, box_.size.width, box_.size.height);
+            glViewport(box_.origin.x, box_.origin.y, box_.area.width, box_.area.height);
+            glScissor(box_.origin.x, box_.origin.y, box_.area.width, box_.area.height);
         }
 
         /**

@@ -161,7 +161,7 @@ namespace x2d
     void kernel::sys_timer_handler(const clock_info& ci)
     {
         // update physics
-        world::instance().update(ci);
+    	world::instance().update(ci);
         
         // update all objects
         update_signal_(ci);
@@ -174,6 +174,7 @@ namespace x2d
             // setup current viewport
             if(cur_viewport_ != i)
             {
+            	LOG("using viewport %d", i);
                 viewports_.at(i)->use();           
                 cur_viewport_ = i;
             }
@@ -195,7 +196,7 @@ namespace x2d
             // remove camera matrix (reset state)
             viewports_.at(cur_viewport_)->get_camera()->remove();
         }
-        
+
         graphics_engine::instance().present_frame();
     }
     

@@ -53,7 +53,7 @@ namespace time {
     : public boost::noncopyable
     {
         friend class timer;
-        friend class kernel;
+        friend class x2d::kernel;
         
     public:        
         clock(double stretch = 1.0);        
