@@ -10,7 +10,6 @@
 #ifndef __X2D_GAME_H__
 #define __X2D_GAME_H__
 
-// #include "x2d.h"
 #include "app_framework.h"
 #include "scene.h"
 
@@ -19,7 +18,6 @@ class game : public app_framework
 public:
     void main()
     {
-        LOG("Run user defined main method...");
         cur_scene_ = boost::shared_ptr<scene>( new scene(*this) );
     }
     

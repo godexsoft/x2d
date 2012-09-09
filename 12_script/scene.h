@@ -30,11 +30,6 @@ public:
     }
     
 private:
-    void on_test_event()
-    {
-        LOG("TEST EVENT HAPPENED IN SCENE!!");
-    }
-    
     app_framework&  app_;
     boost::shared_ptr<listener> listener_;
 };
