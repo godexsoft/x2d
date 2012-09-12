@@ -3826,7 +3826,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh pack_assets.sh 12_script";
+			shellScript = "sh pack_assets.sh ${TARGET_NAME}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
