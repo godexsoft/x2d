@@ -1,8 +1,12 @@
 <x2d version="1.0">
     
     <!-- engine setup -->
+<!--
     <camera n="camera" frustum="320 480" />    
     <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.2 0.2 0.6" />    
+-->
+    <camera n="camera" frustum="540 960" />
+    <viewport n="viewport" box="0 0 540 960" camera="camera" bgcolor="0.2 0.2 0.6" />
     <input n="input" accelerometer="false" touch="true" />
 
     <script n = "inline">
