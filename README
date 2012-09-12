@@ -9,7 +9,8 @@ Check out the LICENSE file for details.
 ------------------------------
 Currently supported platforms:
 
-- iOS only :D
+- iOS
+- Android 2.3+ (WIP)
 
 --------------
 Requires/Uses:
@@ -21,6 +22,8 @@ Requires/Uses:
 - box2d - http://box2d.org/ (sources included and compiled together with x2d)
 - lua - http://lua.org/ (included with x2d)
 - luabind - http://www.rasterbar.com/products/luabind.html (included with x2d)
+
+- android-cmake - http://code.google.com/p/android-cmake (used as build tool for android)
 
 --------
 Tracker:

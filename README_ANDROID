@@ -1,0 +1,20 @@
+1. install SDK/NDK. follow instructions from http://developer.android.com/tools/sdk/ndk/index.html
+   create a standalone toolchain with platform api level 14.
+
+2. install android-cmake. follow instructions from http://code.google.com/p/android-cmake
+
+3. install common-libs/boost from android-cmake. 
+   don't forget to run 'make install' to actually install boost into the standalone toolchain.
+
+4. you can compile your project like this:
+   $ cd <project_dir>
+   $ mkdir build
+   $ cd build
+   $ android-cmake -DANDROID_NATIVE_API_LEVEL=14 ..
+   $ cd ..
+   $ sh <x2d_root>/pack_assets.sh .
+   $ ant clean
+   $ ant debug
+   $ ant installd
+
+for example cmake lists file and android stuff see any included test project (like 12_script).
