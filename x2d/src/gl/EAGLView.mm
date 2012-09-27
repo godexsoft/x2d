@@ -34,16 +34,27 @@ extern app_framework* g_app;
     return [CAEAGLLayer class];
 }
 
-- (id) initWithFrame:(const CGRect&)frame
-{    
-    if ((self = [super initWithFrame:frame])) 
+- (id) initWithCapabilities:(const device_capabilities&)caps
+{
+    if ((self = [super initWithFrame:
+                 CGRectMake(0, 0,
+                            caps.display_size.width,
+                            caps.display_size.height)]))
     {
         // generate transformation matrix
-        input_transform = glm::translate( glm::mat4(1.0f), glm::vec3(0.0f, frame.size.height, 0.0f) );
+        input_transform = glm::translate( glm::mat4(1.0f), glm::vec3(0.0f, caps.display_size.height, 0.0f) );
         input_transform = glm::scale(input_transform, glm::vec3(1.0f, -1.0f, 1.0f));
         
-        // support retina
-        // self.contentScaleFactor = 2.0f;
+        // set retina if detected
+        if(caps.has_retina)
+        {
+            self.contentScaleFactor = 2.0f;
+            CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+            eaglLayer.contentsScale = 2;
+            
+            // scale input by two for retina
+            input_transform = glm::scale(input_transform, glm::vec3(2.0f, 2.0f, 1.0f));
+        }
         
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;

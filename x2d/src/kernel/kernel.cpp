@@ -75,7 +75,9 @@ namespace x2d
                 world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1) );
                 break;
             case CAMERA_SPACE:
-                // TODO
+                camera_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, CAMERA_SPACE, _1) );
+                camera_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, CAMERA_SPACE, _1) );
+                camera_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, CAMERA_SPACE, _1) );
                 break;
         }
     }
@@ -92,7 +94,7 @@ namespace x2d
                 world_touches_began_signal_(touches);
                 break;
             case CAMERA_SPACE:
-                // TODO
+                camera_touches_began_signal_(touches);
                 break;
         }
     }
@@ -108,7 +110,7 @@ namespace x2d
                 world_touches_moved_signal_(touches);
                 break;
             case CAMERA_SPACE:
-                // TODO
+                camera_touches_moved_signal_(touches);
                 break;
         }
     }
@@ -124,7 +126,7 @@ namespace x2d
                 world_touches_ended_signal_(touches);
                 break;
             case CAMERA_SPACE:
-                // TODO
+                camera_touches_ended_signal_(touches);
                 break;
         }
     }

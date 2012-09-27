@@ -10,14 +10,31 @@
 #define __X2D_PLATFORM_H__
 
 #include <string>
+#include "math_util.h"
 
 namespace platform {
     
     struct device_capabilities
     {
-        device_capabilities()
-        {            
-        }
+        device_capabilities();
+        
+        /// physical display size in pixels (native)
+        size display_size;
+        
+        /// iOS specific retina display support
+        bool has_retina;
+        
+        /// accelerometer input available
+        bool has_accelerometer;
+        
+        /// touch screen input available
+        bool has_touch_screen;
+        
+        /// multitouch available
+        bool has_multitouch;
+        
+        /// iCP, usb/bluetooth joystick/pad, keyboard, etc.
+        bool has_hardware_input;
     };
     
 namespace time {

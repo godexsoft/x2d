@@ -67,7 +67,6 @@ namespace base {
             float ys = camera_->frustum_.height / box_.area.height;
             point vp = point(p.x*xs, p.y*ys);
             
-            LOG("Request world location from viewport location: %f %f", vp.x, vp.y);
             return camera_->inverted_transformation(vp);
         }
         

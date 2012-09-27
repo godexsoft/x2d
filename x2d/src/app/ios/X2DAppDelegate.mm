@@ -51,10 +51,16 @@ namespace fs = x2d::filesystem;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
+    device_capabilities caps;
+    
+    self.window = [[[UIWindow alloc] initWithFrame:
+                        CGRectMake(0, 0,
+                                    caps.display_size.width,
+                                    caps.display_size.height)] autorelease];
     
     // create opengl view
-    self.gl_view = [[[EAGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
+    self.gl_view = [[[EAGLView alloc] initWithCapabilities:caps] autorelease];
+    
     self.window.multipleTouchEnabled = YES;
     self.window.userInteractionEnabled = YES;
     self.window.rootViewController = nil;

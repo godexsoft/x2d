@@ -535,19 +535,21 @@ namespace config {
     {
         // must have:
         // n:        name of the element
-        // box:      position and size of this viewport
         // camera:   camera to use with this viewport        
         //
         // can have:
+        // box:      position and size of this viewport. defaults to fullscreen
         // bgcolor:  background color. defaults to black.
 
-        rect box = get_mandatory_attr<rect>(*this, node, key, "box",
-            parse_exception("Viewport type must have 'box' defined (format: 'x y width height').")).get(*this);
+        device_capabilities caps;
+        rect def_box(0, 0, caps.display_size.width, caps.display_size.height);
+        rect box = get_attr<rect>(*this, node, key, "box", def_box).get(*this);
 
         std::string cam = get_mandatory_key_attr(*this, node, key, "camera",
             parse_exception("Viewport type must have 'camera' defined.")).get(*this);
 
-        color_info ci = get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f)).get(*this);
+        color_info ci = get_attr<color_info>(*this, node, key,
+            "bgcolor", color_info(0.0f, 0.0f, 0.0f)).get(*this);
         
         boost::shared_ptr<viewport_cfg> vp = 
             boost::shared_ptr<viewport_cfg>( new viewport_cfg(

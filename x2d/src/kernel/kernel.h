@@ -236,6 +236,7 @@ namespace x2d
         render_signal       render_signal_;
         touch_input_signal  world_touches_began_signal_, world_touches_moved_signal_, world_touches_ended_signal_;
         touch_input_signal  screen_touches_began_signal_, screen_touches_moved_signal_, screen_touches_ended_signal_;
+        touch_input_signal  camera_touches_began_signal_, camera_touches_moved_signal_, camera_touches_ended_signal_;
         accel_input_signal  accel_input_signal_;
         
         // rendering

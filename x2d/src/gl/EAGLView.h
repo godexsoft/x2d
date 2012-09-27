@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "kernel.h"
 #import "glm.hpp"
+#import "platform.h"
 
 @interface EAGLView : UIView <UIAccelerometerDelegate>
 {
@@ -17,6 +18,6 @@
     glm::mat4 input_transform;
 }
 
-- (id) initWithFrame:(const CGRect&)frame;
+- (id) initWithCapabilities:(const device_capabilities&)caps;
 
 @end
