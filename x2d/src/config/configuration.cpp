@@ -98,33 +98,98 @@ namespace config {
     void configuration::parse_file(const std::string& cfg_path, const std::string& root_key)
     {
         boost::shared_ptr<conf> cfg = res_man_.get<conf>(cfg_path);
-        
-		xml_doc doc;
-		try 
+
         {
-			doc.parse<0>(&(cfg->data.at(0)));
-		} 
-        catch( rx::parse_error& ex ) 
-        {
-			throw parse_exception( std::string("RapidXML parse error: ") + ex.what() );
-		}
-		
-		xml_node *root = doc.first_node( "x2d" );
+            xml_doc doc;
+            try 
+            {
+                doc.parse<0>(&(cfg->data.at(0)));
+            } 
+            catch( rx::parse_error& ex ) 
+            {
+                throw parse_exception( std::string("RapidXML parse error: ") + ex.what() );
+            }
+            
+            xml_node *root = doc.first_node( "x2d" );
+            
+            if( !root ) 
+            {
+                throw structure_exception("Not a valid x2d config xml. must begin with <x2d> root element.");
+            }
+            
+            xml_attr *attr = root->first_attribute();
+            if( !attr || std::string("version") != attr->name() 
+               || std::string("1.0") != attr->value()) 
+            {
+                throw structure_exception("Not a valid x2d config xml file version (or version not specified).");
+            }
+            
+            // finally parse the config
+            parse(root, root_key);
+        }
         
-		if( !root ) 
         {
-			throw structure_exception("Not a valid x2d config xml. must begin with <x2d> root element.");
-		}
-		
-		xml_attr *attr = root->first_attribute();
-		if( !attr || std::string("version") != attr->name() 
-           || std::string("1.0") != attr->value()) 
-		{
-            throw structure_exception("Not a valid x2d config xml file version (or version not specified).");
-		}
-        
-        // finally parse the config
-        parse(root, root_key);
+            device_capabilities caps;
+            
+            // now when default is parsed, try to load and override stuff from
+            // resolution-perfect version.
+            std::stringstream ss;
+            
+            // check if it's possible to get a resolution-perfect version
+            ss << "/__"
+            << static_cast<int>(caps.has_retina? caps.display_size.width*2
+                                : caps.display_size.width)
+            << "x"
+            << static_cast<int>(caps.has_retina? caps.display_size.height*2
+                                : caps.display_size.height);
+            
+            // get first path component. That is the name of the virtual disk
+            size_t pos = cfg_path.find('/');
+            if(pos == std::string::npos)
+            {
+                LOG("Path seems to be wrong: '%s'", cfg_path.c_str());
+                throw std::exception();
+            }
+            
+            std::string disk = cfg_path.substr(0, pos);
+            std::string rpv = disk + ss.str() + cfg_path.substr(pos);
+            LOG("Resolution-perfect version check: '%s'", rpv.c_str());
+            
+            try
+            {
+                boost::shared_ptr<conf> rp_cfg = res_man_.get<conf>(rpv);
+                xml_doc doc;
+                try
+                {
+                    doc.parse<0>(&(rp_cfg->data.at(0)));
+                }
+                catch( rx::parse_error& ex )
+                {
+                    throw parse_exception( std::string("RapidXML parse error: ") + ex.what() );
+                }
+                
+                xml_node *root = doc.first_node( "x2d" );
+                
+                if( !root )
+                {
+                    throw structure_exception("Not a valid x2d config xml. must begin with <x2d> root element.");
+                }
+                
+                xml_attr *attr = root->first_attribute();
+                if( !attr || std::string("version") != attr->name()
+                   || std::string("1.0") != attr->value())
+                {
+                    throw structure_exception("Not a valid x2d config xml file version (or version not specified).");
+                }
+                
+                // finally parse the config
+                parse(root, root_key);
+            }
+            catch(std::exception& e)
+            {
+                // just not found. ignore
+            }
+        }
     }
     
     void configuration::parse(xml_node* root, const config_key& key)

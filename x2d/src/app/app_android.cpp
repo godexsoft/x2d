@@ -300,6 +300,10 @@ void android_x2d_main(app_framework& app)
         engine.sensor_manager,
             g_android_app->looper, LOOPER_ID_USER, NULL, NULL);
     
+    // run user code allowing them to initialize some objects
+    // just before starting the main looper.
+    app.main();
+    
     LOG("Start loop");
     while (1)
     {

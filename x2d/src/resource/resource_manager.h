@@ -11,6 +11,10 @@
 #define __X2D_RESOURCE_MANAGER_H__
 
 #include "liverpool_manager.h"
+#include "platform.h"
+#include "texture.h"
+
+#include <sstream>
 
 namespace x2d {
 namespace resource {
@@ -50,13 +54,19 @@ namespace resource {
             std::string disk = key.substr(0, pos);
             liverpool_ptr l = lvp_man_.get(disk);
             
-            return boost::shared_ptr<T>( 
+            // not found. return default
+            return boost::shared_ptr<T>(
                 new T( l->open_stream(key.substr(pos)) ) );
         }
         
     private:
         liverpool_manager&   lvp_man_;
+        device_capabilities  caps_;
     };
+
+    // forward declarations
+    template<>
+    boost::shared_ptr<texture> resource_manager::get<texture>(const std::string& key);
     
 } // namespace resource    
 } // namespace x2d

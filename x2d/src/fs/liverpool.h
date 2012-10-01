@@ -235,23 +235,25 @@ namespace liverpool {
 			iterator it = begin(path);
 			if(it != end()) 
             {				
-				entry e = *it;
-				if( !e.is_dir() ) 
-                {					
-					
+                entry e = *it;
+                if( !e.is_dir() )
+                {
+                        
                     return ifdstream(
-                        fs_stream_.fd(), 
-                            fs_stream_.offset() + e.offset(), 
+                        fs_stream_.fd(),
+                            fs_stream_.offset() + e.offset(),
                                 e.size() );
-					
-				} else {
-					LOG("Given path is a directory. Can't open a stream to a directory.");
-					throw std::exception();
-				}
-				
-			} else {
-				LOG("Couldn't open file '%s' in lvp archieve.", path.c_str());
-				throw std::exception();
+                }
+                else
+                {
+                    LOG("Given path is a directory. Can't open a stream to a directory.");
+                    throw std::exception();
+                }
+			}
+            else
+            {
+                LOG("Couldn't open file '%s' in lvp archieve.", path.c_str());
+                throw std::exception();
 			}
 		}		
 	};

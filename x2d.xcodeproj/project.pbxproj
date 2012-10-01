@@ -227,6 +227,7 @@
 		2467298314D9F320003AAA04 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298214D9F320003AAA04 /* random.cpp */; };
 		2467298814D9F8BE003AAA04 /* animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298714D9F8BE003AAA04 /* animation.cpp */; };
 		2467298B14D9FCC7003AAA04 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2467297D14D9EF97003AAA04 /* resources.zip */; };
+		247089081618D9F9006FCCA1 /* resource_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247089071618D9F9006FCCA1 /* resource_manager.cpp */; };
 		2477A9351601140300EE7E9C /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2477A9331601140300EE7E9C /* scene.cpp */; };
 		2477A9381601141500EE7E9C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2477A9371601141500EE7E9C /* main.cpp */; };
 		2477A93D1601153000EE7E9C /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2477A93C1601153000EE7E9C /* resources.zip */; };
@@ -1066,6 +1067,7 @@
 		2467298714D9F8BE003AAA04 /* animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = animation.cpp; path = src/anim/animation.cpp; sourceTree = "<group>"; };
 		2467298A14D9FC87003AAA04 /* anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anim.png; sourceTree = "<group>"; };
 		2467298C14DA9BA0003AAA04 /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exceptions.h; path = src/base/exceptions.h; sourceTree = "<group>"; };
+		247089071618D9F9006FCCA1 /* resource_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_manager.cpp; path = src/resource/resource_manager.cpp; sourceTree = "<group>"; };
 		2477A9331601140300EE7E9C /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 12_script/src/scene.cpp; sourceTree = "<group>"; };
 		2477A9341601140300EE7E9C /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 12_script/src/scene.h; sourceTree = "<group>"; };
 		2477A9361601141500EE7E9C /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 12_script/src/game.h; sourceTree = "<group>"; };
@@ -1738,6 +1740,7 @@
 		2415841E14D2E4510014F37B /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				247089071618D9F9006FCCA1 /* resource_manager.cpp */,
 				2415841F14D2E4860014F37B /* resource_manager.h */,
 			);
 			name = resource;
@@ -3944,6 +3947,7 @@
 				244EB6EC15FD11590009C562 /* app_framework.cpp in Sources */,
 				244EB70315FD21F30009C562 /* app_ios.mm in Sources */,
 				244EB70915FD227E0009C562 /* X2DAppDelegate.mm in Sources */,
+				247089081618D9F9006FCCA1 /* resource_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4691,6 +4695,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4711,8 +4716,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -4723,6 +4729,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "LUA_COMPAT_ALL=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -4739,9 +4746,10 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 			};
 			name = Release;
 		};

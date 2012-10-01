@@ -510,16 +510,19 @@ namespace config {
     {
         // must have:
         // n:        name of the element
-        // frustum:  frustum of this camera
         //
         // can have:
         // parent:   the parent camera
         // rotation: initial rotation (defaults to 0.0)
         // zoom:     initial zoom (defaults to 1.0)
         // position: initial position (defaults to 0,0)
-               
-        size frustum = get_mandatory_attr<size>(*this, node, key, "frustum",
-            parse_exception("Camera type must have 'frustum' defined (format: 'width height').")).get(*this);
+        // frustum:  frustum of this camera (defaults to size of screen)
+        
+        device_capabilities caps;
+        size def_frustum(
+            caps.has_retina ? caps.display_size.width*2 : caps.display_size.width,
+            caps.has_retina ? caps.display_size.height*2 : caps.display_size.height);
+        size frustum = get_attr<size>(*this, node, key, "frustum", def_frustum).get(*this);
 
         std::string parent = get_key_attr(*this, node, key, "parent", std::string()).get(*this);
         
@@ -541,8 +544,10 @@ namespace config {
         // box:      position and size of this viewport. defaults to fullscreen
         // bgcolor:  background color. defaults to black.
 
-        device_capabilities caps;
-        rect def_box(0, 0, caps.display_size.width, caps.display_size.height);
+        device_capabilities caps;        
+        rect def_box(0, 0,
+            caps.has_retina ? caps.display_size.width*2 : caps.display_size.width,
+            caps.has_retina ? caps.display_size.height*2 : caps.display_size.height);
         rect box = get_attr<rect>(*this, node, key, "box", def_box).get(*this);
 
         std::string cam = get_mandatory_key_attr(*this, node, key, "camera",

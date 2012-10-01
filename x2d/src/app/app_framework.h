@@ -42,10 +42,7 @@ namespace x2d {
             
             // call init first
             app.init();
-            
-            // allow user to create some objects
-            app.main();
-            
+                        
             // run the loop
 #ifdef ANDROID
             android_x2d_main(app);

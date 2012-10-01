@@ -42,6 +42,10 @@ namespace fs = x2d::filesystem;
     self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
     self.dl.frameInterval = 1;
     [self.dl addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    // run user code allowing them to initialize some objects
+    // just before starting the main looper.
+    g_app->main();
 }
 
 - (void)step

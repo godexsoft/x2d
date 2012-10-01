@@ -109,6 +109,7 @@ namespace input {
             std::remove_if(touches_camera.begin(), touches_camera.end(),
                 boost::bind(&touch::is_valid, _1) == false), touches_camera.end() );
         
+        LOG("Screen touch began: %f %f", touches.at(0).location().x, touches.at(0).location().y);
         kernel_.dispatch_touches_began(SCREEN_SPACE, touches);
         
         if(!touches_world.empty())

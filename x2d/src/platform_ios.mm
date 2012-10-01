@@ -18,6 +18,7 @@ namespace platform {
     , has_multitouch(true) // all iOS devices are multitouch
     , has_accelerometer(true) // pretty much all iOS devices have it
     , has_hardware_input(false) // currently hardcode NO
+    , has_retina(false)
     {
         // typical display size for iPhone
         float w = 320.0f;
@@ -31,12 +32,20 @@ namespace platform {
             h = s.currentMode.size.height;
         }
         
-        // check retina
+        // check retina iPhone
         if (w == 640.0f && h == 960.0f)
         {
             // use scale instead
-            w = 320.0f;
-            h = 480.0f;
+            w /= 2.0f;
+            h /= 2.0f;
+            has_retina = true;
+        }
+        
+        // check retina iPad
+        if (w == 1536.0f && h == 2048.0f)
+        {
+            w /= 2.0f;
+            h /= 2.0f;
             has_retina = true;
         }
         

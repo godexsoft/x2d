@@ -22,6 +22,8 @@ namespace liverpool {
     public:
         /**
          * Mount a liverpool zip file to a named mount point.
+         * If already mounted, the paths will be overriden and/or added
+         * from the new archive.
          * 
          * @param[in] path The path to a liverpool zip file
          * @param[in] mount_point The name for this mount point
@@ -30,6 +32,7 @@ namespace liverpool {
         
         /**
          * Unmount a named mount point.
+         * All information about the mountpoint will be lost.
          * 
          * @param[in] mount_point The name of the mount point to unmount
          */
@@ -46,6 +49,7 @@ namespace liverpool {
         typedef std::map<std::string, liverpool_ptr> mnt_map;
 
         mnt_map     mount_points_;
+        
     };
 
 } // namespace liverpool
