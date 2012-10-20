@@ -135,7 +135,9 @@ namespace config {
         template <typename T>
         const boost::shared_ptr<T> create_object(const config_key& key)
         {
-            return static_cast<object_cfg*>( &(*config_[key]) )->create<T>();
+            boost::shared_ptr<T> obj = static_cast<object_cfg*>( &(*config_[key]) )->create<T>();
+            register_object(obj);
+            return obj;
         }
 
         /**
@@ -146,7 +148,9 @@ namespace config {
         template <typename T>
         const boost::shared_ptr<T> create_object_1(const config_key& key, spawner* spwn)
         {
-            return static_cast<object_cfg*>( &(*config_[key]) )->create<T>(spwn);
+            boost::shared_ptr<T> obj = static_cast<object_cfg*>( &(*config_[key]) )->create<T>(spwn);
+            register_object(obj);
+            return obj;
         }
         
         /**

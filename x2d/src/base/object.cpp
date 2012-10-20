@@ -50,12 +50,14 @@ namespace x2d {
             
     void object::on_lifetime_timer(const clock_info& clock)
     {
-        LOG("Lifetime timer handler...");
+        LOG("[%s] Lifetime timer handler...", name_.c_str());
         
-        config_.get_input_manager().deregister_object(this);
+        // nuke all children first
+        for_each(children_.begin(), children_.end(),
+            boost::bind(&object::on_lifetime_timer, _1, clock));
+        
+        lifetime_timer_.cancel();
         config_.deregister_object(shared_from_this());
-        
-        lifetime_timer_.cancel();        
     }
 
     object::object(kernel& k, config::configuration& c, const object_traits& t, spawner* spwn)
@@ -194,13 +196,13 @@ namespace x2d {
             boost::shared_ptr<context> ctx = config_.get_object<context>( *it );
 
             ctx->reg_object(this);
-            contexts_.push_back( ctx );            
+            contexts_.push_back( ctx );
         }        
     }
     
     object::~object()
     {
-        LOG("Removing object from everywhere");
+        LOG("[%s] Removing object from everywhere", name_.c_str());
         
         // unregister object from all contexts it's in atm.
         for(std::vector<boost::shared_ptr<context> >::const_iterator it = contexts_.begin(); it != contexts_.end(); ++it)
@@ -433,7 +435,7 @@ namespace x2d {
         glm::mat4 transform_(1.0f);
         
         if(position_.x != 0.0f || position_.y != 0.0f)
-            transform_ = glm::translate(transform_, glm::vec3(position_.x, position_.y, 0.0f));        
+            transform_ = glm::translate(transform_, glm::vec3(position_.x, position_.y, 0.0f));
 
         if(rotation_ != 0.0f)
             transform_ = glm::rotate(transform_, rotation_, glm::vec3(0,0,1));
@@ -590,6 +592,11 @@ namespace x2d {
     void object::visible(bool v)
     {
         is_visible_ = v;
+    }
+    
+    boost::shared_ptr<spawner> object::get_spawner()
+    {
+        return spawner_;
     }
     
     void object::on_collision_begin(object* with)

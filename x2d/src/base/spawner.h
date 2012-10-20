@@ -57,6 +57,11 @@ namespace base {
             life_time_ = lt;
         }
         
+        void objects(const std::vector<std::string>& v)
+        {
+            obj_lst_ = value_holder<std::vector<std::string> >(v);
+        }
+        
         void position(const glm::vec3& pos)
         {
             position_ = pos;

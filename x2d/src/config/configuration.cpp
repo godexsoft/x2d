@@ -39,7 +39,7 @@ namespace config {
     
     void configuration::register_object(const boost::shared_ptr<object>& obj)
     {
-        LOG("-- Registering object");
+        LOG("-- [%s] Registering object", obj->name().c_str());
         objects_.push_back(obj);
         
         // call on_create
@@ -48,7 +48,9 @@ namespace config {
     
     void configuration::deregister_object(const boost::shared_ptr<object>& obj)
     {
-        LOG("-- Deregistering object");
+        get_input_manager().deregister_object(obj.get());
+        
+        LOG("-- [%s] Deregistering object", obj->name().c_str());
         objects_.erase( std::remove(
             objects_.begin(),
             objects_.end(),

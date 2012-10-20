@@ -91,6 +91,8 @@ using namespace x2d::config;
                 
         void reposition_in_parent_space(const size& b);
         
+        boost::shared_ptr<spawner> get_spawner();
+        
         // collision. can be reimplemented by clients
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);
