@@ -79,6 +79,16 @@
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
+		<key>fontgen.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>freetype2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
 		<key>lua.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -123,6 +133,11 @@
 			<true/>
 		</dict>
 		<key>241583D414D0B3940014F37B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>241911D0164580BE004A543D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -173,6 +188,11 @@
 			<true/>
 		</dict>
 		<key>2487CB6814E6F7BC006A7E22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>249AD9A71645A5CA000416B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
