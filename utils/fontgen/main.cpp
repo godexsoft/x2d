@@ -15,8 +15,23 @@
 
 #include "glm.hpp"
 
+#define CHAR_CR ((uint32_t)'\r')
+#define CHAR_LF ((uint32_t)'\n')
+
 namespace po = boost::program_options;
 using namespace std;
+
+struct glyph_info
+{
+    uint32_t index;
+    uint32_t code_point;
+    
+    glyph_info(uint32_t i, uint32_t cp)
+    : index(i)
+    , code_point(cp)
+    {
+    }
+};
 
 class generator
 {
@@ -50,9 +65,9 @@ private:
     void process_character(int c);
     void parse_text(const string& file);
     
-    map<int, bool>  gen_;
-    string          font_file_;
-    vector<string>  txt_files_;
+    map<int, glyph_info>    gen_;
+    string                  font_file_;
+    vector<string>          txt_files_;
     
     string          font_name_;
     glm::vec2       char_size_;
@@ -115,10 +130,21 @@ void generator::load_font()
 
 void generator::process_character(int c)
 {
-    if(!gen_.count(c))
+    uint32_t char_code_point = c;
+
+    if(!gen_.count(char_code_point))
     {
-        // TODO: process
-        gen_.insert(make_pair(c, true));
+        if(char_code_point != CHAR_CR && char_code_point != CHAR_LF)
+        {
+            uint32_t glyph_index = FT_Get_Char_Index(font_face_, char_code_point);
+            if(glyph_index)
+            {
+                cout << "[debug] Found glyph index " << glyph_index << " for character '" << (char)c << "'\n";
+                
+                // add to map
+                gen_.insert( make_pair( char_code_point, glyph_info( glyph_index, char_code_point ) ) );
+            }
+        }
     }
 }
 
@@ -134,7 +160,7 @@ void generator::parse_text(const string& file)
             process_character(ifs.get());
         }
         
-        cout << "[+] Done.\n";
+        cout << "[+] Done. Added " << gen_.size() << " characters.\n";
     }
     else
     {
