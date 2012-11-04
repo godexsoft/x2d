@@ -93,11 +93,12 @@ struct glyph_info
 class generator
 {
 public:
-    generator(const string& fnt, const vector<string>& txt_lst, int sz, int pd)
+    generator(const string& fnt, const vector<string>& txt_lst, int sz, int pd, string output)
     : font_file_(fnt)
     , txt_files_(txt_lst)
     , char_size_(sz, sz)
     , padding_(pd * 2.0f)
+    , font_name_(output)
     {
     }
     
@@ -122,6 +123,7 @@ private:
     void process_character(int c);
     void parse_text(const string& file);
     void save_image(const bitmap& bm);
+    void save_config();
     
     map<uint32_t, glyph_info>    gen_;
     string                       font_file_;
@@ -131,10 +133,13 @@ private:
     glm::vec2       char_size_;
     glm::vec2       char_spacing_;
     float           font_scale_;
-    float           padding_;    
+    float           padding_;
     
     FT_Library      font_library_;
     FT_Face         font_face_;
+    
+    stringstream    cfg_characters_;
+    stringstream    cfg_widths_;
 };
 
 int generator::run()
@@ -200,7 +205,7 @@ int generator::run()
     for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it, ++idx)
     {
         glyph_info info = it->second;
-        cout << "Working with '" << (char)it->first << "'\n";
+        cfg_characters_ << (char)it->first;
         
         FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
         assert(!err);
@@ -245,6 +250,8 @@ int generator::run()
             }
         }
         
+        cfg_widths_ << char_width << " ";
+        
         x += char_width + char_spacing_.x;
         height = y + char_size_.y + padding_ + char_spacing_.y;
     }
@@ -256,8 +263,44 @@ int generator::run()
     // time to save image and config
     cout << "[+] Writing files...\n";
     save_image(bm);
+    save_config();
     
     return 0;
+}
+
+void generator::save_config()
+{
+    stringstream ss;
+ 
+    ss << "<x2d version=\"1.0\">\n";
+    
+    ss << "    <texture n = \"" << font_name_ << "_sheet\" path = \""
+       << "res/fonts/" << font_name_ << ".png\" />\n\n";
+    
+    ss << "    <font    n = \"" << font_name_ << "\"\n";
+    ss << "        height = \"" << char_size_.y << "\"\n";
+    ss << "       spacing = \"" << char_spacing_.x << " " << char_spacing_.y << "\"\n";
+    ss << "       texture = \"" << font_name_ << "_sheet\"\n";
+    ss << "    >\n";
+    
+    ss << "        <string n = \"characters\">\n";
+    ss << "            <![CDATA[" << cfg_characters_.str() << "]]>\n";
+    ss << "        </string>\n";
+    ss << "        <string n = \"widths\">\n";
+    ss << "            " << cfg_widths_.str() << "\n";
+    ss << "        </string>\n";
+    
+    ss << "    </font>\n";
+    ss << "</x2d>\n";
+    
+    ofstream out("/tmp/test.xml");
+    if(!out.is_open())
+    {
+        throw runtime_error("Couldn't open configuration output file. aborting.");
+    }
+    
+    string str(ss.str());
+    out.write(str.c_str(), str.size());
 }
 
 void generator::save_image(const bitmap& bm)
@@ -395,7 +438,7 @@ int main(int argc, const char * argv[])
     po::options_description desc("Allowed options");
     desc.add_options()
     ("help,h", "produce help message")
-    ("output,o", po::value<std::string>(), "output name")
+    ("output,o", po::value<std::string>()->default_value("x2d_font"), "output name")
     ("size,s", po::value<int>()->default_value(64), "height of characters")
     ("padding,p", po::value<int>()->default_value(2), "character padding")
     ("font,f", po::value<string>(), "input font file (.ttf)")
@@ -446,6 +489,6 @@ int main(int argc, const char * argv[])
     }
     
     // create a generator
-    generator gen(fnt, txt_files, size, padding);
+    generator gen(fnt, txt_files, size, padding, vm["output"].as<string>());
     return gen.run();
 }
