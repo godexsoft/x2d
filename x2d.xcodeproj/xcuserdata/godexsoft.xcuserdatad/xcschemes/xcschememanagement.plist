@@ -84,11 +84,6 @@
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>freetype2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
 		<key>lua.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -193,6 +188,11 @@
 			<true/>
 		</dict>
 		<key>249AD9A71645A5CA000416B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24AEA95A1646E68E00B42BB4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
