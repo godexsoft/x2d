@@ -28,7 +28,7 @@ struct pixel
     : red(0)
     , green(0)
     , blue(0)
-    , alpha(255)
+    , alpha(0)
     {
     }
     
@@ -165,7 +165,6 @@ int generator::run()
     }
     
     uint8_t largest_width = 0;
-    string width_list;
     
     // ready to render stuff
     for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
@@ -236,7 +235,7 @@ int generator::run()
             cout << "[debug] found bitmap data for glyph...\n";
             
             uint32_t adj_x = x + (0.5f * padding_) + glm::max(font_face_->glyph->bitmap_left, 0);
-            uint32_t adj_y = y + (0.5f * padding_) - glm::max(font_face_->glyph->bitmap_top, (int)baseline);
+            uint32_t adj_y = y + (0.5f * padding_) - glm::min(font_face_->glyph->bitmap_top, (int)baseline);
 
             uint8_t* src = (unsigned char *)(font_face_->glyph->bitmap.buffer);
             
@@ -293,7 +292,7 @@ void generator::save_config()
     ss << "    </font>\n";
     ss << "</x2d>\n";
     
-    ofstream out("/tmp/test.xml");
+    ofstream out(string(font_name_ + ".xml").c_str());
     if(!out.is_open())
     {
         throw runtime_error("Couldn't open configuration output file. aborting.");
@@ -305,7 +304,8 @@ void generator::save_config()
 
 void generator::save_image(const bitmap& bm)
 {
-    FILE* fp = fopen("/tmp/test.png", "wb");
+    FILE* fp = fopen(string(font_name_ + ".png").c_str(), "wb");
+//    FILE* fp = fopen("/tmp/test.png", "wb");
     if(!fp)
     {
         throw runtime_error("Can't open png output file.");

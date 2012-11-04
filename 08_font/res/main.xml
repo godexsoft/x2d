@@ -19,6 +19,10 @@
     <!-- namespace for all fonts -->
     <namespace n="fonts">
         
+		<include path = "res/fonts/dima.xml" />
+		<include path = "res/fonts/moon.xml" />
+		<include path = "res/fonts/earth.xml" />
+        
         <font    n = "degrassi"
             height = "32"
            spacing = "2 2" 
@@ -84,8 +88,8 @@
     />
     
     <object n = "str3"
-         font = "fonts.degrassi" 
-         text = "Omg x2d" 
+         font = "fonts.earth" 
+         text = "pretty stuff" 
         align = "right"
      position = "240 100"
     />

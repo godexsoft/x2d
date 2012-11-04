@@ -9,38 +9,24 @@
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
-#include "clock.h"
-#include "timer.h"
-#include "interpolator.h"
-#include "graphics_engine.h"
-#include "texture.h"
-#include "liverpool_manager.h"
-#include "resource_manager.h"
-#include "sprite.h"
-#include "configuration.h"
-#include "font.h"
-#include "fps_counter.h"
-#include "custom_obj.h"
+#include "app_framework.h"
 
-#include <vector>
-
-class scene 
+class scene
+: public base_object
 {
 public:
-    scene(kernel& k, configuration& conf)
-    : config_(conf)
+    scene(app_framework& app)
+    : base_object(app.get_kernel())
+    , app_(app)
     {
-//        objects_.push_back( boost::shared_ptr<base_object>( new custom_obj(k, config_.get_resman(), 
-//            config_.get_object<font>("fonts.sony_sketch_stroked") ) ) );
-        objects_.push_back( config_.create_object("str") );
-        objects_.push_back( config_.create_object("str2") );
-        objects_.push_back( config_.create_object("str3") );
-        objects_.push_back( boost::shared_ptr<base_object>( new fps_counter(k) ) );
+        app_.get_config().create_object("str");
+        app_.get_config().create_object("str2");
+        app_.get_config().create_object("str3");
     }
     
 private:
-    configuration&  config_;
-    std::vector< boost::shared_ptr<base_object> >   objects_;
+    app_framework&  app_;
 };
+
 
 #endif // __SCENE_H__

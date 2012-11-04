@@ -268,11 +268,9 @@
 		2487CB7514E6F7BC006A7E22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2487CB7614E6F7BC006A7E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2487CB8714E6F83D006A7E22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB8214E6F83D006A7E22 /* InfoPlist.strings */; };
-		2487CB8914E6F83D006A7E22 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB8614E6F83D006A7E22 /* main.mm */; };
+		2487CB8914E6F83D006A7E22 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB8614E6F83D006A7E22 /* main.cpp */; };
 		2487CB8D14E6F853006A7E22 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB8B14E6F853006A7E22 /* scene.cpp */; };
-		2487CB9414E6F87E006A7E22 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9214E6F87E006A7E22 /* AppDelegate.mm */; };
 		2487CB9614E6F8B0006A7E22 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB9514E6F8B0006A7E22 /* resources.zip */; };
-		2487CB9C14E705CB006A7E22 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9A14E705CA006A7E22 /* custom_obj.cpp */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
 		24909214154C5A79000EE894 /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24909212154C5A78000EE894 /* hud.cpp */; };
 		249AD9A016459854000416B3 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 249AD99F16459854000416B3 /* libboost_program_options.dylib */; };
@@ -1136,18 +1134,14 @@
 		2487CB8314E6F83D006A7E22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = 08_font/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2487CB8414E6F83D006A7E22 /* font-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "font-Prefix.pch"; path = "08_font/font-Prefix.pch"; sourceTree = "<group>"; };
 		2487CB8514E6F83D006A7E22 /* font.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = font.plist; path = 08_font/font.plist; sourceTree = "<group>"; };
-		2487CB8614E6F83D006A7E22 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 08_font/main.mm; sourceTree = "<group>"; };
+		2487CB8614E6F83D006A7E22 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = 08_font/main.cpp; sourceTree = "<group>"; };
 		2487CB8A14E6F853006A7E22 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 08_font/fps_counter.h; sourceTree = "<group>"; };
 		2487CB8B14E6F853006A7E22 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 08_font/scene.cpp; sourceTree = "<group>"; };
 		2487CB8C14E6F853006A7E22 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 08_font/scene.h; sourceTree = "<group>"; };
 		2487CB9014E6F865006A7E22 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 08_font/res/main.xml; sourceTree = "<group>"; };
-		2487CB9114E6F87E006A7E22 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 08_font/AppDelegate.h; sourceTree = "<group>"; };
-		2487CB9214E6F87E006A7E22 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 08_font/AppDelegate.mm; sourceTree = "<group>"; };
 		2487CB9314E6F87E006A7E22 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 08_font/game.h; sourceTree = "<group>"; };
 		2487CB9514E6F8B0006A7E22 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 08_font/resources.zip; sourceTree = "<group>"; };
 		2487CB9814E6FDDC006A7E22 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = font.h; path = src/font/font.h; sourceTree = "<group>"; };
-		2487CB9A14E705CA006A7E22 /* custom_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = custom_obj.cpp; path = 08_font/custom_obj.cpp; sourceTree = "<group>"; };
-		2487CB9B14E705CB006A7E22 /* custom_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = custom_obj.h; path = 08_font/custom_obj.h; sourceTree = "<group>"; };
 		2487CB9D14E7262D006A7E22 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = font.cpp; path = src/font/font.cpp; sourceTree = "<group>"; };
 		2490920E154A09A2000EE894 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = demo/res/fonts; sourceTree = "<group>"; };
 		24909210154B6B9D000EE894 /* sound.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = sound.xml; path = demo/res/sound.xml; sourceTree = "<group>"; };
@@ -1342,6 +1336,12 @@
 		24AEA9991646F7D600B42BB4 /* libpng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng.dylib; path = /usr/local/lib/libpng.dylib; sourceTree = "<absolute>"; };
 		24AEA99B1646F7E100B42BB4 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = /usr/local/lib/libfreetype.dylib; sourceTree = "<absolute>"; };
 		24AEA99D1646F95B00B42BB4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		24AEA99F16471C1600B42BB4 /* dima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dima.png; path = 08_font/res/fonts/dima.png; sourceTree = SOURCE_ROOT; };
+		24AEA9A016471C1600B42BB4 /* dima.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = dima.xml; path = 08_font/res/fonts/dima.xml; sourceTree = SOURCE_ROOT; };
+		24AEA9A116472CC100B42BB4 /* earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = earth.png; path = 08_font/res/fonts/earth.png; sourceTree = SOURCE_ROOT; };
+		24AEA9A216472CC100B42BB4 /* earth.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = earth.xml; path = 08_font/res/fonts/earth.xml; sourceTree = SOURCE_ROOT; };
+		24AEA9A316472CC100B42BB4 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moon.png; path = 08_font/res/fonts/moon.png; sourceTree = SOURCE_ROOT; };
+		24AEA9A416472CC100B42BB4 /* moon.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = moon.xml; path = 08_font/res/fonts/moon.xml; sourceTree = SOURCE_ROOT; };
 		24B329D315A116D7002E4344 /* physics.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = physics.incl; sourceTree = "<group>"; };
 		24B329D415A1172C002E4344 /* object.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = object.incl; sourceTree = "<group>"; };
 		24B329D515A1179F002E4344 /* zone.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = zone.incl; sourceTree = "<group>"; };
@@ -2796,8 +2796,7 @@
 		2487CB6314E6F79E006A7E22 /* 08_font */ = {
 			isa = PBXGroup;
 			children = (
-				2487CB9114E6F87E006A7E22 /* AppDelegate.h */,
-				2487CB9214E6F87E006A7E22 /* AppDelegate.mm */,
+				2487CB8614E6F83D006A7E22 /* main.cpp */,
 				2487CB9314E6F87E006A7E22 /* game.h */,
 				2487CB6714E6F7B6006A7E22 /* resources */,
 				2487CB6614E6F7B3006A7E22 /* objects */,
@@ -2821,7 +2820,6 @@
 				2487CB8214E6F83D006A7E22 /* InfoPlist.strings */,
 				2487CB8414E6F83D006A7E22 /* font-Prefix.pch */,
 				2487CB8514E6F83D006A7E22 /* font.plist */,
-				2487CB8614E6F83D006A7E22 /* main.mm */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2829,8 +2827,6 @@
 		2487CB6614E6F7B3006A7E22 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				2487CB9A14E705CA006A7E22 /* custom_obj.cpp */,
-				2487CB9B14E705CB006A7E22 /* custom_obj.h */,
 				2487CB8A14E6F853006A7E22 /* fps_counter.h */,
 				2487CB8B14E6F853006A7E22 /* scene.cpp */,
 				2487CB8C14E6F853006A7E22 /* scene.h */,
@@ -2851,6 +2847,12 @@
 		2487CB8E14E6F865006A7E22 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				24AEA9A116472CC100B42BB4 /* earth.png */,
+				24AEA9A216472CC100B42BB4 /* earth.xml */,
+				24AEA9A316472CC100B42BB4 /* moon.png */,
+				24AEA9A416472CC100B42BB4 /* moon.xml */,
+				24AEA99F16471C1600B42BB4 /* dima.png */,
+				24AEA9A016471C1600B42BB4 /* dima.xml */,
 				24408C5814E828930056C5E5 /* degrassi.png */,
 				24408C5914E828930056C5E5 /* sony_sketch_stroked.png */,
 				24408C5A14E828930056C5E5 /* sony_sketch.png */,
@@ -4597,10 +4599,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2487CB8914E6F83D006A7E22 /* main.mm in Sources */,
+				2487CB8914E6F83D006A7E22 /* main.cpp in Sources */,
 				2487CB8D14E6F853006A7E22 /* scene.cpp in Sources */,
-				2487CB9414E6F87E006A7E22 /* AppDelegate.mm in Sources */,
-				2487CB9C14E705CB006A7E22 /* custom_obj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,16 @@
+<x2d version="1.0">
+    <texture n = "earth_sheet" path = "res/fonts/earth.png" />
+
+    <font    n = "earth"
+        height = "36"
+       spacing = "2 2"
+       texture = "earth_sheet"
+    >
+        <string n = "characters">
+            <![CDATA[ !',-./0123456789;=[\]abcdefghijklmnopqrstuvwxyz]]>
+        </string>
+        <string n = "widths">
+            14 14 12 14 17 14 14 25 25 25 25 25 25 25 25 25 25 14 27 14 14 14 25 21 19 21 21 21 22 22 11 13 26 17 27 22 22 22 21 22 22 22 22 25 27 25 26 21 
+        </string>
+    </font>
+</x2d>
