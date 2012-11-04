@@ -10,33 +10,75 @@
 #include <fstream>
 #include <boost/program_options.hpp>
 
+#include "ft2build.h"
+#include FT_FREETYPE_H
+
+#include "glm.hpp"
+
 namespace po = boost::program_options;
 using namespace std;
 
 class generator
 {
 public:
-    generator(const string& fnt, const vector<string>& txt_lst)
+    generator(const string& fnt, const vector<string>& txt_lst, int sz, int pd)
     : font_file_(fnt)
     , txt_files_(txt_lst)
+    , char_size_(sz, sz)
+    , padding_(pd * 2.0f)
     {
+    }
+    
+    ~generator()
+    {
+        if(font_face_)
+        {
+            FT_Done_Face(font_face_);
+        }
+        
+        if(font_library_)
+        {
+            FT_Done_FreeType(font_library_);
+        }
     }
     
     int run();
     
 private:
     
+    void load_font();
     void process_character(int c);
     void parse_text(const string& file);
     
     map<int, bool>  gen_;
     string          font_file_;
     vector<string>  txt_files_;
+    
+    string          font_name_;
+    glm::vec2       char_size_;
+    glm::vec2       char_spacing_;
+    float           font_scale_;
+    float           padding_;    
+    
+    FT_Library      font_library_;
+    FT_Face         font_face_;
 };
 
 int generator::run()
 {
     cout << "[+] Running generator...\n";
+    
+    cout << "    Font size:          " << char_size_.y << "\n";
+    cout << "    Padding:            " << padding_ << "\n";
+    cout << "    Font file:          " << font_file_ << "\n";
+
+    for(vector<string>::iterator it = txt_files_.begin(); it != txt_files_.end(); ++it)
+    {
+        cout << "    Text file to parse: " << *it << "\n";
+    }
+    
+    // open font
+    load_font();
     
     // parse all text files to generate a map with glyphs
     for(vector<string>::iterator it = txt_files_.begin(); it != txt_files_.end(); ++it)
@@ -45,6 +87,30 @@ int generator::run()
     }
     
     return 0;
+}
+
+void generator::load_font()
+{
+    if(!FT_Init_FreeType( &font_library_ ))
+    {
+        if(!FT_New_Face(font_library_, font_file_.c_str(), 0, &font_face_))
+        {
+            if(!FT_Select_Charmap(font_face_, ft_encoding_unicode))
+            {
+                char_spacing_.x = 2.0f * glm::ceil(char_size_.x * (1.0f / 32.0f));
+                char_spacing_.y = 2.0f * glm::ceil(char_size_.y * (1.0f / 32.0f));
+
+                cout << "[?] Spacing: x=" << char_spacing_.x << " / y=" << char_spacing_.y << "\n";
+               
+                font_scale_ = char_size_.y / (font_face_->bbox.yMax - font_face_->bbox.yMin);
+                
+                cout << "[?] Setting pixel sizes: " << char_size_.x - 2 << " x " << (FT_UInt)char_size_.y - 2 << "\n";
+                
+                FT_Set_Pixel_Sizes(font_face_, (FT_UInt)char_size_.x - 2, (FT_UInt)char_size_.y - 2);
+                cout << "[+] Font loaded.\n";
+            }
+        }
+    }
 }
 
 void generator::process_character(int c)
@@ -82,8 +148,8 @@ int main(int argc, const char * argv[])
     desc.add_options()
     ("help,h", "produce help message")
     ("output,o", po::value<std::string>(), "output name")
-    ("size,s", po::value<int>(), "height of characters")
-    ("padding,p", po::value<int>(), "character padding")
+    ("size,s", po::value<int>()->default_value(16), "height of characters")
+    ("padding,p", po::value<int>()->default_value(2), "character padding")
     ("font,f", po::value<string>(), "input font file (.ttf)")
     ("text,t", po::value<vector<string> >()->composing(), "input text file")
     ("monospace,m", po::value<bool>(), "monospaced font")
@@ -96,6 +162,8 @@ int main(int argc, const char * argv[])
     
     string fnt;
     vector<string> txt_files;
+    int size;
+    int padding;
     
     if (vm.count("help"))
     {
@@ -107,7 +175,6 @@ int main(int argc, const char * argv[])
     if (vm.count("font"))
     {
         fnt = vm["font"].as<string>();        
-        cout << "Input font file: " << fnt << ".\n";
     }
     else
     {
@@ -115,14 +182,14 @@ int main(int argc, const char * argv[])
         return 127;
     }
     
+    // set size and padding
+    size = vm["size"].as<int>();
+    padding = vm["padding"].as<int>();
+    
     // check input text files
     if (vm.count("text"))
     {
         txt_files = vm["text"].as<vector<string> >();
-        for(vector<string>::iterator it = txt_files.begin(); it != txt_files.end(); ++it)
-        {
-            cout << "[+] Text file to parse: " << *it << "\n";
-        }
     }
     else
     {
@@ -131,6 +198,6 @@ int main(int argc, const char * argv[])
     }
     
     // create a generator
-    generator gen(fnt, txt_files);
+    generator gen(fnt, txt_files, size, padding);
     return gen.run();
 }

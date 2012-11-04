@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-f /tmp/test.ttf"
+            argument = "-f /tmp/font.ttf"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

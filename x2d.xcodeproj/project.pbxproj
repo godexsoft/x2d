@@ -5350,6 +5350,12 @@
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/libs/box2d",
+					"$(PROJECT_DIR)/libs/luabind",
+					"$(PROJECT_DIR)/libs/lua/src",
+					"$(PROJECT_DIR)/libs/freetype/include",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
@@ -5373,6 +5379,12 @@
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/libs/box2d",
+					"$(PROJECT_DIR)/libs/luabind",
+					"$(PROJECT_DIR)/libs/lua/src",
+					"$(PROJECT_DIR)/libs/freetype/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
@@ -5974,6 +5986,7 @@
 				249AD9AB1645A5CA000416B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		24BDCC1714CC6300006F36A1 /* Build configuration list for PBXProject "x2d" */ = {
 			isa = XCConfigurationList;
