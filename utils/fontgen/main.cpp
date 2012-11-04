@@ -10,16 +10,73 @@
 #include <fstream>
 #include <boost/program_options.hpp>
 
-#include "ft2build.h"
+#include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include "glm.hpp"
+#include <png.h>
 
 #define CHAR_CR ((uint32_t)'\r')
 #define CHAR_LF ((uint32_t)'\n')
 
 namespace po = boost::program_options;
 using namespace std;
+
+struct pixel
+{
+    pixel()
+    : red(0)
+    , green(0)
+    , blue(0)
+    , alpha(255)
+    {
+    }
+    
+    pixel(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+    : red(r)
+    , green(g)
+    , blue(b)
+    , alpha(a)
+    {
+    }
+    
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+    uint8_t alpha;
+};
+
+class bitmap
+{
+public:
+    bitmap(uint32_t w, uint32_t h)
+    : width_(w)
+    , height_(h)
+    , pixels_(w*h)
+    {
+    }
+    
+    void set_pixel(uint32_t x, uint32_t y, const pixel& p);
+    pixel get_pixel(uint32_t x, uint32_t y) const;
+
+    const uint32_t get_width() const { return width_; }
+    const uint32_t get_height() const { return height_; }
+    
+private:
+    vector<pixel>       pixels_;
+    uint32_t            width_;
+    uint32_t            height_;
+};
+
+void bitmap::set_pixel(uint32_t x, uint32_t y, const pixel& p)
+{
+    pixels_[y*width_ + x] = p;
+}
+
+pixel bitmap::get_pixel(uint32_t x, uint32_t y) const
+{
+    return pixels_[y*width_ + x];
+}
 
 struct glyph_info
 {
@@ -64,10 +121,11 @@ private:
     void load_font();
     void process_character(int c);
     void parse_text(const string& file);
+    void save_image(const bitmap& bm);
     
-    map<int, glyph_info>    gen_;
-    string                  font_file_;
-    vector<string>          txt_files_;
+    map<uint32_t, glyph_info>    gen_;
+    string                       font_file_;
+    vector<string>               txt_files_;
     
     string          font_name_;
     glm::vec2       char_size_;
@@ -101,7 +159,170 @@ int generator::run()
         parse_text(*it);
     }
     
+    uint8_t largest_width = 0;
+    string width_list;
+    
+    // ready to render stuff
+    for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
+    {
+        glyph_info info = it->second;
+        
+        FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
+        assert(!err);
+        
+        // load width of character
+        uint8_t char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+        cout << "Char width " << font_face_->glyph->bitmap.width << "\n";
+        
+        largest_width = glm::max(largest_width, char_width);
+    }
+    
+    char_size_.x = largest_width;
+    cout << "[debug] Updated font width to: " << char_size_.x << "\n";
+    
+    float w = glm::floor( glm::sqrt( (float)gen_.size() ) );
+    float h = glm::ceil( (float)gen_.size() / w );
+    
+    uint32_t width =  (w * (char_size_.x + padding_)) + (char_spacing_.x * glm::max( w - 1.0f, 0.0f ));
+    uint32_t height = (h * (char_size_.y + padding_)) + (char_spacing_.y * glm::max( h - 1.0f, 0.0f ));
+    
+    cout << "[debug] width and height: " << width << "x" << height << "\n";
+    
+    uint32_t baseline = glm::ceil(font_scale_ * font_face_->ascender);
+    cout << "[debug] baseline: " << baseline << "\n";
+    
+    bitmap bm(width, height);
+    
+    uint32_t idx = 0;
+    uint32_t x = 0;
+    uint32_t y = baseline;
+    
+    for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it, ++idx)
+    {
+        glyph_info info = it->second;
+        cout << "Working with '" << (char)it->first << "'\n";
+        
+        FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
+        assert(!err);
+        
+        // TODO: mono
+        
+        uint32_t char_width = char_size_.x + padding_;
+
+        // Gets character width
+        char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+        
+        if(char_width == 0)
+        {
+            char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+        }
+        
+        char_width = padding_ + ((char_width > 0) ? char_width : char_size_.x);
+        
+        // new line?
+        if(x + char_width > width)
+        {
+            x = 0;
+            y += char_size_.y + padding_ + char_spacing_.y;
+        }
+        
+        if(font_face_->glyph->bitmap.buffer)
+        {
+            cout << "[debug] found bitmap data for glyph...\n";
+            
+            uint32_t adj_x = x + (0.5f * padding_) + glm::max(font_face_->glyph->bitmap_left, 0);
+            uint32_t adj_y = y + (0.5f * padding_) - glm::max(font_face_->glyph->bitmap_top, (int)baseline);
+
+            uint8_t* src = (unsigned char *)(font_face_->glyph->bitmap.buffer);
+            
+            for(uint32_t i = 0; i < font_face_->glyph->bitmap.rows; ++i,
+                src += glm::max(font_face_->glyph->bitmap.pitch, -font_face_->glyph->bitmap.pitch) - font_face_->glyph->bitmap.width)
+            {
+                for(uint32_t j = 0; j < font_face_->glyph->bitmap.width; j++, src++)
+                {
+                    bm.set_pixel(j + adj_x, i + adj_y, pixel(255, 255, 255, src[0]));
+                }
+            }
+        }
+        
+        x += char_width + char_spacing_.x;
+        height = y + char_size_.y + padding_ + char_spacing_.y;
+    }
+    
+    // now we have a filled bitmap. need to save it into a file
+    char_size_.x += padding_;
+    char_size_.y += padding_;
+    
+    // time to save image and config
+    cout << "[+] Writing files...\n";
+    save_image(bm);
+    
     return 0;
+}
+
+void generator::save_image(const bitmap& bm)
+{
+    FILE* fp = fopen("/tmp/test.png", "wb");
+    if(!fp)
+    {
+        throw runtime_error("Can't open png output file.");
+    }
+    
+    png_structp png_ptr = NULL;
+    png_infop info_ptr = NULL;
+    png_byte ** row_pointers = NULL;
+    
+    int status = -1;
+    
+    int pixel_size = 4;
+    int depth = 8;
+    
+    png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    if (png_ptr == NULL)
+    {
+        throw runtime_error("Can't open png output structure.");
+    }
+    
+    info_ptr = png_create_info_struct (png_ptr);
+    if (info_ptr == NULL)
+    {
+        throw runtime_error("Can't create png info struct.");
+    }
+    
+    png_set_IHDR (png_ptr, info_ptr, bm.get_width(), bm.get_height(), depth,
+        PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE,
+        PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+    
+    row_pointers = static_cast<png_byte**>(png_malloc (png_ptr, bm.get_height() * sizeof (png_byte *)));
+
+    for (uint32_t y = 0; y < bm.get_height(); ++y)
+    {
+        png_byte *row =
+            static_cast<png_byte*>(png_malloc (png_ptr, sizeof (uint8_t) * bm.get_width() * pixel_size));
+        row_pointers[y] = row;
+        for (uint32_t x = 0; x < bm.get_width(); ++x) {
+            pixel p = bm.get_pixel(x, y);
+            *row++ = p.red;
+            *row++ = p.green;
+            *row++ = p.blue;
+            *row++ = p.alpha;
+        }
+    }
+    
+    png_init_io (png_ptr, fp);
+    png_set_rows (png_ptr, info_ptr, row_pointers);
+    png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
+    
+    status = 0;
+    
+    for (size_t y = 0; y < bm.get_height(); y++) {
+        png_free (png_ptr, row_pointers[y]);
+    }
+    
+    png_free (png_ptr, row_pointers);
+    
+    png_destroy_write_struct (&png_ptr, &info_ptr);
+    fclose (fp);
 }
 
 void generator::load_font()
@@ -157,6 +378,7 @@ void generator::parse_text(const string& file)
     {
         while(!ifs.eof())
         {
+            // TODO: most likely this wont work for anything other than ascii. need some UTF-8 magic :)
             process_character(ifs.get());
         }
         
@@ -174,11 +396,11 @@ int main(int argc, const char * argv[])
     desc.add_options()
     ("help,h", "produce help message")
     ("output,o", po::value<std::string>(), "output name")
-    ("size,s", po::value<int>()->default_value(16), "height of characters")
+    ("size,s", po::value<int>()->default_value(64), "height of characters")
     ("padding,p", po::value<int>()->default_value(2), "character padding")
     ("font,f", po::value<string>(), "input font file (.ttf)")
     ("text,t", po::value<vector<string> >()->composing(), "input text file")
-    ("monospace,m", po::value<bool>(), "monospaced font")
+    ("monospace,m", "monospaced font")
     ("advance,a", po::value<int>(), "glyph advance value for non-monospace fonts")
     ;
     
