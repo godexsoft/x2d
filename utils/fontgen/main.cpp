@@ -28,7 +28,7 @@ struct pixel
     : red(0)
     , green(0)
     , blue(0)
-    , alpha(0)
+    , alpha(255)
     {
     }
     
@@ -70,6 +70,7 @@ private:
 
 void bitmap::set_pixel(uint32_t x, uint32_t y, const pixel& p)
 {
+    assert(x < width_ && y < height_);
     pixels_[y*width_ + x] = p;
 }
 
@@ -165,30 +166,88 @@ int generator::run()
     }
     
     uint8_t largest_width = 0;
+    bool mono = false;
+    bool static_advance = false;
     
-    // ready to render stuff
-    for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
+    if(!mono)
     {
-        glyph_info info = it->second;
+        for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
+        {
+            glyph_info info = it->second;
+            
+            FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
+            assert(!err);
+            
+            // load width of character
+            uint8_t char_width = 0;
+            
+            if(static_advance)
+            {
+                char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+            }
+            else
+            {
+                char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+            }
+            
+            largest_width = glm::max(largest_width, char_width);
+        }
         
-        FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
-        assert(!err);
-        
-        // load width of character
-        uint8_t char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
-        cout << "Char width " << font_face_->glyph->bitmap.width << "\n";
-        
-        largest_width = glm::max(largest_width, char_width);
+        char_size_.x = largest_width;
+        cout << "[debug] Updated font width to: " << char_size_.x << "\n";
     }
-    
-    char_size_.x = largest_width;
-    cout << "[debug] Updated font width to: " << char_size_.x << "\n";
     
     float w = glm::floor( glm::sqrt( (float)gen_.size() ) );
     float h = glm::ceil( (float)gen_.size() / w );
     
     uint32_t width =  (w * (char_size_.x + padding_)) + (char_spacing_.x * glm::max( w - 1.0f, 0.0f ));
     uint32_t height = (h * (char_size_.y + padding_)) + (char_spacing_.y * glm::max( h - 1.0f, 0.0f ));
+    
+    if(!mono)
+    {
+        uint32_t x, y;
+        x = y = 0;
+        y += char_spacing_.y;
+        
+        for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
+        {
+            glyph_info info = it->second;
+            cfg_characters_ << (char)it->first;
+            
+            FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
+            assert(!err);
+            
+            // load width of character
+            uint8_t char_width = 0;
+            
+            if(static_advance)
+            {
+                char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+            }
+            else
+            {
+                char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+                
+                if(char_width == 0)
+                {
+                    char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+                }
+            }
+            
+            char_width = padding_ + ((char_width > 0) ? char_width : char_size_.x);
+            
+            // new line?
+            if(x + char_width > width)
+            {
+                x = 0;
+                y += char_size_.y + padding_ + char_spacing_.y;
+            }
+            
+            x += char_width + char_spacing_.x;
+        }
+        
+        height = y + char_size_.y + padding_ + char_spacing_.y;
+    }
     
     cout << "[debug] width and height: " << width << "x" << height << "\n";
     
@@ -208,20 +267,32 @@ int generator::run()
         
         FT_Error err = FT_Load_Glyph(font_face_, info.index, FT_LOAD_RENDER);
         assert(!err);
-        
-        // TODO: mono
-        
-        uint32_t char_width = char_size_.x + padding_;
 
-        // Gets character width
-        char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+        uint32_t char_width = 0;
         
-        if(char_width == 0)
+        if(mono)
         {
-            char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+            char_width = char_size_.x + padding_;
         }
-        
-        char_width = padding_ + ((char_width > 0) ? char_width : char_size_.x);
+        else
+        {
+            if(static_advance)
+            {
+                char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+            }
+            else
+            {
+                char_width = glm::max(font_face_->glyph->bitmap_left, 0) + font_face_->glyph->bitmap.width;
+                
+                if(char_width == 0)
+                {
+                    char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
+                }
+            }
+            
+            char_width = padding_ + ((char_width > 0) ? char_width : char_size_.x);
+            cfg_widths_ << char_width << " ";
+        }
         
         // new line?
         if(x + char_width > width)
@@ -235,7 +306,7 @@ int generator::run()
             cout << "[debug] found bitmap data for glyph...\n";
             
             uint32_t adj_x = x + (0.5f * padding_) + glm::max(font_face_->glyph->bitmap_left, 0);
-            uint32_t adj_y = y + (0.5f * padding_) - glm::min(font_face_->glyph->bitmap_top, (int)baseline);
+            uint32_t adj_y = y + (0.5f * padding_) - glm::min((uint32_t)font_face_->glyph->bitmap_top, baseline);
 
             uint8_t* src = (unsigned char *)(font_face_->glyph->bitmap.buffer);
             
@@ -249,10 +320,7 @@ int generator::run()
             }
         }
         
-        cfg_widths_ << char_width << " ";
-        
-        x += char_width + char_spacing_.x;
-        height = y + char_size_.y + padding_ + char_spacing_.y;
+        x += char_width + char_spacing_.x;        
     }
     
     // now we have a filled bitmap. need to save it into a file
@@ -304,8 +372,8 @@ void generator::save_config()
 
 void generator::save_image(const bitmap& bm)
 {
-    FILE* fp = fopen(string(font_name_ + ".png").c_str(), "wb");
-//    FILE* fp = fopen("/tmp/test.png", "wb");
+//    FILE* fp = fopen(string(font_name_ + ".png").c_str(), "wb");
+    FILE* fp = fopen("/tmp/test.png", "wb");
     if(!fp)
     {
         throw runtime_error("Can't open png output file.");
@@ -439,8 +507,8 @@ int main(int argc, const char * argv[])
     desc.add_options()
     ("help,h", "produce help message")
     ("output,o", po::value<std::string>()->default_value("x2d_font"), "output name")
-    ("size,s", po::value<int>()->default_value(64), "height of characters")
-    ("padding,p", po::value<int>()->default_value(2), "character padding")
+    ("size,s", po::value<int>()->default_value(32), "height of characters")
+    ("padding,p", po::value<int>()->default_value(0), "character padding")
     ("font,f", po::value<string>(), "input font file (.ttf)")
     ("text,t", po::value<vector<string> >()->composing(), "input text file")
     ("monospace,m", "monospaced font")
