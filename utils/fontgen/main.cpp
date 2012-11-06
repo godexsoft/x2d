@@ -28,7 +28,7 @@ struct pixel
     : red(0)
     , green(0)
     , blue(0)
-    , alpha(255)
+    , alpha(0)
     {
     }
     
@@ -94,11 +94,13 @@ struct glyph_info
 class generator
 {
 public:
-    generator(const string& fnt, const vector<string>& txt_lst, int sz, int pd, string output)
+    generator(const string& fnt, const vector<string>& txt_lst, int sz, int pd, bool mono, bool adv, string output)
     : font_file_(fnt)
     , txt_files_(txt_lst)
     , char_size_(sz, sz)
     , padding_(pd * 2.0f)
+    , monospace_(mono)
+    , static_advance_(adv)
     , font_name_(output)
     {
     }
@@ -135,6 +137,9 @@ private:
     glm::vec2       char_spacing_;
     float           font_scale_;
     float           padding_;
+
+    bool            monospace_;
+    bool            static_advance_;
     
     FT_Library      font_library_;
     FT_Face         font_face_;
@@ -166,10 +171,8 @@ int generator::run()
     }
     
     uint8_t largest_width = 0;
-    bool mono = false;
-    bool static_advance = false;
     
-    if(!mono)
+    if(!monospace_)
     {
         for(map<uint32_t, glyph_info>::iterator it = gen_.begin(); it != gen_.end(); ++it)
         {
@@ -181,7 +184,7 @@ int generator::run()
             // load width of character
             uint8_t char_width = 0;
             
-            if(static_advance)
+            if(static_advance_)
             {
                 char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
             }
@@ -203,7 +206,7 @@ int generator::run()
     uint32_t width =  (w * (char_size_.x + padding_)) + (char_spacing_.x * glm::max( w - 1.0f, 0.0f ));
     uint32_t height = (h * (char_size_.y + padding_)) + (char_spacing_.y * glm::max( h - 1.0f, 0.0f ));
     
-    if(!mono)
+    if(!monospace_)
     {
         uint32_t x, y;
         x = y = 0;
@@ -220,7 +223,7 @@ int generator::run()
             // load width of character
             uint8_t char_width = 0;
             
-            if(static_advance)
+            if(static_advance_)
             {
                 char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
             }
@@ -270,13 +273,13 @@ int generator::run()
 
         uint32_t char_width = 0;
         
-        if(mono)
+        if(monospace_)
         {
             char_width = char_size_.x + padding_;
         }
         else
         {
-            if(static_advance)
+            if(static_advance_)
             {
                 char_width = glm::ceil(font_scale_ * font_face_->glyph->advance.x);
             }
@@ -303,8 +306,6 @@ int generator::run()
         
         if(font_face_->glyph->bitmap.buffer)
         {
-            cout << "[debug] found bitmap data for glyph...\n";
-            
             uint32_t adj_x = x + (0.5f * padding_) + glm::max(font_face_->glyph->bitmap_left, 0);
             uint32_t adj_y = y + (0.5f * padding_) - glm::min((uint32_t)font_face_->glyph->bitmap_top, baseline);
 
@@ -372,8 +373,7 @@ void generator::save_config()
 
 void generator::save_image(const bitmap& bm)
 {
-//    FILE* fp = fopen(string(font_name_ + ".png").c_str(), "wb");
-    FILE* fp = fopen("/tmp/test.png", "wb");
+    FILE* fp = fopen(string(font_name_ + ".png").c_str(), "wb");
     if(!fp)
     {
         throw runtime_error("Can't open png output file.");
@@ -471,7 +471,7 @@ void generator::process_character(int c)
             uint32_t glyph_index = FT_Get_Char_Index(font_face_, char_code_point);
             if(glyph_index)
             {
-                cout << "[debug] Found glyph index " << glyph_index << " for character '" << (char)c << "'\n";
+//                cout << "[debug] Found glyph index " << glyph_index << " for character '" << (char)c << "'\n";
                 
                 // add to map
                 gen_.insert( make_pair( char_code_point, glyph_info( glyph_index, char_code_point ) ) );
@@ -512,7 +512,7 @@ int main(int argc, const char * argv[])
     ("font,f", po::value<string>(), "input font file (.ttf)")
     ("text,t", po::value<vector<string> >()->composing(), "input text file")
     ("monospace,m", "monospaced font")
-    ("advance,a", po::value<int>(), "glyph advance value for non-monospace fonts")
+    ("advance,a", "use glyph advance values for non-monospace fonts")
     ;
     
     po::variables_map vm;
@@ -557,6 +557,7 @@ int main(int argc, const char * argv[])
     }
     
     // create a generator
-    generator gen(fnt, txt_files, size, padding, vm["output"].as<string>());
+    generator gen(fnt, txt_files, size, padding, vm.count("monospace")>0,
+                  vm.count("advance")>0, vm["output"].as<string>());
     return gen.run();
 }
