@@ -32,10 +32,30 @@ namespace platform {
             h = s.currentMode.size.height;
         }
         
+        // swap iPad size if mode is crazy
+        if ( h == 768.0f && w == 1024.0f )
+        {
+            w = 768.0f;
+            h = 1024.0f;
+        }
+        else if ( h == 1536.0f && w == 2048.0f )
+        {
+            w = 1536.0f;
+            h = 2048.0f;
+        }
+        
         // check retina iPhone
         if (w == 640.0f && h == 960.0f)
         {
             // use scale instead
+            w /= 2.0f;
+            h /= 2.0f;
+            has_retina = true;
+        }
+        
+        // check iPhone 5
+        if (w == 640.0f && h == 1136.0f)
+        {
             w /= 2.0f;
             h /= 2.0f;
             has_retina = true;

@@ -85,12 +85,10 @@
 		2403496C14FA7D4F00B1CFC9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		2403907815B60C350017B7DC /* contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2403907615B60C350017B7DC /* contact.cpp */; };
 		2403907915B60C350017B7DC /* contact.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403907715B60C350017B7DC /* contact.h */; };
-		240F052414E40C86002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		240F052E14E41E30002AEEB2 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
 		240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		240F053014E41E30002AEEB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		240F053114E41E30002AEEB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		240F053214E41E30002AEEB2 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		240F053314E41E30002AEEB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		240F053414E41E30002AEEB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		240F054814E41F4A002AEEB2 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 240F054614E41F4A002AEEB2 /* AppDelegate.mm */; };
@@ -98,6 +96,22 @@
 		240F055514E41F85002AEEB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 240F055114E41F85002AEEB2 /* InfoPlist.strings */; };
 		240F055614E41F85002AEEB2 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 240F055314E41F85002AEEB2 /* main.mm */; };
 		240F055814E41F92002AEEB2 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 240F055714E41F92002AEEB2 /* resources.zip */; };
+		2413FE7A16C9AC1A005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE7B16C9AC3A005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE7C16C9AC40005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE7D16C9AC4B005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE7E16C9AC57005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE7F16C9AC57005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8016C9AC59005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8116C9AC5A005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8216C9AC5A005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8316C9AC5B005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8416C9AC5B005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8516C9AC5C005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8616C9AC5E005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8716C9AC5F005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8816C9AC60005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
+		2413FE8916C9AC60005AAD49 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
 		241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		241583C814D0B2DA0014F37B /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
 		241583C914D0B2DA0014F37B /* graphics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC7214CCC87D006F36A1 /* graphics_engine.cpp */; };
@@ -112,7 +126,6 @@
 		241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		241583DF14D0B3940014F37B /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		241583E014D0B3940014F37B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		241583E114D0B3940014F37B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		241583F614D0B5620014F37B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241583EB14D0B4D30014F37B /* AppDelegate.mm */; };
@@ -137,7 +150,6 @@
 		243F95D914F0052200922D55 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		243F95DA14F0052200922D55 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		243F95DB14F0052200922D55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		243F95DC14F0052200922D55 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		243F95DD14F0052200922D55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		243F95DE14F0052200922D55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		243F95FD14F0063600922D55 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 243F95F814F0063600922D55 /* custom_obj.cpp */; };
@@ -163,7 +175,6 @@
 		244DDD2614DEFD8800F4E029 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		244DDD2714DEFD8800F4E029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		244DDD2814DEFD8800F4E029 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		244DDD2914DEFD8800F4E029 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		244DDD2A14DEFD8800F4E029 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		244DDD2B14DEFD8800F4E029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		244DDD4614DEFF2400F4E029 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 244DDD4014DEFF2400F4E029 /* custom_obj.cpp */; };
@@ -185,7 +196,6 @@
 		2451517714DACA620029D699 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2451517814DACA620029D699 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2451517914DACA620029D699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2451517A14DACA620029D699 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2451517B14DACA620029D699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2451517C14DACA620029D699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2451519D14DACBE80029D699 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2451518F14DACBE80029D699 /* AppDelegate.mm */; };
@@ -202,7 +212,6 @@
 		2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2467287D14D6E4D7003AAA04 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2467287E14D6E4D7003AAA04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2467287F14D6E4D7003AAA04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2467289314D6E5CF003AAA04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2467288F14D6E5CF003AAA04 /* InfoPlist.strings */; };
@@ -216,7 +225,6 @@
 		2467295314D9EA5B003AAA04 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2467295414D9EA5B003AAA04 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2467295514D9EA5B003AAA04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2467295614D9EA5B003AAA04 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2467295714D9EA5B003AAA04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2467295814D9EA5B003AAA04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2467296D14D9EC23003AAA04 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2467296B14D9EC23003AAA04 /* main.mm */; };
@@ -237,7 +245,6 @@
 		2487CA6C14E18137006A7E22 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2487CA6D14E18137006A7E22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2487CA6E14E18137006A7E22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2487CA6F14E18137006A7E22 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2487CA7014E18137006A7E22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2487CA7114E18137006A7E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2487CA9514E18208006A7E22 /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CA9014E18208006A7E22 /* custom_obj.cpp */; };
@@ -251,7 +258,6 @@
 		2487CADC14E290B0006A7E22 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2487CADD14E290B0006A7E22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2487CADE14E290B0006A7E22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2487CADF14E290B0006A7E22 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2487CAE014E290B0006A7E22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2487CAE114E290B0006A7E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2487CAFB14E29199006A7E22 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CAF814E29199006A7E22 /* scene.cpp */; };
@@ -264,7 +270,6 @@
 		2487CB7114E6F7BC006A7E22 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		2487CB7214E6F7BC006A7E22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		2487CB7314E6F7BC006A7E22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		2487CB7414E6F7BC006A7E22 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		2487CB7514E6F7BC006A7E22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		2487CB7614E6F7BC006A7E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		2487CB8714E6F83D006A7E22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB8214E6F83D006A7E22 /* InfoPlist.strings */; };
@@ -289,7 +294,6 @@
 		24C7484014F654C6004E07DD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		24C7484114F654C6004E07DD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		24C7484214F654C6004E07DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		24C7484314F654C6004E07DD /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		24C7484414F654C6004E07DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		24C7484514F654C6004E07DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24C7485D14F65598004E07DD /* custom_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C7485814F65598004E07DD /* custom_obj.cpp */; };
@@ -298,7 +302,6 @@
 		24C7486514F655B5004E07DD /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24C7486114F655B5004E07DD /* main.mm */; };
 		24C7486A14F655E3004E07DD /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24C7486814F655E3004E07DD /* AppDelegate.mm */; };
 		24C7486C14F65635004E07DD /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 24C7486B14F65635004E07DD /* resources.zip */; };
-		24C7488E14F65E1F004E07DD /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		24C7488F14F65E1F004E07DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24C7489814F65E90004E07DD /* libx2d_ui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C7489514F65E1F004E07DD /* libx2d_ui.a */; };
 		24C748A014F664C8004E07DD /* ui_plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C7489F14F664C8004E07DD /* ui_plugin.cpp */; };
@@ -312,7 +315,6 @@
 		24DDAD3015A9DC500064EFC5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		24DDAD3115A9DC500064EFC5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		24DDAD3215A9DC500064EFC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		24DDAD3315A9DC500064EFC5 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		24DDAD3415A9DC500064EFC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		24DDAD3515A9DC500064EFC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24DDAD4C15A9DD2C0064EFC5 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD4915A9DD2C0064EFC5 /* scene.cpp */; };
@@ -387,12 +389,10 @@
 		24E4BD2F15E46CD5008F162C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
 		24E4BD3015E46CD5008F162C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */; };
 		24E4BD3115E46CD5008F162C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
-		24E4BD3215E46CD5008F162C /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		24E4BD3315E46CD5008F162C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		24E4BD3415E46CD5008F162C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24E4BD5915E47067008F162C /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E4BC6015E461C2008F162C /* liblua.a */; };
 		24E4BD5A15E47067008F162C /* libluabind.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E4BCCE15E462BE008F162C /* libluabind.a */; };
-		24E4BD5C15E55463008F162C /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC4114CC6320006F36A1 /* boost.framework */; };
 		24E4BD6215E56049008F162C /* script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BD6015E56049008F162C /* script.cpp */; };
 		24E4BD6315E56049008F162C /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E4BD6115E56049008F162C /* script.h */; };
 		24E4BD6615E5634A008F162C /* scripting_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BD6415E5634A008F162C /* scripting_engine.cpp */; };
@@ -703,6 +703,7 @@
 		240F055214E41F85002AEEB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = demo/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		240F055314E41F85002AEEB2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = demo/main.mm; sourceTree = "<group>"; };
 		240F055714E41F92002AEEB2 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = demo/resources.zip; sourceTree = "<group>"; };
+		2413FE7916C9AC1A005AAD49 /* boost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = boost.framework; path = System/Library/Frameworks/boost.framework; sourceTree = SDKROOT; };
 		2415837F14CDD9380014F37B /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = src/base/camera.h; sourceTree = "<group>"; };
 		2415838114CDD9DA0014F37B /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math_util.cpp; path = src/util/math_util.cpp; sourceTree = "<group>"; };
 		2415838814CE04990014F37B /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = src/base/texture.h; sourceTree = "<group>"; };
@@ -1179,7 +1180,6 @@
 		24BDCC2114CC6300006F36A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24BDCC2314CC6300006F36A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		24BDCC4114CC6320006F36A1 /* boost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = boost.framework; path = System/Library/Frameworks/boost.framework; sourceTree = SDKROOT; };
 		24BDCC4514CC63FD006F36A1 /* kernel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel.cpp; path = src/kernel/kernel.cpp; sourceTree = "<group>"; };
 		24BDCC4714CC648D006F36A1 /* kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel.h; path = src/kernel/kernel.h; sourceTree = "<group>"; };
 		24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1355,9 +1355,9 @@
 				240F052F14E41E30002AEEB2 /* OpenGLES.framework in Frameworks */,
 				240F053014E41E30002AEEB2 /* QuartzCore.framework in Frameworks */,
 				240F053114E41E30002AEEB2 /* CoreGraphics.framework in Frameworks */,
-				240F053214E41E30002AEEB2 /* boost.framework in Frameworks */,
 				240F053314E41E30002AEEB2 /* UIKit.framework in Frameworks */,
 				240F053414E41E30002AEEB2 /* Foundation.framework in Frameworks */,
+				2413FE8916C9AC60005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,12 +1365,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2413FE7B16C9AC3A005AAD49 /* boost.framework in Frameworks */,
 				24E4BD5915E47067008F162C /* liblua.a in Frameworks */,
 				24E4BD5A15E47067008F162C /* libluabind.a in Frameworks */,
 				2401F18E158A7B0100BC2425 /* libbox2d.a in Frameworks */,
 				244609D414F94E5D004708DC /* OpenAL.framework in Frameworks */,
 				244609D314F94E58004708DC /* AudioToolbox.framework in Frameworks */,
-				240F052414E40C86002AEEB2 /* boost.framework in Frameworks */,
 				241583BE14D0B27E0014F37B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1379,11 +1379,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2413FE7D16C9AC4B005AAD49 /* boost.framework in Frameworks */,
 				241583DB14D0B3940014F37B /* libx2d.a in Frameworks */,
 				241583DC14D0B3940014F37B /* OpenGLES.framework in Frameworks */,
 				241583DD14D0B3940014F37B /* QuartzCore.framework in Frameworks */,
 				241583DE14D0B3940014F37B /* CoreGraphics.framework in Frameworks */,
-				241583DF14D0B3940014F37B /* boost.framework in Frameworks */,
 				241583E014D0B3940014F37B /* UIKit.framework in Frameworks */,
 				241583E114D0B3940014F37B /* Foundation.framework in Frameworks */,
 			);
@@ -1411,9 +1411,9 @@
 				243F95D914F0052200922D55 /* OpenGLES.framework in Frameworks */,
 				243F95DA14F0052200922D55 /* QuartzCore.framework in Frameworks */,
 				243F95DB14F0052200922D55 /* CoreGraphics.framework in Frameworks */,
-				243F95DC14F0052200922D55 /* boost.framework in Frameworks */,
 				243F95DD14F0052200922D55 /* UIKit.framework in Frameworks */,
 				243F95DE14F0052200922D55 /* Foundation.framework in Frameworks */,
+				2413FE8516C9AC5C005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,9 +1427,9 @@
 				244DDD2614DEFD8800F4E029 /* OpenGLES.framework in Frameworks */,
 				244DDD2714DEFD8800F4E029 /* QuartzCore.framework in Frameworks */,
 				244DDD2814DEFD8800F4E029 /* CoreGraphics.framework in Frameworks */,
-				244DDD2914DEFD8800F4E029 /* boost.framework in Frameworks */,
 				244DDD2A14DEFD8800F4E029 /* UIKit.framework in Frameworks */,
 				244DDD2B14DEFD8800F4E029 /* Foundation.framework in Frameworks */,
+				2413FE8116C9AC5A005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1443,9 +1443,9 @@
 				2451517714DACA620029D699 /* OpenGLES.framework in Frameworks */,
 				2451517814DACA620029D699 /* QuartzCore.framework in Frameworks */,
 				2451517914DACA620029D699 /* CoreGraphics.framework in Frameworks */,
-				2451517A14DACA620029D699 /* boost.framework in Frameworks */,
 				2451517B14DACA620029D699 /* UIKit.framework in Frameworks */,
 				2451517C14DACA620029D699 /* Foundation.framework in Frameworks */,
+				2413FE8016C9AC59005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,9 +1459,9 @@
 				2467287A14D6E4D7003AAA04 /* OpenGLES.framework in Frameworks */,
 				2467287B14D6E4D7003AAA04 /* QuartzCore.framework in Frameworks */,
 				2467287C14D6E4D7003AAA04 /* CoreGraphics.framework in Frameworks */,
-				2467287D14D6E4D7003AAA04 /* boost.framework in Frameworks */,
 				2467287E14D6E4D7003AAA04 /* UIKit.framework in Frameworks */,
 				2467287F14D6E4D7003AAA04 /* Foundation.framework in Frameworks */,
+				2413FE7E16C9AC57005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1475,9 +1475,9 @@
 				2467295314D9EA5B003AAA04 /* OpenGLES.framework in Frameworks */,
 				2467295414D9EA5B003AAA04 /* QuartzCore.framework in Frameworks */,
 				2467295514D9EA5B003AAA04 /* CoreGraphics.framework in Frameworks */,
-				2467295614D9EA5B003AAA04 /* boost.framework in Frameworks */,
 				2467295714D9EA5B003AAA04 /* UIKit.framework in Frameworks */,
 				2467295814D9EA5B003AAA04 /* Foundation.framework in Frameworks */,
+				2413FE7F16C9AC57005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,9 +1491,9 @@
 				2487CA6C14E18137006A7E22 /* OpenGLES.framework in Frameworks */,
 				2487CA6D14E18137006A7E22 /* QuartzCore.framework in Frameworks */,
 				2487CA6E14E18137006A7E22 /* CoreGraphics.framework in Frameworks */,
-				2487CA6F14E18137006A7E22 /* boost.framework in Frameworks */,
 				2487CA7014E18137006A7E22 /* UIKit.framework in Frameworks */,
 				2487CA7114E18137006A7E22 /* Foundation.framework in Frameworks */,
+				2413FE8216C9AC5A005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1507,9 +1507,9 @@
 				2487CADC14E290B0006A7E22 /* OpenGLES.framework in Frameworks */,
 				2487CADD14E290B0006A7E22 /* QuartzCore.framework in Frameworks */,
 				2487CADE14E290B0006A7E22 /* CoreGraphics.framework in Frameworks */,
-				2487CADF14E290B0006A7E22 /* boost.framework in Frameworks */,
 				2487CAE014E290B0006A7E22 /* UIKit.framework in Frameworks */,
 				2487CAE114E290B0006A7E22 /* Foundation.framework in Frameworks */,
+				2413FE8316C9AC5B005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,9 +1524,9 @@
 				2487CB7114E6F7BC006A7E22 /* OpenGLES.framework in Frameworks */,
 				2487CB7214E6F7BC006A7E22 /* QuartzCore.framework in Frameworks */,
 				2487CB7314E6F7BC006A7E22 /* CoreGraphics.framework in Frameworks */,
-				2487CB7414E6F7BC006A7E22 /* boost.framework in Frameworks */,
 				2487CB7514E6F7BC006A7E22 /* UIKit.framework in Frameworks */,
 				2487CB7614E6F7BC006A7E22 /* Foundation.framework in Frameworks */,
+				2413FE8416C9AC5B005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,9 +1542,9 @@
 				24C7484014F654C6004E07DD /* OpenGLES.framework in Frameworks */,
 				24C7484114F654C6004E07DD /* QuartzCore.framework in Frameworks */,
 				24C7484214F654C6004E07DD /* CoreGraphics.framework in Frameworks */,
-				24C7484314F654C6004E07DD /* boost.framework in Frameworks */,
 				24C7484414F654C6004E07DD /* UIKit.framework in Frameworks */,
 				24C7484514F654C6004E07DD /* Foundation.framework in Frameworks */,
+				2413FE8616C9AC5E005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,7 +1552,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24C7488E14F65E1F004E07DD /* boost.framework in Frameworks */,
+				2413FE7C16C9AC40005AAD49 /* boost.framework in Frameworks */,
 				24C7488F14F65E1F004E07DD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1568,9 +1568,9 @@
 				24DDAD3015A9DC500064EFC5 /* OpenGLES.framework in Frameworks */,
 				24DDAD3115A9DC500064EFC5 /* QuartzCore.framework in Frameworks */,
 				24DDAD3215A9DC500064EFC5 /* CoreGraphics.framework in Frameworks */,
-				24DDAD3315A9DC500064EFC5 /* boost.framework in Frameworks */,
 				24DDAD3515A9DC500064EFC5 /* Foundation.framework in Frameworks */,
 				24DDAD3415A9DC500064EFC5 /* UIKit.framework in Frameworks */,
+				2413FE8716C9AC5F005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1586,9 +1586,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2413FE7A16C9AC1A005AAD49 /* boost.framework in Frameworks */,
 				24E4BD0015E465BF008F162C /* liblua.a in Frameworks */,
 				24E4BCCF15E462BE008F162C /* Foundation.framework in Frameworks */,
-				24E4BD5C15E55463008F162C /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1603,9 +1603,9 @@
 				24E4BD2F15E46CD5008F162C /* OpenGLES.framework in Frameworks */,
 				24E4BD3015E46CD5008F162C /* QuartzCore.framework in Frameworks */,
 				24E4BD3115E46CD5008F162C /* CoreGraphics.framework in Frameworks */,
-				24E4BD3215E46CD5008F162C /* boost.framework in Frameworks */,
 				24E4BD3315E46CD5008F162C /* UIKit.framework in Frameworks */,
 				24E4BD3415E46CD5008F162C /* Foundation.framework in Frameworks */,
+				2413FE8816C9AC60005AAD49 /* boost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2762,6 +2762,7 @@
 		24BDCC2014CC6300006F36A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2413FE7916C9AC1A005AAD49 /* boost.framework */,
 				24AEA99B1646F7E100B42BB4 /* libfreetype.dylib */,
 				24AEA9991646F7D600B42BB4 /* libpng.dylib */,
 				24AEA9971646F7C000B42BB4 /* libz.dylib */,
@@ -2772,7 +2773,6 @@
 				24408C7A14E9D1750056C5E5 /* CoreAudio.framework */,
 				24BDCC6914CCC122006F36A1 /* OpenGLES.framework */,
 				24BDCC4E14CC6DF2006F36A1 /* QuartzCore.framework */,
-				24BDCC4114CC6320006F36A1 /* boost.framework */,
 				24BDCC2114CC6300006F36A1 /* UIKit.framework */,
 				24BDCC2314CC6300006F36A1 /* Foundation.framework */,
 				24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */,
@@ -4521,6 +4521,10 @@
 		240F053B14E41E30002AEEB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
 				INFOPLIST_FILE = demo/demo.plist;
@@ -4533,6 +4537,10 @@
 		240F053C14E41E30002AEEB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
 				INFOPLIST_FILE = demo/demo.plist;
@@ -4546,6 +4554,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/libx2d.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = x2d;
 				SKIP_INSTALL = YES;
@@ -4556,6 +4568,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/libx2d.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = x2d;
 				SKIP_INSTALL = YES;
@@ -4565,6 +4581,10 @@
 		241583E514D0B3940014F37B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
 				INFOPLIST_FILE = 01_object/object.plist;
@@ -4576,6 +4596,10 @@
 		241583E614D0B3940014F37B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "01_object/object-Prefix.pch";
 				INFOPLIST_FILE = 01_object/object.plist;
@@ -4596,6 +4620,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/usr/local/include,
 					/usr/local/include/freetype2,
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4633,6 +4658,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/usr/local/include,
 					/usr/local/include/freetype2,
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = "";
@@ -4654,6 +4680,10 @@
 		243F95E614F0052200922D55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
 				INFOPLIST_FILE = 09_sound/sound.plist;
@@ -4666,6 +4696,10 @@
 		243F95E714F0052200922D55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "09_sound/sound-Prefix.pch";
 				INFOPLIST_FILE = 09_sound/sound.plist;
@@ -4678,6 +4712,10 @@
 		244DDD3314DEFD8800F4E029 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "05_custobj/custobj-Prefix.pch";
 				INFOPLIST_FILE = 05_custobj/custobj.plist;
@@ -4690,6 +4728,10 @@
 		244DDD3414DEFD8800F4E029 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "05_custobj/custobj-Prefix.pch";
 				INFOPLIST_FILE = 05_custobj/custobj.plist;
@@ -4702,6 +4744,10 @@
 		2451518314DACA620029D699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "04_viewport/viewport-Prefix.pch";
 				INFOPLIST_FILE = 04_viewport/viewport.plist;
@@ -4714,6 +4760,10 @@
 		2451518414DACA620029D699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "04_viewport/viewport-Prefix.pch";
 				INFOPLIST_FILE = 04_viewport/viewport.plist;
@@ -4726,6 +4776,10 @@
 		2467288414D6E4D7003AAA04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "02_config/config-Prefix.pch";
 				INFOPLIST_FILE = 02_config/config.plist;
@@ -4737,6 +4791,10 @@
 		2467288514D6E4D7003AAA04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "02_config/config-Prefix.pch";
 				INFOPLIST_FILE = 02_config/config.plist;
@@ -4748,6 +4806,10 @@
 		2467295F14D9EA5B003AAA04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "03_animation/animation-Prefix.pch";
 				INFOPLIST_FILE = 03_animation/animation.plist;
@@ -4759,6 +4821,10 @@
 		2467296014D9EA5B003AAA04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "03_animation/animation-Prefix.pch";
 				INFOPLIST_FILE = 03_animation/animation.plist;
@@ -4770,6 +4836,10 @@
 		2487CA7814E18137006A7E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "06_hud/hud-Prefix.pch";
 				INFOPLIST_FILE = 06_hud/hud.plist;
@@ -4782,6 +4852,10 @@
 		2487CA7914E18137006A7E22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "06_hud/hud-Prefix.pch";
 				INFOPLIST_FILE = 06_hud/hud.plist;
@@ -4794,6 +4868,10 @@
 		2487CAE814E290B0006A7E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "07_spawner/spawner-Prefix.pch";
 				INFOPLIST_FILE = 07_spawner/spawner.plist;
@@ -4806,6 +4884,10 @@
 		2487CAE914E290B0006A7E22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "07_spawner/spawner-Prefix.pch";
 				INFOPLIST_FILE = 07_spawner/spawner.plist;
@@ -4818,6 +4900,10 @@
 		2487CB7D14E6F7BC006A7E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "08_font/font-Prefix.pch";
 				INFOPLIST_FILE = 08_font/font.plist;
@@ -4830,6 +4916,10 @@
 		2487CB7E14E6F7BC006A7E22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "08_font/font-Prefix.pch";
 				INFOPLIST_FILE = 08_font/font.plist;
@@ -4847,7 +4937,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4855,7 +4944,6 @@
 					"DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -4865,6 +4953,7 @@
 					"$(PROJECT_DIR)/libs/lua/src",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -4882,10 +4971,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "LUA_COMPAT_ALL=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -4895,6 +4982,7 @@
 					"$(PROJECT_DIR)/libs/lua/src",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -4909,6 +4997,10 @@
 		24C7484C14F654C6004E07DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "10_ui/ui-Prefix.pch";
 				INFOPLIST_FILE = 10_ui/ui.plist;
@@ -4921,6 +5013,10 @@
 		24C7484D14F654C6004E07DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "10_ui/ui-Prefix.pch";
 				INFOPLIST_FILE = 10_ui/ui.plist;
@@ -4934,6 +5030,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/libx2d_ui.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = x2d_ui;
 				SKIP_INSTALL = YES;
@@ -4944,6 +5044,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/libx2d_ui.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = x2d_ui;
 				SKIP_INSTALL = YES;
@@ -4953,6 +5057,10 @@
 		24DDAD3C15A9DC500064EFC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "11_physics/physics-Prefix.pch";
 				INFOPLIST_FILE = 11_physics/physics.plist;
@@ -4965,6 +5073,10 @@
 		24DDAD3D15A9DC500064EFC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "11_physics/physics-Prefix.pch";
 				INFOPLIST_FILE = 11_physics/physics.plist;
@@ -5004,6 +5116,10 @@
 			buildSettings = {
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DSTROOT = /tmp/luabind.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -5017,6 +5133,10 @@
 			buildSettings = {
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DSTROOT = /tmp/luabind.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5041,6 +5161,10 @@
 		24E4BD3B15E46CD5008F162C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				INFOPLIST_FILE = x2d.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_script;
@@ -5051,6 +5175,10 @@
 		24E4BD3C15E46CD5008F162C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
+				);
 				INFOPLIST_FILE = x2d.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_script;

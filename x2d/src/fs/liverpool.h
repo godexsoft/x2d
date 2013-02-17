@@ -252,7 +252,7 @@ namespace liverpool {
 			}
             else
             {
-                LOG("Couldn't open file '%s' in lvp archieve.", path.c_str());
+                LOG("Couldn't open file '%s' in lvp archive.", path.c_str());
                 throw std::exception();
 			}
 		}		
