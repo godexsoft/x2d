@@ -72,7 +72,8 @@ namespace base {
             return position_;
         }
         
-        const glm::vec3 world_position() const;        
+        const glm::vec3 world_position() const;
+        
         /**
          * Generate one wave.
          */

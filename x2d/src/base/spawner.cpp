@@ -24,7 +24,13 @@ namespace base {
     , wave_delay_(wd) // manual
     , life_time_(lt)  // forever
     , parent_(NULL)
-    {     
+    {
+        LOG("SPAWNER CREATED WITH: %d elements", obj_lst_.get_list().size());
+        for(int i=0; i<obj_lst_.get_list().size(); ++i)
+        {
+            LOG("OBJECT IN SPAWNER: %s", obj_lst_.get_list().at(i).c_str());
+        }
+        
         timer_.handler( boost::bind(&spawner::update, this, _1) );        
         start();
     }

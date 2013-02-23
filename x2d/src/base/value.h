@@ -21,6 +21,51 @@ namespace x2d {
     // Shared global generator for all x2d randomness
     static boost::random::mt19937 GENERATOR = boost::random::mt19937(platform::time::current_time());
     
+    // Wrappers for boost.random to get rid of the annoying difference between int and real distributions
+    template<typename T>
+    struct wrapped_distribution;
+    
+    template<>
+    struct wrapped_distribution<float> : public boost::random::uniform_real_distribution<float>
+    {
+        wrapped_distribution(const float& min, const float& max)
+        : boost::random::uniform_real_distribution<float>(min, max) {}
+        wrapped_distribution() {}
+    };
+    
+    template<>
+    struct wrapped_distribution<double> : public boost::random::uniform_real_distribution<double>
+    {
+        wrapped_distribution(const double& min, const double& max)
+        : boost::random::uniform_real_distribution<double>(min, max) {}
+        wrapped_distribution() {}
+    };
+
+    template<>
+    struct wrapped_distribution<int> : public boost::random::uniform_int_distribution<int>
+    {
+        wrapped_distribution(const int& min, const int& max)
+        : boost::random::uniform_int_distribution<int>(min, max) {}
+        wrapped_distribution() {}
+    };
+
+    template<>
+    struct wrapped_distribution<long> : public boost::random::uniform_int_distribution<long>
+    {
+        wrapped_distribution(const long& min, const long& max)
+        : boost::random::uniform_int_distribution<long>(min, max) {}
+        wrapped_distribution() {}
+    };
+
+    template<>
+    struct wrapped_distribution<short> : public boost::random::uniform_int_distribution<short>
+    {
+        wrapped_distribution(const short& min, const short& max)
+        : boost::random::uniform_int_distribution<short>(min, max) {}
+        wrapped_distribution() {}
+    };
+    
+    
     /**
      * Holds a value in range. Will return random values from the range on request.
      * If constructed with one argument will hold that single value and always return it on request.
@@ -34,10 +79,7 @@ namespace x2d {
          * @param[in] v Value to store
          */
         value(const T& v)
-        : from_(T())
-        , to_(T())
-        , value_(v)
-        , chunk_(0.0)
+        : value_(v)
         , is_rand_(false)
         {
         }
@@ -48,18 +90,14 @@ namespace x2d {
          * @param[in] to Maximum value to generate
          */
         value(const T& from, const T& to)
-        : dist_(0.0, 1.0)
-        , from_(from > to ? to : from)
-        , to_(from < to ? to : from)
-        , value_(to_ - from_)
-        , chunk_(1.0/(double)value_)
+        : dist_(from>to?to:from, from<to?to:from)
         , is_rand_(true)
         {
             // If random ends up with same value everytime - cache it
-            if(to_ == from_)
+            if(to == from)
             {
                 is_rand_ = false;
-                value_ = to_;
+                value_ = to;
             }
         }
         
@@ -73,7 +111,7 @@ namespace x2d {
             {
                 // This version works fine with floats and doubles.
                 // Check the specializations out for int and long - it's in the cpp file.
-                return T((double)from_ + (double)value_ * dist_(x2d::GENERATOR));
+                return dist_(x2d::GENERATOR);
             }
             else
             {
@@ -90,12 +128,8 @@ namespace x2d {
         }
         
     private:
-        boost::random::uniform_real_distribution<> dist_;
-        
-        T from_;
-        T to_;
+        wrapped_distribution<T> dist_;
         T value_;
-        double chunk_;
         bool is_rand_;
     };
     
@@ -634,11 +668,6 @@ namespace x2d {
         std::vector<T> lst_;
         value<int> rnd_;
     };
-    
-    // Forward declarations of specializations to prevent ill-formed program
-    template<> int value<int>::get() const;
-    template<> long value<long>::get() const;
-    template<> short value<short>::get() const;
     
 } // namespace x2d
 using namespace x2d;

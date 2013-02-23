@@ -309,6 +309,9 @@
 		24CA511E14FCF5A300140771 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24D24CF116D921BE00D689F2 /* value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24D24CEF16D921BE00D689F2 /* value.cpp */; };
 		24D24CF216D921BE00D689F2 /* value.h in Headers */ = {isa = PBXBuildFile; fileRef = 24D24CF016D921BE00D689F2 /* value.h */; };
+		24D24CF516D9766900D689F2 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24D24CF316D9766900D689F2 /* scene.cpp */; };
+		24D24CF816D9767400D689F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24D24CF716D9767400D689F2 /* main.cpp */; };
+		24D24CFF16D976EC00D689F2 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 24D24CFE16D976EC00D689F2 /* resources.zip */; };
 		24DDAD2C15A9DC500064EFC5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
 		24DDAD2D15A9DC500064EFC5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24DDAD2E15A9DC500064EFC5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7A14E9D1750056C5E5 /* CoreAudio.framework */; };
@@ -318,11 +321,6 @@
 		24DDAD3215A9DC500064EFC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2514CC6300006F36A1 /* CoreGraphics.framework */; };
 		24DDAD3415A9DC500064EFC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		24DDAD3515A9DC500064EFC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
-		24DDAD4C15A9DD2C0064EFC5 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD4915A9DD2C0064EFC5 /* scene.cpp */; };
-		24DDAD5315A9DD5E0064EFC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24DDAD4E15A9DD5E0064EFC5 /* InfoPlist.strings */; };
-		24DDAD5415A9DD5E0064EFC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD5015A9DD5E0064EFC5 /* main.mm */; };
-		24DDAD5A15A9DD900064EFC5 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD5815A9DD900064EFC5 /* AppDelegate.mm */; };
-		24DDAD5C15A9DE800064EFC5 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 24DDAD5B15A9DE800064EFC5 /* resources.zip */; };
 		24DDAD6115A9E3E40064EFC5 /* body_part.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD5F15A9E3E40064EFC5 /* body_part.cpp */; };
 		24DDAD6215A9E3E40064EFC5 /* body_part.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DDAD6015A9E3E40064EFC5 /* body_part.h */; };
 		24DDAD6515A9E48A0064EFC5 /* body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD6315A9E48A0064EFC5 /* body.cpp */; };
@@ -1222,20 +1220,15 @@
 		24C748A114F66AA2004E07DD /* plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plugin.cpp; path = src/config/plugin.cpp; sourceTree = "<group>"; };
 		24D24CEF16D921BE00D689F2 /* value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = value.cpp; path = src/base/value.cpp; sourceTree = "<group>"; };
 		24D24CF016D921BE00D689F2 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value.h; path = src/base/value.h; sourceTree = "<group>"; };
+		24D24CF316D9766900D689F2 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 11_physics/src/scene.cpp; sourceTree = "<group>"; };
+		24D24CF416D9766900D689F2 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 11_physics/src/scene.h; sourceTree = "<group>"; };
+		24D24CF616D9767400D689F2 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 11_physics/src/game.h; sourceTree = "<group>"; };
+		24D24CF716D9767400D689F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = 11_physics/src/main.cpp; sourceTree = "<group>"; };
+		24D24CFA16D9768000D689F2 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		24D24CFB16D9768000D689F2 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
+		24D24CFC16D9768000D689F2 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 11_physics/game_resources/main.xml; sourceTree = "<group>"; };
+		24D24CFE16D976EC00D689F2 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 11_physics/assets/resources.zip; sourceTree = "<group>"; };
 		24DDAD3E15A9DC500064EFC5 /* x2d_physics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_physics.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		24DDAD4915A9DD2C0064EFC5 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = 11_physics/scene.cpp; sourceTree = "<group>"; };
-		24DDAD4A15A9DD2C0064EFC5 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = 11_physics/scene.h; sourceTree = "<group>"; };
-		24DDAD4D15A9DD3D0064EFC5 /* fps_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fps_counter.h; path = 11_physics/fps_counter.h; sourceTree = "<group>"; };
-		24DDAD4F15A9DD5E0064EFC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = 11_physics/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		24DDAD5015A9DD5E0064EFC5 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = 11_physics/main.mm; sourceTree = "<group>"; };
-		24DDAD5115A9DD5E0064EFC5 /* physics-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "physics-Prefix.pch"; path = "11_physics/physics-Prefix.pch"; sourceTree = "<group>"; };
-		24DDAD5215A9DD5E0064EFC5 /* physics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = physics.plist; path = 11_physics/physics.plist; sourceTree = "<group>"; };
-		24DDAD5615A9DD700064EFC5 /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = 11_physics/res/main.xml; sourceTree = "<group>"; };
-		24DDAD5715A9DD900064EFC5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 11_physics/AppDelegate.h; sourceTree = "<group>"; };
-		24DDAD5815A9DD900064EFC5 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = 11_physics/AppDelegate.mm; sourceTree = "<group>"; };
-		24DDAD5915A9DD900064EFC5 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 11_physics/game.h; sourceTree = "<group>"; };
-		24DDAD5B15A9DE800064EFC5 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = 11_physics/resources.zip; sourceTree = "<group>"; };
-		24DDAD5D15A9E2740064EFC5 /* graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = graphics; path = 11_physics/res/graphics; sourceTree = "<group>"; };
 		24DDAD5F15A9E3E40064EFC5 /* body_part.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = body_part.cpp; path = src/physics/body_part.cpp; sourceTree = "<group>"; };
 		24DDAD6015A9E3E40064EFC5 /* body_part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = body_part.h; path = src/physics/body_part.h; sourceTree = "<group>"; };
 		24DDAD6315A9E48A0064EFC5 /* body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = body.cpp; path = src/physics/body.cpp; sourceTree = "<group>"; };
@@ -2987,15 +2980,23 @@
 			name = config;
 			sourceTree = "<group>";
 		};
+		24D24CF916D9768000D689F2 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				24D24CFA16D9768000D689F2 /* ball.png */,
+				24D24CFB16D9768000D689F2 /* box.png */,
+			);
+			name = graphics;
+			path = 11_physics/game_resources/graphics;
+			sourceTree = "<group>";
+		};
 		24DDAD4215A9DCDE0064EFC5 /* 11_physics */ = {
 			isa = PBXGroup;
 			children = (
-				24DDAD5715A9DD900064EFC5 /* AppDelegate.h */,
-				24DDAD5815A9DD900064EFC5 /* AppDelegate.mm */,
-				24DDAD5915A9DD900064EFC5 /* game.h */,
+				24D24CF616D9767400D689F2 /* game.h */,
+				24D24CF716D9767400D689F2 /* main.cpp */,
 				24DDAD4615A9DD030064EFC5 /* resources */,
 				24DDAD4515A9DCFC0064EFC5 /* objects */,
-				24DDAD4415A9DCF30064EFC5 /* Supporting Files */,
 				24DDAD4315A9DCEB0064EFC5 /* generated */,
 			);
 			name = 11_physics;
@@ -3004,28 +3005,16 @@
 		24DDAD4315A9DCEB0064EFC5 /* generated */ = {
 			isa = PBXGroup;
 			children = (
-				24DDAD5B15A9DE800064EFC5 /* resources.zip */,
+				24D24CFE16D976EC00D689F2 /* resources.zip */,
 			);
 			name = generated;
-			sourceTree = "<group>";
-		};
-		24DDAD4415A9DCF30064EFC5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				24DDAD4E15A9DD5E0064EFC5 /* InfoPlist.strings */,
-				24DDAD5015A9DD5E0064EFC5 /* main.mm */,
-				24DDAD5115A9DD5E0064EFC5 /* physics-Prefix.pch */,
-				24DDAD5215A9DD5E0064EFC5 /* physics.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		24DDAD4515A9DCFC0064EFC5 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				24DDAD4D15A9DD3D0064EFC5 /* fps_counter.h */,
-				24DDAD4915A9DD2C0064EFC5 /* scene.cpp */,
-				24DDAD4A15A9DD2C0064EFC5 /* scene.h */,
+				24D24CF316D9766900D689F2 /* scene.cpp */,
+				24D24CF416D9766900D689F2 /* scene.h */,
 			);
 			name = objects;
 			sourceTree = "<group>";
@@ -3033,8 +3022,8 @@
 		24DDAD4615A9DD030064EFC5 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				24DDAD5D15A9E2740064EFC5 /* graphics */,
-				24DDAD5615A9DD700064EFC5 /* main.xml */,
+				24D24CF916D9768000D689F2 /* graphics */,
+				24D24CFC16D9768000D689F2 /* main.xml */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -3739,8 +3728,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DDAD5315A9DD5E0064EFC5 /* InfoPlist.strings in Resources */,
-				24DDAD5C15A9DE800064EFC5 /* resources.zip in Resources */,
+				24D24CFF16D976EC00D689F2 /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3896,7 +3884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd 11_physics/res\n@rm ../resources.zip\nzip -r -0 ../resources.zip * -x \"*/*.svn/*\"";
+			shellScript = "sh pack_assets.sh ${TARGET_NAME}";
 		};
 		24E4BD3515E46CD5008F162C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4158,9 +4146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DDAD4C15A9DD2C0064EFC5 /* scene.cpp in Sources */,
-				24DDAD5415A9DD5E0064EFC5 /* main.mm in Sources */,
-				24DDAD5A15A9DD900064EFC5 /* AppDelegate.mm in Sources */,
+				24D24CF516D9766900D689F2 /* scene.cpp in Sources */,
+				24D24CF816D9767400D689F2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4482,14 +4469,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				24C7486014F655B5004E07DD /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		24DDAD4E15A9DD5E0064EFC5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24DDAD4F15A9DD5E0064EFC5 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -5063,9 +5042,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "11_physics/physics-Prefix.pch";
-				INFOPLIST_FILE = 11_physics/physics.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = x2d.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_physics;
 				WRAPPER_EXTENSION = app;
@@ -5079,9 +5057,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../libs/boostoniphone-generic/prefix/framework\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "11_physics/physics-Prefix.pch";
-				INFOPLIST_FILE = 11_physics/physics.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = x2d.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = x2d_physics;
 				WRAPPER_EXTENSION = app;
