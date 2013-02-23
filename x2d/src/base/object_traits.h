@@ -10,7 +10,7 @@
 #ifndef __X2D_OBJECT_TRAITS_H__
 #define __X2D_OBJECT_TRAITS_H__
 
-#include "value_holder.h"
+#include "value.h"
 #include "math_util.h"
 #include "glm.hpp"
 #include "filesystem.h"
@@ -33,29 +33,29 @@ namespace x2d {
             path = other.path;
             proto = other.proto;
             
-            if(other.position.is_set())
+            if(other.position)
             {
-                position = other.position;
+                position.set(other.position);
             }
             
-            if(other.scale.is_set())
+            if(other.scale)
             {
-                scale = other.scale;
+                scale.set(other.scale);
             }
 
-            if(other.rotation.is_set())
+            if(other.rotation)
             {
-                rotation = other.rotation;
+                rotation.set(other.rotation);
             }
 
-            if(other.box.is_set())
+            if(other.box)
             {
-                box = other.box;
+                box.set(other.box);
             }
 
-            if(other.pivot.is_set())
+            if(other.pivot)
             {
-                pivot = other.pivot;
+                pivot.set(other.pivot);
             }
             
             if(other.has_bgcolor)
@@ -64,29 +64,29 @@ namespace x2d {
                 bgcolor = other.bgcolor;
             }
             
-            if(other.lifetime.is_set())
+            if(other.lifetime)
             {
-                lifetime = other.lifetime;
+                lifetime.set(other.lifetime);
             }
 
-            if(other.want_screen_touch_input.is_set())
+            if(other.want_screen_touch_input)
             {
-                want_screen_touch_input = other.want_screen_touch_input;
+                want_screen_touch_input.set(other.want_screen_touch_input);
             }
             
-            if(other.want_world_touch_input.is_set())
+            if(other.want_world_touch_input)
             {
-                want_world_touch_input = other.want_world_touch_input;
+                want_world_touch_input.set(other.want_world_touch_input);
             }
             
-            if(other.want_accelerometer_input.is_set())
+            if(other.want_accelerometer_input)
             {
-                want_accelerometer_input = other.want_accelerometer_input;
+                want_accelerometer_input.set(other.want_accelerometer_input);
             }
             
-            if(other.visible.is_set())
+            if(other.visible)
             {
-                visible = other.visible;
+                visible.set(other.visible);
             }
             
             if(other.has_animation)
@@ -168,23 +168,24 @@ namespace x2d {
         std::string              name;
         basic_path<char, '.'>    path;
         basic_path<char, '.'>    proto;
-        value_holder<glm::vec3>  position;
-        value_holder<float>      scale;
-        value_holder<float>      rotation;
-        value_holder<size>       box;
-        value_holder<glm::vec2>  pivot;
         
-        bool                     has_bgcolor;
-        color_info               bgcolor;
+        optional_value<glm::vec3>  position;
+        optional_value<float>      scale;
+        optional_value<float>      rotation;
+        optional_value<size>       box;
+        optional_value<glm::vec2>  pivot;
         
-        value_holder<float>      lifetime;
+        bool              has_bgcolor;
+        color_info        bgcolor;
+        
+        optional_value<float>      lifetime;
         
         // input methods requested by object
-        value_holder<bool>       want_screen_touch_input;
-        value_holder<bool>       want_world_touch_input;
-        value_holder<bool>       want_accelerometer_input;
+        optional_value<bool>       want_screen_touch_input;
+        optional_value<bool>       want_world_touch_input;
+        optional_value<bool>       want_accelerometer_input;
         
-        value_holder<bool>       visible;
+        optional_value<bool>       visible;
         
         // graphics
         bool        has_animation;

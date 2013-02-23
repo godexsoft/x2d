@@ -39,8 +39,7 @@ namespace config {
         ss << from->value() << " " << to->value();
         ss >> min >> max;
         
-        config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>( 
-            boost::shared_ptr< random_cfg<float> >( new random_cfg<float>(min, max) ) ) );
+        config_[key] = boost::shared_ptr< value_cfg<float> >( new value_cfg<float>(min, max) );
     }
     
     
@@ -69,8 +68,7 @@ namespace config {
         ss << from->value() << " " << to->value();
         ss >> min >> max;
         
-        config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(
-            boost::shared_ptr< random_cfg<int> >( new random_cfg<int>(min, max) ) ) );
+        config_[key] = boost::shared_ptr< value_cfg<int> >( new value_cfg<int>(min, max) );
     }
 
     template<>
@@ -95,15 +93,8 @@ namespace config {
         glm::vec3 min = value_parser<glm::vec3>::parse(from->value());
         glm::vec3 max = value_parser<glm::vec3>::parse(to->value());
         
-        config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >( new value_cfg<glm::vec3>(
-            boost::shared_ptr< random_cfg<glm::vec3> >( new random_cfg<glm::vec3>(min, max) ) ) );
+        config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >( new value_cfg<glm::vec3>(min, max) );
     }
-
-    // random seed for generators
-    boost::random::mt19937 random_cfg<int>::gen_ = boost::random::mt19937(platform::time::current_time());
-    boost::random::mt19937 random_cfg<float>::gen_ = boost::random::mt19937(platform::time::current_time());
-    boost::random::mt19937 random_cfg<glm::vec2>::gen_ = boost::random::mt19937(platform::time::current_time());
-    boost::random::mt19937 random_cfg<glm::vec3>::gen_ = boost::random::mt19937(platform::time::current_time());
     
 } // namespace config
 } // namespace x2d

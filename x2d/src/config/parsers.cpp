@@ -12,7 +12,7 @@
 #include "exceptions.h"
 #include "kernel.h"
 #include "object.h"
-#include "value_holder.h"
+#include "value.h"
 
 #include <sstream>
 
@@ -178,8 +178,8 @@ namespace config {
         // or value can be provided as child
 
         LOG("Parsing n in string");
-        std::string n = get_mandatory_attr<std::string>(*this, node, key, "n",
-            parse_exception("String type must have 'n' defined.")).get(*this);
+        std::string n = *get_mandatory_attr<std::string>(*this, node, key, "n",
+            parse_exception("String type must have 'n' defined."));
 
         xml_attr* value = node->first_attribute("value");
         if(!value && !node->first_node()) 
@@ -262,8 +262,8 @@ namespace config {
         // must have:
         // path:    path to other configuration file
         
-        std::string path = get_mandatory_attr<std::string>(*this, node, key, "path",
-            parse_exception("Include type must have 'path' defined.")).get(*this);
+        std::string path = *get_mandatory_attr<std::string>(*this, node, key, "path",
+            parse_exception("Include type must have 'path' defined."));
         
         // parse the whole config into this configuration
         parse_file( path, key );
@@ -275,8 +275,8 @@ namespace config {
         // n:       name of the element
         // path:    path to texture file
         
-        std::string path = get_mandatory_attr<std::string>(*this, node, key, "path",
-            parse_exception("Texture type must have 'path' defined.")).get(*this);
+        std::string path = *get_mandatory_attr<std::string>(*this, node, key, "path",
+            parse_exception("Texture type must have 'path' defined."));
         
         config_[key] = boost::shared_ptr<texture_cfg>( new texture_cfg(res_man_, path) );
     }
@@ -295,21 +295,21 @@ namespace config {
         // flip_x:   flip on x axis if true. don't flip if false (default)
         // flip_y:   flip on y axis if true. don't flip if false (default)
         
-        int x = get_mandatory_attr<int>(*this, node, key, "x",
-            parse_exception("Sprite type must have 'x' defined.")).get(*this);
+        int x = *get_mandatory_attr<int>(*this, node, key, "x",
+            parse_exception("Sprite type must have 'x' defined."));
         
-        int y = get_mandatory_attr<int>(*this, node, key, "y",
-            parse_exception("Sprite type must have 'y' defined.")).get(*this);
+        int y = *get_mandatory_attr<int>(*this, node, key, "y",
+            parse_exception("Sprite type must have 'y' defined."));
         
-        int w = get_mandatory_attr<int>(*this, node, key, "w",
-            parse_exception("Sprite type must have 'w' defined.")).get(*this);
+        int w = *get_mandatory_attr<int>(*this, node, key, "w",
+            parse_exception("Sprite type must have 'w' defined."));
         
-        int h = get_mandatory_attr<int>(*this, node, key, "h",
-            parse_exception("Sprite type must have 'h' defined.")).get(*this);
+        int h = *get_mandatory_attr<int>(*this, node, key, "h",
+            parse_exception("Sprite type must have 'h' defined."));
 
-        glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
-        bool flip_x = get_attr<bool>(*this, node, key, "flip_x", false).get(*this);
-        bool flip_y = get_attr<bool>(*this, node, key, "flip_y", false).get(*this);
+        glm::vec2 pivot = *get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0));
+        bool flip_x = *get_attr<bool>(*this, node, key, "flip_x", false);
+        bool flip_y = *get_attr<bool>(*this, node, key, "flip_y", false);
         
         // parent must be a texture
         xml_node* parent = node->parent();
@@ -336,8 +336,8 @@ namespace config {
         // flip_x:   flip on x axis if true. don't flip if false (default)
         // flip_y:   flip on y axis if true. don't flip if false (default)
         
-        float dur = get_mandatory_attr<float>(*this, node, key, "duration",
-            parse_exception("Animation type must have 'duration' defined.")).get(*this);
+        float dur = *get_mandatory_attr<float>(*this, node, key, "duration",
+            parse_exception("Animation type must have 'duration' defined."));
         
         if( config_.find(key) == config_.end() )
         {
@@ -346,9 +346,9 @@ namespace config {
         }
         else
         {
-            glm::vec2 pivot = get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0)).get(*this);
-            bool flip_x = get_attr<bool>(*this, node, key, "flip_x", false).get(*this);
-            bool flip_y = get_attr<bool>(*this, node, key, "flip_y", false).get(*this);
+            glm::vec2 pivot = *get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0,0));
+            bool flip_x = *get_attr<bool>(*this, node, key, "flip_x", false);
+            bool flip_y = *get_attr<bool>(*this, node, key, "flip_y", false);
 
             // Set duration
             static_cast<animation_cfg*>(&(*config_[key]))
@@ -374,8 +374,8 @@ namespace config {
         // can have:
         // duration: duration for this frame
         
-        std::string spr = get_mandatory_key_attr(*this, node, key, "sprite",
-            parse_exception("Frame type must have 'sprite' defined.")).get(*this);
+        std::string spr = *get_mandatory_key_attr(*this, node, key, "sprite",
+            parse_exception("Frame type must have 'sprite' defined."));
 
         // parent must be an animation
         xml_node* parent = node->parent();
@@ -417,20 +417,20 @@ namespace config {
         // characters: the characters supported by this font
         // widths:     list of widths per character (given as string with spaces)
         
-        int height = get_mandatory_attr<int>(*this, node, key, "height",
-            parse_exception("Font type must have 'height' defined.")).get(*this);
+        int height = *get_mandatory_attr<int>(*this, node, key, "height",
+            parse_exception("Font type must have 'height' defined."));
         
-        size spacing = get_mandatory_attr<size>(*this, node, key, "spacing", 
-            parse_exception("Font type must have 'spacing' defined.")).get(*this);
+        size spacing = *get_mandatory_attr<size>(*this, node, key, "spacing",
+            parse_exception("Font type must have 'spacing' defined."));
         
-        std::string txtr = get_mandatory_key_attr(*this, node, key, "texture", 
-            parse_exception("Font type must have 'texture' defined.")).get(*this);
+        std::string txtr = *get_mandatory_key_attr(*this, node, key, "texture",
+            parse_exception("Font type must have 'texture' defined."));
         
-        std::string characters = get_mandatory_attr<std::string>(*this, node, key, "characters", 
-            parse_exception("Font type must have 'characters' defined.")).get(*this);
+        std::string characters = *get_mandatory_attr<std::string>(*this, node, key, "characters",
+            parse_exception("Font type must have 'characters' defined."));
         
-        std::string widths = get_mandatory_attr<std::string>(*this, node, key, "widths",
-            parse_exception("Font type must have 'widths' defined.")).get(*this);
+        std::string widths = *get_mandatory_attr<std::string>(*this, node, key, "widths",
+            parse_exception("Font type must have 'widths' defined."));
 
         // get vector of ints out of string widths
         int v;
@@ -466,17 +466,17 @@ namespace config {
         // start:      start of the track given in seconds (seek)
         // end:        end of the track given in seconds
         
-        std::string path = get_mandatory_attr<std::string>(*this, node, key, "path", 
-            parse_exception("Music type must have 'path' defined.")).get(*this);
+        std::string path = *get_mandatory_attr<std::string>(*this, node, key, "path",
+            parse_exception("Music type must have 'path' defined."));
         
-        bool loop   = get_attr<bool>(*this, node, key, "loop", false).get(*this);
-        float gain  = get_attr<float>(*this, node, key, "volume", 1.0f).get(*this);
+        bool loop   = *get_attr<bool>(*this, node, key, "loop", false);
+        float gain  = *get_attr<float>(*this, node, key, "volume", 1.0f);
 
-        float fade_in   = get_attr<float>(*this, node, key, "fadein", 0.0f).get(*this);
-        float fade_out  = get_attr<float>(*this, node, key, "fadeout", 0.0f).get(*this);
+        float fade_in   = *get_attr<float>(*this, node, key, "fadein", 0.0f);
+        float fade_out  = *get_attr<float>(*this, node, key, "fadeout", 0.0f);
         
-        float start = get_attr<float>(*this, node, key, "start", 0.0f).get(*this);
-        float end   = get_attr<float>(*this, node, key, "end", 0.0f).get(*this);
+        float start = *get_attr<float>(*this, node, key, "start", 0.0f);
+        float end   = *get_attr<float>(*this, node, key, "end", 0.0f);
         
         config_[key] =  
             boost::shared_ptr<music_cfg>( 
@@ -494,11 +494,11 @@ namespace config {
         // pitch:      pitch for the effect. defaults to 1.0f
         // loop:       loop the sfx? false is default.
         
-        std::string path = get_mandatory_attr<std::string>(*this, node, key, "path", 
-            parse_exception("Sfx type must have 'path' defined.")).get(*this);
+        std::string path = *get_mandatory_attr<std::string>(*this, node, key, "path",
+            parse_exception("Sfx type must have 'path' defined."));
         
-        bool loop   = get_attr<bool>(*this, node, key, "loop", false).get(*this);
-        value_holder<float> pitch = get_attr<float>(*this, node, key, "pitch", 1.0f);        
+        bool loop   = *get_attr<bool>(*this, node, key, "loop", false);
+        value<float> pitch = get_attr<float>(*this, node, key, "pitch", 1.0f);
         
         config_[key] =  
         boost::shared_ptr<sfx_cfg>( 
@@ -522,9 +522,9 @@ namespace config {
         size def_frustum(
             caps.has_retina ? caps.display_size.width*2 : caps.display_size.width,
             caps.has_retina ? caps.display_size.height*2 : caps.display_size.height);
-        size frustum = get_attr<size>(*this, node, key, "frustum", def_frustum).get(*this);
+        size frustum = *get_attr<size>(*this, node, key, "frustum", def_frustum);
 
-        std::string parent = get_key_attr(*this, node, key, "parent", std::string()).get(*this);
+        std::string parent = *get_key_attr(*this, node, key, "parent", std::string());
         
         config_[key] =  
             boost::shared_ptr<camera_cfg>( 
@@ -548,13 +548,13 @@ namespace config {
         rect def_box(0, 0,
             caps.has_retina ? caps.display_size.width*2 : caps.display_size.width,
             caps.has_retina ? caps.display_size.height*2 : caps.display_size.height);
-        rect box = get_attr<rect>(*this, node, key, "box", def_box).get(*this);
+        rect box = *get_attr<rect>(*this, node, key, "box", def_box);
 
-        std::string cam = get_mandatory_key_attr(*this, node, key, "camera",
-            parse_exception("Viewport type must have 'camera' defined.")).get(*this);
+        std::string cam = *get_mandatory_key_attr(*this, node, key, "camera",
+            parse_exception("Viewport type must have 'camera' defined."));
 
-        color_info ci = get_attr<color_info>(*this, node, key,
-            "bgcolor", color_info(0.0f, 0.0f, 0.0f)).get(*this);
+        color_info ci = *get_attr<color_info>(*this, node, key,
+            "bgcolor", color_info(0.0f, 0.0f, 0.0f));
         
         boost::shared_ptr<viewport_cfg> vp = 
             boost::shared_ptr<viewport_cfg>( new viewport_cfg(
@@ -575,8 +575,8 @@ namespace config {
         // touch:           boolean; enable/disable touch input. defaults to true
         // accelerometer:   boolean; enable/disable accelerometer input. defaults to false
         
-        bool want_touch = get_attr<bool>(*this, node, key, "touch", true).get(*this);        
-        bool want_accel = get_attr<bool>(*this, node, key, "accelerometer", false).get(*this);
+        bool want_touch = *get_attr<bool>(*this, node, key, "touch", true);
+        bool want_accel = *get_attr<bool>(*this, node, key, "accelerometer", false);
                 
         boost::shared_ptr<input_cfg> inp = 
             boost::shared_ptr<input_cfg>( new input_cfg(
@@ -598,13 +598,13 @@ namespace config {
         // wave_size:  size of one wave. count of objects to spawn at once
         // wave_delay: delay between automatic spawns
 
-        value_holder<std::vector<std::string> > obj_vec = 
+        list_value<std::string> obj_vec =
             get_mandatory_list_attr<std::string>(*this, node, key, "objects", 
                 parse_exception("Spawner type must have 'objects' defined."));
 
-        glm::vec3 position = get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0,0,0)).get(*this); 
-        int wave_size = get_attr<int>(*this, node, key, "wave_size", 1).get(*this);
-        float wave_delay = get_attr<float>(*this, node, key, "wave_delay", 0.0f).get(*this); 
+        glm::vec3 position = *get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0,0,0));
+        int wave_size = *get_attr<int>(*this, node, key, "wave_size", 1);
+        float wave_delay = *get_attr<float>(*this, node, key, "wave_delay", 0.0f);
         
         config_[key] = boost::shared_ptr<spawner_cfg>( new spawner_cfg(*this, obj_vec, position, wave_size, wave_delay) );
     }
@@ -629,11 +629,11 @@ namespace config {
         // contexts: list of contexts separated by space. if empty or '*' then all available contexts are matched
         
         // currently it's mandatory
-        rect box = get_mandatory_attr<rect>(*this, node, key, "rect",
-            parse_exception("Zone type must have 'rect' defined (format: 'x y width height').")).get(*this);
+        rect box = *get_mandatory_attr<rect>(*this, node, key, "rect",
+            parse_exception("Zone type must have 'rect' defined (format: 'x y width height')."));
 
         // get vector of strings out of string ctxs
-        std::vector<std::string> ctx_vec = get_list_attr<std::string>(*this, node, key, "contexts", "*").get(*this);
+        std::vector<std::string> ctx_vec = get_list_attr<std::string>(*this, node, key, "contexts", "*").get_list();
 
         LOG("Parsed %d contexts from zone.contexts string.", ctx_vec.size());
         config_[key] = boost::shared_ptr<zone_cfg>( new zone_cfg(*this, box, ctx_vec) );
@@ -651,10 +651,10 @@ namespace config {
         // linear_damping:   float. linear damping for the body
         // 
         
-        bool dynamic = get_attr<bool>(*this, node, key, "dynamic", false).get(*this);
-        bool bullet  = get_attr<bool>(*this, node, key, "bullet", false).get(*this);
-        bool fix_rot = get_attr<bool>(*this, node, key, "fixed_rotation", false).get(*this);
-        float lin_d  = get_attr<float>(*this, node, key, "linear_damping", 0.0f).get(*this);
+        bool dynamic = *get_attr<bool>(*this, node, key, "dynamic", false);
+        bool bullet  = *get_attr<bool>(*this, node, key, "bullet", false);
+        bool fix_rot = *get_attr<bool>(*this, node, key, "fixed_rotation", false);
+        float lin_d  = *get_attr<float>(*this, node, key, "linear_damping", 0.0f);
         
         if( config_.find(key) == config_.end() )
         {
@@ -695,19 +695,19 @@ namespace config {
         }
                 
         float density =
-            get_attr<float>(*this, node, key, "density", 1.0f).get(*this);
+            *get_attr<float>(*this, node, key, "density", 1.0f);
         
         float restitution =
-            get_attr<float>(*this, node, key, "restitution", 0.0f).get(*this);
+            *get_attr<float>(*this, node, key, "restitution", 0.0f);
         
         float friction =
-            get_attr<float>(*this, node, key, "friction", 0.1f).get(*this);
+            *get_attr<float>(*this, node, key, "friction", 0.1f);
         
         signed short mask =
-            get_attr<signed short>(*this, node, key, "mask", 0x0000).get(*this);
+            *get_attr<signed short>(*this, node, key, "mask", 0x0000);
         
         signed short category =
-            get_attr<signed short>(*this, node, key, "category", 0x0000).get(*this);
+            *get_attr<signed short>(*this, node, key, "category", 0x0000);
         
         boost::shared_ptr<body_part_cfg> part =
             boost::shared_ptr<body_part_cfg>( new body_part_cfg(*this, kernel_,
@@ -730,12 +730,12 @@ namespace config {
             parse_body_part_common(node, key);
         
         size bottom_left =
-            get_attr<size>(*this, node, key, "bottom_left",
-                size(-1.0f, -1.0f)).get(*this);
+            *get_attr<size>(*this, node, key, "bottom_left",
+                size(-1.0f, -1.0f));
 
         size top_right =
-            get_attr<size>(*this, node, key, "top_right",
-                size(1.0f, 1.0f)).get(*this);
+            *get_attr<size>(*this, node, key, "top_right",
+                size(1.0f, 1.0f));
 
         part->bottom_left(bottom_left);
         part->top_right(top_right);
@@ -756,8 +756,8 @@ namespace config {
             parse_body_part_common(node, key);
         
         float radius =
-            get_attr<float>(*this, node, key, "radius",
-                0.0f).get(*this);
+            *get_attr<float>(*this, node, key, "radius",
+                0.0f);
         
         part->radius(radius);
         part->type(CIRCLE_TYPE);
@@ -779,8 +779,8 @@ namespace config {
         // NOTE: only ref, value, path or inline code can be given at once
         // in the same script config.
         
-        std::string path = get_attr<std::string>(*this, node, key, "path", std::string()).get(*this);
-        std::string ref = get_key_attr(*this, node, key, "ref", std::string()).get(*this);
+        std::string path = *get_attr<std::string>(*this, node, key, "path", std::string());
+        std::string ref = *get_key_attr(*this, node, key, "ref", std::string());
         
         xml_attr* value = node->first_attribute("value");
         if(!value && !node->first_node() && path.empty() && ref.empty())
@@ -843,10 +843,10 @@ namespace config {
         // can have:
         // script:  reference to a script object (config key)
         
-        std::string ev = get_mandatory_attr<std::string>(*this, node, key, "event",
-            structure_exception("Listener must have event defined.")).get(*this);
-        std::string scr = get_key_attr(*this, node, key, "script",
-            std::string()).get(*this);
+        std::string ev = *get_mandatory_attr<std::string>(*this, node, key, "event",
+            structure_exception("Listener must have event defined."));
+        std::string scr = *get_key_attr(*this, node, key, "script",
+            std::string());
         
         config_[key] = boost::shared_ptr<listener_cfg>( new listener_cfg(*this,
             kernel_, ev, scr) );
@@ -924,17 +924,17 @@ namespace config {
             }
         }
 
-        tr.name =       get_mandatory_attr<std::string>(*this, node, key, "n", 
-                            parse_exception("Object must have 'n' defined.")).get(*this);
+        tr.name =       *get_mandatory_attr<std::string>(*this, node, key, "n",
+                            parse_exception("Object must have 'n' defined."));
         tr.path = key;
         
         // no contexts by default
-        tr.contexts =   get_list_attr<std::string>(*this, node, key, "contexts", "").get(*this);
+        tr.contexts =   get_list_attr<std::string>(*this, node, key, "contexts", "").get_list();
 
         tr.scale =      get_attr<float>(*this, node, key, "scale", 1.0f);
         tr.rotation =   get_attr<float>(*this, node, key, "rotation", 0.0f);
         tr.box =        get_attr<size>(*this, node, key, "box", size());
-        tr.bgcolor =    get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f)).get(*this);
+        tr.bgcolor =    *get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f));
         tr.visible =    get_attr<bool>(*this, node, key, "visible", true);
         tr.lifetime =   get_attr<float>(*this, node, key, "lifetime", 0.0f);
         

@@ -193,11 +193,22 @@ namespace config {
         const boost::shared_ptr<T> create_sys_object_1(const config_key& key, A& a);
         
         /**
-         * Get a configuration value (metric)
+         * Copy a configuration value (metric) for reuse.
          * @param[in] key Configuration key
          */
         template <typename T>
-        T get_value(const config_key& key);
+        value<T> get_value(const config_key& key)
+        {
+            typedef value_cfg<T> cfg_type;
+            return static_cast<cfg_type*>( &(*config_[key]) )->get();
+        }
+
+        template <typename T>
+        list_value<T> get_list_value(const config_key& key)
+        {
+            typedef value_cfg<std::vector<std::string> > cfg_type;
+            return static_cast<cfg_type*>( &(*config_[key]) )->get();
+        }
         
         /**
          * Determine whether some value/object exists under given key.
@@ -220,36 +231,38 @@ namespace config {
         // getting attribute
         template<typename T>
         static
-        value_holder<T> get_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                 const std::string& name, const T& default_value)
+        optional_value<T> get_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                   const std::string& name, const T& default_value)
         {
+            optional_value<T> v(default_value);
+            
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
             {
-                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
+                v.set(value_parser<T>::parse(at->value()));                
             }
             else if(cfg.config_.find(key / name) != cfg.config_.end() )
             {
-                return value_holder<T>(key / name, default_value);
+                v.set(cfg.get_value<T>(key / name));
             }
             
-            return value_holder<T>(default_value);
+            return v;
         }
         
         // getting mandatory attribute
         template<typename T>
         static
-        value_holder<T> get_mandatory_attr(configuration& cfg, xml_node* node, const config_key& key, 
+        value<T> get_mandatory_attr(configuration& cfg, xml_node* node, const config_key& key,
                                            const std::string& name, const std::exception& e)
         {
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
             {
-                return value_holder<T>(key / name, value_parser<T>::parse(at->value()));
+                return value<T>(value_parser<T>::parse(at->value()));
             }
             else if(cfg.config_.find(key / name) != cfg.config_.end() )
             {
-                return value_holder<T>(key / name, T());
+                return cfg.get_value<T>(key / name);
             }
             
             throw e;
@@ -257,51 +270,51 @@ namespace config {
 
         // getting key attribute
         static
-        value_holder<std::string> get_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                               const std::string& name, const std::string& default_value);
+        value<std::string> get_key_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                        const std::string& name, const std::string& default_value);
         
         // getting mandatory key attribute
         static
-        value_holder<std::string> get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                                         const std::string& name, const std::exception& e);
+        value<std::string> get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
+                                                  const std::string& name, const std::exception& e);
         
         // getting a list attribute
         template<typename T>
         static
-        value_holder<std::vector<T> > get_list_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                                    const std::string& name, const std::string& default_value)
+        list_value<T> get_list_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                    const std::string& name, const std::string& default_value)
         {
-            typedef value_holder<std::vector<T> > holder_type;
+            typedef list_value<T> holder_type;
             
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
             {
-                return holder_type(key / name, value_parser<std::vector<T> >::parse(at->value()));
+                return holder_type(value_parser<std::vector<T> >::parse(at->value()));
             }
             else if(cfg.config_.find(key / name) != cfg.config_.end() )
             {
-                return holder_type(key / name, value_parser<std::vector<T> >::parse(default_value));
+                return cfg.get_list_value<T>(key / name);
             }
             
-            return holder_type("", value_parser<std::vector<T> >::parse(default_value));
+            return holder_type(value_parser<std::vector<T> >::parse(default_value));
         }
 
         // getting a mandatory list attribute
         template<typename T>
         static
-        value_holder<std::vector<T> > get_mandatory_list_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                                              const std::string& name, const std::exception& e)
+        list_value<T> get_mandatory_list_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                              const std::string& name, const std::exception& e)
         {
-            typedef value_holder<std::vector<T> > holder_type;
+            typedef list_value<T> holder_type;
             
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
             {
-                return holder_type(key / name, value_parser<std::vector<T> >::parse(at->value()));
+                return holder_type(value_parser<std::vector<T> >::parse(at->value()));
             }
             else if(cfg.config_.find(key / name) != cfg.config_.end() )
             {
-                return holder_type(key / name, std::vector<T>());
+                return cfg.get_list_value<T>(key / name);
             }
                                 
             throw e;

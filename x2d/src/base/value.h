@@ -100,6 +100,43 @@ namespace x2d {
     };
     
     /**
+     * Special version for std::string
+     */
+    template<>
+    class value<std::string>
+    {
+    public:
+        /**
+         * Constructor from single cached value.
+         * @param[in] v Value to store
+         */
+        value(const std::string& v)
+        : value_(v)
+        {
+        }
+        
+        /**
+         * Get the value.
+         * @return Value of the type specified at template instantiation
+         */
+        std::string get() const
+        {
+            return value_;
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        std::string operator *() const
+        {
+            return get();
+        }
+        
+    private:
+        std::string value_;
+    };
+    
+    /**
      * Special version for bool
      */
     template<>
@@ -152,6 +189,159 @@ namespace x2d {
         
     private:
         value<float> value_;
+    };
+    
+    /**
+     * Special version for point
+     */
+    template<>
+    class value<point>
+    {
+    public:
+        /**
+         * Constructor from single cached value.
+         * @param[in] v Value to store
+         */
+        value(const point& v)
+        : x_(v.x)
+        , y_(v.y)
+        {
+        }
+        
+        /**
+         * Constructor from two values. Will produce random value in range.
+         * @param[in] from Minimum value to generate
+         * @param[in] to Maximum value to generate
+         */
+        value(const point& from, const point& to)
+        : x_(from.x, to.x)
+        , y_(from.y, to.y)
+        {
+        }
+        
+        /**
+         * Get a value.
+         * @return Value of the type specified at template instantiation
+         */
+        point get() const
+        {
+            return point(*x_, *y_);
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        point operator *() const
+        {
+            return get();
+        }
+        
+    private:
+        value<float> x_;
+        value<float> y_;
+    };    
+    
+    /**
+     * Special version for size
+     */
+    template<>
+    class value<size>
+    {
+    public:
+        /**
+         * Constructor from single cached value.
+         * @param[in] v Value to store
+         */
+        value(const size& v)
+        : w_(v.width)
+        , h_(v.height)
+        {
+        }
+        
+        /**
+         * Constructor from two values. Will produce random value in range.
+         * @param[in] from Minimum value to generate
+         * @param[in] to Maximum value to generate
+         */
+        value(const size& from, const size& to)
+        : w_(from.width, to.width)
+        , h_(from.height, to.height)
+        {
+        }
+        
+        /**
+         * Get a value.
+         * @return Value of the type specified at template instantiation
+         */
+        size get() const
+        {
+            return size(*w_, *h_);
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        size operator *() const
+        {
+            return get();
+        }
+        
+    private:
+        value<float> w_;
+        value<float> h_;
+    };
+    
+    /**
+     * Special version for rect
+     */
+    template<>
+    class value<rect>
+    {
+    public:
+        /**
+         * Constructor from single cached value.
+         * @param[in] v Value to store
+         */
+        value(const rect& v)
+        : o_(v.origin)
+        , a_(v.area)
+        {
+        }
+        
+        /**
+         * Constructor from two values. Will produce random value in range.
+         * @param[in] from Minimum value to generate
+         * @param[in] to Maximum value to generate
+         */
+        value(const rect& from, const rect& to)
+        : o_(from.origin, to.origin)
+        , a_(from.area, to.area)
+        {
+        }
+        
+        /**
+         * Get a value.
+         * @return Value of the type specified at template instantiation
+         */
+        rect get() const
+        {
+            point o = *o_;
+            size a = *a_;
+            
+            return rect(o.x, o.y, a.width, a.height);
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        rect operator *() const
+        {
+            return get();
+        }
+        
+    private:
+        value<point> o_;
+        value<size> a_;
     };
     
     /**
@@ -312,7 +502,75 @@ namespace x2d {
         value<float> b_;
         value<float> a_;
     };
-
+    
+    /**
+     * @brief Optional value with default placeholder.
+     */
+    template<typename T>
+    class optional_value
+    {
+    public:
+        /**
+         * Constructor with default placeholder. 
+         * Note: the def argument is not value<> so that default values can't be random.
+         */
+        optional_value(const T& def = T())
+        : def_(def)
+        {
+        }
+        
+        optional_value(const optional_value<T>& r)
+        : value_(r.value_)
+        , def_(r.def_)
+        {
+        }
+        
+        /**
+         * Sets the optional value.
+         * @param[in] v The value to set
+         */
+        void set(const value<T>& v)
+        {
+            value_ = v;
+        }
+        
+        /**
+         * Get the value or the default placeholder if value was not set.
+         * @return Value of the type specified at template instantiation
+         */
+        T get() const
+        {
+            return value_.get_value_or(def_).get();
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        T operator *() const
+        {
+            return get();
+        }
+        
+        /**
+         * Safe bool conversion.
+         * Used to check whether the value was set.
+         * @return true if value was set. false otherwise.
+         */
+        operator bool() const
+        {
+            return static_cast<bool>(value_);
+        }
+        
+        operator value<T>() const
+        {
+            return value_.get_value_or(def_);
+        }
+        
+    private:
+        value<T> def_;
+        boost::optional<value<T> > value_;        
+    };
+    
     /**
      * This template provides random selected values from a list.
      * Note: makes a copy of the passed vector.
@@ -327,12 +585,7 @@ namespace x2d {
         {
             if(to == -1)
             {
-                to = lst_.size()-1;
-            }
-            
-            if(lst_.empty())
-            {
-                throw sys_exception("list_value - passed vector can't be empty.");
+                to = lst_.empty() ? 0 : lst_.size()-1;
             }
             
             if(from < 0 || from > lst_.size()-1)
@@ -352,7 +605,21 @@ namespace x2d {
          */
         T get() const
         {
+            if(lst_.empty())
+            {
+                throw sys_exception("list_value::get() - get invoked on empty vector. no random value to return.");
+            }
+            
             return lst_.at(*rnd_);
+        }
+        
+        /**
+         * Get a copy of the whole list.
+         * @return A copy of the vector
+         */
+        std::vector<T> get_list() const
+        {
+            return lst_;
         }
         
         /**

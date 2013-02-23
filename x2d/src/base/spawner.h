@@ -13,7 +13,7 @@
 #include "timer.h"
 #include "kernel.h"
 #include "log.h"
-#include "value_holder.h"
+#include "value.h"
 
 namespace x2d { 
     
@@ -34,7 +34,7 @@ namespace base {
         
     public:
         spawner(kernel& k, configuration& conf, 
-                const value_holder<std::vector<std::string> >& obj_lst,
+                const list_value<std::string>& obj_lst,
                 const glm::vec3& pos=glm::vec3(0,0,0),
                 int ws=1, float wd=0.0f, float lt=0.0f);
         
@@ -59,7 +59,7 @@ namespace base {
         
         void objects(const std::vector<std::string>& v)
         {
-            obj_lst_ = value_holder<std::vector<std::string> >(v);
+            obj_lst_ = list_value<std::string>(v);
         }
         
         void position(const glm::vec3& pos)
@@ -84,7 +84,9 @@ namespace base {
         void start()
         {    
             if(wave_delay_ > 0.0f)
+            {
                 timer_.set(wave_delay_);
+            }
         }
         
         /**
@@ -118,8 +120,8 @@ namespace base {
         configuration&  config_;
         timer           timer_;
         
-        value_holder<std::vector<std::string> >  obj_lst_;
-        objects_vec                              objects_;
+        list_value<std::string>     obj_lst_;
+        objects_vec                 objects_;
 
         glm::vec3       position_;
         

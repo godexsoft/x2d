@@ -433,124 +433,38 @@ namespace config {
         return static_cast<zone_cfg*>( &(*config_[key]) )->get();
     }
     
-    // getters for primitive metrics
-    template <>
-    float configuration::get_value<float>(const config_key& key)
-    {
-        typedef value_cfg<float> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-
-    template <>
-    int configuration::get_value<int>(const config_key& key)
-    {
-        typedef value_cfg<int> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-
-    template <>
-    short configuration::get_value<short>(const config_key& key)
-    {
-        typedef value_cfg<short> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    bool configuration::get_value<bool>(const config_key& key)
-    {
-        typedef value_cfg<bool> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    point configuration::get_value<point>(const config_key& key)
-    {
-        typedef value_cfg<point> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-
-    template <>
-    size configuration::get_value<size>(const config_key& key)
-    {
-        typedef value_cfg<size> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-
-    template <>
-    rect configuration::get_value<rect>(const config_key& key)
-    {
-        typedef value_cfg<rect> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    std::string configuration::get_value<std::string>(const config_key& key)
-    {
-        typedef value_cfg<std::string> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    color_info configuration::get_value<color_info>(const config_key& key)
-    {
-        typedef value_cfg<color_info> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    glm::vec2 configuration::get_value<glm::vec2>(const config_key& key)
-    {
-        typedef value_cfg<glm::vec2> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    glm::vec3 configuration::get_value<glm::vec3>(const config_key& key)
-    {
-        typedef value_cfg<glm::vec3> cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    template <>
-    std::vector<std::string> configuration::get_value<std::vector<std::string> >(const config_key& key)
-    {
-        typedef value_cfg<std::vector<std::string> > cfg_type;
-        return static_cast<cfg_type*>( &(*config_[key]) )->get();
-    }
-    
-    
-    value_holder<std::string> configuration::get_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                                          const std::string& name, const std::string& default_value)
+    value<std::string> configuration::get_key_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                                   const std::string& name, const std::string& default_value)
     {
         xml_attr* at = node->first_attribute(name.c_str());
         if(at) 
         {
             std::string k = cfg.lookup_key(value_parser<std::string>::parse(at->value()), key);
-            return value_holder<std::string>("", k);
+            return value<std::string>(k);
         }
         else if( cfg.exists(key / name) )
         {
-            std::string k = cfg.lookup_key(cfg.get_value<std::string>(key / name), key);
-            return value_holder<std::string>("", k);
+            std::string k = cfg.lookup_key(*cfg.get_value<std::string>(key / name), key);
+            return value<std::string>(k);
         }
         
-        return value_holder<std::string>("", default_value);
+        return value<std::string>(default_value);
     }
     
     
-    value_holder<std::string> configuration::get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key, 
-                                                                    const std::string& name, const std::exception& e)
+    value<std::string> configuration::get_mandatory_key_attr(configuration& cfg, xml_node* node, const config_key& key,
+                                                             const std::string& name, const std::exception& e)
     {
         xml_attr* at = node->first_attribute(name.c_str());
         if(at) 
         {
             std::string k = cfg.lookup_key(value_parser<std::string>::parse(at->value()), key);
-            return value_holder<std::string>("", k);
+            return value<std::string>(k);
         }
         else if( cfg.exists(key / name) )
         {
-            std::string k = cfg.lookup_key(cfg.get_value<std::string>(key / name), key);
-            return value_holder<std::string>("", k);
+            std::string k = cfg.lookup_key(*cfg.get_value<std::string>(key / name), key);
+            return value<std::string>(k);
         }
         
         throw e;
@@ -695,9 +609,9 @@ namespace config {
                 r = boost::shared_ptr<camera>( new camera(frustum_, boost::shared_ptr<camera>()) );
             }
             
-            r->position(position_.get(config_));                
-            r->zoom(zoom_.get(config_));
-            r->rotation(rotation_.get(config_));
+            r->position(*position_);
+            r->zoom(*zoom_);
+            r->rotation(*rotation_);
             inst_ = r;
             return r;
         }

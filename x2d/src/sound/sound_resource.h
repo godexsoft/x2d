@@ -11,7 +11,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include "config.h"
-#include "value_holder.h"
+#include "value.h"
 #include "base_object.h"
 #include "interpolator.h"
 #include "sound.h"
@@ -28,6 +28,11 @@
 #endif
 
 namespace x2d {
+namespace config {
+    
+    class configuration;
+    
+} // namespace config
 namespace snd {
     
     /**
@@ -49,8 +54,8 @@ namespace snd {
     : public sound
     {
     public:
-        sfx(configuration& conf, const boost::shared_ptr<ifdstream>& ifd, 
-            bool loop, const value_holder<float>& pitch)
+        sfx(config::configuration& conf, const boost::shared_ptr<ifdstream>& ifd,
+            bool loop, const value<float>& pitch)
         : conf_(conf)
         , obj_( new sfx_obj<X2D_SND_DRIVER>( ifd, loop ) )
         , pitch_(pitch)
@@ -64,9 +69,9 @@ namespace snd {
         void on_volume_change() { obj_->on_volume_change(); }
         
     private:
-        configuration&                               conf_;
+        config::configuration&                       conf_;
         boost::shared_ptr< sfx_obj<X2D_SND_DRIVER> > obj_;
-        value_holder<float>                          pitch_;
+        value<float>                                 pitch_;
     };
     
     /**

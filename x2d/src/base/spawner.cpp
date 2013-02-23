@@ -13,7 +13,7 @@ namespace x2d {
 namespace base {
 
     spawner::spawner(kernel& k, configuration& conf, 
-                     const value_holder<std::vector<std::string> >& obj_lst,
+                     const list_value<std::string>& obj_lst,
                      const glm::vec3& pos, int ws, float wd, float lt)
     : kernel_(k)
     , config_(conf)
@@ -40,7 +40,7 @@ namespace base {
     {
         for(int i=0; i<wave_size_; ++i)
         {
-            boost::shared_ptr<object> o = config_.create_object_1(obj_lst_.random(config_), this);
+            boost::shared_ptr<object> o = config_.create_object_1(*obj_lst_, this);
             objects_.push_back( o );
         }
         

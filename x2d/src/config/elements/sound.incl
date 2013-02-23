@@ -83,7 +83,7 @@ public:
      * @param[in] pitch  Pitch for the sfx
      */
     sfx_cfg(configuration& conf, const std::string& path, 
-            bool loop, const value_holder<float>& pitch)
+            bool loop, const value<float>& pitch)
     : config_(conf)
     , path_(path)
     , loop_(loop)
@@ -100,7 +100,7 @@ private:
     configuration&             config_;
     const std::string          path_;
     bool                       loop_;
-    value_holder<float>        pitch_;
+    value<float>               pitch_;
     
     boost::weak_ptr<sfx>       inst_;
 };

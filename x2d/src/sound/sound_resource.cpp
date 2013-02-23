@@ -26,7 +26,7 @@ namespace snd {
     void sfx::play()
     {
         obj_->reset();
-        obj_->pitch(pitch_.get(conf_));
+        obj_->pitch(*pitch_);
         obj_->play();
     }     
 

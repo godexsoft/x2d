@@ -17,7 +17,7 @@ namespace x2d {
     , scale(1.0f)
     , has_bgcolor(false)
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
-    , lifetime("", 0.0f)
+    , lifetime(0.0f)
     , want_screen_touch_input(false)
     , want_world_touch_input(true)
     , want_accelerometer_input(false)
@@ -69,17 +69,17 @@ namespace x2d {
     , camera_(config_.get_object<camera>(t.camera))
     , space_(t.obj_space)
     , parent_space_(t.par_space)
-    , position_(t.position.get(c))
-    , camera_space_position_(t.position.get(c))
-    , scale_(t.scale.get(c))
-    , rotation_(t.rotation.get(c))    
-    , box_(t.box.get(c))
+    , position_(*t.position)
+    , camera_space_position_(*t.position)
+    , scale_(*t.scale)
+    , rotation_(*t.rotation)
+    , box_(*t.box)
     , camera_space_box_(box_) // copy from originally generated value
-    , pivot_(t.pivot.get(c))
+    , pivot_(*t.pivot)
     , camera_space_pivot_(pivot_)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
-    , is_visible_(t.visible.get(c))
+    , is_visible_(*t.visible)
     , parent_(NULL)
     , has_parent_(t.has_parent)
     , on_create_(config_)
@@ -103,24 +103,24 @@ namespace x2d {
         
         lifetime_timer_.handler( boost::bind(&object::on_lifetime_timer, this, _1) );
         
-        float lt = t.lifetime.get(config_);
+        float lt = *t.lifetime;
         if(lt > 0.0f)
         {
             LOG("Setting lifetime!");
             set_lifetime(lt);
         }
         
-        if(t.want_screen_touch_input.get(config_))
+        if(*t.want_screen_touch_input)
         {
             connect_touch_input(SCREEN_SPACE);
         }
         
-        if(t.want_world_touch_input.get(config_))
+        if(*t.want_world_touch_input)
         {
             connect_touch_input(WORLD_SPACE);
         }
         
-        if(t.want_accelerometer_input.get(config_))
+        if(*t.want_accelerometer_input)
         {
             // TODO accel connect
         }

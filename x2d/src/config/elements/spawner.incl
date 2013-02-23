@@ -14,7 +14,7 @@ class spawner_cfg
 {
 public:        
     
-    spawner_cfg(configuration& cfg, const value_holder<std::vector<std::string> >& objects,
+    spawner_cfg(configuration& cfg, const list_value<std::string>& objects,
                 const glm::vec3& pos, int wave_size, float wave_delay)
     : config_(cfg)
     , obj_lst_(objects)
@@ -31,7 +31,7 @@ public:
     
 private:
     configuration&                          config_;
-    value_holder<std::vector<std::string> > obj_lst_;
+    list_value<std::string>                 obj_lst_;
     glm::vec3                               position_;
     int                                     wave_size_;
     float                                   wave_delay_;
