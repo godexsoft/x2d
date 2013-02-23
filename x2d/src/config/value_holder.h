@@ -12,10 +12,12 @@
 #include <string>
 #include <vector>
 #include <boost/random.hpp>
+#include "color_info.h"
+#include "platform.h"
 
 namespace x2d {
 namespace config {
-    
+
     class configuration;
 
     template<typename T>

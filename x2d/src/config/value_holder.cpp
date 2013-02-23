@@ -12,7 +12,7 @@
 
 namespace x2d {
 namespace config {
-        
+    
     template<>
     float value_holder<float>::get(configuration& c) const
     {
