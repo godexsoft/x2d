@@ -64,35 +64,40 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>all.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>19</integer>
-		</dict>
-		<key>box2d.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
-		<key>demo.xcscheme</key>
+		<key>13_scene.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
-		<key>fontgen.xcscheme</key>
+		<key>all.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>lua.xcscheme</key>
+		<key>box2d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>17</integer>
 		</dict>
-		<key>luabind.xcscheme</key>
+		<key>demo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>fontgen.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>lua.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>18</integer>
+		</dict>
+		<key>luabind.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>x2d.xcscheme</key>
 		<dict>
@@ -203,6 +208,11 @@
 			<true/>
 		</dict>
 		<key>24BDCC7814CCF8B7006F36A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24C1747F16DA58220013A8AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -15,12 +15,10 @@ class object_cfg
 public:        
     /**
      * @param[in] c         Configuration object
-     * @param[in] k         Kernel object
      * @param[in] t         Object traits
      */
-    object_cfg(configuration& c, kernel& k, const object_traits& t)
+    object_cfg(configuration& c, const object_traits& t)
     : config_(c)
-    , kernel_(k)
     , traits_(t)
     {        
     }
@@ -31,7 +29,7 @@ public:
     template <typename T>
     const boost::shared_ptr<T> create()
     {
-        return boost::shared_ptr<T>( new T(kernel_, config_, traits_) );            
+        return boost::shared_ptr<T>( new T(config_, traits_) );            
     }
     
     /**
@@ -41,7 +39,7 @@ public:
     template <typename T>
     const boost::shared_ptr<T> create(spawner* spwn)
     {
-        return boost::shared_ptr<T>( new T(kernel_, config_, traits_, spwn) );
+        return boost::shared_ptr<T>( new T(config_, traits_, spwn) );
     }
     
     /**
@@ -49,7 +47,7 @@ public:
      */
     const boost::shared_ptr<object> create()
     {
-        return boost::shared_ptr<object>( new object(kernel_, config_, traits_) );
+        return boost::shared_ptr<object>( new object(config_, traits_) );
     }
 
     /**
@@ -58,7 +56,7 @@ public:
      */
     const boost::shared_ptr<object> create(spawner* spwn)
     {
-        return boost::shared_ptr<object>( new object(kernel_, config_, traits_, spwn) );
+        return boost::shared_ptr<object>( new object(config_, traits_, spwn) );
     }
     
     /**
@@ -80,6 +78,5 @@ public:
     
 private:                
     configuration&              config_;
-    kernel&                     kernel_;
     object_traits               traits_;        
 };

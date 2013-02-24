@@ -19,8 +19,14 @@
 #include "kernel.h"
 
 namespace x2d {
+namespace base {
+    
+    class scene;
+
+} // namespace base
+    
     class app_framework;
-}
+} // namespace x2d
 
 /**
  * This must be defined by the client
@@ -106,6 +112,8 @@ namespace x2d {
             return caps_;
         }
         
+        void switch_to(const boost::shared_ptr<scene>& s);
+        
     private:
         kernel              kernel_;
         liverpool_manager   lvp_manager_;
@@ -113,6 +121,8 @@ namespace x2d {
         configuration       config_;
         
         device_capabilities caps_;
+        
+        boost::shared_ptr<scene>    cur_scene_;
     };
     
 } // namespace x2d

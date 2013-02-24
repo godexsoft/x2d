@@ -82,7 +82,7 @@ namespace config {
          */
         void register_object(const boost::shared_ptr<object>& obj);
         void deregister_object(const boost::shared_ptr<object>& obj);
-                
+        
         kernel& get_kernel() const
         {
             return kernel_;
@@ -191,6 +191,22 @@ namespace config {
          */
         template <typename T, typename A>
         const boost::shared_ptr<T> create_sys_object_1(const config_key& key, A& a);
+        
+        /**
+         * Create a scene object with default type.
+         */
+        const boost::shared_ptr<scene> create_scene(const config_key& key);
+        
+        /**
+         * Create a scene object with custom type.
+         */
+        template <typename T>
+        const boost::shared_ptr<T> create_scene(const config_key& key)
+        {
+            boost::shared_ptr<T> obj = static_cast<scene_cfg*>( &(*config_[key]) )->create<T>();
+            register_object(obj);
+            return obj;
+        }
         
         /**
          * Copy a configuration value (metric) for reuse.
@@ -367,6 +383,7 @@ namespace config {
         void parse_context(xml_node* node, const config_key& key);
         void parse_zone(xml_node* node, const config_key& key);
         void parse_object(xml_node* node, const config_key& key);
+        void parse_scene(xml_node* node, const config_key& key);
 
         // physics
         void parse_body(xml_node* node, const config_key& key);

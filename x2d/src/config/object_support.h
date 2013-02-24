@@ -24,6 +24,7 @@
 #include "zone.h"
 #include "body.h"
 #include "body_part.h"
+#include "scene.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
@@ -74,6 +75,7 @@ namespace config {
     #include "elements/script.incl"
     #include "elements/event.incl"
     #include "elements/object.incl"
+    #include "elements/scene.incl"
     
 } // namespace config
 } // namespace x2d

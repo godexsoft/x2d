@@ -1148,7 +1148,41 @@ namespace config {
         
         config_[key] =
             boost::shared_ptr<object_cfg>( 
-                new object_cfg(*this, kernel_, proto_tr) );
+                new object_cfg(*this, proto_tr) );
+    }
+    
+    void configuration::parse_scene(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:        name of the element
+        //
+        // can have:
+        //
+        // scripts:
+        // on_transition_to:  executed when transition to this scene is requested
+        // on_transition_from: executed when transition to another scene is requested
+        
+        object_traits tr, proto_tr;
+        
+        std::string name = *get_mandatory_attr<std::string>(*this, node, key, "n",
+                                                            parse_exception("Scene must have 'n' defined."));
+
+        std::string on_transition_to;
+        std::string on_transition_from;
+        
+        // scripts
+        if(exists(key / "on_transition_to"))
+        {
+            on_transition_to = key / "on_transition_to";
+        }
+        if(exists(key / "on_transition_from"))
+        {
+            on_transition_from = key / "on_transition_from";
+        }
+        
+        config_[key] =
+            boost::shared_ptr<scene_cfg>(
+            new scene_cfg(*this, on_transition_to, on_transition_from) );
     }
     
 } // namespace config

@@ -45,7 +45,7 @@ using namespace x2d::config;
         friend class x2d::config::configuration;
         
     public:
-        object(kernel& k, config::configuration& c, const object_traits& t=object_traits(), spawner* spwn = NULL);
+        object(config::configuration& c, const object_traits& t=object_traits(), spawner* spwn = NULL);
         
         virtual ~object(); 
         
@@ -85,6 +85,9 @@ using namespace x2d::config;
         void visible(bool v);
         
         const glm::vec3& camera_space_position() const;
+        void camera_space_position(const glm::vec2& p);
+        void camera_space_position(const glm::vec3& p);
+        
         const size camera_space_box() const;
         
         const glm::vec2 camera_space_pivot() const;
@@ -148,6 +151,8 @@ using namespace x2d::config;
         
         const glm::mat4 final_transform() const;
         
+        void destroy_self();
+
     private:
         
         bool is_camera_space() const;
@@ -157,7 +162,6 @@ using namespace x2d::config;
             space_ = s;
         }
         
-        void destroy_self();
         void on_lifetime_timer(const clock_info& clock);
 
         void on_destroy()

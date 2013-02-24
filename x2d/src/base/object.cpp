@@ -19,7 +19,7 @@ namespace x2d {
     , bgcolor(color_info(0.0f, 0.0f, 0.0f, 0.0f))
     , lifetime(0.0f)
     , want_screen_touch_input(false)
-    , want_world_touch_input(true)
+    , want_world_touch_input(false)
     , want_accelerometer_input(false)
     , visible(true)
     , has_animation(false)
@@ -60,10 +60,10 @@ namespace x2d {
         config_.deregister_object(shared_from_this());
     }
 
-    object::object(kernel& k, config::configuration& c, const object_traits& t, spawner* spwn)
-    : base_object(k)
+    object::object(config::configuration& c, const object_traits& t, spawner* spwn)
+    : base_object(c.get_kernel())
     , config_(c)
-    , lifetime_timer_(k)
+    , lifetime_timer_(c.get_kernel())
     , name_(t.name)
     , path_(t.path)
     , camera_(config_.get_object<camera>(t.camera))
@@ -407,14 +407,26 @@ namespace x2d {
         return position_;
     }
     
+    void object::camera_space_position(const glm::vec3& p)
+    {
+        camera_space_position_ = p;
+    }
+    
     void object::position(const glm::vec3& p)        
     {
         position_ = p;
 
-        if(body_) 
+        if(body_)
         {
             body_->position(glm::vec2(position_.x, position_.y));
         }
+    }
+    
+    void object::camera_space_position(const glm::vec2& p)
+    {
+        camera_space_position_.x = p.x;
+        camera_space_position_.y = p.y;
+        // retain z value
     }
     
     void object::position(const glm::vec2& p)        

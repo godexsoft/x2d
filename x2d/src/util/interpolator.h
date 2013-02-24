@@ -23,6 +23,7 @@ namespace util {
         time_interpolator(float t)
         : total_time_(t)
         , elapsed_time_(0.0f)
+        , loop_(false)
         {
         }
         
@@ -32,17 +33,39 @@ namespace util {
         
         virtual void update(float dt)
         {
-            elapsed_time_ += dt;
-            
-            if(elapsed_time_ > total_time_)
-                reset();
-            
-            calculate();
+            if(!is_completed())
+            {
+                elapsed_time_ += dt;
+                calculate();
+                
+                if(elapsed_time_ >= total_time_)
+                {
+                    if(loop_)
+                    {
+                        reset();
+                    }
+                    else
+                    {
+                        completed_ = true;
+                    }
+                }
+            }
         }
         
         virtual void reset()
         {
+            completed_ = false;
             elapsed_time_ = 0.0f;
+        }
+        
+        void loop(bool should_loop=true)
+        {
+            loop_ = should_loop;
+        }
+        
+        bool is_completed()
+        {
+            return completed_;
         }
         
         virtual void calculate() = 0;
@@ -50,6 +73,8 @@ namespace util {
     protected:
         float total_time_;
         float elapsed_time_;
+        bool loop_;
+        bool completed_;
     };
 
     /**

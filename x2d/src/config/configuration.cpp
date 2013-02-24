@@ -36,7 +36,7 @@ namespace config {
         // finally parse the config
         parse_file(cfg_path);
     }
-    
+
     void configuration::register_object(const boost::shared_ptr<object>& obj)
     {
         LOG("-- [%s] Registering object", obj->name().c_str());
@@ -85,7 +85,8 @@ namespace config {
         parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);                
         parsers_["spawner"]     = boost::bind(&configuration::parse_spawner, this, _1, _2);        
         
-        parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);        
+        parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
+        parsers_["scene"]       = boost::bind(&configuration::parse_scene, this, _1, _2);
         parsers_["context"]     = boost::bind(&configuration::parse_context, this, _1, _2);        
         parsers_["zone"]        = boost::bind(&configuration::parse_zone, this, _1, _2);
 
@@ -149,8 +150,7 @@ namespace config {
             size_t pos = cfg_path.find('/');
             if(pos == std::string::npos)
             {
-                LOG("Path seems to be wrong: '%s'", cfg_path.c_str());
-                throw std::exception();
+                throw structure_exception("Path seems to be wrong: '" + cfg_path + "'.");
             }
             
             std::string disk = cfg_path.substr(0, pos);
@@ -389,8 +389,7 @@ namespace config {
     {
         return static_cast<body_part_cfg*>( &(*config_[key]) )->create(b);
     }
-
-    
+        
     template <>
     boost::shared_ptr<camera> configuration::get_object<camera>(const config_key& key)
     {

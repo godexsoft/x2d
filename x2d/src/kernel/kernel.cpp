@@ -65,19 +65,19 @@ namespace x2d
         switch(s)
         {
             case SCREEN_SPACE:
-                screen_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, SCREEN_SPACE, _1) );
-                screen_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, SCREEN_SPACE, _1) );
-                screen_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, SCREEN_SPACE, _1) );
+                screen_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, SCREEN_SPACE, _1), boost::signals::at_front );
+                screen_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, SCREEN_SPACE, _1), boost::signals::at_front );
+                screen_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, SCREEN_SPACE, _1), boost::signals::at_front );
                 break;
             case WORLD_SPACE:
-                world_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, WORLD_SPACE, _1) );
-                world_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, WORLD_SPACE, _1) );
-                world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1) );
+                world_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, WORLD_SPACE, _1), boost::signals::at_front );
+                world_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, WORLD_SPACE, _1), boost::signals::at_front );
+                world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1), boost::signals::at_front );
                 break;
             case CAMERA_SPACE:
-                camera_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, CAMERA_SPACE, _1) );
-                camera_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, CAMERA_SPACE, _1) );
-                camera_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, CAMERA_SPACE, _1) );
+                camera_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, CAMERA_SPACE, _1), boost::signals::at_front );
+                camera_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, CAMERA_SPACE, _1), boost::signals::at_front );
+                camera_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, CAMERA_SPACE, _1), boost::signals::at_front );
                 break;
         }
     }
