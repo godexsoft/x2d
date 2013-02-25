@@ -606,7 +606,8 @@ namespace x2d {
     };
     
     /**
-     * This template provides random selected values from a list.
+     * @brief This template provides random selected values from a list.
+     *
      * Note: makes a copy of the passed vector.
      */
     template<typename T>
@@ -667,6 +668,54 @@ namespace x2d {
     private:
         std::vector<T> lst_;
         value<int> rnd_;
+    };
+    
+    /**
+     * @brief This template provides an easy way to store cached values which can be invalidated
+     * and checked if the value is still valid or not.
+     */
+    template<typename T>
+    class cached_value
+    {
+    public:
+        cached_value(const T& v)
+        : value_(v)
+        , is_valid_(true)
+        {
+        }
+        
+        /**
+         * Invalidate the cached value.
+         */
+        void invalidate()
+        {
+            is_valid_ = false;
+        }
+        
+        /**
+         * Assign a new value effectively making the cached value valid again.
+         * @param[in] v The new value
+         */
+        cached_value& operator= (const T& v)
+        {
+            value_ = v;
+            is_valid_ = true;
+            
+            return *this;
+        }
+        
+        /**
+         * Safe boolean check.
+         * @return true if cached value is still valid. false otherwise.
+         */
+        operator bool ()
+        {
+            return is_valid_;
+        }
+        
+    private:
+        T value_;
+        bool is_valid_;
     };
     
 } // namespace x2d
