@@ -60,7 +60,7 @@ namespace x2d {
         config_.deregister_object(shared_from_this());
     }
 
-    object::object(config::configuration& c, const object_traits& t, spawner* spwn)
+    object::object(configuration& c, const object_traits& t, spawner* spwn)
     : base_object(c.get_kernel())
     , config_(c)
     , lifetime_timer_(c.get_kernel())

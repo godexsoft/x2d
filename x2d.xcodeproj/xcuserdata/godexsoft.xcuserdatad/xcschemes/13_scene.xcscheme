@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "24C1747F16DA58220013A8AF"
-               BuildableName = "12_script copy.app"
+               BuildableName = "x2d_scene.app"
                BlueprintName = "13_scene"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24C1747F16DA58220013A8AF"
-            BuildableName = "12_script copy.app"
+            BuildableName = "x2d_scene.app"
             BlueprintName = "13_scene"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24C1747F16DA58220013A8AF"
-            BuildableName = "12_script copy.app"
+            BuildableName = "x2d_scene.app"
             BlueprintName = "13_scene"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24C1747F16DA58220013A8AF"
-            BuildableName = "12_script copy.app"
+            BuildableName = "x2d_scene.app"
             BlueprintName = "13_scene"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>

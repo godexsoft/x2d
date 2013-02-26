@@ -12,6 +12,7 @@
 
 #include <boost/signals.hpp>
 #include <boost/bind.hpp>
+#include <boost/tuple/tuple.hpp>
 #include <deque>
 #include "compare.h"
 #include "clock.h"
@@ -43,6 +44,12 @@ namespace x2d
         typedef boost::signal<void (const glm::vec3&)>          accel_input_signal;        
         
         typedef std::deque<timer*> timer_container;
+
+        typedef boost::tuple<
+                    boost::signals::connection,
+                    boost::signals::connection,
+                    boost::signals::connection >
+                        input_connections_t;
         
         kernel();
         
@@ -125,7 +132,7 @@ namespace x2d
         // Signal exposure
         boost::signals::connection connect_update( base_object* o );
         boost::signals::connection connect_render( base_object* o, float z, bool camera_space = false );
-        void connect_touch_input( space s, base_object* o );
+        input_connections_t connect_touch_input( space s, base_object* o );
         void connect_accelerometer_input( base_object* o );
         
         time::clock& sys_clock() 

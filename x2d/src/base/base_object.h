@@ -16,6 +16,7 @@
 #include "touch.h"
 
 #include <vector>
+#include <boost/tuple/tuple.hpp>
 
 namespace x2d 
 {
@@ -26,7 +27,9 @@ namespace x2d
     : public boost::signals::trackable // automatic management of slot connections
     {
         friend class kernel;
-        
+
+        typedef std::map<space, kernel::input_connections_t > input_connections_map;
+
     public:
         /**
          * @param[in] k The kernel
@@ -53,7 +56,9 @@ namespace x2d
         void connect_update()
         {
             if(!update_connection_.connected())
+            {
                 update_connection_ = kernel_.connect_update(this);
+            }
         }
         
         /**
@@ -62,7 +67,9 @@ namespace x2d
         void disconnect_update()
         {
             if(update_connection_.connected())
+            {
                 update_connection_.disconnect();
+            }
         }
 
         /**
@@ -74,8 +81,10 @@ namespace x2d
         void connect_render(float z, bool camera_space = false)
         {
             if(!render_connection_.connected())
+            {
                 render_connection_ = kernel_.connect_render(this, z, camera_space);
-        }        
+            }
+        }
 
         /**
          * Disconnect the render function from the kernel
@@ -83,18 +92,40 @@ namespace x2d
         void disconnect_render()
         {
             if(render_connection_.connected())
+            {
                 render_connection_.disconnect();
+            }
         }
         
         /**
          * Used to connect the touch_input* functions to the kernel.
          * Should be invoked in the constructor of a child class.
          * Can be invoked multiple times, once for each space.
+         * Safe to invoke multiple times for same space. Will be ignored.
          */
         void connect_touch_input(space s)
         {
-            kernel_.connect_touch_input(s, this);
-        }       
+            input_connections_map::iterator it = touch_input_connections_.find(s);
+            if(it == touch_input_connections_.end())
+            {
+                touch_input_connections_[s] = kernel_.connect_touch_input(s, this);
+            }
+        }
+
+        /**
+         * Used to disconnect input for a given space.
+         * Safe to invoke multiple times.
+         */
+        void disconnect_touch_input(space s)
+        {
+            input_connections_map::iterator it = touch_input_connections_.find(s);
+            if(it != touch_input_connections_.end())
+            {
+                touch_input_connections_[s].get<0>().disconnect();
+                touch_input_connections_[s].get<1>().disconnect();
+                touch_input_connections_[s].get<2>().disconnect();
+            }
+        }
 
         /**
          * Used to connect the accelerometer_input function to the kernel.
@@ -149,6 +180,8 @@ namespace x2d
     private:
         boost::signals::connection update_connection_;
         boost::signals::connection render_connection_;
+
+        input_connections_map touch_input_connections_;
     };
 
 } // namespace x2d
