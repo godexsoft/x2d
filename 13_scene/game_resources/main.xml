@@ -2,7 +2,7 @@
     
     <!-- engine setup -->
     <camera n="camera" frustum="320 480" />
-    <viewport n="viewport" box="0 0 640 960" camera="camera" bgcolor="0.0 0.0 0.0" />
+    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.0 0.0 0.0" />
     <input n="input" accelerometer="false" touch="true" />
 
     <namespace n="graphics">
@@ -24,9 +24,25 @@
                  space = "camera"
                 sprite = "graphics.first.bg"
               position = "0.5 0.5 5.0"
-            />
+            >
+                    <object n = "child_test"
+                 parent_space = "both"
+                      bgcolor = "1 0 0 0.3"
+                     position = "0.5 0.5"
+                          box = "0.5 0.5"
+                    >
+                        
+                        <object    n = "test2"
+                        parent_space = "both"
+                             bgcolor = "0 0 1 1"
+                                 box = "0.2 0.2"
+                            position = "0.5 0.5"
+                        />
+                        
+                    </object>
+            </object>
         </scene>
-    
+       
         <scene n="second">
             <object  n = "background"
                  space = "camera"

@@ -15,11 +15,9 @@ class object_cfg
 public:        
     /**
      * @param[in] c         Configuration object
-     * @param[in] t         Object traits
      */
-    object_cfg(configuration& c, const object_traits& t)
+    object_cfg(configuration& c)
     : config_(c)
-    , traits_(t)
     {        
     }
     
@@ -74,6 +72,14 @@ public:
     const object_traits get_traits() const
     {
         return traits_;
+    }
+    
+    /**
+     * Set new traits for the object
+     */
+    void set_traits(const object_traits& t)
+    {
+        traits_ = t;
     }
     
 private:                

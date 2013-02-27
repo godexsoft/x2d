@@ -885,6 +885,17 @@ namespace config {
         // on_destroy: executed before object is destroyed
         
         object_traits tr, proto_tr;
+
+        // first thing we do is create a new empty configuration for this object
+        // unless it already exists there.
+        // we will swap the traits later at the end of this function.
+        if(! exists(key))
+        {
+            LOG("Object at '%s' does not exist. create it..", key.string().c_str());
+            config_[key] =
+                boost::shared_ptr<object_cfg>(
+                    new object_cfg(*this) );
+        }
         
         // check for prototype
         xml_attr* proto = node->first_attribute("proto");
@@ -907,7 +918,9 @@ namespace config {
         }
         
         xml_attr* parent = node->first_attribute("parent");
-        if(parent) 
+        xml_node* parent_node = node->parent();
+        
+        if(parent) // explicit parent takes over if specified
         {
             std::string k = lookup_key(parent->value(), key.remove_last_path_component());
             
@@ -922,6 +935,24 @@ namespace config {
                     std::string("Object's parent is not found under key '") 
                         + parent->value() + "'.");
             }
+        }
+        else if(parent_node && std::string("object") == parent_node->name())
+        {
+            config_key parent_key = key.remove_last_path_component();
+            LOG("Object is nested in other object. Set implicit parent to '%s'", parent_key.string().c_str());
+            
+            if(! exists(parent_key))
+            {
+                LOG("Parent does not exist yet. Create it now.");
+                
+                // create an empty default object as the parent
+                config_[parent_key] =
+                    boost::shared_ptr<object_cfg>(
+                        new object_cfg(*this) );
+            }
+
+            static_cast<object_cfg*>(&(*config_[parent_key]))->add( key );
+            tr.has_parent = true;
         }
 
         tr.name =       *get_mandatory_attr<std::string>(*this, node, key, "n",
@@ -1146,9 +1177,10 @@ namespace config {
             proto_tr = tr;
         }
         
-        config_[key] =
-            boost::shared_ptr<object_cfg>( 
-                new object_cfg(*this, proto_tr) );
+        // object must already exist under the key. what we will do is just update its traits.
+        // don't forget to preserve all children which have been set up before.
+        proto_tr.children = static_cast<object_cfg*>(&(*config_[key]))->get_traits().children;
+        static_cast<object_cfg*>(&(*config_[key]))->set_traits( proto_tr );
     }
     
     void configuration::parse_scene(xml_node* node, const config_key& key)
