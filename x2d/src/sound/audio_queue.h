@@ -21,8 +21,8 @@
 
 #include "filesystem.h"
 
-#define NUM_BUFFERS 3
-#define BUFFER_SIZE_BYTES 131072     // 128 KB buffers
+#define NUM_BUFFERS 4 // maximum 4 buffers
+#define BUFFER_SIZE_BYTES 1048576 // 1 MB buffers
 
 
 namespace x2d {
@@ -137,6 +137,7 @@ namespace snd {
         
         float							volume_;
         bool                            loop_;
+        bool                            is_paused_;
         
         boost::function<void(bool)>     on_playback_;
     };

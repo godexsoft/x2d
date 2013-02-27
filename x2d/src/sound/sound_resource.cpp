@@ -71,6 +71,31 @@ namespace snd {
         obj_->play();
     }
 
+    void music::stop()
+    {
+        obj_->stop();
+    }
+    
+    void music::pause()
+    {
+        obj_->pause();
+    }
+
+    void music::resume()
+    {
+        obj_->resume();
+    }
+
+    void music::reset()
+    {
+        obj_->reset();
+    }
+    
+    bool music::is_playing() const
+    {
+        return obj_->is_playing();
+    }
+    
     void music::on_playback(bool playing)
     {
         LOG("Playing: %s", playing? "yes":"no");

@@ -21,6 +21,7 @@ namespace snd {
     void music_obj<audio_queue_driver>::play()
     {
         LOG("Playback of audio_queue file.");
+        is_paused_ = false; // if was paused
         AudioQueueStart(queue_, NULL);
     }
     
@@ -38,24 +39,27 @@ namespace snd {
         AudioQueueGetPropertySize(queue_, kAudioQueueProperty_IsRunning, &size);
         AudioQueueGetProperty(queue_, kAudioQueueProperty_IsRunning, &is_running, &size);
         
-        return is_running;
+        return is_running && !is_paused_;
     }
     
     template<>
     void music_obj<audio_queue_driver>::pause()
     {    	
-        AudioQueuePause(queue_);    
+        AudioQueuePause(queue_);
+        is_paused_ = true;
     }
     
     template<>
     void music_obj<audio_queue_driver>::resume()
     {
         AudioQueueStart(queue_, NULL);
+        is_paused_ = false;
     }
     
     template<>
     void music_obj<audio_queue_driver>::reset()
     {
+        is_paused_ = false;
     }
 
     template<>
@@ -210,6 +214,7 @@ namespace snd {
     , stop_packet_index_(0)
     , volume_(gain)
     , loop_(loop)
+    , is_paused_(false)
     {
         CFURLRef file_url = CFURLCreateFromFileSystemRepresentation(NULL, (const UInt8 *)file_path.c_str(), file_path.size(), false);
         OSStatus res = AudioFileOpenURL(file_url, kAudioFileReadPermission, kAudioFileCAFType, &audio_file_);
@@ -266,6 +271,7 @@ namespace snd {
     , stop_packet_index_(0)
     , volume_(gain)
     , loop_(loop)
+    , is_paused_(false)
     , ifd_(ifd)
     {        
         LOG("Got ifdstream from path..");

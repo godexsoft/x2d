@@ -107,6 +107,12 @@ namespace snd {
         }
         
         void play();
+        void stop();
+        void pause();
+        void resume();
+        void reset();
+
+        bool is_playing() const;
         
         // updates
         void on_volume_change() { obj_->on_volume_change(); }

@@ -40,7 +40,7 @@ void android_x2d_main(x2d::app_framework&);
 #endif
 
 namespace x2d {
-    template<typename T>
+    template<typename T=app_framework>
     int run_app()
     {
         try {
@@ -84,8 +84,13 @@ namespace x2d {
         
         // this is the main game entrypoint.
         // here you should create your objects and other usefull stuff
-        // but never loop in this function. return asap.        
-        virtual void main() = 0;
+        // but never loop in this function. return asap.
+        // by default it just switches to the main scene.
+        virtual void main()
+        {
+            // load the main scene by default
+            switch_to( get_config().create_scene("scenes.main") );
+        }
         
         liverpool_manager& get_lvp_manager()
         {

@@ -195,7 +195,12 @@ namespace config {
         /**
          * Create a scene object with default type.
          */
-        const boost::shared_ptr<scene> create_scene(const config_key& key);
+        const boost::shared_ptr<scene> create_scene(const config_key& key)
+        {
+            boost::shared_ptr<scene> obj = static_cast<scene_cfg*>( &(*config_[key]) )->create();
+            register_object(obj);
+            return obj;
+        }
         
         /**
          * Create a scene object with custom type.
