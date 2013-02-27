@@ -129,7 +129,9 @@ namespace x2d {
         {
             if(!has_parent_)
             {
-                LOG("Connecting render: %f", position_.z);
+                LOG("[%s] Connecting render: %f [%s]", name_.c_str(), position_.z,
+                    space_ == CAMERA_SPACE? "CAMERA":"WORLD");
+
                 connect_render(position_.z, space_ == CAMERA_SPACE);
             }
         }
@@ -169,6 +171,7 @@ namespace x2d {
         // check space and add object to list of camera space objects
         if(space_ == CAMERA_SPACE && !has_parent_)
         {
+            LOG("[%s] Add camera space object", name_.c_str());
             kernel_.add_camera_space_object(this);
         }
         
@@ -389,7 +392,8 @@ namespace x2d {
             // Need these connections to update children.
             connect_update();
 
-            LOG("Connecting render: %f", position_.z);
+            LOG("[%s] Connecting render: %f [%s]", name_.c_str(), position_.z,
+                space_ == CAMERA_SPACE? "CAMERA":"WORLD");
             connect_render(position_.z, space_ == CAMERA_SPACE);
         }
     }

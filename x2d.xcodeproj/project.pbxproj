@@ -1223,7 +1223,6 @@
 		24BDCCA514CDB68F006F36A1 /* math_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = math_util.h; path = src/util/math_util.h; sourceTree = "<group>"; };
 		24C1747616DA3BA10013A8AF /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = src/base/scene.cpp; sourceTree = "<group>"; };
 		24C1747716DA3BA10013A8AF /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = scene.h; path = src/base/scene.h; sourceTree = "<group>"; };
-		24C1747A16DA53840013A8AF /* scene.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = scene.incl; sourceTree = "<group>"; };
 		24C1749616DA58220013A8AF /* x2d_scene.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_scene.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C1749816DA58FA0013A8AF /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = 13_scene/src/game.h; sourceTree = "<group>"; };
 		24C1749916DA58FA0013A8AF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = 13_scene/src/main.cpp; sourceTree = "<group>"; };
@@ -2733,7 +2732,6 @@
 		24B329D215A116D7002E4344 /* elements */ = {
 			isa = PBXGroup;
 			children = (
-				24C1747A16DA53840013A8AF /* scene.incl */,
 				24E4BD6D15E92A2E008F162C /* event.incl */,
 				24E4BD5E15E55A35008F162C /* script.incl */,
 				24B329E015A11A9B002E4344 /* texture.incl */,

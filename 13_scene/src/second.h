@@ -16,13 +16,12 @@ class second_scene
 : public scene
 {
 public:
-    second_scene(configuration& c)
-    : scene(c)
+    second_scene(configuration& c, const object_traits& t)
+    : scene(c, t)
     , x_offset_(0.0f)
     , mover_(x_offset_, 1.5f, 0.5f, 0.3f)
     {
-        bg_ = get_config().create_object("scenes.second.background");
-        add_child(bg_);
+        bg_ = child_by_name("background");
         
         connect_touch_input(WORLD_SPACE);
         connect_update();

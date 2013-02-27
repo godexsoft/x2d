@@ -36,8 +36,9 @@ namespace base {
     public:
         /**
          * @param[in] config The configuration
+         * @param[in] t Object traits
          */
-        scene(config::configuration& c);
+        scene(config::configuration& c, const object_traits& t=object_traits());
         
     protected:
         virtual void on_transition_from();

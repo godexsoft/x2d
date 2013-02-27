@@ -197,7 +197,7 @@ namespace config {
          */
         const boost::shared_ptr<scene> create_scene(const config_key& key)
         {
-            boost::shared_ptr<scene> obj = static_cast<scene_cfg*>( &(*config_[key]) )->create();
+            boost::shared_ptr<scene> obj = static_cast<object_cfg*>( &(*config_[key]) )->create<scene>();
             register_object(obj);
             return obj;
         }
@@ -208,7 +208,7 @@ namespace config {
         template <typename T>
         const boost::shared_ptr<T> create_scene(const config_key& key)
         {
-            boost::shared_ptr<T> obj = static_cast<scene_cfg*>( &(*config_[key]) )->create<T>();
+            boost::shared_ptr<T> obj = static_cast<object_cfg*>( &(*config_[key]) )->create<T>();
             register_object(obj);
             return obj;
         }

@@ -894,7 +894,7 @@ namespace config {
             LOG("Object at '%s' does not exist. create it..", key.string().c_str());
             config_[key] =
                 boost::shared_ptr<object_cfg>(
-                    new object_cfg(*this) );
+                    new object_cfg(*this, std::string("scene") == node->name()) );
         }
         
         // check for prototype
@@ -920,6 +920,19 @@ namespace config {
         xml_attr* parent = node->first_attribute("parent");
         xml_node* parent_node = node->parent();
         
+        // scene objects can't be nested within other scenes or objects
+        if(std::string("scene") == node->name())
+        {
+            if(parent || (parent_node &&
+               (std::string("object") == parent_node->name()
+                || std::string("scene") == parent_node->name())))
+            {
+                throw structure_exception(
+                    "Scene with key '" + key.string() +
+                    "' attempts to define a parent. That's illigal.");
+            }
+        }
+        
         if(parent) // explicit parent takes over if specified
         {
             std::string k = lookup_key(parent->value(), key.remove_last_path_component());
@@ -936,7 +949,9 @@ namespace config {
                         + parent->value() + "'.");
             }
         }
-        else if(parent_node && std::string("object") == parent_node->name())
+        else if(parent_node &&
+                (std::string("object") == parent_node->name()
+                 || std::string("scene") == parent_node->name()) )
         {
             config_key parent_key = key.remove_last_path_component();
             LOG("Object is nested in other object. Set implicit parent to '%s'", parent_key.string().c_str());
@@ -948,7 +963,7 @@ namespace config {
                 // create an empty default object as the parent
                 config_[parent_key] =
                     boost::shared_ptr<object_cfg>(
-                        new object_cfg(*this) );
+                        new object_cfg(*this, std::string("scene") == parent_node->name()) );
             }
 
             static_cast<object_cfg*>(&(*config_[parent_key]))->add( key );
@@ -1071,7 +1086,15 @@ namespace config {
         }
         else
         {
-            tr.obj_space = WORLD_SPACE;
+            // scene is always in camera space
+            if(std::string("scene") == node->name())
+            {
+                tr.obj_space = CAMERA_SPACE;
+            }
+            else
+            {
+                tr.obj_space = WORLD_SPACE;
+            }
         }
 
         // camera or parent space
@@ -1189,20 +1212,22 @@ namespace config {
         // n:        name of the element
         //
         // can have:
+        // because a scene is really an object, everything what can be defined for object can also be defined for scene.
         //
         // scripts:
         // on_transition_to:  executed when transition to this scene is requested
         // on_transition_from: executed when transition to another scene is requested
         
-        object_traits tr, proto_tr;
+        // fill in with default properties of scene objects
+        object_traits tr;
+        tr.box.set( size(1.0f, 1.0f) ); // full-viewport
+        tr.position.set( glm::vec3(0.5f, 0.5f, 0.0f) );
+        tr.pivot.set( glm::vec2(0.5f, 0.5f) );
         
-        std::string name = *get_mandatory_attr<std::string>(*this, node, key, "n",
-                                                            parse_exception("Scene must have 'n' defined."));
-
         std::string on_transition_to;
         std::string on_transition_from;
         
-        // scripts
+        // TODO: scripts
         if(exists(key / "on_transition_to"))
         {
             on_transition_to = key / "on_transition_to";
@@ -1212,9 +1237,17 @@ namespace config {
             on_transition_from = key / "on_transition_from";
         }
         
-        config_[key] =
-            boost::shared_ptr<scene_cfg>(
-            new scene_cfg(*this, on_transition_to, on_transition_from) );
+        // scene is really just an alias for object plus a little extra
+        parse_object(node, key);
+        
+        // updated the traits with scene defaults if they were not set thru xml
+        object_traits obj_tr = static_cast<object_cfg*>(&(*config_[key]))->get_traits();
+        
+        tr.merge(obj_tr);
+        tr.obj_space = CAMERA_SPACE; // scene is always in camera space        
+        tr.par_space = PARENT_SPACE_BOTH;
+        
+        static_cast<object_cfg*>(&(*config_[key]))->set_traits(tr);
     }
     
 } // namespace config

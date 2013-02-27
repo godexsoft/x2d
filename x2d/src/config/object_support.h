@@ -75,7 +75,6 @@ namespace config {
     #include "elements/script.incl"
     #include "elements/event.incl"
     #include "elements/object.incl"
-    #include "elements/scene.incl"
     
 } // namespace config
 } // namespace x2d

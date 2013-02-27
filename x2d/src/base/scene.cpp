@@ -12,8 +12,8 @@
 namespace x2d {
 namespace base {
 
-    scene::scene(configuration& c)
-    : object(c, object_traits()) // create a very empty object
+    scene::scene(configuration& c, const object_traits& t)
+    : object(c, t)
     , config_(c)
     {
         LOG("Scene - constructor");

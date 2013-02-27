@@ -37,4 +37,6 @@ void second_scene::update(const clock_info& clock)
         mover_.update(clock.delta_time);
         bg_->camera_space_position(glm::vec2(x_offset_, 0.5f));        
     }
+    
+    scene::update(clock);
 }
