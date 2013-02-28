@@ -44,11 +44,9 @@ namespace base {
         virtual void on_transition_from();
         virtual void on_transition_to();
 
-        configuration& get_config() const
-        {
-            return config_;
-        }
-        
+        configuration& get_config() const;        
+        kernel& get_kernel() const;
+
         app_framework& get_app() const
         {
             if(app_ == NULL)

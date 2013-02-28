@@ -139,10 +139,5 @@ namespace base {
         is_applied = true;
     }
     
-    void camera::calculate_in_screen(object* o)
-    {
-        o->reposition_in_parent_space(frustum_);
-    }
-
 } // namespace base
 } // namespace x2d

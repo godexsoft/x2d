@@ -103,12 +103,7 @@ namespace base {
         
         // inverse of 'apply' on point in space
         const point inverted_transformation(const point& p);
-        
-        /**
-         * Get screen position out of camera-space position
-         */
-        void calculate_in_screen(object* o);
-        
+                
     private:
         boost::shared_ptr<camera> parent_;
         size        frustum_;

@@ -30,5 +30,15 @@ namespace base {
         LOG("Scene - on transition to");
     }
 
+    configuration& scene::get_config() const
+    {
+        return config_;
+    }
+    
+    kernel& scene::get_kernel() const
+    {
+        return config_.get_kernel();
+    }
+    
 } // namespace base
 } // namespace x2d

@@ -229,9 +229,16 @@ namespace x2d {
         
     void object::update(const clock_info& clock) 
     {
+        //
+        // TODO: this stuff should be recalculated only if the values got dirty!!
+        //
         if(parent_ != NULL && parent_space_ != PARENT_SPACE_NONE)
         {
             reposition_in_parent_space(parent_->box());
+        }
+        else if(space_ == CAMERA_SPACE && !has_parent_)
+        {
+            reposition_in_parent_space(camera_->frustum());
         }
         
         // physics

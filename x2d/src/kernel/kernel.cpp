@@ -185,13 +185,6 @@ namespace x2d
                 cur_viewport_ = i;
             }
             
-            // calculate screen space out of camera space for each object which needs it
-            for(int i=0; i<camera_space_objects_.size(); ++i)
-            {
-                object* o = camera_space_objects_.at(i);
-                viewports_.at(cur_viewport_)->get_camera()->calculate_in_screen(o);
-            }
-            
             // draw background
             viewports_.at(cur_viewport_)->clear();
             
