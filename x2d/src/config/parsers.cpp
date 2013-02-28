@@ -1224,17 +1224,14 @@ namespace config {
         tr.position.set( glm::vec3(0.5f, 0.5f, 0.0f) );
         tr.pivot.set( glm::vec2(0.5f, 0.5f) );
         
-        std::string on_transition_to;
-        std::string on_transition_from;
-        
         // TODO: scripts
         if(exists(key / "on_transition_to"))
         {
-            on_transition_to = key / "on_transition_to";
+            tr.on_transition_to = key / "on_transition_to";
         }
         if(exists(key / "on_transition_from"))
         {
-            on_transition_from = key / "on_transition_from";
+            tr.on_transition_from = key / "on_transition_from";
         }
         
         // scene is really just an alias for object plus a little extra

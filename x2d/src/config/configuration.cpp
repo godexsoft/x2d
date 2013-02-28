@@ -20,7 +20,7 @@ namespace config {
     : kernel_(k)
     , res_man_(res_man)
     , object_input_manager_(kernel_)
-    , scripting_engine_(kernel_)
+    , scripting_engine_(*this)
     {
         load_core_parsers();
     }
@@ -29,7 +29,7 @@ namespace config {
     : kernel_(k)
     , res_man_(res_man)
     , object_input_manager_(kernel_)
-    , scripting_engine_(kernel_)
+    , scripting_engine_(*this)
     {
         load_core_parsers();
         
@@ -59,6 +59,17 @@ namespace config {
         
         // call on_destroy
         obj->on_destroy();
+    }
+    
+    void configuration::switch_to(const boost::shared_ptr<scene>& s)
+    {
+        if(cur_scene_)
+        {
+            cur_scene_->on_transition_from();
+        }
+        
+        cur_scene_ = s;
+        cur_scene_->on_transition_to();
     }
     
     void configuration::load_core_parsers()

@@ -21,6 +21,7 @@ extern "C"
 #include "kernel.h"
 #include "event_manager.h"
 #include "object.h"
+#include "configuration.h"
 
 static void empty_log(const char*) {}
 
@@ -29,8 +30,8 @@ namespace scripting {
 
     using namespace luabind;
 
-    scripting_engine::scripting_engine(kernel& k)
-    : kernel_(k)
+    scripting_engine::scripting_engine(configuration& c)
+    : config_(c)
     , lua_(lua_open())
     {
         open(lua_);
@@ -43,6 +44,7 @@ namespace scripting {
         bind_aux_types();
         bind_event();
         bind_object();
+        bind_app_framework();
     }
     
     void scripting_engine::execute(const boost::shared_ptr<script>& s)
@@ -64,7 +66,7 @@ namespace scripting {
         // remove object
         luabind::globals(lua_)["self"] = nil;
     }
-    
+
     void scripting_engine::bind_log()
     {
         module(lua_)
@@ -114,16 +116,30 @@ namespace scripting {
         boost::shared_ptr<event_manager> em_;
     };
     
+    struct switch_to_scene_wrapper
+    {
+        switch_to_scene_wrapper(configuration& c)
+        : config_(c)
+        {}
+        
+        const void operator()(std::string k) const
+        {
+            config_.switch_to(config_.create_scene(k));
+        }
+        
+        configuration& config_;
+    };
+    
     void scripting_engine::bind_event()
     {        
         module(lua_, "event")
         [
             def("send", luabind::tag_function<void(std::string)>(
-                send_event_wrapper(kernel_.get_event_manager()))),
+                send_event_wrapper(config_.get_kernel().get_event_manager()))),
             def("listen",
                 luabind::tag_function<const boost::signals::connection
                     (std::string, luabind::object)>(
-                listen_event_wrapper(kernel_.get_event_manager())))
+                listen_event_wrapper(config_.get_kernel().get_event_manager())))
         ];
         
         module(lua_, "event")
@@ -161,6 +177,16 @@ namespace scripting {
                 .def("scale", (void(object::*)(float))&object::scale)
                 .def("position", (void(object::*)(const glm::vec2&))&object::position)
         ];
+    }
+
+    void scripting_engine::bind_app_framework()
+    {
+        module(lua_, "scene")
+        [
+            def("switch_to", luabind::tag_function<void(std::string)>(
+                switch_to_scene_wrapper( config_ )))
+        ];
+
     }
 
     

@@ -32,6 +32,7 @@ namespace base {
     : public object
     {
         friend class app_framework;
+        friend class configuration;
         
     public:
         /**
@@ -44,22 +45,17 @@ namespace base {
         virtual void on_transition_from();
         virtual void on_transition_to();
 
+        void switch_to(const boost::shared_ptr<scene>& sc) const;
+        
         configuration& get_config() const;        
         kernel& get_kernel() const;
-
-        app_framework& get_app() const
-        {
-            if(app_ == NULL)
-            {
-                throw sys_exception("scene::get_app() called before app_framework was assigned by the engine");
-            }
-            
-            return *app_;
-        }
         
     private:
         configuration& config_;
-        app_framework* app_;
+        
+        // callables
+        callable<scene*> on_transition_from_;
+        callable<scene*> on_transition_to_;
     };
 
 } // namespace base

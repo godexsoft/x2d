@@ -21,13 +21,19 @@ namespace x2d {
 
     class kernel;
     class object;
+
+namespace config {
+
+    class configuration;
+
+} // config
     
 namespace scripting {
 
     class scripting_engine
     {
     public:
-        scripting_engine(kernel& k);
+        scripting_engine(config::configuration& c);
         
         void execute(const boost::shared_ptr<script>& s);
         void execute(const boost::shared_ptr<script>& s, object* o);
@@ -38,8 +44,9 @@ namespace scripting {
         void bind_aux_types();
         void bind_event();
         void bind_object();
+        void bind_app_framework();
         
-        kernel&     kernel_;
+        config::configuration& config_;
         lua_State*  lua_;
     };
     

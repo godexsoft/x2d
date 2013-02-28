@@ -70,6 +70,11 @@ using namespace x2d::scripting;
             }
         }
         
+        operator bool ()
+        {
+            return (script_ || callback_);
+        }
+        
     private:        
         configuration&   config_;
         

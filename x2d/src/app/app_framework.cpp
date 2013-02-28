@@ -27,20 +27,6 @@ namespace x2d {
         get_config().parse_file("res/main.xml");
     }
     
-    void app_framework::switch_to(const boost::shared_ptr<scene>& s)
-    {
-        if(cur_scene_)
-        {
-            cur_scene_->on_transition_from();
-        }
-        
-        cur_scene_ = s;
-        cur_scene_->app_ = this;
-        
-        cur_scene_->on_transition_to();
-    }
-
-    
 } // namespace x2d
 
 #ifdef __APPLE__

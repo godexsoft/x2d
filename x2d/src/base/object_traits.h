@@ -162,6 +162,16 @@ namespace x2d {
             {
                 on_destroy = other.on_destroy;
             }
+            
+            if(!other.on_transition_from.empty())
+            {
+                on_transition_from = other.on_transition_from;
+            }
+            
+            if(!other.on_transition_to.empty())
+            {
+                on_transition_to = other.on_transition_to;
+            }
         }
         
         // basic object properties
@@ -225,6 +235,10 @@ namespace x2d {
         // scripts
         std::string on_create;
         std::string on_destroy;
+        
+        // scene scripts
+        std::string on_transition_to;
+        std::string on_transition_from;
     };
 
 } // namespace x2d

@@ -83,6 +83,11 @@ namespace config {
         void register_object(const boost::shared_ptr<object>& obj);
         void deregister_object(const boost::shared_ptr<object>& obj);
         
+        /*
+         * Scene support
+         */
+        void switch_to(const boost::shared_ptr<scene>& s);
+        
         kernel& get_kernel() const
         {
             return kernel_;
@@ -419,6 +424,8 @@ namespace config {
         
         object_input_manager                    object_input_manager_;
         scripting_engine                        scripting_engine_;
+        
+        boost::shared_ptr<scene>                cur_scene_;
     };
     
 } // namespace config

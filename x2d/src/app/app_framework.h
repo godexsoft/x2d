@@ -117,7 +117,10 @@ namespace x2d {
             return caps_;
         }
         
-        void switch_to(const boost::shared_ptr<scene>& s);
+        void switch_to(const boost::shared_ptr<scene>& s)
+        {
+            get_config().switch_to(s);
+        }
         
     private:
         kernel              kernel_;
@@ -126,8 +129,6 @@ namespace x2d {
         configuration       config_;
         
         device_capabilities caps_;
-        
-        boost::shared_ptr<scene>    cur_scene_;
     };
     
 } // namespace x2d
