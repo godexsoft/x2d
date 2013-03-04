@@ -277,6 +277,7 @@
 		2487CB9614E6F8B0006A7E22 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2487CB9514E6F8B0006A7E22 /* resources.zip */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
 		24909214154C5A79000EE894 /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24909212154C5A78000EE894 /* hud.cpp */; };
+		2499AF0C16E52D7700CC254C /* emitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2499AF0B16E52D7700CC254C /* emitter.h */; };
 		249AD9A016459854000416B3 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 249AD99F16459854000416B3 /* libboost_program_options.dylib */; };
 		24AEA9981646F7C100B42BB4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AEA9971646F7C000B42BB4 /* libz.dylib */; };
 		24AEA99A1646F7D600B42BB4 /* libpng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AEA9991646F7D600B42BB4 /* libpng.dylib */; };
@@ -1170,6 +1171,8 @@
 		24909212154C5A78000EE894 /* hud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hud.cpp; path = demo/hud.cpp; sourceTree = "<group>"; };
 		24909213154C5A79000EE894 /* hud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hud.h; path = demo/hud.h; sourceTree = "<group>"; };
 		2490C1AF1531FC9F00F90732 /* zones_contexts.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zones_contexts.xml; path = demo/res/zones_contexts.xml; sourceTree = "<group>"; };
+		2499AF0916E5283800CC254C /* emitter.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = emitter.incl; sourceTree = "<group>"; };
+		2499AF0B16E52D7700CC254C /* emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emitter.h; path = src/particle_system/emitter.h; sourceTree = "<group>"; };
 		249AD99F16459854000416B3 /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = /usr/local/lib/libboost_program_options.dylib; sourceTree = "<absolute>"; };
 		24AEA9971646F7C000B42BB4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
 		24AEA9991646F7D600B42BB4 /* libpng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng.dylib; path = /usr/local/lib/libpng.dylib; sourceTree = "<absolute>"; };
@@ -2729,9 +2732,18 @@
 			name = font;
 			sourceTree = "<group>";
 		};
+		2499AF0A16E52D4B00CC254C /* particle_system */ = {
+			isa = PBXGroup;
+			children = (
+				2499AF0B16E52D7700CC254C /* emitter.h */,
+			);
+			name = particle_system;
+			sourceTree = "<group>";
+		};
 		24B329D215A116D7002E4344 /* elements */ = {
 			isa = PBXGroup;
 			children = (
+				2499AF0916E5283800CC254C /* emitter.incl */,
 				24E4BD6D15E92A2E008F162C /* event.incl */,
 				24E4BD5E15E55A35008F162C /* script.incl */,
 				24B329E015A11A9B002E4344 /* texture.incl */,
@@ -2861,6 +2873,7 @@
 				2487CB9714E6FD65006A7E22 /* font */,
 				245151D214DC22C20029D699 /* input */,
 				2467298414D9F5B0003AAA04 /* anim */,
+				2499AF0A16E52D4B00CC254C /* particle_system */,
 				2467285314D6E232003AAA04 /* config */,
 				2415841E14D2E4510014F37B /* resource */,
 				2415840314D0C63C0014F37B /* fs */,
@@ -3310,6 +3323,7 @@
 				244EB70815FD227E0009C562 /* X2DAppDelegate.h in Headers */,
 				24D24CF216D921BE00D689F2 /* value.h in Headers */,
 				24C1747916DA3BA10013A8AF /* scene.h in Headers */,
+				2499AF0C16E52D7700CC254C /* emitter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

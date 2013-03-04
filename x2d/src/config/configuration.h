@@ -411,6 +411,7 @@ namespace config {
         void parse_music(xml_node* node, const config_key& key);
         void parse_sfx(xml_node* node, const config_key& key);
         void parse_spawner(xml_node* node, const config_key& key);        
+        void parse_emitter(xml_node* node, const config_key& key);
         
         // object system
         void parse_context(xml_node* node, const config_key& key);

@@ -25,6 +25,7 @@
 #include "body.h"
 #include "body_part.h"
 #include "scene.h"
+#include "emitter.h"
 
 #include "rapidxml.hpp"
 #include <boost/shared_ptr.hpp>
@@ -69,6 +70,7 @@ namespace config {
     #include "elements/viewport.incl"
     #include "elements/input.incl"
     #include "elements/spawner.incl"
+    #include "elements/emitter.incl"
     #include "elements/context.incl"
     #include "elements/zone.incl"
     #include "elements/physics.incl"

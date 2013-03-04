@@ -94,7 +94,8 @@ namespace config {
         parsers_["font"]        = boost::bind(&configuration::parse_font, this, _1, _2);
         parsers_["music"]       = boost::bind(&configuration::parse_music, this, _1, _2);
         parsers_["sfx"]         = boost::bind(&configuration::parse_sfx, this, _1, _2);                
-        parsers_["spawner"]     = boost::bind(&configuration::parse_spawner, this, _1, _2);        
+        parsers_["spawner"]     = boost::bind(&configuration::parse_spawner, this, _1, _2);
+        parsers_["emitter"]     = boost::bind(&configuration::parse_emitter, this, _1, _2);
         
         parsers_["object"]      = boost::bind(&configuration::parse_object, this, _1, _2);
         parsers_["scene"]       = boost::bind(&configuration::parse_scene, this, _1, _2);

@@ -609,6 +609,73 @@ namespace config {
         config_[key] = boost::shared_ptr<spawner_cfg>( new spawner_cfg(*this, obj_vec, position, wave_size, wave_delay) );
     }
     
+    void configuration::parse_emitter(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // n:          name of the element
+        // type:       integer, type of the emitter. 0 = gravity, 1 = radial
+        // sprite:     key for the sprite to use when drawing particles
+        //
+        // can have:
+        // position, vec2
+        // speed, float
+        // life_span, float
+        // angle, float
+        // gravity, vec2
+        // radial_acceleration, float
+        // tangential_acceleration, float
+        // start_color, color_info
+        // finish_color, color_info
+        // max_particles, int
+        // duration, float
+        // blend_src, int
+        // blend_dst, int
+        // start_size, float
+        // finish_size, float
+        // max_radius, float
+        // min_radius, float
+        // radius_speed, float
+        // rotate_per_second, float
+        // rotation_start, float
+        // rotation_end, float
+        
+        boost::shared_ptr<emitter_cfg> c( new emitter_cfg(*this) );
+        
+        c->type_ = *get_mandatory_attr<int>(*this, node, key, "type",
+            parse_exception("Emitter must have 'type' defined."));
+        if(c->type_ != 0 && c->type_ != 1)
+        {
+            throw structure_exception("Emitter type must be either 0 or 1. See documentation for more info.");
+        }
+        
+        c->sprite_ = *get_mandatory_key_attr(*this, node, key, "sprite",
+            parse_exception("Emitter must have 'sprite' defined."));
+        
+        c->position_ =  get_attr<glm::vec2>(*this, node, key, "position", glm::vec2(0.0f,0.0f));
+        c->speed_ =     get_attr<float>(*this, node, key, "speed", 0.0f);
+        c->life_span_ = get_attr<float>(*this, node, key, "life_span", 0.0f);
+        c->angle_ =     get_attr<float>(*this, node, key, "angle", 0.0f);
+        c->gravity_ =   get_attr<glm::vec2>(*this, node, key, "gravity", glm::vec2(0.0f,0.0f));
+        c->radial_acceleration_ =       get_attr<float>(*this, node, key, "radial_acceleration", 0.0f);
+        c->tangential_acceleration_ =   get_attr<float>(*this, node, key, "tangential_acceleration", 0.0f);
+        c->start_color_ =       get_attr<color_info>(*this, node, key, "start_color", color_info(0.0f, 0.0f, 0.0f, 0.0f));
+        c->finish_color_ =      get_attr<color_info>(*this, node, key, "finish_color", color_info(0.0f, 0.0f, 0.0f, 0.0f));
+        c->max_particles_ =     get_attr<int>(*this, node, key, "max_particles", 0);
+        c->duration_ =          get_attr<float>(*this, node, key, "duration", 0.0f);
+        c->blend_src_ =         get_attr<int>(*this, node, key, "blend_src", 0);
+        c->blend_dst_ =         get_attr<int>(*this, node, key, "blend_dst", 0);
+        c->start_size_ =        get_attr<float>(*this, node, key, "start_size", 0.0f);
+        c->finish_size_ =       get_attr<float>(*this, node, key, "finish_size", 0.0f);
+        c->min_radius_ =        get_attr<float>(*this, node, key, "min_radius", 0.0f);
+        c->max_radius_ =        get_attr<float>(*this, node, key, "max_radius", 0.0f);
+        c->radius_speed_ =      get_attr<float>(*this, node, key, "radius_speed", 0.0f);
+        c->rotate_per_second_ = get_attr<float>(*this, node, key, "rotate_per_second", 0.0f);
+        c->rotation_start_ =    get_attr<float>(*this, node, key, "rotation_start", 0.0f);
+        c->rotation_end_ =      get_attr<float>(*this, node, key, "rotation_end", 0.0f);
+        
+        config_[key] = c;
+    }
+    
     void configuration::parse_context(xml_node* node, const config_key& key)
     {
         // must have:

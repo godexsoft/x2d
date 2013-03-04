@@ -78,7 +78,7 @@ namespace x2d {
          * Constructor from single cached value.
          * @param[in] v Value to store
          */
-        value(const T& v)
+        value(const T& v = T())
         : value_(v)
         , is_rand_(false)
         {
