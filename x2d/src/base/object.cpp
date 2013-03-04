@@ -84,6 +84,9 @@ namespace x2d {
     , has_parent_(t.has_parent)
     , on_create_(config_)
     , on_destroy_(config_)
+    , on_input_began_(config_)
+    , on_input_moved_(config_)
+    , on_input_ended_(config_)
     {
         if(!t.on_create.empty())
         {
@@ -93,6 +96,39 @@ namespace x2d {
         if(!t.on_destroy.empty())
         {
             on_destroy_.set_script(config_.create_sys_object<script>(t.on_destroy));
+        }
+        
+        if(!t.on_input_began.empty())
+        {
+            if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
+            {
+                LOG("[%s] Register for input (input began script)", name_.c_str());
+                config_.get_input_manager().register_object(this);
+            }
+
+            on_input_began_.set_script(config_.create_sys_object<script>(t.on_input_began));
+        }
+        
+        if(!t.on_input_moved.empty())
+        {
+            if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
+            {
+                LOG("[%s] Register for input (input moved script)", name_.c_str());
+                config_.get_input_manager().register_object(this);
+            }
+
+            on_input_moved_.set_script(config_.create_sys_object<script>(t.on_input_moved));
+        }
+
+        if(!t.on_input_ended.empty())
+        {
+            if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
+            {
+                LOG("[%s] Register for input (input ended script)", name_.c_str());
+                config_.get_input_manager().register_object(this);
+            }
+
+            on_input_ended_.set_script(config_.create_sys_object<script>(t.on_input_ended));
         }
         
         if(spwn)
@@ -632,33 +668,33 @@ namespace x2d {
         LOG("Object collision END: 0x%X with 0x%X", this, with);        
     }
 
-    void object::set_on_input_began(const boost::function<bool(const glm::vec2&)>& fn)
+    void object::set_on_input_began(const boost::function<void(object*)>& fn)
     {
         if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
         {
             config_.get_input_manager().register_object(this);
         }
         
-        on_input_began_ = fn;
+        on_input_began_.set_callback(fn);
     }
 
-    void object::set_on_input_moved(const boost::function<bool(const glm::vec2&)>& fn)
+    void object::set_on_input_moved(const boost::function<void(object*)>& fn)
     {
         if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
         {
             config_.get_input_manager().register_object(this);
         }
         
-        on_input_moved_ = fn;
+        on_input_moved_.set_callback(fn);
     }
     
-    void object::set_on_input_ended(const boost::function<bool(const glm::vec2&)>& fn)
+    void object::set_on_input_ended(const boost::function<void(object*)>& fn)
     {
         if(! on_input_began_ && ! on_input_moved_ && ! on_input_ended_)
         {
             config_.get_input_manager().register_object(this);
         }
         
-        on_input_ended_ = fn;
+        on_input_ended_.set_callback(fn);
     }
 } // namespace x2d

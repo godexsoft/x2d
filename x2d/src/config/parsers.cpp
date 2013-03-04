@@ -1189,6 +1189,18 @@ namespace config {
         {
             tr.on_destroy = key / "on_destroy";
         }
+        if(exists(key / "on_input_began"))
+        {
+            tr.on_input_began = key / "on_input_began";
+        }
+        if(exists(key / "on_input_moved"))
+        {
+            tr.on_input_moved = key / "on_input_moved";
+        }
+        if(exists(key / "on_input_ended"))
+        {
+            tr.on_input_ended = key / "on_input_ended";
+        }
         
         // merge overrides into prototype
         if(proto)
@@ -1224,7 +1236,6 @@ namespace config {
         tr.position.set( glm::vec3(0.5f, 0.5f, 0.0f) );
         tr.pivot.set( glm::vec2(0.5f, 0.5f) );
         
-        // TODO: scripts
         if(exists(key / "on_transition_to"))
         {
             tr.on_transition_to = key / "on_transition_to";

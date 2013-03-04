@@ -105,7 +105,9 @@ using namespace x2d::config;
         {
             if(on_input_began_)
             {
-                return on_input_began_(v);
+                // FIXME: pass location info
+                on_input_began_(this);
+                return true;
             }
 
             return false;
@@ -115,7 +117,9 @@ using namespace x2d::config;
         {
             if(on_input_moved_)
             {
-                return on_input_moved_(v);
+                // FIXME: pass location info
+                on_input_moved_(this);
+                return true;
             }
 
             return false;
@@ -125,7 +129,9 @@ using namespace x2d::config;
         {
             if(on_input_ended_)
             {
-                return on_input_ended_(v);
+                // FIXME: pass location info                
+                on_input_ended_(this);
+                return true;
             }
             
             return false;
@@ -133,9 +139,9 @@ using namespace x2d::config;
         
         void set_lifetime(const float& ttl);
         
-        void set_on_input_began(const boost::function<bool(const glm::vec2&)>& fn);
-        void set_on_input_moved(const boost::function<bool(const glm::vec2&)>& fn);
-        void set_on_input_ended(const boost::function<bool(const glm::vec2&)>& fn);
+        void set_on_input_began(const boost::function<void(object*)>& fn);
+        void set_on_input_moved(const boost::function<void(object*)>& fn);
+        void set_on_input_ended(const boost::function<void(object*)>& fn);
         
     protected:
         
@@ -172,7 +178,7 @@ using namespace x2d::config;
         void on_create()
         {
             on_create_(this);
-        }
+        }    
         
         config::configuration&  config_;
         timer                   lifetime_timer_;
@@ -198,10 +204,6 @@ using namespace x2d::config;
         
         color_info  bgcolor_;
         
-        boost::function<bool(const glm::vec2&)> on_input_began_;
-        boost::function<bool(const glm::vec2&)> on_input_moved_;
-        boost::function<bool(const glm::vec2&)> on_input_ended_;
-        
         boost::shared_ptr<animation>   cur_animation_;
         boost::shared_ptr<sprite>      cur_sprite_;
         boost::shared_ptr<font>        cur_font_;
@@ -224,6 +226,9 @@ using namespace x2d::config;
         // callables
         callable<object*> on_create_;
         callable<object*> on_destroy_;
+        callable<object*> on_input_began_;
+        callable<object*> on_input_moved_;
+        callable<object*> on_input_ended_;
     };
     
 } // namespace x2d

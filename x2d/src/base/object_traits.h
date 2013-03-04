@@ -162,6 +162,21 @@ namespace x2d {
             {
                 on_destroy = other.on_destroy;
             }
+
+            if(!other.on_input_began.empty())
+            {
+                on_input_began = other.on_input_began;
+            }
+            
+            if(!other.on_input_moved.empty())
+            {
+                on_input_moved = other.on_input_moved;
+            }
+            
+            if(!other.on_input_ended.empty())
+            {
+                on_input_ended = other.on_input_ended;
+            }
             
             if(!other.on_transition_from.empty())
             {
@@ -235,6 +250,9 @@ namespace x2d {
         // scripts
         std::string on_create;
         std::string on_destroy;
+        std::string on_input_began;
+        std::string on_input_moved;
+        std::string on_input_ended;
         
         // scene scripts
         std::string on_transition_to;

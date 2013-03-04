@@ -132,6 +132,17 @@ namespace config {
             create_obj_1_bindings_.insert(
                 std::make_pair(key, boost::bind(&configuration::create_object_1<T>, this, _1, _2)) );
         }
+
+        /**
+         * Bind c++ type to configuration key for scene creation
+         * @param[in] key Configuration key
+         */
+        template <typename T>
+        void bind_scene(const config_key& key)
+        {
+            create_scene_bindings_.insert(
+                std::make_pair(key, boost::bind(&configuration::create_scene<T>, this, _1)) );
+        }
         
         /**
          * Create new object of requested custom type
@@ -202,7 +213,19 @@ namespace config {
          */
         const boost::shared_ptr<scene> create_scene(const config_key& key)
         {
-            boost::shared_ptr<scene> obj = static_cast<object_cfg*>( &(*config_[key]) )->create<scene>();
+            boost::shared_ptr<scene> obj;
+            
+            // try to find binding first
+            if(create_scene_bindings_.find(key) != create_scene_bindings_.end())
+            {
+                // forward to strong-typed version
+                obj = create_scene_bindings_[key]( key );
+            }
+            else
+            {
+                obj = static_cast<object_cfg*>( &(*config_[key]) )->create<scene>();
+            }
+            
             register_object(obj);
             return obj;
         }
@@ -411,14 +434,17 @@ namespace config {
         typedef boost::function<boost::shared_ptr<object>(const config_key&)>             binding_type;
         typedef boost::function<boost::shared_ptr<object>(const config_key&, spawner*)>   binding_1_type;
         
+        typedef boost::function<boost::shared_ptr<scene>(const config_key&)>              scene_binding_type;
+        
         kernel&                                 kernel_;
         resource_manager&                       res_man_;
         
         std::map<config_key, cfg_base_ptr>      config_;
         std::map<std::string, parser_type>      parsers_;
 
-        std::map<config_key, binding_type>      create_obj_bindings_;
-        std::map<config_key, binding_1_type>    create_obj_1_bindings_;
+        std::map<config_key, binding_type>          create_obj_bindings_;
+        std::map<config_key, scene_binding_type>    create_scene_bindings_;
+        std::map<config_key, binding_1_type>        create_obj_1_bindings_;
         
         std::deque< boost::shared_ptr<object> > objects_;
         
