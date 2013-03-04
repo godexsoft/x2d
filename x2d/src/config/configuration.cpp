@@ -377,6 +377,12 @@ namespace config {
     }
 
     template <>
+    const boost::shared_ptr<emitter> configuration::create_sys_object<emitter>(const config_key& key)
+    {
+        return static_cast<emitter_cfg*>( &(*config_[key]) )->create();
+    }
+    
+    template <>
     const boost::shared_ptr<script> configuration::create_sys_object<script>(const config_key& key)
     {
         return static_cast<script_cfg*>( &(*config_[key]) )->create();
@@ -512,6 +518,13 @@ namespace config {
         return r;
     }    
 
+    boost::shared_ptr<emitter> emitter_cfg::create()
+    {
+        boost::shared_ptr<emitter> r = boost::shared_ptr<emitter>(
+            new emitter(config_.get_kernel(), config_, *static_cast<emitter_settings*>(this) ) );
+        return r;
+    }    
+    
     boost::shared_ptr<spawner> spawner_cfg::create()
     {
         boost::shared_ptr<spawner> r = boost::shared_ptr<spawner>( 

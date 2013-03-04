@@ -278,6 +278,7 @@
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
 		24909214154C5A79000EE894 /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24909212154C5A78000EE894 /* hud.cpp */; };
 		2499AF0C16E52D7700CC254C /* emitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2499AF0B16E52D7700CC254C /* emitter.h */; };
+		2499AF0E16E54F9F00CC254C /* emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2499AF0D16E54F9F00CC254C /* emitter.cpp */; };
 		249AD9A016459854000416B3 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 249AD99F16459854000416B3 /* libboost_program_options.dylib */; };
 		24AEA9981646F7C100B42BB4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AEA9971646F7C000B42BB4 /* libz.dylib */; };
 		24AEA99A1646F7D600B42BB4 /* libpng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AEA9991646F7D600B42BB4 /* libpng.dylib */; };
@@ -1173,6 +1174,7 @@
 		2490C1AF1531FC9F00F90732 /* zones_contexts.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zones_contexts.xml; path = demo/res/zones_contexts.xml; sourceTree = "<group>"; };
 		2499AF0916E5283800CC254C /* emitter.incl */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = emitter.incl; sourceTree = "<group>"; };
 		2499AF0B16E52D7700CC254C /* emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emitter.h; path = src/particle_system/emitter.h; sourceTree = "<group>"; };
+		2499AF0D16E54F9F00CC254C /* emitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = emitter.cpp; path = src/particle_system/emitter.cpp; sourceTree = "<group>"; };
 		249AD99F16459854000416B3 /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = /usr/local/lib/libboost_program_options.dylib; sourceTree = "<absolute>"; };
 		24AEA9971646F7C000B42BB4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
 		24AEA9991646F7D600B42BB4 /* libpng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng.dylib; path = /usr/local/lib/libpng.dylib; sourceTree = "<absolute>"; };
@@ -2735,6 +2737,7 @@
 		2499AF0A16E52D4B00CC254C /* particle_system */ = {
 			isa = PBXGroup;
 			children = (
+				2499AF0D16E54F9F00CC254C /* emitter.cpp */,
 				2499AF0B16E52D7700CC254C /* emitter.h */,
 			);
 			name = particle_system;
@@ -4167,6 +4170,7 @@
 				247089081618D9F9006FCCA1 /* resource_manager.cpp in Sources */,
 				24D24CF116D921BE00D689F2 /* value.cpp in Sources */,
 				24C1747816DA3BA10013A8AF /* scene.cpp in Sources */,
+				2499AF0E16E54F9F00CC254C /* emitter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

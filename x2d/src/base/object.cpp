@@ -25,6 +25,7 @@ namespace x2d {
     , has_animation(false)
     , has_sprite(false)
     , has_spawner(false)
+    , has_emitter(false)
     , has_zone(false)
     , has_text(false)
     , align(LEFT_ALIGN)
@@ -161,7 +162,7 @@ namespace x2d {
             // TODO accel connect
         }
         
-        if(t.has_animation || t.has_sprite || t.has_bgcolor || t.has_text)
+        if(t.has_animation || t.has_sprite || t.has_bgcolor || t.has_text || t.has_emitter)
         {
             if(!has_parent_)
             {
@@ -175,6 +176,7 @@ namespace x2d {
         if(t.has_animation)
         {
             cur_animation_ = config_.create_sys_object<animation>(t.animation);
+            
             if(!has_parent_)
             {
                 connect_update(); // animation needs updating
@@ -190,6 +192,16 @@ namespace x2d {
         {
             spawner_ = config_.create_sys_object<spawner>(t.spawner);
             spawner_->set_parent(this); // the spawner will live while this object lives
+        }
+        
+        if(t.has_emitter)
+        {
+            emitter_ = config_.create_sys_object<emitter>(t.emitter);
+            
+            if(!has_parent_)
+            {
+                connect_update(); // emitter needs updating
+            }
         }
         
         if(t.has_zone)
@@ -289,6 +301,11 @@ namespace x2d {
             cur_animation_->update(clock);
         }
         
+        if(emitter_)
+        {
+            emitter_->update(clock);
+        }
+        
         // update all children
         std::for_each(children_.begin(), children_.end(), 
             boost::bind(&object::update, _1, clock));
@@ -349,6 +366,11 @@ namespace x2d {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1.0, 1.0, 1.0, 1.0);
 
+        if(emitter_)
+        {
+            emitter_->draw();
+        }
+        
         if(cur_animation_)
         {
             cur_animation_->draw();

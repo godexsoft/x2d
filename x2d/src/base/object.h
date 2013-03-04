@@ -15,6 +15,7 @@
 #include "space.h"
 #include "animation.h"
 #include "spawner.h"
+#include "emitter.h"
 #include "font.h"
 #include "value.h"
 #include "context.h"
@@ -211,6 +212,7 @@ using namespace x2d::config;
         alignment                      align_;
         
         boost::shared_ptr<spawner>   spawner_;
+        boost::shared_ptr<emitter>   emitter_;
         boost::shared_ptr<zone>      zone_;
         
         bool                         is_visible_;

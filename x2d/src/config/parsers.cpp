@@ -938,6 +938,7 @@ namespace config {
         // space:     'world' (default), 'screen' or 'camera' space        
         // parent_space: 'both' (default), 'position' or 'box'
         // spawner:   configuration key to attach a spawner
+        // emitter:   configuration key to attach a particle system emitter
         // zone:      configuration key to attach a zone
         // box:       rectangle (can be filled with color etc.)
         // pivot:     the pivot as 2d vector. defaults to 0,0
@@ -1094,7 +1095,7 @@ namespace config {
         }
 
         xml_attr* spw = node->first_attribute("spawner");
-        if(spw) 
+        if(spw)
         {
             std::string k = lookup_key(spw->value(), key.remove_last_path_component());
             
@@ -1108,6 +1109,24 @@ namespace config {
                 throw structure_exception(
                     std::string("Object's spawner is not found under key '") 
                         + spw->value() + "'.");
+            }
+        }
+
+        xml_attr* em = node->first_attribute("emitter");
+        if(em)
+        {
+            std::string k = lookup_key(em->value(), key.remove_last_path_component());
+            
+            if(k.empty() == false)
+            {
+                tr.emitter = k;
+                tr.has_emitter = true;
+            }
+            else
+            {
+                throw structure_exception(
+                    std::string("Object's emitter is not found under key '")
+                        + em->value() + "'.");
             }
         }
         

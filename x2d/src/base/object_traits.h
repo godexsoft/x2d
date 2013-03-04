@@ -106,6 +106,12 @@ namespace x2d {
                 has_spawner = true;
                 spawner = other.spawner;
             }
+            
+            if(other.has_emitter)
+            {
+                has_emitter = true;
+                emitter = other.emitter;
+            }
 
             if(other.has_zone)
             {
@@ -221,6 +227,9 @@ namespace x2d {
         
         bool        has_spawner;
         std::string spawner;
+        
+        bool        has_emitter;
+        std::string emitter;
 
         bool        has_zone;
         std::string zone;
