@@ -80,9 +80,7 @@ namespace time {
     
     double current_time()
     {
-        struct timeval start;        
-        gettimeofday(&start, NULL);
-        return double(start.tv_sec) + start.tv_usec * 1E-6;
+        return CACurrentMediaTime();
     }
     
 } // namespace time

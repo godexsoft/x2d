@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x2d version="1.0">
+    <emitter n="shield" type="0" texture="graphics.shield">
+        <vector n="position">0.0 0.0</vector>
+        <float n="speed"><random from="49.209999" to="69.209999" /></float>
+        <float n="life_span"><random from="3.000000" to="5.000000" /></float>
+        <float n="angle"><random from="-270.000000" to="450.000000" /></float>
+        <float n="radial_acceleration">-20.000000</float>
+        <float n="tangential_acceleration">15.000000</float>
+        <vector n="start_color">0.120000 0.250000 0.760000 1.000000</vector>
+        <vector n="finish_color">0.000000 0.000000 0.000000 1.000000</vector>
+        <int n="max_particles">750</int>
+        <float n="duration">-1.000000</float>
+        <int n="blend_src">770</int>
+        <int n="blend_dst">1</int>
+        <float n="start_size"><random from="27.000000" to="47.000000" /></float>
+        <float n="finish_size">37.000000</float>
+        <float n="max_radius"><random from="121.259995" to="431.159973" /></float>
+        <float n="rotate_per_second">35.529999</float>
+    </emitter>
+</x2d>

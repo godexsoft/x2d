@@ -663,6 +663,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2401F0A916E7C89800767F8A /* simple.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = simple.xml; path = 13_scene/game_resources/simple.xml; sourceTree = "<group>"; };
+		2401F0AA16E9053200767F8A /* shield.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = shield.xml; path = 13_scene/game_resources/shield.xml; sourceTree = "<group>"; };
+		2401F0AB16E9094600767F8A /* flame.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = flame.xml; path = 13_scene/game_resources/flame.xml; sourceTree = "<group>"; };
+		2401F0AC16E91F9300767F8A /* jelly.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = jelly.xml; path = 13_scene/game_resources/jelly.xml; sourceTree = "<group>"; };
 		2401F125158A79AA00BC2425 /* libbox2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbox2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2401F132158A7A2A00BC2425 /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2BroadPhase.cpp; path = libs/box2d/Box2D/Collision/b2BroadPhase.cpp; sourceTree = SOURCE_ROOT; };
 		2401F133158A7A2A00BC2425 /* b2CollideCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = b2CollideCircle.cpp; path = libs/box2d/Box2D/Collision/b2CollideCircle.cpp; sourceTree = SOURCE_ROOT; };
@@ -2987,6 +2991,10 @@
 		24C1747C16DA57F50013A8AF /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				2401F0AC16E91F9300767F8A /* jelly.xml */,
+				2401F0AB16E9094600767F8A /* flame.xml */,
+				2401F0AA16E9053200767F8A /* shield.xml */,
+				2401F0A916E7C89800767F8A /* simple.xml */,
 				24C1749B16DA59290013A8AF /* main.xml */,
 			);
 			name = resources;

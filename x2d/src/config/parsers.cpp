@@ -145,8 +145,8 @@ namespace config {
             
             if( data->type() == rx::node_data )
             {
-                config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >(
-                    new value_cfg<glm::vec3>( value_parser<glm::vec3>::parse(data->value())) );
+                config_[key] = boost::shared_ptr< value_cfg<glm::vec4> >(
+                    new value_cfg<glm::vec4>( value_parser<glm::vec4>::parse(data->value())) );
             }
             else
             {
@@ -154,7 +154,7 @@ namespace config {
                 if( std::string("random") == data->name() )
                 {
                     LOG("Random detected.");
-                    parse_random<glm::vec3>(data, key);
+                    parse_random<glm::vec4>(data, key);
                 }
                 else
                 {
@@ -614,7 +614,7 @@ namespace config {
         // must have:
         // n:          name of the element
         // type:       integer, type of the emitter. 0 = gravity, 1 = radial
-        // sprite:     key for the sprite to use when drawing particles
+        // texture:    key for the texture to use when drawing particles
         //
         // can have:
         // position, vec2
@@ -648,8 +648,8 @@ namespace config {
             throw structure_exception("Emitter type must be either 0 or 1. See documentation for more info.");
         }
         
-        c->sprite_ = *get_mandatory_key_attr(*this, node, key, "sprite",
-            parse_exception("Emitter must have 'sprite' defined."));
+        c->texture_ = *get_mandatory_key_attr(*this, node, key, "texture",
+            parse_exception("Emitter must have 'texture' defined."));
         
         c->position_ =  get_attr<glm::vec2>(*this, node, key, "position", glm::vec2(0.0f,0.0f));
         c->speed_ =     get_attr<float>(*this, node, key, "speed", 0.0f);
@@ -660,10 +660,10 @@ namespace config {
         c->tangential_acceleration_ =   get_attr<float>(*this, node, key, "tangential_acceleration", 0.0f);
         c->start_color_ =       get_attr<color_info>(*this, node, key, "start_color", color_info(0.0f, 0.0f, 0.0f, 0.0f));
         c->finish_color_ =      get_attr<color_info>(*this, node, key, "finish_color", color_info(0.0f, 0.0f, 0.0f, 0.0f));
-        c->max_particles_ =     get_attr<int>(*this, node, key, "max_particles", 0);
-        c->duration_ =          get_attr<float>(*this, node, key, "duration", 0.0f);
-        c->blend_src_ =         get_attr<int>(*this, node, key, "blend_src", 0);
-        c->blend_dst_ =         get_attr<int>(*this, node, key, "blend_dst", 0);
+        c->max_particles_ =     *get_attr<int>(*this, node, key, "max_particles", 0);
+        c->duration_ =          *get_attr<float>(*this, node, key, "duration", 0.0f);
+        c->blend_src_ =         *get_attr<int>(*this, node, key, "blend_src", 0);
+        c->blend_dst_ =         *get_attr<int>(*this, node, key, "blend_dst", 0);
         c->start_size_ =        get_attr<float>(*this, node, key, "start_size", 0.0f);
         c->finish_size_ =       get_attr<float>(*this, node, key, "finish_size", 0.0f);
         c->min_radius_ =        get_attr<float>(*this, node, key, "min_radius", 0.0f);

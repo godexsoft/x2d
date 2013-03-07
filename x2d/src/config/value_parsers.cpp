@@ -125,6 +125,28 @@ namespace config {
     }
     
     template<>
+    glm::vec4 value_parser<glm::vec4>::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        ss << str;
+        
+        float x, y, z, a;
+        ss >> x >> y;
+        
+        if(!(ss >> z))
+        {
+            z = 0.0f;
+            a = 0.0f;
+        }
+        else if(!(ss >> a))
+        {
+            a = 0.0f;
+        }
+        
+        return glm::vec4(x, y, z, a);
+    }
+    
+    template<>
     glm::vec3 value_parser<glm::vec3>::parse(const std::string& str)
     {
         std::stringstream ss;

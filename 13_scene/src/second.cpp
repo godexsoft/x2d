@@ -26,7 +26,7 @@ void second_scene::touch_input_ended(space s, const std::vector<touch>& touches)
 {
     if(mover_.is_completed())
     {
-        get_app().switch_to( get_config().create_scene<first_scene>("scenes.first") );
+        switch_to( get_config().create_scene<first_scene>("scenes.first") );
     }
 }
 

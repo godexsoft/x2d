@@ -361,15 +361,10 @@ namespace x2d {
             glPopMatrix();
             glEnable(GL_TEXTURE_2D);
         }
-        
+
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1.0, 1.0, 1.0, 1.0);
-
-        if(emitter_)
-        {
-            emitter_->draw();
-        }
         
         if(cur_animation_)
         {
@@ -389,6 +384,11 @@ namespace x2d {
         glColor4f(1, 1, 1, 1);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);   
         glDisable(GL_BLEND);
+        
+        if(emitter_)
+        {
+            emitter_->draw();
+        }
         
         // draw all children which are in front of the parent 
         // in current space (relative to this object)

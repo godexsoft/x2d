@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x2d version="1.0">
+    <emitter n="simple" type="0" texture="graphics.simple">
+        <vector n="position"><random from="-150.000000 64.000000" to="150.000000 -64.000000" /></vector>
+        <float n="life_span"><random from="-4.210600" to="5.131600" /></float>
+        <float n="angle"><random from="123.289993" to="355.070007" /></float>
+        <vector n="gravity">7.000000 100</vector>
+        <vector n="start_color"><random from="0.380000 0.000000 1.000000 1.000000" to="1.620000 1.000000 1.000000 1.000000" /></vector>
+        <vector n="finish_color"><random from="0.130000 0.140000 0.030000 0.000000" to="1.690000 1.860000 1.850000 0.000000" /></vector>
+        <int n="max_particles">295</int>
+        <float n="duration">-1.000000</float>
+        <int n="blend_src">770</int>
+        <int n="blend_dst">771</int>
+        <float n="start_size"><random from="-16.000000" to="16.840000" /></float>
+        <float n="finish_size">46.029999</float>
+        <float n="max_radius">100.000000</float>
+    </emitter>
+</x2d>

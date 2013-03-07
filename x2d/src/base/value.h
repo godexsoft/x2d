@@ -90,7 +90,9 @@ namespace x2d {
          * @param[in] to Maximum value to generate
          */
         value(const T& from, const T& to)
-        : dist_(from>to?to:from, from<to?to:from)
+        : from_(from>to?to:from)
+        , to_(from<to?to:from)
+        , dist_(from_, to_)
         , is_rand_(true)
         {
             // If random ends up with same value everytime - cache it
@@ -127,9 +129,36 @@ namespace x2d {
             return get();
         }
         
+        inline T mid() const
+        {
+            return (min()+max())/2;
+        }
+        
+        inline T min() const
+        {
+            if(is_rand_)
+            {
+                return from_;
+            }
+            
+            return value_;
+        }
+        
+        inline T max() const
+        {
+            if(is_rand_)
+            {
+                return to_;
+            }
+
+            return value_;
+        }
+        
     private:
-        wrapped_distribution<T> dist_;
         T value_;
+        T from_;
+        T to_;
+        wrapped_distribution<T> dist_;
         bool is_rand_;
     };
     
@@ -482,6 +511,62 @@ namespace x2d {
     };
     
     /**
+     * Special version for glm::vec4
+     */
+    template<>
+    class value<glm::vec4>
+    {
+    public:
+        /**
+         * Constructor from single cached value.
+         * @param[in] v Value to store
+         */
+        value(const glm::vec4& v = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f))
+        : r_(v.r)
+        , g_(v.g)
+        , b_(v.b)
+        , a_(v.a)
+        {
+        }
+        
+        /**
+         * Constructor from two values. Will produce random value in range.
+         * @param[in] from Minimum value to generate
+         * @param[in] to Maximum value to generate
+         */
+        value(const glm::vec4& from, const glm::vec4& to)
+        : r_(from.r, to.r)
+        , g_(from.g, to.g)
+        , b_(from.b, to.b)
+        , a_(from.a, to.a)
+        {
+        }
+        
+        /**
+         * Get a value.
+         * @return Value of the type specified at template instantiation
+         */
+        glm::vec4 get() const
+        {
+            return glm::vec4(*r_, *g_, *b_, *a_);
+        }
+        
+        /**
+         * Convenience access operator.
+         */
+        glm::vec4 operator *() const
+        {
+            return get();
+        }
+        
+    private:
+        value<float> r_;
+        value<float> g_;
+        value<float> b_;
+        value<float> a_;
+    };
+    
+    /**
      * Special version for color_info
      */
     template<>
@@ -492,7 +577,7 @@ namespace x2d {
          * Constructor from single cached value.
          * @param[in] v Value to store
          */
-        value(const color_info& v)
+        value(const color_info& v = color_info())
         : r_(v.r)
         , g_(v.g)
         , b_(v.b)

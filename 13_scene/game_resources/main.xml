@@ -2,7 +2,7 @@
     
     <!-- engine setup -->
     <camera n="camera" frustum="320 480" />
-    <viewport n="viewport" box="0 0 320 480" camera="camera" bgcolor="0.0 0.0 0.0" />
+    <viewport n="viewport" box="0 0 640 960" camera="camera" bgcolor="0.0 0.0 0.0" />
     <input n="input" accelerometer="false" touch="true" />
 
     <namespace n="graphics">
@@ -14,22 +14,46 @@
         <texture n="second" path="res/graphics/second.png">
             <sprite n = "bg" x="0" y="0" w="320" h="480" />
         </texture>
+
+        <texture n="simple" path="res/graphics/simple.png" />
+        <texture n="shield" path="res/graphics/shield.png" />
+        <texture n="flame" path="res/graphics/flame.png" />
+        <texture n="jelly" path="res/graphics/jelly.png" />
         
+    </namespace>
+    
+    <namespace n ="particles">
+        <include path = "res/simple.xml" />
+        <include path = "res/shield.xml" />
+        <include path = "res/flame.xml" />
+        <include path = "res/jelly.xml" />
     </namespace>
     
     <namespace n="scenes">
     
         <scene   n = "first">
+            <!--                 sprite = "graphics.first.bg" -->
             <object  n = "background"
-                sprite = "graphics.first.bg"
               position = "0.5 0.5 5.0"
-            />            
+
+            />
+            
+            <object n = "simple"
+             position = "0.5 0.5 0.0"
+                scale = "0.5"
+              emitter = "particles.jelly"
+            />
         </scene>
        
         <scene n="second">
             <object  n = "background"
                 sprite = "graphics.second.bg"
               position = "0.5 0.5 5.0"
+            />
+            
+            <object n = "shield"
+                position = "0.5 0.5 0.0"
+                emitter = "particles.shield"
             />
         </scene>
         

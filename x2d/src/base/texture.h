@@ -76,6 +76,9 @@ namespace base {
         ~texture();
         
         inline size area() const { return size_; }
+        inline GLfloat maxs() const { return max_s_; }
+        inline GLfloat maxt() const { return max_t_; }
+        inline GLuint name() const { return name_; }
         
         /**
          * Draw the texture

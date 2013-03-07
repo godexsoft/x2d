@@ -96,5 +96,30 @@ namespace config {
         config_[key] = boost::shared_ptr< value_cfg<glm::vec3> >( new value_cfg<glm::vec3>(min, max) );
     }
     
+    template<>
+    void configuration::parse_random<glm::vec4>(xml_node* node, const config_key& key)
+    {
+        // must have:
+        // from: minimal value to generate
+        // to:   maximum value to generate
+        
+        xml_attr* from = node->first_attribute("from");
+        if(!from)
+        {
+            throw parse_exception("Random must have 'from' defined.");
+        }
+        
+        xml_attr* to = node->first_attribute("to");
+        if(!to)
+        {
+            throw parse_exception("Random must have 'to' defined.");
+        }
+        
+        glm::vec4 min = value_parser<glm::vec4>::parse(from->value());
+        glm::vec4 max = value_parser<glm::vec4>::parse(to->value());
+        
+        config_[key] = boost::shared_ptr< value_cfg<glm::vec4> >( new value_cfg<glm::vec4>(min, max) );
+    }
+    
 } // namespace config
 } // namespace x2d

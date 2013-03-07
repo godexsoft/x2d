@@ -17,10 +17,7 @@ namespace graphics {
     {
         // initialize OpenGL states
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable(GL_TEXTURE_2D);
         glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);    // multiply current color and texture color
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
         glLoadIdentity();
         glClearColor(0.0f,0.0f,0.0f,1.0f);
@@ -31,6 +28,10 @@ namespace graphics {
         // no lighting/depth testing
         glDisable( GL_DEPTH_TEST );
         glDisable( GL_LIGHTING );
+        
+        glEnable(GL_TEXTURE_2D);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
         LOG("DONE with OpenGL initialization");
     }

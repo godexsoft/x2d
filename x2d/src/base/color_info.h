@@ -26,6 +26,14 @@ namespace base {
         {            
         }
         
+        color_info()
+        : r(0.0f)
+        , g(0.0f)
+        , b(0.0f)
+        , a(0.0f)
+        {
+        }
+        
         float r, g, b, a;
     };
     
