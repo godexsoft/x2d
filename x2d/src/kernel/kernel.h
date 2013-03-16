@@ -124,11 +124,6 @@ namespace x2d
          */
         int step();
         
-        /**
-         * Handler for system timer
-         */
-        void sys_timer_handler(const clock_info& ci);
-        
         // Signal exposure
         boost::signals::connection connect_update( base_object* o );
         boost::signals::connection connect_render( base_object* o, float z, bool camera_space = false );
@@ -230,8 +225,15 @@ namespace x2d
             const boost::function<void(const clock_info&)>& f, const clock_info& ci);
         
         // system
+        const double max_frame_rate_;
+        const double min_frame_rate_;
+        const double max_cycles_per_frame_;
+        const double update_interval_; 
+        
+        double last_frame_time_;
+        double cycles_left_over_;
+
         time::clock     sys_clock_;
-        timer           sys_timer_;
         
         clock_info      pause_time_;
         bool            is_paused_;

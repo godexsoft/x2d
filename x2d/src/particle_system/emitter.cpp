@@ -12,7 +12,7 @@
 namespace x2d {
 namespace particle_system {
 
-#define MAXIMUM_UPDATE_RATE 60.0f
+#define MAXIMUM_UPDATE_RATE 90.0f
     
     void particle::init(const emitter_settings& es)
     {
@@ -266,8 +266,6 @@ namespace particle_system {
     
     void emitter::draw()
     {
-        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ALPHA);
-
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_BLEND);
         
@@ -288,8 +286,6 @@ namespace particle_system {
         
         glDisable(GL_BLEND);
         glDisableClientState(GL_COLOR_ARRAY);
-        
-        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     }
     
 } // namespace particle_system

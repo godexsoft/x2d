@@ -18,15 +18,17 @@
 namespace x2d 
 {
     kernel::kernel()
-    : sys_clock_()
+    : max_frame_rate_(90.0)
+    , min_frame_rate_(15.0)
+    , max_cycles_per_frame_(max_frame_rate_/min_frame_rate_)
+    , update_interval_(1.0/max_frame_rate_) // fixed update interval
+    , last_frame_time_(0.0f)
+    , cycles_left_over_(0.0f)
     , pause_time_(sys_clock_.current_time())
     , is_paused_(false)
-    , sys_timer_(*this, sys_clock_)
     , cur_viewport_(-1)
     , event_man_(boost::shared_ptr<event_manager>(new event_manager()))
     {
-        sys_timer_.handler( boost::bind(&kernel::sys_timer_handler, this, _1) );
-        sys_timer_.set(1.0/60.0);
     }
 
     void kernel::add_viewport(const boost::shared_ptr<viewport>& vp)
@@ -162,26 +164,67 @@ namespace x2d
     }
     
     /**
-     * System timer callback
-     */ 
-    void kernel::sys_timer_handler(const clock_info& ci)
-    {
-        // update physics
-    	world::instance().update(ci);
+     * Kernel stepper (runloop)
+     */
+    int kernel::step()
+    {   
+        if(is_paused_)
+        {
+            return -1;
+        }
+
+        // TODO: use sys_clock
+        const clock_info ci(platform::time::current_time(), update_interval_);
+        double update_iterations = ((ci.time - last_frame_time_) + cycles_left_over_);
         
-        // update all objects
-        update_signal_(ci);
+        if(update_iterations > (max_cycles_per_frame_ * update_interval_))
+        {
+            update_iterations = (max_cycles_per_frame_ * update_interval_);
+        }
+        
+        // update all timers first
+        while(timers_.size())
+        {
+            timer * t = timers_.front();
+            
+            const clock_info tci = t->clock_.current_time();
+            double ct = tci.time;
+            double ft = t->firetime();
+            
+            if( ct < ft )
+            {
+                // timers are ordered by fire time
+                break;
+            }
+            
+            timers_.pop_front(); // remove this timer
+            t->process(tci);
+        }
+        
+        while (update_iterations >= update_interval_)
+        {
+            update_iterations -= update_interval_;
+            
+            // update physics
+            world::instance().update(ci);
+            
+            // update all objects
+            update_signal_(ci);
+        }
+        
+        cycles_left_over_ = update_iterations;
+        last_frame_time_ = ci.time;
         
         graphics_engine::instance().start_frame();
-
+        
         // render into every viewport
         for(int i=0; i<viewports_.size(); ++i)
-        {   
+        {
             // setup current viewport
             if(cur_viewport_ != i)
             {
             	LOG("using viewport %d", i);
-                viewports_.at(i)->use();           
+                viewports_.at(i)->use();
                 cur_viewport_ = i;
             }
             
@@ -191,41 +234,12 @@ namespace x2d
             // render all objects into this viewport
             // thru the render_wrapper function
             render_signal_(ci);
-
+            
             // remove camera matrix (reset state)
             viewports_.at(cur_viewport_)->get_camera()->remove();
         }
-
-        graphics_engine::instance().present_frame();
-    }
-    
-    /**
-     * Kernel stepper (runloop)
-     */
-    int kernel::step()
-    {   
-        if(is_paused_)
-        {
-            return -1;
-        }
         
-        for( timer_container::iterator it = timers_.begin(); it != timers_.end(); )
-        {
-            const clock_info ci = (*it)->clock_.current_time();
-            double ct = ci.time;
-            double ft = (*it)->firetime();
-            
-            if( ct < ft )
-            {
-                // Timers are ordered by fire time
-                return 0;
-            }
-            
-            timer * t = *it;
-            it = timers_.erase(it);
-            
-            t->process(ci);
-        }
+        graphics_engine::instance().present_frame();
         
         return 0;
     }

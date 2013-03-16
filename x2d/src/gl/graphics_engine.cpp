@@ -87,11 +87,7 @@ namespace graphics {
 #ifdef GL_ES_INCLUDED
     void graphics_engine_bare::start_frame() 
     {
-        set_current_context();
-        
-        glBindFramebufferOES(GL_FRAMEBUFFER_OES, view_frame_buf_);
         glClear(GL_COLOR_BUFFER_BIT);
-        
         bind_texture(0);
     }
 #elif defined(_OPENGL_H)
@@ -109,7 +105,7 @@ namespace graphics {
 #ifdef GL_ES_INCLUDED
     void graphics_engine_bare::present_frame() 
     {
-        glBindRenderbufferOES(GL_RENDERBUFFER_OES, view_render_buf_);
+        // glBindRenderbufferOES(GL_RENDERBUFFER_OES, view_render_buf_);
         present_render_buffer_();
     }
 #elif defined(_OPENGL_H)

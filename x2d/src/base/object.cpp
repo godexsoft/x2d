@@ -57,7 +57,7 @@ namespace x2d {
         for_each(children_.begin(), children_.end(),
             boost::bind(&object::on_lifetime_timer, _1, clock));
         
-        lifetime_timer_.cancel();
+        lifetime_timer_.cancel();        
         config_.deregister_object(shared_from_this());
     }
 
@@ -237,6 +237,7 @@ namespace x2d {
         // add children
         for(std::vector<std::string>::const_iterator it = t.children.begin(); it != t.children.end(); ++it)
         {
+            LOG("[%s] adding child: %s", name_.c_str(), (*it).c_str());
             add_child( config_.create_object(*it) );
         }
         
@@ -329,10 +330,11 @@ namespace x2d {
             glScalef(scale_, scale_, 1.0f);
         }
         
-        // draw all children which are behind the parent 
+        // draw all children which are behind the parent
         // in current space (relative to this object)
         std::for_each(std::find_if(children_.begin(), children_.end(), 
-            boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1)) > position_.z ), children_.end(), 
+            boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1))
+                > -std::numeric_limits<float>::epsilon() ), children_.end(),
                 boost::bind(&object::render, _1, clock) );
        
         // draw the rect with bgcolor if required
@@ -390,11 +392,12 @@ namespace x2d {
             emitter_->draw();
         }
         
-        // draw all children which are in front of the parent 
+        // draw all children which are in front of the parent
         // in current space (relative to this object)
         std::for_each(std::find_if(children_.begin(), children_.end(), 
-            boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1)) <= position_.z ), children_.end(), 
-                boost::bind(&object::render, _1, clock) );        
+            boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1))
+                <= -std::numeric_limits<float>::epsilon() ), children_.end(),
+                boost::bind(&object::render, _1, clock) );
         
         glPopMatrix();        
     }
