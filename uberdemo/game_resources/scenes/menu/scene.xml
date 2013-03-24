@@ -1,0 +1,16 @@
+<x2d version="1.0">
+    
+    <scene      n = "first"
+            proto = "scene_prototype" >
+        <object     n = "btn"
+                  box = "0.6 0.08"
+              bgcolor = "0.8 1 1 0.1"
+             position = "0.5 0.8"
+        >
+            <script n = "on_input_ended">
+                x2d.log("button input")
+            </script>
+        </object>
+    </scene>
+
+</x2d>

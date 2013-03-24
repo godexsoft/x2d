@@ -193,6 +193,7 @@
 		2467298314D9F320003AAA04 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298214D9F320003AAA04 /* random.cpp */; };
 		2467298814D9F8BE003AAA04 /* animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2467298714D9F8BE003AAA04 /* animation.cpp */; };
 		247089081618D9F9006FCCA1 /* resource_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247089071618D9F9006FCCA1 /* resource_manager.cpp */; };
+		24709A8E16FF917900126D0A /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 24709A8D16FF917900126D0A /* resources.zip */; };
 		2483FC4214FFB7990035A90C /* spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2483FC4114FFB7990035A90C /* spawner.cpp */; };
 		2483FC4514FFB9280035A90C /* object_traits.h in Headers */ = {isa = PBXBuildFile; fileRef = 2483FC4414FFB9280035A90C /* object_traits.h */; };
 		2487CA6B14E18137006A7E22 /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
@@ -280,8 +281,6 @@
 		24E020CD16FF8AD900FCF87F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
 		24E020CE16FF8AD900FCF87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24E020CF16FF8AD900FCF87F /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
-		24E020DA16FF8B5400FCF87F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E020D916FF8B5400FCF87F /* main.cpp */; };
-		24E020DD16FF8CA900FCF87F /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 24E020DC16FF8CA900FCF87F /* resources.zip */; };
 		24E4BC5115E2B7D0008F162C /* space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BC5015E2B7D0008F162C /* space.cpp */; };
 		24E4BC6115E461C2008F162C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2314CC6300006F36A1 /* Foundation.framework */; };
 		24E4BCA815E46248008F162C /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BC6D15E46248008F162C /* lapi.c */; };
@@ -357,6 +356,7 @@
 		24E4BD7315E95359008F162C /* callable.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E4BD7215E95357008F162C /* callable.h */; };
 		24E4BD7715E95885008F162C /* callable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24E4BD7615E95883008F162C /* callable.cpp */; };
 		24EE266214FAC9D20073100A /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EE266114FAC9D20073100A /* context.h */; };
+		F44B288D36659EA19C040826 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44B2DDCB0F7D658C54FB8B8 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -948,6 +948,7 @@
 		2467298714D9F8BE003AAA04 /* animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = animation.cpp; path = src/anim/animation.cpp; sourceTree = "<group>"; };
 		2467298C14DA9BA0003AAA04 /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exceptions.h; path = src/base/exceptions.h; sourceTree = "<group>"; };
 		247089071618D9F9006FCCA1 /* resource_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_manager.cpp; path = src/resource/resource_manager.cpp; sourceTree = "<group>"; };
+		24709A8D16FF917900126D0A /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = uberdemo/assets/resources.zip; sourceTree = "<group>"; };
 		2483FC4114FFB7990035A90C /* spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spawner.cpp; path = src/base/spawner.cpp; sourceTree = "<group>"; };
 		2483FC4414FFB9280035A90C /* object_traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object_traits.h; path = src/base/object_traits.h; sourceTree = "<group>"; };
 		2487CA7A14E18137006A7E22 /* x2d_hud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = x2d_hud.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1025,10 +1026,6 @@
 		24DDAD6715AA091B0064EFC5 /* world.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = world.h; path = src/physics/world.h; sourceTree = "<group>"; };
 		24DDAD6915AA21AC0064EFC5 /* world.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = world.cpp; path = src/physics/world.cpp; sourceTree = "<group>"; };
 		24E020D616FF8AD900FCF87F /* UberDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		24E020D816FF8B5400FCF87F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = uberdemo/src/game.h; sourceTree = SOURCE_ROOT; };
-		24E020D916FF8B5400FCF87F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = uberdemo/src/main.cpp; sourceTree = SOURCE_ROOT; };
-		24E020DB16FF8B9B00FCF87F /* main.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = main.xml; path = uberdemo/game_resources/main.xml; sourceTree = SOURCE_ROOT; };
-		24E020DC16FF8CA900FCF87F /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = resources.zip; path = uberdemo/assets/resources.zip; sourceTree = SOURCE_ROOT; };
 		24E4BC5015E2B7D0008F162C /* space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = space.cpp; path = src/base/space.cpp; sourceTree = "<group>"; };
 		24E4BC6015E461C2008F162C /* liblua.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E4BC6D15E46248008F162C /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = libs/lua/src/lapi.c; sourceTree = SOURCE_ROOT; };
@@ -1119,6 +1116,10 @@
 		24E4BD7215E95357008F162C /* callable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = callable.h; path = src/base/callable.h; sourceTree = "<group>"; };
 		24E4BD7615E95883008F162C /* callable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = callable.cpp; path = src/base/callable.cpp; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
+		F44B2027398CD632FABE8083 /* scene.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = scene.xml; sourceTree = "<group>"; };
+		F44B27E4A18316E2184D091F /* main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = main.xml; path = uberdemo/game_resources/main.xml; sourceTree = "<group>"; };
+		F44B2B35B9305ABD8CF335F5 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = uberdemo/src/game.h; sourceTree = "<group>"; };
+		F44B2DDCB0F7D658C54FB8B8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = uberdemo/src/main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1950,8 +1951,8 @@
 			isa = PBXGroup;
 			children = (
 				241911CA1645805B004A543D /* utils */,
-				F44B2B4615C78FB9B05CBF6D /* uber_demo */,
 				24BDCC2714CC6300006F36A1 /* x2d */,
+				F44B24096785DB4BD6DAA95D /* uberdemo */,
 				24BDCC2014CC6300006F36A1 /* Frameworks */,
 				24BDCC1E14CC6300006F36A1 /* Products */,
 			);
@@ -2264,39 +2265,57 @@
 			name = event;
 			sourceTree = "<group>";
 		};
-		F44B28C463B2D7ED490E64C0 /* resources */ = {
+		F44B20F930F1BF7F6FB13A53 /* generated */ = {
 			isa = PBXGroup;
 			children = (
-				24E020DB16FF8B9B00FCF87F /* main.xml */,
+				24709A8D16FF917900126D0A /* resources.zip */,
 			);
-			name = resources;
+			name = generated;
 			sourceTree = "<group>";
 		};
-		F44B29A4941F39765963C27B /* scenes */ = {
+		F44B23364A4E24F93E597B38 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F44B2F12C62FB81B2F3DAAA9 /* menu */,
+			);
+			name = scenes;
+			path = uberdemo/game_resources/scenes;
+			sourceTree = "<group>";
+		};
+		F44B24096785DB4BD6DAA95D /* uberdemo */ = {
+			isa = PBXGroup;
+			children = (
+				F44B2B35B9305ABD8CF335F5 /* game.h */,
+				F44B2DDCB0F7D658C54FB8B8 /* main.cpp */,
+				F44B20F930F1BF7F6FB13A53 /* generated */,
+				F44B249702624663469D8245 /* scenes */,
+				F44B24D36AA3444204E5DCBA /* resources */,
+			);
+			name = uberdemo;
+			sourceTree = "<group>";
+		};
+		F44B249702624663469D8245 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = scenes;
 			sourceTree = "<group>";
 		};
-		F44B2A2BC5055FD153E6B788 /* generated */ = {
+		F44B24D36AA3444204E5DCBA /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				24E020DC16FF8CA900FCF87F /* resources.zip */,
+				F44B27E4A18316E2184D091F /* main.xml */,
+				F44B23364A4E24F93E597B38 /* scenes */,
 			);
-			name = generated;
+			name = resources;
 			sourceTree = "<group>";
 		};
-		F44B2B4615C78FB9B05CBF6D /* uber_demo */ = {
+		F44B2F12C62FB81B2F3DAAA9 /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				24E020D816FF8B5400FCF87F /* game.h */,
-				24E020D916FF8B5400FCF87F /* main.cpp */,
-				F44B2A2BC5055FD153E6B788 /* generated */,
-				F44B28C463B2D7ED490E64C0 /* resources */,
-				F44B29A4941F39765963C27B /* scenes */,
+				F44B2027398CD632FABE8083 /* scene.xml */,
 			);
-			path = uber_demo;
+			path = menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2868,7 +2887,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E020DD16FF8CA900FCF87F /* resources.zip in Resources */,
+				24709A8E16FF917900126D0A /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3285,7 +3304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E020DA16FF8B5400FCF87F /* main.cpp in Sources */,
+				F44B288D36659EA19C040826 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
