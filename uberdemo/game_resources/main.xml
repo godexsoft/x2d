@@ -1,0 +1,48 @@
+<x2d version="1.0">
+    
+    <!-- engine setup -->
+    <camera n="camera" frustum="640 960" />
+    <viewport n="viewport" box="0 0 640 960" camera="camera" bgcolor="0.0 0.0 0.0" />
+    <input n="input" accelerometer="false" touch="true" />
+
+    <namespace n="graphics">
+    </namespace>
+    
+    <namespace n ="particles">
+    </namespace>
+    
+    <namespace n="scenes">
+        <object n = "proto">
+            <object n = "background" bgcolor="0 0 1 0.2" box = "1 1" />
+        </object>
+
+        <scene      n = "first"
+                proto = "proto"
+        >
+            <object     n = "btn"
+                      box = "0.6 0.08"
+                  bgcolor = "0.8 1 1 0.1"
+                 position = "0.5 0.8"
+            >
+                <script n = "on_input_ended">
+                    scene.switch_to("scenes.second")
+                </script>
+            </object>
+        </scene>
+       
+        <scene         n = "second"
+                   proto = "proto"
+        >
+            <object     n = "btn"
+                      box = "0.6 0.08"
+                  bgcolor = "0.8 1 1 0.1"
+                 position = "0.5 0.8"
+            >
+                <script n = "on_input_ended">
+                    scene.switch_to("scenes.first")
+                </script>
+            </object>
+        </scene>
+    </namespace>
+    
+</x2d>
