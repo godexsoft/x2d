@@ -135,6 +135,21 @@ namespace x2d
             return sys_clock_; 
         }
         
+        inline const double max_frame_rate() const
+        {
+            return max_frame_rate_;
+        }
+
+        inline const double min_frame_rate() const
+        {
+            return min_frame_rate_;
+        }
+        
+        inline const double update_interval() const
+        {
+            return update_interval_;
+        }
+        
         /**
          * Enqueue a timer
          * @param[in] t Timer to add

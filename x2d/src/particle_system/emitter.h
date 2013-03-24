@@ -94,7 +94,7 @@ namespace particle_system {
         {            
         }
         
-        void init(const emitter_settings& es);
+        void init(const float maximum_update_rate, const emitter_settings& es);
         
         glm::vec2 position_;
         glm::vec2 direction_;
@@ -126,6 +126,9 @@ namespace particle_system {
             glDeleteBuffers(1, &vertices_id_);
         }
         
+        void stop();
+        void start();
+        
     protected:
         void update(const clock_info& clock);
         void draw();
@@ -141,6 +144,7 @@ namespace particle_system {
         boost::shared_ptr<texture> texture_;
         std::vector<particle> particles_;
         
+        bool enabled_;
         float rate_;
         float elapsed_time_;
         float emit_counter_;

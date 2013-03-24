@@ -147,10 +147,53 @@ namespace x2d {
                 has_parent = true;
             }
 
-            // FIXME: not really good
             if(!other.children.empty())
             {
-                children = other.children;
+                if(children.empty())
+                {
+                    // just copy
+                    children = other.children;
+                }
+                else
+                {
+                    std::vector<std::string> merged_children;
+                    std::vector<std::string> other_copy = other.children;
+
+                    // merge
+                    for(std::vector<std::string>::iterator it = children.begin(); it != children.end();)
+                    {
+                        basic_path<char, '.'> kthis(*it);
+                        std::string to_merge = *it; // this will be the default
+
+                        for(std::vector<std::string>::iterator jit = other_copy.begin(); jit != other_copy.end();)
+                        {
+                            // the rule is simple. we can't have more than one child with the same key
+                            // so if the last path component is same - override from the 'other' child.
+                            basic_path<char, '.'> kother(*jit);
+
+                            if(kthis.last_path_component() == kother.last_path_component())
+                            {
+                                to_merge = *jit; // merge other child path
+                                other_copy.erase(jit); // remove it because we already used this one now
+                                break; // go on to the next key
+                            }
+
+                            ++jit;
+                        }
+
+                        it = children.erase(it); // remove this one as we already handled it
+                        merged_children.push_back(to_merge);
+                    }
+
+                    // Now all left in other children is just something that was not found in the prototype children
+                    // so just merge that in as well.
+                    for(std::vector<std::string>::iterator jit = other_copy.begin(); jit != other_copy.end(); ++jit)
+                    {
+                        merged_children.push_back(*jit);
+                    }
+
+                    children = merged_children;
+                }
             }
             
             // FIXME: not really good

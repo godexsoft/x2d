@@ -11,11 +11,10 @@
 
 namespace x2d {
 namespace particle_system {
-
-#define MAXIMUM_UPDATE_RATE 90.0f
     
-    void particle::init(const emitter_settings& es)
+    void particle::init(const float maximum_update_rate, const emitter_settings& es)
     {
+        float update_rate_sec = 1.0f / maximum_update_rate;
         position_ = *es.position_;
         start_pos_ = position_;
         
@@ -25,7 +24,7 @@ namespace particle_system {
         float life_span = *es.life_span_;
         
         radius_ = *es.max_radius_;
-        radius_delta_ = (radius_ / life_span) * (1.0f / MAXIMUM_UPDATE_RATE);
+        radius_delta_ = (radius_ / life_span) * update_rate_sec;
         angle_ = glm::radians(*es.angle_);
         degrees_per_second_ = glm::radians(*es.rotate_per_second_);
 
@@ -37,17 +36,17 @@ namespace particle_system {
         float start_size = *es.start_size_;
         float finish_size = *es.finish_size_;
         
-        size_delta_ = ((finish_size - start_size) / time_to_live_) * (1.0f / MAXIMUM_UPDATE_RATE);
+        size_delta_ = ((finish_size - start_size) / time_to_live_) * update_rate_sec;
         size_ = fmaxf(0.0f, start_size);
 
         color_info start_color = *es.start_color_;
         color_info finish_color = *es.finish_color_;
 
         color_ = start_color;
-        delta_color_.r = ((finish_color.r - start_color.r) / time_to_live_)  * (1.0f / MAXIMUM_UPDATE_RATE);
-        delta_color_.g  = ((finish_color.g - start_color.g) / time_to_live_) * (1.0f / MAXIMUM_UPDATE_RATE);
-        delta_color_.b = ((finish_color.b - start_color.b) / time_to_live_)  * (1.0f / MAXIMUM_UPDATE_RATE);
-        delta_color_.a = ((finish_color.a - start_color.a) / time_to_live_)  * (1.0f / MAXIMUM_UPDATE_RATE);
+        delta_color_.r = ((finish_color.r - start_color.r) / time_to_live_)  * update_rate_sec;
+        delta_color_.g  = ((finish_color.g - start_color.g) / time_to_live_) * update_rate_sec;
+        delta_color_.b = ((finish_color.b - start_color.b) / time_to_live_)  * update_rate_sec;
+        delta_color_.a = ((finish_color.a - start_color.a) / time_to_live_)  * update_rate_sec;
         
         float start_angle = *es.rotation_start_;
         float end_angle = *es.rotation_end_;
@@ -60,8 +59,9 @@ namespace particle_system {
     , config_(conf)
     , es_(es)
     , texture_( config_.get_object<texture>(es_.texture_) )
+    , enabled_(false)
     {
-        reset();
+        start();
     }
     
     void emitter::reset()
@@ -109,12 +109,25 @@ namespace particle_system {
         glGenBuffers(1, &vertices_id_);
         glBindBuffer(GL_ARRAY_BUFFER, vertices_id_);
         glBufferData(GL_ARRAY_BUFFER, sizeof(particle_quad) * es_.max_particles_, &quads_.at(0), GL_DYNAMIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);        
+    }
+    
+    void emitter::stop()
+    {
+        enabled_ = false;
+        elapsed_time_ = 0;
+        emit_counter_ = 0;
+    }
+    
+    void emitter::start()
+    {
+        enabled_ = true;
+        reset();
     }
     
     void emitter::update(const clock_info& clock)
     {
-        if(rate_)
+        if(enabled_ && rate_)
         {
             float rate = 1.0f/rate_;
             emit_counter_ += clock.delta_time;
@@ -122,14 +135,14 @@ namespace particle_system {
             while(particle_count_ < es_.max_particles_ && emit_counter_ > rate)
             {
                 particle *p = &particles_[particle_count_++];
-                p->init(es_);
+                p->init(kernel_.max_frame_rate(), es_);
                 emit_counter_ -= rate;
             }
             
             elapsed_time_ += clock.delta_time;
             if(es_.duration_ != -1 && es_.duration_ < elapsed_time_)
             {
-                // stop()
+                stop();
             }
         }
         
@@ -161,8 +174,7 @@ namespace particle_system {
                 {
                     glm::vec2 tmp, radial, tangential;
                     
-                    // FIXME: does not make much sense isn't it?
-                    glm::vec2 diff = p->start_pos_; // - glm::vec2(0.0f, 0.0f);
+                    glm::vec2 diff = p->start_pos_;
                     p->position_ -=  diff;
                     
                     if (p->position_.x || p->position_.y)
@@ -276,13 +288,13 @@ namespace particle_system {
         glColorPointer(4, GL_FLOAT, sizeof(textured_colored_vertex), (GLvoid*) offsetof(textured_colored_vertex, color));
         glTexCoordPointer(2, GL_FLOAT, sizeof(textured_colored_vertex), (GLvoid*) offsetof(textured_colored_vertex, texture));
         
-        glBindTexture(GL_TEXTURE_2D, texture_->name());
+        graphics_engine::instance().bind_texture(texture_->name());
         glBlendFunc(es_.blend_src_, es_.blend_dst_);
         
         glDrawElements(GL_TRIANGLES, particle_index_ * 6, GL_UNSIGNED_SHORT, &indices_.at(0));
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
         glDisable(GL_BLEND);
         glDisableClientState(GL_COLOR_ARRAY);

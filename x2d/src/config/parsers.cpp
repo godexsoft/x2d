@@ -964,6 +964,11 @@ namespace config {
                 boost::shared_ptr<object_cfg>(
                     new object_cfg(*this, std::string("scene") == node->name()) );
         }
+        else
+        {
+            // copy traits already created before (children)
+            tr = static_cast<object_cfg*>(&(*config_[key]))->get_traits();
+        }
         
         // check for prototype
         xml_attr* proto = node->first_attribute("proto");
@@ -1298,9 +1303,6 @@ namespace config {
             proto_tr = tr;
         }
         
-        // object must already exist under the key. what we will do is just update its traits.
-        // don't forget to preserve all children which have been set up before.
-        proto_tr.children = static_cast<object_cfg*>(&(*config_[key]))->get_traits().children;
         static_cast<object_cfg*>(&(*config_[key]))->set_traits( proto_tr );
     }
     

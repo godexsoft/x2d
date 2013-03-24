@@ -97,6 +97,8 @@ using namespace x2d::config;
         
         boost::shared_ptr<spawner> get_spawner();
         
+        boost::shared_ptr<emitter> get_emitter();
+        
         // collision. can be reimplemented by clients
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);

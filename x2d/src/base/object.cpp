@@ -683,6 +683,11 @@ namespace x2d {
         return spawner_;
     }
     
+    boost::shared_ptr<emitter> object::get_emitter()
+    {
+        return emitter_;
+    }
+    
     void object::on_collision_begin(object* with)
     {
         LOG("Object collision BEGIN: 0x%X with 0x%X", this, with);
