@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "24E020BE16FF8AD900FCF87F"
-               BuildableName = "13_scene copy.app"
+               BuildableName = "UberDemo.app"
                BlueprintName = "uberdemo"
                ReferencedContainer = "container:x2d.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24E020BE16FF8AD900FCF87F"
-            BuildableName = "13_scene copy.app"
+            BuildableName = "UberDemo.app"
             BlueprintName = "uberdemo"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24E020BE16FF8AD900FCF87F"
-            BuildableName = "13_scene copy.app"
+            BuildableName = "UberDemo.app"
             BlueprintName = "uberdemo"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "24E020BE16FF8AD900FCF87F"
-            BuildableName = "13_scene copy.app"
+            BuildableName = "UberDemo.app"
             BlueprintName = "uberdemo"
             ReferencedContainer = "container:x2d.xcodeproj">
          </BuildableReference>
