@@ -7,46 +7,68 @@
 //
 
 #include "font.h"
+#include "utf8.h"
 
 namespace x2d {
 namespace bitmapfont {
-        
-    font::font(const std::string& characters, std::vector<int> widths, 
-               int height, const size& spacing, boost::shared_ptr<texture> txtr)
-    : texture_(txtr)
+    
+    void glyph::init(const boost::shared_ptr<texture>& txtr)
+    {
+        spr_ = boost::shared_ptr<sprite>( new sprite( txtr, point(x_, y_), size(width_, height_) ) );
+    }
+    
+    font::font(short sz, short baseline, short line_height,
+                 short scale_width, short scale_height, short stretch_height,
+                 const glm::vec4& padding, const size& spacing)
+    : size_(sz)
+    , baseline_(baseline)
+    , line_height_(line_height)
+    , scale_width_(scale_width)
+    , scale_height_(scale_height)
+    , stretch_height_(stretch_height)
+    , padding_(padding)
     , spacing_(spacing)
-    {       
-        if(characters.size() != widths.size())
+    {
+    }
+
+    void font::add_page(const boost::shared_ptr<texture>& txtr)
+    {
+        pages_.push_back(txtr);
+    }
+
+    void font::set_glyphs(const std::vector<glyph>& glyphs)
+    {
+        for(std::vector<glyph>::const_iterator it = glyphs.begin(); it != glyphs.end(); ++it)
         {
-            throw sys_exception("Font character count does not match widths count.");
-        }
-        
-        int cur_y_offset = 0;
-        int cur_x_offset = 0;
-        
-        for(int i=0; i<characters.size(); ++i)
-        {
-            size  sz(widths.at(i), height);
-            
-            if(cur_x_offset + sz.width > texture_->area().width)
-            {
-                cur_x_offset = 0;
-                cur_y_offset += height + spacing_.height;
-            }
-            
-            point orig(cur_x_offset, cur_y_offset);
-            
-            glyphs_.insert( std::make_pair(characters.at(i), 
-                glyph(sz, boost::shared_ptr<sprite>( new sprite( texture_, orig, sz ) ) ) ) );
-            
-            LOG("[%c] Sprite inside glyph: %f %f %f %f", characters.at(i), orig.x, orig.y, sz.width, sz.height);                
-            cur_x_offset += sz.width + spacing_.width;
+            glyph g(*it);
+            g.init(pages_.at( g.page_id_ ));
+
+            glyphs_.insert( std::make_pair((*it).id_, g) );
         }
     }
-            
+    
+    void font::set_kernings(const kern_map& kerns)
+    {
+        kernings_ = kerns;
+    }
+    
+    int font::get_kerning_amount(int first, int second)
+    {
+        kern_map::iterator it = kernings_.find(first);
+        if (it != kernings_.end())
+        {
+            std::map<int, int>::iterator jt = it->second.find(second);
+            if (jt != it->second.end())
+            {
+                return jt->second;
+            }
+        }
+        
+        return 0;
+    }
+    
     void font::print(const std::string& txt, alignment align)
     {
-        
         if(align == RIGHT_ALIGN)
         {
             size s = calculate_size(txt);
@@ -59,44 +81,67 @@ namespace bitmapfont {
         }
         
         int cursor_x = 0;
+        int len = utf8::distance(txt.begin(), txt.end());
         
-        for(int i=0; i<txt.size(); ++i)
+        std::string::const_iterator cit = txt.begin();
+        
+        for (int i = 0; i < len; ++i)
         {
-            std::map<char, glyph>::iterator it = glyphs_.find(txt.at(i));            
+            int c = utf8::next(cit, txt.end());
+            
+            std::map<int, glyph>::iterator it = glyphs_.find(c);
             if(it != glyphs_.end())
             {
                 glEnable(GL_BLEND);
                 glPushMatrix();
                 
-                cursor_x += it->second.size_.width/2;
+                cursor_x += it->second.x_advance_/2.0f;
                 
-                glTranslatef(cursor_x, 0.0, 0.0);
+                if (len > 1 && i < len - 1)
+                {
+                    cursor_x += get_kerning_amount(c, utf8::peek_next(cit, txt.end()));
+                }
+                
+                float y = (line_height_ - it->second.height_) / 2.0f;
+                y -= it->second.y_offset_;
+                float x = cursor_x + it->second.x_offset_;
+                                
+                glTranslatef(x, y, 0.0);
                 it->second.spr_->draw();
                 
                 glPopMatrix();                                
-                cursor_x += it->second.size_.width/2;
+                cursor_x += it->second.x_advance_/2.0f;
                 
                 glDisable(GL_BLEND);
             }
-        }            
+        }
     }
     
     size font::calculate_size(const std::string& txt)
     {
-        int cursor_x = 0;
-        int max_height = 0;
+        float width = 0.0f;
+        float total_width = 0.0f;
+        int len = utf8::distance(txt.begin(), txt.end());
         
-        for(int i=0; i<txt.size(); ++i)
+        std::string::const_iterator cit = txt.begin();
+        
+        for (int i = 0; i < len; ++i)
         {
-            std::map<char, glyph>::iterator it = glyphs_.find(txt.at(i));            
+            int c = utf8::next(cit, txt.end());
+            
+            std::map<int, glyph>::iterator it = glyphs_.find(c);
             if(it != glyphs_.end())
             {
-                cursor_x += it->second.size_.width;
-                max_height = fmaxf(max_height, it->second.size_.height);
+                width += it->second.x_advance_;
+                if (len > 1 && i < len - 1)
+                {
+                    width += get_kerning_amount(c, utf8::peek_next(cit, txt.end()));
+                }
             }
-        }             
-                
-        return size(cursor_x, max_height);
+        }
+        
+        total_width = fmaxf(total_width, width);
+        return CGSizeMake(total_width, line_height_);
     }
         
 } // bitmapfont

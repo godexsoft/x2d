@@ -15,37 +15,57 @@ class font_cfg
 public:  
     /**
      * @param[in] cfg     Configuration object
-     * @param[in] h       Height of the font
-     * @param[in] s       Spacing on x and y
-     * @param[in] tk      Texture key
-     * @param[in] ch      Characters supported by this font         
-     * @param[in] wid     Width of each character
      */
     font_cfg(configuration& cfg,
-             int h, const size& s,
-             const std::string& tk,
-             const std::string& ch,
-             const std::vector<int>& wid)
+            short sz, short baseline, short line_height,
+            short scale_width, short scale_height, short stretch_height,
+            const glm::vec4& padding, const size& spacing)
     : config_(cfg)
-    , height_(h)
-    , spacing_(s)        
-    , texture_(tk)
-    , characters_(ch)
-    , widths_(wid)
-    {            
+    , size_(sz)
+    , baseline_(baseline)
+    , line_height_(line_height)
+    , scale_width_(scale_width)
+    , scale_height_(scale_height)
+    , stretch_height_(stretch_height)
+    , padding_(padding)
+    , spacing_(spacing)
+    {
     }
     
     /**
      * Create if required and return a shared version of the font.
      */
     boost::shared_ptr<font> get();
+
+    void set_pages(const std::vector<std::string>& pages)
+    {
+        pages_ = pages;
+    }
+
+    void set_glyphs(const std::vector<glyph>& glyphs)
+    {
+        glyphs_ = glyphs;
+    }
+    
+    void set_kernings(const kern_map& kerns)
+    {
+        kernings_ = kerns;
+    }
     
 private:
     configuration&             config_;
-    int                        height_;
+    short                      size_;
+    short                      baseline_;
+    short                      line_height_;
+    short                      scale_width_;
+    short                      scale_height_;
+    short                      stretch_height_;
+
+    glm::vec4                  padding_;
     size                       spacing_;
-    std::string                texture_;
-    std::string                characters_;
-    std::vector<int>           widths_;
+
+    std::vector<std::string>   pages_;
+    std::vector<glyph>         glyphs_;
+    kern_map                   kernings_;
     boost::weak_ptr<font>      inst_;
 };

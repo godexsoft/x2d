@@ -5,6 +5,13 @@
     <viewport n="viewport" box="0 0 640 960" camera="camera" bgcolor="0.0 0.0 0.0" />
     <input n="input" accelerometer="false" touch="true" />
 
+    <namespace n="fonts">
+        <include path="res/fonts/TestFont.xml" />
+        <include path="res/fonts/CurvedFont.xml" />
+        <include path="res/fonts/CurvedFont2.xml" />
+        <include path="res/fonts/Japanese.xml" />
+    </namespace>
+
     <object n = "scene_prototype">
         <object n = "bg"
                 box = "1 1"

@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x2d version="1.0">
+    <texture n="Japanese-0" path="res/fonts/Japanese/Japanese.png" />
+
+    <font n="Japanese" size="32" stretchH="100" padding="0 0 0 0" spacing="0 0" lineHeight="37" base="26" scaleW="1024" scaleH="1024">
+        <pages count="1">
+            <page id="0" texture="Japanese-0" />
+        </pages>
+
+        <glyphs count="729">
+            <glyph id="10" x="495" y="656" width="21" height="24" xoffset="3" yoffset="6" xadvance="23" page="0" letter="
+" />
+            <glyph id="32" x="78" y="726" width="0" height="0" xoffset="0" yoffset="31" xadvance="9" page="0" letter="space" />
+            <glyph id="33" x="952" y="683" width="10" height="22" xoffset="2" yoffset="9" xadvance="8" page="0" letter="!" />
+            <glyph id="34" x="911" y="705" width="12" height="10" xoffset="2" yoffset="8" xadvance="9" page="0" letter="&quot;" />
+            <glyph id="35" x="25" y="683" width="24" height="22" xoffset="1" yoffset="9" xadvance="21" page="0" letter="#" />
+            <glyph id="36" x="245" y="656" width="20" height="25" xoffset="1" yoffset="8" xadvance="16" page="0" letter="$" />
+            <glyph id="37" x="704" y="656" width="32" height="22" xoffset="1" yoffset="9" xadvance="28" page="0" letter="%" />
+            <glyph id="38" x="0" y="683" width="25" height="22" xoffset="1" yoffset="9" xadvance="19" page="0" letter="&amp;" />
+            <glyph id="39" x="933" y="705" width="8" height="10" xoffset="2" yoffset="9" xadvance="6" page="0" letter="'" />
+            <glyph id="40" x="754" y="627" width="12" height="28" xoffset="2" yoffset="6" xadvance="9" page="0" letter="(" />
+            <glyph id="41" x="742" y="627" width="12" height="28" xoffset="1" yoffset="6" xadvance="9" page="0" letter=")" />
+            <glyph id="42" x="636" y="705" width="17" height="16" xoffset="1" yoffset="9" xadvance="13" page="0" letter="*" />
+            <glyph id="43" x="669" y="705" width="20" height="15" xoffset="1" yoffset="13" xadvance="16" page="0" letter="+" />
+            <glyph id="44" x="861" y="705" width="9" height="11" xoffset="1" yoffset="23" xadvance="5" page="0" letter="," />
+            <glyph id="45" x="63" y="726" width="15" height="8" xoffset="0" yoffset="17" xadvance="9" page="0" letter="-" />
+            <glyph id="46" x="32" y="726" width="9" height="9" xoffset="1" yoffset="22" xadvance="5" page="0" letter="." />
+            <glyph id="47" x="741" y="683" width="20" height="22" xoffset="1" yoffset="9" xadvance="16" page="0" letter="/" />
+            <glyph id="48" x="435" y="683" width="21" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="0" />
+            <glyph id="49" x="913" y="683" width="13" height="22" xoffset="3" yoffset="9" xadvance="13" page="0" letter="1" />
+            <glyph id="50" x="621" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="2" />
+            <glyph id="51" x="641" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="18" page="0" letter="3" />
+            <glyph id="52" x="519" y="683" width="21" height="22" xoffset="1" yoffset="9" xadvance="18" page="0" letter="4" />
+            <glyph id="53" x="661" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="5" />
+            <glyph id="54" x="259" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="6" />
+            <glyph id="55" x="540" y="683" width="21" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="7" />
+            <glyph id="56" x="281" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="8" />
+            <glyph id="57" x="303" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="9" />
+            <glyph id="58" x="754" y="705" width="9" height="14" xoffset="1" yoffset="14" xadvance="6" page="0" letter=":" />
+            <glyph id="59" x="591" y="705" width="9" height="17" xoffset="1" yoffset="15" xadvance="5" page="0" letter=";" />
+            <glyph id="60" x="551" y="705" width="20" height="17" xoffset="1" yoffset="11" xadvance="16" page="0" letter="&lt;" />
+            <glyph id="61" x="829" y="705" width="20" height="12" xoffset="1" yoffset="15" xadvance="16" page="0" letter="=" />
+            <glyph id="62" x="571" y="705" width="20" height="17" xoffset="1" yoffset="11" xadvance="16" page="0" letter="&gt;" />
+            <glyph id="63" x="681" y="683" width="20" height="22" xoffset="1" yoffset="9" xadvance="16" page="0" letter="?" />
+            <glyph id="64" x="793" y="656" width="28" height="22" xoffset="1" yoffset="9" xadvance="23" page="0" letter="@" />
+            <glyph id="65" x="957" y="656" width="25" height="22" xoffset="0" yoffset="9" xadvance="19" page="0" letter="A" />
+            <glyph id="66" x="325" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="B" />
+            <glyph id="67" x="561" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="17" page="0" letter="C" />
+            <glyph id="68" x="215" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="D" />
+            <glyph id="69" x="701" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="18" page="0" letter="E" />
+            <glyph id="70" x="581" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="18" page="0" letter="F" />
+            <glyph id="71" x="391" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="G" />
+            <glyph id="72" x="193" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="H" />
+            <glyph id="73" x="962" y="683" width="10" height="22" xoffset="2" yoffset="9" xadvance="6" page="0" letter="I" />
+            <glyph id="74" x="899" y="683" width="14" height="22" xoffset="0" yoffset="9" xadvance="9" page="0" letter="J" />
+            <glyph id="75" x="477" y="683" width="21" height="22" xoffset="2" yoffset="9" xadvance="16" page="0" letter="K" />
+            <glyph id="76" x="601" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="16" page="0" letter="L" />
+            <glyph id="77" x="765" y="656" width="28" height="22" xoffset="2" yoffset="9" xadvance="25" page="0" letter="M" />
+            <glyph id="78" x="237" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="N" />
+            <glyph id="79" x="456" y="683" width="21" height="22" xoffset="2" yoffset="9" xadvance="18" page="0" letter="O" />
+            <glyph id="80" x="347" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="P" />
+            <glyph id="81" x="473" y="656" width="22" height="24" xoffset="2" yoffset="9" xadvance="19" page="0" letter="Q" />
+            <glyph id="82" x="413" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="18" page="0" letter="R" />
+            <glyph id="83" x="721" y="683" width="20" height="22" xoffset="1" yoffset="9" xadvance="17" page="0" letter="S" />
+            <glyph id="84" x="761" y="683" width="20" height="22" xoffset="0" yoffset="9" xadvance="14" page="0" letter="T" />
+            <glyph id="85" x="369" y="683" width="22" height="22" xoffset="2" yoffset="9" xadvance="19" page="0" letter="U" />
+            <glyph id="86" x="982" y="656" width="25" height="22" xoffset="0" yoffset="9" xadvance="18" page="0" letter="V" />
+            <glyph id="87" x="516" y="656" width="31" height="23" xoffset="0" yoffset="8" xadvance="25" page="0" letter="W" />
+            <glyph id="88" x="49" y="683" width="24" height="22" xoffset="0" yoffset="9" xadvance="18" page="0" letter="X" />
+            <glyph id="89" x="73" y="683" width="24" height="22" xoffset="0" yoffset="9" xadvance="17" page="0" letter="Y" />
+            <glyph id="90" x="498" y="683" width="21" height="22" xoffset="1" yoffset="9" xadvance="16" page="0" letter="Z" />
+            <glyph id="91" x="766" y="627" width="11" height="28" xoffset="2" yoffset="6" xadvance="9" page="0" letter="[" />
+            <glyph id="92" x="880" y="683" width="19" height="22" xoffset="0" yoffset="9" xadvance="14" page="0" letter="\" />
+            <glyph id="93" x="777" y="627" width="11" height="28" xoffset="2" yoffset="6" xadvance="9" page="0" letter="]" />
+            <glyph id="94" x="895" y="705" width="16" height="10" xoffset="1" yoffset="10" xadvance="11" page="0" letter="^" />
+            <glyph id="95" x="41" y="726" width="22" height="8" xoffset="0" yoffset="23" xadvance="16" page="0" letter="_" />
+            <glyph id="96" x="923" y="705" width="10" height="10" xoffset="3" yoffset="5" xadvance="10" page="0" letter="`" />
+            <glyph id="97" x="401" y="705" width="20" height="18" xoffset="2" yoffset="13" xadvance="17" page="0" letter="a" />
+            <glyph id="98" x="781" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="17" page="0" letter="b" />
+            <glyph id="99" x="520" y="705" width="17" height="18" xoffset="2" yoffset="13" xadvance="13" page="0" letter="c" />
+            <glyph id="100" x="801" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="17" page="0" letter="d" />
+            <glyph id="101" x="461" y="705" width="20" height="18" xoffset="2" yoffset="13" xadvance="16" page="0" letter="e" />
+            <glyph id="102" x="926" y="683" width="13" height="22" xoffset="2" yoffset="9" xadvance="10" page="0" letter="f" />
+            <glyph id="103" x="614" y="656" width="20" height="23" xoffset="2" yoffset="13" xadvance="17" page="0" letter="g" />
+            <glyph id="104" x="821" y="683" width="20" height="22" xoffset="2" yoffset="9" xadvance="17" page="0" letter="h" />
+            <glyph id="105" x="972" y="683" width="9" height="22" xoffset="1" yoffset="9" xadvance="6" page="0" letter="i" />
+            <glyph id="106" x="27" y="656" width="13" height="27" xoffset="-2" yoffset="9" xadvance="6" page="0" letter="j" />
+            <glyph id="107" x="861" y="683" width="19" height="22" xoffset="2" yoffset="9" xadvance="15" page="0" letter="k" />
+            <glyph id="108" x="981" y="683" width="9" height="22" xoffset="2" yoffset="9" xadvance="6" page="0" letter="l" />
+            <glyph id="109" x="333" y="705" width="26" height="18" xoffset="2" yoffset="13" xadvance="23" page="0" letter="m" />
+            <glyph id="110" x="481" y="705" width="20" height="18" xoffset="1" yoffset="13" xadvance="16" page="0" letter="n" />
+            <glyph id="111" x="421" y="705" width="20" height="18" xoffset="1" yoffset="13" xadvance="17" page="0" letter="o" />
+            <glyph id="112" x="634" y="656" width="20" height="23" xoffset="2" yoffset="13" xadvance="17" page="0" letter="p" />
+            <glyph id="113" x="654" y="656" width="20" height="23" xoffset="2" yoffset="13" xadvance="17" page="0" letter="q" />
+            <glyph id="114" x="537" y="705" width="14" height="18" xoffset="1" yoffset="13" xadvance="10" page="0" letter="r" />
+            <glyph id="115" x="501" y="705" width="19" height="18" xoffset="1" yoffset="13" xadvance="15" page="0" letter="s" />
+            <glyph id="116" x="939" y="683" width="13" height="22" xoffset="2" yoffset="9" xadvance="9" page="0" letter="t" />
+            <glyph id="117" x="441" y="705" width="20" height="18" xoffset="2" yoffset="13" xadvance="17" page="0" letter="u" />
+            <glyph id="118" x="310" y="705" width="23" height="19" xoffset="0" yoffset="12" xadvance="16" page="0" letter="v" />
+            <glyph id="119" x="283" y="705" width="27" height="19" xoffset="0" yoffset="12" xadvance="21" page="0" letter="w" />
+            <glyph id="120" x="359" y="705" width="21" height="18" xoffset="0" yoffset="13" xadvance="15" page="0" letter="x" />
+            <glyph id="121" x="574" y="656" width="20" height="23" xoffset="2" yoffset="13" xadvance="17" page="0" letter="y" />
+            <glyph id="122" x="380" y="705" width="21" height="18" xoffset="1" yoffset="13" xadvance="16" page="0" letter="z" />
+            <glyph id="123" x="714" y="627" width="14" height="28" xoffset="1" yoffset="6" xadvance="9" page="0" letter="{" />
+            <glyph id="124" x="319" y="656" width="9" height="25" xoffset="7" yoffset="8" xadvance="16" page="0" letter="|" />
+            <glyph id="125" x="728" y="627" width="14" height="28" xoffset="1" yoffset="6" xadvance="9" page="0" letter="}" />
+            <glyph id="126" x="870" y="705" width="25" height="10" xoffset="1" yoffset="17" xadvance="21" page="0" letter="~" />
+            <glyph id="12288" x="78" y="726" width="0" height="0" xoffset="0" yoffset="31" xadvance="32" page="0" letter="space" />
+            <glyph id="12289" x="689" y="705" width="15" height="15" xoffset="1" yoffset="18" xadvance="32" page="0" letter="、" />
+            <glyph id="12290" x="653" y="705" width="16" height="16" xoffset="2" yoffset="17" xadvance="32" page="0" letter="。" />
+            <glyph id="12291" x="964" y="627" width="28" height="27" xoffset="4" yoffset="2" xadvance="32" page="0" letter="〃" />
+            <glyph id="12292" x="37" y="0" width="37" height="37" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="〄" />
+            <glyph id="12293" x="749" y="529" width="30" height="33" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="々" />
+            <glyph id="12294" x="811" y="562" width="32" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="〆" />
+            <glyph id="12295" x="950" y="427" width="34" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="〇" />
+            <glyph id="12296" x="61" y="181" width="18" height="36" xoffset="20" yoffset="-2" xadvance="32" page="0" letter="〈" />
+            <glyph id="12297" x="79" y="181" width="18" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="〉" />
+            <glyph id="12298" x="23" y="181" width="19" height="36" xoffset="18" yoffset="-2" xadvance="32" page="0" letter="《" />
+            <glyph id="12299" x="42" y="181" width="19" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="》" />
+            <glyph id="12300" x="674" y="656" width="15" height="23" xoffset="22" yoffset="-2" xadvance="32" page="0" letter="「" />
+            <glyph id="12301" x="689" y="656" width="15" height="23" xoffset="2" yoffset="11" xadvance="32" page="0" letter="」" />
+            <glyph id="12302" x="285" y="656" width="17" height="25" xoffset="20" yoffset="-3" xadvance="32" page="0" letter="『" />
+            <glyph id="12303" x="302" y="656" width="17" height="25" xoffset="2" yoffset="9" xadvance="32" page="0" letter="』" />
+            <glyph id="12304" x="141" y="0" width="15" height="37" xoffset="22" yoffset="-3" xadvance="32" page="0" letter="【" />
+            <glyph id="12305" x="156" y="0" width="15" height="37" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="】" />
+            <glyph id="12306" x="428" y="595" width="32" height="31" xoffset="4" yoffset="0" xadvance="32" page="0" letter="〒" />
+            <glyph id="12307" x="936" y="562" width="30" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="〓" />
+            <glyph id="12308" x="161" y="181" width="15" height="36" xoffset="22" yoffset="-2" xadvance="32" page="0" letter="〔" />
+            <glyph id="12309" x="176" y="181" width="15" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="〕" />
+            <glyph id="12310" x="107" y="0" width="17" height="37" xoffset="20" yoffset="-3" xadvance="32" page="0" letter="〖" />
+            <glyph id="12311" x="124" y="0" width="17" height="37" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="〗" />
+            <glyph id="12312" x="97" y="181" width="17" height="36" xoffset="20" yoffset="-2" xadvance="32" page="0" letter="〘" />
+            <glyph id="12313" x="114" y="181" width="17" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="〙" />
+            <glyph id="12314" x="391" y="392" width="16" height="35" xoffset="18" yoffset="-1" xadvance="32" page="0" letter="〚" />
+            <glyph id="12315" x="407" y="392" width="16" height="35" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="〛" />
+            <glyph id="12316" x="704" y="705" width="35" height="14" xoffset="2" yoffset="9" xadvance="32" page="0" letter="〜" />
+            <glyph id="12317" x="600" y="705" width="18" height="16" xoffset="19" yoffset="-3" xadvance="32" page="0" letter="〝" />
+            <glyph id="12318" x="739" y="705" width="15" height="14" xoffset="4" yoffset="0" xadvance="32" page="0" letter="〞" />
+            <glyph id="12319" x="618" y="705" width="18" height="16" xoffset="1" yoffset="18" xadvance="32" page="0" letter="〟" />
+            <glyph id="12320" x="788" y="627" width="37" height="27" xoffset="1" yoffset="2" xadvance="32" page="0" letter="〠" />
+            <glyph id="12336" x="763" y="705" width="39" height="13" xoffset="0" yoffset="9" xadvance="32" page="0" letter="〰" />
+            <glyph id="12337" x="208" y="495" width="21" height="34" xoffset="9" yoffset="-1" xadvance="32" page="0" letter="〱" />
+            <glyph id="12338" x="28" y="495" width="28" height="34" xoffset="6" yoffset="-1" xadvance="32" page="0" letter="〲" />
+            <glyph id="12339" x="186" y="495" width="22" height="34" xoffset="8" yoffset="1" xadvance="32" page="0" letter="〳" />
+            <glyph id="12340" x="912" y="461" width="29" height="34" xoffset="8" yoffset="1" xadvance="32" page="0" letter="〴" />
+            <glyph id="12341" x="0" y="181" width="23" height="36" xoffset="8" yoffset="-4" xadvance="32" page="0" letter="〵" />
+            <glyph id="12342" x="0" y="0" width="37" height="37" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="〶" />
+            <glyph id="12343" x="0" y="392" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="〷" />
+            <glyph id="12353" x="240" y="627" width="27" height="29" xoffset="6" yoffset="3" xadvance="32" page="0" letter="ぁ" />
+            <glyph id="12354" x="760" y="461" width="31" height="34" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="あ" />
+            <glyph id="12355" x="395" y="656" width="27" height="24" xoffset="7" yoffset="8" xadvance="32" page="0" letter="ぃ" />
+            <glyph id="12356" x="363" y="627" width="32" height="28" xoffset="4" yoffset="2" xadvance="32" page="0" letter="い" />
+            <glyph id="12357" x="666" y="627" width="24" height="28" xoffset="7" yoffset="4" xadvance="32" page="0" letter="ぅ" />
+            <glyph id="12358" x="57" y="562" width="28" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="う" />
+            <glyph id="12359" x="507" y="627" width="28" height="28" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ぇ" />
+            <glyph id="12360" x="615" y="562" width="33" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="え" />
+            <glyph id="12361" x="535" y="627" width="28" height="28" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ぉ" />
+            <glyph id="12362" x="369" y="529" width="33" height="33" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="お" />
+            <glyph id="12363" x="0" y="529" width="34" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="か" />
+            <glyph id="12364" x="36" y="427" width="36" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="が" />
+            <glyph id="12365" x="927" y="529" width="29" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="き" />
+            <glyph id="12366" x="830" y="357" width="34" height="35" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ぎ" />
+            <glyph id="12367" x="163" y="495" width="23" height="34" xoffset="7" yoffset="-1" xadvance="32" page="0" letter="く" />
+            <glyph id="12368" x="56" y="495" width="28" height="34" xoffset="6" yoffset="-1" xadvance="32" page="0" letter="ぐ" />
+            <glyph id="12369" x="594" y="529" width="31" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="け" />
+            <glyph id="12370" x="932" y="357" width="34" height="35" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="げ" />
+            <glyph id="12371" x="213" y="627" width="27" height="29" xoffset="6" yoffset="1" xadvance="32" page="0" letter="こ" />
+            <glyph id="12372" x="97" y="627" width="31" height="29" xoffset="5" yoffset="1" xadvance="32" page="0" letter="ご" />
+            <glyph id="12373" x="985" y="529" width="29" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="さ" />
+            <glyph id="12374" x="330" y="392" width="31" height="35" xoffset="5" yoffset="-3" xadvance="32" page="0" letter="ざ" />
+            <glyph id="12375" x="143" y="595" width="27" height="32" xoffset="7" yoffset="0" xadvance="32" page="0" letter="し" />
+            <glyph id="12376" x="85" y="562" width="27" height="33" xoffset="7" yoffset="-1" xadvance="32" page="0" letter="じ" />
+            <glyph id="12377" x="403" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="す" />
+            <glyph id="12378" x="942" y="37" width="36" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ず" />
+            <glyph id="12379" x="443" y="562" width="35" height="32" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="せ" />
+            <glyph id="12380" x="368" y="495" width="37" height="33" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="ぜ" />
+            <glyph id="12381" x="681" y="562" width="33" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="そ" />
+            <glyph id="12382" x="581" y="562" width="34" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ぞ" />
+            <glyph id="12383" x="402" y="529" width="32" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="た" />
+            <glyph id="12384" x="568" y="461" width="32" height="34" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="だ" />
+            <glyph id="12385" x="839" y="529" width="30" height="33" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="ち" />
+            <glyph id="12386" x="299" y="392" width="31" height="35" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ぢ" />
+            <glyph id="12387" x="547" y="656" width="27" height="23" xoffset="5" yoffset="9" xadvance="32" page="0" letter="っ" />
+            <glyph id="12388" x="40" y="656" width="32" height="26" xoffset="3" yoffset="4" xadvance="32" page="0" letter="つ" />
+            <glyph id="12389" x="585" y="495" width="36" height="33" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="づ" />
+            <glyph id="12390" x="851" y="595" width="32" height="30" xoffset="3" yoffset="1" xadvance="32" page="0" letter="て" />
+            <glyph id="12391" x="0" y="627" width="34" height="29" xoffset="3" yoffset="2" xadvance="32" page="0" letter="で" />
+            <glyph id="12392" x="116" y="595" width="27" height="32" xoffset="6" yoffset="-1" xadvance="32" page="0" letter="と" />
+            <glyph id="12393" x="898" y="529" width="29" height="33" xoffset="6" yoffset="-2" xadvance="32" page="0" letter="ど" />
+            <glyph id="12394" x="271" y="461" width="33" height="34" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="な" />
+            <glyph id="12395" x="874" y="562" width="31" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="に" />
+            <glyph id="12396" x="513" y="562" width="34" height="32" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="ぬ" />
+            <glyph id="12397" x="72" y="427" width="36" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="ね" />
+            <glyph id="12398" x="819" y="595" width="32" height="30" xoffset="3" yoffset="1" xadvance="32" page="0" letter="の" />
+            <glyph id="12399" x="779" y="562" width="32" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="は" />
+            <glyph id="12400" x="626" y="357" width="34" height="35" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ば" />
+            <glyph id="12401" x="0" y="461" width="34" height="34" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="ぱ" />
+            <glyph id="12402" x="298" y="595" width="33" height="31" xoffset="4" yoffset="1" xadvance="32" page="0" letter="ひ" />
+            <glyph id="12403" x="170" y="461" width="34" height="34" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="び" />
+            <glyph id="12404" x="969" y="495" width="34" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="ぴ" />
+            <glyph id="12405" x="303" y="562" width="35" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ふ" />
+            <glyph id="12406" x="197" y="562" width="36" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ぶ" />
+            <glyph id="12407" x="338" y="562" width="35" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ぷ" />
+            <glyph id="12408" x="144" y="656" width="35" height="25" xoffset="2" yoffset="4" xadvance="32" page="0" letter="へ" />
+            <glyph id="12409" x="860" y="627" width="35" height="27" xoffset="2" yoffset="2" xadvance="32" page="0" letter="べ" />
+            <glyph id="12410" x="825" y="627" width="35" height="27" xoffset="2" yoffset="2" xadvance="32" page="0" letter="ぺ" />
+            <glyph id="12411" x="530" y="529" width="32" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="ほ" />
+            <glyph id="12412" x="280" y="357" width="35" height="35" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ぼ" />
+            <glyph id="12413" x="68" y="461" width="34" height="34" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="ぽ" />
+            <glyph id="12414" x="809" y="529" width="30" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="ま" />
+            <glyph id="12415" x="547" y="562" width="34" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="み" />
+            <glyph id="12416" x="466" y="529" width="32" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="む" />
+            <glyph id="12417" x="562" y="529" width="32" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="め" />
+            <glyph id="12418" x="779" y="529" width="30" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="も" />
+            <glyph id="12419" x="157" y="627" width="28" height="29" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ゃ" />
+            <glyph id="12420" x="304" y="461" width="33" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="や" />
+            <glyph id="12421" x="267" y="627" width="27" height="29" xoffset="6" yoffset="4" xadvance="32" page="0" letter="ゅ" />
+            <glyph id="12422" x="696" y="461" width="32" height="34" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="ゆ" />
+            <glyph id="12423" x="616" y="627" width="25" height="28" xoffset="6" yoffset="4" xadvance="32" page="0" letter="ょ" />
+            <glyph id="12424" x="869" y="529" width="29" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="よ" />
+            <glyph id="12425" x="60" y="595" width="28" height="32" xoffset="6" yoffset="-1" xadvance="32" page="0" letter="ら" />
+            <glyph id="12426" x="139" y="495" width="24" height="34" xoffset="7" yoffset="-2" xadvance="32" page="0" letter="り" />
+            <glyph id="12427" x="905" y="562" width="31" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="る" />
+            <glyph id="12428" x="775" y="427" width="35" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="れ" />
+            <glyph id="12429" x="522" y="595" width="30" height="31" xoffset="4" yoffset="0" xadvance="32" page="0" letter="ろ" />
+            <glyph id="12430" x="395" y="627" width="28" height="28" xoffset="5" yoffset="5" xadvance="32" page="0" letter="ゎ" />
+            <glyph id="12431" x="204" y="529" width="33" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="わ" />
+            <glyph id="12432" x="843" y="562" width="31" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="ゐ" />
+            <glyph id="12433" x="34" y="529" width="34" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="ゑ" />
+            <glyph id="12434" x="656" y="529" width="31" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="を" />
+            <glyph id="12435" x="270" y="529" width="33" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="ん" />
+            <glyph id="12436" x="136" y="529" width="34" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="ゔ" />
+            <glyph id="12443" x="802" y="705" width="14" height="13" xoffset="0" yoffset="-3" xadvance="32" page="0" letter="゛" />
+            <glyph id="12444" x="816" y="705" width="13" height="13" xoffset="0" yoffset="-3" xadvance="32" page="0" letter="゜" />
+            <glyph id="12445" x="265" y="656" width="20" height="25" xoffset="9" yoffset="3" xadvance="32" page="0" letter="ゝ" />
+            <glyph id="12446" x="690" y="627" width="24" height="28" xoffset="8" yoffset="1" xadvance="32" page="0" letter="ゞ" />
+            <glyph id="12449" x="992" y="627" width="27" height="27" xoffset="6" yoffset="5" xadvance="32" page="0" letter="ァ" />
+            <glyph id="12450" x="396" y="595" width="32" height="31" xoffset="4" yoffset="1" xadvance="32" page="0" letter="ア" />
+            <glyph id="12451" x="563" y="627" width="27" height="28" xoffset="5" yoffset="5" xadvance="32" page="0" letter="ィ" />
+            <glyph id="12452" x="625" y="529" width="31" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="イ" />
+            <glyph id="12453" x="641" y="627" width="25" height="28" xoffset="7" yoffset="4" xadvance="32" page="0" letter="ゥ" />
+            <glyph id="12454" x="956" y="529" width="29" height="33" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="ウ" />
+            <glyph id="12455" x="877" y="656" width="28" height="22" xoffset="5" yoffset="9" xadvance="32" page="0" letter="ェ" />
+            <glyph id="12456" x="212" y="656" width="33" height="25" xoffset="3" yoffset="3" xadvance="32" page="0" letter="エ" />
+            <glyph id="12457" x="479" y="627" width="28" height="28" xoffset="5" yoffset="5" xadvance="32" page="0" letter="ォ" />
+            <glyph id="12458" x="336" y="529" width="33" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="オ" />
+            <glyph id="12459" x="718" y="529" width="31" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="カ" />
+            <glyph id="12460" x="592" y="357" width="34" height="35" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ガ" />
+            <glyph id="12461" x="664" y="461" width="32" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="キ" />
+            <glyph id="12462" x="855" y="145" width="32" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ギ" />
+            <glyph id="12463" x="852" y="461" width="30" height="34" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="ク" />
+            <glyph id="12464" x="180" y="287" width="36" height="35" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="グ" />
+            <glyph id="12465" x="102" y="529" width="34" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="ケ" />
+            <glyph id="12466" x="70" y="322" width="35" height="35" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ゲ" />
+            <glyph id="12467" x="423" y="627" width="28" height="28" xoffset="5" yoffset="3" xadvance="32" page="0" letter="コ" />
+            <glyph id="12468" x="204" y="461" width="34" height="34" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ゴ" />
+            <glyph id="12469" x="170" y="529" width="34" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="サ" />
+            <glyph id="12470" x="720" y="252" width="36" height="35" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ザ" />
+            <glyph id="12471" x="491" y="595" width="31" height="31" xoffset="5" yoffset="0" xadvance="32" page="0" letter="シ" />
+            <glyph id="12472" x="102" y="461" width="34" height="34" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ジ" />
+            <glyph id="12473" x="753" y="595" width="33" height="30" xoffset="3" yoffset="1" xadvance="32" page="0" letter="ス" />
+            <glyph id="12474" x="175" y="322" width="35" height="35" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ズ" />
+            <glyph id="12475" x="331" y="595" width="33" height="31" xoffset="3" yoffset="0" xadvance="32" page="0" letter="セ" />
+            <glyph id="12476" x="670" y="427" width="35" height="34" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ゼ" />
+            <glyph id="12477" x="581" y="595" width="29" height="31" xoffset="5" yoffset="1" xadvance="32" page="0" letter="ソ" />
+            <glyph id="12478" x="791" y="145" width="32" height="36" xoffset="5" yoffset="-4" xadvance="32" page="0" letter="ゾ" />
+            <glyph id="12479" x="361" y="392" width="30" height="35" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="タ" />
+            <glyph id="12480" x="0" y="73" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ダ" />
+            <glyph id="12481" x="434" y="529" width="32" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="チ" />
+            <glyph id="12482" x="866" y="495" width="35" height="33" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="ヂ" />
+            <glyph id="12483" x="0" y="656" width="27" height="27" xoffset="6" yoffset="5" xadvance="32" page="0" letter="ッ" />
+            <glyph id="12484" x="460" y="595" width="31" height="31" xoffset="4" yoffset="1" xadvance="32" page="0" letter="ツ" />
+            <glyph id="12485" x="568" y="287" width="35" height="35" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ヅ" />
+            <glyph id="12486" x="714" y="562" width="33" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="テ" />
+            <glyph id="12487" x="233" y="562" width="35" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="デ" />
+            <glyph id="12488" x="137" y="562" width="23" height="33" xoffset="9" yoffset="-1" xadvance="32" page="0" letter="ト" />
+            <glyph id="12489" x="112" y="562" width="25" height="33" xoffset="9" yoffset="-1" xadvance="32" page="0" letter="ド" />
+            <glyph id="12490" x="747" y="562" width="32" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="ナ" />
+            <glyph id="12491" x="363" y="656" width="32" height="24" xoffset="3" yoffset="4" xadvance="32" page="0" letter="ニ" />
+            <glyph id="12492" x="610" y="595" width="28" height="31" xoffset="4" yoffset="1" xadvance="32" page="0" letter="ヌ" />
+            <glyph id="12493" x="238" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="ネ" />
+            <glyph id="12494" x="638" y="595" width="28" height="31" xoffset="4" yoffset="0" xadvance="32" page="0" letter="ノ" />
+            <glyph id="12495" x="969" y="595" width="35" height="29" xoffset="2" yoffset="1" xadvance="32" page="0" letter="ハ" />
+            <glyph id="12496" x="193" y="595" width="36" height="31" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="バ" />
+            <glyph id="12497" x="229" y="595" width="35" height="31" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="パ" />
+            <glyph id="12498" x="693" y="595" width="27" height="31" xoffset="7" yoffset="0" xadvance="32" page="0" letter="ヒ" />
+            <glyph id="12499" x="791" y="461" width="31" height="34" xoffset="6" yoffset="-3" xadvance="32" page="0" letter="ビ" />
+            <glyph id="12500" x="687" y="529" width="31" height="33" xoffset="6" yoffset="-2" xadvance="32" page="0" letter="ピ" />
+            <glyph id="12501" x="912" y="595" width="29" height="30" xoffset="5" yoffset="2" xadvance="32" page="0" letter="フ" />
+            <glyph id="12502" x="624" y="145" width="34" height="36" xoffset="4" yoffset="-4" xadvance="32" page="0" letter="ブ" />
+            <glyph id="12503" x="237" y="529" width="33" height="33" xoffset="4" yoffset="-1" xadvance="32" page="0" letter="プ" />
+            <glyph id="12504" x="328" y="656" width="35" height="24" xoffset="2" yoffset="4" xadvance="32" page="0" letter="ヘ" />
+            <glyph id="12505" x="294" y="627" width="35" height="28" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ベ" />
+            <glyph id="12506" x="895" y="627" width="35" height="27" xoffset="2" yoffset="2" xadvance="32" page="0" letter="ペ" />
+            <glyph id="12507" x="901" y="495" width="34" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="ホ" />
+            <glyph id="12508" x="70" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ボ" />
+            <glyph id="12509" x="245" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ポ" />
+            <glyph id="12510" x="34" y="627" width="32" height="29" xoffset="3" yoffset="2" xadvance="32" page="0" letter="マ" />
+            <glyph id="12511" x="88" y="595" width="28" height="32" xoffset="5" yoffset="0" xadvance="32" page="0" letter="ミ" />
+            <glyph id="12512" x="303" y="529" width="33" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="ム" />
+            <glyph id="12513" x="966" y="562" width="30" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="メ" />
+            <glyph id="12514" x="786" y="595" width="33" height="30" xoffset="3" yoffset="1" xadvance="32" page="0" letter="モ" />
+            <glyph id="12515" x="185" y="627" width="28" height="29" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ャ" />
+            <glyph id="12516" x="469" y="461" width="33" height="34" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="ヤ" />
+            <glyph id="12517" x="849" y="656" width="28" height="22" xoffset="5" yoffset="9" xadvance="32" page="0" letter="ュ" />
+            <glyph id="12518" x="179" y="656" width="33" height="25" xoffset="3" yoffset="3" xadvance="32" page="0" letter="ユ" />
+            <glyph id="12519" x="97" y="656" width="24" height="26" xoffset="7" yoffset="7" xadvance="32" page="0" letter="ョ" />
+            <glyph id="12520" x="941" y="595" width="28" height="30" xoffset="5" yoffset="1" xadvance="32" page="0" letter="ヨ" />
+            <glyph id="12521" x="30" y="595" width="30" height="32" xoffset="4" yoffset="0" xadvance="32" page="0" letter="ラ" />
+            <glyph id="12522" x="170" y="595" width="23" height="32" xoffset="8" yoffset="0" xadvance="32" page="0" letter="リ" />
+            <glyph id="12523" x="373" y="562" width="35" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="ル" />
+            <glyph id="12524" x="666" y="595" width="27" height="31" xoffset="7" yoffset="0" xadvance="32" page="0" letter="レ" />
+            <glyph id="12525" x="128" y="627" width="29" height="29" xoffset="5" yoffset="2" xadvance="32" page="0" letter="ロ" />
+            <glyph id="12526" x="72" y="656" width="25" height="26" xoffset="7" yoffset="6" xadvance="32" page="0" letter="ヮ" />
+            <glyph id="12527" x="883" y="595" width="29" height="30" xoffset="5" yoffset="2" xadvance="32" page="0" letter="ワ" />
+            <glyph id="12528" x="535" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="ヰ" />
+            <glyph id="12529" x="930" y="627" width="34" height="27" xoffset="2" yoffset="2" xadvance="32" page="0" letter="ヱ" />
+            <glyph id="12530" x="552" y="595" width="29" height="31" xoffset="5" yoffset="1" xadvance="32" page="0" letter="ヲ" />
+            <glyph id="12531" x="66" y="627" width="31" height="29" xoffset="5" yoffset="2" xadvance="32" page="0" letter="ン" />
+            <glyph id="12532" x="168" y="392" width="33" height="35" xoffset="5" yoffset="-3" xadvance="32" page="0" letter="ヴ" />
+            <glyph id="12533" x="590" y="627" width="26" height="28" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ヵ" />
+            <glyph id="12534" x="451" y="627" width="28" height="28" xoffset="5" yoffset="4" xadvance="32" page="0" letter="ヶ" />
+            <glyph id="12535" x="840" y="322" width="35" height="35" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ヷ" />
+            <glyph id="12536" x="987" y="109" width="35" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="ヸ" />
+            <glyph id="12537" x="549" y="495" width="36" height="33" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="ヹ" />
+            <glyph id="12538" x="420" y="145" width="34" height="36" xoffset="4" yoffset="-3" xadvance="32" page="0" letter="ヺ" />
+            <glyph id="12539" x="849" y="705" width="12" height="12" xoffset="13" yoffset="9" xadvance="32" page="0" letter="・" />
+            <glyph id="12540" x="976" y="705" width="33" height="9" xoffset="3" yoffset="11" xadvance="32" page="0" letter="ー" />
+            <glyph id="12541" x="594" y="656" width="20" height="23" xoffset="9" yoffset="4" xadvance="32" page="0" letter="ヽ" />
+            <glyph id="12542" x="121" y="656" width="23" height="26" xoffset="8" yoffset="2" xadvance="32" page="0" letter="ヾ" />
+            <glyph id="12593" x="197" y="705" width="23" height="21" xoffset="5" yoffset="6" xadvance="28" page="0" letter="ㄱ" />
+            <glyph id="12594" x="0" y="705" width="26" height="21" xoffset="4" yoffset="6" xadvance="28" page="0" letter="ㄲ" />
+            <glyph id="12596" x="101" y="705" width="24" height="21" xoffset="6" yoffset="6" xadvance="28" page="0" letter="ㄴ" />
+            <glyph id="12599" x="149" y="705" width="24" height="21" xoffset="6" yoffset="6" xadvance="28" page="0" letter="ㄷ" />
+            <glyph id="12600" x="76" y="705" width="25" height="21" xoffset="5" yoffset="6" xadvance="28" page="0" letter="ㄸ" />
+            <glyph id="12601" x="97" y="683" width="24" height="22" xoffset="5" yoffset="5" xadvance="28" page="0" letter="ㄹ" />
+            <glyph id="12609" x="173" y="705" width="24" height="21" xoffset="5" yoffset="6" xadvance="28" page="0" letter="ㅁ" />
+            <glyph id="12610" x="169" y="683" width="24" height="22" xoffset="5" yoffset="5" xadvance="28" page="0" letter="ㅂ" />
+            <glyph id="12611" x="26" y="705" width="25" height="21" xoffset="5" yoffset="6" xadvance="28" page="0" letter="ㅃ" />
+            <glyph id="12613" x="905" y="656" width="26" height="22" xoffset="4" yoffset="5" xadvance="28" page="0" letter="ㅅ" />
+            <glyph id="12614" x="736" y="656" width="29" height="22" xoffset="3" yoffset="5" xadvance="28" page="0" letter="ㅆ" />
+            <glyph id="12615" x="145" y="683" width="24" height="22" xoffset="5" yoffset="5" xadvance="28" page="0" letter="ㅇ" />
+            <glyph id="12616" x="931" y="656" width="26" height="22" xoffset="4" yoffset="5" xadvance="28" page="0" letter="ㅈ" />
+            <glyph id="12617" x="821" y="656" width="28" height="22" xoffset="3" yoffset="5" xadvance="28" page="0" letter="ㅉ" />
+            <glyph id="12618" x="422" y="656" width="26" height="24" xoffset="4" yoffset="4" xadvance="28" page="0" letter="ㅊ" />
+            <glyph id="12619" x="121" y="683" width="24" height="22" xoffset="5" yoffset="5" xadvance="28" page="0" letter="ㅋ" />
+            <glyph id="12620" x="125" y="705" width="24" height="21" xoffset="6" yoffset="6" xadvance="28" page="0" letter="ㅌ" />
+            <glyph id="12621" x="51" y="705" width="25" height="21" xoffset="5" yoffset="6" xadvance="28" page="0" letter="ㅍ" />
+            <glyph id="12622" x="448" y="656" width="25" height="24" xoffset="5" yoffset="4" xadvance="28" page="0" letter="ㅎ" />
+            <glyph id="12623" x="344" y="495" width="15" height="34" xoffset="12" yoffset="-1" xadvance="28" page="0" letter="ㅏ" />
+            <glyph id="12624" x="267" y="495" width="16" height="34" xoffset="10" yoffset="-1" xadvance="28" page="0" letter="ㅐ" />
+            <glyph id="12625" x="299" y="495" width="15" height="34" xoffset="11" yoffset="-1" xadvance="28" page="0" letter="ㅑ" />
+            <glyph id="12626" x="283" y="495" width="16" height="34" xoffset="10" yoffset="-1" xadvance="28" page="0" letter="ㅒ" />
+            <glyph id="12627" x="329" y="495" width="15" height="34" xoffset="9" yoffset="-1" xadvance="28" page="0" letter="ㅓ" />
+            <glyph id="12628" x="229" y="495" width="19" height="34" xoffset="7" yoffset="-1" xadvance="28" page="0" letter="ㅔ" />
+            <glyph id="12629" x="314" y="495" width="15" height="34" xoffset="9" yoffset="-1" xadvance="28" page="0" letter="ㅕ" />
+            <glyph id="12630" x="248" y="495" width="19" height="34" xoffset="7" yoffset="-1" xadvance="28" page="0" letter="ㅖ" />
+            <glyph id="12631" x="220" y="705" width="32" height="20" xoffset="1" yoffset="6" xadvance="28" page="0" letter="ㅗ" />
+            <glyph id="12632" x="728" y="461" width="32" height="34" xoffset="2" yoffset="-1" xadvance="28" page="0" letter="ㅘ" />
+            <glyph id="12633" x="941" y="461" width="29" height="34" xoffset="2" yoffset="-1" xadvance="28" page="0" letter="ㅙ" />
+            <glyph id="12634" x="112" y="495" width="27" height="34" xoffset="3" yoffset="-1" xadvance="28" page="0" letter="ㅚ" />
+            <glyph id="12635" x="990" y="683" width="31" height="21" xoffset="2" yoffset="6" xadvance="28" page="0" letter="ㅛ" />
+            <glyph id="12636" x="252" y="705" width="31" height="20" xoffset="2" yoffset="13" xadvance="28" page="0" letter="ㅜ" />
+            <glyph id="12637" x="970" y="461" width="29" height="34" xoffset="3" yoffset="-1" xadvance="28" page="0" letter="ㅝ" />
+            <glyph id="12638" x="882" y="461" width="30" height="34" xoffset="2" yoffset="-1" xadvance="28" page="0" letter="ㅞ" />
+            <glyph id="12639" x="0" y="495" width="28" height="34" xoffset="3" yoffset="-1" xadvance="28" page="0" letter="ㅟ" />
+            <glyph id="12641" x="0" y="726" width="32" height="9" xoffset="1" yoffset="18" xadvance="28" page="0" letter="ㅡ" />
+            <glyph id="12642" x="0" y="562" width="29" height="33" xoffset="2" yoffset="-1" xadvance="28" page="0" letter="ㅢ" />
+            <glyph id="12643" x="359" y="495" width="9" height="34" xoffset="13" yoffset="0" xadvance="28" page="0" letter="ㅣ" />
+            <glyph id="19968" x="941" y="705" width="35" height="9" xoffset="2" yoffset="11" xadvance="32" page="0" letter="一" />
+            <glyph id="19971" x="831" y="495" width="35" height="33" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="七" />
+            <glyph id="19977" x="264" y="595" width="34" height="31" xoffset="2" yoffset="0" xadvance="32" page="0" letter="三" />
+            <glyph id="19978" x="705" y="427" width="35" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="上" />
+            <glyph id="19979" x="880" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="下" />
+            <glyph id="19982" x="900" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="与" />
+            <glyph id="19993" x="600" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="丙" />
+            <glyph id="20013" x="887" y="145" width="32" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="中" />
+            <glyph id="20025" x="827" y="392" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="丹" />
+            <glyph id="20035" x="68" y="529" width="34" height="33" xoffset="1" yoffset="0" xadvance="32" page="0" letter="乃" />
+            <glyph id="20037" x="252" y="217" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="久" />
+            <glyph id="20057" x="364" y="595" width="32" height="31" xoffset="4" yoffset="1" xadvance="32" page="0" letter="乙" />
+            <glyph id="20061" x="576" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="九" />
+            <glyph id="20063" x="210" y="357" width="35" height="35" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="也" />
+            <glyph id="20081" x="630" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="乱" />
+            <glyph id="20096" x="870" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="亀" />
+            <glyph id="20104" x="915" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="予" />
+            <glyph id="20108" x="329" y="627" width="34" height="28" xoffset="2" yoffset="2" xadvance="32" page="0" letter="二" />
+            <glyph id="20116" x="268" y="562" width="35" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="五" />
+            <glyph id="20117" x="684" y="217" width="36" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="井" />
+            <glyph id="20124" x="405" y="495" width="36" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="亜" />
+            <glyph id="20154" x="665" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="人" />
+            <glyph id="20170" x="911" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="今" />
+            <glyph id="20195" x="467" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="代" />
+            <glyph id="20250" x="111" y="37" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="会" />
+            <glyph id="20253" x="546" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="伝" />
+            <glyph id="20280" x="637" y="109" width="35" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="伸" />
+            <glyph id="20304" x="330" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="佐" />
+            <glyph id="20307" x="356" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="体" />
+            <glyph id="20351" x="510" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="使" />
+            <glyph id="20384" x="578" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="侠" />
+            <glyph id="20449" x="180" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="信" />
+            <glyph id="20489" x="287" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="倉" />
+            <glyph id="20534" x="504" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="倶" />
+            <glyph id="20581" x="393" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="健" />
+            <glyph id="20805" x="525" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="充" />
+            <glyph id="20809" x="72" y="287" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="光" />
+            <glyph id="20811" x="638" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="克" />
+            <glyph id="20837" x="441" y="495" width="36" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="入" />
+            <glyph id="20843" x="160" y="562" width="37" height="32" xoffset="1" yoffset="0" xadvance="32" page="0" letter="八" />
+            <glyph id="20845" x="108" y="287" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="六" />
+            <glyph id="20856" x="144" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="典" />
+            <glyph id="20877" x="755" y="392" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="再" />
+            <glyph id="20908" x="690" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="冬" />
+            <glyph id="21021" x="463" y="287" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="初" />
+            <glyph id="21033" x="762" y="357" width="34" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="利" />
+            <glyph id="21091" x="910" y="322" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="剣" />
+            <glyph id="21191" x="234" y="392" width="33" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="勇" />
+            <glyph id="21205" x="875" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="動" />
+            <glyph id="21220" x="558" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="勤" />
+            <glyph id="21313" x="35" y="145" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="十" />
+            <glyph id="21365" x="952" y="109" width="35" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="卵" />
+            <glyph id="21407" x="425" y="427" width="35" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="原" />
+            <glyph id="21451" x="852" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="友" />
+            <glyph id="21476" x="524" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="古" />
+            <glyph id="21490" x="315" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="史" />
+            <glyph id="21496" x="600" y="461" width="32" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="司" />
+            <glyph id="21512" x="450" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="合" />
+            <glyph id="21517" x="758" y="145" width="33" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="名" />
+            <glyph id="21629" x="652" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="命" />
+            <glyph id="21644" x="560" y="322" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="和" />
+            <glyph id="21682" x="595" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="咲" />
+            <glyph id="21696" x="72" y="109" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="哀" />
+            <glyph id="21916" x="812" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="喜" />
+            <glyph id="22025" x="210" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="嘉" />
+            <glyph id="22235" x="648" y="562" width="33" height="32" xoffset="3" yoffset="0" xadvance="32" page="0" letter="四" />
+            <glyph id="22259" x="337" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="図" />
+            <glyph id="22290" x="102" y="392" width="33" height="35" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="園" />
+            <glyph id="22317" x="565" y="427" width="35" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="圭" />
+            <glyph id="22320" x="971" y="392" width="36" height="34" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="地" />
+            <glyph id="22338" x="612" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="坂" />
+            <glyph id="22402" x="935" y="392" width="36" height="34" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="垂" />
+            <glyph id="22478" x="288" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="城" />
+            <glyph id="22528" x="805" y="322" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="堀" />
+            <glyph id="22730" x="504" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="壊" />
+            <glyph id="22763" x="935" y="495" width="34" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="士" />
+            <glyph id="22799" x="72" y="252" width="36" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="夏" />
+            <glyph id="22805" x="951" y="145" width="31" height="36" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="夕" />
+            <glyph id="22810" x="74" y="0" width="33" height="37" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="多" />
+            <glyph id="22812" x="763" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="夜" />
+            <glyph id="22818" x="708" y="287" width="35" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="夢" />
+            <glyph id="22823" x="828" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="大" />
+            <glyph id="22825" x="513" y="495" width="36" height="33" xoffset="1" yoffset="0" xadvance="32" page="0" letter="天" />
+            <glyph id="22826" x="972" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="太" />
+            <glyph id="22827" x="0" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="夫" />
+            <glyph id="22855" x="864" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="奇" />
+            <glyph id="22856" x="672" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="奈" />
+            <glyph id="22885" x="427" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="奥" />
+            <glyph id="22899" x="420" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="女" />
+            <glyph id="22909" x="180" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="好" />
+            <glyph id="23019" x="864" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="姫" />
+            <glyph id="23064" x="582" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="娘" />
+            <glyph id="23376" x="621" y="495" width="35" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="子" />
+            <glyph id="23396" x="430" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="孤" />
+            <glyph id="23431" x="898" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="宇" />
+            <glyph id="23432" x="796" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="守" />
+            <glyph id="23433" x="694" y="357" width="34" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="安" />
+            <glyph id="23439" x="140" y="145" width="35" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="宏" />
+            <glyph id="23455" x="918" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="実" />
+            <glyph id="23470" x="725" y="145" width="33" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="宮" />
+            <glyph id="23478" x="848" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="家" />
+            <glyph id="23493" x="707" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="寅" />
+            <glyph id="23500" x="692" y="145" width="33" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="富" />
+            <glyph id="23567" x="423" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="小" />
+            <glyph id="23578" x="919" y="145" width="32" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="尚" />
+            <glyph id="23614" x="899" y="392" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="尾" />
+            <glyph id="23627" x="144" y="427" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="屋" />
+            <glyph id="23665" x="267" y="392" width="32" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="山" />
+            <glyph id="23713" x="632" y="461" width="32" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="岡" />
+            <glyph id="23721" x="900" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="岩" />
+            <glyph id="23777" x="0" y="109" width="36" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="峡" />
+            <glyph id="23798" x="135" y="392" width="33" height="35" xoffset="4" yoffset="-2" xadvance="32" page="0" letter="島" />
+            <glyph id="23822" x="498" y="287" width="35" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="崎" />
+            <glyph id="24029" x="68" y="392" width="34" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="川" />
+            <glyph id="24067" x="252" y="109" width="35" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="布" />
+            <glyph id="24076" x="392" y="109" width="35" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="希" />
+            <glyph id="24111" x="0" y="145" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="帯" />
+            <glyph id="24161" x="252" y="73" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="幡" />
+            <glyph id="24196" x="396" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="庄" />
+            <glyph id="24230" x="396" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="度" />
+            <glyph id="24237" x="837" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="庭" />
+            <glyph id="24247" x="648" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="康" />
+            <glyph id="24335" x="285" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="式" />
+            <glyph id="24336" x="245" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="弐" />
+            <glyph id="24344" x="34" y="461" width="34" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="弘" />
+            <glyph id="24373" x="530" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="張" />
+            <glyph id="24375" x="350" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="強" />
+            <glyph id="24382" x="567" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="弾" />
+            <glyph id="24418" x="635" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="形" />
+            <glyph id="24428" x="612" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="彬" />
+            <glyph id="24444" x="744" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="彼" />
+            <glyph id="24460" x="438" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="後" />
+            <glyph id="24499" x="948" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="徳" />
+            <glyph id="24515" x="719" y="392" width="36" height="34" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="心" />
+            <glyph id="24544" x="813" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="忠" />
+            <glyph id="24565" x="936" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="念" />
+            <glyph id="24605" x="477" y="495" width="36" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="思" />
+            <glyph id="24618" x="402" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="怪" />
+            <glyph id="24651" x="778" y="287" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="恋" />
+            <glyph id="24658" x="618" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="恒" />
+            <glyph id="24685" x="432" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="恭" />
+            <glyph id="24693" x="770" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="恵" />
+            <glyph id="24746" x="355" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="悪" />
+            <glyph id="24764" x="324" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="悼" />
+            <glyph id="24773" x="936" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="情" />
+            <glyph id="24785" x="455" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="惑" />
+            <glyph id="24801" x="863" y="392" width="36" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="惡" />
+            <glyph id="24819" x="216" y="287" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="想" />
+            <glyph id="24859" x="847" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="愛" />
+            <glyph id="24910" x="180" y="109" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="慎" />
+            <glyph id="24974" x="454" y="145" width="34" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="憎" />
+            <glyph id="25104" x="468" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="成" />
+            <glyph id="25105" x="245" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="我" />
+            <glyph id="25126" x="72" y="217" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="戦" />
+            <glyph id="25161" x="360" y="252" width="36" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="扉" />
+            <glyph id="25165" x="105" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="才" />
+            <glyph id="25309" x="288" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="拝" />
+            <glyph id="25506" x="396" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="探" />
+            <glyph id="25778" x="288" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="撲" />
+            <glyph id="25934" x="360" y="73" width="36" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="敎" />
+            <glyph id="25935" x="282" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="敏" />
+            <glyph id="25991" x="792" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="文" />
+            <glyph id="26032" x="798" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="新" />
+            <glyph id="26041" x="735" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="方" />
+            <glyph id="26085" x="29" y="562" width="28" height="33" xoffset="5" yoffset="0" xadvance="32" page="0" letter="日" />
+            <glyph id="26126" x="502" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="明" />
+            <glyph id="26143" x="691" y="495" width="35" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="星" />
+            <glyph id="26149" x="615" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="春" />
+            <glyph id="26178" x="966" y="357" width="34" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="時" />
+            <glyph id="26228" x="315" y="145" width="35" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="晴" />
+            <glyph id="26263" x="490" y="357" width="34" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="暗" />
+            <glyph id="26332" x="660" y="357" width="34" height="35" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="曜" />
+            <glyph id="26354" x="201" y="392" width="33" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="曲" />
+            <glyph id="26376" x="822" y="461" width="30" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="月" />
+            <glyph id="26377" x="756" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="有" />
+            <glyph id="26397" x="658" y="145" width="34" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="朝" />
+            <glyph id="26408" x="936" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="木" />
+            <glyph id="26410" x="108" y="109" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="未" />
+            <glyph id="26412" x="888" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="本" />
+            <glyph id="26441" x="0" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="杉" />
+            <glyph id="26446" x="0" y="287" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="李" />
+            <glyph id="26449" x="108" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="村" />
+            <glyph id="26469" x="497" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="来" />
+            <glyph id="26494" x="780" y="181" width="36" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="松" />
+            <glyph id="26512" x="180" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="析" />
+            <glyph id="26519" x="191" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="林" />
+            <glyph id="26681" x="474" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="根" />
+            <glyph id="26716" x="540" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="桜" />
+            <glyph id="26893" x="576" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="植" />
+            <glyph id="26894" x="720" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="椎" />
+            <glyph id="26908" x="985" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="検" />
+            <glyph id="27005" x="612" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="楽" />
+            <glyph id="27022" x="874" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="榎" />
+            <glyph id="27096" x="366" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="様" />
+            <glyph id="27193" x="185" y="37" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="樹" />
+            <glyph id="27211" x="258" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="橋" />
+            <glyph id="27278" x="222" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="檎" />
+            <glyph id="27468" x="294" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="歌" />
+            <glyph id="27494" x="144" y="287" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="武" />
+            <glyph id="27497" x="720" y="217" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="歩" />
+            <glyph id="27515" x="0" y="427" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="死" />
+            <glyph id="27578" x="37" y="37" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="殺" />
+            <glyph id="27584" x="684" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="毀" />
+            <glyph id="27604" x="495" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="比" />
+            <glyph id="27611" x="140" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="毛" />
+            <glyph id="27665" x="656" y="495" width="35" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="民" />
+            <glyph id="27671" x="468" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="気" />
+            <glyph id="27703" x="648" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="氷" />
+            <glyph id="27704" x="487" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="永" />
+            <glyph id="27743" x="390" y="427" width="35" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="江" />
+            <glyph id="27770" x="828" y="73" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="決" />
+            <glyph id="27810" x="250" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="沢" />
+            <glyph id="27835" x="684" y="73" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="治" />
+            <glyph id="27836" x="728" y="357" width="34" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="沼" />
+            <glyph id="27861" x="36" y="287" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="法" />
+            <glyph id="27874" x="144" y="217" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="波" />
+            <glyph id="27888" x="924" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="泰" />
+            <glyph id="27915" x="490" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="洋" />
+            <glyph id="27941" x="216" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="津" />
+            <glyph id="27973" x="140" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="浅" />
+            <glyph id="27996" x="36" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="浜" />
+            <glyph id="28006" x="144" y="109" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="浦" />
+            <glyph id="28009" x="358" y="287" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="浩" />
+            <glyph id="28014" x="972" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="浮" />
+            <glyph id="28023" x="834" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="海" />
+            <glyph id="28107" x="654" y="37" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="淋" />
+            <glyph id="28193" x="216" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="渡" />
+            <glyph id="28201" x="756" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="温" />
+            <glyph id="28204" x="35" y="357" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="測" />
+            <glyph id="28288" x="36" y="109" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="満" />
+            <glyph id="28357" x="0" y="37" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="滅" />
+            <glyph id="28779" x="700" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="火" />
+            <glyph id="28988" x="504" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="焼" />
+            <glyph id="29105" x="708" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="熱" />
+            <glyph id="29183" x="648" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="燿" />
+            <glyph id="29190" x="376" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="爆" />
+            <glyph id="29420" x="0" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="独" />
+            <glyph id="29483" x="324" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="猫" />
+            <glyph id="29577" x="408" y="562" width="35" height="32" xoffset="2" yoffset="0" xadvance="32" page="0" letter="玉" />
+            <glyph id="29579" x="478" y="562" width="35" height="32" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="王" />
+            <glyph id="29730" x="682" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="琢" />
+            <glyph id="29748" x="324" y="217" width="36" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="琴" />
+            <glyph id="29976" x="70" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="甘" />
+            <glyph id="29983" x="215" y="427" width="35" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="生" />
+            <glyph id="29992" x="136" y="461" width="34" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="用" />
+            <glyph id="30000" x="498" y="529" width="32" height="33" xoffset="3" yoffset="0" xadvance="32" page="0" letter="田" />
+            <glyph id="30001" x="823" y="145" width="32" height="36" xoffset="3" yoffset="-3" xadvance="32" page="0" letter="由" />
+            <glyph id="30007" x="436" y="461" width="33" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="男" />
+            <glyph id="30334" x="320" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="百" />
+            <glyph id="30446" x="84" y="495" width="28" height="34" xoffset="5" yoffset="-1" xadvance="32" page="0" letter="目" />
+            <glyph id="30456" x="590" y="145" width="34" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="相" />
+            <glyph id="30495" x="280" y="145" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="真" />
+            <glyph id="30496" x="845" y="427" width="35" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="眠" />
+            <glyph id="30697" x="144" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="矩" />
+            <glyph id="30707" x="726" y="495" width="35" height="33" xoffset="1" yoffset="0" xadvance="32" page="0" letter="石" />
+            <glyph id="31056" x="108" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="祐" />
+            <glyph id="31070" x="105" y="145" width="35" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="神" />
+            <glyph id="31085" x="689" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="祭" />
+            <glyph id="31168" x="323" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="秀" />
+            <glyph id="31169" x="302" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="私" />
+            <glyph id="31179" x="252" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="秋" />
+            <glyph id="31354" x="984" y="427" width="34" height="34" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="空" />
+            <glyph id="31520" x="635" y="427" width="35" height="34" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="笠" />
+            <glyph id="31689" x="906" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="築" />
+            <glyph id="31712" x="541" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="篠" />
+            <glyph id="32005" x="216" y="109" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="紅" />
+            <glyph id="32068" x="960" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="組" />
+            <glyph id="32190" x="762" y="37" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="綾" />
+            <glyph id="32210" x="322" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="緒" />
+            <glyph id="32622" x="315" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="置" />
+            <glyph id="32654" x="350" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="美" />
+            <glyph id="32773" x="393" y="287" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="者" />
+            <glyph id="32819" x="810" y="427" width="35" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="耳" />
+            <glyph id="32854" x="796" y="495" width="35" height="33" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="聖" />
+            <glyph id="32974" x="816" y="181" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="胎" />
+            <glyph id="33258" x="982" y="145" width="28" height="36" xoffset="5" yoffset="-3" xadvance="32" page="0" letter="自" />
+            <glyph id="33307" x="864" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="舛" />
+            <glyph id="33311" x="532" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="舟" />
+            <glyph id="33391" x="742" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="良" />
+            <glyph id="33394" x="455" y="357" width="35" height="35" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="色" />
+            <glyph id="33457" x="864" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="花" />
+            <glyph id="33459" x="953" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="芳" />
+            <glyph id="33521" x="105" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="英" />
+            <glyph id="33733" x="673" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="菅" />
+            <glyph id="33738" x="35" y="322" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="菊" />
+            <glyph id="33778" x="603" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="菲" />
+            <glyph id="33980" x="74" y="37" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="蒼" />
+            <glyph id="34241" x="777" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="藁" />
+            <glyph id="34276" x="468" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="藤" />
+            <glyph id="34892" x="428" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="行" />
+            <glyph id="34907" x="432" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="衛" />
+            <glyph id="34909" x="726" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="衝" />
+            <glyph id="34915" x="791" y="392" width="36" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="衣" />
+            <glyph id="34955" x="228" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="袋" />
+            <glyph id="35029" x="148" y="37" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="裕" />
+            <glyph id="35199" x="761" y="495" width="35" height="33" xoffset="2" yoffset="0" xadvance="32" page="0" letter="西" />
+            <glyph id="35211" x="180" y="427" width="35" height="34" xoffset="2" yoffset="0" xadvance="32" page="0" letter="見" />
+            <glyph id="35251" x="171" y="0" width="37" height="36" xoffset="0" yoffset="-2" xadvance="32" page="0" letter="観" />
+            <glyph id="35299" x="792" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="解" />
+            <glyph id="35328" x="385" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="言" />
+            <glyph id="35347" x="988" y="287" width="35" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="訓" />
+            <glyph id="35352" x="980" y="322" width="35" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="記" />
+            <glyph id="35424" x="360" y="217" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="詠" />
+            <glyph id="35441" x="533" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="話" />
+            <glyph id="35468" x="339" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="誌" />
+            <glyph id="35477" x="108" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="誕" />
+            <glyph id="35486" x="210" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="語" />
+            <glyph id="35488" x="576" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="誠" />
+            <glyph id="35500" x="288" y="287" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="説" />
+            <glyph id="35598" x="36" y="217" width="36" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="謎" />
+            <glyph id="35617" x="882" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="謡" />
+            <glyph id="35635" x="743" y="287" width="35" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="謳" />
+            <glyph id="35674" x="252" y="287" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="譚" />
+            <glyph id="35895" x="900" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="谷" />
+            <glyph id="35946" x="488" y="145" width="34" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="豪" />
+            <glyph id="36020" x="672" y="109" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="貴" />
+            <glyph id="36024" x="432" y="73" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="貸" />
+            <glyph id="36335" x="245" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="路" />
+            <glyph id="36362" x="175" y="357" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="踊" />
+            <glyph id="36605" x="972" y="73" width="36" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="軽" />
+            <glyph id="36794" x="608" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="辺" />
+            <glyph id="36817" x="828" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="近" />
+            <glyph id="36855" x="460" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="迷" />
+            <glyph id="36899" x="792" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="連" />
+            <glyph id="36933" x="571" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="遅" />
+            <glyph id="36938" x="598" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="遊" />
+            <glyph id="36939" x="534" y="392" width="37" height="34" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="運" />
+            <glyph id="36947" x="504" y="252" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="道" />
+            <glyph id="36965" x="413" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="遥" />
+            <glyph id="37070" x="883" y="287" width="35" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="郎" />
+            <glyph id="37073" x="602" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="郑" />
+            <glyph id="37096" x="357" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="部" />
+            <glyph id="37101" x="462" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="郭" />
+            <glyph id="37117" x="756" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="都" />
+            <glyph id="37326" x="108" y="427" width="36" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="野" />
+            <glyph id="37329" x="645" y="392" width="37" height="34" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="金" />
+            <glyph id="37428" x="216" y="252" width="36" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="鈴" />
+            <glyph id="37628" x="0" y="322" width="35" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="鋼" />
+            <glyph id="37707" x="280" y="322" width="35" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="鍋" />
+            <glyph id="38263" x="460" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="長" />
+            <glyph id="38291" x="370" y="461" width="33" height="34" xoffset="3" yoffset="-1" xadvance="32" page="0" letter="間" />
+            <glyph id="38525" x="34" y="392" width="34" height="35" xoffset="3" yoffset="-2" xadvance="32" page="0" letter="陽" />
+            <glyph id="38596" x="978" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="雄" />
+            <glyph id="38597" x="72" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="雅" />
+            <glyph id="38632" x="740" y="427" width="35" height="34" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="雨" />
+            <glyph id="38635" x="385" y="322" width="35" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="雫" />
+            <glyph id="38754" x="350" y="357" width="35" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="面" />
+            <glyph id="38761" x="556" y="145" width="34" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="革" />
+            <glyph id="38899" x="175" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="音" />
+            <glyph id="38918" x="524" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="順" />
+            <glyph id="38957" x="540" y="252" width="36" height="35" xoffset="2" yoffset="-1" xadvance="32" page="0" letter="頭" />
+            <glyph id="39000" x="561" y="181" width="37" height="35" xoffset="1" yoffset="-1" xadvance="32" page="0" letter="願" />
+            <glyph id="39080" x="497" y="392" width="37" height="34" xoffset="1" yoffset="0" xadvance="32" page="0" letter="風" />
+            <glyph id="39640" x="522" y="145" width="34" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="高" />
+            <glyph id="39740" x="36" y="73" width="36" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="鬼" />
+            <glyph id="39746" x="208" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="魂" />
+            <glyph id="39749" x="265" y="181" width="37" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="魅" />
+            <glyph id="39764" x="726" y="37" width="36" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="魔" />
+            <glyph id="40165" x="385" y="145" width="35" height="36" xoffset="2" yoffset="-3" xadvance="32" page="0" letter="鳥" />
+            <glyph id="40607" x="319" y="0" width="37" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="麟" />
+            <glyph id="40635" x="800" y="0" width="37" height="36" xoffset="1" yoffset="-3" xadvance="32" page="0" letter="麻" />
+            <glyph id="40654" x="540" y="217" width="36" height="35" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="黎" />
+            <glyph id="40658" x="420" y="357" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="黒" />
+            <glyph id="40665" x="945" y="322" width="35" height="35" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="黙" />
+            <glyph id="65281" x="743" y="595" width="10" height="31" xoffset="14" yoffset="0" xadvance="32" page="0" letter="！" />
+            <glyph id="65286" x="0" y="595" width="30" height="32" xoffset="5" yoffset="0" xadvance="32" page="0" letter="＆" />
+            <glyph id="65288" x="131" y="181" width="15" height="36" xoffset="22" yoffset="-2" xadvance="32" page="0" letter="（" />
+            <glyph id="65289" x="146" y="181" width="15" height="36" xoffset="1" yoffset="-2" xadvance="32" page="0" letter="）" />
+            <glyph id="65295" x="917" y="109" width="35" height="36" xoffset="2" yoffset="-2" xadvance="32" page="0" letter="／" />
+            <glyph id="65311" x="720" y="595" width="23" height="31" xoffset="8" yoffset="0" xadvance="32" page="0" letter="？" />
+            <glyph id="65495" x="841" y="683" width="20" height="22" xoffset="1" yoffset="5" xadvance="16" page="0" letter="ￗ" />
+        </glyphs>
+
+        <kernings count="127">
+            <kerning first="45" second="84" amount="-3" />
+            <kerning first="45" second="86" amount="-2" />
+            <kerning first="45" second="87" amount="-1" />
+            <kerning first="45" second="88" amount="-1" />
+            <kerning first="45" second="89" amount="-2" />
+            <kerning first="65" second="45" amount="-1" />
+            <kerning first="65" second="84" amount="-2" />
+            <kerning first="65" second="86" amount="-1" />
+            <kerning first="65" second="87" amount="-1" />
+            <kerning first="65" second="89" amount="-2" />
+            <kerning first="65" second="116" amount="-1" />
+            <kerning first="65" second="118" amount="-1" />
+            <kerning first="65" second="119" amount="-1" />
+            <kerning first="65" second="121" amount="-1" />
+            <kerning first="67" second="45" amount="-1" />
+            <kerning first="68" second="44" amount="-1" />
+            <kerning first="68" second="46" amount="-1" />
+            <kerning first="70" second="44" amount="-2" />
+            <kerning first="70" second="46" amount="-2" />
+            <kerning first="70" second="65" amount="-1" />
+            <kerning first="70" second="97" amount="-1" />
+            <kerning first="76" second="84" amount="-2" />
+            <kerning first="76" second="86" amount="-2" />
+            <kerning first="76" second="87" amount="-2" />
+            <kerning first="76" second="89" amount="-2" />
+            <kerning first="76" second="118" amount="-1" />
+            <kerning first="76" second="119" amount="-1" />
+            <kerning first="76" second="121" amount="-1" />
+            <kerning first="79" second="44" amount="-1" />
+            <kerning first="80" second="44" amount="-3" />
+            <kerning first="80" second="45" amount="-1" />
+            <kerning first="80" second="46" amount="-3" />
+            <kerning first="80" second="65" amount="-1" />
+            <kerning first="80" second="97" amount="-1" />
+            <kerning first="80" second="99" amount="-1" />
+            <kerning first="80" second="100" amount="-1" />
+            <kerning first="80" second="101" amount="-1" />
+            <kerning first="80" second="111" amount="-1" />
+            <kerning first="82" second="45" amount="-1" />
+            <kerning first="82" second="99" amount="-1" />
+            <kerning first="82" second="100" amount="-1" />
+            <kerning first="82" second="101" amount="-1" />
+            <kerning first="82" second="111" amount="-1" />
+            <kerning first="82" second="113" amount="-1" />
+            <kerning first="84" second="44" amount="-3" />
+            <kerning first="84" second="45" amount="-3" />
+            <kerning first="84" second="46" amount="-3" />
+            <kerning first="84" second="65" amount="-2" />
+            <kerning first="84" second="97" amount="-3" />
+            <kerning first="84" second="99" amount="-3" />
+            <kerning first="84" second="100" amount="-3" />
+            <kerning first="84" second="101" amount="-3" />
+            <kerning first="84" second="103" amount="-3" />
+            <kerning first="84" second="109" amount="-2" />
+            <kerning first="84" second="110" amount="-2" />
+            <kerning first="84" second="111" amount="-3" />
+            <kerning first="84" second="112" amount="-2" />
+            <kerning first="84" second="113" amount="-3" />
+            <kerning first="84" second="114" amount="-2" />
+            <kerning first="84" second="115" amount="-3" />
+            <kerning first="84" second="117" amount="-2" />
+            <kerning first="84" second="118" amount="-3" />
+            <kerning first="84" second="119" amount="-3" />
+            <kerning first="84" second="120" amount="-2" />
+            <kerning first="84" second="121" amount="-2" />
+            <kerning first="84" second="122" amount="-2" />
+            <kerning first="86" second="45" amount="-2" />
+            <kerning first="86" second="46" amount="-3" />
+            <kerning first="86" second="65" amount="-1" />
+            <kerning first="86" second="97" amount="-1" />
+            <kerning first="86" second="99" amount="-1" />
+            <kerning first="86" second="100" amount="-1" />
+            <kerning first="86" second="101" amount="-1" />
+            <kerning first="86" second="103" amount="-1" />
+            <kerning first="86" second="109" amount="-1" />
+            <kerning first="86" second="110" amount="-1" />
+            <kerning first="86" second="111" amount="-1" />
+            <kerning first="86" second="112" amount="-1" />
+            <kerning first="86" second="113" amount="-1" />
+            <kerning first="86" second="114" amount="-1" />
+            <kerning first="86" second="115" amount="-1" />
+            <kerning first="86" second="117" amount="-1" />
+            <kerning first="87" second="45" amount="-1" />
+            <kerning first="87" second="46" amount="-2" />
+            <kerning first="87" second="97" amount="-1" />
+            <kerning first="87" second="99" amount="-1" />
+            <kerning first="87" second="100" amount="-1" />
+            <kerning first="87" second="101" amount="-1" />
+            <kerning first="87" second="111" amount="-1" />
+            <kerning first="87" second="113" amount="-1" />
+            <kerning first="88" second="45" amount="-1" />
+            <kerning first="88" second="101" amount="-1" />
+            <kerning first="88" second="111" amount="-1" />
+            <kerning first="88" second="113" amount="-1" />
+            <kerning first="88" second="121" amount="-1" />
+            <kerning first="89" second="45" amount="-2" />
+            <kerning first="89" second="65" amount="-2" />
+            <kerning first="89" second="97" amount="-2" />
+            <kerning first="89" second="99" amount="-1" />
+            <kerning first="89" second="100" amount="-1" />
+            <kerning first="89" second="101" amount="-1" />
+            <kerning first="89" second="103" amount="-1" />
+            <kerning first="89" second="109" amount="-1" />
+            <kerning first="89" second="110" amount="-1" />
+            <kerning first="89" second="111" amount="-1" />
+            <kerning first="89" second="112" amount="-1" />
+            <kerning first="89" second="113" amount="-1" />
+            <kerning first="89" second="114" amount="-1" />
+            <kerning first="89" second="115" amount="-1" />
+            <kerning first="89" second="117" amount="-1" />
+            <kerning first="102" second="44" amount="-1" />
+            <kerning first="102" second="45" amount="-1" />
+            <kerning first="102" second="46" amount="-1" />
+            <kerning first="107" second="45" amount="-1" />
+            <kerning first="114" second="44" amount="-2" />
+            <kerning first="114" second="45" amount="-1" />
+            <kerning first="114" second="46" amount="-2" />
+            <kerning first="116" second="44" amount="1" />
+            <kerning first="116" second="45" amount="-1" />
+            <kerning first="116" second="46" amount="1" />
+            <kerning first="118" second="44" amount="-2" />
+            <kerning first="118" second="46" amount="-2" />
+            <kerning first="119" second="44" amount="-1" />
+            <kerning first="119" second="46" amount="-1" />
+            <kerning first="120" second="45" amount="-1" />
+            <kerning first="121" second="44" amount="-2" />
+            <kerning first="121" second="46" amount="-2" />
+        </kernings>
+    </font>
+</x2d>

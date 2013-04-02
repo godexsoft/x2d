@@ -676,6 +676,12 @@
 		2415842B14D613900014F37B /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = src/base/sprite.cpp; sourceTree = "<group>"; };
 		241911D1164580BE004A543D /* fontgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fontgen; sourceTree = BUILT_PRODUCTS_DIR; };
 		241911DF16458DAE004A543D /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = /usr/local/lib/libboost_system.dylib; sourceTree = "<absolute>"; };
+		2424CF39170B58C30005522E /* CurvedFont */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CurvedFont; sourceTree = "<group>"; };
+		2424CF3A170B58C30005522E /* CurvedFont.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CurvedFont.xml; sourceTree = "<group>"; };
+		2424CF3B170B58C30005522E /* CurvedFont2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CurvedFont2; sourceTree = "<group>"; };
+		2424CF3C170B58C30005522E /* CurvedFont2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CurvedFont2.xml; sourceTree = "<group>"; };
+		2424CF3E170B6E110005522E /* utf8 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = utf8; path = libs/utf8/source/utf8; sourceTree = SOURCE_ROOT; };
+		2424CF3F170B6E110005522E /* utf8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utf8.h; path = libs/utf8/source/utf8.h; sourceTree = SOURCE_ROOT; };
 		2427845015F6BBF9005EAB4E /* null_drivers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = null_drivers.cpp; path = src/sound/null_drivers.cpp; sourceTree = "<group>"; };
 		2427845115F6BBF9005EAB4E /* null_drivers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = null_drivers.h; path = src/sound/null_drivers.h; sourceTree = "<group>"; };
 		243F95C414EDABD800922D55 /* openal_fx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openal_fx.h; path = src/sound/openal_fx.h; sourceTree = "<group>"; };
@@ -1117,6 +1123,8 @@
 		24E4BD7615E95883008F162C /* callable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = callable.cpp; path = src/base/callable.cpp; sourceTree = "<group>"; };
 		24EE266114FAC9D20073100A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = context.h; path = src/base/context.h; sourceTree = "<group>"; };
 		F44B2027398CD632FABE8083 /* scene.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = scene.xml; sourceTree = "<group>"; };
+		F44B2168F1F3840AC3963CF9 /* TestFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestFont.png; sourceTree = "<group>"; };
+		F44B21C5B71B65394061D5B4 /* TestFont.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestFont.xml; sourceTree = "<group>"; };
 		F44B27E4A18316E2184D091F /* main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = main.xml; path = uberdemo/game_resources/main.xml; sourceTree = "<group>"; };
 		F44B2B35B9305ABD8CF335F5 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = uberdemo/src/game.h; sourceTree = "<group>"; };
 		F44B2DDCB0F7D658C54FB8B8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = uberdemo/src/main.cpp; sourceTree = "<group>"; };
@@ -1486,6 +1494,7 @@
 		2403496A14FA7D0000B1CFC9 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				2424CF3D170B6DEA0005522E /* utf8 */,
 				24E4BCDC15E462EC008F162C /* luabind */,
 				24E4BC6C15E46217008F162C /* lua */,
 				2401F131158A79E600BC2425 /* box2d */,
@@ -1532,6 +1541,15 @@
 				24AEA99D1646F95B00B42BB4 /* main.cpp */,
 			);
 			path = fontgen;
+			sourceTree = "<group>";
+		};
+		2424CF3D170B6DEA0005522E /* utf8 */ = {
+			isa = PBXGroup;
+			children = (
+				2424CF3E170B6E110005522E /* utf8 */,
+				2424CF3F170B6E110005522E /* utf8.h */,
+			);
+			name = utf8;
 			sourceTree = "<group>";
 		};
 		24408C5B14E860E00056C5E5 /* sound */ = {
@@ -2306,8 +2324,17 @@
 			children = (
 				F44B27E4A18316E2184D091F /* main.xml */,
 				F44B23364A4E24F93E597B38 /* scenes */,
+				F44B2FFD62558A8FDCA25A84 /* fonts */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		F44B27EF70CFB0693B1AF52E /* TestFont */ = {
+			isa = PBXGroup;
+			children = (
+				F44B2168F1F3840AC3963CF9 /* TestFont.png */,
+			);
+			path = TestFont;
 			sourceTree = "<group>";
 		};
 		F44B2F12C62FB81B2F3DAAA9 /* menu */ = {
@@ -2316,6 +2343,20 @@
 				F44B2027398CD632FABE8083 /* scene.xml */,
 			);
 			path = menu;
+			sourceTree = "<group>";
+		};
+		F44B2FFD62558A8FDCA25A84 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2424CF39170B58C30005522E /* CurvedFont */,
+				2424CF3A170B58C30005522E /* CurvedFont.xml */,
+				2424CF3B170B58C30005522E /* CurvedFont2 */,
+				2424CF3C170B58C30005522E /* CurvedFont2.xml */,
+				F44B27EF70CFB0693B1AF52E /* TestFont */,
+				F44B21C5B71B65394061D5B4 /* TestFont.xml */,
+			);
+			name = fonts;
+			path = uberdemo/game_resources/fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

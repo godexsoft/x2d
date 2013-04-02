@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x2d version="1.0">
+    <texture n="CurvedFont2-0" path="res/fonts/CurvedFont2/CurvedFont2.png" />
+
+    <font n="CurvedFont2" size="64" stretchH="100" padding="0 0 0 0" spacing="2 2" lineHeight="79" base="57" scaleW="512" scaleH="512">
+        <pages count="1">
+            <page id="0" texture="CurvedFont2-0" />
+        </pages>
+
+        <glyphs count="95">
+            <glyph id="32" x="244" y="370" width="0" height="0" xoffset="0" yoffset="57" xadvance="18" page="0" letter="space" />
+            <glyph id="33" x="36" y="286" width="31" height="47" xoffset="4" yoffset="10" xadvance="22" page="0" letter="!" />
+            <glyph id="34" x="46" y="370" width="20" height="23" xoffset="7" yoffset="11" xadvance="19" page="0" letter="&quot;" />
+            <glyph id="35" x="108" y="236" width="42" height="48" xoffset="3" yoffset="10" xadvance="39" page="0" letter="#" />
+            <glyph id="36" x="192" y="236" width="37" height="48" xoffset="3" yoffset="9" xadvance="30" page="0" letter="$" />
+            <glyph id="37" x="64" y="236" width="42" height="48" xoffset="7" yoffset="12" xadvance="44" page="0" letter="%" />
+            <glyph id="38" x="355" y="184" width="39" height="49" xoffset="3" yoffset="8" xadvance="31" page="0" letter="&amp;" />
+            <glyph id="39" x="68" y="370" width="12" height="23" xoffset="8" yoffset="11" xadvance="14" page="0" letter="'" />
+            <glyph id="40" x="141" y="184" width="24" height="50" xoffset="7" yoffset="7" xadvance="21" page="0" letter="(" />
+            <glyph id="41" x="431" y="184" width="23" height="49" xoffset="3" yoffset="8" xadvance="21" page="0" letter=")" />
+            <glyph id="42" x="423" y="335" width="29" height="29" xoffset="-2" yoffset="7" xadvance="21" page="0" letter="*" />
+            <glyph id="43" x="287" y="286" width="42" height="42" xoffset="5" yoffset="12" xadvance="43" page="0" letter="+" />
+            <glyph id="44" x="143" y="370" width="14" height="17" xoffset="4" yoffset="44" xadvance="21" page="0" letter="," />
+            <glyph id="45" x="174" y="370" width="26" height="13" xoffset="8" yoffset="31" xadvance="33" page="0" letter="-" />
+            <glyph id="46" x="159" y="370" width="13" height="15" xoffset="4" yoffset="42" xadvance="21" page="0" letter="." />
+            <glyph id="47" x="134" y="72" width="25" height="55" xoffset="0" yoffset="6" xadvance="18" page="0" letter="/" />
+            <glyph id="48" x="342" y="236" width="38" height="47" xoffset="0" yoffset="10" xadvance="28" page="0" letter="0" />
+            <glyph id="49" x="269" y="236" width="25" height="48" xoffset="2" yoffset="9" xadvance="17" page="0" letter="1" />
+            <glyph id="50" x="382" y="236" width="38" height="47" xoffset="0" yoffset="10" xadvance="28" page="0" letter="2" />
+            <glyph id="51" x="296" y="236" width="44" height="47" xoffset="-2" yoffset="11" xadvance="33" page="0" letter="3" />
+            <glyph id="52" x="152" y="236" width="38" height="48" xoffset="0" yoffset="10" xadvance="27" page="0" letter="4" />
+            <glyph id="53" x="69" y="286" width="42" height="46" xoffset="-3" yoffset="12" xadvance="27" page="0" letter="5" />
+            <glyph id="54" x="153" y="286" width="37" height="46" xoffset="1" yoffset="12" xadvance="27" page="0" letter="6" />
+            <glyph id="55" x="231" y="236" width="36" height="48" xoffset="5" yoffset="10" xadvance="28" page="0" letter="7" />
+            <glyph id="56" x="313" y="184" width="40" height="49" xoffset="3" yoffset="8" xadvance="29" page="0" letter="8" />
+            <glyph id="57" x="2" y="184" width="35" height="50" xoffset="5" yoffset="8" xadvance="29" page="0" letter="9" />
+            <glyph id="58" x="454" y="335" width="21" height="29" xoffset="4" yoffset="28" xadvance="21" page="0" letter=":" />
+            <glyph id="59" x="127" y="335" width="21" height="32" xoffset="4" yoffset="29" xadvance="21" page="0" letter=";" />
+            <glyph id="60" x="331" y="286" width="42" height="41" xoffset="5" yoffset="13" xadvance="43" page="0" letter="&lt;" />
+            <glyph id="61" x="2" y="370" width="42" height="27" xoffset="5" yoffset="20" xadvance="43" page="0" letter="=" />
+            <glyph id="62" x="375" y="286" width="42" height="41" xoffset="5" yoffset="13" xadvance="43" page="0" letter="&gt;" />
+            <glyph id="63" x="110" y="184" width="29" height="50" xoffset="4" yoffset="7" xadvance="21" page="0" letter="?" />
+            <glyph id="64" x="2" y="2" width="67" height="68" xoffset="3" yoffset="6" xadvance="65" page="0" letter="@" />
+            <glyph id="65" x="339" y="72" width="58" height="52" xoffset="-4" yoffset="8" xadvance="41" page="0" letter="A" />
+            <glyph id="66" x="402" y="131" width="48" height="50" xoffset="1" yoffset="8" xadvance="35" page="0" letter="B" />
+            <glyph id="67" x="456" y="2" width="48" height="59" xoffset="2" yoffset="8" xadvance="39" page="0" letter="C" />
+            <glyph id="68" x="351" y="131" width="49" height="50" xoffset="-1" yoffset="8" xadvance="41" page="0" letter="D" />
+            <glyph id="69" x="51" y="72" width="47" height="55" xoffset="2" yoffset="7" xadvance="39" page="0" letter="E" />
+            <glyph id="70" x="2" y="72" width="47" height="57" xoffset="0" yoffset="10" xadvance="36" page="0" letter="F" />
+            <glyph id="71" x="282" y="2" width="47" height="66" xoffset="2" yoffset="7" xadvance="36" page="0" letter="G" />
+            <glyph id="72" x="237" y="131" width="56" height="50" xoffset="-4" yoffset="8" xadvance="41" page="0" letter="H" />
+            <glyph id="73" x="39" y="184" width="34" height="50" xoffset="2" yoffset="8" xadvance="28" page="0" letter="I" />
+            <glyph id="74" x="127" y="2" width="39" height="67" xoffset="-3" yoffset="8" xadvance="24" page="0" letter="J" />
+            <glyph id="75" x="72" y="131" width="55" height="51" xoffset="0" yoffset="10" xadvance="42" page="0" letter="K" />
+            <glyph id="76" x="184" y="131" width="51" height="51" xoffset="-3" yoffset="8" xadvance="38" page="0" letter="L" />
+            <glyph id="77" x="2" y="131" width="68" height="51" xoffset="-3" yoffset="8" xadvance="53" page="0" letter="M" />
+            <glyph id="78" x="188" y="72" width="52" height="53" xoffset="-3" yoffset="7" xadvance="37" page="0" letter="N" />
+            <glyph id="79" x="271" y="184" width="40" height="49" xoffset="2" yoffset="9" xadvance="37" page="0" letter="O" />
+            <glyph id="80" x="242" y="72" width="48" height="53" xoffset="1" yoffset="9" xadvance="40" page="0" letter="P" />
+            <glyph id="81" x="220" y="184" width="49" height="49" xoffset="2" yoffset="11" xadvance="41" page="0" letter="Q" />
+            <glyph id="82" x="129" y="131" width="53" height="51" xoffset="2" yoffset="10" xadvance="42" page="0" letter="R" />
+            <glyph id="83" x="167" y="184" width="51" height="49" xoffset="1" yoffset="12" xadvance="41" page="0" letter="S" />
+            <glyph id="84" x="292" y="72" width="45" height="53" xoffset="4" yoffset="7" xadvance="37" page="0" letter="T" />
+            <glyph id="85" x="295" y="131" width="54" height="50" xoffset="-2" yoffset="8" xadvance="40" page="0" letter="U" />
+            <glyph id="86" x="399" y="72" width="47" height="52" xoffset="-7" yoffset="8" xadvance="27" page="0" letter="V" />
+            <glyph id="87" x="2" y="236" width="60" height="48" xoffset="-2" yoffset="11" xadvance="45" page="0" letter="W" />
+            <glyph id="88" x="448" y="72" width="47" height="52" xoffset="2" yoffset="9" xadvance="39" page="0" letter="X" />
+            <glyph id="89" x="331" y="2" width="47" height="65" xoffset="-4" yoffset="9" xadvance="35" page="0" letter="Y" />
+            <glyph id="90" x="380" y="2" width="42" height="64" xoffset="3" yoffset="12" xadvance="35" page="0" letter="Z" />
+            <glyph id="91" x="182" y="2" width="48" height="66" xoffset="-5" yoffset="7" xadvance="19" page="0" letter="[" />
+            <glyph id="92" x="161" y="72" width="25" height="55" xoffset="0" yoffset="6" xadvance="18" page="0" letter="\" />
+            <glyph id="93" x="232" y="2" width="48" height="66" xoffset="-11" yoffset="7" xadvance="23" page="0" letter="]" />
+            <glyph id="94" x="476" y="286" width="34" height="33" xoffset="2" yoffset="7" xadvance="30" page="0" letter="^" />
+            <glyph id="95" x="202" y="370" width="40" height="11" xoffset="0" yoffset="54" xadvance="32" page="0" letter="_" />
+            <glyph id="96" x="126" y="370" width="15" height="18" xoffset="10" yoffset="11" xadvance="21" page="0" letter="`" />
+            <glyph id="97" x="32" y="335" width="34" height="32" xoffset="0" yoffset="26" xadvance="26" page="0" letter="a" />
+            <glyph id="98" x="75" y="184" width="33" height="50" xoffset="0" yoffset="8" xadvance="21" page="0" letter="b" />
+            <glyph id="99" x="98" y="335" width="27" height="32" xoffset="0" yoffset="26" xadvance="19" page="0" letter="c" />
+            <glyph id="100" x="113" y="286" width="38" height="46" xoffset="0" yoffset="12" xadvance="27" page="0" letter="d" />
+            <glyph id="101" x="255" y="335" width="26" height="31" xoffset="0" yoffset="27" xadvance="19" page="0" letter="e" />
+            <glyph id="102" x="424" y="2" width="30" height="62" xoffset="-2" yoffset="11" xadvance="17" page="0" letter="f" />
+            <glyph id="103" x="422" y="236" width="33" height="47" xoffset="0" yoffset="26" xadvance="25" page="0" letter="g" />
+            <glyph id="104" x="396" y="184" width="33" height="49" xoffset="0" yoffset="8" xadvance="23" page="0" letter="h" />
+            <glyph id="105" x="449" y="286" width="25" height="38" xoffset="0" yoffset="19" xadvance="15" page="0" letter="i" />
+            <glyph id="106" x="100" y="72" width="32" height="55" xoffset="-2" yoffset="17" xadvance="18" page="0" letter="j" />
+            <glyph id="107" x="457" y="236" width="33" height="47" xoffset="0" yoffset="11" xadvance="23" page="0" letter="k" />
+            <glyph id="108" x="225" y="286" width="26" height="46" xoffset="0" yoffset="12" xadvance="15" page="0" letter="l" />
+            <glyph id="109" x="346" y="335" width="44" height="29" xoffset="0" yoffset="28" xadvance="35" page="0" letter="m" />
+            <glyph id="110" x="283" y="335" width="31" height="30" xoffset="0" yoffset="27" xadvance="23" page="0" letter="n" />
+            <glyph id="111" x="316" y="335" width="28" height="30" xoffset="0" yoffset="27" xadvance="20" page="0" letter="o" />
+            <glyph id="112" x="452" y="131" width="38" height="50" xoffset="-4" yoffset="20" xadvance="26" page="0" letter="p" />
+            <glyph id="113" x="2" y="286" width="32" height="47" xoffset="0" yoffset="26" xadvance="24" page="0" letter="q" />
+            <glyph id="114" x="226" y="335" width="27" height="31" xoffset="0" yoffset="26" xadvance="19" page="0" letter="r" />
+            <glyph id="115" x="2" y="335" width="28" height="33" xoffset="0" yoffset="24" xadvance="20" page="0" letter="s" />
+            <glyph id="116" x="419" y="286" width="28" height="40" xoffset="0" yoffset="18" xadvance="16" page="0" letter="t" />
+            <glyph id="117" x="191" y="335" width="33" height="31" xoffset="0" yoffset="26" xadvance="25" page="0" letter="u" />
+            <glyph id="118" x="392" y="335" width="29" height="29" xoffset="0" yoffset="29" xadvance="21" page="0" letter="v" />
+            <glyph id="119" x="150" y="335" width="39" height="31" xoffset="0" yoffset="27" xadvance="31" page="0" letter="w" />
+            <glyph id="120" x="68" y="335" width="28" height="32" xoffset="-1" yoffset="26" xadvance="19" page="0" letter="x" />
+            <glyph id="121" x="253" y="286" width="32" height="44" xoffset="0" yoffset="27" xadvance="24" page="0" letter="y" />
+            <glyph id="122" x="192" y="286" width="31" height="46" xoffset="-4" yoffset="27" xadvance="19" page="0" letter="z" />
+            <glyph id="123" x="71" y="2" width="26" height="68" xoffset="7" yoffset="7" xadvance="27" page="0" letter="{" />
+            <glyph id="124" x="168" y="2" width="12" height="67" xoffset="17" yoffset="6" xadvance="35" page="0" letter="|" />
+            <glyph id="125" x="99" y="2" width="26" height="68" xoffset="5" yoffset="7" xadvance="27" page="0" letter="}" />
+            <glyph id="126" x="82" y="370" width="42" height="18" xoffset="5" yoffset="24" xadvance="43" page="0" letter="~" />
+        </glyphs>
+
+        <kernings count="150">
+            <kerning first="32" second="65" amount="-2" />
+            <kerning first="32" second="84" amount="-4" />
+            <kerning first="36" second="62" amount="3" />
+            <kerning first="40" second="74" amount="-1" />
+            <kerning first="40" second="102" amount="-1" />
+            <kerning first="40" second="103" amount="-1" />
+            <kerning first="40" second="106" amount="-2" />
+            <kerning first="40" second="121" amount="-1" />
+            <kerning first="62" second="35" amount="-2" />
+            <kerning first="64" second="34" amount="-4" />
+            <kerning first="65" second="117" amount="1" />
+            <kerning first="65" second="118" amount="1" />
+            <kerning first="65" second="119" amount="1" />
+            <kerning first="65" second="121" amount="1" />
+            <kerning first="66" second="46" amount="1" />
+            <kerning first="67" second="44" amount="2" />
+            <kerning first="67" second="46" amount="2" />
+            <kerning first="68" second="44" amount="-6" />
+            <kerning first="68" second="46" amount="-6" />
+            <kerning first="70" second="44" amount="-2" />
+            <kerning first="70" second="46" amount="-2" />
+            <kerning first="70" second="97" amount="-1" />
+            <kerning first="70" second="101" amount="-1" />
+            <kerning first="70" second="105" amount="-1" />
+            <kerning first="70" second="111" amount="-1" />
+            <kerning first="70" second="114" amount="-1" />
+            <kerning first="71" second="44" amount="1" />
+            <kerning first="71" second="46" amount="2" />
+            <kerning first="73" second="97" amount="-3" />
+            <kerning first="73" second="99" amount="-3" />
+            <kerning first="73" second="100" amount="-3" />
+            <kerning first="73" second="103" amount="-3" />
+            <kerning first="73" second="107" amount="-2" />
+            <kerning first="73" second="108" amount="-1" />
+            <kerning first="73" second="109" amount="-3" />
+            <kerning first="73" second="110" amount="-3" />
+            <kerning first="73" second="111" amount="-3" />
+            <kerning first="73" second="112" amount="-4" />
+            <kerning first="73" second="114" amount="-2" />
+            <kerning first="73" second="115" amount="-4" />
+            <kerning first="73" second="116" amount="-2" />
+            <kerning first="73" second="118" amount="-3" />
+            <kerning first="73" second="119" amount="-3" />
+            <kerning first="73" second="120" amount="-2" />
+            <kerning first="74" second="44" amount="2" />
+            <kerning first="74" second="46" amount="2" />
+            <kerning first="74" second="58" amount="2" />
+            <kerning first="74" second="59" amount="2" />
+            <kerning first="75" second="97" amount="-1" />
+            <kerning first="75" second="101" amount="-1" />
+            <kerning first="75" second="111" amount="-1" />
+            <kerning first="75" second="117" amount="-1" />
+            <kerning first="75" second="118" amount="-1" />
+            <kerning first="75" second="119" amount="-1" />
+            <kerning first="75" second="121" amount="-1" />
+            <kerning first="76" second="119" amount="-2" />
+            <kerning first="76" second="121" amount="-2" />
+            <kerning first="78" second="44" amount="2" />
+            <kerning first="78" second="46" amount="2" />
+            <kerning first="79" second="44" amount="-3" />
+            <kerning first="79" second="46" amount="-3" />
+            <kerning first="80" second="44" amount="-6" />
+            <kerning first="80" second="46" amount="-6" />
+            <kerning first="80" second="97" amount="-2" />
+            <kerning first="80" second="101" amount="-2" />
+            <kerning first="80" second="111" amount="-2" />
+            <kerning first="81" second="44" amount="-2" />
+            <kerning first="81" second="46" amount="-1" />
+            <kerning first="81" second="103" amount="-1" />
+            <kerning first="81" second="106" amount="-2" />
+            <kerning first="82" second="41" amount="2" />
+            <kerning first="83" second="44" amount="-2" />
+            <kerning first="83" second="46" amount="-1" />
+            <kerning first="84" second="45" amount="-2" />
+            <kerning first="84" second="97" amount="-1" />
+            <kerning first="84" second="99" amount="-2" />
+            <kerning first="84" second="101" amount="-2" />
+            <kerning first="84" second="104" amount="-1" />
+            <kerning first="84" second="105" amount="-2" />
+            <kerning first="84" second="109" amount="-2" />
+            <kerning first="84" second="111" amount="-2" />
+            <kerning first="84" second="114" amount="-2" />
+            <kerning first="84" second="115" amount="-2" />
+            <kerning first="84" second="117" amount="-2" />
+            <kerning first="84" second="119" amount="-2" />
+            <kerning first="84" second="121" amount="-2" />
+            <kerning first="84" second="122" amount="-1" />
+            <kerning first="85" second="44" amount="2" />
+            <kerning first="85" second="46" amount="2" />
+            <kerning first="86" second="44" amount="-2" />
+            <kerning first="86" second="45" amount="-1" />
+            <kerning first="86" second="46" amount="-2" />
+            <kerning first="86" second="58" amount="-1" />
+            <kerning first="86" second="59" amount="-2" />
+            <kerning first="86" second="97" amount="-1" />
+            <kerning first="86" second="101" amount="-1" />
+            <kerning first="86" second="105" amount="-1" />
+            <kerning first="86" second="111" amount="-1" />
+            <kerning first="86" second="117" amount="-1" />
+            <kerning first="86" second="121" amount="-1" />
+            <kerning first="87" second="97" amount="1" />
+            <kerning first="87" second="100" amount="1" />
+            <kerning first="87" second="101" amount="1" />
+            <kerning first="87" second="104" amount="2" />
+            <kerning first="87" second="105" amount="1" />
+            <kerning first="87" second="111" amount="1" />
+            <kerning first="87" second="114" amount="1" />
+            <kerning first="89" second="45" amount="-1" />
+            <kerning first="89" second="97" amount="-3" />
+            <kerning first="89" second="100" amount="-4" />
+            <kerning first="89" second="101" amount="-3" />
+            <kerning first="89" second="105" amount="-4" />
+            <kerning first="89" second="111" amount="-4" />
+            <kerning first="89" second="112" amount="-2" />
+            <kerning first="89" second="113" amount="-3" />
+            <kerning first="89" second="117" amount="-3" />
+            <kerning first="89" second="118" amount="-3" />
+            <kerning first="98" second="44" amount="-2" />
+            <kerning first="98" second="46" amount="-2" />
+            <kerning first="98" second="118" amount="-1" />
+            <kerning first="98" second="119" amount="-1" />
+            <kerning first="98" second="121" amount="-1" />
+            <kerning first="99" second="44" amount="-1" />
+            <kerning first="101" second="44" amount="-2" />
+            <kerning first="101" second="46" amount="-1" />
+            <kerning first="101" second="112" amount="-1" />
+            <kerning first="101" second="118" amount="-1" />
+            <kerning first="101" second="120" amount="-1" />
+            <kerning first="102" second="32" amount="3" />
+            <kerning first="102" second="44" amount="-1" />
+            <kerning first="102" second="63" amount="2" />
+            <kerning first="102" second="97" amount="-1" />
+            <kerning first="102" second="101" amount="-1" />
+            <kerning first="102" second="105" amount="-1" />
+            <kerning first="102" second="107" amount="-1" />
+            <kerning first="103" second="44" amount="-2" />
+            <kerning first="103" second="46" amount="-1" />
+            <kerning first="103" second="112" amount="-1" />
+            <kerning first="103" second="114" amount="-1" />
+            <kerning first="107" second="108" amount="1" />
+            <kerning first="108" second="119" amount="-1" />
+            <kerning first="108" second="121" amount="-1" />
+            <kerning first="111" second="120" amount="-1" />
+            <kerning first="112" second="44" amount="-2" />
+            <kerning first="112" second="46" amount="-1" />
+            <kerning first="114" second="106" amount="-1" />
+            <kerning first="115" second="44" amount="-1" />
+            <kerning first="119" second="44" amount="-2" />
+            <kerning first="119" second="46" amount="-1" />
+            <kerning first="121" second="44" amount="-1" />
+        </kernings>
+    </font>
+</x2d>

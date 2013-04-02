@@ -1,16 +1,52 @@
 <x2d version="1.0">
-    
     <scene      n = "first"
             proto = "scene_prototype" >
         <object     n = "btn"
                   box = "0.6 0.08"
               bgcolor = "0.8 1 1 0.1"
              position = "0.5 0.8"
+                 font = "fonts.CurvedFont"
+                 text = "Curved Font"
+                align = "center"
         >
             <script n = "on_input_ended">
                 x2d.log("button input")
             </script>
         </object>
+        
+        <object     n = "btn2"
+                  box = "0.6 0.08"
+              bgcolor = "0.8 1 1 0.1"
+             position = "0.5 0.6"
+                 font = "fonts.CurvedFont2"
+                 text = "Curved Font 2"
+                align = "center"
+        >
+            <script n = "on_input_ended">
+                x2d.log("button input")
+            </script>
+        </object>
+        
+        <object     n = "btn3"
+                  box = "0.6 0.08"
+              bgcolor = "0.8 1 1 0.1"
+             position = "0.5 0.4"
+                 font = "fonts.TestFont"
+                 text = "Test Font"
+                align = "center"
+        >
+            <script n = "on_input_ended">
+                x2d.log("button input")
+            </script>
+        </object>
+        
+        <object     n = "btn4"
+                  box = "0.6 0.08"
+              bgcolor = "0.8 1 1 0.1"
+             position = "0.5 0.2"
+                 font = "fonts.Japanese"
+                 text = "Japanese 黒魂"
+                align = "center"
+        />
     </scene>
-
 </x2d>

@@ -669,7 +669,21 @@ namespace config {
         {
             boost::shared_ptr<font> f = 
                 boost::shared_ptr<font>(
-                    new font( characters_, widths_, height_, spacing_, config_.get_object<texture>(texture_) ) );
+                    new font( size_, baseline_, line_height_, scale_width_,
+                    scale_height_, stretch_height_, padding_, spacing_ ) );
+
+            // add pages
+            for(std::vector<std::string>::iterator it = pages_.begin(); it != pages_.end(); ++it)
+            {
+                f->add_page(config_.get_object<texture>(*it));
+            }
+
+            // copy glyphs and init them
+            f->set_glyphs(glyphs_);
+            
+            // and the kernings
+            f->set_kernings(kernings_);
+
             inst_ = f;
             return f;
         }
