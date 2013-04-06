@@ -344,13 +344,15 @@ namespace x2d {
             glColor4f(bgcolor_.r, bgcolor_.g, bgcolor_.b, bgcolor_.a);
             glPushMatrix();
             glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
-            
+
+            size b = box();
+
             float vertices[] =
             {      
-                -box_.width / 2,     -box_.height / 2,    0.0,
-                box_.width / 2,      -box_.height / 2,    0.0,
-                -box_.width / 2,     box_.height / 2,     0.0,
-                box_.width / 2,      box_.height / 2,     0.0
+                -b.width / 2,     -b.height / 2,    0.0,
+                b.width / 2,      -b.height / 2,    0.0,
+                -b.width / 2,     b.height / 2,     0.0,
+                b.width / 2,      b.height / 2,     0.0
             };
             
             glEnable(GL_BLEND);
@@ -556,10 +558,11 @@ namespace x2d {
     
     const bbox object::screen_bbox() const
     {
-        glm::vec4 bl(-box_.width/2, -box_.height/2, position_.z, 1.0f);
-        glm::vec4 tl(-box_.width/2, box_.height/2, position_.z, 1.0f);
-        glm::vec4 tr(box_.width/2, box_.height/2, position_.z, 1.0f);
-        glm::vec4 br(box_.width/2, -box_.height/2, position_.z, 1.0f);
+        size b = box();
+        glm::vec4 bl(-b.width/2, -b.height/2, position_.z, 1.0f);
+        glm::vec4 tl(-b.width/2, b.height/2, position_.z, 1.0f);
+        glm::vec4 tr(b.width/2, b.height/2, position_.z, 1.0f);
+        glm::vec4 br(b.width/2, -b.height/2, position_.z, 1.0f);
         
         glm::mat4 m = is_camera_space() ?
             final_transform() // just the object transformation
@@ -634,15 +637,15 @@ namespace x2d {
     {        
         if(box_.width != 0 && box_.height != 0) 
         {
-            return box_ * scale_;
+            return box_;
         }
         else if(cur_sprite_)
         {
-            return cur_sprite_->box() * scale_;
+            return cur_sprite_->box();
         }
         else if(cur_animation_)
         {
-            return cur_animation_->box() * scale_;
+            return cur_animation_->box();
         }
         
         return size(); // return default
