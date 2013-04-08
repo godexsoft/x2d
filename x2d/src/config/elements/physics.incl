@@ -89,7 +89,7 @@ public:
      */
     body_part_cfg(configuration& c, kernel& k,
         float density, float restitution, float friction,
-        const uint16_t& mask, const uint16_t& category)
+        const uint16_t& mask, const uint16_t& category, bool sensor)
     : config_(c)
     , kernel_(k)
     , type_(INVALID_TYPE)
@@ -99,6 +99,7 @@ public:
     , friction_(friction)
     , mask_(mask)
     , category_(category)
+    , is_sensor_(sensor)
     {
     }
 
@@ -138,6 +139,7 @@ private:
     float                       density_;
     float                       restitution_;
     float                       friction_;
-    uint16_t                     mask_;
+    uint16_t                    mask_;
     uint16_t                    category_;
+    bool                        is_sensor_;
 };

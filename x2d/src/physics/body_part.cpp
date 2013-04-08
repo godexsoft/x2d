@@ -15,21 +15,22 @@ namespace physics {
 
     body_part::body_part(configuration& conf,
         const float& density, const float& restitution, const float& friction,
-        const uint16_t& mask, const uint16_t& category)
+        const uint16_t& mask, const uint16_t& category, bool is_sensor)
     : config_(conf)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
     , mask_(mask)
     , category_(category)
+    , is_sensor_(is_sensor)
     {
     }
 
     body_part_box::body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
         const uint16_t& mask, const uint16_t& category,
-        const size& bottom_left, const size& top_right)
-    : body_part(conf, density, restitution, friction, mask, category)
+        const size& bottom_left, const size& top_right, bool is_sensor)
+    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
     , bl_(bottom_left)
     , tr_(top_right)
     {
@@ -43,6 +44,7 @@ namespace physics {
         fix.density = density_;
         fix.restitution = restitution_;
         fix.friction = friction_;
+        fix.isSensor = is_sensor_;
 
         if(category_ != 0)
         {
@@ -79,14 +81,15 @@ namespace physics {
     body_part_circle::body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
         const uint16_t& mask, const uint16_t& category,
-        const float& radius)
-    : body_part(conf, density, restitution, friction, mask, category)
+        const float& radius, bool is_sensor)
+    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
     , radius_(radius)
     {
         b2FixtureDef fix;
         fix.density = density_;
         fix.restitution = restitution_;
         fix.friction = friction_;
+        fix.isSensor = is_sensor_;
         
         if(category_ != 0)
         {

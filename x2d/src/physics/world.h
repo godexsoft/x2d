@@ -45,7 +45,7 @@ namespace physics {
             
             def.position.Set(pos.x * global_scale(),
                              pos.y * global_scale());
-            
+
             if(angle!=0) 
             {
                 def.angle = angle;

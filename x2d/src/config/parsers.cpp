@@ -905,9 +905,12 @@ namespace x2d
             uint16_t category =
                     *get_attr<uint16_t >(*this, node, key, "category", 0x0000);
 
+            bool sensor =
+                    *get_attr<bool>(*this, node, key, "sensor", false);
+
             boost::shared_ptr<body_part_cfg> part =
                     boost::shared_ptr<body_part_cfg>(new body_part_cfg(*this, kernel_,
-                            density, restitution, friction, mask, category));
+                            density, restitution, friction, mask, category, sensor));
 
             config_[key] = part;
             static_cast<body_cfg *>(&(*config_[parent_key]))->add(key);

@@ -38,7 +38,7 @@ namespace physics {
     public:
         body_part(configuration& conf,
             const float& density, const float& restitution, const float& friction,
-                  const uint16_t& mask, const uint16_t& category);
+                  const uint16_t& mask, const uint16_t& category, bool is_sensor);
         
     protected:
         configuration&              config_;
@@ -48,6 +48,7 @@ namespace physics {
         float   friction_;
         uint16_t   mask_;
         uint16_t   category_;
+        bool    is_sensor_;
     };
     
     class body_part_box
@@ -57,7 +58,7 @@ namespace physics {
         body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
             const uint16_t & mask, const uint16_t& category,
-            const size& bottom_left, const size& top_right);
+            const size& bottom_left, const size& top_right, bool is_sensor);
         
     private:
         size    bl_;
@@ -71,7 +72,7 @@ namespace physics {
         body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
             const uint16_t& mask, const uint16_t& category,
-            const float& radius);
+            const float& radius, bool is_sensor);
         
     private:
         float    radius_;
