@@ -69,6 +69,7 @@ using namespace x2d::config;
         void rotation(float a);
         
         void scale(float s);
+        float scale() const;
         
         void pivot(const glm::vec2& p);
         const glm::vec2 pivot() const;
@@ -83,8 +84,10 @@ using namespace x2d::config;
         
         void set_bgcolor(const color_info& bgcolor);
         
+        void enable(bool e);
+        bool enabled() const;
         void visible(bool v);
-        
+
         const glm::vec3& camera_space_position() const;
         void camera_space_position(const glm::vec2& p);
         void camera_space_position(const glm::vec3& p);
@@ -217,8 +220,9 @@ using namespace x2d::config;
         boost::shared_ptr<emitter>   emitter_;
         boost::shared_ptr<zone>      zone_;
         
+        bool                         is_enabled_;
         bool                         is_visible_;
-        
+
         std::vector< boost::shared_ptr<context> >    contexts_;
         std::vector< boost::shared_ptr<object> >     children_;
         object                                      *parent_;

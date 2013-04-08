@@ -732,8 +732,8 @@ namespace x2d
                             parse_exception("Spawner type must have 'objects' defined."));
 
             glm::vec3 position = *get_attr<glm::vec3>(*this, node, key, "position", glm::vec3(0, 0, 0));
-            int wave_size = *get_attr<int>(*this, node, key, "wave_size", 1);
-            float wave_delay = *get_attr<float>(*this, node, key, "wave_delay", 0.0f);
+            value<int> wave_size = get_attr<int>(*this, node, key, "wave_size", 1);
+            value<float> wave_delay = get_attr<float>(*this, node, key, "wave_delay", 0.0f);
 
             config_[key] = boost::shared_ptr<spawner_cfg>(new spawner_cfg(*this, obj_vec, position, wave_size, wave_delay));
         }
@@ -899,11 +899,11 @@ namespace x2d
             float friction =
                     *get_attr<float>(*this, node, key, "friction", 0.1f);
 
-            signed short mask =
-                    *get_attr<signed short>(*this, node, key, "mask", 0x0000);
+            uint16_t mask =
+                    *get_attr<uint16_t >(*this, node, key, "mask", 0x0000);
 
-            signed short category =
-                    *get_attr<signed short>(*this, node, key, "category", 0x0000);
+            uint16_t category =
+                    *get_attr<uint16_t >(*this, node, key, "category", 0x0000);
 
             boost::shared_ptr<body_part_cfg> part =
                     boost::shared_ptr<body_part_cfg>(new body_part_cfg(*this, kernel_,
@@ -1184,6 +1184,7 @@ namespace x2d
             tr.box = get_attr<size>(*this, node, key, "box", size());
             tr.bgcolor = *get_attr<color_info>(*this, node, key, "bgcolor", color_info(0.0f, 0.0f, 0.0f, 0.0f));
             tr.visible = get_attr<bool>(*this, node, key, "visible", true);
+            tr.enabled = get_attr<bool>(*this, node, key, "enabled", true);
             tr.lifetime = get_attr<float>(*this, node, key, "lifetime", 0.0f);
 
             xml_attr *bgcolor = node->first_attribute("bgcolor");

@@ -68,7 +68,7 @@ namespace physics {
     
     size body::get_default_box_size() const
     {
-        return object_.box();
+        return object_.box() * object_.scale();
     }
     
     void body::apply_force_to_center(const glm::vec2& f)

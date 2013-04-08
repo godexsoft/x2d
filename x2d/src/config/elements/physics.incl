@@ -89,7 +89,7 @@ public:
      */
     body_part_cfg(configuration& c, kernel& k,
         float density, float restitution, float friction,
-        signed short mask, signed short category)
+        const uint16_t& mask, const uint16_t& category)
     : config_(c)
     , kernel_(k)
     , type_(INVALID_TYPE)
@@ -138,6 +138,6 @@ private:
     float                       density_;
     float                       restitution_;
     float                       friction_;
-    signed short                mask_;
-    signed short                category_;
+    uint16_t                     mask_;
+    uint16_t                    category_;
 };

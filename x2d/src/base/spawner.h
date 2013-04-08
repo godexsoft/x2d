@@ -36,18 +36,19 @@ namespace base {
         spawner(kernel& k, configuration& conf, 
                 const list_value<std::string>& obj_lst,
                 const glm::vec3& pos=glm::vec3(0,0,0),
-                int ws=1, float wd=0.0f, float lt=0.0f);
+                const value<int>& ws=1, const value<float>& wd=0.0f,
+                float lt=0.0f);
         
         virtual ~spawner()
         {            
         }
         
-        void wave_size(int s)
+        void wave_size(const value<int>& s)
         {
             wave_size_ = s;
         }
         
-        void wave_delay(float d)
+        void wave_delay(const value<float>& d)
         {
             wave_delay_ = d;
         }
@@ -83,10 +84,10 @@ namespace base {
          * Start generating objects on timer.
          */
         void start()
-        {    
-            if(wave_delay_ > 0.0f)
+        {
+            if(wave_delay_.mid() > 0)
             {
-                timer_.set(wave_delay_);
+                timer_.set(*wave_delay_);
             }
         }
         
@@ -107,6 +108,7 @@ namespace base {
         void update(const clock_info& clock) 
         {
             spawn(); // generate one wave
+            timer_.set(*wave_delay_); // reset with new random delay
         }
 
         void set_parent(object* o)
@@ -126,8 +128,8 @@ namespace base {
 
         glm::vec3       position_;
         
-        int             wave_size_;
-        float           wave_delay_;
+        value<int>      wave_size_;
+        value<float>    wave_delay_;
         float           life_time_;
         
         object*         parent_;

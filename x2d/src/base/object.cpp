@@ -21,6 +21,7 @@ namespace x2d {
     , want_screen_touch_input(false)
     , want_world_touch_input(false)
     , want_accelerometer_input(false)
+    , enabled(true)
     , visible(true)
     , has_animation(false)
     , has_sprite(false)
@@ -80,6 +81,7 @@ namespace x2d {
     , camera_space_pivot_(pivot_)
     , bgcolor_(t.bgcolor)
     , align_(t.align)
+    , is_enabled_(*t.enabled)
     , is_visible_(*t.visible)
     , parent_(NULL)
     , has_parent_(t.has_parent)
@@ -278,6 +280,11 @@ namespace x2d {
         
     void object::update(const clock_info& clock) 
     {
+        if(!is_enabled_)
+        {
+            return;
+        }
+
         //
         // TODO: this stuff should be recalculated only if the values got dirty!!
         //
@@ -313,10 +320,12 @@ namespace x2d {
     }
     
     void object::render(const clock_info& clock)
-    {          
-        if(!is_visible_)
+    {
+        if(!is_enabled_ || !is_visible_)
+        {
             return;
-        
+        }
+
         glPushMatrix();
         glTranslatef(position_.x, position_.y, 0.0f);
         
@@ -593,7 +602,12 @@ namespace x2d {
     {
         scale_ = s;
     }
-    
+
+    float object::scale() const
+    {
+        return scale_;
+    }
+
     void object::pivot(const glm::vec2& p)
     {
         if(parent_space_ == PARENT_SPACE_BOTH || parent_space_ == PARENT_SPACE_BOX)
@@ -676,11 +690,21 @@ namespace x2d {
         bgcolor_ = bgcolor;
     }
     
+    void object::enable(bool e)
+    {
+        is_enabled_ = e;
+    }
+
+    bool object::enabled() const
+    {
+        return is_enabled_;
+    }
+
     void object::visible(bool v)
     {
         is_visible_ = v;
     }
-    
+
     boost::shared_ptr<spawner> object::get_spawner()
     {
         return spawner_;

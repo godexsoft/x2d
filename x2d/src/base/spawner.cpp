@@ -14,7 +14,8 @@ namespace base {
 
     spawner::spawner(kernel& k, configuration& conf, 
                      const list_value<std::string>& obj_lst,
-                     const glm::vec3& pos, int ws, float wd, float lt)
+                     const glm::vec3& pos, const value<int>& ws,
+                     const value<float>& wd, float lt)
     : kernel_(k)
     , config_(conf)
     , timer_(k)
@@ -44,7 +45,7 @@ namespace base {
 
     void spawner::spawn()
     {
-        for(int i=0; i<wave_size_; ++i)
+        for(int i=0; i<*wave_size_; ++i)
         {
             boost::shared_ptr<object> o = config_.create_object_1(*obj_lst_, this);
             objects_.push_back( o );

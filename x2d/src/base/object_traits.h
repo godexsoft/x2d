@@ -88,7 +88,12 @@ namespace x2d {
             {
                 visible.set(other.visible);
             }
-            
+
+            if(other.enabled)
+            {
+                enabled.set(other.enabled);
+            }
+
             if(other.has_animation)
             {
                 has_animation = true;
@@ -258,9 +263,10 @@ namespace x2d {
         optional_value<bool>       want_screen_touch_input;
         optional_value<bool>       want_world_touch_input;
         optional_value<bool>       want_accelerometer_input;
-        
+
+        optional_value<bool>       enabled;
         optional_value<bool>       visible;
-        
+
         // graphics
         bool        has_animation;
         std::string animation;

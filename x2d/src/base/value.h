@@ -65,7 +65,14 @@ namespace x2d {
         wrapped_distribution() {}
     };
     
-    
+    template<>
+    struct wrapped_distribution<uint16_t> : public boost::random::uniform_int_distribution<uint16_t>
+    {
+        wrapped_distribution(const uint16_t& min, const uint16_t& max)
+        : boost::random::uniform_int_distribution<uint16_t>(min, max) {}
+        wrapped_distribution() {}
+    };
+
     /**
      * Holds a value in range. Will return random values from the range on request.
      * If constructed with one argument will hold that single value and always return it on request.
