@@ -17,10 +17,13 @@
 {
     NSWindow *_window;
     MACGLView *_gl_view;
+    NSTimer *_timer;
 }
 
 @property (strong, nonatomic) NSWindow *window;
 @property (strong, nonatomic) MACGLView *gl_view;
+
+@property (strong, nonatomic) NSTimer* timer;
 // @property (nonatomic, retain) CADisplayLink* dl;
 
 @end

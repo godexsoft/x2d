@@ -64,7 +64,7 @@ extern app_framework* g_app;
         context_ = [self openGLContext];
         
         if (!context_) {
-            LOG("Couldn't init OpenGLES.");
+            LOG("Couldn't init OpenGL.");
             throw std::exception();
         }
         

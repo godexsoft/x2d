@@ -89,7 +89,7 @@
 		241583CD14D0B2DA0014F37B /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5F14CC8623006F36A1 /* clock.cpp */; };
 		241583CE14D0B2DA0014F37B /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC5A14CC7C92006F36A1 /* timer.cpp */; };
 		241583CF14D0B2DA0014F37B /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC4514CC63FD006F36A1 /* kernel.cpp */; };
-		241583D014D0B2DA0014F37B /* platform_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform_ios.mm */; };
+		241583D014D0B2DA0014F37B /* platform_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6114CC86BD006F36A1 /* platform_apple.mm */; };
 		2415840914D0CD8A0014F37B /* liverpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415840714D0CD8A0014F37B /* liverpool.cpp */; };
 		2415841214D0D5480014F37B /* posix_fs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415841114D0D5480014F37B /* posix_fs.cpp */; };
 		2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2415841C14D2DBC20014F37B /* liverpool_manager.cpp */; };
@@ -124,7 +124,9 @@
 		2486D37717C63BB0006FF358 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
 		2487CAC014E1E408006A7E22 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CABF14E1E408006A7E22 /* camera.cpp */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
-		249174801889C90E008D32B9 /* X2DAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 247607CE185E109D00AE8FA6 /* X2DAppDelegate.mm */; };
+		249174D71889E898008D32B9 /* app_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24F1877C17D781F3007B910E /* app_mac.mm */; };
+		249174DD1889ED23008D32B9 /* X2DAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 247607CE185E109D00AE8FA6 /* X2DAppDelegate.mm */; };
+		249174DE1889EE4D008D32B9 /* MACGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24760858185E2D3300AE8FA6 /* MACGLView.mm */; };
 		2495EB5B186B35F700C68C08 /* X2DAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 244EB70715FD227E0009C562 /* X2DAppDelegate.mm */; };
 		2495EB5F186B3B0800C68C08 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2495EB60186B3B1800C68C08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -695,7 +697,7 @@
 		24BDCC5B14CC7C92006F36A1 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = src/kernel/timer.h; sourceTree = "<group>"; };
 		24BDCC5E14CC7E56006F36A1 /* base_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base_object.h; path = src/base/base_object.h; sourceTree = "<group>"; };
 		24BDCC5F14CC8623006F36A1 /* clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = clock.cpp; path = src/kernel/clock.cpp; sourceTree = "<group>"; };
-		24BDCC6114CC86BD006F36A1 /* platform_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = platform_ios.mm; path = src/platform_ios.mm; sourceTree = "<group>"; };
+		24BDCC6114CC86BD006F36A1 /* platform_apple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = platform_apple.mm; path = src/platform_apple.mm; sourceTree = "<group>"; };
 		24BDCC6314CC8737006F36A1 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = src/platform.h; sourceTree = "<group>"; };
 		24BDCC6414CC966A006F36A1 /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compare.h; path = src/util/compare.h; sourceTree = "<group>"; };
 		24BDCC6614CCC006006F36A1 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = src/gl/EAGLView.h; sourceTree = "<group>"; };
@@ -1510,7 +1512,7 @@
 				2487CB6014E6F09B006A7E22 /* doc */,
 				24C7486D14F65DC5004E07DD /* plugins */,
 				24BDCC4314CC63B5006F36A1 /* x2d */,
-				24BDCC6114CC86BD006F36A1 /* platform_ios.mm */,
+				24BDCC6114CC86BD006F36A1 /* platform_apple.mm */,
 				24BDCC6314CC8737006F36A1 /* platform.h */,
 				24408C7114E9B1B80056C5E5 /* config.h */,
 			);
@@ -2177,7 +2179,7 @@
 				241583CD14D0B2DA0014F37B /* clock.cpp in Sources */,
 				241583CE14D0B2DA0014F37B /* timer.cpp in Sources */,
 				241583CF14D0B2DA0014F37B /* kernel.cpp in Sources */,
-				241583D014D0B2DA0014F37B /* platform_ios.mm in Sources */,
+				241583D014D0B2DA0014F37B /* platform_apple.mm in Sources */,
 				2415840914D0CD8A0014F37B /* liverpool.cpp in Sources */,
 				2415841214D0D5480014F37B /* posix_fs.cpp in Sources */,
 				2415841D14D2DBC20014F37B /* liverpool_manager.cpp in Sources */,
@@ -2205,16 +2207,18 @@
 				24E4BC5115E2B7D0008F162C /* space.cpp in Sources */,
 				24E4BD6215E56049008F162C /* script.cpp in Sources */,
 				24E4BD6615E5634A008F162C /* scripting_engine.cpp in Sources */,
-				249174801889C90E008D32B9 /* X2DAppDelegate.mm in Sources */,
 				24E4BD6B15E6BFB7008F162C /* event_manager.cpp in Sources */,
 				24E4BD7015E92F62008F162C /* listener.cpp in Sources */,
 				24E4BD7715E95885008F162C /* callable.cpp in Sources */,
 				244EB6E715FD0A910009C562 /* openal_fx.cpp in Sources */,
+				249174DE1889EE4D008D32B9 /* MACGLView.mm in Sources */,
 				244EB6E815FD0A960009C562 /* audio_queue.cpp in Sources */,
 				244EB6EC15FD11590009C562 /* app_framework.cpp in Sources */,
 				244EB70315FD21F30009C562 /* app_ios.mm in Sources */,
 				2495EB5B186B35F700C68C08 /* X2DAppDelegate.mm in Sources */,
 				247089081618D9F9006FCCA1 /* resource_manager.cpp in Sources */,
+				249174DD1889ED23008D32B9 /* X2DAppDelegate.mm in Sources */,
+				249174D71889E898008D32B9 /* app_mac.mm in Sources */,
 				24D24CF116D921BE00D689F2 /* value.cpp in Sources */,
 				24C1747816DA3BA10013A8AF /* scene.cpp in Sources */,
 				2499AF0E16E54F9F00CC254C /* emitter.cpp in Sources */,

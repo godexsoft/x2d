@@ -1,5 +1,5 @@
 //
-//  platform.mm
+//  platform_apple.mm
 //  x2d
 //
 //  Created by Alex Kremer on 1/22/12.
@@ -96,7 +96,11 @@ namespace time {
     
     double current_time()
     {
+#if TARGET_OS_IPHONE
         return CACurrentMediaTime();
+#elif TARGET_OS_MAC
+        return (double)CFAbsoluteTimeGetCurrent();
+#endif
     }
     
 } // namespace time

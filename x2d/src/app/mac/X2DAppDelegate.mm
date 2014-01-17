@@ -30,6 +30,7 @@ extern app_framework* g_app;
 
 @synthesize window = _window;
 @synthesize gl_view = _gl_view;
+@synthesize timer = _timer;
 // @synthesize dl = _dl;
 
 - (void)dealloc
@@ -56,6 +57,13 @@ extern app_framework* g_app;
     // run user code allowing them to initialize some objects
     // just before starting the main looper.
     g_app->main();
+    
+    // TODO: replace with Display link if possible on macosx
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0
+                                                  target:self
+                                                selector:@selector(step)
+                                                userInfo:nil
+                                                 repeats:YES];
 }
 
 - (void)step
@@ -75,18 +83,12 @@ extern app_framework* g_app;
                                                      styleMask:NSBorderlessWindowMask
                                                        backing:NSBackingStoreBuffered
                                                          defer:NO] autorelease];
-    [self.window setBackgroundColor:[NSColor blackColor]];
     [self.window makeKeyAndOrderFront:NSApp];
     
     // create opengl view
     self.gl_view = [[[MACGLView alloc] initWithCapabilities:caps] autorelease];
-    
-//    self.window.multipleTouchEnabled = YES;
-//    self.window.userInteractionEnabled = YES;
-//    self.window.rootViewController = nil;
-    
-//    [self.window addSubview:self.gl_view];
-//    [self.window makeKeyAndVisible];
+
+    [self.window setContentView:self.gl_view];
     [self performSelectorOnMainThread:@selector(start:) withObject:nil waitUntilDone:NO];
 }
 
