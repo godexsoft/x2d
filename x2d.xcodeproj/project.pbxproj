@@ -124,9 +124,10 @@
 		2486D37717C63BB0006FF358 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2413FE7916C9AC1A005AAD49 /* boost.framework */; };
 		2487CAC014E1E408006A7E22 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CABF14E1E408006A7E22 /* camera.cpp */; };
 		2487CB9E14E7262D006A7E22 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2487CB9D14E7262D006A7E22 /* font.cpp */; };
+		249174801889C90E008D32B9 /* X2DAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 247607CE185E109D00AE8FA6 /* X2DAppDelegate.mm */; };
 		2495EB5B186B35F700C68C08 /* X2DAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 244EB70715FD227E0009C562 /* X2DAppDelegate.mm */; };
-		2495EB5F186B3B0800C68C08 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; };
-		2495EB60186B3B1800C68C08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; };
+		2495EB5F186B3B0800C68C08 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC6914CCC122006F36A1 /* OpenGLES.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2495EB60186B3B1800C68C08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BDCC2114CC6300006F36A1 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2495EB61186B3B6C00C68C08 /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BDCC6714CCC006006F36A1 /* EAGLView.mm */; };
 		2499AF0C16E52D7700CC254C /* emitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2499AF0B16E52D7700CC254C /* emitter.h */; };
 		2499AF0E16E54F9F00CC254C /* emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2499AF0D16E54F9F00CC254C /* emitter.cpp */; };
@@ -150,7 +151,7 @@
 		24DDAD6615A9E48A0064EFC5 /* body.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DDAD6415A9E48A0064EFC5 /* body.h */; };
 		24DDAD6815AA091B0064EFC5 /* world.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DDAD6715AA091B0064EFC5 /* world.h */; };
 		24DDAD6A15AA21AC0064EFC5 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24DDAD6915AA21AC0064EFC5 /* world.cpp */; };
-		24E020C616FF8AD900FCF87F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; };
+		24E020C616FF8AD900FCF87F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F95C814EDB61600922D55 /* OpenAL.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		24E020C716FF8AD900FCF87F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7914E9D1750056C5E5 /* AudioToolbox.framework */; };
 		24E020C816FF8AD900FCF87F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24408C7A14E9D1750056C5E5 /* CoreAudio.framework */; };
 		24E020C916FF8AD900FCF87F /* libx2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241583BD14D0B27E0014F37B /* libx2d.a */; };
@@ -618,7 +619,7 @@
 		244EB6EA15FD11590009C562 /* app_framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = app_framework.cpp; path = src/app/app_framework.cpp; sourceTree = "<group>"; };
 		244EB6EB15FD11590009C562 /* app_framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = app_framework.h; path = src/app/app_framework.h; sourceTree = "<group>"; };
 		244EB70215FD21F30009C562 /* app_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = app_ios.mm; path = src/app/app_ios.mm; sourceTree = "<group>"; };
-		244EB70615FD227E0009C562 /* X2DAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = X2DAppDelegate.h; path = src/app/ios/X2DAppDelegate.h; sourceTree = "<group>"; };
+		244EB70615FD227E0009C562 /* X2DIOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = X2DIOSAppDelegate.h; path = src/app/ios/X2DIOSAppDelegate.h; sourceTree = "<group>"; };
 		244EB70715FD227E0009C562 /* X2DAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = X2DAppDelegate.mm; path = src/app/ios/X2DAppDelegate.mm; sourceTree = "<group>"; };
 		244ECEED14F68D2600F25E07 /* label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = label.h; path = plugins/ui/widgets/label.h; sourceTree = SOURCE_ROOT; };
 		244ECEEF14F6A9F300F25E07 /* label.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = label.cpp; path = plugins/ui/widgets/label.cpp; sourceTree = SOURCE_ROOT; };
@@ -1327,7 +1328,7 @@
 		244EB70515FD22740009C562 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				244EB70615FD227E0009C562 /* X2DAppDelegate.h */,
+				244EB70615FD227E0009C562 /* X2DIOSAppDelegate.h */,
 				244EB70715FD227E0009C562 /* X2DAppDelegate.mm */,
 			);
 			name = ios;
@@ -2204,6 +2205,7 @@
 				24E4BC5115E2B7D0008F162C /* space.cpp in Sources */,
 				24E4BD6215E56049008F162C /* script.cpp in Sources */,
 				24E4BD6615E5634A008F162C /* scripting_engine.cpp in Sources */,
+				249174801889C90E008D32B9 /* X2DAppDelegate.mm in Sources */,
 				24E4BD6B15E6BFB7008F162C /* event_manager.cpp in Sources */,
 				24E4BD7015E92F62008F162C /* listener.cpp in Sources */,
 				24E4BD7715E95885008F162C /* callable.cpp in Sources */,
@@ -2527,7 +2529,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv6 armv7 armv7s i386";
+				VALID_ARCHS = "armv6 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -2566,7 +2568,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 armv7 armv7s i386";
+				VALID_ARCHS = "armv6 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};

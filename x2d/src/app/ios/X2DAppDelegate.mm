@@ -6,10 +6,13 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
-//#if __APPLE__
-//#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
 
-#import "X2DAppDelegate.h"
+#if TARGET_OS_IPHONE
+
+#import "X2DIOSAppDelegate.h"
 #import "EAGLView.h"
 
 #import "platform.h"
@@ -114,5 +117,5 @@ namespace fs = x2d::filesystem;
 
 @end
 
-// #endif // iOS or Simulator
+#endif // iOS or Simulator
 //#endif // __APPLE__

@@ -9,6 +9,10 @@
 #include "platform.h"
 #include <Foundation/Foundation.h>
 
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
 #if __APPLE__
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     #include <UIKit/UIKit.h>

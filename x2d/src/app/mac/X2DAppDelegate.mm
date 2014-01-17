@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
-#if __APPLE__
-#if !TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
+#if TARGET_OS_MAC && !TARGET_OS_IPHONE
 
 #import "X2DMacAppDelegate.h"
 
@@ -117,5 +120,4 @@ extern app_framework* g_app;
 
 @end
 
-#endif // not iOS and Simulator
-#endif // __APPLE__
+#endif // MacOSX

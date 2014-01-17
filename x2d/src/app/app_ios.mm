@@ -6,11 +6,14 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
-//#if __APPLE__
-//#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 #include "app_framework.h"
-#import "ios/X2DAppDelegate.h"
+#import "ios/X2DIOSAppDelegate.h"
 #include "log.h"
 
 extern app_framework* g_app;
@@ -26,5 +29,4 @@ void ios_x2d_main(app_framework& app)
     }
 }
 
-// #endif // Simulator or iPhone
-// #endif // __APPLE__
+#endif // Simulator or iPhone

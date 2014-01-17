@@ -6,6 +6,12 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "EAGLView.h"
@@ -23,3 +29,5 @@
 + (BOOL)registerAsSystemApp;
 
 @end
+
+#endif // iOS and simulator

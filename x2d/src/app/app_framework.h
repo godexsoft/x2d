@@ -10,6 +10,10 @@
 #ifndef __X2D_APP_FRAMEWORK_H__
 #define __X2D_APP_FRAMEWORK_H__
 
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
 #include "log.h"
 #include "platform.h"
 
