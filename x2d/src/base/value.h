@@ -11,7 +11,25 @@
 
 #include <string>
 #include <vector>
+
+#ifdef nil
+#undef nil
+#endif
+
+#ifdef Nil
+#undef Nil
+#endif
+
+#define nil Boost_nil
+#define Nil Boost_Nil
+
 #include <boost/random.hpp>
+
+#undef nil
+#undef Nil
+#define nil __DARWIN_NULL
+#define Nil __DARWIN_NULL
+
 #include "exceptions.h"
 #include "color_info.h"
 #include "platform.h"

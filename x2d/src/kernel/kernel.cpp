@@ -51,12 +51,12 @@ namespace x2d
         return boost::shared_ptr<viewport>(); // not found
     }
     
-    boost::signals::connection kernel::connect_update( base_object* o )
+    boost::signals2::connection kernel::connect_update( base_object* o )
     {
         return update_signal_.connect( boost::bind(&base_object::update, o, _1) );
     }
     
-    boost::signals::connection kernel::connect_render( base_object* o, float z, bool camera_space )
+    boost::signals2::connection kernel::connect_render( base_object* o, float z, bool camera_space )
     {
         boost::function<void(const clock_info&)> s = boost::bind(&base_object::render, o, _1); // the real render function
         return render_signal_.connect( z, boost::bind(&kernel::render_wrapper, this, camera_space, s, _1) );
@@ -68,23 +68,23 @@ namespace x2d
         {
             case SCREEN_SPACE:
                 return kernel::input_connections_t(
-                        screen_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, SCREEN_SPACE, _1), boost::signals::at_front ),
-                        screen_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, SCREEN_SPACE, _1), boost::signals::at_front ),
-                        screen_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, SCREEN_SPACE, _1), boost::signals::at_front )
+                        screen_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, SCREEN_SPACE, _1), boost::signals2::at_front ),
+                        screen_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, SCREEN_SPACE, _1), boost::signals2::at_front ),
+                        screen_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, SCREEN_SPACE, _1), boost::signals2::at_front )
                 );
 
             case WORLD_SPACE:
                 return kernel::input_connections_t(
-                        world_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, WORLD_SPACE, _1), boost::signals::at_front ),
-                        world_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, WORLD_SPACE, _1), boost::signals::at_front ),
-                        world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1), boost::signals::at_front )
+                        world_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, WORLD_SPACE, _1), boost::signals2::at_front ),
+                        world_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, WORLD_SPACE, _1), boost::signals2::at_front ),
+                        world_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, WORLD_SPACE, _1), boost::signals2::at_front )
                 );
                 
             case CAMERA_SPACE:
                 return kernel::input_connections_t(
-                        camera_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, CAMERA_SPACE, _1), boost::signals::at_front ),
-                        camera_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, CAMERA_SPACE, _1), boost::signals::at_front ),
-                        camera_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, CAMERA_SPACE, _1), boost::signals::at_front )
+                        camera_touches_began_signal_.connect( boost::bind(&base_object::touch_input_began, o, CAMERA_SPACE, _1), boost::signals2::at_front ),
+                        camera_touches_moved_signal_.connect( boost::bind(&base_object::touch_input_moved, o, CAMERA_SPACE, _1), boost::signals2::at_front ),
+                        camera_touches_ended_signal_.connect( boost::bind(&base_object::touch_input_ended, o, CAMERA_SPACE, _1), boost::signals2::at_front )
                 );
         }
     }

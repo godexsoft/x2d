@@ -16,7 +16,7 @@
 
 #	if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
 #		include <OpenGLES/ES1/glext.h>
-#		define MAX_TEXTURE_SIZE 1024
+#		define MAX_TEXTURE_SIZE 2048
 #	elif defined(__APPLE__)
 #		include <OpenGL/OpenGL.h>
 #		include <OpenGL/gl.h>

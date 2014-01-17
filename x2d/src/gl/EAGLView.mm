@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+//#if __APPLE__
+//#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #import <QuartzCore/QuartzCore.h>
 
 #import "EAGLView.h"
@@ -103,7 +106,7 @@ extern app_framework* g_app;
     return self;
 }
 
-- (void)layoutSubviews 
+- (void)layoutSubviews
 {
     LOG("Layout subviews in EAGLView");
     graphics_engine::instance().set_current_context();
@@ -179,3 +182,6 @@ extern app_framework* g_app;
 }
 
 @end
+
+// #endif // iOS or Simulator
+// #endif // __APPLE__

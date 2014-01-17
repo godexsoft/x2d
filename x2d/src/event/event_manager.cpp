@@ -11,7 +11,7 @@
 namespace x2d {
 namespace event {
     
-    const boost::signals::connection
+    const boost::signals2::connection
     event_manager::connect_listener(
        std::string ev,
        const boost::function<void()>& l)

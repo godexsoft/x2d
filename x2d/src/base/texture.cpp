@@ -48,6 +48,8 @@ namespace base {
 
         decodePNG(out, width_, height_, data, sz);
         x2d::math::size image_size(width_, height_);
+
+        LOG("Decoded texture from png file. Size is %dx%d", width_, height_);
         
         unsigned int width = width_;
         unsigned int height = height_;

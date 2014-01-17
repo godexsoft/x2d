@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+//#if __APPLE__
+//#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #import "X2DAppDelegate.h"
 #import "EAGLView.h"
 
@@ -104,4 +107,12 @@ namespace fs = x2d::filesystem;
     graphics_engine::instance().shutdown();
 }
 
++ (BOOL)registerAsSystemApp
+{
+    return false;
+}
+
 @end
+
+// #endif // iOS or Simulator
+//#endif // __APPLE__

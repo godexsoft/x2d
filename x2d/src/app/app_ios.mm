@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 godexsoft. All rights reserved.
 //
 
+//#if __APPLE__
+//#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #include "app_framework.h"
 #import "ios/X2DAppDelegate.h"
 #include "log.h"
@@ -22,3 +25,6 @@ void ios_x2d_main(app_framework& app)
         UIApplicationMain(0, argv, nil, NSStringFromClass([X2DAppDelegate class]));
     }
 }
+
+// #endif // Simulator or iPhone
+// #endif // __APPLE__

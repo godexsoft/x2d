@@ -10,9 +10,26 @@
 #ifndef __X2D_KERNEL_H__
 #define __X2D_KERNEL_H__
 
-#include <boost/signals.hpp>
+#ifdef nil
+#undef nil
+#endif
+
+#ifdef Nil
+#undef Nil
+#endif
+
+#define nil Boost_nil
+#define Nil Boost_Nil
+
+#include <boost/signals2.hpp>
 #include <boost/bind.hpp>
 #include <boost/tuple/tuple.hpp>
+
+#undef nil
+#undef Nil
+#define nil __DARWIN_NULL
+#define Nil __DARWIN_NULL
+
 #include <deque>
 #include "compare.h"
 #include "clock.h"
@@ -36,19 +53,19 @@ namespace x2d
     class kernel
     {
     public:        
-        typedef boost::signal<void(const clock_info&)>          update_signal;        
-        typedef boost::signal<void(const clock_info&), 
-            boost::last_value<boost::function_traits<void(const clock_info&)>::result_type>,
-            float, std::greater<float> >                        render_signal;        
-        typedef boost::signal<void (const std::vector<touch>&)> touch_input_signal;        
-        typedef boost::signal<void (const glm::vec3&)>          accel_input_signal;        
+        typedef ::boost::signals2::signal<void(const clock_info&)>          update_signal;
+        typedef ::boost::signals2::signal<void(const clock_info&), 
+            ::boost::signals2::last_value<boost::function_traits<void(const clock_info&)>::result_type>,
+                float, std::greater<float> >                                render_signal;
+        typedef ::boost::signals2::signal<void (const std::vector<touch>&)> touch_input_signal;        
+        typedef ::boost::signals2::signal<void (const glm::vec3&)>          accel_input_signal;        
         
         typedef std::deque<timer*> timer_container;
 
         typedef boost::tuple<
-                    boost::signals::connection,
-                    boost::signals::connection,
-                    boost::signals::connection >
+                    boost::signals2::connection,
+                    boost::signals2::connection,
+                    boost::signals2::connection >
                         input_connections_t;
         
         kernel();
@@ -125,8 +142,8 @@ namespace x2d
         int step();
         
         // Signal exposure
-        boost::signals::connection connect_update( base_object* o );
-        boost::signals::connection connect_render( base_object* o, float z, bool camera_space = false );
+        boost::signals2::connection connect_update( base_object* o );
+        boost::signals2::connection connect_render( base_object* o, float z, bool camera_space = false );
         input_connections_t connect_touch_input( space s, base_object* o );
         void connect_accelerometer_input( base_object* o );
         

@@ -20,4 +20,6 @@
 @property (strong, nonatomic) EAGLView *gl_view;
 @property (nonatomic, retain) CADisplayLink* dl;
 
++ (BOOL)registerAsSystemApp;
+
 @end

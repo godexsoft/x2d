@@ -32,7 +32,7 @@ namespace base {
     : public object
     {
         friend class app_framework;
-        friend class configuration;
+        friend class x2d::config::configuration;
         
     public:
         /**

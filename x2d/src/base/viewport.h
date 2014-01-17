@@ -82,7 +82,7 @@ namespace base {
 #ifdef GL_ES_INCLUDED
             glOrthof(0, camera_->frustum_.width, 0, camera_->frustum_.height, -1, 100);
 #elif defined (_OPENGL_H)
-            glOrtho(0, camera_.frustum_.width, 0, camera_.frustum_.height, -1, 100);
+            glOrtho(0, camera_->frustum_.width, 0, camera_->frustum_.height, -1, 100);
 #endif
             glMatrixMode(GL_MODELVIEW);
 

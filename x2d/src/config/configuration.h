@@ -21,10 +21,27 @@
 #include "exceptions.h"
 
 #include "rapidxml.hpp"
+
+#ifdef nil
+#undef nil
+#endif
+
+#ifdef Nil
+#undef Nil
+#endif
+
+#define nil Boost_nil
+#define Nil Boost_Nil
+
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
 #include <boost/random.hpp>
+
+#undef nil
+#undef Nil
+#define nil __DARWIN_NULL
+#define Nil __DARWIN_NULL
 
 #include "object_support.h"
 #include "value_support.h"

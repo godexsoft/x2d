@@ -11,7 +11,7 @@
 #define __X2D_EVENT_MANAGER_H__
 
 #include <boost/any.hpp>
-#include <boost/signals.hpp>
+#include <boost/signals2.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 
 #include <string>
@@ -23,9 +23,9 @@ namespace event {
     class event_manager
     {
     public:
-        typedef boost::signal<void()>  listener;
+        typedef boost::signals2::signal<void()>  listener;
         
-        const boost::signals::connection connect_listener(std::string ev,
+        const boost::signals2::connection connect_listener(std::string ev,
             const boost::function<void()>& l);
         
 //        void send(std::string& ev, const boost::any& payload);

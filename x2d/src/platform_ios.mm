@@ -8,7 +8,15 @@
 
 #include "platform.h"
 #include <Foundation/Foundation.h>
-#include <UIKit/UIKit.h>
+
+#if __APPLE__
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    #include <UIKit/UIKit.h>
+#elif TARGET_OS_MAC
+    #include <Cocoa/Cocoa.h>   
+#endif // iOS or Simulator, MacOSX
+#endif // __APPLE__
+
 #include <sys/time.h>
 
 namespace platform {
@@ -24,6 +32,8 @@ namespace platform {
         float w = 320.0f;
         float h = 480.0f;
         
+#if __APPLE__
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
         float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
         if (ver >= 3.2f)
         {
@@ -31,6 +41,8 @@ namespace platform {
             w = s.currentMode.size.width;
             h = s.currentMode.size.height;
         }
+#endif // iOS or Simulator
+#endif // __APPLE__
         
         // swap iPad size if mode is crazy
         if ( h == 768.0f && w == 1024.0f )

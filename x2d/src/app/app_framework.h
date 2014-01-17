@@ -34,7 +34,11 @@ namespace base {
 int x2d_main();
 
 #ifdef __APPLE__
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 void ios_x2d_main(x2d::app_framework&);
+#elif TARGET_OS_MAC
+void mac_x2d_main(x2d::app_framework&);
+#endif // target
 #elif defined(ANDROID)
 void android_x2d_main(x2d::app_framework&);
 #endif
@@ -53,8 +57,12 @@ namespace x2d {
 #ifdef ANDROID
             android_x2d_main(app);
 #elif defined(__APPLE__)
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
             ios_x2d_main(app);
-#endif
+#elif TARGET_OS_MAC
+            mac_x2d_main(app);
+#endif // targets
+#endif // __APPLE__
         }
         catch(sys_exception& ex)
         {

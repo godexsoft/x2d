@@ -30,7 +30,7 @@ namespace x2d {
 } // namespace x2d
 
 #ifdef __APPLE__
-// for iOS we just forward to x2d_main which must be defined by the client
+// for MacOSX and iOS we just forward to x2d_main which must be defined by the client
 int main(int argc, char* argv[])
 {
     return x2d_main();

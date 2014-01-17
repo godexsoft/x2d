@@ -14,8 +14,8 @@
 #include "script.h"
 
 #include <boost/shared_ptr.hpp>
-#include <boost/signals.hpp>
-#include <boost/signals/connection.hpp>
+#include <boost/signals2.hpp>
+#include <boost/signals2/connection.hpp>
 
 namespace x2d {
     
@@ -49,7 +49,7 @@ namespace event {
         boost::function<void()>     callback_;
         boost::shared_ptr<script>   script_;
         
-        boost::signals::connection con_;
+        boost::signals2::connection con_;
     };
     
 } // namespace event

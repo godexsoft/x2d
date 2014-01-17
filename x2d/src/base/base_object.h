@@ -24,7 +24,7 @@ namespace x2d
      * Base class for all objects in x2d
      */
     class base_object 
-    : public boost::signals::trackable // automatic management of slot connections
+    : public boost::signals2::trackable // automatic management of slot connections
     {
         friend class kernel;
 
@@ -178,8 +178,8 @@ namespace x2d
         virtual void accelerometer_input(const glm::vec3& acceleration) {}
         
     private:
-        boost::signals::connection update_connection_;
-        boost::signals::connection render_connection_;
+        boost::signals2::connection update_connection_;
+        boost::signals2::connection render_connection_;
 
         input_connections_map touch_input_connections_;
     };

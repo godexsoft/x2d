@@ -103,7 +103,7 @@ namespace scripting {
         : em_(em)
         {}
         
-        const boost::signals::connection operator()(std::string ev, luabind::object o) const
+        const boost::signals2::connection operator()(std::string ev, luabind::object o) const
         {
             if(type(o) != LUA_TFUNCTION)
             {
@@ -137,16 +137,16 @@ namespace scripting {
             def("send", luabind::tag_function<void(std::string)>(
                 send_event_wrapper(config_.get_kernel().get_event_manager()))),
             def("listen",
-                luabind::tag_function<const boost::signals::connection
+                luabind::tag_function<const boost::signals2::connection
                     (std::string, luabind::object)>(
                 listen_event_wrapper(config_.get_kernel().get_event_manager())))
         ];
         
         module(lua_, "event")
         [
-            class_<boost::signals::connection>("connection")
+            class_<boost::signals2::connection>("connection")
                 .def(constructor<>())
-                .def("disconnect", &boost::signals::connection::disconnect)
+                .def("disconnect", &boost::signals2::connection::disconnect)
         ];
     }
 
