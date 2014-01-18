@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
+#import <CoreVideo/CoreVideo.h>
 
 #import "MACGLView.h"
 // #import "liverpool_manager.h"
@@ -17,13 +18,10 @@
 {
     NSWindow *_window;
     MACGLView *_gl_view;
-    NSTimer *_timer;
+    CVDisplayLinkRef _dl;
 }
 
 @property (strong, nonatomic) NSWindow *window;
 @property (strong, nonatomic) MACGLView *gl_view;
-
-@property (strong, nonatomic) NSTimer* timer;
-// @property (nonatomic, retain) CADisplayLink* dl;
 
 @end

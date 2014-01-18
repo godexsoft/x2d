@@ -23,21 +23,17 @@
 // global app pointer :-/
 extern app_framework* g_app;
 
-//namespace lp = x2d::liverpool;
-//namespace fs = x2d::filesystem;
-
 @implementation X2DAppDelegate
 
 @synthesize window = _window;
 @synthesize gl_view = _gl_view;
-@synthesize timer = _timer;
-// @synthesize dl = _dl;
 
 - (void)dealloc
 {
+    CVDisplayLinkRelease(_dl);
+    
     [_window release];
     [_gl_view release];
-//    [_dl release];
     [super dealloc];
 }
 
@@ -50,25 +46,45 @@ extern app_framework* g_app;
 {
     NSLog(@"x2d mac: Starting.");
 
-//    self.dl = [[CADisplayLink displayLinkWithTarget:self selector:@selector(step)] autorelease];
-//    self.dl.frameInterval = 1;
-//    [self.dl addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    
     // run user code allowing them to initialize some objects
     // just before starting the main looper.
     g_app->main();
     
-    // TODO: replace with Display link if possible on macosx
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0
-                                                  target:self
-                                                selector:@selector(step)
-                                                userInfo:nil
-                                                 repeats:YES];
+    // init display link
+    GLint swapInt = 1;
+    [[self.gl_view openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
+    
+    CVDisplayLinkCreateWithActiveCGDisplays(&_dl);
+    CVDisplayLinkSetOutputCallback(_dl, &x2dDisplayLinkCallback, self);
+    
+    CGLContextObj cglContext = static_cast<CGLContextObj>([[self.gl_view openGLContext] CGLContextObj]);
+    CGLPixelFormatObj cglPixelFormat = static_cast<CGLPixelFormatObj>([[self.gl_view pixelFormat] CGLPixelFormatObj]);
+    CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_dl, cglContext, cglPixelFormat);
+
+    // start spinning
+    CVDisplayLinkStart(_dl);
 }
 
-- (void)step
+static CVReturn x2dDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp* now, const CVTimeStamp* outputTime, CVOptionFlags flagsIn, CVOptionFlags* flagsOut, void* displayLinkContext)
 {
+    CVReturn result = [(X2DAppDelegate*)displayLinkContext step:outputTime];
+    return result;
+}
+
+- (CVReturn)step:(const CVTimeStamp*)outputTime
+{
+    NSOpenGLContext *currentContext = [self.gl_view openGLContext];
+    [currentContext makeCurrentContext];
+    
+    // must lock GL context because display link is threaded
+    CGLLockContext(static_cast<CGLContextObj>([currentContext CGLContextObj]));
+    
     g_app->step();
+    
+    [currentContext flushBuffer];
+    CGLUnlockContext(static_cast<CGLContextObj>([currentContext CGLContextObj]));
+    
+    return kCVReturnSuccess;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -95,34 +111,6 @@ extern app_framework* g_app;
     
     [self.window makeKeyAndOrderFront:NSApp];
 }
-
-//- (void)applicationWillResignActive:(UIApplication *)application
-//{
-//    LOG("Will resign active");
-//}
-//
-//- (void)applicationDidEnterBackground:(UIApplication *)application
-//{
-//    LOG("Pause.");
-//    g_app->get_kernel().pause();
-//}
-//
-//- (void)applicationWillEnterForeground:(UIApplication *)application
-//{
-//    LOG("Will enter foreground");
-//}
-//
-//- (void)applicationDidBecomeActive:(UIApplication *)application
-//{
-//    LOG("Resume.");
-//    g_app->get_kernel().resume();
-//}
-//
-//- (void)applicationWillTerminate:(UIApplication *)application
-//{
-//    LOG("Shutdown graphics engine..");
-//    graphics_engine::instance().shutdown();
-//}
 
 - (BOOL)windowShouldClose:(id)sender
 {
