@@ -13,7 +13,7 @@
 // #import "liverpool_manager.h"
 // #import "kernel.h"
 
-@interface X2DAppDelegate : NSObject <NSApplicationDelegate>
+@interface X2DAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 {
     NSWindow *_window;
     MACGLView *_gl_view;

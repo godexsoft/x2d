@@ -79,17 +79,21 @@ extern app_framework* g_app;
                              caps.display_size.width,
                              caps.display_size.height);
     
+    NSUInteger mask = NSTitledWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask;
     self.window  = [[[NSWindow alloc] initWithContentRect:rect
-                                                     styleMask:NSBorderlessWindowMask
-                                                       backing:NSBackingStoreBuffered
-                                                         defer:NO] autorelease];
-    [self.window makeKeyAndOrderFront:NSApp];
+                                                styleMask:mask
+                                                  backing:NSBackingStoreBuffered
+                                                    defer:NO] autorelease];
+    [self.window setDelegate:self];
+    [self.window setTitle:@"x2d (TODO: put custom name)"];
     
     // create opengl view
     self.gl_view = [[[MACGLView alloc] initWithCapabilities:caps] autorelease];
 
     [self.window setContentView:self.gl_view];
     [self performSelectorOnMainThread:@selector(start:) withObject:nil waitUntilDone:NO];
+    
+    [self.window makeKeyAndOrderFront:NSApp];
 }
 
 //- (void)applicationWillResignActive:(UIApplication *)application
@@ -119,6 +123,15 @@ extern app_framework* g_app;
 //    LOG("Shutdown graphics engine..");
 //    graphics_engine::instance().shutdown();
 //}
+
+- (BOOL)windowShouldClose:(id)sender
+{
+    NSLog(@"App is closed by user x button");
+    
+    // TODO: schedule shutdown of the engine and program
+    
+    return YES;
+}
 
 @end
 
