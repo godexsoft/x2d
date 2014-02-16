@@ -225,6 +225,22 @@ namespace x2d
             }
         }
         
+        inline void on_key_down(const std::string& key)
+        {
+            if(input_man_)
+            {
+                input_man_->on_key_down(key);
+            }
+        }
+        
+        inline void on_key_up(const std::string& key)
+        {
+            if(input_man_)
+            {
+                input_man_->on_key_up(key);
+            }
+        }
+        
         /**
          * Attach an input manager
          * @param[in] inp The input manager
@@ -232,6 +248,17 @@ namespace x2d
         void set_input_manager(const boost::shared_ptr<input_manager>& inp)
         {
             input_man_ = inp;
+        }
+        
+        void set_keyboard_mapping(const boost::shared_ptr<keyboard_mapping>& mapping)
+        {
+            if(!input_man_)
+            {
+                LOG("Notice: Attempt to assign a keyboard mapping while input manager is not set prevented.");
+                return;
+            }
+            
+            input_man_->set_keyboard_mapping(mapping);
         }
         
         void dispatch_touches_began(space s, const std::vector<touch>& touches);

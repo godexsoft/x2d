@@ -16,6 +16,8 @@
 
 #include <algorithm>
 #include <vector>
+#include <map>
+#include <boost/shared_ptr.hpp>
 
 namespace x2d {
 
@@ -56,6 +58,27 @@ namespace input {
     };
     
     /**
+     * @brief Keyboard mapping
+     *
+     * This class represents a keyboard mapping
+     */
+    class keyboard_mapping
+    {
+    public:
+        keyboard_mapping()
+        {
+        }
+        
+        void add(const std::string& key, const std::string& name);
+        
+        const std::string find_by_key(const std::string& key) const;
+        
+    private:
+        std::map<std::string, std::string> key_to_name_map_;
+        std::map<std::string, std::string> name_to_key_map_; // reverse mapping
+    };
+    
+    /**
      * @brief Input manager class.
      *
      * This class is used together with the kernel. The kernel of x2d is forwarding
@@ -72,11 +95,13 @@ namespace input {
          * @param[in] k The kernel
          * @param[in] wt true if touch input is required; false otherwise
          * @param[in] wa true if accelerometer input is required; false otherwise         
+         * @param[in] wk true if keyboard input is required; false otherwise
          */
-        input_manager(kernel& k, bool wt, bool wa)        
+        input_manager(kernel& k, bool wt, bool wa, bool wk)
         : kernel_(k)
         , want_touch_(wt)
         , want_accel_(wa)
+        , want_keyboard_(wk)
         {            
         }
         
@@ -95,6 +120,15 @@ namespace input {
             std::transform(touches.begin(), touches.end(), std::back_inserter(tr), transform_touches(mat));
             
             return tr;
+        }
+        
+        /**
+         * Set active keyboard mapping
+         * @param[in] mapping The keyboard mapping to activate
+         */
+        void set_keyboard_mapping(const boost::shared_ptr<keyboard_mapping>& mapping)
+        {
+            keyboard_mapping_ = mapping;
         }
         
     private:
@@ -122,9 +156,24 @@ namespace input {
          */
         void on_acceleration(float x, float y, float z);
         
+        /**
+         * Called by the kernel when hardware key down event arrives.
+         */
+        void on_key_down(const std::string& key);
+        
+        /**
+         * Called by the kernel when hardware key up event arrives.
+         */
+        void on_key_up(const std::string& key);
+
+        
         kernel&     kernel_;
         bool        want_touch_;
         bool        want_accel_;
+        bool        want_keyboard_;
+        
+        // keyboard mapping
+        boost::shared_ptr<keyboard_mapping> keyboard_mapping_;
     };
     
 } // namespace input

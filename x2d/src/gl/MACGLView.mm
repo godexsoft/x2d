@@ -24,6 +24,36 @@
 // global pointer to the app :-/
 extern app_framework* g_app;
 
+
+static std::string get_key_name(int k)
+{
+    if(isalpha(k))
+    {
+        return std::string( static_cast<char>(k), 1 );
+    }
+    
+    switch(k)
+    {
+        case NSRightArrowFunctionKey:
+            return "right";
+        case NSLeftArrowFunctionKey:
+            return "left";
+        case NSUpArrowFunctionKey:
+            return "up";
+        case NSDownArrowFunctionKey:
+            return "down";
+        case 32: // space
+            return "space";
+        case 13: // return
+            return "return";
+
+        default:
+            LOG("KEY %d NOT SUPPORTED YET!", k);
+            return "space";
+    }
+}
+
+
 @interface MACGLView (Callbacks)
 - (void)presentRenderBuf;
 - (void)setCurCtx;
@@ -32,6 +62,12 @@ extern app_framework* g_app;
 @end
 
 @implementation MACGLView
+{
+    BOOL key_opt_;
+    BOOL key_ctrl_;
+    BOOL key_command_;
+    BOOL key_shift_;
+}
 
 - (id) initWithCapabilities:(const device_capabilities&)caps
 {
@@ -109,7 +145,7 @@ extern app_framework* g_app;
         
     // init opengl
     graphics_engine::instance().init();
-	
+    
     return self;
 }
 
@@ -140,6 +176,78 @@ extern app_framework* g_app;
 - (void)renderBufStorage
 {
 //    [context_ renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer *)self.layer];
+}
+
+- (void) keyDown:(NSEvent *)theEvent
+{
+    int key = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
+    if(![theEvent isARepeat])
+    {
+        g_app->get_kernel().on_key_down( get_key_name(key) );
+    }
+}
+
+- (void) keyUp:(NSEvent *)theEvent
+{
+    int key = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
+    if(![theEvent isARepeat])
+    {
+        g_app->get_kernel().on_key_up( get_key_name(key) );
+    }
+}
+
+- (void)flagsChanged:(NSEvent *)theEvent
+{
+    int flags = [theEvent modifierFlags];
+    
+    BOOL opt = (flags & NSAlternateKeyMask) ? YES : NO;
+    BOOL ctrl = (flags & NSControlKeyMask) ? YES : NO;
+    BOOL command = (flags & NSCommandKeyMask) ? YES : NO;
+    BOOL shift = ( flags & NSShiftKeyMask ) ? YES : NO;
+
+    if(opt && !key_opt_)
+    {
+        key_opt_ = YES; // opt is now pressed
+        g_app->get_kernel().on_key_down("option");
+    }
+    else if(!opt && key_opt_)
+    {
+        key_opt_ = NO; // opt is now released
+        g_app->get_kernel().on_key_up("option");
+    }
+    
+    if(ctrl && !key_ctrl_)
+    {
+        key_ctrl_ = YES; // ctrl is now pressed
+        g_app->get_kernel().on_key_down("control");
+    }
+    else if(!ctrl && key_ctrl_)
+    {
+        key_ctrl_ = NO; // ctrl is now released
+        g_app->get_kernel().on_key_up("control");
+    }
+    
+    if(command && !key_command_)
+    {
+        key_command_ = YES; // command is now pressed
+        g_app->get_kernel().on_key_down("command");
+    }
+    else if(!command && key_command_)
+    {
+        key_command_ = NO; // command is now released
+        g_app->get_kernel().on_key_up("command");
+    }
+    
+    if(shift && !key_shift_)
+    {
+        key_shift_ = YES; // shift is now pressed
+        g_app->get_kernel().on_key_down("shift");
+    }
+    else if(!shift && key_shift_)
+    {
+        key_shift_ = NO; // shift is now released
+        g_app->get_kernel().on_key_up("shift");
+    }
 }
 
 @end

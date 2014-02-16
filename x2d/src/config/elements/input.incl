@@ -17,11 +17,13 @@ public:
      * @param[in] k             Kernel object
      * @param[in] want_touch    true if touch input required; false otherwise
      * @param[in] want_accel    true if accelerometer input required; false otherwise
+     * @param[in] want_keyboard true if keyboard input required; false otherwise
      */
-    input_cfg(kernel& k, bool want_touch, bool want_accel)
+    input_cfg(kernel& k, bool want_touch, bool want_accel, bool want_keyboard)
     : kernel_(k)
     , want_touch_(want_touch)
     , want_accel_(want_accel)
+    , want_keyboard_(want_keyboard)
     {            
     }
     
@@ -39,7 +41,7 @@ public:
         {
             boost::shared_ptr<input_manager> r = 
                 boost::shared_ptr<input_manager>( 
-                    new input_manager(kernel_, want_touch_, want_accel_) );
+                    new input_manager(kernel_, want_touch_, want_accel_, want_keyboard_) );
             inst_ = r;
             return r;
         }
@@ -49,5 +51,6 @@ private:
     kernel&                         kernel_;
     bool                            want_touch_;
     bool                            want_accel_;
+    bool                            want_keyboard_;
     boost::weak_ptr<input_manager>  inst_;
 };

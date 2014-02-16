@@ -83,6 +83,25 @@ namespace input {
         kernel& kernel_;
     };
     
+    void keyboard_mapping::add(const std::string& key, const std::string& name)
+    {
+        LOG("Add name->key mapping: %s->%s", name.c_str(), key.c_str());
+        
+        name_to_key_map_[name] = key;
+        key_to_name_map_[key] = name;
+    }
+    
+    const std::string keyboard_mapping::find_by_key(const std::string& key) const
+    {
+        std::map<std::string, std::string>::const_iterator it = key_to_name_map_.find(key);
+        if(it != key_to_name_map_.end())
+        {
+            return it->second;
+        }
+        
+        return "__NOT_MAPPED__";
+    }
+    
     void input_manager::on_touches_began(const std::vector<touch>& touches)
     {
         std::vector<touch> touches_world;        
@@ -191,6 +210,18 @@ namespace input {
     void input_manager::on_acceleration(float x, float y, float z)
     {
         kernel_.dispatch_accelerometer_input( glm::vec3(x, y, z) );
+    }
+    
+    void input_manager::on_key_down(const std::string& key)
+    {
+        std::string n = keyboard_mapping_->find_by_key(key);
+        LOG("DOWN: %s", n.c_str());
+    }
+
+    void input_manager::on_key_up(const std::string& key)
+    {
+        std::string n = keyboard_mapping_->find_by_key(key);
+        LOG("UP: %s", n.c_str());
     }
 
 } // namespace input

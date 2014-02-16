@@ -703,13 +703,15 @@ namespace x2d
             // can have:
             // touch:           boolean; enable/disable touch input. defaults to true
             // accelerometer:   boolean; enable/disable accelerometer input. defaults to false
+            // keyboard:        boolean; enable/disable keyboard input. defaults to true; available only on MacOSX
 
             bool want_touch = *get_attr<bool>(*this, node, key, "touch", true);
             bool want_accel = *get_attr<bool>(*this, node, key, "accelerometer", false);
+            bool want_keyboard = *get_attr<bool>(*this, node, key, "keyboard", true);
 
             boost::shared_ptr<input_cfg> inp =
                     boost::shared_ptr<input_cfg>(new input_cfg(
-                            kernel_, want_touch, want_accel));
+                            kernel_, want_touch, want_accel, want_keyboard));
 
             config_[key] = inp;
 
@@ -717,6 +719,59 @@ namespace x2d
             kernel_.set_input_manager(inp->get());
         }
 
+        void configuration::parse_keyboard(xml_node *node, const config_key& key)
+        {
+            // must have:
+            // n:        name of the element
+            //
+            // can have:
+            // default:   boolean; specifies whether this is the default mapping. defaults to false
+            
+            bool def = *get_attr<bool>(*this, node, key, "default", false);
+            
+            if ( config_.find(key) == config_.end() )
+            {
+                // No keyboard object exists! No keys defined?
+                throw structure_exception("Keyboard mapping has no keys defined. Invalid keyboard definition.");
+            }
+            
+            // and bind this keyboard mapping to the kernel if it's default
+            if(def)
+            {
+                kernel_.set_keyboard_mapping(static_cast<keyboard_cfg *>(&(*config_[key]))->get());
+            }
+        }
+        
+        void configuration::parse_key(xml_node *node, const config_key& key)
+        {
+            // parent must be a keyboard
+            xml_node *parent = node->parent();
+            if ( !parent || std::string("keyboard") != parent->name() )
+            {
+                throw structure_exception("Key must be a child element of a Keyboard object.");
+            }
+            
+            config_key parent_key = key.remove_last_path_component();
+            if ( config_.find(parent_key) == config_.end() )
+            {
+                // No keyboard mapping exists yet
+                config_[parent_key] =
+                    boost::shared_ptr<keyboard_cfg>(
+                        new keyboard_cfg(kernel_));
+            }
+            
+            // TODO: create special parser for keys
+            std::string k =
+                *get_mandatory_attr<std::string>(*this, node, key, "key",
+                    parse_exception("Key type must have 'key' defined."));
+            
+            std::string name =
+                *get_mandatory_attr<std::string>(*this, node, key, "n",
+                    parse_exception("Key type must have 'n' defined."));
+            
+            static_cast<keyboard_cfg *>(&(*config_[parent_key]))->add(k, name);
+        }
+        
         void configuration::parse_spawner(xml_node *node, const config_key& key)
         {
             // must have:

@@ -107,6 +107,8 @@ static CVReturn x2dDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTim
     self.gl_view = [[[MACGLView alloc] initWithCapabilities:caps] autorelease];
 
     [self.window setContentView:self.gl_view];
+    [self.window makeFirstResponder:self.gl_view];
+    
     [self performSelectorOnMainThread:@selector(start:) withObject:nil waitUntilDone:NO];
     
     [self.window makeKeyAndOrderFront:NSApp];

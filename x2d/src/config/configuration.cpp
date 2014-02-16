@@ -84,6 +84,8 @@ namespace config {
         parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
         parsers_["viewport"]    = boost::bind(&configuration::parse_viewport, this, _1, _2);
         parsers_["input"]       = boost::bind(&configuration::parse_input, this, _1, _2);
+        parsers_["keyboard"]    = boost::bind(&configuration::parse_keyboard, this, _1, _2);
+        parsers_["key"]         = boost::bind(&configuration::parse_key, this, _1, _2);
         
         parsers_["namespace"]   = boost::bind(&configuration::parse_namespace, this, _1, _2);
         parsers_["include"]     = boost::bind(&configuration::parse_include, this, _1, _2);

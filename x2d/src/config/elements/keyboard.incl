@@ -1,0 +1,63 @@
+//
+//  keyboard.incl
+//  x2d
+//
+//  Created by Alex Kremer on 2/16/14.
+//  Copyright (c) 2014 godexsoft. All rights reserved.
+//
+
+/**
+ * @brief Support for '<keyboard>' configuration node.
+ */ 
+class keyboard_cfg
+: public cfg_base
+{
+public:
+    
+    /**
+     * @param[in] k             Kernel object
+     */
+    keyboard_cfg(kernel& k)
+    : kernel_(k)
+    {
+    }
+    
+    /**
+     * Create if required and return a shared version of the keyboard mapping.
+     */
+    boost::shared_ptr<keyboard_mapping> get()
+    {
+        if( boost::shared_ptr<keyboard_mapping> p = inst_.lock() )
+        {            
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<keyboard_mapping> r =
+                boost::shared_ptr<keyboard_mapping>(
+                    new keyboard_mapping() );
+            
+            // create all keys and add them
+            for (std::map<std::string, std::string>::iterator it = mapping_keys_.begin();
+                 it != mapping_keys_.end(); ++it)
+            {
+                r->add( it->first, it->second );
+            }            
+            
+            inst_ = r;
+            return r;
+        }
+    }
+    
+    void add(const std::string& map_key, const std::string& map_name)
+    {
+        mapping_keys_[map_key] = map_name;
+    }
+    
+private:
+    kernel&                             kernel_;
+    boost::weak_ptr<keyboard_mapping>   inst_;
+    
+    std::map<std::string, std::string>  mapping_keys_;
+};

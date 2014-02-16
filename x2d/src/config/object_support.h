@@ -69,6 +69,7 @@ namespace config {
     #include "elements/camera.incl"
     #include "elements/viewport.incl"
     #include "elements/input.incl"
+    #include "elements/keyboard.incl"
     #include "elements/spawner.incl"
     #include "elements/emitter.incl"
     #include "elements/context.incl"
