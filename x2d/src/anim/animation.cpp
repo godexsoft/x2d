@@ -13,6 +13,11 @@ namespace anim {
 
     void animation::update(const clock_info& clock)
     {
+        if(is_paused_ || is_hidden_)
+        {
+            return;
+        }
+        
         elapsed_ += clock.delta_time;
         
         if(elapsed_ >= frames_.at(cur_frame_).duration_)
@@ -29,20 +34,50 @@ namespace anim {
         }
     }
     
+    void animation::flip_x(bool flag)
+    {
+        flip_x_ = flag;
+    }
+    
+    void animation::flip_y(bool flag)
+    {
+        flip_y_ = flag;
+    }
+
+    void animation::hide()
+    {
+        is_hidden_ = true;
+    }
+    
+    void animation::show()
+    {
+        is_hidden_ = false;
+    }
+    
     void frame::draw() const
-    {        
+    {
         sprite_->draw();
     }
     
     void animation::draw() const
     {
+        if(is_hidden_)
+        {
+            return;
+        }
+        
         glPushMatrix();
         glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
         
         if(flip_x_)
+        {
             glScalef(-1.0f, 1.0f, 1.0f);
+        }
+        
         if(flip_y_)
+        {
             glScalef(1.0f, -1.0f, 1.0f);
+        }
         
         frames_.at(cur_frame_).draw();
         

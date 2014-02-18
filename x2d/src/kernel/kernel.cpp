@@ -142,10 +142,28 @@ namespace x2d
         accel_input_signal_(accel);
     }
     
+    void kernel::dispatch_keyboard_up(const std::string& name)
+    {
+        keyboard_up_signal_(name);
+    }
+    
+    void kernel::dispatch_keyboard_down(const std::string& name)
+    {
+        keyboard_down_signal_(name);
+    }
+    
     void kernel::connect_accelerometer_input( base_object* o )
     {
         accel_input_signal_.connect( boost::bind(&base_object::accelerometer_input, o, _1) );
     }    
+    
+    kernel::keyboard_input_connections_t kernel::connect_keyboard_input( base_object* o )
+    {
+        return kernel::keyboard_input_connections_t(
+            keyboard_down_signal_.connect( boost::bind(&base_object::on_key_down, o, _1), boost::signals2::at_front ),
+            keyboard_up_signal_.connect( boost::bind(&base_object::on_key_up, o, _1), boost::signals2::at_front )
+        );
+    }
     
     void kernel::render_wrapper(bool camera_space, 
         const boost::function<void(const clock_info&)>& f, const clock_info& ci)

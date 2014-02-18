@@ -79,6 +79,7 @@ namespace anim {
         , flip_x_(flip_x)
         , flip_y_(flip_y)
         , is_paused_(false)
+        , is_hidden_(false)
         , cur_frame_(0)
         , elapsed_(0.0f)
         {            
@@ -119,6 +120,13 @@ namespace anim {
             is_paused_ = false;
         }
         
+        void hide();
+        void show();
+        
+        void flip_x(bool flag);
+        
+        void flip_y(bool flag);
+        
         /**
          * Update animation with given clock info
          * @param[in] clock  The clock info
@@ -145,6 +153,7 @@ namespace anim {
         bool        flip_y_;
 
         bool        is_paused_;
+        bool        is_hidden_;
         
         frames_vec  frames_;
         int         cur_frame_;

@@ -102,6 +102,10 @@ using namespace x2d::config;
         
         boost::shared_ptr<emitter> get_emitter();
         
+        boost::shared_ptr<animation> get_animation();
+        
+        boost::shared_ptr<sprite> get_sprite();
+        
         // collision. can be reimplemented by clients
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);

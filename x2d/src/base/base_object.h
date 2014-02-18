@@ -111,6 +111,14 @@ namespace x2d
                 touch_input_connections_[s] = kernel_.connect_touch_input(s, this);
             }
         }
+        
+        /**
+         * Connect keyboard input
+         */
+        void connect_keyboard_input()
+        {
+            keyboard_connection_ = kernel_.connect_keyboard_input(this);
+        }
 
         /**
          * Used to disconnect input for a given space.
@@ -125,6 +133,12 @@ namespace x2d
                 touch_input_connections_[s].get<1>().disconnect();
                 touch_input_connections_[s].get<2>().disconnect();
             }
+        }
+        
+        void disconnect_keyboard_input()
+        {
+            keyboard_connection_.get<0>().disconnect();
+            keyboard_connection_.get<1>().disconnect();
         }
 
         /**
@@ -177,11 +191,23 @@ namespace x2d
          */
         virtual void accelerometer_input(const glm::vec3& acceleration) {}
         
+        /**
+         * Handler for keyboard input's UP event
+         */
+        virtual void on_key_up(const std::string& name) {}
+
+        /**
+         * Handler for keyboard input's DOWN event
+         */
+        virtual void on_key_down(const std::string& name) {}
+        
     private:
         boost::signals2::connection update_connection_;
         boost::signals2::connection render_connection_;
 
         input_connections_map touch_input_connections_;
+        
+        kernel::keyboard_input_connections_t keyboard_connection_;
     };
 
 } // namespace x2d

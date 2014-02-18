@@ -59,6 +59,8 @@ namespace x2d
                 float, std::greater<float> >                                render_signal;
         typedef ::boost::signals2::signal<void (const std::vector<touch>&)> touch_input_signal;        
         typedef ::boost::signals2::signal<void (const glm::vec3&)>          accel_input_signal;        
+
+        typedef ::boost::signals2::signal<void (const std::string&)> keyboard_input_signal;
         
         typedef std::deque<timer*> timer_container;
 
@@ -67,6 +69,11 @@ namespace x2d
                     boost::signals2::connection,
                     boost::signals2::connection >
                         input_connections_t;
+
+        typedef boost::tuple<
+                    boost::signals2::connection,
+                    boost::signals2::connection >
+                        keyboard_input_connections_t;
         
         kernel();
         
@@ -146,6 +153,8 @@ namespace x2d
         boost::signals2::connection connect_render( base_object* o, float z, bool camera_space = false );
         input_connections_t connect_touch_input( space s, base_object* o );
         void connect_accelerometer_input( base_object* o );
+
+        keyboard_input_connections_t connect_keyboard_input( base_object* o );
         
         time::clock& sys_clock() 
         { 
@@ -265,7 +274,9 @@ namespace x2d
         void dispatch_touches_moved(space s, const std::vector<touch>& touches);
         void dispatch_touches_ended(space s, const std::vector<touch>& touches);
         void dispatch_accelerometer_input( const glm::vec3& accel );
-
+        void dispatch_keyboard_up(const std::string& name);
+        void dispatch_keyboard_down(const std::string& name);
+        
         boost::shared_ptr<event_manager> get_event_manager()
         {
             return event_man_;
@@ -305,7 +316,10 @@ namespace x2d
         touch_input_signal  world_touches_began_signal_, world_touches_moved_signal_, world_touches_ended_signal_;
         touch_input_signal  screen_touches_began_signal_, screen_touches_moved_signal_, screen_touches_ended_signal_;
         touch_input_signal  camera_touches_began_signal_, camera_touches_moved_signal_, camera_touches_ended_signal_;
+        
         accel_input_signal  accel_input_signal_;
+        
+        keyboard_input_signal keyboard_up_signal_, keyboard_down_signal_;
         
         // rendering
         typedef std::vector<object*>   obj_vec;

@@ -38,7 +38,8 @@ namespace base {
                const size& sz, 
                const glm::vec2& pivot=glm::vec2(0,0),
                bool flip_x=false,
-               bool flip_y=false
+               bool flip_y=false,
+               bool is_hidden=false
         )
         : t_(t)
         , origin_(origin)
@@ -46,8 +47,15 @@ namespace base {
         , pivot_(pivot)
         , flip_x_(flip_x)
         , flip_y_(flip_y)
+        , is_hidden_(is_hidden)
         {            
         }
+        
+        void hide();
+        void show();
+        
+        void flip_x(bool flag);
+        void flip_y(bool flag);
         
         /**
          * Draw the sprite
@@ -69,6 +77,7 @@ namespace base {
         glm::vec2                    pivot_;
         bool                         flip_x_;
         bool                         flip_y_;
+        bool                         is_hidden_;
     };
     
 } // namespace base

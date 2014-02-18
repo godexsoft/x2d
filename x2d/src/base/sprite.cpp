@@ -12,8 +12,33 @@
 namespace x2d {
 namespace base {
 
+    void sprite::hide()
+    {
+        is_hidden_ = true;
+    }
+    
+    void sprite::show()
+    {
+        is_hidden_ = false;
+    }
+    
+    void sprite::flip_x(bool flag)
+    {
+        flip_x_= flag;
+    }
+    
+    void sprite::flip_y(bool flag)
+    {
+        flip_y_ = flag;
+    }
+    
     void sprite::draw() const
     {
+        if(is_hidden_)
+        {
+            return;
+        }
+        
         glPushMatrix();
         glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
                 

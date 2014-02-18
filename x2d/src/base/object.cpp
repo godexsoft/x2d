@@ -715,6 +715,16 @@ namespace x2d {
         return emitter_;
     }
     
+    boost::shared_ptr<animation> object::get_animation()
+    {
+        return cur_animation_;
+    }
+    
+    boost::shared_ptr<sprite> object::get_sprite()
+    {
+        return cur_sprite_;
+    }
+    
     void object::on_collision_begin(object* with)
     {
         LOG("Object collision BEGIN: 0x%X with 0x%X", this, with);

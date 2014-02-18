@@ -99,7 +99,7 @@ namespace input {
             return it->second;
         }
         
-        return "__NOT_MAPPED__";
+        return std::string(); // empty string
     }
     
     void input_manager::on_touches_began(const std::vector<touch>& touches)
@@ -215,12 +215,30 @@ namespace input {
     void input_manager::on_key_down(const std::string& key)
     {
         std::string n = keyboard_mapping_->find_by_key(key);
+        if(!n.empty())
+        {
+            kernel_.dispatch_keyboard_down(n);
+        }
+        else
+        {
+            n = "__NOT_MAPPED__";
+        }
+        
         LOG("DOWN: %s", n.c_str());
     }
 
     void input_manager::on_key_up(const std::string& key)
     {
         std::string n = keyboard_mapping_->find_by_key(key);
+        if(!n.empty())
+        {
+            kernel_.dispatch_keyboard_up(n);
+        }
+        else
+        {
+            n = "__NOT_MAPPED__";
+        }        
+
         LOG("UP: %s", n.c_str());
     }
 
