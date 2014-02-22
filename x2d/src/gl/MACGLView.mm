@@ -29,7 +29,7 @@ static std::string get_key_name(int k)
 {
     if(isalpha(k))
     {
-        return std::string( static_cast<char>(k), 1 );
+        return std::string( 1, static_cast<char>(k) );
     }
     
     switch(k)
@@ -142,7 +142,10 @@ static std::string get_key_name(int k)
         objc_callback(@selector(renderBufStorage), self) );
     graphics_engine::instance().set_shutdown_cb(
         objc_callback(@selector(shutdown), self) );
-        
+    
+    // enable vsync
+    [[self openGLContext] setValues:(GLint[]){1} forParameter:NSOpenGLCPSwapInterval];
+    
     // init opengl
     graphics_engine::instance().init();
     

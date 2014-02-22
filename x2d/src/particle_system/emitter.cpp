@@ -121,8 +121,8 @@ namespace particle_system {
     
     void emitter::start()
     {
-        enabled_ = true;
         reset();
+        enabled_ = true;
     }
     
     void emitter::update(const clock_info& clock)
@@ -278,6 +278,11 @@ namespace particle_system {
     
     void emitter::draw()
     {
+        if(!enabled_)
+        {
+            return;
+        }
+        
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_BLEND);
         

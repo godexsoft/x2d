@@ -17,7 +17,6 @@
 #import "platform.h"
 #import "app_framework.h"
 
-#import <QuartzCore/QuartzCore.h>
 #include <iostream>
 
 // global app pointer :-/
@@ -27,13 +26,13 @@ extern app_framework* g_app;
 
 @synthesize window = _window;
 @synthesize gl_view = _gl_view;
+@synthesize render_timer = _render_timer;
 
 - (void)dealloc
 {
-    CVDisplayLinkRelease(_dl);
-    
     [_window release];
     [_gl_view release];
+    [_render_timer release];
     [super dealloc];
 }
 
@@ -49,42 +48,27 @@ extern app_framework* g_app;
     // run user code allowing them to initialize some objects
     // just before starting the main looper.
     g_app->main();
+ 
+    // init rendering timer
+    self.render_timer = [NSTimer scheduledTimerWithTimeInterval:0.001
+                                                         target:self
+                                                       selector:@selector(step:)
+                                                       userInfo:nil
+                                                        repeats:YES];
     
-    // init display link
-    GLint swapInt = 1;
-    [[self.gl_view openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
-    
-    CVDisplayLinkCreateWithActiveCGDisplays(&_dl);
-    CVDisplayLinkSetOutputCallback(_dl, &x2dDisplayLinkCallback, self);
-    
-    CGLContextObj cglContext = static_cast<CGLContextObj>([[self.gl_view openGLContext] CGLContextObj]);
-    CGLPixelFormatObj cglPixelFormat = static_cast<CGLPixelFormatObj>([[self.gl_view pixelFormat] CGLPixelFormatObj]);
-    CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_dl, cglContext, cglPixelFormat);
-
-    // start spinning
-    CVDisplayLinkStart(_dl);
+    [[NSRunLoop currentRunLoop] addTimer:self.render_timer forMode:NSEventTrackingRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:self.render_timer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:self.render_timer forMode:NSModalPanelRunLoopMode];
 }
 
-static CVReturn x2dDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp* now, const CVTimeStamp* outputTime, CVOptionFlags flagsIn, CVOptionFlags* flagsOut, void* displayLinkContext)
-{
-    CVReturn result = [(X2DAppDelegate*)displayLinkContext step:outputTime];
-    return result;
-}
-
-- (CVReturn)step:(const CVTimeStamp*)outputTime
+- (void)step:(id)dummy
 {
     NSOpenGLContext *currentContext = [self.gl_view openGLContext];
     [currentContext makeCurrentContext];
     
-    // must lock GL context because display link is threaded
-    CGLLockContext(static_cast<CGLContextObj>([currentContext CGLContextObj]));
-    
     g_app->step();
     
     [currentContext flushBuffer];
-    CGLUnlockContext(static_cast<CGLContextObj>([currentContext CGLContextObj]));
-    
-    return kCVReturnSuccess;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

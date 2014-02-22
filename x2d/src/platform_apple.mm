@@ -33,8 +33,12 @@ namespace platform {
     , has_retina(false)
     {
         // typical display size for iPhone
-        float w = 320.0f;
-        float h = 480.0f;
+//        float w = 320.0f;
+//        float h = 480.0f;
+        
+        // mac test
+        float w = 320*3;
+        float h = 240*3;
         
 #if __APPLE__
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR

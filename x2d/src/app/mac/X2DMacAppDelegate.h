@@ -18,10 +18,11 @@
 {
     NSWindow *_window;
     MACGLView *_gl_view;
-    CVDisplayLinkRef _dl;
+    NSTimer *_render_timer;
 }
 
 @property (strong, nonatomic) NSWindow *window;
 @property (strong, nonatomic) MACGLView *gl_view;
+@property (retain, nonatomic) NSTimer *render_timer;
 
 @end
