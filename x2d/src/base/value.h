@@ -727,6 +727,7 @@ namespace x2d {
         list_value(const std::vector<T>& lst, int from=0, int to=-1)
         : lst_(lst)
         , rnd_(from, to == -1 ? lst_.size()-1 : to)
+        , cur_(0)
         {
             if(to == -1)
             {
@@ -757,7 +758,51 @@ namespace x2d {
             
             return lst_.at(*rnd_);
         }
-        
+
+        /**
+         * Get current value.
+         */
+        T cur()
+        {
+            return lst_.at(cur_);
+        }
+
+        /**
+         * Get next value.
+         */
+        T next()
+        {
+            if(lst_.empty())
+            {
+                throw sys_exception("list_value::next() - next invoked on empty vector. no next value to return.");
+            }
+
+            if (++cur_ >= lst_.size())
+            {
+                cur_ = 0;
+            }
+
+            return lst_.at(cur_);
+        }
+
+        /**
+         * Get previous value.
+         */
+        T prev()
+        {
+            if(lst_.empty())
+            {
+                throw sys_exception("list_value::prev() - prev invoked on empty vector. no prev value to return.");
+            }
+
+            if (--cur_ < 0)
+            {
+                cur_ = lst_.size()-1; // 3 - > 5, 0 -> 2 (right)
+            }
+
+            return lst_.at(cur_);
+        }
+
         /**
          * Get a copy of the whole list.
          * @return A copy of the vector
@@ -778,6 +823,7 @@ namespace x2d {
     private:
         std::vector<T> lst_;
         value<int> rnd_;
+        int cur_;
     };
     
     /**

@@ -43,6 +43,7 @@ using namespace x2d::config;
     : public base_object
     , public boost::enable_shared_from_this<object>
     {
+        typedef basic_path<char, '.'> object_path;
         friend class x2d::config::configuration;
         
     public:
@@ -58,6 +59,7 @@ using namespace x2d::config;
         void release(object& obj);
         boost::shared_ptr<object> child_by_name(const std::string& n);
         const std::string name() const;
+        const object_path path() const;
         
         const glm::vec3 position() const;
         void position(const glm::vec3& p);
@@ -195,7 +197,7 @@ using namespace x2d::config;
         
     protected:        
         const std::string           name_;
-        const basic_path<char, '.'> path_;
+        const object_path           path_;
         boost::shared_ptr<camera>   camera_;
         space                       space_;
         parent_space                parent_space_;

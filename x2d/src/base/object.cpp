@@ -459,7 +459,12 @@ namespace x2d {
     {
         return name_;
     }
-    
+
+    const object::object_path object::path() const
+    {
+        return path_;
+    }
+
     void object::add_child(const boost::shared_ptr<object>& child)
     {
         child->set_parent(this);
