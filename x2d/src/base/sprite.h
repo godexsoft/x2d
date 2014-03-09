@@ -48,7 +48,11 @@ namespace base {
         , flip_x_(flip_x)
         , flip_y_(flip_y)
         , is_hidden_(is_hidden)
-        {            
+        {
+            if(size_.width == 0.0f && size_.height == 0.0f)
+            {
+                size_ = t_->area();
+            }
         }
         
         void hide();

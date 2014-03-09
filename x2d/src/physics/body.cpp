@@ -15,14 +15,15 @@ namespace x2d {
 namespace physics {
 
     body::body(kernel& k, configuration& conf, object& obj,
-        bool dynamic, bool bullet, bool fixed_rotation,
-        const float& linear_damping)
+        body_type btype, bool bullet, bool fixed_rotation,
+               const float& linear_damping, const glm::vec2& pivot)
     : kernel_(k)
     , config_(conf)
     , object_(obj)
-    , dynamic_(dynamic)
+    , type_(btype)
     , body_(world::instance().new_body(glm::vec2(obj.position().x, obj.position().y),
-                                       glm::radians(obj.rotation()), dynamic))
+                                       glm::radians(obj.rotation()), type_))
+    , pivot_(pivot)
     {        
         body_->SetUserData(&object_);
         
@@ -90,6 +91,16 @@ namespace physics {
     void body::set_linear_damping(const float& d)
     {
         body_->SetLinearDamping(d);
+    }
+    
+    float body::get_mass()
+    {
+        return body_->GetMass();
+    }
+    
+    const glm::vec2 body::get_pivot() const
+    {
+        return pivot_;
     }
     
 } // namespace physics

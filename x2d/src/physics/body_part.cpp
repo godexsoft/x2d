@@ -120,5 +120,48 @@ namespace physics {
         b->createFixture(&fix);
     }
     
+    
+    body_part_polygon::body_part_polygon(configuration& conf, const boost::shared_ptr<body>& b,
+        const float& density, const float& restitution, const float& friction,
+        const uint16_t& mask, const uint16_t& category,
+        const std::vector<float>& points, bool is_sensor)
+    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
+    , points_(points)
+    {
+        b2FixtureDef fix;
+        fix.density = density_;
+        fix.restitution = restitution_;
+        fix.friction = friction_;
+        fix.isSensor = is_sensor_;
+        
+        if(category_ != 0)
+        {
+            fix.filter.categoryBits = category_;
+        }
+        
+        if(mask_ != 0)
+        {
+            fix.filter.maskBits = mask_;
+        }
+        
+        b2PolygonShape shape;
+        shape.m_vertexCount = points_.size()/2;
+        
+        int j = 0;        
+        for(int i = 0; i < points_.size() / 2; ++i)
+        {
+            float x = points_[j++] - b->get_pivot().x;
+            float y = points_[j++] - b->get_pivot().y;
+            
+            x *= world::instance().global_scale();
+            y *= world::instance().global_scale();
+            
+            shape.m_vertices[i].Set(x, y);
+        }
+        
+        fix.shape = &shape;
+        b->createFixture(&fix);
+    }
+    
 } // namespace physics
 } // namespace x2d

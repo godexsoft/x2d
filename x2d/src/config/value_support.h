@@ -93,6 +93,34 @@ namespace config {
     private:
         list_value<std::string> val_;
     };
+
+    template<>
+    class value_cfg< std::vector<float> >
+    : public cfg_base
+    {
+    public:
+        /**
+         * Construction from static value.
+         *
+         * @param[in] v       The value to hold
+         */
+        value_cfg(const std::vector<float>& v)
+        : val_(v)
+        {
+        }
+        
+        /**
+         * @return a copy of the value or randomizer
+         */
+        list_value<float> get() const
+        {
+            return val_;
+        }
+        
+    private:
+        list_value<float> val_;
+    };
+    
     
     /**
      * @brief Value parsing support.

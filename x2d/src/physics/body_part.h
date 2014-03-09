@@ -13,6 +13,7 @@
 #include "log.h"
 #include "math_util.h"
 #include <boost/shared_ptr.hpp>
+#include <vector>
 
 namespace x2d {     
 namespace config {
@@ -30,6 +31,7 @@ namespace physics {
     {
         INVALID_TYPE = 0,
         BOX_TYPE,
+        POLYGON_TYPE,
         CIRCLE_TYPE
     };
         
@@ -76,6 +78,19 @@ namespace physics {
         
     private:
         float    radius_;
+    };
+
+    class body_part_polygon
+    : public body_part
+    {
+    public:
+        body_part_polygon(configuration& conf, const boost::shared_ptr<body>& b,
+            const float& density, const float& restitution, const float& friction,
+            const uint16_t& mask, const uint16_t& category,
+            const std::vector<float>& points, bool is_sensor);
+        
+    private:
+        std::vector<float>    points_;
     };
     
 } // namespace physics

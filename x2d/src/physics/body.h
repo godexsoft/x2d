@@ -32,12 +32,19 @@ using namespace x2d::config;
 
 namespace physics {
 
+    typedef enum body_type_t
+    {
+        STATIC_BODY,
+        KINEMATIC_BODY,
+        DYNAMIC_BODY
+    } body_type;
+    
     class body
     {
     public:
         body(kernel& k, configuration& conf, object& obj,
-             bool dynamic, bool bullet, bool fixed_rotation,
-             const float& linear_damping);
+             body_type btype, bool bullet, bool fixed_rotation,
+             const float& linear_damping, const glm::vec2& pivot);
         
         ~body();
         
@@ -60,6 +67,10 @@ namespace physics {
         
         void set_linear_damping(const float& d);
         
+        float get_mass();
+        
+        const glm::vec2 get_pivot() const;
+        
     private:
         typedef std::vector<boost::shared_ptr<body_part> > parts_vec;
         
@@ -67,10 +78,11 @@ namespace physics {
         configuration&  config_;        
         object&         object_;
 
-        bool         dynamic_;
+        body_type       type_;
         
         b2Body      *body_;
         parts_vec    parts_;
+        glm::vec2    pivot_;
     };
     
 } // namespace physics

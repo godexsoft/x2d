@@ -28,5 +28,16 @@ namespace physics {
         world_.SetGravity(b2Vec2(g.x, g.y));
     }
     
+    void world_bare::set_allow_sleeping(bool f)
+    {
+        world_.SetAllowSleeping(f);
+    }
+    
+    const glm::vec2 world_bare::get_gravity() const
+    {
+        b2Vec2 g = world_.GetGravity();
+        return glm::vec2(g.x, g.y);
+    }
+    
 } // namespace physics
 } // namespace x2d

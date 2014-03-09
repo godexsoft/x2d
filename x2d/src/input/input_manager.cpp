@@ -214,7 +214,6 @@ namespace input {
     
     void input_manager::on_key_down(const std::string& key)
     {
-        LOG("DOWN ORIG IS: %s", key.c_str());
         std::string n = keyboard_mapping_->find_by_key(key);
         if(!n.empty())
         {
@@ -230,7 +229,6 @@ namespace input {
 
     void input_manager::on_key_up(const std::string& key)
     {
-        LOG("UP ORIG IS: %s", key.c_str());
         std::string n = keyboard_mapping_->find_by_key(key);
         if(!n.empty())
         {

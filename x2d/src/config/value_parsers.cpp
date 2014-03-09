@@ -109,6 +109,23 @@ namespace config {
     }
 
     template<>
+    std::vector<float> value_parser<std::vector<float> >::parse(const std::string& str)
+    {
+        std::stringstream ss;
+        ss << str;
+        
+        std::vector<float> tmp;
+        std::string s;
+        
+        while(ss >> s)
+        {
+            tmp.push_back( boost::lexical_cast<float>(s) );
+        }
+        
+        return tmp;
+    }
+    
+    template<>
     point value_parser<point>::parse(const std::string& str)
     {
         std::stringstream ss;
@@ -278,6 +295,27 @@ namespace config {
         else
         {
             throw parse_exception("Align type must be one of 'left', 'center' or 'right'. Got '" + str + "' instead.");
+        }
+    }
+    
+    template<>
+    body_type value_parser<body_type>::parse(const std::string& str)
+    {
+        if(str == "dynamic" || str == "d")
+        {
+            return DYNAMIC_BODY;
+        }
+        else if(str == "static" || str == "s")
+        {
+            return STATIC_BODY;
+        }
+        else if(str == "kinematic" || str == "k")
+        {
+            return KINEMATIC_BODY;
+        }
+        else
+        {
+            throw parse_exception("Body type must be one of 'dynamic', 'static' or 'kinematic'. Got '" + str + "' instead.");
         }
     }
 

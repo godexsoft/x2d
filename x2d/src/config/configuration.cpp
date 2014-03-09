@@ -72,6 +72,11 @@ namespace config {
         cur_scene_->on_transition_to();
     }
     
+    boost::shared_ptr<scene>& configuration::get_current_scene()
+    {
+        return cur_scene_;
+    }
+    
     void configuration::load_core_parsers()
     {
         // add x2d core parsers
@@ -80,6 +85,8 @@ namespace config {
         parsers_["string"]      = boost::bind(&configuration::parse_string, this, _1, _2);
         parsers_["vector"]      = boost::bind(&configuration::parse_vector, this, _1, _2);
         parsers_["list"]        = boost::bind(&configuration::parse_list, this, _1, _2);
+        parsers_["list:string"] = boost::bind(&configuration::parse_list, this, _1, _2);
+        parsers_["list:float"]  = boost::bind(&configuration::parse_float_list, this, _1, _2);
         
         parsers_["camera"]      = boost::bind(&configuration::parse_camera, this, _1, _2);
         parsers_["viewport"]    = boost::bind(&configuration::parse_viewport, this, _1, _2);
@@ -110,6 +117,7 @@ namespace config {
         parsers_["body"]        = boost::bind(&configuration::parse_body, this, _1, _2);        
         parsers_["part:box"]    = boost::bind(&configuration::parse_body_part_box, this, _1, _2);
         parsers_["part:circle"] = boost::bind(&configuration::parse_body_part_circle, this, _1, _2);
+        parsers_["part:polygon"]= boost::bind(&configuration::parse_body_part_polygon, this, _1, _2);
     }
     
     void configuration::parse_file(const std::string& cfg_path, const std::string& root_key)
@@ -580,8 +588,8 @@ namespace config {
     boost::shared_ptr<body> body_cfg::create(object& obj)
     {
         boost::shared_ptr<body> r = boost::shared_ptr<body>( 
-            new body(config_.get_kernel(), config_, obj, dynamic_, bullet_,
-                     fixed_rotation_, linear_damping_) );
+            new body(config_.get_kernel(), config_, obj, type_, bullet_,
+                     fixed_rotation_, linear_damping_, pivot_) );
         
         // create all parts and add them
         for(int i=0; i<parts_.size(); ++i)
@@ -610,6 +618,13 @@ namespace config {
                     new body_part_circle(config_, b, density_,
                         restitution_, friction_, mask_, category_, radius_, is_sensor_) );
         }
+        else if(type_ == POLYGON_TYPE)
+        {
+            return
+                boost::shared_ptr<body_part>(
+                    new body_part_polygon(config_, b, density_,
+                        restitution_, friction_, mask_, category_, points_, is_sensor_) );
+        }
 
         throw config_exception("Can't create BodyPart with unknown type.");
     }    
@@ -618,7 +633,7 @@ namespace config {
     boost::shared_ptr<camera> camera_cfg::get()
     {
         if( boost::shared_ptr<camera> p = inst_.lock() )
-        {            
+        {
             // already exists outside of cfg
             return p;
         }
@@ -638,6 +653,7 @@ namespace config {
             r->position(*position_);
             r->zoom(*zoom_);
             r->rotation(*rotation_);
+
             inst_ = r;
             return r;
         }

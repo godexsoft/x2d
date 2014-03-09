@@ -19,6 +19,7 @@
 #include "contact.h"
 #include "clock.h"
 #include "config.h"
+#include "body.h"
 
 namespace x2d {
 namespace physics {
@@ -31,16 +32,20 @@ namespace physics {
         friend class boost::detail::thread::singleton<world_bare>;
         
     public:
-        b2Body* new_body(const glm::vec2& pos, float angle=0, bool dynamic=true)
+        b2Body* new_body(const glm::vec2& pos, float angle=0, body_type btype = DYNAMIC_BODY)
         {
             b2BodyDef def;
-            if(dynamic) 
+            switch(btype)
             {
-                def.type = b2_dynamicBody;            
-            } 
-            else 
-            {
-                def.type = b2_staticBody;            
+                case STATIC_BODY:
+                    def.type = b2_staticBody;
+                    break;
+                case KINEMATIC_BODY:
+                    def.type = b2_kinematicBody;
+                    break;
+                case DYNAMIC_BODY:
+                    def.type = b2_dynamicBody;
+                    break;
             }
             
             def.position.Set(pos.x * global_scale(),
@@ -65,6 +70,10 @@ namespace physics {
         }
         
         void set_gravity(const glm::vec2& g);
+        
+        const glm::vec2 get_gravity() const;
+        
+        void set_allow_sleeping(bool f);
         
         float global_scale() const;
         

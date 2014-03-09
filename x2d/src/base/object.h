@@ -108,6 +108,8 @@ using namespace x2d::config;
         
         boost::shared_ptr<sprite> get_sprite();
         
+        boost::shared_ptr<body> get_body();
+        
         // collision. can be reimplemented by clients
         virtual void on_collision_begin(object* with);
         virtual void on_collision_end(object* with);

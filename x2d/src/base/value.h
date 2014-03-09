@@ -646,6 +646,7 @@ namespace x2d {
         value<float> b_;
         value<float> a_;
     };
+
     
     /**
      * @brief Optional value with default placeholder.
@@ -724,7 +725,7 @@ namespace x2d {
     class list_value
     {
     public:
-        list_value(const std::vector<T>& lst, int from=0, int to=-1)
+        list_value(const std::vector<T>& lst, unsigned long from=0, unsigned long to=-1)
         : lst_(lst)
         , rnd_(from, to == -1 ? lst_.size()-1 : to)
         , cur_(0)
@@ -823,7 +824,7 @@ namespace x2d {
     private:
         std::vector<T> lst_;
         value<int> rnd_;
-        int cur_;
+        unsigned long cur_;
     };
     
     /**

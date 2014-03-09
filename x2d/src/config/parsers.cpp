@@ -251,6 +251,47 @@ namespace x2d
             }
         }
 
+        void configuration::parse_float_list(xml_node *node, const config_key& key)
+        {
+            // must have:
+            // n:      name
+            // can have:
+            // value:  the value
+            // or value can be provided as child
+            
+            xml_attr *path = node->first_attribute("n");
+            if ( !path )
+            {
+                throw parse_exception("List must have 'n' defined.");
+            }
+            
+            xml_attr *value = node->first_attribute("value");
+            if ( !value && !node->first_node() )
+            {
+                throw parse_exception("List must have either 'value' or inner data defined.");
+            }
+            
+            if ( !value )
+            {
+                xml_node *data = node->first_node();
+                
+                if ( data->type() == rx::node_data || data->type() == rx::node_cdata )
+                {
+                    config_[key] = boost::shared_ptr< value_cfg<std::vector<float> > >(
+                        new value_cfg<std::vector<float> >(value_parser<std::vector<float> >::parse(data->value())));
+                }
+                else
+                {
+                    throw parse_exception("List data element can be only plain value.");
+                }
+            }
+            else
+            {
+                config_[key] = boost::shared_ptr< value_cfg<std::vector<float> > >(
+                    new value_cfg<std::vector<float> >(value_parser<std::vector<float> >::parse(value->value())));
+            }
+        }
+        
         void configuration::parse_namespace(xml_node *node, const config_key& key)
         {
             // must have:
@@ -287,27 +328,20 @@ namespace x2d
         {
             // must have:
             // n: name of the element
-            // x: x offset inside texture
-            // y: y offset inside texture
-            // w: width of sprite
-            // h: height of sprite
             //
             // can have:
+            // x: x offset inside texture (default to 0)
+            // y: y offset inside texture (default to 0)
+            // w: width of sprite (default to full texture)
+            // h: height of sprite (default to full texture)
             // pivot:    the pivot as 2d vector. defaults to 0,0
             // flip_x:   flip on x axis if true. don't flip if false (default)
             // flip_y:   flip on y axis if true. don't flip if false (default)
 
-            int x = *get_mandatory_attr<int>(*this, node, key, "x",
-                    parse_exception("Sprite type must have 'x' defined."));
-
-            int y = *get_mandatory_attr<int>(*this, node, key, "y",
-                    parse_exception("Sprite type must have 'y' defined."));
-
-            int w = *get_mandatory_attr<int>(*this, node, key, "w",
-                    parse_exception("Sprite type must have 'w' defined."));
-
-            int h = *get_mandatory_attr<int>(*this, node, key, "h",
-                    parse_exception("Sprite type must have 'h' defined."));
+            int x = *get_attr<int>(*this, node, key, "x", 0.0f);
+            int y = *get_attr<int>(*this, node, key, "y", 0.0f);
+            int w = *get_attr<int>(*this, node, key, "w", 0.0f);
+            int h = *get_attr<int>(*this, node, key, "h", 0.0f);
 
             glm::vec2 pivot = *get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0, 0));
             bool flip_x = *get_attr<bool>(*this, node, key, "flip_x", false);
@@ -896,17 +930,25 @@ namespace x2d
             // n:        name of the element
             //
             // can have:
-            // dynamic:  boolean. defaults to false
+            // type:     body type (static, dynamic, kinematic). defaults to dynamic
             // bullet:   boolean. defaults to false
             // fixed_rotation:   boolean. defaults to false
             // linear_damping:   float. linear damping for the body
+            // pivot:            vector2d (x, y). anchor point for relative offsets
             //
 
-            bool dynamic = *get_attr<bool>(*this, node, key, "dynamic", false);
+            body_type btype = DYNAMIC_BODY;
+            xml_attr *tp = node->first_attribute("type");
+            if ( tp )
+            {
+                btype = value_parser<body_type>::parse(tp->value());
+            }
+
             bool bullet = *get_attr<bool>(*this, node, key, "bullet", false);
             bool fix_rot = *get_attr<bool>(*this, node, key, "fixed_rotation", false);
             float lin_d = *get_attr<float>(*this, node, key, "linear_damping", 0.0f);
-
+            glm::vec2 pivot = *get_attr<glm::vec2>(*this, node, key, "pivot", glm::vec2(0.0f, 0.0f));
+            
             if ( config_.find(key) == config_.end() )
             {
                 // No body object exists! No parts defined?
@@ -916,13 +958,15 @@ namespace x2d
             {
                 // Set dynamic, bullet and fixed_rotation
                 static_cast<body_cfg *>(&(*config_[key]))
-                        ->set_dynamic(dynamic);
+                        ->set_type(btype);
                 static_cast<body_cfg *>(&(*config_[key]))
                         ->set_bullet(bullet);
                 static_cast<body_cfg *>(&(*config_[key]))
                         ->set_fixed_rotation(fix_rot);
                 static_cast<body_cfg *>(&(*config_[key]))
                         ->set_linear_damping(lin_d);
+                static_cast<body_cfg *>(&(*config_[key]))
+                        ->set_pivot(pivot);
             }
         }
 
@@ -940,9 +984,9 @@ namespace x2d
             {
                 // No body exists yet
                 config_[parent_key] =
-                        boost::shared_ptr<body_cfg>(
-                                new body_cfg(*this, kernel_, false,
-                                        false, false, 0.0f));
+                    boost::shared_ptr<body_cfg>(
+                        new body_cfg(*this, kernel_, DYNAMIC_BODY,
+                            false, false, 0.0f, glm::vec2(0.0f, 0.0f)));
             }
 
             float density =
@@ -1017,6 +1061,24 @@ namespace x2d
             part->type(CIRCLE_TYPE);
         }
 
+        void configuration::parse_body_part_polygon(xml_node *node, const config_key& key)
+        {
+            // NOTE: this element must appear nested in a <body> element
+            //
+            // must have:
+            // n:        name of the element
+            
+            boost::shared_ptr<body_part_cfg> part =
+                parse_body_part_common(node, key);
+            
+            std::vector<float> polygon =
+                get_mandatory_list_attr<float>(*this, node, key, "polygon",
+                    structure_exception("Polygon BodyPart must specify 'polygon'.")).get_list();
+            
+            part->polygon(polygon);
+            part->type(POLYGON_TYPE);
+        }
+        
         void configuration::parse_script(xml_node *node, const config_key& key)
         {
             // must have:

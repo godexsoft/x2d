@@ -300,7 +300,7 @@ namespace x2d {
         // physics
         if(body_) 
         {
-            position(body_->position());
+            position(body_->position() + pivot_);
             rotation( glm::degrees(body_->angle()) );
         }
         
@@ -345,14 +345,15 @@ namespace x2d {
             boost::bind(&glm::vec3::z, boost::bind(&object::position_, _1))
                 > -std::numeric_limits<float>::epsilon() ), children_.end(),
                 boost::bind(&object::render, _1, clock) );
-       
+        
         // draw the rect with bgcolor if required
         if(bgcolor_.a > 0.0f)
         {
-            glDisable(GL_TEXTURE_2D);
-            glColor4f(bgcolor_.r, bgcolor_.g, bgcolor_.b, bgcolor_.a);
             glPushMatrix();
             glTranslatef(-pivot_.x, -pivot_.y, 0.0f);
+
+            glDisable(GL_TEXTURE_2D);
+            glColor4f(bgcolor_.r, bgcolor_.g, bgcolor_.b, bgcolor_.a);
 
             size b = box();
 
@@ -371,8 +372,9 @@ namespace x2d {
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
             glDisable(GL_BLEND);        
-            glPopMatrix();
             glEnable(GL_TEXTURE_2D);
+            
+            glPopMatrix();
         }
 
         glEnable(GL_BLEND);
@@ -506,7 +508,7 @@ namespace x2d {
 
         if(body_)
         {
-            body_->position(glm::vec2(position_.x, position_.y));
+            body_->position(glm::vec2(position_.x - pivot_.x, position_.y - pivot_.y));
         }
     }
     
@@ -525,7 +527,7 @@ namespace x2d {
         
         if(body_) 
         {
-            body_->position(p);
+            body_->position(glm::vec2(p.x - pivot_.x, p.y - pivot_.y));
         }
     }        
     
@@ -728,6 +730,11 @@ namespace x2d {
     boost::shared_ptr<sprite> object::get_sprite()
     {
         return cur_sprite_;
+    }
+    
+    boost::shared_ptr<body> object::get_body()
+    {
+        return body_;
     }
     
     void object::on_collision_begin(object* with)

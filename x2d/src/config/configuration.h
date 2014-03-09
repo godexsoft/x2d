@@ -104,6 +104,7 @@ namespace config {
          * Scene support
          */
         void switch_to(const boost::shared_ptr<scene>& s);
+        boost::shared_ptr<scene>& get_current_scene();
         
         kernel& get_kernel() const
         {
@@ -272,7 +273,7 @@ namespace config {
         template <typename T>
         list_value<T> get_list_value(const config_key& key)
         {
-            typedef value_cfg<std::vector<std::string> > cfg_type;
+            typedef value_cfg<std::vector<T> > cfg_type;
             return static_cast<cfg_type*>( &(*config_[key]) )->get();
         }
         
@@ -319,7 +320,7 @@ namespace config {
         template<typename T>
         static
         value<T> get_mandatory_attr(configuration& cfg, xml_node* node, const config_key& key,
-                                           const std::string& name, const std::exception& e)
+                                    const std::string& name, const std::exception& e)
         {
             xml_attr* at = node->first_attribute(name.c_str());
             if(at) 
@@ -408,6 +409,7 @@ namespace config {
         void parse_string(xml_node* node, const config_key& key);
         void parse_vector(xml_node* node, const config_key& key);
         void parse_list(xml_node* node, const config_key& key);
+        void parse_float_list(xml_node* node, const config_key& key);
         
         template<typename T>
         void parse_random(xml_node* node, const config_key& key);
@@ -444,6 +446,7 @@ namespace config {
         boost::shared_ptr<body_part_cfg> parse_body_part_common(xml_node* node, const config_key& key);
         void parse_body_part_box(xml_node* node, const config_key& key);
         void parse_body_part_circle(xml_node* node, const config_key& key);
+        void parse_body_part_polygon(xml_node* node, const config_key& key);
         
         // lua scripting
         void parse_script(xml_node* node, const config_key& key);
