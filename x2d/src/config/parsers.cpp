@@ -1008,8 +1008,8 @@ namespace x2d
                     *get_attr<bool>(*this, node, key, "sensor", false);
 
             boost::shared_ptr<body_part_cfg> part =
-                    boost::shared_ptr<body_part_cfg>(new body_part_cfg(*this, kernel_,
-                            density, restitution, friction, mask, category, sensor));
+                boost::shared_ptr<body_part_cfg>(new body_part_cfg(*this, kernel_,
+                    key.last_path_component(), density, restitution, friction, mask, category, sensor));
 
             config_[key] = part;
             static_cast<body_cfg *>(&(*config_[parent_key]))->add(key);
@@ -1051,13 +1051,18 @@ namespace x2d
             // radius:   radius of the circle
 
             boost::shared_ptr<body_part_cfg> part =
-                    parse_body_part_common(node, key);
+                parse_body_part_common(node, key);
 
             float radius =
-                    *get_attr<float>(*this, node, key, "radius",
-                            0.0f);
+                *get_attr<float>(*this, node, key, "radius", 0.0f);
+
+            float x = *get_attr<float>(*this, node, key, "x", 0.0f);
+            float y = *get_attr<float>(*this, node, key, "y", 0.0f);
 
             part->radius(radius);
+            part->set_x(x);
+            part->set_y(y);
+            
             part->type(CIRCLE_TYPE);
         }
 

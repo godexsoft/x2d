@@ -608,21 +608,22 @@ namespace config {
         {
             return
                 boost::shared_ptr<body_part>(
-                    new body_part_box(config_, b, density_, restitution_,
+                    new body_part_box(config_, ident_, b, density_, restitution_,
                         friction_, mask_, category_, bl_, tr_, is_sensor_) );
         }
         else if(type_ == CIRCLE_TYPE)
         {
             return
                 boost::shared_ptr<body_part>(
-                    new body_part_circle(config_, b, density_,
-                        restitution_, friction_, mask_, category_, radius_, is_sensor_) );
+                    new body_part_circle(config_, ident_, b, density_,
+                        restitution_, friction_, mask_, category_,
+                            x_, y_, radius_, is_sensor_) );
         }
         else if(type_ == POLYGON_TYPE)
         {
             return
                 boost::shared_ptr<body_part>(
-                    new body_part_polygon(config_, b, density_,
+                    new body_part_polygon(config_, ident_, b, density_,
                         restitution_, friction_, mask_, category_, points_, is_sensor_) );
         }
 

@@ -112,7 +112,9 @@ using namespace x2d::config;
         
         // collision. can be reimplemented by clients
         virtual void on_collision_begin(object* with);
+        virtual void on_collision_begin(const std::string& me, const std::string& with);
         virtual void on_collision_end(object* with);
+        virtual void on_collision_end(const std::string& me, const std::string& with);
         
         // can be overriden by clients
         virtual bool on_input_began(const glm::vec2& v)

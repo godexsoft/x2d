@@ -77,6 +77,8 @@ namespace physics {
         
         float global_scale() const;
         
+        void set_contact_listener(b2ContactListener& cl);
+        
     private:
         world_bare();
         

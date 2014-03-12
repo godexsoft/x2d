@@ -13,10 +13,11 @@
 namespace x2d {
 namespace physics {
 
-    body_part::body_part(configuration& conf,
+    body_part::body_part(configuration& conf, const std::string& ident,
         const float& density, const float& restitution, const float& friction,
         const uint16_t& mask, const uint16_t& category, bool is_sensor)
     : config_(conf)
+    , ident_(ident)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
@@ -26,11 +27,11 @@ namespace physics {
     {
     }
 
-    body_part_box::body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
+    body_part_box::body_part_box(configuration& conf, const std::string& ident, const boost::shared_ptr<body>& b,
         const float& density, const float& restitution, const float& friction,
         const uint16_t& mask, const uint16_t& category,
         const size& bottom_left, const size& top_right, bool is_sensor)
-    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
+    : body_part(conf, ident, density, restitution, friction, mask, category, is_sensor)
     , bl_(bottom_left)
     , tr_(top_right)
     {
@@ -74,15 +75,18 @@ namespace physics {
         shape.SetAsBox(box.width * world::instance().global_scale()/2,
                        box.height* world::instance().global_scale()/2);
         fix.shape = &shape;
+        fix.userData = &ident_;
         
         b->createFixture(&fix);
     }
     
-    body_part_circle::body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
-        const float& density, const float& restitution, const float& friction,
-        const uint16_t& mask, const uint16_t& category,
-        const float& radius, bool is_sensor)
-    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
+    body_part_circle::body_part_circle(configuration& conf, const std::string& ident,
+        const boost::shared_ptr<body>& b, const float& density, const float& restitution,
+        const float& friction, const uint16_t& mask, const uint16_t& category,
+        const float& x, const float& y, const float& radius, bool is_sensor)
+    : body_part(conf, ident, density, restitution, friction, mask, category, is_sensor)
+    , x_(x)
+    , y_(y)
     , radius_(radius)
     {
         b2FixtureDef fix;
@@ -115,17 +119,21 @@ namespace physics {
         
         b2CircleShape shape;
         shape.m_radius = radius_ * world::instance().global_scale();
+        shape.m_p = b2Vec2(x_ * world::instance().global_scale(),
+                           y_ * world::instance().global_scale());
         
         fix.shape = &shape;
+        fix.userData = &ident_;
+        
         b->createFixture(&fix);
     }
     
     
-    body_part_polygon::body_part_polygon(configuration& conf, const boost::shared_ptr<body>& b,
-        const float& density, const float& restitution, const float& friction,
-        const uint16_t& mask, const uint16_t& category,
+    body_part_polygon::body_part_polygon(configuration& conf, const std::string& ident,
+        const boost::shared_ptr<body>& b, const float& density, const float& restitution,
+        const float& friction, const uint16_t& mask, const uint16_t& category,
         const std::vector<float>& points, bool is_sensor)
-    : body_part(conf, density, restitution, friction, mask, category, is_sensor)
+    : body_part(conf, ident, density, restitution, friction, mask, category, is_sensor)
     , points_(points)
     {
         b2FixtureDef fix;
@@ -160,6 +168,8 @@ namespace physics {
         }
         
         fix.shape = &shape;
+        fix.userData = &ident_;
+        
         b->createFixture(&fix);
     }
     

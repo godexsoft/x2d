@@ -739,12 +739,18 @@ namespace x2d {
     
     void object::on_collision_begin(object* with)
     {
-        LOG("Object collision BEGIN: 0x%X with 0x%X", this, with);
     }
 
+    void object::on_collision_begin(const std::string& me, const std::string& with)
+    {
+    }
+    
     void object::on_collision_end(object* with)
     {
-        LOG("Object collision END: 0x%X with 0x%X", this, with);        
+    }
+
+    void object::on_collision_end(const std::string& me, const std::string& with)
+    {
     }
 
     void object::set_on_input_began(const boost::function<void(object*)>& fn)

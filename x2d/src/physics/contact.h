@@ -16,7 +16,36 @@
 #include "glm.hpp"
 
 namespace x2d {
+    
+    class object;
+    
 namespace physics {
+    
+    /**
+     * @brief contains x2d contact information
+     */
+    class contact_info
+    {
+    public:
+        contact_info(const std::string& ident, const boost::shared_ptr<object>& obj)
+        : ident_(ident)
+        , object_(obj)
+        {}
+        
+        inline const boost::shared_ptr<object> get_object() const
+        {
+            return object_;
+        }
+        
+        inline const std::string& get_ident() const
+        {
+            return ident_;
+        }
+        
+    private:
+        std::string ident_;
+        boost::shared_ptr<object> object_;
+    };
     
     /**
      * @brief box2d-based Contact listener

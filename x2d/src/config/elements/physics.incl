@@ -95,13 +95,16 @@ public:
      * @param[in] c         Configuration object
      * @param[in] k         Kernel object
      */
-    body_part_cfg(configuration& c, kernel& k,
+    body_part_cfg(configuration& c, kernel& k, const std::string& ident,
         float density, float restitution, float friction,
         const uint16_t& mask, const uint16_t& category, bool sensor)
     : config_(c)
     , kernel_(k)
+    , ident_(ident)
     , type_(INVALID_TYPE)
     , radius_(0.0f)
+    , x_(0.0f)
+    , y_(0.0f)
     , density_(density)
     , restitution_(restitution)
     , friction_(friction)
@@ -126,6 +129,16 @@ public:
         radius_ = r;
     }
     
+    void set_x(const float& x)
+    {
+        x_ = x;
+    }
+
+    void set_y(const float& y)
+    {
+        y_ = y;
+    }
+    
     void polygon(const std::vector<float>& points)
     {
         points_ = points;
@@ -143,12 +156,15 @@ public:
   
 private:                
     configuration&              config_;
-    kernel&                     kernel_;
+    kernel&                     kernel_;    
+    const std::string           ident_;
     
     body_part_type              type_;
     size                        bl_;
     size                        tr_;
     float                       radius_;
+    float                       x_;
+    float                       y_;
     std::vector<float>          points_;
     float                       density_;
     float                       restitution_;

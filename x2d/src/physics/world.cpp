@@ -39,5 +39,9 @@ namespace physics {
         return glm::vec2(g.x, g.y);
     }
     
+    void world_bare::set_contact_listener(b2ContactListener& cl)
+    {
+        world_.SetContactListener(&cl);
+    }
 } // namespace physics
 } // namespace x2d

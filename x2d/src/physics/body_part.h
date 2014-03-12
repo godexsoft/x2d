@@ -38,13 +38,14 @@ namespace physics {
     class body_part
     {
     public:
-        body_part(configuration& conf,
+        body_part(configuration& conf, const std::string& ident,
             const float& density, const float& restitution, const float& friction,
                   const uint16_t& mask, const uint16_t& category, bool is_sensor);
         
     protected:
         configuration&              config_;
         
+        std::string ident_;
         float   density_;
         float   restitution_;
         float   friction_;
@@ -57,7 +58,7 @@ namespace physics {
     : public body_part
     {
     public:
-        body_part_box(configuration& conf, const boost::shared_ptr<body>& b,
+        body_part_box(configuration& conf, const std::string& ident, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
             const uint16_t & mask, const uint16_t& category,
             const size& bottom_left, const size& top_right, bool is_sensor);
@@ -71,12 +72,14 @@ namespace physics {
     : public body_part
     {
     public:
-        body_part_circle(configuration& conf, const boost::shared_ptr<body>& b,
+        body_part_circle(configuration& conf, const std::string& ident, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
             const uint16_t& mask, const uint16_t& category,
-            const float& radius, bool is_sensor);
+            const float& x, const float& y, const float& radius, bool is_sensor);
         
     private:
+        float    x_;
+        float    y_;
         float    radius_;
     };
 
@@ -84,7 +87,7 @@ namespace physics {
     : public body_part
     {
     public:
-        body_part_polygon(configuration& conf, const boost::shared_ptr<body>& b,
+        body_part_polygon(configuration& conf, const std::string& ident, const boost::shared_ptr<body>& b,
             const float& density, const float& restitution, const float& friction,
             const uint16_t& mask, const uint16_t& category,
             const std::vector<float>& points, bool is_sensor);
