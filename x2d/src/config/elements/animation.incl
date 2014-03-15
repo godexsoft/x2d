@@ -79,6 +79,11 @@ public:
      */
     boost::shared_ptr<animation> create();        
     
+    /**
+     * Create and return shared
+     */
+    boost::shared_ptr<animation> get();
+    
 private:
     configuration&              config_;
     float                       duration_;

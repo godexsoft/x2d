@@ -375,6 +375,12 @@ namespace config {
     }
 
     template <>
+    boost::shared_ptr<animation> configuration::get_object<animation>(const config_key& key)
+    {
+        return static_cast<animation_cfg*>( &(*config_[key]) )->get();
+    }
+
+    template <>
     const boost::shared_ptr<animation> configuration::create_sys_object<animation>(const config_key& key)
     {
         return static_cast<animation_cfg*>( &(*config_[key]) )->create();
@@ -513,7 +519,22 @@ namespace config {
             return r;
         }
     }
-        
+
+    boost::shared_ptr<animation> animation_cfg::get()
+    {
+        if( boost::shared_ptr<animation> p = inst_.lock() )
+        {
+            // already exists outside of cfg
+            return p;
+        }
+        else
+        {
+            boost::shared_ptr<animation> r = create();
+            inst_ = r;
+            return r;
+        }
+    }
+    
     boost::shared_ptr<animation> animation_cfg::create()
     {
         boost::shared_ptr<animation> r = boost::shared_ptr<animation>( new animation(duration_, pivot_, flip_x_, flip_y_) );

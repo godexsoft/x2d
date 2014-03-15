@@ -83,6 +83,7 @@ using namespace x2d::config;
         void text(const std::string& t);
         
         void set_sprite(const boost::shared_ptr<sprite>& spr);
+        void set_animation(const boost::shared_ptr<animation>& anim);
         
         void set_bgcolor(const color_info& bgcolor);
         

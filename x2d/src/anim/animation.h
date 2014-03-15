@@ -99,9 +99,17 @@ namespace anim {
          */
         void start()
         {
+            reset();
+            is_paused_ = false;
+        }
+        
+        /**
+         * Reset animation states
+         */
+        void reset()
+        {
             cur_frame_ = 0;
             elapsed_ = 0.0f;
-            is_paused_ = false;
         }
         
         /**

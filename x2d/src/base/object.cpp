@@ -692,6 +692,11 @@ namespace x2d {
         cur_sprite_ = spr;
     }
     
+    void object::set_animation(const boost::shared_ptr<animation>& anim)
+    {
+        cur_animation_ = anim;
+    }
+    
     void object::set_bgcolor(const color_info& bgcolor)
     {
         bgcolor_ = bgcolor;
