@@ -381,6 +381,12 @@ namespace config {
     }
 
     template <>
+    const boost::shared_ptr<sprite> configuration::create_sys_object<sprite>(const config_key& key)
+    {
+        return static_cast<sprite_cfg*>( &(*config_[key]) )->create();
+    }
+    
+    template <>
     const boost::shared_ptr<animation> configuration::create_sys_object<animation>(const config_key& key)
     {
         return static_cast<animation_cfg*>( &(*config_[key]) )->create();
@@ -513,12 +519,20 @@ namespace config {
         }
         else
         {
-            boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>( 
-                new sprite( config_.get_object<texture>(texture_), origin_, size_, pivot_, flip_x_, flip_y_) );
+            boost::shared_ptr<sprite> r = create();
             inst_ = r;
             return r;
         }
     }
+    
+    boost::shared_ptr<sprite> sprite_cfg::create()
+    {
+        boost::shared_ptr<sprite> r = boost::shared_ptr<sprite>(
+            new sprite( config_.get_object<texture>(texture_), origin_, size_, pivot_, flip_x_, flip_y_) );
+        
+        return r;
+    }    
+
 
     boost::shared_ptr<animation> animation_cfg::get()
     {

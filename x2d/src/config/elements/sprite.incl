@@ -44,6 +44,11 @@ public:
      */
     boost::shared_ptr<sprite> get();
     
+    /**
+     * Create a brand new instance on request.
+     */
+    boost::shared_ptr<sprite> create();
+    
 private:
     configuration&           config_;
     config_key               texture_;

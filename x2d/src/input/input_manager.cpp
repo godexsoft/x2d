@@ -224,7 +224,7 @@ namespace input {
             n = "__NOT_MAPPED__";
         }
         
-        LOG("DOWN: %s", n.c_str());
+//        LOG("DOWN: %s", n.c_str());
     }
 
     void input_manager::on_key_up(const std::string& key)
@@ -239,7 +239,7 @@ namespace input {
             n = "__NOT_MAPPED__";
         }        
 
-        LOG("UP: %s", n.c_str());
+//        LOG("UP: %s", n.c_str());
     }
 
 } // namespace input

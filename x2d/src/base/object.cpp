@@ -757,6 +757,11 @@ namespace x2d {
     void object::on_collision_end(const std::string& me, const std::string& with)
     {
     }
+    
+    bool object::on_collision_presolve(const std::string& me, const std::string& with, object* other_obj)
+    {
+        return true;
+    }
 
     void object::set_on_input_began(const boost::function<void(object*)>& fn)
     {

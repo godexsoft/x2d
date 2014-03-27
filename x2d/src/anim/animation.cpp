@@ -44,6 +44,16 @@ namespace anim {
         flip_y_ = flag;
     }
 
+    void animation::pivot(const glm::vec2& p)
+    {
+        pivot_ = p;
+    }
+    
+    const glm::vec2& animation::pivot() const
+    {
+        return pivot_;
+    }
+    
     void animation::hide()
     {
         is_hidden_ = true;

@@ -135,6 +135,9 @@ namespace anim {
         
         void flip_y(bool flag);
         
+        void pivot(const glm::vec2& p);
+        const glm::vec2& pivot() const;
+        
         /**
          * Update animation with given clock info
          * @param[in] clock  The clock info

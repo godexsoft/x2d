@@ -32,6 +32,16 @@ namespace base {
         flip_y_ = flag;
     }
     
+    void sprite::pivot(const glm::vec2& p)
+    {
+        pivot_ = p;
+    }
+
+    const glm::vec2& sprite::pivot() const
+    {
+        return pivot_;
+    }
+    
     void sprite::draw() const
     {
         if(is_hidden_)

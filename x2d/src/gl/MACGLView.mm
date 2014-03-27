@@ -46,7 +46,13 @@ static std::string get_key_name(int k)
             return "space";
         case 13: // return
             return "return";
-
+        case 44: // ,
+            return ",";
+        case 46: // .
+            return ".";
+        case 39: // '
+            return "'";
+            
         default:
             LOG("KEY %d NOT SUPPORTED YET!", k);
             return "space";

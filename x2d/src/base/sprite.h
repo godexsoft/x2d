@@ -61,6 +61,9 @@ namespace base {
         void flip_x(bool flag);
         void flip_y(bool flag);
         
+        void pivot(const glm::vec2& p);
+        const glm::vec2& pivot() const;
+        
         /**
          * Draw the sprite
          */
